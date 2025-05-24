@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /private/
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://skygenesisenterprise.com/sitemap.xml
