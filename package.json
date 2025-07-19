@@ -1,31 +1,15 @@
 {
   "name": "company-website",
   "version": "1.0.0",
-  "description": "",
+  "description": "Welcome to the official repository for the **Sky Genesis Enterprise website**.   This repository is for internal use by company developers only.",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Sky-Genesis-Enterprise/company-website.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Sky-Genesis-Enterprise/company-website/issues"
-  },
-  "homepage": "https://github.com/Sky-Genesis-Enterprise/company-website#readme",
-  "dependencies": {
-    "@types/react-router-dom": "^5.3.3",
-    "axios": "^1.9.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.5",
-    "@types/react-dom": "^19.1.5"
-  }
+  "license": "ISC"
 }
