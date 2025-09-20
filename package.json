@@ -1,15 +1,27 @@
 {
   "name": "company-website",
-  "version": "1.0.0",
-  "description": "Welcome to the official repository for the **Sky Genesis Enterprise website**.   This repository is for internal use by company developers only.",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "next": "15.5.3"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "@eslint/eslintrc": "^3"
+  }
 }
