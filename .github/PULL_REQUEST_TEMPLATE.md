@@ -1,6 +1,6 @@
 # Pull Request
 
-Thank you for contributing to **Aether Mail**!  
+Thank you for contributing to **Company Website**!  
 Please fill out the following information to help us review your changes effectively.
 
 ---

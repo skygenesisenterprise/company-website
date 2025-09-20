@@ -1,6 +1,6 @@
 # Support
 
-Thank you for using **Aether Mail** — an open-source email client developed and maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
+Thank you for using **Company Website** — The Official Website developed and maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
 
 We’re committed to providing a great experience, and there are several ways you can get support depending on your needs:
 
@@ -17,8 +17,8 @@ If you're using the open-source version of Aether Mail and need help with:
 
 Please use one of the following channels:
 
-- 💬 [GitHub Discussions](https://github.com/Sky-Genesis-Enterprise/aether-mail/discussions)
-- 🐞 [GitHub Issues](https://github.com/Sky-Genesis-Enterprise/aether-mail/issues) – for bug reports only
+- 💬 [GitHub Discussions](https://github.com/skygenesisenterprise/company-website/discussions)
+- 🐞 [GitHub Issues](https://github.com/skygenesisenterprise/company-website/issues) – for bug reports only
 - 📚 [Documentation](https://wiki.skygenesisenterprise.com)
 
 Our community and contributors will do their best to assist.
