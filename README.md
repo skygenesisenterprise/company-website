@@ -28,7 +28,7 @@ The website presents our products, services, company news, and serves as the mai
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Sky-Genesis-Enterprise/company-website.git
+git clone https://github.com/skygenesisenterprise/company-website.git
 cd company-website
 ```
 
@@ -99,7 +99,6 @@ npm run format
 
 ## 🧭 Contribution Guidelines
 
-- All contributions must follow the [Internal Code of Conduct](https://server.skygenesisenterprise.com/code-of-conduct).
 - Please read the [CONTRIBUTING.md](./.github/CONTRIBUTING.md) for detailed contribution instructions.
 - Use feature branches and submit Merge Requests via the internal Git platform.
 - Write tests for new features and bug fixes.
@@ -131,14 +130,11 @@ company-website/
 
 ## 📩 Support & Questions
 
-- For technical questions, use the internal `#dev-web` channel.
-- For urgent issues, contact: [dev@skygenesisenterprise.com](mailto:dev@skygenesisenterprise.com)
+- For urgent issues, contact: [webmaster@skygenesisenterprise.com](mailto:webmaster@skygenesisenterprise.com)
 
 ---
 
 ## 📄 License
 
-This project is proprietary and confidential.  
+This project use the AGPLv3 licence see [licence](LICENSE)
 © Sky Genesis Enterprise. All rights reserved.
-
----
