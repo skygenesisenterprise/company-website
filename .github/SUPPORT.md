@@ -1,6 +1,6 @@
 # Support
 
-Thank you for using **Company Website** — The Official Website developed and maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
+Thank you for using **Company Website** — the official company website developed and maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
 
 We’re committed to providing a great experience, and there are several ways you can get support depending on your needs:
 
@@ -53,7 +53,7 @@ Instead, report it responsibly to our security team:
 
 ## 🙏 Contributing
 
-Want to help improve Aether Mail?  
+Want to help improve for the Company Website?  
 Check out our [CONTRIBUTING.md](./CONTRIBUTING.md) guide for how to get started.
 
 Thanks for supporting open-source!
