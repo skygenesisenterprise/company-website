@@ -1,12 +1,35 @@
 // api/index.ts
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc';
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 // Middleware pour parser le JSON
 app.use(bodyParser.json());
+
+// Configuration de Swagger
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Mon API',
+      version: '1.0.0',
+      description: 'Documentation de l\'API de mon projet',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3001',
+      },
+    ],
+  },
+  apis: ['./api/*.ts'], // Chemin vers vos fichiers de routes
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Route d'authentification
 app.post('/api/v1/auth', (req: Request, res: Response) => {
