@@ -23,7 +23,7 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Run tests with coverage
-        run: pnpm test -- --coverage
+        run: npm test -- --coverage

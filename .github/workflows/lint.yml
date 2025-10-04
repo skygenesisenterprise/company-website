@@ -23,7 +23,7 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Run ESLint
-        run: pnpm run lint
+        run: npm run lint
