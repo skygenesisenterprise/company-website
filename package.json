@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm run dev:fronted && pnpm run dev:backend",
+    "dev": "pnpm run dev:fronted & pnpm run dev:backend",
     "dev:backend": "ts-node api/index.ts",
     "dev:fronted": "next dev --turbopack",
     "build": "next build --turbopack",
