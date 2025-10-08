@@ -10,6 +10,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello, World!');
 });
 
+app.use('/api/auth', authRoutes);
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
