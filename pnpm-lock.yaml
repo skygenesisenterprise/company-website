@@ -88,8 +88,8 @@ importers:
         specifier: 30.2.0
         version: 30.2.0(@types/node@24.7.0)(ts-node@10.9.2(@types/node@24.7.0)(typescript@5.9.3))
       snyk:
-        specifier: ^1.1299.1
-        version: 1.1299.1
+        specifier: ^1.1300.0
+        version: 1.1300.0
       supertest:
         specifier: ^7.1.4
         version: 7.1.4
@@ -3315,6 +3315,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@1.2.0:
     resolution: {integrity: sha512-uaW0WwXKpL9blXE2o0bRhoL2EGXIrZxQ2ZQ4mgcfoBxdFmQold+qWsD2jLrfZ0trjKL6vOw0j//eAwcALFjKSw==}
     engines: {node: '>= 18'}
@@ -3389,8 +3394,8 @@ packages:
     resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
     engines: {node: '>=10'}
 
-  snyk@1.1299.1:
-    resolution: {integrity: sha512-JMVqIDy2pP2vXBDmqP3OeArrAEdnhyeK6NDfIHGbx3tC8iI9gu7MluBx3bQX9c/Xt/iN5Bfu7LuelBHWwhQgCQ==}
+  snyk@1.1300.0:
+    resolution: {integrity: sha512-ARcMAHyCurt+yig1nrbNap4omkWtmVLCRViNJTU+4udkf0KcQ6nA9q9mInHUqdlgUAy5s3BDUNq69Mq5m88+JA==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -4922,7 +4927,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -6240,7 +6245,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.7.2
+      semver: 7.7.3
       serialize-error: 7.0.1
 
   global-dirs@3.0.1:
@@ -6381,7 +6386,7 @@ snapshots:
 
   is-bun-module@2.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   is-callable@1.2.7: {}
 
@@ -6500,7 +6505,7 @@ snapshots:
       '@babel/parser': 7.28.4
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -6795,7 +6800,7 @@ snapshots:
       jest-message-util: 30.2.0
       jest-util: 30.2.0
       pretty-format: 30.2.0
-      semver: 7.7.2
+      semver: 7.7.3
       synckit: 0.11.11
     transitivePeerDependencies:
       - supports-color
@@ -7085,7 +7090,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   make-error@1.3.6: {}
 
@@ -7580,6 +7585,8 @@ snapshots:
 
   semver@7.7.2: {}
 
+  semver@7.7.3: {}
+
   send@1.2.0:
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
@@ -7715,7 +7722,7 @@ snapshots:
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
 
-  snyk@1.1299.1:
+  snyk@1.1300.0:
     dependencies:
       '@sentry/node': 7.120.4
       global-agent: 3.0.0
