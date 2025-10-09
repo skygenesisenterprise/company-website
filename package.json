@@ -17,7 +17,9 @@
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.10",
     "axios": "^1.12.2",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
+    "dotenv": "^17.2.3",
     "jsonwebtoken": "^9.0.2",
     "next": "15.5.3",
     "pg": "^8.16.3",
@@ -32,6 +34,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/body-parser": "^1.19.6",
+    "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.3",
     "@types/node": "24.7.0",
     "@types/pg": "^8.15.5",

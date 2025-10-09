@@ -1,31 +1,25 @@
 import express from 'express';
-import axios, { AxiosError } from 'axios';
+import authService from '../services/authService';
 
 const router = express.Router();
 
-router.post('/auth', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
-
-    // Appel à l'API externe pour l'authentification
-    const response = await axios.post('https://api.skygenesisenterprise.com/api/v1/auth', {
-      username,
-      password
-    });
-
-    // Renvoie la réponse de l'API externe
-    res.status(response.status).json(response.data);
+    const { email, password } = req.body;
+    const token = await authService.login(email, password);
+    res.json({ token });
   } catch (error) {
-    // Gestion des erreurs
-    const axiosError = error as AxiosError;
+    res.status(401).json({ message: (error as Error).message });
+  }
+});
 
-    if (axiosError.response) {
-      // Erreur de l'API externe
-      res.status(axiosError.response.status).json(axiosError.response.data);
-    } else {
-      // Erreur interne
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
+router.post('/register', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const user = await authService.register(username, email, password);
+    res.status(201).json({ message: 'User registered successfully', user: { id: user.id, username: user.username, email: user.email } });
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
   }
 });
 

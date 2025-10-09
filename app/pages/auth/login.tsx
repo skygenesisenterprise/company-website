@@ -13,17 +13,21 @@ const LoginPage: React.FC = () => {
     setError(null);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
-      const response = await axios.post(apiUrl, { email, password });
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const response = await axios.post(`${apiUrl}/api/auth/login`, { email, password });
 
       if (response.status === 200) {
-        // Gérer la connexion réussie (par exemple, rediriger l'utilisateur)
+        // Store token and redirect
+        localStorage.setItem('token', response.data.token);
         console.log('Login successful');
+        // Redirect to home or dashboard
+        window.location.href = '/';
       } else {
         setError('Login failed');
       }
     } catch (err) {
-      setError('An error occurred during login');
+      const error = err as { response?: { data?: { message?: string } } };
+      setError(error.response?.data?.message || 'An error occurred during login');
     }
   };
 
