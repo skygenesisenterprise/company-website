@@ -72,12 +72,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <nav className="fixed top-0 w-full z-50 bg-[var(--background)]/90 backdrop-blur-md border-b border-[var(--border)] shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-slate-900 font-sans">
+            <Link href="/" className="text-2xl font-bold text-[var(--foreground)] font-sans">
               Sky Genesis Enterprise
             </Link>
           </div>
@@ -88,7 +88,7 @@ export default function Navbar() {
               <div key={item.name} className="relative">
                 <Link
                   href={item.href}
-                  className="text-slate-700 hover:text-cyan-600 transition font-medium"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition font-medium"
                   onMouseEnter={() => item.hasMega && setMegaMenuOpen(item.name)}
                   onMouseLeave={() => setMegaMenuOpen(null)}
                 >
@@ -96,16 +96,16 @@ export default function Navbar() {
                 </Link>
                 {item.hasMega && megaMenuOpen === item.name && (
                   <div
-                    className="absolute top-full left-0 mt-2 w-96 bg-white shadow-xl rounded-lg p-6 border border-slate-200"
+                    className="absolute top-full left-0 mt-2 w-96 bg-[var(--background)] shadow-xl rounded-lg p-6 border border-[var(--border)]"
                     onMouseEnter={() => setMegaMenuOpen(item.name)}
                     onMouseLeave={() => setMegaMenuOpen(null)}
                   >
                     <div className="grid grid-cols-2 gap-4">
                       {(item.name === 'Products' ? productsMega : industriesMega).map((sub) => (
-                        <Link key={sub.title} href={`${item.href}/${sub.title.toLowerCase().replace(/\s+/g, '-')}`} className="block p-3 rounded-lg hover:bg-slate-50 transition">
+                        <Link key={sub.title} href={`${item.href}/${sub.title.toLowerCase().replace(/\s+/g, '-')}`} className="block p-3 rounded-lg hover:bg-[var(--surface-hover)] transition">
                           <div className="text-2xl mb-2">{sub.icon}</div>
-                          <h3 className="font-semibold text-slate-900">{sub.title}</h3>
-                          <p className="text-sm text-slate-600">{sub.desc}</p>
+                          <h3 className="font-semibold text-[var(--foreground)]">{sub.title}</h3>
+                          <p className="text-sm text-[var(--text-secondary)]">{sub.desc}</p>
                         </Link>
                       ))}
                     </div>
@@ -120,20 +120,20 @@ export default function Navbar() {
             {/* Search */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="hidden lg:flex items-center space-x-2 text-slate-700 hover:text-cyan-600 transition"
+              className="hidden lg:flex items-center space-x-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <span className="text-sm">Search</span>
-              <kbd className="text-xs bg-slate-200 px-1 rounded">⌘K</kbd>
+              <kbd className="text-xs bg-[var(--surface)] px-1 rounded">⌘K</kbd>
             </button>
 
             {/* Language Selector */}
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              className="bg-transparent text-slate-700 border-none focus:outline-none"
+              className="bg-transparent text-[var(--text-secondary)] border-none focus:outline-none"
             >
               <option value="FR">FR</option>
               <option value="EN">EN</option>
@@ -142,7 +142,7 @@ export default function Navbar() {
             </select>
 
             {/* CTA */}
-            <Link href="/developer-portal" className="hidden lg:block bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition text-sm font-medium">
+            <Link href="/developer-portal" className="hidden lg:block btn-primary text-sm">
               Portail Développeur
             </Link>
 
