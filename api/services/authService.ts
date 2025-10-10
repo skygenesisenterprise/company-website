@@ -1,5 +1,5 @@
 import UserModel from '../models/userModel';
-import pool from '../config/database';
+import { pool } from '../config/database';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 

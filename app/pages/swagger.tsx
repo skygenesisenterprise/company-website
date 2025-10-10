@@ -10,11 +10,14 @@ const SwaggerPage: React.FC = () => {
     document.body.appendChild(script);
 
     script.onload = () => {
+      // @ts-expect-error SwaggerUI types not available
       const ui = window.SwaggerUIBundle({
         url: '/api-docs/swagger.json',
         dom_id: '#swagger-ui',
         presets: [
+          // @ts-expect-error SwaggerUI types not available
           window.SwaggerUIBundle.presets.apis,
+          // @ts-expect-error SwaggerUI types not available
           window.SwaggerUIStandalonePreset
         ],
         layout: "BaseLayout"
