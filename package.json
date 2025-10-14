@@ -44,7 +44,7 @@
     "@types/swagger-ui-dist": "^3.30.6",
     "cypress": "15.4.0",
     "eslint": "^9.37.0",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "15.5.5",
     "express": "^5.1.0",
     "jest": "30.2.0",
     "snyk": "^1.1300.0",
