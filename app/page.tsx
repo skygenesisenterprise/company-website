@@ -1,15 +1,5 @@
-import { HeroSection, AboutSection, ProductsSection, GovernanceSection, IndustriesSection, BlogSection, VisionSection } from './pages/home';
+import HomePage from './pages/home/index';
 
 export default function Home() {
-  return (
-    <div>
-      <HeroSection />
-      <AboutSection />
-      <ProductsSection />
-      <GovernanceSection />
-      <IndustriesSection />
-      <BlogSection />
-      <VisionSection />
-    </div>
-  );
+  return <HomePage />;
 }
