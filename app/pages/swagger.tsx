@@ -1,19 +1,18 @@
 // app/pages/swagger.tsx
 import React, { useEffect, useRef } from 'react';
-import SwaggerUI from 'swagger-ui-dist';
 
-interface Window {
+interface SwaggerWindow {
   SwaggerUIBundle: {
     presets: {
-      apis: any;
+      apis: unknown[];
     };
-    (options: any): any;
+    (options: Record<string, unknown>): unknown;
   };
-  SwaggerUIStandalonePreset: any;
+  SwaggerUIStandalonePreset: unknown;
 }
 
 const SwaggerPage: React.FC = () => {
-  const swaggerUiRef = useRef<SwaggerUI | null>(null);
+  const swaggerUiRef = useRef<unknown | null>(null);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -22,12 +21,12 @@ const SwaggerPage: React.FC = () => {
     document.body.appendChild(script);
 
     script.onload = () => {
-const ui = (window as any).SwaggerUIBundle({
+const ui = (window as unknown as SwaggerWindow).SwaggerUIBundle({
         url: '/api-docs/swagger.json',
         dom_id: '#swagger-ui',
         presets: [
-window.SwaggerUIBundle.presets.apis,
-window.SwaggerUIStandalonePreset
+(window as unknown as SwaggerWindow).SwaggerUIBundle.presets.apis,
+(window as unknown as SwaggerWindow).SwaggerUIStandalonePreset
         ],
         layout: "BaseLayout"
       });

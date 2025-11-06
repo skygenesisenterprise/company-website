@@ -6,9 +6,10 @@ const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
     const token = await authService.login(username, password);
     res.status(200).json({ token });
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 
-export default { login };
+const authController = { login };
+export default authController;

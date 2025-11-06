@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Linkedin, Twitter, Github, Youtube, Mail, Phone, MapPin, Building, FileText, Calendar, CheckCircle, MessageSquare, BarChart3, Shield, Link2, Cloud, Users, TrendingUp, Award, Globe, Lock, Zap, Lightbulb, Star } from 'lucide-react';
+import { Linkedin, Twitter, Github, Youtube } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Search, Menu, X, ChevronDown, Globe, User, LogIn, UserPlus, FileText, Calendar, CheckCircle, MessageSquare, BarChart3, Shield, Link2, RefreshCw, Wrench, Zap, Book, Beaker } from 'lucide-react';
+import { Search, Menu, X, FileText, Calendar, CheckCircle, MessageSquare, BarChart3, Shield, Link2, RefreshCw, Wrench, Zap, Book, Beaker } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

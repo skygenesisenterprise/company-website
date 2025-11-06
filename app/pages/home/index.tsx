@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Building, Mail, Shield, BarChart3, Link2, Cloud, CheckCircle, ArrowRight, Users, TrendingUp, Award, Globe, Lock, Zap, Lightbulb, ChevronDown, Star } from 'lucide-react';
+import { Building, Mail, Shield, BarChart3, Link2, Cloud, CheckCircle, ArrowRight, Globe, Lock, Zap, Lightbulb, ChevronDown } from 'lucide-react';
 
 export default function HomePage() {
 
@@ -134,7 +134,7 @@ export default function HomePage() {
 
             {/* Main Title */}
             <h1 className="text-6xl md:text-8xl font-bold text-[var(--foreground)] mb-8 leading-tight text-center">
-              L'Alternative Européenne
+              L&apos;Alternative Européenne
               <br />
               <span className="bg-[var(--gradient-accent)] bg-clip-text text-transparent">
                 aux Géants Américains
@@ -153,7 +153,7 @@ export default function HomePage() {
                 href="/aether-office" 
                 className="btn-primary text-lg px-10 py-5 group text-base"
               >
-                Découvrir l'Écosystème
+                Découvrir l&apos;Écosystème
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 

@@ -31,4 +31,5 @@ const register = async (username: string, email: string, password: string) => {
   return user;
 };
 
-export default { login, register };
+const authService = { login, register };
+export default authService;
