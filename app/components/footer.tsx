@@ -46,10 +46,10 @@ export default function Footer() {
 
   // Social Media Links
   const socialLinks = [
-    { name: 'LinkedIn', href: 'https://linkedin.com/company/sky-genesis', icon: <Linkedin className="w-4 h-4" /> },
+    { name: 'LinkedIn', href: 'https://linkedin.com/company/skygenesisenterprise', icon: <Linkedin className="w-4 h-4" /> },
     { name: 'Twitter', href: 'https://twitter.com/skygenesis', icon: <Twitter className="w-4 h-4" /> },
-    { name: 'GitHub', href: 'https://github.com/sky-genesis', icon: <Github className="w-4 h-4" /> },
-    { name: 'YouTube', href: 'https://youtube.com/@skygenesis', icon: <Youtube className="w-4 h-4" /> },
+    { name: 'GitHub', href: 'https://github.com/skygenesisenterprise', icon: <Github className="w-4 h-4" /> },
+    { name: 'YouTube', href: 'https://youtube.com/@skygenesisenterprise', icon: <Youtube className="w-4 h-4" /> },
   ];
 
   return (
@@ -63,7 +63,7 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-[var(--foreground)] mb-2">
-                  Sky Genesis
+                  Sky Genesis Enterprise
                 </h3>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                   Building the future of enterprise collaboration with innovative digital solutions.
