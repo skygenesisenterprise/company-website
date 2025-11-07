@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.10",
-    "axios": "^1.12.2",
+    "axios": "^1.13.1",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "class-variance-authority": "^0.7.1",
