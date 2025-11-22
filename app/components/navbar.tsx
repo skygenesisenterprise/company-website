@@ -1,336 +1,555 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { Search, Menu, X, FileText, Calendar, CheckCircle, MessageSquare, BarChart3, Shield, Link2, RefreshCw, Wrench, Zap, Book, Beaker } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { 
+  Search, 
+  Menu, 
+  X, 
+  ChevronDown, 
+  FileText, 
+  Calendar, 
+  CheckCircle, 
+  MessageSquare, 
+  BarChart3, 
+  Shield, 
+  Wrench, 
+  Book, 
+  Building,
+  Users,
+  Globe,
+  Code,
+  ArrowRight
+} from 'lucide-react';
+
+interface NavItem {
+  name: string;
+  href: string;
+  description?: string;
+  hasDropdown?: boolean;
+  hasMega?: boolean;
+  icon?: React.ReactNode;
+}
+
+interface DropdownItem {
+  title: string;
+  description: string;
+  href: string;
+  icon?: React.ReactNode;
+  badge?: string;
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [language, setLanguage] = useState('FR');
+  const [scrolled, setScrolled] = useState(false);
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         setSearchOpen(true);
       }
+      if (e.key === 'Escape') {
+        setActiveDropdown(null);
+        setSearchOpen(false);
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Global navigation sections
-  const globalSections = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-  ];
+  // Handle click outside dropdowns
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (activeDropdown && !dropdownRefs.current[activeDropdown]?.contains(e.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [activeDropdown]);
 
-  // Aether Office ecosystem modules
-  const ecosystemModules = [
+  // Main navigation items
+  const mainNavItems: NavItem[] = [
+    { name: 'Home', href: '/' },
     { 
       name: 'Aether Office', 
       href: '/aether-office',
       hasMega: true,
-      description: 'Suite de productivité collaborative'
+      description: 'SaaS ecosystem for modern workspace collaboration'
     },
     { 
       name: 'Governance', 
       href: '/governance',
-      description: 'Outils de gouvernance d\'entreprise'
+      hasDropdown: true,
+      description: 'Organizational structure and policies'
     },
     { 
-      name: 'API Platform', 
-      href: '/api-platform',
-      hasMega: true,
-      description: 'Plateforme de développement'
+      name: 'Company', 
+      href: '/company',
+      hasDropdown: true,
+      description: 'About Sky Genesis Enterprise'
+    },
+    { name: 'Vision', href: '/vision' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Careers', href: '/careers' },
+    { 
+      name: 'Developer', 
+      href: '/developer',
+      hasDropdown: true,
+      description: 'Developer resources and documentation'
     },
   ];
 
-  // Resources and support
-  const resourcesSections = [
-    { name: 'Documentation', href: '/docs' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Support', href: '/support' },
+  // Aether Office mega menu items
+  const aetherOfficeItems: DropdownItem[] = [
+    { 
+      title: 'Documents', 
+      description: 'Collaborative document management', 
+      href: '/aether-office/documents',
+      icon: <FileText className="w-5 h-5" />
+    },
+    { 
+      title: 'Calendar', 
+      description: 'Smart scheduling and planning', 
+      href: '/aether-office/calendar',
+      icon: <Calendar className="w-5 h-5" />
+    },
+    { 
+      title: 'Tasks', 
+      description: 'Project and task management', 
+      href: '/aether-office/tasks',
+      icon: <CheckCircle className="w-5 h-5" />
+    },
+    { 
+      title: 'Communication', 
+      description: 'Messaging and video conferencing', 
+      href: '/aether-office/communication',
+      icon: <MessageSquare className="w-5 h-5" />
+    },
+    { 
+      title: 'Analytics', 
+      description: 'Business intelligence dashboards', 
+      href: '/aether-office/analytics',
+      icon: <BarChart3 className="w-5 h-5" />
+    },
+    { 
+      title: 'Security', 
+      description: 'Enterprise-grade access control', 
+      href: '/aether-office/security',
+      icon: <Shield className="w-5 h-5" />
+    },
   ];
 
-  // Aether Office mega menu
-  const aetherOfficeModules = [
-    { title: 'Documents', desc: 'Gestion documentaire collaborative', icon: <FileText className="w-5 h-5" /> },
-    { title: 'Calendar', desc: 'Planification et rendez-vous', icon: <Calendar className="w-5 h-5" /> },
-    { title: 'Tasks', desc: 'Gestion de projet et tâches', icon: <CheckCircle className="w-5 h-5" /> },
-    { title: 'Communication', desc: 'Messagerie et visioconférence', icon: <MessageSquare className="w-5 h-5" /> },
-    { title: 'Analytics', desc: 'Tableaux de bord et rapports', icon: <BarChart3 className="w-5 h-5" /> },
-    { title: 'Security', desc: 'Gestion des accès et permissions', icon: <Shield className="w-5 h-5" /> },
+  // Governance dropdown items
+  const governanceItems: DropdownItem[] = [
+    { 
+      title: 'Organizational Structure', 
+      description: 'Corporate hierarchy and teams', 
+      href: '/governance/structure',
+      icon: <Building className="w-4 h-4" />
+    },
+    { 
+      title: 'Policies & Procedures', 
+      description: 'Company policies and guidelines', 
+      href: '/governance/policies',
+      icon: <FileText className="w-4 h-4" />
+    },
+    { 
+      title: 'Compliance', 
+      description: 'Regulatory compliance information', 
+      href: '/governance/compliance',
+      icon: <Shield className="w-4 h-4" />
+    },
+    { 
+      title: 'Board of Directors', 
+      description: 'Leadership and governance', 
+      href: '/governance/board',
+      icon: <Users className="w-4 h-4" />
+    },
   ];
 
-  // API Platform mega menu
-  const apiPlatformModules = [
-    { title: 'REST API', desc: 'API RESTful complètes', icon: <Link2 className="w-5 h-5" /> },
-    { title: 'GraphQL', desc: 'API GraphQL flexibles', icon: <RefreshCw className="w-5 h-5" /> },
-    { title: 'SDK Tools', desc: 'Kits de développement', icon: <Wrench className="w-5 h-5" /> },
-    { title: 'Webhooks', desc: 'Intégrations temps réel', icon: <Zap className="w-5 h-5" /> },
-    { title: 'Documentation', desc: 'Docs interactives', icon: <Book className="w-5 h-5" /> },
-    { title: 'Sandbox', desc: 'Environnement de test', icon: <Beaker className="w-5 h-5" /> },
+  // Company dropdown items
+  const companyItems: DropdownItem[] = [
+    { 
+      title: 'About Us', 
+      description: 'Our story and mission', 
+      href: '/company/about',
+      icon: <Building className="w-4 h-4" />
+    },
+    { 
+      title: 'Leadership Team', 
+      description: 'Meet our executives', 
+      href: '/company/leadership',
+      icon: <Users className="w-4 h-4" />
+    },
+    { 
+      title: 'Subsidiaries', 
+      description: 'Our portfolio companies', 
+      href: '/company/subsidiaries',
+      icon: <Globe className="w-4 h-4" />
+    },
+    { 
+      title: 'Press & Media', 
+      description: 'News and press releases', 
+      href: '/company/press',
+      icon: <FileText className="w-4 h-4" />
+    },
   ];
+
+  // Developer dropdown items
+  const developerItems: DropdownItem[] = [
+    { 
+      title: 'Documentation', 
+      description: 'API docs and guides', 
+      href: '/developer/docs',
+      icon: <Book className="w-4 h-4" />
+    },
+    { 
+      title: 'API Portal', 
+      description: 'REST & GraphQL APIs', 
+      href: '/developer/api',
+      icon: <Code className="w-4 h-4" />,
+      badge: 'v2.0'
+    },
+    { 
+      title: 'Open Source', 
+      description: 'Our open source projects', 
+      href: '/developer/opensource',
+      icon: <Code className="w-4 h-4" />
+    },
+    { 
+      title: 'SDK & Tools', 
+      description: 'Development kits and tools', 
+      href: '/developer/sdk',
+      icon: <Wrench className="w-4 h-4" />
+    },
+  ];
+
+  const getDropdownItems = (name: string): DropdownItem[] => {
+    switch (name) {
+      case 'Aether Office': return aetherOfficeItems;
+      case 'Governance': return governanceItems;
+      case 'Company': return companyItems;
+      case 'Developer': return developerItems;
+      default: return [];
+    }
+  };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[var(--background)]/90 backdrop-blur-lg border-b border-[var(--border)] shadow-lg">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold bg-[var(--gradient-accent)] bg-clip-text text-transparent font-sans">
-              Sky Genesis Enterprise
-            </Link>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex space-x-8 items-center">
-            {/* Global Sections */}
-            {globalSections.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-[var(--text-secondary)] hover:text-[var(--foreground)] transition font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
-
-            {/* Ecosystem Modules */}
-            {ecosystemModules.map((module) => (
-              <div key={module.name} className="relative">
-                <Link
-                  href={module.href}
-                  className="text-[var(--text-secondary)] hover:text-[var(--foreground)] transition font-medium"
-                  onMouseEnter={() => module.hasMega && setMegaMenuOpen(module.name)}
-                  onMouseLeave={() => setMegaMenuOpen(null)}
-                >
-                  {module.name}
-                </Link>
-                {module.hasMega && megaMenuOpen === module.name && (
-                  <div
-                    className="absolute top-full left-0 mt-2 w-[600px] bg-[var(--background)] shadow-xl rounded-lg p-6 border border-[var(--border)]"
-                    onMouseEnter={() => setMegaMenuOpen(module.name)}
-                    onMouseLeave={() => setMegaMenuOpen(null)}
-                  >
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold text-[var(--foreground)] mb-1">
-                        {module.name}
-                      </h3>
-                      <p className="text-sm text-[var(--text-secondary)]">
-                        {module.description}
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      {(module.name === 'Aether Office' ? aetherOfficeModules : apiPlatformModules).map((sub) => (
-                        <Link 
-                          key={sub.title} 
-                          href={`${module.href}/${sub.title.toLowerCase().replace(/\s+/g, '-')}`} 
-                          className="block p-3 rounded-lg hover:bg-[var(--surface-hover)] transition group"
-                        >
-                          <div className="mb-2 group-hover:scale-110 transition-transform text-[var(--accent)]">
-                            {sub.icon}
-                          </div>
-                          <h4 className="font-semibold text-[var(--foreground)] text-sm">
-                            {sub.title}
-                          </h4>
-                          <p className="text-xs text-[var(--text-secondary)] mt-1">
-                            {sub.desc}
-                          </p>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* Resources */}
-            <div className="relative group">
-              <button className="text-[var(--text-secondary)] hover:text-[var(--foreground)] transition font-medium">
-                Resources
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-[var(--background)] shadow-xl rounded-lg p-2 border border-[var(--border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                {resourcesSections.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="block px-3 py-2 rounded-md text-sm text-[var(--text-secondary)] hover:text-[var(--foreground)] hover:bg-[var(--surface-hover)] transition"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side */}
-          <div className="flex items-center space-x-3">
-            {/* Search */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="hidden lg:flex items-center space-x-2 text-[var(--text-secondary)] hover:text-[var(--foreground)] transition"
-            >
-              <Search className="w-4 h-4" />
-              <span className="text-sm">Search</span>
-              <kbd className="text-xs bg-[var(--surface)] px-1.5 py-0.5 rounded border border-[var(--border)]">
-                ⌘K
-              </kbd>
-            </button>
-
-            {/* Language Selector */}
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              className="bg-transparent text-[var(--text-secondary)] border border-[var(--border)] rounded px-2 py-1 text-sm focus:outline-none focus:border-[var(--accent)]"
-            >
-              <option value="FR">FR</option>
-              <option value="EN">EN</option>
-              <option value="DE">DE</option>
-              <option value="NL">NL</option>
-            </select>
-
-            {/* Login/Register Buttons */}
-            <div className="hidden lg:flex items-center space-x-2">
+    <>
+      <nav 
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-sm' 
+            : 'bg-black/80 backdrop-blur-lg border-b border-transparent'
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-16">
+            {/* Brand */}
+            <div className="flex items-center">
               <Link 
-                href="/auth/login" 
-                className="btn-secondary text-sm"
+                href="/" 
+                className="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                aria-label="Sky Genesis Enterprise homepage"
               >
-                Login
-              </Link>
-              <Link 
-                href="/auth/register" 
-                className="btn-primary text-sm"
-              >
-                Register
+                <span className="text-white">
+                  Sky Genesis Enterprise
+                </span>
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-[var(--foreground)] hover:text-[var(--accent)] focus:outline-none p-1"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="lg:hidden pb-4 border-t border-[var(--border)] mt-4 pt-4">
-            {/* Global Sections */}
-            <div className="mb-4">
-              <h4 className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-                Navigation
-              </h4>
-              {globalSections.map((item) => (
-                <Link 
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {mainNavItems.map((item) => (
+                <div 
                   key={item.name} 
-                  href={item.href} 
-                  className="block py-2 text-[var(--foreground)] hover:text-[var(--accent)] transition font-medium"
-                  onClick={() => setIsOpen(false)}
+                  className="relative"
+                  ref={(el) => { dropdownRefs.current[item.name] = el; }}
                 >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+                  {item.hasDropdown || item.hasMega ? (
+                     <button
+                       className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-white ${
+                         activeDropdown === item.name ? 'text-white' : 'text-gray-400'
+                       }`}
+                       onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                       aria-expanded={activeDropdown === item.name}
+                       aria-haspopup="true"
+                     >
+                       <span>{item.name}</span>
+                       <ChevronDown className={`w-4 h-4 transition-transform ${
+                         activeDropdown === item.name ? 'rotate-180' : ''
+                       }`} />
+                     </button>
+                  ) : (
+                     <Link
+                       href={item.href}
+                       className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                     >
+                       {item.name}
+                     </Link>
+                  )}
 
-            {/* Ecosystem Modules */}
-            <div className="mb-4">
-              <h4 className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-                Ecosystem
-              </h4>
-              {ecosystemModules.map((module) => (
-                <div key={module.name}>
-                  <Link 
-                    href={module.href} 
-                    className="block py-2 text-[var(--foreground)] hover:text-[var(--accent)] transition font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {module.name}
-                  </Link>
-                  <p className="text-xs text-[var(--text-secondary)] ml-4 mb-2">
-                    {module.description}
-                  </p>
-                  {module.hasMega && (
-                    <div className="ml-4 space-y-1">
-                      {(module.name === 'Aether Office' ? aetherOfficeModules : apiPlatformModules).map((sub) => (
-                        <Link 
-                          key={sub.title} 
-                          href={`${module.href}/${sub.title.toLowerCase().replace(/\s+/g, '-')}`} 
-                          className="block py-1 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition"
-                          onClick={() => setIsOpen(false)}
-                         >
-                           <span className="flex items-center space-x-2">
-                             <span className="text-[var(--accent)]">{sub.icon}</span>
-                             <span>{sub.title}</span>
-                           </span>
-                         </Link>
-                      ))}
+                   {/* Dropdown Menu */}
+                   {(item.hasDropdown || item.hasMega) && activeDropdown === item.name && (
+                     <div className="absolute top-full left-0 mt-2 min-w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                      {item.hasMega ? (
+                        // Mega Menu for Aether Office
+                        <div className="w-[600px] p-4">
+                           <div className="mb-4">
+                             <h3 className="text-lg font-semibold text-white mb-1">
+                               {item.name}
+                             </h3>
+                             <p className="text-sm text-gray-400">
+                               {item.description}
+                             </p>
+                           </div>
+                          <div className="grid grid-cols-2 gap-2">
+                            {getDropdownItems(item.name).map((subItem) => (
+                              <Link
+                                key={subItem.title}
+                                href={subItem.href}
+                                 className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                <div className="text-primary group-hover:scale-110 transition-transform">
+                                  {subItem.icon}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <h4 className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                    {subItem.title}
+                                  </h4>
+                                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                                    {subItem.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="mt-4 pt-4 border-t border-border/50">
+                            <Link
+                              href="/aether-office"
+                              className="flex items-center justify-between text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span>View all Aether Office features</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </Link>
+                          </div>
+                        </div>
+                      ) : (
+                        // Regular Dropdown
+                        <div className="py-2">
+                          {getDropdownItems(item.name).map((subItem) => (
+                            <Link
+                              key={subItem.title}
+                              href={subItem.href}
+                              className="flex items-center space-x-3 px-3 py-2 hover:bg-muted/50 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <div className="text-muted-foreground group-hover:text-primary transition-colors">
+                                {subItem.icon}
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                                    {subItem.title}
+                                  </span>
+                                  {subItem.badge && (
+                                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                                      {subItem.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-0.5">
+                                  {subItem.description}
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
               ))}
             </div>
 
-            {/* Resources */}
-            <div className="mb-4">
-              <h4 className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-                Resources
-              </h4>
-              {resourcesSections.map((item) => (
+            {/* Right Section */}
+            <div className="flex items-center space-x-3">
+              {/* Search */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="hidden lg:flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/50"
+                aria-label="Search documentation"
+              >
+                <Search className="w-4 h-4" />
+                <span>Search</span>
+                <kbd className="text-xs bg-muted border border-border rounded px-1.5 py-0.5 font-mono">
+                  ⌘K
+                </kbd>
+              </button>
+
+              {/* Auth Buttons */}
+              <div className="hidden lg:flex items-center space-x-2">
                 <Link 
-                  key={item.name} 
-                  href={item.href} 
-                  className="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition"
-                  onClick={() => setIsOpen(false)}
+                  href="/auth/login" 
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-muted/50"
                 >
-                  {item.name}
+                  Sign in
                 </Link>
-              ))}
-            </div>
+                <Link 
+                  href="/auth/register" 
+                  className="text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 transition-colors px-4 py-2 rounded-lg"
+                >
+                  Register
+                </Link>
+              </div>
 
-            {/* Mobile Auth Buttons */}
-            <div className="flex flex-col space-y-2 pt-4 border-t border-[var(--border)]">
-              <Link 
-                href="/auth/login" 
-                className="btn-secondary text-sm text-center"
-                onClick={() => setIsOpen(false)}
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="lg:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors"
+                aria-label="Toggle mobile menu"
+                aria-expanded={isOpen}
               >
-                Login
-              </Link>
-              <Link 
-                href="/auth/register" 
-                className="btn-primary text-sm text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Register
-              </Link>
-            </div>
-          </div>
-        )}
-
-        {/* Search Modal */}
-        {searchOpen && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={() => setSearchOpen(false)}>
-            <div className="bg-[var(--background)] p-6 rounded-lg w-full max-w-md mx-4 border border-[var(--border)]" onClick={(e) => e.stopPropagation()}>
-              <input
-                type="text"
-                placeholder="Search documentation, API, articles..."
-                className="w-full px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-lg focus:outline-none focus:border-[var(--accent)] text-[var(--foreground)]"
-                autoFocus
-              />
-              <button onClick={() => setSearchOpen(false)} className="mt-4 text-sm text-[var(--text-secondary)] hover:text-[var(--foreground)] transition">
-                Close (Esc)
+                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
-        )}
-      </div>
-    </nav>
+
+          {/* Mobile Menu */}
+          {isOpen && (
+            <div className="lg:hidden border-t border-border/50 py-4 animate-in slide-in-from-top-2 duration-200">
+              <div className="space-y-2">
+                {mainNavItems.map((item) => (
+                  <div key={item.name}>
+                    {item.hasDropdown || item.hasMega ? (
+                      <div>
+                        <button
+                          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/50 rounded-lg transition-colors"
+                          onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                        >
+                          <span className="font-medium">{item.name}</span>
+                          <ChevronDown className={`w-4 h-4 transition-transform ${
+                            activeDropdown === item.name ? 'rotate-180' : ''
+                          }`} />
+                        </button>
+                        {activeDropdown === item.name && (
+                          <div className="mt-1 ml-4 space-y-1">
+                            {getDropdownItems(item.name).map((subItem) => (
+                              <Link
+                                key={subItem.title}
+                                href={subItem.href}
+                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+                                onClick={() => {
+                                  setActiveDropdown(null);
+                                  setIsOpen(false);
+                                }}
+                              >
+                                <div className="text-primary">
+                                  {subItem.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm font-medium">{subItem.title}</span>
+                                    {subItem.badge && (
+                                      <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                                        {subItem.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-muted-foreground mt-0.5">
+                                    {subItem.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block p-3 text-left hover:bg-muted/50 rounded-lg transition-colors font-medium"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Auth */}
+              <div className="mt-6 pt-6 border-t border-border/50 space-y-2">
+                <Link 
+                  href="/auth/login" 
+                  className="block w-full text-center p-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Sign in
+                </Link>
+                <Link 
+                  href="/auth/register" 
+                  className="block w-full text-center p-3 text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 transition-colors rounded-lg"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Register
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Search Modal */}
+      {searchOpen && (
+        <div 
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-start justify-center pt-[20vh] p-4"
+          onClick={() => setSearchOpen(false)}
+        >
+          <div 
+            className="w-full max-w-lg bg-background border border-border rounded-xl shadow-2xl p-6 animate-in fade-in slide-in-from-top-4 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center space-x-3 mb-4">
+              <Search className="w-5 h-5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search documentation, API, articles..."
+                className="flex-1 bg-transparent border-none outline-none text-foreground placeholder-muted-foreground"
+                autoFocus
+              />
+              <button
+                onClick={() => setSearchOpen(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors p-1"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="text-xs text-muted-foreground">
+              Press <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 font-mono">Esc</kbd> to close
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

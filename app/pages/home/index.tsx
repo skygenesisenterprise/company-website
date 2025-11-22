@@ -1,401 +1,487 @@
 'use client';
 
 import Link from 'next/link';
-import { Building, Mail, Shield, BarChart3, Link2, Cloud, CheckCircle, ArrowRight, Globe, Lock, Zap, Lightbulb, ChevronDown } from 'lucide-react';
+import { ArrowRight, Shield, Users, Globe, Cpu, Database, Lock, Zap, Code, Briefcase, BookOpen, ChevronRight } from 'lucide-react';
 
 export default function HomePage() {
-
-  // Ecosystem Products Data
-  const ecosystemProducts = [
-    {
-      name: 'Aether Office',
-      description: 'Suite collaborative complète pour la productivité d\'entreprise',
-      icon: <Building className="w-8 h-8" />,
-      features: ['Documents', 'Calendar', 'Tasks', 'Communication'],
-      href: '/aether-office',
-      color: 'from-blue-500 to-blue-600'
-    },
-    {
-      name: 'Aether Mail',
-      description: 'Email sécurisé et respectueux de la vie privée',
-      icon: <Mail className="w-8 h-8" />,
-      features: ['Chiffrement bout-en-bout', 'Anti-spam intelligent', 'Calendrier intégré'],
-      href: '/aether-mail',
-      color: 'from-green-500 to-green-600'
-    },
-    {
-      name: 'Governance',
-      description: 'Outils de gouvernance et conformité réglementaire',
-      icon: <Shield className="w-8 h-8" />,
-      features: ['Audit trails', 'Compliance GDPR', 'Risk management'],
-      href: '/governance',
-      color: 'from-purple-500 to-purple-600'
-    },
-    {
-      name: 'Analytics',
-      description: 'Business intelligence et analyses de données',
-      icon: <BarChart3 className="w-8 h-8" />,
-      features: ['Tableaux de bord', 'Rapports personnalisés', 'ML insights'],
-      href: '/analytics',
-      color: 'from-orange-500 to-orange-600'
-    },
-    {
-      name: 'API Platform',
-      description: 'Infrastructure API pour l\'écosystème européen',
-      icon: <Link2 className="w-8 h-8" />,
-      features: ['REST & GraphQL', 'Documentation interactive', 'Sandbox'],
-      href: '/api-platform',
-      color: 'from-red-500 to-red-600'
-    },
-    {
-      name: 'Cloud Storage',
-      description: 'Stockage cloud souverain et sécurisé',
-      icon: <Cloud className="w-8 h-8" />,
-      features: ['Hébergement UE', 'Chiffrement AES-256', 'Sync multi-appareils'],
-      href: '/cloud-storage',
-      color: 'from-cyan-500 to-cyan-600'
-    }
-  ];
-
-  // Core Values
-  const coreValues = [
-    {
-      title: 'Souveraineté Européenne',
-      description: 'Données hébergées exclusivement en Union Européenne, conformes aux réglementations locales.',
-      icon: <Globe className="w-8 h-8" />
-    },
-    {
-      title: 'Sécurité Maximale',
-      description: 'Chiffrement de bout en bout et audits de sécurité réguliers pour protéger vos données.',
-      icon: <Lock className="w-8 h-8" />
-    },
-    {
-      title: 'Performance Optimale',
-      description: 'Infrastructure haute disponibilité avec temps de réponse < 100ms en Europe.',
-      icon: <Zap className="w-8 h-8" />
-    },
-    {
-      title: 'Innovation Continue',
-      description: 'R&D européenne avec investissement de 20% du chiffre d\'affaires dans l\'innovation.',
-      icon: <Lightbulb className="w-8 h-8" />
-    }
-  ];
-
-  // Partners & Testimonials
-  const partners = [
-    { name: 'European Commission', logo: '🏛️' },
-    { name: 'Bundesverband', logo: '🇩🇪' },
-    { name: 'La French Tech', logo: '🇫🇷' },
-    { name: 'Tech Belgium', logo: '🇧🇪' },
-    { name: 'Startup Europe', logo: '🚀' }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Marie Dubois',
-      role: 'CTO, Gouvernement Français',
-      content: 'Sky Genesis nous a permis de retrouver notre souveraineté numérique tout en gardant une productivité exceptionnelle.',
-      avatar: '👩‍💼'
-    },
-    {
-      name: 'Hans Mueller',
-      role: 'CEO, Industrie 4.0',
-      content: 'L\'écosystème Aether Office a transformé notre collaboration. Vraiment l\'alternative européenne qu\'il nous fallait.',
-      avatar: '👨‍💼'
-    },
-    {
-      name: 'Elena Rossi',
-      role: 'Directrice Innovation, Milano Tech',
-      content: 'La plateforme API est robuste et la documentation est excellente. Migration réussie en 3 semaines seulement.',
-      avatar: '👩‍💻'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-[var(--background)]">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-black text-white">
+      {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[var(--gradient-surface)]"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-[var(--accent)]/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-[var(--accent)]/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[var(--accent)]/5 to-transparent rounded-full blur-3xl"></div>
+        {/* Background with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        
+        {/* Tech grid pattern overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-5xl mx-auto animate-fade-in-up">
-            {/* Badge */}
-            <div className="inline-flex items-center px-6 py-3 bg-[var(--surface)]/80 backdrop-blur-sm border border-[var(--border)] rounded-full text-sm text-[var(--text-secondary)] mb-8 hover:border-[var(--accent)] transition-all duration-300">
-              <span className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
-              Écosystème Souverain Européen
-              <ChevronDown className="w-4 h-4 ml-2 animate-bounce" />
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-gray-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-7xl mx-auto text-center">
+            {/* Enterprise badge */}
+            <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+              Sky Genesis Enterprise
             </div>
 
-            {/* Main Title */}
-            <h1 className="text-6xl md:text-8xl font-bold text-[var(--foreground)] mb-8 leading-tight text-center">
-              L&apos;Alternative Européenne
-              <br />
-              <span className="bg-[var(--gradient-accent)] bg-clip-text text-transparent">
-                aux Géants Américains
-              </span>
+            {/* Main title */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight mx-auto">
+              <div className="max-w-5xl mx-auto">
+                Building the Next Generation
+                <br />
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                  of Enterprise Infrastructure
+                </span>
+              </div>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-4xl mx-auto leading-relaxed text-center">
-              Retrouvez votre souveraineté numérique avec un écosystème complet, 
-              sécurisé et performant. Conçu en Europe, pour l&apos;Europe.
-            </p>
+            {/* Subtitle - Hero Section */}
+            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+              <p>
+                Sky Genesis Enterprise develops unified platforms for secure collaboration, 
+                governance, and large-scale digital operations.
+              </p>
+            </div>
+
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 px-4">
               <Link 
                 href="/aether-office" 
-                className="btn-primary text-lg px-10 py-5 group text-base"
+                className="bg-white text-black px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-base lg:text-lg whitespace-nowrap"
               >
-                Découvrir l&apos;Écosystème
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Discover Aether Office
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
-                href="/auth/register" 
-                className="btn-secondary text-lg px-10 py-5 text-base"
+                href="/vision" 
+                className="border border-white/20 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-base lg:text-lg whitespace-nowrap"
               >
-                Commencer Gratuitement
+                Explore Our Vision
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-              <div className="text-center p-6 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-4xl font-bold text-[var(--foreground)] mb-2">99.9%</div>
-                <div className="text-sm text-[var(--text-secondary)]">Uptime</div>
+            {/* Enterprise metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 max-w-5xl mx-auto px-4">
+              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">99.99%</div>
+                <div className="text-xs lg:text-sm text-gray-400">Uptime SLA</div>
               </div>
-              <div className="text-center p-6 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-4xl font-bold text-[var(--foreground)] mb-2">&lt;100ms</div>
-                <div className="text-sm text-[var(--text-secondary)]">Latence UE</div>
+              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">&lt;50ms</div>
+                <div className="text-xs lg:text-sm text-gray-400">Global Latency</div>
               </div>
-              <div className="text-center p-6 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-4xl font-bold text-[var(--foreground)] mb-2">100%</div>
-                <div className="text-sm text-[var(--text-secondary)]">UE Hosting</div>
+              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">Zero</div>
+                <div className="text-xs lg:text-sm text-gray-400">Trust Architecture</div>
               </div>
-              <div className="text-center p-6 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-4xl font-bold text-[var(--foreground)] mb-2">GDPR</div>
-                <div className="text-sm text-[var(--text-secondary)]">Compliant</div>
+              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">SOC2</div>
+                <div className="text-xs lg:text-sm text-gray-400">Compliant</div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-[var(--text-secondary)]" />
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-20 bg-[var(--background)]">
+      {/* GROUP OVERVIEW */}
+      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-6">
-              Un Écosystème Complet
+          <div className="max-w-7xl mx-auto text-center">
+          <div className="mb-20 space-y-4 md:space-y-6 max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              Enterprise Divisions
             </h2>
-            <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
-              Tous les outils dont votre entreprise a besoin, unifiés dans une plateforme 
-              souveraine et sécurisée.
+            <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+              Specialized business units delivering comprehensive solutions for modern enterprises.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ecosystemProducts.map((product, index) => (
-              <div 
-                key={product.name}
-                className="card group cursor-pointer animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {/* Gradient Border Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${product.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
-                
-                {/* Icon */}
-                <div className={`w-20 h-20 bg-gradient-to-r ${product.color} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  {product.icon}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:bg-white/10 transition-all duration-300 text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <Users className="w-8 h-8 text-blue-400" />
                 </div>
-
-                {/* Content */}
-                <h3 className="text-2xl font-bold text-[var(--foreground)] mb-4 group-hover:text-[var(--accent)] transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-[var(--text-secondary)] mb-6 leading-relaxed text-lg">
-                  {product.description}
+                <h3 className="text-xl lg:text-2xl font-bold mb-4">Aether Office</h3>
+                <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
+                  Unified workspace platform for enterprise collaboration, productivity, and digital operations.
                 </p>
-
-                {/* Features */}
-                <ul className="space-y-3 mb-8">
-                  {product.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-[var(--text-secondary)]">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                      <span className="text-base">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <Link 
-                  href={product.href}
-                  className="inline-flex items-center text-[var(--accent)] hover:text-[var(--accent-hover)] font-semibold transition-colors group text-lg"
-                >
-                  En savoir plus
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Link href="/aether-office" className="text-blue-400 hover:text-blue-300 font-semibold flex items-center justify-center">
+                  Learn more <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Values Section */}
-      <section className="py-24 bg-[var(--surface)]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold text-[var(--foreground)] mb-8">
-              Nos Valeurs Européennes
-            </h2>
-            <p className="text-xl text-[var(--text-secondary)] max-w-4xl mx-auto leading-relaxed">
-              Plus qu&apos;une alternative technologique, un engagement pour la souveraineté 
-              et l&apos;innovation européenne.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coreValues.map((value, index) => (
-              <div 
-                key={value.title}
-                className="text-center group animate-fade-in-up"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="w-24 h-24 bg-[var(--background)] border-2 border-[var(--border)] rounded-2xl flex items-center justify-center text-[var(--accent)] mx-auto mb-8 group-hover:border-[var(--accent)] group-hover:scale-110 transition-all duration-300 shadow-lg">
-                  {value.icon}
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:bg-white/10 transition-all duration-300 text-center">
+                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <Code className="w-8 h-8 text-green-400" />
                 </div>
-                <h3 className="text-xl font-bold text-[var(--foreground)] mb-4">
-                  {value.title}
-                </h3>
-                <p className="text-[var(--text-secondary)] leading-relaxed">
-                  {value.description}
+                <h3 className="text-xl lg:text-2xl font-bold mb-4">Giteria</h3>
+                <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
+                  Open-source developer collaboration platform with enterprise-grade security and scalability.
                 </p>
+                <Link href="/giteria" className="text-green-400 hover:text-green-300 font-semibold flex items-center justify-center">
+                  Explore platform <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
               </div>
-            ))}
+
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:bg-white/10 transition-all duration-300 text-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <Shield className="w-8 h-8 text-purple-400" />
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-4">Governance Systems</h3>
+                <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
+                  Orchestration, security, and zero-trust architecture for enterprise digital sovereignty.
+                </p>
+                <Link href="/governance" className="text-purple-400 hover:text-purple-300 font-semibold flex items-center justify-center">
+                  Discover solutions <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-20 bg-[var(--background)]">
+      {/* VISION SECTION */}
+      <section className="py-24 bg-black">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-6">
-              Approuvé par les Leaders Européens
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12">
+              <div className="max-w-4xl mx-auto">
+                Our Vision for
+                <br />
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                  Digital Independence
+                </span>
+              </div>
             </h2>
-            <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
-              Des institutions et entreprises qui font confiance à notre écosystème 
-              pour leurs opérations critiques.
-            </p>
-          </div>
+            
+            <div className="space-y-8 text-lg md:text-xl text-gray-400 leading-relaxed max-w-4xl mx-auto">
+              <p>
+                At Sky Genesis Enterprise, we believe in technological sovereignty built on European values 
+                of privacy, security, and long-term innovation.
+              </p>
+              <p className="text-xl md:text-2xl text-white font-light italic">
+                "We design technologies built for durability, control, and independence."
+              </p>
+              <p>
+                Our commitment extends beyond products to creating an ecosystem where organizations 
+                maintain complete control over their digital infrastructure while accessing world-class 
+                enterprise capabilities.
+              </p>
+            </div>
 
-          {/* Partners Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-24">
-            {partners.map((partner) => (
-              <div 
-                key={partner.name}
-                className="card p-8 flex items-center justify-center hover:scale-105 transition-transform duration-300"
-              >
-                <div className="text-center">
-                  <div className="text-5xl mb-4">{partner.logo}</div>
-                  <div className="text-sm font-semibold text-[var(--foreground)]">{partner.name}</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-20 max-w-4xl mx-auto">
+              <div className="text-center p-6">
+                <div className="text-3xl lg:text-4xl font-bold text-white mb-2">Sovereign</div>
+                <div className="text-gray-400 text-sm lg:text-base">European-hosted infrastructure</div>
+              </div>
+              <div className="text-center p-6">
+                <div className="text-3xl lg:text-4xl font-bold text-white mb-2">Secure</div>
+                <div className="text-gray-400 text-sm lg:text-base">Zero-trust by design</div>
+              </div>
+              <div className="text-center p-6">
+                <div className="text-3xl lg:text-4xl font-bold text-white mb-2">Scalable</div>
+                <div className="text-gray-400 text-sm lg:text-base">Enterprise-grade performance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AETHER OFFICE FEATURE */}
+      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+            <div className="text-center">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400 mb-6">
+                Featured Product
+              </div>
+              <h2 className="text-5xl font-bold mb-6 text-center">
+                Aether Office
+                <br />
+                <span className="text-2xl text-gray-400 font-normal">Enterprise Workspace Platform</span>
+              </h2>
+              <p className="text-xl text-gray-400 mb-8 leading-relaxed">
+                The unified workspace platform that brings together collaboration, productivity, 
+                and governance in a single, secure environment designed for enterprise scale.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                  <span className="text-gray-300">Unified workspace for seamless collaboration</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                  <span className="text-gray-300">Real-time collaboration with enterprise security</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                  <span className="text-gray-300">Zero-trust network access (ZTNA) architecture</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                  <span className="text-gray-300">Internal ecosystem of enterprise applications</span>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={testimonial.name}
-                className="card animate-fade-in-up"
-                style={{ animationDelay: `${index * 200}ms` }}
+              <Link 
+                href="/aether-office" 
+                className="inline-flex items-center bg-blue-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="flex items-center mb-8">
-                  <div className="text-4xl mr-4">{testimonial.avatar}</div>
-                  <div>
-                    <div className="font-bold text-[var(--foreground)] text-lg">{testimonial.name}</div>
-                    <div className="text-sm text-[var(--text-secondary)]">{testimonial.role}</div>
+                Learn more about Aether Office
+                <ArrowRight className="w-5 h-5 ml-3" />
+              </Link>
+            </div>
+
+            <div className="relative">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div className="aspect-video bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-24 h-24 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-12 h-12 text-blue-400" />
+                    </div>
+                    <p className="text-gray-400">Aether Office Interface</p>
                   </div>
                 </div>
-                <blockquote className="text-[var(--text-secondary)] italic leading-relaxed text-lg">
-                  &ldquo;{testimonial.content}&rdquo;
-                </blockquote>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-24 bg-[var(--gradient-surface)] relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[var(--accent)]/5 to-transparent"></div>
-        </div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl md:text-7xl font-bold text-[var(--foreground)] mb-8">
-              Rejoignez la Révolution
-              <br />
-              <span className="bg-[var(--gradient-accent)] bg-clip-text text-transparent">
-                Numérique Européenne
-              </span>
-            </h2>
-            <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-16 max-w-3xl mx-auto leading-relaxed">
-              Des milliers d&apos;entreprises ont déjà fait le choix de la souveraineté. 
-              Quand commencerez-vous votre transition ?
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-              <Link 
-                href="/auth/register" 
-                className="btn-primary text-lg px-12 py-5 group text-base"
-              >
-                Commencer Gratuitement
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link 
-                href="/contact" 
-                className="btn-secondary text-lg px-12 py-5 text-base"
-              >
-                Contacter nos Experts
-              </Link>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center p-8 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-3xl font-bold text-[var(--foreground)] mb-2">15,000+</div>
-                <div className="text-sm text-[var(--text-secondary)]">Entreprises Européennes</div>
-              </div>
-              <div className="text-center p-8 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-3xl font-bold text-[var(--foreground)] mb-2">2M+</div>
-                <div className="text-sm text-[var(--text-secondary)]">Utilisateurs Actifs</div>
-              </div>
-              <div className="text-center p-8 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-3xl font-bold text-[var(--foreground)] mb-2">4.9/5</div>
-                <div className="text-sm text-[var(--text-secondary)]">Satisfaction Client</div>
-              </div>
-              <div className="text-center p-8 bg-[var(--surface)]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300">
-                <div className="text-3xl font-bold text-[var(--foreground)] mb-2">24/7</div>
-                <div className="text-sm text-[var(--text-secondary)]">Support Européen</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ENTERPRISE PILLARS */}
+      <section className="py-24 bg-black">
+        <div className="container mx-auto px-4">
+        <div className="text-center mb-20 space-y-4 md:space-y-6 max-w-4xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-bold">
+            Enterprise Pillars
+          </h2>
+          <p className="text-xl text-gray-400 leading-relaxed">
+            The foundational principles that guide our enterprise architecture and service delivery.
+          </p>
+        </div>
+
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/10 transition-all duration-300">
+                <Lock className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Security & Zero-Trust</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Enterprise-grade security with zero-trust architecture built into every layer.
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/10 transition-all duration-300">
+                <Zap className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Reliability & Scalability</h3>
+              <p className="text-gray-400 leading-relaxed">
+                99.99% uptime with infrastructure that scales seamlessly with your growth.
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/10 transition-all duration-300">
+                <Cpu className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Internal Technology Control</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Full control over your technology stack with open-source transparency.
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/10 transition-all duration-300">
+                <Globe className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Open & Interoperable</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Standards-based architecture ensuring seamless integration and future-proofing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* OPEN-SOURCE & DEVELOPER ECOSYSTEM */}
+      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
+        <div className="container mx-auto px-4">
+        <div className="text-center mb-20 space-y-4 md:space-y-6 max-w-4xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-bold">
+            Developer Ecosystem
+          </h2>
+          <p className="text-xl text-gray-400 leading-relaxed">
+            Open-source commitment with enterprise-grade tools and comprehensive developer resources.
+          </p>
+        </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
+              <Code className="w-12 h-12 text-green-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-4">Giteria Platform</h3>
+              <p className="text-gray-400 mb-4">
+                Open-source collaboration platform with enterprise features.
+              </p>
+              <Link href="/giteria" className="text-green-400 hover:text-green-300 font-semibold">
+                Explore Giteria
+              </Link>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
+              <Database className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-4">APIs & SDKs</h3>
+              <p className="text-gray-400 mb-4">
+                Comprehensive APIs and SDKs for seamless integration.
+              </p>
+              <Link href="/developers" className="text-blue-400 hover:text-blue-300 font-semibold">
+                View Documentation
+              </Link>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
+              <BookOpen className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-4">Developer Portal</h3>
+              <p className="text-gray-400 mb-4">
+                Complete documentation, tutorials, and developer resources.
+              </p>
+              <Link href="/developers" className="text-purple-400 hover:text-purple-300 font-semibold">
+                Visit Portal
+              </Link>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link 
+              href="/developers" 
+              className="inline-flex items-center bg-white text-black px-10 py-5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 text-lg"
+            >
+              Visit Developer Portal
+              <ArrowRight className="w-5 h-5 ml-3" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* INSDE SKY GENESIS Enterprise & CAREERS */}
+      <section className="py-24 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+            {/* Blog & Press */}
+            <div className="text-center">
+              <h2 className="text-4xl font-bold mb-8 text-center">Inside Sky Genesis Enterprise</h2>
+              <div className="space-y-6">
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                  <div className="text-sm text-gray-400 mb-2">Product Announcement</div>
+                  <h3 className="text-xl font-bold mb-2">Aether Office 2.0: Next-Gen Enterprise Workspace</h3>
+                  <p className="text-gray-400 mb-4">
+                    Introducing revolutionary features for enterprise collaboration and governance.
+                  </p>
+                  <Link href="/blog/aether-office-2" className="text-blue-400 hover:text-blue-300 font-semibold">
+                    Read more
+                  </Link>
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                  <div className="text-sm text-gray-400 mb-2">Technical Article</div>
+                  <h3 className="text-xl font-bold mb-2">Building Zero-Trust Architecture at Scale</h3>
+                  <p className="text-gray-400 mb-4">
+                    Deep dive into our security-first approach to enterprise infrastructure.
+                  </p>
+                  <Link href="/blog/zero-trust" className="text-blue-400 hover:text-blue-300 font-semibold">
+                    Read more
+                  </Link>
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                  <div className="text-sm text-gray-400 mb-2">Company News</div>
+                  <h3 className="text-xl font-bold mb-2">Sky Genesis Achieves SOC 2 Type II Certification</h3>
+                  <p className="text-gray-400 mb-4">
+                    Milestone in our commitment to enterprise security and compliance.
+                  </p>
+                  <Link href="/press/soc2-certification" className="text-blue-400 hover:text-blue-300 font-semibold">
+                    Read more
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Careers */}
+            <div className="text-center">
+              <h2 className="text-4xl font-bold mb-8 text-center">Careers</h2>
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <p className="text-xl text-gray-400 mb-8 leading-relaxed">
+                  Join our team of engineers, researchers, and visionaries building the future 
+                  of enterprise technology in Europe.
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                    <span className="text-gray-300">Excellence in engineering and research</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                    <span className="text-gray-300">Culture of innovation and continuous learning</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                    <span className="text-gray-300">Long-term vision with European values</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                    <span className="text-gray-300">Competitive compensation and benefits</span>
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <h3 className="text-lg font-bold mb-4">Open Positions</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg">
+                      <span>Senior Security Engineer</span>
+                      <Link href="/careers/security-engineer" className="text-blue-400 hover:text-blue-300 text-sm">
+                        Apply →
+                      </Link>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg">
+                      <span>Enterprise Solutions Architect</span>
+                      <Link href="/careers/solutions-architect" className="text-blue-400 hover:text-blue-300 text-sm">
+                        Apply →
+                      </Link>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg">
+                      <span>Product Manager, Aether Office</span>
+                      <Link href="/careers/product-manager" className="text-blue-400 hover:text-blue-300 text-sm">
+                        Apply →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                <Link 
+                  href="/careers" 
+                  className="inline-flex items-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 w-full justify-center"
+                >
+                  Explore Careers
+                  <ArrowRight className="w-5 h-5 ml-3" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 }
