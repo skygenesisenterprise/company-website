@@ -58,11 +58,11 @@ export default function Footer() {
 
   // Legal Links
   const legalLinks = [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cookie Policy', href: '/cookies' },
-    { name: 'GDPR Compliance', href: '/gdpr' },
-    { name: 'Legal Notice', href: '/legal' },
+    { name: 'Privacy Policy', href: '/policies/privacy' },
+    { name: 'Terms of Service', href: '/policies/terms' },
+    { name: 'Cookie Policy', href: '/policies/cookies' },
+    { name: 'GDPR Compliance', href: '/policies/gdpr' },
+    { name: 'Legal Notice', href: '/policies/legal' },
   ];
 
   // Social Media Links
@@ -121,7 +121,7 @@ export default function Footer() {
                 </div>
                 
                 {/* Social Media */}
-                <div className="flex space-x-3">
+                <div className="flex space-x-3 mb-4">
                   {socialLinks.map((social) => (
                     <a
                       key={social.name}
@@ -136,6 +136,14 @@ export default function Footer() {
                       </span>
                     </a>
                   ))}
+                </div>
+
+                {/* Service Status */}
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm text-gray-400">All services are online</span>
+                  </div>
                 </div>
               </div>
 
