@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Sky Genesis Enterprise - Innovating the Future",
   description: "Official website of Sky Genesis Enterprise. Discover our innovative technology solutions and services.",
+  icons: {
+    icon: '/enterprise.png',
+    shortcut: '/enterprise.png',
+    apple: '/enterprise.png',
+  },
 };
 
 export default function RootLayout({
