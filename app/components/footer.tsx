@@ -1,212 +1,298 @@
 'use client';
 
 import Link from 'next/link';
-import { Linkedin, Twitter, Github, Youtube } from 'lucide-react';
+import { Linkedin as LinkedinIcon, Twitter as TwitterIcon, Github as GithubIcon, Mail, MessageCircle, Camera, Globe } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
 
-  // Ecosystem Products & Modules
-  const ecosystemProducts = [
-    { name: 'Aether Office', href: '/aether-office', description: 'Suite de productivité collaborative' },
-    { name: 'Aether Documents', href: '/aether-office/documents', description: 'Gestion documentaire' },
-    { name: 'Aether Calendar', href: '/aether-office/calendar', description: 'Planification et agendas' },
-    { name: 'Aether Tasks', href: '/aether-office/tasks', description: 'Gestion de projet' },
-    { name: 'Governance', href: '/governance', description: 'Outils de gouvernance' },
-    { name: 'API Platform', href: '/api-platform', description: 'Plateforme de développement' },
+  // Main Navigation Links
+  const navigationLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Aether Office', href: '/aether-office' },
+    { name: 'Governance', href: '/governance' },
+    { name: 'Company', href: '/company' },
+    { name: 'Vision', href: '/vision' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'Developer', href: '/developer' },
   ];
 
-  // Resources
-  const resources = [
+  // Resources Links
+  const resourcesLinks = [
     { name: 'Documentation', href: '/docs' },
     { name: 'API Reference', href: '/api/docs' },
-    { name: 'Tutorials', href: '/tutorials' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Community', href: '/community' },
-    { name: 'Support', href: '/support' },
+    { name: 'Guides & Tutorials', href: '/guides' },
+    { name: 'Changelog', href: '/changelog' },
+    { name: 'Whitepapers', href: '/whitepapers' },
+    { name: 'Developer Portal', href: '/developer/portal' },
   ];
 
-  // Company Information
-  const companyInfo = [
-    { name: 'About Us', href: '/about' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Partners', href: '/partners' },
-    { name: 'Press', href: '/press' },
-    { name: 'Contact', href: '/contact' },
+  // Enterprise Solutions
+  const enterpriseSolutions = [
+    { 
+      name: 'Security & Compliance', 
+      href: '/solutions/security',
+      description: 'GDPR compliance tools and enterprise security standards'
+    },
+    { 
+      name: 'Scalable Infrastructure', 
+      href: '/solutions/infrastructure',
+      description: 'Cloud-native architecture and high-availability solutions'
+    },
+    { 
+      name: 'Deployment Options', 
+      href: '/solutions/deployment',
+      description: 'SaaS, on-premises, and hybrid cloud integration'
+    },
   ];
 
-  // Legal Information
-  const legalInfo = [
+  // Contact & Support Links
+  const contactSupportLinks = [
+    { name: 'Support Portal', href: '/support' },
+    { name: 'Sales Inquiry', href: '/contact/sales' },
+    { name: 'Office Locations', href: '/contact/locations' },
+  ];
+
+  // Legal Links
+  const legalLinks = [
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' },
     { name: 'Cookie Policy', href: '/cookies' },
-    { name: 'GDPR', href: '/gdpr' },
+    { name: 'GDPR Compliance', href: '/gdpr' },
     { name: 'Legal Notice', href: '/legal' },
   ];
 
   // Social Media Links
   const socialLinks = [
-    { name: 'LinkedIn', href: 'https://linkedin.com/company/skygenesisenterprise', icon: <Linkedin className="w-4 h-4" /> },
-    { name: 'Twitter', href: 'https://twitter.com/skygenesis', icon: <Twitter className="w-4 h-4" /> },
-    { name: 'GitHub', href: 'https://github.com/skygenesisenterprise', icon: <Github className="w-4 h-4" /> },
-    { name: 'YouTube', href: 'https://youtube.com/@skygenesisenterprise', icon: <Youtube className="w-4 h-4" /> },
+    { name: 'LinkedIn', href: 'https://linkedin.com/company/skygenesisenterprise', icon: <LinkedinIcon className="w-5 h-5" /> },
+    { name: 'Twitter', href: 'https://twitter.com/skyGenterprise', icon: <TwitterIcon className="w-5 h-5" /> },
+    { name: 'GitHub', href: 'https://github.com/skygenesisenterprise', icon: <GithubIcon className="w-5 h-5" /> },
+    { name: 'Discord', href: 'https://skygenesisenterprise.com/discord', icon: <MessageCircle className="w-5 h-5" /> },
+    { name: 'Instagram', href: 'https://instagram.com/skygenesisenterprise', icon: <Camera className="w-5 h-5" /> },
+    { name: 'Mastodon', href: 'https://mastodon.social/@skygenesisenterprise', icon: <Globe className="w-5 h-5" /> },
   ];
 
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter subscription logic here
+    console.log('Newsletter subscription:', email);
+    setEmail('');
+  };
+
   return (
-    <footer className="bg-[var(--surface)] border-t border-[var(--border)] mt-auto">
-      <div className="container mx-auto px-4">
-        {/* Main Footer Content */}
-        <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            
-            {/* Brand Column */}
-            <div className="lg:col-span-1">
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-[var(--foreground)] mb-2">
-                  Sky Genesis Enterprise
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  Building the future of enterprise collaboration with innovative digital solutions.
-                </p>
-              </div>
+    <footer className="relative bg-black overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+      
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main Footer Content */}
+          <div className="py-16 lg:py-20">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-20">
               
-              {/* Social Media */}
-              <div className="flex space-x-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 bg-[var(--background)] border border-[var(--border)] rounded-full flex items-center justify-center text-sm hover:bg-[var(--surface-hover)] hover:border-[var(--border-hover)] transition-all duration-200 group"
-                    aria-label={social.name}
-                  >
-                    <span className="group-hover:scale-110 transition-transform">
-                      {social.icon}
-                    </span>
-                  </a>
-                ))}
+              {/* Brand Section - Left */}
+              <div className="lg:col-span-1">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
+                    Sky Genesis Enterprise
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed text-sm mb-2">
+                    Empowering European digital sovereignty through enterprise-grade solutions
+                  </p>
+                  <p className="text-gray-500 leading-relaxed text-xs">
+                    Building secure, scalable digital infrastructure for the modern European enterprise
+                  </p>
+                </div>
+                
+                {/* Contact Information */}
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center text-gray-400 hover:text-white transition-colors duration-200">
+                    <Mail className="w-4 h-4 mr-3 flex-shrink-0" />
+                    <span className="text-sm">contact@skygenesisenterprise.com</span>
+                  </div>
+                </div>
+                
+                {/* Social Media */}
+                <div className="flex space-x-3">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group"
+                      aria-label={social.name}
+                    >
+                      <span className="group-hover:scale-110 transition-transform duration-300">
+                        {social.icon}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Navigation Links - Right */}
+              <div className="lg:col-span-2">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+                  {/* Navigation Section */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
+                      Navigation
+                    </h4>
+                    <ul className="space-y-3">
+                      {navigationLinks.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                          >
+                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                              {link.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Resources Section */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
+                      Resources
+                    </h4>
+                    <ul className="space-y-3">
+                      {resourcesLinks.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                          >
+                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                              {link.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Enterprise Solutions Section */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
+                      Enterprise Solutions
+                    </h4>
+                    <ul className="space-y-3">
+                      {enterpriseSolutions.map((solution) => (
+                        <li key={solution.name}>
+                          <Link
+                            href={solution.href}
+                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                          >
+                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                              {solution.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Contact & Support Section */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
+                      Contact & Support
+                    </h4>
+                    <ul className="space-y-3">
+                      {contactSupportLinks.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                          >
+                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                              {link.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Legal & Policies Section */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
+                      Legal & Policies
+                    </h4>
+                    <ul className="space-y-3">
+                      {legalLinks.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                          >
+                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                              {link.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Ecosystem Products */}
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-                Products
+          {/* Newsletter Section - Dedicated Space */}
+          <div className="py-12 border-t border-gray-900">
+            <div className="max-w-2xl mx-auto text-center space-y-4 md:space-y-6">
+              
+              <h4 className="text-lg font-semibold text-white">
+                Stay Connected
               </h4>
-              <ul className="space-y-2">
-                {ecosystemProducts.map((product) => (
-                  <li key={product.name}>
-                    <Link
-                      href={product.href}
-                      className="text-sm text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 group"
-                    >
-                      <span className="group-hover:translate-x-1 inline-block transition-transform">
-                        {product.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            {/* Resources */}
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-                Resources
-              </h4>
-              <ul className="space-y-2">
-                {resources.map((resource) => (
-                  <li key={resource.name}>
-                    <Link
-                      href={resource.href}
-                      className="text-sm text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 group"
-                    >
-                      <span className="group-hover:translate-x-1 inline-block transition-transform">
-                        {resource.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Get updates on our latest solutions and enterprise insights delivered directly to your inbox
+              </p>
 
-            {/* Company */}
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-                Company
-              </h4>
-              <ul className="space-y-2">
-                {companyInfo.map((info) => (
-                  <li key={info.name}>
-                    <Link
-                      href={info.href}
-                      className="text-sm text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 group"
-                    >
-                      <span className="group-hover:translate-x-1 inline-block transition-transform">
-                        {info.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-                Legal
-              </h4>
-              <ul className="space-y-2">
-                {legalInfo.map((legal) => (
-                  <li key={legal.name}>
-                    <Link
-                      href={legal.href}
-                      className="text-sm text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 group"
-                    >
-                      <span className="group-hover:translate-x-1 inline-block transition-transform">
-                        {legal.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  required
+                  className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gray-600 focus:bg-gray-800 transition-all duration-200"
+                />
+                <button
+                  type="submit"
+                  className="bg-white text-black px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors duration-200 transform hover:scale-105 whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </form>
             </div>
           </div>
-        </div>
 
-        {/* Newsletter Subscription */}
-        <div className="py-8 border-t border-[var(--border)]">
-          <div className="max-w-md mx-auto text-center">
-            <h4 className="text-lg font-semibold text-[var(--foreground)] mb-2">
-              Stay Updated
-            </h4>
-            <p className="text-sm text-[var(--text-secondary)] mb-4">
-              Subscribe to our newsletter for the latest updates and insights.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-[var(--background)] border border-[var(--border)] rounded-lg text-sm focus:outline-none focus:border-[var(--accent)] text-[var(--foreground)]"
-              />
-              <button className="btn-primary text-sm px-4 py-2">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-[var(--border)]">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-[var(--text-secondary)]">
-              © {currentYear} Sky Genesis Enterprise. All rights reserved.
-            </div>
-            <div className="flex items-center space-x-4 text-sm text-[var(--text-secondary)]">
-              <span>Headquarters: Brussels, Belgium</span>
-              <span>•</span>
-              <span>VAT: BE 0123.456.789</span>
+          {/* Bottom Bar */}
+          <div className="py-8 border-t border-gray-900">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="text-sm text-gray-400">
+                <span>© {currentYear} Sky Genesis Enterprise. All rights reserved.</span>
+              </div>
+              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
+                <span>Brussels, Belgium (HQ)</span>
+                <span className="hidden md:inline">•</span>
+                <span>VAT: BE 0123.456.789</span>
+              </div>
             </div>
           </div>
         </div>
