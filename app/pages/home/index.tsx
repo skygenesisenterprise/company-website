@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Shield, Users, Globe, Cpu, Database, Lock, Zap, Code, Briefcase, BookOpen, ChevronRight } from 'lucide-react';
+import { ArrowRight, Shield, Users, Globe, Cpu, Database, Lock, Zap, Code, BookOpen, ChevronRight } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -167,8 +167,8 @@ export default function HomePage() {
                 At Sky Genesis Enterprise, we believe in technological sovereignty built on European values 
                 of privacy, security, and long-term innovation.
               </p>
-              <p className="text-xl md:text-2xl text-white font-light italic">
-                "We design technologies built for durability, control, and independence."
+              <p>
+                &quot;We design technologies built for durability, control, and independence.&quot;
               </p>
               <p>
                 Our commitment extends beyond products to creating an ecosystem where organizations 
