@@ -1,25 +1,22 @@
 'use client';
 import Link from 'next/link';
 import { 
-  ArrowRight, 
-  Users, 
-  Target, 
-  Shield, 
-  Code, 
-  Globe, 
-  TrendingUp, 
-  Building, 
-  Zap, 
-  Lock, 
-  Database, 
-  GitBranch, 
-  Monitor, 
-  MapPin, 
-  ChevronRight,
-  BarChart3,
+  Code,
+  Zap,
+  Flag,
   Lightbulb,
+  BarChart3,
+  GitBranch,
+  Database,
+  Monitor,
+  Lock,
   Heart,
-  Flag
+  Target,
+  Globe,
+  ChevronRight,
+  Users, 
+  Shield, 
+  ArrowRight
 } from 'lucide-react';
 
 interface TimelineEvent {
@@ -57,11 +54,7 @@ interface Leader {
   image: string;
 }
 
-interface Metric {
-  value: string;
-  label: string;
-  icon: React.ReactNode;
-}
+
 
 export default function AboutPage() {
 
@@ -209,39 +202,7 @@ export default function AboutPage() {
     },
   ];
 
-  // Metrics
-  const metrics: Metric[] = [
-    {
-      value: '500+',
-      label: 'Enterprise Customers',
-      icon: <Building className="w-5 h-5" />
-    },
-    {
-      value: '50,000+',
-      label: 'Open-Source Contributors',
-      icon: <Users className="w-5 h-5" />
-    },
-    {
-      value: '99.99%',
-      label: 'Uptime SLA',
-      icon: <TrendingUp className="w-5 h-5" />
-    },
-    {
-      value: '12',
-      label: 'European Countries',
-      icon: <MapPin className="w-5 h-5" />
-    },
-    {
-      value: '500+',
-      label: 'Employees',
-      icon: <Users className="w-5 h-5" />
-    },
-    {
-      value: '€85M',
-      label: 'Annual Revenue',
-      icon: <TrendingUp className="w-5 h-5" />
-    }
-  ];
+
 
   const getTimelineColor = (type: string) => {
     switch (type) {

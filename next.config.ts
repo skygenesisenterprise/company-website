@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
   },
 
   // Path aliases for clean imports
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config) => {
     // Add any custom webpack config here if needed
     config.resolve.alias = {
       ...config.resolve.alias,

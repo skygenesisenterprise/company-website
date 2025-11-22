@@ -63,6 +63,7 @@ export default function Footer() {
     { name: 'Cookie Policy', href: '/policies/cookies' },
     { name: 'GDPR Compliance', href: '/policies/gdpr' },
     { name: 'Legal Notice', href: '/policies/legal' },
+    { name: 'License', href: '/license'}
   ];
 
   // Social Media Links

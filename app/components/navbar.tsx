@@ -14,7 +14,8 @@ import {
   Building,
   Users,
   Globe,
-  Code
+  Code,
+  Sparkles
 } from 'lucide-react';
 import ThemeToggle from './theme-toggle';
 
@@ -69,8 +70,28 @@ export default function Navbar() {
   // Handle click outside dropdowns
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (activeDropdown && !dropdownRefs.current[activeDropdown]?.contains(e.target as Node)) {
-        setActiveDropdown(null);
+      if (activeDropdown) {
+        const clickedElement = e.target as Node;
+        let isInsideDropdown = false;
+        
+        // Check if click is inside any dropdown
+        Object.values(dropdownRefs.current).forEach(ref => {
+          if (ref?.contains(clickedElement)) {
+            isInsideDropdown = true;
+          }
+        });
+        
+        // Also check if click is on a dropdown button
+        const dropdownButtons = document.querySelectorAll('[aria-haspopup="true"]');
+        dropdownButtons.forEach(button => {
+          if (button.contains(clickedElement)) {
+            isInsideDropdown = true;
+          }
+        });
+        
+        if (!isInsideDropdown) {
+          setActiveDropdown(null);
+        }
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -219,12 +240,25 @@ export default function Navbar() {
             <div className="flex items-center">
               <Link 
                 href="/home" 
-                className="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                className="flex items-center space-x-2 group transition-all duration-200 hover:scale-105"
                 aria-label="Sky Genesis Enterprise homepage"
               >
-                <span className="text-white">
-                  Sky Genesis Enterprise
-                </span>
+                <div className="relative hidden sm:block">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur-sm opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                  <div className="relative bg-gradient-to-r from-blue-600 to-purple-700 p-2 rounded-lg">
+                    <Sparkles className="w-5 h-5 text-white" />
+                  </div>
+                </div>
+                <div className="flex flex-col sm:hidden">
+                  <span className="text-lg font-bold tracking-tight text-white leading-tight">
+                    Sky Genesis Enterprise
+                  </span>
+                </div>
+                <div className="hidden sm:flex flex-col">
+                  <span className="text-xl font-bold tracking-tight text-white leading-tight">
+                    Sky Genesis Enterprise
+                  </span>
+                </div>
               </Link>
             </div>
 
@@ -237,14 +271,18 @@ export default function Navbar() {
                   ref={(el) => { dropdownRefs.current[item.name] = el; }}
                 >
                   {item.hasDropdown ? (
-                     <button
-                       className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-white ${
-                         activeDropdown === item.name ? 'text-white' : 'text-gray-400'
-                       }`}
-                       onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                       aria-expanded={activeDropdown === item.name}
-                       aria-haspopup="true"
-                     >
+                      <button
+                        className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-white ${
+                          activeDropdown === item.name ? 'text-white' : 'text-gray-400'
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                        }}
+                        aria-expanded={activeDropdown === item.name}
+                        aria-haspopup="true"
+                      >
                        <span>{item.name}</span>
                        <ChevronDown className={`w-4 h-4 transition-transform ${
                          activeDropdown === item.name ? 'rotate-180' : ''
@@ -312,6 +350,15 @@ export default function Navbar() {
                 </kbd>
               </button>
 
+              {/* Mobile Search */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="lg:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors"
+                aria-label="Search documentation"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
               {/* Theme Toggle */}
               <ThemeToggle />
 
@@ -334,57 +381,77 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors"
+                className="lg:hidden p-3 rounded-lg hover:bg-muted/50 transition-colors touch-manipulation"
                 aria-label="Toggle mobile menu"
                 aria-expanded={isOpen}
               >
-                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
 
           {/* Mobile Menu */}
           {isOpen && (
-            <div className="lg:hidden border-t border-border/50 py-4 animate-in slide-in-from-top-2 duration-200">
-              <div className="space-y-2">
+            <div className="lg:hidden border-t border-border/50 py-4 animate-in slide-in-from-top-2 duration-200 max-h-[80vh] overflow-y-auto">
+              <div className="space-y-1">
                 {mainNavItems.map((item) => (
                   <div key={item.name}>
                     {item.hasDropdown ? (
                       <div>
-                        <button
-                          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/50 rounded-lg transition-colors"
-                          onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                        <Link
+                          href={item.href}
+                          className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/50 rounded-xl transition-all duration-200 touch-manipulation active:scale-[0.98] relative z-10"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsOpen(false);
+                          }}
                         >
-                          <span className="font-medium">{item.name}</span>
-                          <ChevronDown className={`w-4 h-4 transition-transform ${
+                          <span className="font-medium text-base">{item.name}</span>
+                        </Link>
+                        <button
+                          className="w-full flex items-center justify-end p-2 text-left hover:bg-muted/50 rounded-xl transition-all duration-200 touch-manipulation active:scale-[0.98]"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                          }}
+                          onTouchEnd={(e) => {
+                            e.preventDefault();
+                            setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                          }}
+                        >
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
                             activeDropdown === item.name ? 'rotate-180' : ''
                           }`} />
                         </button>
                         {activeDropdown === item.name && (
-                          <div className="mt-1 ml-4 space-y-1">
+                          <div className="mt-2 ml-4 space-y-1 animate-in slide-in-from-top-1 duration-200 relative z-0">
                             {getDropdownItems(item.name).map((subItem) => (
                               <Link
                                 key={subItem.title}
                                 href={subItem.href}
-                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-                                onClick={() => {
+                                className="flex items-center space-x-4 p-4 rounded-xl hover:bg-muted/50 transition-all duration-200 touch-manipulation active:scale-[0.98]"
+                                onClick={(e) => {
+                                  e.preventDefault();
                                   setActiveDropdown(null);
                                   setIsOpen(false);
+                                  // Navigate manually to ensure it works
+                                  window.location.href = subItem.href;
                                 }}
                               >
-                                <div className="text-primary">
+                                <div className="text-primary flex-shrink-0">
                                   {subItem.icon}
                                 </div>
-                                <div className="flex-1">
+                                <div className="flex-1 min-w-0">
                                   <div className="flex items-center justify-between">
-                                    <span className="text-sm font-medium">{subItem.title}</span>
+                                    <span className="text-sm font-medium truncate">{subItem.title}</span>
                                     {subItem.badge && (
-                                      <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                                      <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium flex-shrink-0 ml-2">
                                         {subItem.badge}
                                       </span>
                                     )}
                                   </div>
-                                  <p className="text-xs text-muted-foreground mt-0.5">
+                                  <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
                                     {subItem.description}
                                   </p>
                                 </div>
@@ -396,8 +463,13 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={item.href}
-                        className="block p-3 text-left hover:bg-muted/50 rounded-lg transition-colors font-medium"
-                        onClick={() => setIsOpen(false)}
+                        className="block p-4 text-left hover:bg-muted/50 rounded-xl transition-all duration-200 touch-manipulation active:scale-[0.98] font-medium text-base"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsOpen(false);
+                          // Navigate manually to ensure it works
+                          window.location.href = item.href;
+                        }}
                       >
                         {item.name}
                       </Link>
@@ -407,17 +479,17 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Auth */}
-              <div className="mt-6 pt-6 border-t border-border/50 space-y-2">
+              <div className="mt-6 pt-6 border-t border-border/50 space-y-3">
                 <Link 
                   href="/auth/login" 
-                  className="block w-full text-center p-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+                  className="block w-full text-center p-4 text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-200 rounded-xl hover:bg-muted/50 touch-manipulation active:scale-[0.98]"
                   onClick={() => setIsOpen(false)}
                 >
                   Sign in
                 </Link>
                 <Link 
                   href="/auth/register" 
-                  className="block w-full text-center p-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors rounded-lg"
+                  className="block w-full text-center p-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 rounded-xl touch-manipulation active:scale-[0.98]"
                   onClick={() => setIsOpen(false)}
                 >
                   Register

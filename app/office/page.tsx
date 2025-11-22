@@ -198,7 +198,7 @@ export default function AetherOffice() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-start justify-center pt-24 sm:pt-32 overflow-hidden">
         {/* Background with subtle gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
         
@@ -214,15 +214,17 @@ export default function AetherOffice() {
         <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
         
-        <div className="relative z-10 container mx-auto px-4">
+        <div className="relative z-10 container mx-auto px-4 pt-8 sm:pt-12">
           <div className="max-w-7xl mx-auto text-center">
 
             {/* Main title */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight mx-auto text-center">
-              <div className="max-w-5xl mx-auto">
-                Aether Office
-                <br />
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 md:mb-12 leading-tight tracking-tight mx-auto text-center">
+              <div className="max-w-5xl mx-auto px-2 sm:px-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <span className="text-white">Aether</span>
+                  <span className="text-white">Office</span>
+                </div>
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent text-xl sm:text-2xl md:text-4xl lg:text-6xl font-normal leading-relaxed">
                   Your Complete Enterprise Workspace
                 </span>
               </div>
@@ -254,13 +256,13 @@ export default function AetherOffice() {
             </div>
 
             {/* Dashboard Preview */}
-            <div className="relative max-w-5xl mx-auto">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl">
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="relative max-w-5xl mx-auto px-4">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
                   {applications.slice(0, 5).map((app) => (
                     <div 
                       key={app.id}
-                      className="bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-all cursor-pointer relative"
+                      className="bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 hover:bg-white/10 transition-all cursor-pointer relative touch-manipulation active:scale-[0.98]"
                       onMouseEnter={() => setActiveApp(app.id)}
                       onMouseLeave={() => setActiveApp(null)}
                     >
@@ -268,15 +270,15 @@ export default function AetherOffice() {
                         href={app.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/10"
+                        className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/10 z-10"
                         aria-label={`View ${app.name} on GitHub`}
                       >
-                        <Github className="w-3 h-3" />
+                        <Github className="w-3 h-3 sm:w-4 sm:h-4" />
                       </a>
-                      <div className={`w-12 h-12 bg-gradient-to-r ${app.color} rounded-lg flex items-center justify-center mb-3`}>
-                        <app.icon className="w-6 h-6 text-white" />
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${app.color} rounded-lg flex items-center justify-center mb-2 sm:mb-3`}>
+                        <app.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <h4 className="text-sm font-medium text-white">{app.name}</h4>
+                      <h4 className="text-xs sm:text-sm font-medium text-white leading-tight">{app.name}</h4>
                     </div>
                   ))}
                 </div>
@@ -299,11 +301,11 @@ export default function AetherOffice() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {applications.map((app) => (
               <div 
                 key={app.id}
-                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105"
+                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105 touch-manipulation active:scale-[0.98]"
                 onMouseEnter={() => setActiveApp(app.id)}
                 onMouseLeave={() => setActiveApp(null)}
               >
@@ -358,20 +360,20 @@ export default function AetherOffice() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
             {workflowSteps.map((step) => (
               <div key={step.step} className="text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="w-8 h-8 text-white" />
+                <div className="relative mb-4 sm:mb-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-white text-black rounded-full flex items-center justify-center text-xs sm:text-sm font-bold">
                     {step.step}
                   </div>
                 </div>
                 
-                <h3 className="text-lg font-semibold mb-2 text-white">{step.title}</h3>
-                <p className="text-gray-400 text-sm">{step.description}</p>
+                <h3 className="text-sm sm:text-lg font-semibold mb-2 text-white">{step.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
@@ -401,7 +403,7 @@ export default function AetherOffice() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-white/20 transition-all">
                 <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
@@ -438,7 +440,7 @@ export default function AetherOffice() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
               {/* Free / Open-Source Plan */}
               <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300">
                 <div className="text-center mb-8">
@@ -621,7 +623,7 @@ export default function AetherOffice() {
             <div className="mt-16 text-center">
               <div className="max-w-4xl mx-auto">
                 <h3 className="text-xl font-semibold mb-6 text-white">All plans include:</h3>
-                <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-400">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 text-sm text-gray-400">
                   <div className="flex items-center justify-center">
                     <Shield className="w-4 h-4 mr-2 text-green-400" />
                     <span>GDPR compliant</span>

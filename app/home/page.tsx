@@ -31,18 +31,18 @@ export default function HomePage() {
             </div>
 
             {/* Main title */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight tracking-tight mx-auto text-center px-4">
               <div className="max-w-5xl mx-auto">
-                Building the Next Generation
+                Redefining European
                 <br />
                 <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                  of Enterprise Infrastructure
+                  Digital Sovereignty
                 </span>
               </div>
             </h1>
 
             {/* Subtitle - Hero Section */}
-            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+            <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4">
               <p>
                 Sky Genesis Enterprise develops unified platforms for secure collaboration, 
                 governance, and large-scale digital operations.
@@ -51,17 +51,17 @@ export default function HomePage() {
 
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 px-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-20 px-4">
               <Link 
                 href="/office" 
-                className="bg-white text-black px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-base lg:text-lg whitespace-nowrap"
+                className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-sm sm:text-base whitespace-nowrap"
               >
                 Discover Aether Office
-                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 href="/vision" 
-                className="border border-white/20 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-base lg:text-lg whitespace-nowrap"
+                className="border border-white/20 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-sm sm:text-base whitespace-nowrap"
               >
                 Explore Our Vision
               </Link>

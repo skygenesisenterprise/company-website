@@ -2,15 +2,13 @@
 
 import Link from 'next/link';
 import { 
-  ArrowRight, 
   Users, 
   Shield, 
-  Lightbulb, 
-  Mail, 
-  Globe,
+  Globe, 
+  ArrowRight,
+  Lightbulb,
   CheckCircle,
-  TrendingUp,
-  Building,
+  Mail,
   BookOpen
 } from 'lucide-react';
 
@@ -31,12 +29,7 @@ interface Value {
   icon: React.ReactNode;
 }
 
-interface Achievement {
-  title: string;
-  description: string;
-  metric?: string;
-  icon: React.ReactNode;
-}
+
 
 export default function LeadershipPage() {
   const leaders: Leader[] = [
@@ -93,32 +86,7 @@ export default function LeadershipPage() {
     }
   ];
 
-  const achievements: Achievement[] = [
-    {
-      title: 'Enterprise Customers',
-      description: 'Trusted by leading organizations across Europe',
-      metric: '500+',
-      icon: <Building className="w-6 h-6" />
-    },
-    {
-      title: 'Market Coverage',
-      description: 'Presence in key European markets',
-      metric: '12 Countries',
-      icon: <Globe className="w-6 h-6" />
-    },
-    {
-      title: 'Team Growth',
-      description: 'Building a world-class team',
-      metric: '500+ Employees',
-      icon: <Users className="w-6 h-6" />
-    },
-    {
-      title: 'Funding Raised',
-      description: 'Investment in European technology',
-      metric: '€85M',
-      icon: <TrendingUp className="w-6 h-6" />
-    }
-  ];
+
 
   return (
     <div className="min-h-screen bg-black text-white">
