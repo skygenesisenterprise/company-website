@@ -15,7 +15,6 @@ import {
   GitBranch, 
   Monitor, 
   MapPin, 
-  ExternalLink,
   ChevronRight,
   BarChart3,
   Lightbulb,
@@ -62,13 +61,6 @@ interface Metric {
   value: string;
   label: string;
   icon: React.ReactNode;
-}
-
-interface PressMention {
-  outlet: string;
-  title: string;
-  url: string;
-  logo: string;
 }
 
 export default function AboutPage() {
@@ -251,37 +243,6 @@ export default function AboutPage() {
     }
   ];
 
-  // Press mentions
-  const pressMentions: PressMention[] = [
-    {
-      outlet: 'TechCrunch',
-      title: 'Sky Genesis Raises €50M to Challenge US Tech Dominance in Europe',
-      url: 'https://techcrunch.com/sky-genesis-series-b',
-      logo: '/press/techcrunch-logo.png'
-    },
-    {
-      outlet: 'Forbes',
-      title: 'The European Company Building an Alternative to Silicon Valley',
-      url: 'https://forbes.com/european-alternative',
-      logo: '/press/forbes-logo.png'
-    },
-    {
-      outlet: 'Reuters',
-      title: 'European Enterprises Embrace Homegrown Digital Infrastructure',
-      url: 'https://reuters.com/european-infrastructure',
-      logo: '/press/reuters-logo.png'
-    }
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active': return 'bg-green-500/10 text-green-400 border-green-500/20';
-      case 'beta': return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
-      case 'coming-soon': return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-      default: return 'bg-gray-500/10 text-gray-400 border-gray-500/20';
-    }
-  };
-
   const getTimelineColor = (type: string) => {
     switch (type) {
       case 'founding': return 'bg-blue-500';
@@ -294,25 +255,59 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-purple-900/20"></div>
-        <div className="relative container mx-auto px-4 py-24 lg:py-32">
-          <div className="max-w-5xl mx-auto text-center space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight">
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        
+        {/* Tech grid pattern overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
+        
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-7xl mx-auto text-center">
+
+            {/* Main title */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight mx-auto text-center">
+              <div className="max-w-5xl mx-auto">
                 Redefining European
                 <br />
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                   Digital Sovereignty
                 </span>
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed text-center">
+              </div>
+            </h1>
+
+            {/* Subtitle */}
+            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center mb-12">
+              <p>
                 Sky Genesis Enterprise builds open-source infrastructure and enterprise solutions that empower European organizations with technological independence, security, and engineering excellence.
               </p>
-              <p className="text-lg text-gray-500 max-w-3xl mx-auto text-center">
-                We are engineering the future of European digital autonomy through transparent, secure, and scalable technology that puts control back in the hands of European businesses and institutions.
-              </p>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 px-4">
+              <Link 
+                href="/careers" 
+                className="bg-white text-black px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-base lg:text-lg whitespace-nowrap"
+              >
+                Join Our Mission
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link 
+                href="/company/leadership" 
+                className="border border-white/20 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-base lg:text-lg whitespace-nowrap"
+              >
+                Meet Our Team
+              </Link>
             </div>
           </div>
         </div>
@@ -324,9 +319,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Story</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto text-center">
-                From a vision of European technological independence to a continent-spanning enterprise infrastructure provider.
-              </p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  From a vision of European technological independence to a continent-spanning enterprise infrastructure provider.
+                </p>
+              </div>
             </div>
 
             <div className="relative">
@@ -369,7 +366,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Mission & Vision</h2>
-              <p className="text-xl text-gray-400">Our purpose and our aspirations</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  Our purpose and our aspirations
+                </p>
+              </div>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12">
@@ -413,7 +414,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Core Values</h2>
-              <p className="text-xl text-gray-400">The principles that guide everything we do</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  The principles that guide everything we do
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -439,9 +444,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Ecosystem</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                A multi-subsidiary structure that combines specialized expertise with unified vision and shared values.
-              </p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  A multi-subsidiary structure that combines specialized expertise with unified vision and shared values.
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -477,7 +484,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">What We Build</h2>
-              <p className="text-xl text-gray-400">Enterprise infrastructure engineered for European sovereignty</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  Enterprise infrastructure engineered for European sovereignty
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -490,9 +501,9 @@ export default function AboutPage() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-xl font-semibold">{product.name}</h3>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(product.status)}`}>
-                          {product.status.replace('-', ' ')}
-                        </span>
+                         <span className="px-2 py-1 rounded-full text-xs font-medium border bg-gray-500/10 text-gray-400 border-gray-500/20">
+                           {product.status.replace('-', ' ')}
+                         </span>
                       </div>
                       <p className="text-gray-400 mb-4">{product.description}</p>
                       <Link 
@@ -517,7 +528,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Commitments</h2>
-              <p className="text-xl text-gray-400">Promises we keep to our customers and community</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  Promises we keep to our customers and community
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -546,18 +561,22 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Leadership</h2>
-              <p className="text-xl text-gray-400">Visionary leaders driving European technological independence</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  Visionary leaders driving European technological independence
+                </p>
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-12 mb-12 max-w-4xl mx-auto">
               {leadership.map((leader, index) => (
-                <div key={index} className="text-center group">
-                  <div className="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="w-12 h-12 text-gray-600" />
+                <div key={index} className="text-center group flex-1 max-w-sm">
+                  <div className="w-32 h-32 bg-gray-800 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <Users className="w-16 h-16 text-gray-600" />
                   </div>
-                  <h3 className="font-semibold mb-1">{leader.name}</h3>
-                  <p className="text-sm text-blue-400 mb-2">{leader.title}</p>
-                  <p className="text-sm text-gray-400">{leader.description}</p>
+                  <h3 className="text-xl font-semibold mb-2">{leader.name}</h3>
+                  <p className="text-base text-blue-400 mb-3">{leader.title}</p>
+                  <p className="text-base text-gray-400 leading-relaxed">{leader.description}</p>
                 </div>
               ))}
             </div>
@@ -573,12 +592,16 @@ export default function AboutPage() {
       </section>
 
       {/* Facts, Achievements & Metrics */}
-      <section className="py-20 lg:py-24 bg-gray-950/50">
+      {/* <section className="py-20 lg:py-24 bg-gray-950/50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">By the Numbers</h2>
-              <p className="text-xl text-gray-400">Our impact measured in metrics that matter</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  Our impact measured in metrics that matter
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -594,15 +617,19 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Press Preview Section */}
-      <section className="py-20 lg:py-24">
+      {/* <section className="py-20 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">In the Press</h2>
-              <p className="text-xl text-gray-400">What leading publications are saying about us</p>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  What leading publications are saying about us
+                </p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -637,12 +664,12 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Final Call-to-Action */}
       <section className="py-20 lg:py-24 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl lg:text-5xl font-bold">
               Shape the Future of
               <br />
@@ -650,9 +677,11 @@ export default function AboutPage() {
                 European Technology
               </span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Join our mission to build sovereign, secure, and innovative digital infrastructure for Europe.
-            </p>
+            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+              <p>
+                Join our mission to build sovereign, secure, and innovative digital infrastructure for Europe.
+              </p>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/careers" className="btn-primary">

@@ -26,7 +26,7 @@ export default function Footer() {
     { name: 'API Reference', href: '/api/docs' },
     { name: 'Guides & Tutorials', href: '/guides' },
     { name: 'Changelog', href: '/changelog' },
-    { name: 'Whitepapers', href: '/whitepapers' },
+    { name: 'Whitepapers', href: '/whitepaper' },
     { name: 'Developer Portal', href: 'https://developer.skygenesisenterprise.com' },
   ];
 

@@ -591,13 +591,10 @@ export default function PressPage() {
                   <h2 className="text-3xl font-bold mb-4">Media Contact</h2>
                   <div className="space-y-3 text-gray-300">
                     <p className="text-lg">
-                      <strong>Sarah Mitchell</strong> • Head of Communications
+                      Head of Communications
                     </p>
                     <p className="text-lg">
-                      Email: <a href="mailto:media@skygenesisenterprise.com" className="text-blue-400 hover:text-blue-300">media@skygenesisenterprise.com</a>
-                    </p>
-                    <p className="text-lg">
-                      Phone: +32 2 123 45 67
+                      Email: <a href="mailto:press@skygenesisenterprise.com" className="text-blue-400 hover:text-blue-300">press@skygenesisenterprise.com</a>
                     </p>
                     <p className="text-sm text-gray-400 mt-4">
                       Available for media inquiries, interviews, and press events

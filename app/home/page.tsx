@@ -66,26 +66,6 @@ export default function HomePage() {
                 Explore Our Vision
               </Link>
             </div>
-
-            {/* Enterprise metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 max-w-5xl mx-auto px-4">
-              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">99.99%</div>
-                <div className="text-xs lg:text-sm text-gray-400">Uptime SLA</div>
-              </div>
-              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">&lt;50ms</div>
-                <div className="text-xs lg:text-sm text-gray-400">Global Latency</div>
-              </div>
-              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">Zero</div>
-                <div className="text-xs lg:text-sm text-gray-400">Trust Architecture</div>
-              </div>
-              <div className="text-center p-4 lg:p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">SOC2</div>
-                <div className="text-xs lg:text-sm text-gray-400">Compliant</div>
-              </div>
-            </div>
           </div>
       </section>
 
@@ -232,7 +212,7 @@ export default function HomePage() {
 
               <Link 
                 href="/aether-office" 
-                className="inline-flex items-center bg-blue-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 transform hover:-translate-y-1"
+                className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 border border-blue-600"
               >
                 Learn more about Aether Office
                 <ArrowRight className="w-5 h-5 ml-3" />

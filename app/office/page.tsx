@@ -425,6 +425,234 @@ export default function AetherOffice() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4">Aether Office Pricing</h2>
+              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+                <p>
+                  Flexible plans for individuals, teams, and enterprises. Start free or scale with our enterprise solutions.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* Free / Open-Source Plan */}
+              <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-2 text-white">Free</h3>
+                  <p className="text-gray-400 mb-6">Open-Source</p>
+                  <div className="text-5xl font-bold text-white mb-1">0 €</div>
+                  <p className="text-gray-500 text-sm">per user / month</p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Aether Mail, Chat, Meet</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Aether Docs & Sheets</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Aether Drive</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Aether Teams</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Aether Auth (SSO/permissions)</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Basic API & Webhooks</span>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <div className="text-center mb-4">
+                    <span className="text-xs text-gray-500 bg-gray-800 px-3 py-1 rounded-full">
+                      Target Audience
+                    </span>
+                  </div>
+                  <p className="text-center text-sm text-gray-400">
+                    Individuals, small teams, open-source communities, initial adoption
+                  </p>
+                </div>
+
+                <div className="mt-8">
+                  <Link 
+                    href="https://account.skygenesisenterprise.com"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-lg hover:bg-white/20 transition-all"
+                  >
+                    Get Started Free
+                  </Link>
+                </div>
+              </div>
+
+              {/* Enterprise Plan */}
+              <div className="relative bg-gradient-to-br from-blue-500/10 to-blue-600/10 backdrop-blur-sm border-2 border-blue-500/30 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-blue-500 text-white text-xs font-semibold px-4 py-1 rounded-full">
+                    RECOMMENDED
+                  </div>
+                </div>
+
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-2 text-white">Enterprise</h3>
+                  <p className="text-blue-400 mb-6">Most Popular</p>
+                  <div className="text-5xl font-bold text-white mb-1">10–15 €</div>
+                  <p className="text-gray-500 text-sm">per user / month</p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Everything in Free, plus:</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                    <span>Priority support & 99.9% SLA</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                    <span>Advanced encryption</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                    <span>Role management & compliance</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                    <span>Automated migration (G Suite / Microsoft 365)</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                    <span>Advanced offline sync</span>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <div className="text-center mb-4">
+                    <span className="text-xs text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/30">
+                      Target Audience
+                    </span>
+                  </div>
+                  <p className="text-center text-sm text-gray-400">
+                    SMEs, startups, mid-sized teams
+                  </p>
+                </div>
+
+                <div className="mt-8">
+                  <Link 
+                    href="https://account.skygenesisenterprise.com"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 border border-blue-600"
+                  >
+                    Request a Demo
+                  </Link>
+                </div>
+              </div>
+
+              {/* Organization Plan */}
+              <div className="relative bg-gradient-to-br from-purple-500/10 to-purple-600/10 backdrop-blur-sm border-2 border-purple-500/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-2 text-white">Organization</h3>
+                  <p className="text-purple-400 mb-6">Enterprise Grade</p>
+                  <div className="text-5xl font-bold text-white mb-1">500–3000 €</div>
+                  <p className="text-gray-500 text-sm">per month (custom pricing)</p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                    <span>Everything in Enterprise, plus:</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
+                    <span>Unlimited users</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
+                    <span>Extended storage & optional sovereign cloud</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
+                    <span>Aether Security Essentials included</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
+                    <span>Advanced monitoring & audits</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
+                    <span>Premium support</span>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <div className="text-center mb-4">
+                    <span className="text-xs text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/30">
+                      Target Audience
+                    </span>
+                  </div>
+                  <p className="text-center text-sm text-gray-400">
+                    Large enterprises, institutions, multi-site organizations
+                  </p>
+                </div>
+
+                <div className="mt-8">
+                  <Link 
+                    href="https://account.skygenesisenterprise.com"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-purple-500 text-white font-medium rounded-lg hover:bg-purple-600 transition-all transform hover:scale-105"
+                  >
+                    Contact Sales
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Information */}
+            <div className="mt-16 text-center">
+              <div className="max-w-4xl mx-auto">
+                <h3 className="text-xl font-semibold mb-6 text-white">All plans include:</h3>
+                <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-400">
+                  <div className="flex items-center justify-center">
+                    <Shield className="w-4 h-4 mr-2 text-green-400" />
+                    <span>GDPR compliant</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Shield className="w-4 h-4 mr-2 text-green-400" />
+                    <span>99.99% uptime SLA</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Shield className="w-4 h-4 mr-2 text-green-400" />
+                    <span>European data centers</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Shield className="w-4 h-4 mr-2 text-green-400" />
+                    <span>24/7 support (Enterprise)</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Shield className="w-4 h-4 mr-2 text-green-400" />
+                    <span>Zero-trust architecture</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Shield className="w-4 h-4 mr-2 text-green-400" />
+                    <span>Open-source transparency</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 lg:py-24 bg-gradient-to-r from-blue-600 to-purple-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>

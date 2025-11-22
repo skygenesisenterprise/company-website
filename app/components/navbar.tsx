@@ -16,6 +16,7 @@ import {
   Globe,
   Code
 } from 'lucide-react';
+import ThemeToggle from './theme-toggle';
 
 interface NavItem {
   name: string;
@@ -311,6 +312,9 @@ export default function Navbar() {
                 </kbd>
               </button>
 
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
               {/* Auth Buttons */}
               <div className="hidden lg:flex items-center space-x-2">
                 <Link 
@@ -321,7 +325,7 @@ export default function Navbar() {
                 </Link>
                 <Link 
                   href="/register" 
-                  className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded-lg"
+                  className="text-sm font-medium text-blue-600 bg-white hover:bg-gray-100 transition-colors px-4 py-2 rounded-lg border border-blue-600"
                 >
                   Register
                 </Link>
