@@ -27,7 +27,7 @@ export default function Footer() {
     { name: 'Guides & Tutorials', href: '/guides' },
     { name: 'Changelog', href: '/changelog' },
     { name: 'Whitepapers', href: '/whitepapers' },
-    { name: 'Developer Portal', href: '/developer/portal' },
+    { name: 'Developer Portal', href: 'https://developer.skygenesisenterprise.com' },
   ];
 
   // Enterprise Solutions
@@ -51,7 +51,7 @@ export default function Footer() {
 
   // Contact & Support Links
   const contactSupportLinks = [
-    { name: 'Support Portal', href: '/support' },
+    { name: 'Support Portal', href: 'https://support.skygenesisenterprise.com' },
     { name: 'Sales Inquiry', href: '/contact/sales' },
     { name: 'Office Locations', href: '/contact/locations' },
   ];

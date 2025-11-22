@@ -8,18 +8,13 @@ import {
   X, 
   ChevronDown, 
   FileText, 
-  Calendar, 
-  CheckCircle, 
-  MessageSquare, 
-  BarChart3, 
   Shield, 
   Wrench, 
   Book, 
   Building,
   Users,
   Globe,
-  Code,
-  ArrowRight
+  Code
 } from 'lucide-react';
 
 interface NavItem {
@@ -27,7 +22,6 @@ interface NavItem {
   href: string;
   description?: string;
   hasDropdown?: boolean;
-  hasMega?: boolean;
   icon?: React.ReactNode;
 }
 
@@ -84,11 +78,10 @@ export default function Navbar() {
 
   // Main navigation items
   const mainNavItems: NavItem[] = [
-    { name: 'Home', href: '/' },
+    { name: 'Home', href: '/home' },
     { 
       name: 'Aether Office', 
-      href: '/aether-office',
-      hasMega: true,
+      href: '/office',
       description: 'SaaS ecosystem for modern workspace collaboration'
     },
     { 
@@ -111,46 +104,6 @@ export default function Navbar() {
       href: '/developer',
       hasDropdown: true,
       description: 'Developer resources and documentation'
-    },
-  ];
-
-  // Aether Office mega menu items
-  const aetherOfficeItems: DropdownItem[] = [
-    { 
-      title: 'Documents', 
-      description: 'Collaborative document management', 
-      href: '/aether-office/documents',
-      icon: <FileText className="w-5 h-5" />
-    },
-    { 
-      title: 'Calendar', 
-      description: 'Smart scheduling and planning', 
-      href: '/aether-office/calendar',
-      icon: <Calendar className="w-5 h-5" />
-    },
-    { 
-      title: 'Tasks', 
-      description: 'Project and task management', 
-      href: '/aether-office/tasks',
-      icon: <CheckCircle className="w-5 h-5" />
-    },
-    { 
-      title: 'Communication', 
-      description: 'Messaging and video conferencing', 
-      href: '/aether-office/communication',
-      icon: <MessageSquare className="w-5 h-5" />
-    },
-    { 
-      title: 'Analytics', 
-      description: 'Business intelligence dashboards', 
-      href: '/aether-office/analytics',
-      icon: <BarChart3 className="w-5 h-5" />
-    },
-    { 
-      title: 'Security', 
-      description: 'Enterprise-grade access control', 
-      href: '/aether-office/security',
-      icon: <Shield className="w-5 h-5" />
     },
   ];
 
@@ -228,7 +181,7 @@ export default function Navbar() {
     { 
       title: 'Open Source', 
       description: 'Our open source projects', 
-      href: '/developer/opensource',
+      href: '/developer/open-source',
       icon: <Code className="w-4 h-4" />
     },
     { 
@@ -241,7 +194,6 @@ export default function Navbar() {
 
   const getDropdownItems = (name: string): DropdownItem[] => {
     switch (name) {
-      case 'Aether Office': return aetherOfficeItems;
       case 'Governance': return governanceItems;
       case 'Company': return companyItems;
       case 'Developer': return developerItems;
@@ -265,7 +217,7 @@ export default function Navbar() {
             {/* Brand */}
             <div className="flex items-center">
               <Link 
-                href="/" 
+                href="/home" 
                 className="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity"
                 aria-label="Sky Genesis Enterprise homepage"
               >
@@ -283,7 +235,7 @@ export default function Navbar() {
                   className="relative"
                   ref={(el) => { dropdownRefs.current[item.name] = el; }}
                 >
-                  {item.hasDropdown || item.hasMega ? (
+                  {item.hasDropdown ? (
                      <button
                        className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-white ${
                          activeDropdown === item.name ? 'text-white' : 'text-gray-400'
@@ -307,87 +259,40 @@ export default function Navbar() {
                   )}
 
                    {/* Dropdown Menu */}
-                   {(item.hasDropdown || item.hasMega) && activeDropdown === item.name && (
+                   {item.hasDropdown && activeDropdown === item.name && (
                      <div className="absolute top-full left-0 mt-2 min-w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                      {item.hasMega ? (
-                        // Mega Menu for Aether Office
-                        <div className="w-[600px] p-4">
-                           <div className="mb-4">
-                             <h3 className="text-lg font-semibold text-white mb-1">
-                               {item.name}
-                             </h3>
-                             <p className="text-sm text-gray-400">
-                               {item.description}
-                             </p>
-                           </div>
-                          <div className="grid grid-cols-2 gap-2">
-                            {getDropdownItems(item.name).map((subItem) => (
-                              <Link
-                                key={subItem.title}
-                                href={subItem.href}
-                                 className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
-                                onClick={() => setActiveDropdown(null)}
-                              >
-                                <div className="text-primary group-hover:scale-110 transition-transform">
-                                  {subItem.icon}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                                    {subItem.title}
-                                  </h4>
-                                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                                    {subItem.description}
-                                  </p>
-                                </div>
-                              </Link>
-                            ))}
-                          </div>
-                          <div className="mt-4 pt-4 border-t border-border/50">
-                            <Link
-                              href="/aether-office"
-                              className="flex items-center justify-between text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              <span>View all Aether Office features</span>
-                              <ArrowRight className="w-4 h-4" />
-                            </Link>
-                          </div>
-                        </div>
-                      ) : (
-                        // Regular Dropdown
-                        <div className="py-2">
-                          {getDropdownItems(item.name).map((subItem) => (
-                            <Link
-                              key={subItem.title}
-                              href={subItem.href}
-                              className="flex items-center space-x-3 px-3 py-2 hover:bg-muted/50 transition-colors group"
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              <div className="text-muted-foreground group-hover:text-primary transition-colors">
-                                {subItem.icon}
-                              </div>
-                              <div className="flex-1">
-                                <div className="flex items-center justify-between">
-                                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                                    {subItem.title}
-                                  </span>
-                                  {subItem.badge && (
-                                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
-                                      {subItem.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <p className="text-xs text-muted-foreground mt-0.5">
-                                  {subItem.description}
-                                </p>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
+                       <div className="py-2">
+                         {getDropdownItems(item.name).map((subItem) => (
+                           <Link
+                             key={subItem.title}
+                             href={subItem.href}
+                             className="flex items-center space-x-3 px-3 py-2 hover:bg-muted/50 transition-colors group"
+                             onClick={() => setActiveDropdown(null)}
+                           >
+                             <div className="text-muted-foreground group-hover:text-primary transition-colors">
+                               {subItem.icon}
+                             </div>
+                             <div className="flex-1">
+                               <div className="flex items-center justify-between">
+                                 <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                                   {subItem.title}
+                                 </span>
+                                 {subItem.badge && (
+                                   <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                                     {subItem.badge}
+                                   </span>
+                                 )}
+                               </div>
+                               <p className="text-xs text-muted-foreground mt-0.5">
+                                 {subItem.description}
+                               </p>
+                             </div>
+                           </Link>
+                         ))}
+                       </div>
+                     </div>
+                   )}
+                 </div>
               ))}
             </div>
 
@@ -409,13 +314,13 @@ export default function Navbar() {
               {/* Auth Buttons */}
               <div className="hidden lg:flex items-center space-x-2">
                 <Link 
-                  href="/auth/login" 
+                  href="/login" 
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-muted/50"
                 >
                   Sign in
                 </Link>
                 <Link 
-                  href="/auth/register" 
+                  href="/register" 
                   className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded-lg"
                 >
                   Register
@@ -440,7 +345,7 @@ export default function Navbar() {
               <div className="space-y-2">
                 {mainNavItems.map((item) => (
                   <div key={item.name}>
-                    {item.hasDropdown || item.hasMega ? (
+                    {item.hasDropdown ? (
                       <div>
                         <button
                           className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/50 rounded-lg transition-colors"

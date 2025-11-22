@@ -21,18 +21,17 @@ export default function HomePage() {
 
         {/* Floating elements */}
         <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-gray-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            {/* Enterprise badge */}
-            <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
-              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-              Sky Genesis Enterprise
+          <div className="relative z-10 container mx-auto px-4">
+            <div className="max-w-7xl mx-auto text-center">
+              {/* Enterprise badge */}
+                <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+                Sky Genesis Enterprise
+                </div>
             </div>
 
             {/* Main title */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight mx-auto">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight mx-auto text-center">
               <div className="max-w-5xl mx-auto">
                 Building the Next Generation
                 <br />
@@ -54,7 +53,7 @@ export default function HomePage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 px-4">
               <Link 
-                href="/aether-office" 
+                href="/office" 
                 className="bg-white text-black px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-base lg:text-lg whitespace-nowrap"
               >
                 Discover Aether Office
@@ -88,7 +87,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* GROUP OVERVIEW */}
@@ -113,7 +111,7 @@ export default function HomePage() {
                 <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
                   Unified workspace platform for enterprise collaboration, productivity, and digital operations.
                 </p>
-                <Link href="/aether-office" className="text-blue-400 hover:text-blue-300 font-semibold flex items-center justify-center">
+                <Link href="/office" className="text-blue-400 hover:text-blue-300 font-semibold flex items-center justify-center">
                   Learn more <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
