@@ -9,8 +9,12 @@ import {
   Zap, 
   Shield, 
   Package,
-  Search
+  Search,
+  GitPullRequest,
+  User
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
 
 interface ChangelogEntry {
   id: string;
@@ -149,12 +153,12 @@ export default function ChangelogPage() {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'feature': return 'bg-green-500/10 text-green-400 border-green-500/20';
-      case 'improvement': return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-      case 'fix': return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
-      case 'security': return 'bg-red-500/10 text-red-400 border-red-500/20';
-      case 'breaking': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
-      default: return 'bg-gray-500/10 text-gray-400 border-gray-500/20';
+      case 'feature': return 'bg-green-500/10 text-green-600 border-green-500/20';
+      case 'improvement': return 'bg-blue-500/10 text-blue-600 border-blue-500/20';
+      case 'fix': return 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20';
+      case 'security': return 'bg-red-500/10 text-red-600 border-red-500/20';
+      case 'breaking': return 'bg-purple-500/10 text-purple-600 border-purple-500/20';
+      default: return 'bg-gray-500/10 text-gray-600 border-gray-500/20';
     }
   };
 
@@ -196,62 +200,89 @@ export default function ChangelogPage() {
     return groups;
   }, {} as Record<string, ChangelogEntry[]>);
 
-  return (
-    <div className="min-h-screen bg-black text-white">
+return (
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-purple-900/20"></div>
-        <div className="relative container mx-auto px-4 py-24 lg:py-32">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight">
-                Changelog
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                Track the evolution of Sky Genesis Enterprise APIs and services.
-              </p>
-              <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        
+        {/* Tech grid pattern overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+        
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-7xl mx-auto text-center">
+            {/* Enterprise badge */}
+            <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+              Changelog Status
+            </div>
+
+            {/* Main title */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight tracking-tight mx-auto text-center px-4">
+              <div className="max-w-5xl mx-auto">
+                Track Our
+                <br />
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                  Platform Evolution
+                </span>
+              </div>
+            </h1>
+
+            {/* Subtitle */}
+            <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4 mb-12">
+              <p>
                 Stay informed about new features, improvements, security updates, and important changes across our entire platform.
               </p>
+            </div>
+
+            {/* Icon */}
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8">
+              <Calendar className="w-10 h-10 text-white" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Filters and Search */}
-      <section className="py-12 border-b border-gray-900">
+      <section className="py-12 border-b border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
               {/* Search */}
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
                   type="text"
                   placeholder="Search changelog..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-gray-800 transition-colors"
+                  className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary focus:bg-accent/50 transition-colors"
                 />
               </div>
 
               {/* Category Filters */}
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
-                  <button
+                  <Button
                     key={category.id}
+                    variant={selectedCategory === category.id ? "default" : "outline"}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      selectedCategory === category.id
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-900 text-gray-400 hover:bg-gray-800 border border-gray-800'
-                    }`}
+                    className="flex items-center gap-2"
                   >
                     {category.name}
-                    <span className="ml-2 text-xs bg-gray-800 px-2 py-0.5 rounded-full">
+                    <span className="text-xs bg-muted px-2 py-0.5 rounded-full">
                       {category.count}
                     </span>
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -267,58 +298,66 @@ export default function ChangelogPage() {
               <div key={version} className="mb-16">
                 {/* Version Header */}
                 <div className="flex items-center space-x-4 mb-8">
-                  <h2 className="text-3xl font-bold">{version}</h2>
-                  <span className="text-gray-500">{formatDate(entries[0].date)}</span>
+                  <h2 className="text-3xl font-bold text-foreground">{version}</h2>
+                  <span className="text-muted-foreground">{formatDate(entries[0].date)}</span>
                 </div>
 
                 {/* Entries for this version */}
                 <div className="space-y-6">
                   {entries.map((entry) => (
-                    <div key={entry.id} className="card">
-                      <div className="space-y-4">
-                        {/* Entry Header */}
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className={`p-2 rounded-lg border ${getTypeColor(entry.type)}`}>
-                              {getTypeIcon(entry.type)}
+                    <Card key={entry.id} className="hover:shadow-lg transition-shadow">
+                      <CardContent className="p-6">
+                        <div className="space-y-4">
+                          {/* Entry Header */}
+                          <div className="flex items-start justify-between">
+                            <div className="flex items-center space-x-3">
+                              <div className={`p-2 rounded-lg border ${getTypeColor(entry.type)}`}>
+                                {getTypeIcon(entry.type)}
+                              </div>
+                              <div>
+                                <h3 className="text-xl font-semibold text-foreground">{entry.title}</h3>
+                                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                                  <User className="w-3 h-3" />
+                                  By {entry.author}
+                                  {entry.pr && (
+                                    <>
+                                      <span>•</span>
+                                      <a 
+                                        href={`https://github.com/skygenesisenterprise/pull/${entry.pr.replace('#', '')}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-primary hover:text-primary/80 flex items-center gap-1"
+                                      >
+                                        <GitPullRequest className="w-3 h-3" />
+                                        {entry.pr}
+                                      </a>
+                                    </>
+                                  )}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <h3 className="text-xl font-semibold">{entry.title}</h3>
-                              <p className="text-sm text-gray-500">
-                                By {entry.author} {entry.pr && (
-                                  <a 
-                                    href={`https://github.com/skygenesisenterprise/pull/${entry.pr.replace('#', '')}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-400 hover:text-blue-300 ml-2"
-                                  >
-                                    {entry.pr}
-                                  </a>
-                                )}
-                              </p>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(entry.type)}`}>
+                              {entry.type}
+                            </span>
+                          </div>
+
+                          {/* Description */}
+                          <p className="text-muted-foreground leading-relaxed">{entry.description}</p>
+
+                          {/* Affected Components */}
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium text-muted-foreground">Affected:</p>
+                            <div className="flex flex-wrap gap-2">
+                              {entry.affected.map((item, index) => (
+                                <span key={index} className="text-xs bg-muted px-2 py-1 rounded border border-border">
+                                  {item}
+                                </span>
+                              ))}
                             </div>
                           </div>
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(entry.type)}`}>
-                            {entry.type}
-                          </span>
                         </div>
-
-                        {/* Description */}
-                        <p className="text-gray-300 leading-relaxed">{entry.description}</p>
-
-                        {/* Affected Components */}
-                        <div className="space-y-2">
-                          <p className="text-sm font-medium text-gray-400">Affected:</p>
-                          <div className="flex flex-wrap gap-2">
-                            {entry.affected.map((item, index) => (
-                              <span key={index} className="text-xs bg-gray-800 px-2 py-1 rounded border border-gray-700">
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               </div>
@@ -326,7 +365,10 @@ export default function ChangelogPage() {
 
             {filteredChangelog.length === 0 && (
               <div className="text-center py-16">
-                <p className="text-gray-400 text-lg">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-muted rounded-full mb-4">
+                  <Search className="w-8 h-8 text-muted-foreground" />
+                </div>
+                <p className="text-muted-foreground text-lg">
                   No changelog entries found matching your filters.
                 </p>
               </div>
@@ -336,25 +378,32 @@ export default function ChangelogPage() {
       </section>
 
       {/* Footer CTA */}
-      <section className="py-20 bg-gray-950/50">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl font-bold">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6">
+              <Package className="w-8 h-8 text-primary" />
+            </div>
+            <h2 className="text-3xl font-bold text-foreground">
               Stay Updated with Latest Changes
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
               Subscribe to our developer newsletter or follow our GitHub repository to receive notifications about new releases and important updates.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a href="https://github.com/skygenesisenterprise" className="btn-primary">
-                <Package className="w-5 h-5" />
-                Follow on GitHub
-              </a>
-              <a href="/newsletter" className="btn-secondary">
-                <Calendar className="w-5 h-5" />
-                Subscribe to Newsletter
-              </a>
+              <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90">
+                <a href="https://github.com/skygenesisenterprise" className="flex items-center gap-2">
+                  <Package className="w-5 h-5" />
+                  Follow on GitHub
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <a href="/newsletter" className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5" />
+                  Subscribe to Newsletter
+                </a>
+              </Button>
             </div>
           </div>
         </div>

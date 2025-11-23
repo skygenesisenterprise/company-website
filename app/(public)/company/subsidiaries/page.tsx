@@ -272,10 +272,6 @@ export default function CompanySubsidiariesPage() {
                 Our group operates a unified ecosystem of companies advancing sovereign and secure digital infrastructure 
                 for European organizations and institutions.
               </p>
-              <p className="text-gray-400 text-lg">
-                Seven specialized subsidiaries working in concert to deliver comprehensive solutions 
-                across technology, finance, communications, logistics, and aerospace.
-              </p>
             </div>
 
             {/* Key stats */}

@@ -707,34 +707,25 @@ export default function CompliancePage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Contact Our Compliance Team
               </h2>
-              <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Have questions about our compliance standards or need documentation for your organization? 
                 Our compliance team is here to help.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 max-w-2xl mx-auto">
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
                   <Mail className="w-8 h-8 text-blue-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <p className="text-gray-400 text-sm mb-3">compliance@skygenesis.com</p>
+                  <p className="text-gray-400 text-sm mb-3">compliance@skygenesisenterprise.com</p>
                   <button className="text-blue-400 hover:text-blue-300 text-sm font-semibold">
                     Send Message
                   </button>
                 </div>
 
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
-                  <Phone className="w-8 h-8 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Phone</h3>
-                  <p className="text-gray-400 text-sm mb-3">+33 (0)1 42 86 83 45</p>
-                  <button className="text-green-400 hover:text-green-300 text-sm font-semibold">
-                    Call Now
-                  </button>
-                </div>
-
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
                   <MapPin className="w-8 h-8 text-purple-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Office</h3>
-                  <p className="text-gray-400 text-sm mb-3">Paris, France</p>
+                  <p className="text-gray-400 text-sm mb-3">Liège, Belgium</p>
                   <button className="text-purple-400 hover:text-purple-300 text-sm font-semibold">
                     Get Directions
                   </button>

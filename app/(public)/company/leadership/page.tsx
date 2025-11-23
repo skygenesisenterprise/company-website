@@ -131,10 +131,6 @@ export default function LeadershipPage() {
               <p>
                 Guiding Sky Genesis Enterprise toward European digital sovereignty and next-generation enterprise solutions.
               </p>
-              <p>
-                Our executive team brings together decades of experience in technology, operations, and strategic vision 
-                to drive innovation and excellence across all our business units.
-              </p>
             </div>
 
             {/* CTA Buttons */}

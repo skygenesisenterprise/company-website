@@ -27,7 +27,7 @@ export default function HomePage() {
                 <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
                   <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
                 Sky Genesis Enterprise
-                </div>
+              </div>
             </div>
 
             {/* Main title */}
