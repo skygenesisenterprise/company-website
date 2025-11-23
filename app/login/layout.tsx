@@ -1,9 +1,9 @@
 "use client";
 
 import { Geist, Geist_Mono } from "next/font/google";
-import { AuthProvider } from "../context/JwtAuthContext";
-import { Toaster } from "../components/ui/toaster";
-import "../../styles/globals.css";
+import { AuthProvider } from "../(public)/context/JwtAuthContext";
+import { Toaster } from "../(public)/components/ui/toaster";
+import "../styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +21,7 @@ export default function LoginLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
