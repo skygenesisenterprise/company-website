@@ -18,7 +18,12 @@ import {
   Settings,
   Key,
   Lock,
-  Award
+  Award,
+  Users,
+  Cpu,
+  Database,
+  BookOpen,
+  ChevronRight
 } from 'lucide-react';
 
 interface DocCategory {
@@ -219,104 +224,124 @@ export default function DeveloperDocsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-purple-900/20"></div>
-        <div className="relative container mx-auto px-4 py-24 lg:py-32">
-          <div className="max-w-5xl mx-auto text-center space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight">
-                Documentation Platform
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        
+        {/* Tech grid pattern overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="relative z-10 container mx-auto px-4">
+            <div className="max-w-7xl mx-auto text-center">
+              {/* Enterprise badge */}
+                <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+                Sky Genesis Enterprise
+                </div>
+            </div>
+
+            {/* Main title */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight tracking-tight mx-auto text-center px-4">
+              <div className="max-w-5xl mx-auto">
+                Developer Documentation
                 <br />
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Built for Enterprise
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                  Platform for Enterprise
                 </span>
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+              </div>
+            </h1>
+
+            {/* Subtitle - Hero Section */}
+            <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4">
+              <p>
                 Structured guides, best practices, and curated resources for a seamless developer experience.
               </p>
-              <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+              <p className="text-gray-500">
                 Comprehensive documentation designed for clarity, accessibility, and productivity — empowering developers to build secure, sovereign enterprise applications with confidence.
               </p>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <Link href="/docs" className="btn-primary">
-                <Book className="w-5 h-5" />
+
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-20 px-4">
+              <Link 
+                href="/docs" 
+                className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-sm sm:text-base whitespace-nowrap"
+              >
+                <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Browse Full Documentation
               </Link>
-              <Link href="/docs/quickstarts" className="btn-secondary">
-                <Rocket className="w-5 h-5" />
+              <Link 
+                href="/docs/quickstarts" 
+                className="border border-white/20 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-sm sm:text-base whitespace-nowrap"
+              >
+                <Rocket className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Start Your Developer Journey
               </Link>
             </div>
           </div>
-        </div>
       </section>
 
-      {/* Key Benefits / Value Proposition */}
-      <section className="py-20 lg:py-24">
+      {/* DOCUMENTATION DIVISIONS */}
+      <section className="py-24 bg-gradient-to-b from-black to-gray-950">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4">Why Developers Choose Sky Genesis Enterprise Docs</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                Enterprise documentation designed for clarity, reliability, and developer productivity.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <div key={index} className="card group">
-                  <div className="space-y-4">
-                    <div className="text-blue-400 group-hover:scale-110 transition-transform">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="max-w-7xl mx-auto text-center">
+          <div className="mb-20 space-y-4 md:space-y-6 max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              Documentation Divisions
+            </h2>
+            <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+              Comprehensive documentation resources for every aspect of enterprise development.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Documentation Categories */}
-      <section className="py-20 lg:py-24 bg-gray-950/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4">Documentation Categories</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                Comprehensive coverage of all aspects of our platform and ecosystem.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {docCategories.map((category, index) => (
-                <Link key={index} href={category.url} className="card group block">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="text-blue-400 group-hover:scale-110 transition-transform">
-                        {category.icon}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        {category.badge && (
-                          <span className="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded-full">
-                            {category.badge}
-                          </span>
-                        )}
-                        <span className="text-sm text-gray-500">{category.count}</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold group-hover:text-blue-400 transition-colors">
-                      {category.title}
-                    </h3>
-                    <p className="text-gray-400">{category.description}</p>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:bg-white/10 transition-all duration-300 text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <Terminal className="w-8 h-8 text-blue-400" />
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-4">API Documentation</h3>
+                <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
+                  Complete reference for all Sky Genesis Enterprise APIs with examples and best practices.
+                </p>
+                <Link href="/docs/api" className="text-blue-400 hover:text-blue-300 font-semibold flex items-center justify-center">
+                  Explore APIs <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
-              ))}
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:bg-white/10 transition-all duration-300 text-center">
+                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <Package className="w-8 h-8 text-green-400" />
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-4">SDK Guides</h3>
+                <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
+                  Official SDK documentation for TypeScript, Python, Go, and Rust with integration examples.
+                </p>
+                <Link href="/docs/sdks" className="text-green-400 hover:text-green-300 font-semibold flex items-center justify-center">
+                  View SDKs <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:bg-white/10 transition-all duration-300 text-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <Shield className="w-8 h-8 text-purple-400" />
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-4">Security & Compliance</h3>
+                <p className="text-gray-400 mb-6 leading-relaxed text-sm lg:text-base">
+                  Security guidelines, compliance documentation, and trust center resources for enterprise.
+                </p>
+                <Link href="/docs/security" className="text-purple-400 hover:text-purple-300 font-semibold flex items-center justify-center">
+                  Security docs <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -328,7 +353,7 @@ export default function DeveloperDocsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Quick Start Guides</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Get up and running in minutes with our step-by-step tutorials.
               </p>
             </div>
@@ -363,7 +388,7 @@ export default function DeveloperDocsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Recent Updates</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Stay informed about the latest documentation updates and improvements.
               </p>
             </div>
@@ -417,7 +442,7 @@ export default function DeveloperDocsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Developer Resources</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Additional resources to support your development journey.
               </p>
             </div>
@@ -477,7 +502,7 @@ export default function DeveloperDocsPage() {
                 Enterprise Documentation
               </span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
               Access comprehensive guides, API references, and best practices to build secure, scalable enterprise applications.
             </p>
             

@@ -23,7 +23,11 @@ import {
   MapPin,
   BarChart3,
   Building,
-  Settings
+  Settings,
+  ArrowRight,
+  Cpu,
+  BookOpen,
+  ChevronRight
 } from 'lucide-react';
 
 interface APICategory {
@@ -265,39 +269,68 @@ export default function DeveloperAPIPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-purple-900/20"></div>
-        <div className="relative container mx-auto px-4 py-24 lg:py-32">
-          <div className="max-w-5xl mx-auto text-center space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight">
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        
+        {/* Tech grid pattern overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="relative z-10 container mx-auto px-4">
+            <div className="max-w-7xl mx-auto text-center">
+              {/* Enterprise badge */}
+                <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+                Sky Genesis Enterprise
+                </div>
+            </div>
+
+            {/* Main title */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight tracking-tight mx-auto text-center px-4">
+              <div className="max-w-5xl mx-auto">
                 Enterprise APIs for
                 <br />
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                   European Sovereignty
                 </span>
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-                Secure, scalable, and sovereign API infrastructure built for mission-critical enterprise applications.
-              </p>
-              <p className="text-lg text-gray-500 max-w-3xl mx-auto">
-                Our APIs provide the foundation for European digital independence, combining enterprise-grade security with developer-first design principles.
+              </div>
+            </h1>
+
+            {/* Subtitle - Hero Section */}
+            <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4">
+              <p>
+                Sky Genesis Enterprise develops unified API platforms for secure collaboration, 
+                governance, and large-scale digital operations.
               </p>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <Link href="/docs/api" className="btn-primary">
-                <Book className="w-5 h-5" />
+
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-20 px-4">
+              <Link 
+                href="/docs/api" 
+                className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-sm sm:text-base whitespace-nowrap"
+              >
+                <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Explore Full API Reference
               </Link>
-              <Link href="https://api.skygenesisenterprise.com" className="btn-secondary">
-                <Key className="w-5 h-5" />
+              <Link 
+                href="https://api.skygenesisenterprise.com" 
+                className="border border-white/20 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-sm sm:text-base whitespace-nowrap flex items-center"
+              >
+                <Key className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Generate API Key
               </Link>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Value Proposition */}
@@ -306,7 +339,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Why Developers Choose Sky Genesis Enterprise APIs</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Enterprise-grade APIs designed for security, scalability, and European digital sovereignty.
               </p>
             </div>
@@ -365,7 +398,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">API Categories</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Comprehensive API ecosystem covering all enterprise needs from authentication to billing.
               </p>
             </div>
@@ -408,7 +441,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Design Principles</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Our API architecture follows enterprise-grade design patterns for consistency and reliability.
               </p>
             </div>
@@ -436,7 +469,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Enterprise-Grade Features</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Mission-critical capabilities designed for the most demanding enterprise environments.
               </p>
             </div>
@@ -473,7 +506,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">SDK & Integration Ecosystem</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 First-class SDKs with typed models, built-in retries, and authentication helpers.
               </p>
             </div>
@@ -525,7 +558,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Enterprise Use Cases</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Real-world scenarios where our APIs power mission-critical enterprise applications.
               </p>
             </div>
@@ -560,7 +593,7 @@ export default function DeveloperAPIPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">Continuous Evolution</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Our APIs receive continuous updates with new features, performance improvements, and security enhancements.
               </p>
             </div>
@@ -611,7 +644,7 @@ export default function DeveloperAPIPage() {
                 Sovereign APIs
               </span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
               Start building enterprise applications with APIs designed for European digital sovereignty and security.
             </p>
             
