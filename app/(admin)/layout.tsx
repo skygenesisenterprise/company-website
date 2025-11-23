@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./styles/globals.css";
-import { ThemeProvider } from "./(public)/components/theme-provider";
+import "../styles/globals.css";
+import { ThemeProvider } from "../(public)/components/theme-provider";
+import AdminLayoutClient from "./components/admin-layout-client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sky Genesis Enterprise - Innovating the Future",
-  description: "Official website of Sky Genesis Enterprise. Discover our innovative technology solutions and services.",
+  title: "Admin - Sky Genesis Enterprise",
+  description: "Admin panel for Sky Genesis Enterprise",
   icons: {
     icon: '/enterprise.png',
     shortcut: '/enterprise.png',
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function AdminRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -34,7 +35,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          {children}
+          <AdminLayoutClient>
+            {children}
+          </AdminLayoutClient>
         </ThemeProvider>
       </body>
     </html>

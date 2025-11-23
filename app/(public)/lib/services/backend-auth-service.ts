@@ -5,7 +5,7 @@
  * using JWT tokens and provides compatibility with NextAuth patterns.
  */
 
-import { backendService, User } from '../services/backend-service'
+import { backendService, User } from './backend-service'
 
 export interface LoginCredentials {
   email: string
@@ -361,4 +361,4 @@ export const authService = BackendAuthService.getInstance()
 
 // Export types
 export type { BackendAuthService }
-export type { User } from '../services/backend-service'
+export type { User } from './backend-service'
