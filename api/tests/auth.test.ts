@@ -1,5 +1,5 @@
 import request from 'supertest';
-import index from '../index';
+import index from '../server';
 
 describe('Auth API', () => {
   it('should login a user', async () => {
