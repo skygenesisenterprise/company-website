@@ -52,7 +52,7 @@
     "@types/supertest": "^6.0.3",
     "@types/swagger-ui-dist": "^3.30.6",
     "cypress": "15.4.0",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "eslint-config-next": "15.5.3",
     "express": "^5.1.0",
     "jest": "30.2.0",
