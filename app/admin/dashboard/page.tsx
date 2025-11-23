@@ -17,8 +17,7 @@ import {
   Plus,
   Activity,
   Zap,
-  Target,
-  TrendingUp as TrendingUpIcon
+  Target
 } from 'lucide-react';
 
 const stats = [

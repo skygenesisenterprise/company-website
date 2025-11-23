@@ -9,7 +9,6 @@ import {
   Building, 
   Eye, 
   CheckCircle, 
-  TrendingUp,
   Award,
   FileText,
   Target,
@@ -17,14 +16,10 @@ import {
   Database,
   Cpu,
   UserCheck,
-  BarChart3,
   Lock,
   BookOpen,
-  AlertCircle,
   Calendar,
-  Clock,
   Scale,
-  Globe,
   Handshake
 } from 'lucide-react';
 
@@ -572,7 +567,7 @@ export default function GovernanceBoardPage() {
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Governance Principles</h2>
               <p className="text-gray-400 text-lg">
-                Core values guiding our board's conduct and decision-making
+                Core values guiding our board&apos;s conduct and decision-making
               </p>
             </div>
             

@@ -354,7 +354,7 @@ export default function PressPage() {
             {/* Subtitle - Hero Section */}
             <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4">
               <p>
-                Access the latest news, press releases, and media resources about Sky Genesis Enterprise's 
+                Access the latest news, press releases, and media resources about Sky Genesis Enterprise&apos;s 
                 mission to advance European digital sovereignty.
               </p>
             </div>

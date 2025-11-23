@@ -24,10 +24,7 @@ import {
   BarChart3,
   Building,
   Settings,
-  ArrowRight,
-  Cpu,
-  BookOpen,
-  ChevronRight
+
 } from 'lucide-react';
 
 interface APICategory {

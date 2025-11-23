@@ -17,7 +17,7 @@ import {
   Code,
   Sparkles
 } from 'lucide-react';
-import ThemeToggle from './theme-toggle';
+
 
 interface NavItem {
   name: string;
@@ -40,16 +40,24 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Handle client-side mount
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
+    if (!isMounted) return;
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMounted]);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -227,7 +235,7 @@ export default function Navbar() {
     <>
       <nav 
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled 
+          isMounted && scrolled 
             ? 'bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-sm' 
             : 'bg-black/80 backdrop-blur-lg border-b border-transparent'
         }`}
@@ -359,22 +367,15 @@ export default function Navbar() {
                 <Search className="w-5 h-5" />
               </button>
 
-              {/* Theme Toggle */}
-              <ThemeToggle />
 
-              {/* Auth Buttons */}
-              <div className="hidden lg:flex items-center space-x-2">
+
+              {/* Auth Button */}
+              <div className="hidden lg:flex items-center">
                 <Link 
                   href="/login" 
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2 rounded-lg hover:bg-muted/50"
+                  className="text-sm font-medium text-blue-600 bg-white hover:bg-gray-100 transition-colors px-6 py-2 rounded-lg border border-blue-600"
                 >
-                  Sign in
-                </Link>
-                <Link 
-                  href="/register" 
-                  className="text-sm font-medium text-blue-600 bg-white hover:bg-gray-100 transition-colors px-4 py-2 rounded-lg border border-blue-600"
-                >
-                  Register
+                  Login
                 </Link>
               </div>
 
@@ -479,20 +480,13 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Auth */}
-              <div className="mt-6 pt-6 border-t border-border/50 space-y-3">
+              <div className="mt-6 pt-6 border-t border-border/50">
                 <Link 
-                  href="/auth/login" 
-                  className="block w-full text-center p-4 text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-200 rounded-xl hover:bg-muted/50 touch-manipulation active:scale-[0.98]"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Sign in
-                </Link>
-                <Link 
-                  href="/auth/register" 
+                  href="/login" 
                   className="block w-full text-center p-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 rounded-xl touch-manipulation active:scale-[0.98]"
                   onClick={() => setIsOpen(false)}
                 >
-                  Register
+                  Login
                 </Link>
               </div>
             </div>

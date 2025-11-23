@@ -13,16 +13,13 @@ import {
   BookOpen, 
   Image, 
   Settings, 
-  Users,
   ChevronDown,
   Menu,
   X,
   Home,
   BarChart3,
   PenTool,
-  FolderOpen,
-  Shield,
-  UserCheck
+  Shield
 } from 'lucide-react';
 
 const navigation = [

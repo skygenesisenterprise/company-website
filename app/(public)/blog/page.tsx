@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Calendar, Clock, User, Filter, ChevronRight, Star, TrendingUp, Tag, Archive, Mail, ArrowRight } from 'lucide-react';
+import { Search, Calendar, Clock, User, Filter, ChevronRight, Star, TrendingUp, Tag, Archive, Mail } from 'lucide-react';
 
 // Types
 interface BlogPost {
@@ -279,9 +279,6 @@ export default function BlogPage() {
               <p>
                 Discover the latest innovations, industry perspectives, and technical insights 
                 from the Sky Genesis Enterprise team.
-              </p>
-              <p className="text-gray-500">
-                Stay informed about emerging trends, best practices, and the future of European digital sovereignty.
               </p>
             </div>
 

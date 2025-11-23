@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, CheckCircle, FileText, Users, Award, BookOpen, ArrowRight, ChevronRight, Download, Mail, Phone, MapPin, ExternalLink, AlertCircle, TrendingUp, Lock, Globe, Database } from 'lucide-react';
+import { Shield, CheckCircle, FileText, Users, Award, BookOpen, ArrowRight, ChevronRight, Download, Mail, MapPin, ExternalLink, AlertCircle, TrendingUp, Lock, Globe, Database } from 'lucide-react';
 
 export default function CompliancePage() {
   return (

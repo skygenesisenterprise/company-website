@@ -10,7 +10,7 @@ import {
   Globe, 
   Download, 
   ExternalLink, 
-  ArrowRight, 
+ 
   Book, 
   CheckCircle, 
   Star, 
@@ -26,7 +26,7 @@ import {
   CreditCard,
   Activity,
   Building,
-  ChevronRight
+
 } from 'lucide-react';
 
 interface SDK {

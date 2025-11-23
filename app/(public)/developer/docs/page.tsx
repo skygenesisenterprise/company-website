@@ -4,42 +4,17 @@ import Link from 'next/link';
 import { 
   Book, 
   Code, 
-  Zap, 
-  Search, 
   Terminal, 
   Package, 
   Shield, 
-  Globe, 
   Clock, 
   ArrowRight, 
   FileText,
   Rocket,
-  GitBranch,
-  Settings,
   Key,
   Lock,
-  Award,
-  Users,
-  Cpu,
-  Database,
-  BookOpen,
   ChevronRight
 } from 'lucide-react';
-
-interface DocCategory {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  count: string;
-  badge?: string;
-  url: string;
-}
-
-interface Feature {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
 
 interface RecentUpdate {
   title: string;
@@ -58,87 +33,6 @@ interface QuickStart {
 }
 
 export default function DeveloperDocsPage() {
-  // Documentation categories
-  const docCategories: DocCategory[] = [
-    {
-      title: 'API Documentation',
-      description: 'Complete reference for all Sky Genesis Enterprise APIs with examples and best practices.',
-      icon: <Terminal className="w-6 h-6" />,
-      count: '200+ pages',
-      badge: 'v2.0',
-      url: '/docs/api'
-    },
-    {
-      title: 'SDK Guides',
-      description: 'Official SDK documentation for TypeScript, Python, Go, and Rust.',
-      icon: <Package className="w-6 h-6" />,
-      count: '50+ guides',
-      url: '/docs/sdks'
-    },
-    {
-      title: 'Quickstarts',
-      description: 'Get started in minutes with step-by-step tutorials for common use cases.',
-      icon: <Rocket className="w-6 h-6" />,
-      count: '25+ tutorials',
-      url: '/docs/quickstarts'
-    },
-    {
-      title: 'Architecture Guides',
-      description: 'Deep dives into system design, security patterns, and best practices.',
-      icon: <Settings className="w-6 h-6" />,
-      count: '30+ articles',
-      url: '/docs/architecture'
-    },
-    {
-      title: 'Security & Compliance',
-      description: 'Security guidelines, compliance documentation, and trust center resources.',
-      icon: <Shield className="w-6 h-6" />,
-      count: '40+ resources',
-      badge: 'GDPR',
-      url: '/docs/security'
-    },
-    {
-      title: 'Open Source',
-      description: 'Documentation for our open-source projects and contribution guidelines.',
-      icon: <GitBranch className="w-6 h-6" />,
-      count: '15+ projects',
-      url: '/docs/opensource'
-    }
-  ];
-
-  // Key features
-  const features: Feature[] = [
-    {
-      title: 'Structured & Searchable',
-      description: 'Intelligent search with autocomplete, filters, and contextual suggestions for instant access to relevant content.',
-      icon: <Search className="w-6 h-6" />
-    },
-    {
-      title: 'Versioned Documentation',
-      description: 'Stable references for each API version with clear migration guides and deprecation timelines.',
-      icon: <Clock className="w-6 h-6" />
-    },
-    {
-      title: 'Interactive Examples',
-      description: 'Live code examples, API explorers, and sandboxed environments for hands-on learning.',
-      icon: <Code className="w-6 h-6" />
-    },
-    {
-      title: 'Enterprise Reliability',
-      description: 'Content reviewed and maintained by our engineering team with regular updates and accuracy guarantees.',
-      icon: <Award className="w-6 h-6" />
-    },
-    {
-      title: 'Sovereignty-Focused',
-      description: 'Documentation emphasizing European digital sovereignty, data protection, and compliance requirements.',
-      icon: <Globe className="w-6 h-6" />
-    },
-    {
-      title: 'Developer-First Design',
-      description: 'Optimized reading experience with dark mode, keyboard navigation, and mobile responsiveness.',
-      icon: <Zap className="w-6 h-6" />
-    }
-  ];
 
   // Recent updates
   const recentUpdates: RecentUpdate[] = [

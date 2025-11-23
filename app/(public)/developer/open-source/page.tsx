@@ -21,10 +21,7 @@ import {
   Clock,
   FileText,
   Eye,
-  Cpu,
-  Database,
-  BookOpen,
-  ChevronRight
+
 } from 'lucide-react';
 
 interface Repository {
