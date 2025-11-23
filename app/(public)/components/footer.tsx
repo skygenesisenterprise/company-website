@@ -298,9 +298,7 @@ export default function Footer() {
                 <span>© {currentYear} Sky Genesis Enterprise. All rights reserved.</span>
               </div>
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-                <span>Brussels, Belgium (HQ)</span>
-                <span className="hidden md:inline">•</span>
-                <span>VAT: BE 0123.456.789</span>
+                <span>Liège, Belgium (HQ)</span>
               </div>
             </div>
           </div>
