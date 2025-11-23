@@ -1,0 +1,457 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===========================================
+// USERS & AUTHENTICATION
+// ===========================================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  firstName String?
+  lastName  String?
+  avatar    String?
+  role      UserRole @default(USER)
+  status    UserStatus @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  blogPosts    BlogPost[]
+  jobPostings  JobPosting[]
+  whitepapers  Whitepaper[]
+  guides       DeveloperGuide[]
+  changelogs  Changelog[]
+  mediaFiles   MediaFile[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+// ===========================================
+// BLOG MANAGEMENT
+// ===========================================
+
+model BlogPost {
+  id          String      @id @default(cuid())
+  title       String
+  slug        String      @unique
+  excerpt     String?
+  content     String      @db.Text
+  coverImage  String?
+  status      PostStatus  @default(DRAFT)
+  publishedAt DateTime?
+  scheduledAt DateTime?
+  views       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  tags      BlogPostTag[]
+  seo        SeoMeta?
+
+  @@map("blog_posts")
+}
+
+model BlogPostTag {
+  id     String @id @default(cuid())
+  name   String
+  postId String
+  tagId  String
+
+  post BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag  Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, tagId])
+  @@map("blog_post_tags")
+}
+
+model Tag {
+  id    String         @id @default(cuid())
+  name  String         @unique
+  slug  String         @unique
+  color String?
+  posts BlogPostTag[]
+
+  @@map("tags")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+  ARCHIVED
+}
+
+// ===========================================
+// CAREERS MANAGEMENT
+// ===========================================
+
+model JobPosting {
+  id            String         @id @default(cuid())
+  title         String
+  slug          String         @unique
+  department    String
+  location      String
+  type          EmploymentType @default(FULL_TIME)
+  experience    String?
+  salary        String?
+  description   String         @db.Text
+  requirements String         @db.Text?
+  benefits      String         @db.Text?
+  status        JobStatus      @default(OPEN)
+  priority      JobPriority    @default(NORMAL)
+  publishedAt   DateTime?
+  closesAt      DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  // Relations
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  seo SeoMeta?
+
+  @@map("job_postings")
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+  REMOTE
+}
+
+enum JobStatus {
+  OPEN
+  CLOSED
+  DRAFT
+  PAUSED
+}
+
+enum JobPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+// ===========================================
+// CHANGELOG MANAGEMENT
+// ===========================================
+
+model Changelog {
+  id          String        @id @default(cuid())
+  version     String
+  title       String
+  description String?       @db.Text
+  type        ReleaseType   @default(MINOR)
+  status      PostStatus    @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  changes ChangelogChange[]
+  seo     SeoMeta?
+
+  @@map("changelogs")
+}
+
+model ChangelogChange {
+  id          String           @id @default(cuid())
+  changelogId String
+  type        ChangeType
+  description String           @db.Text
+  order       Int              @default(0)
+
+  changelog Changelog @relation(fields: [changelogId], references: [id], onDelete: Cascade)
+
+  @@map("changelog_changes")
+}
+
+enum ReleaseType {
+  MAJOR
+  MINOR
+  PATCH
+}
+
+enum ChangeType {
+  ADDED
+  IMPROVED
+  FIXED
+  REMOVED
+  DEPRECATED
+  SECURITY
+}
+
+// ===========================================
+// WHITEPAPERS & GUIDES
+// ===========================================
+
+model Whitepaper {
+  id          String           @id @default(cuid())
+  title       String
+  slug        String           @unique
+  abstract    String?          @db.Text
+  category    String
+  version     String           @default("1.0")
+  fileUrl     String?
+  fileSize    Int?
+  fileType    String?
+  status      PostStatus       @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  // Relations
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  tags WhitepaperTag[]
+  seo  SeoMeta?
+
+  @@map("whitepapers")
+}
+
+model WhitepaperTag {
+  id           String     @id @default(cuid())
+  name         String
+  whitepaperId String
+  tagId        String
+
+  whitepaper Whitepaper @relation(fields: [whitepaperId], references: [id], onDelete: Cascade)
+  tag        Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([whitepaperId, tagId])
+  @@map("whitepaper_tags")
+}
+
+model DeveloperGuide {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  path        String     @unique
+  category    String
+  content     String     @db.Text
+  order       Int        @default(0)
+  status      PostStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // Relations
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  tags GuideTag[]
+  seo  SeoMeta?
+
+  @@map("developer_guides")
+}
+
+model GuideTag {
+  id     String @id @default(cuid())
+  name   String
+  guideId String
+  tagId  String
+
+  guide DeveloperGuide @relation(fields: [guideId], references: [id], onDelete: Cascade)
+  tag   Tag           @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([guideId, tagId])
+  @@map("guide_tags")
+}
+
+// ===========================================
+// MEDIA LIBRARY
+// ===========================================
+
+model MediaFile {
+  id           String       @id @default(cuid())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  width        Int?
+  height       Int?
+  path         String
+  url          String
+  alt          String?
+  category     MediaCategory @default(IMAGE)
+  tags         String[]
+  uploadedBy   String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  // Relations
+  uploaderId String?
+  uploader   User?   @relation(fields: [uploaderId], references: [id], onDelete: SetNull)
+
+  @@map("media_files")
+}
+
+enum MediaCategory {
+  IMAGE
+  DOCUMENT
+  VIDEO
+  AUDIO
+  OTHER
+}
+
+// ===========================================
+// SEO METADATA
+// ===========================================
+
+model SeoMeta {
+  id          String   @id @default(cuid())
+  title       String?
+  description String?
+  keywords    String?
+  ogImage     String?
+  canonical   String?
+  robots      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  blogPostId    String?   @unique
+  jobPostingId  String?   @unique
+  changelogId   String?   @unique
+  whitepaperId  String?   @unique
+  guideId       String?   @unique
+
+  blogPost   BlogPost?    @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+  jobPosting JobPosting?  @relation(fields: [jobPostingId], references: [id], onDelete: Cascade)
+  changelog  Changelog?   @relation(fields: [changelogId], references: [id], onDelete: Cascade)
+  whitepaper Whitepaper?  @relation(fields: [whitepaperId], references: [id], onDelete: Cascade)
+  guide      DeveloperGuide? @relation(fields: [guideId], references: [id], onDelete: Cascade)
+
+  @@map("seo_meta")
+}
+
+// ===========================================
+// ADMIN SETTINGS & CONFIGURATION
+// ===========================================
+
+model AdminSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   @db.Text
+  description String?
+  category    String
+  updatedAt   DateTime @updatedAt
+
+  @@map("admin_settings")
+}
+
+model SystemLog {
+  id        String     @id @default(cuid())
+  level     LogLevel   @default(INFO)
+  message   String     @db.Text
+  context   Json?
+  userId    String?
+  createdAt DateTime   @default(now())
+
+  @@map("system_logs")
+}
+
+enum LogLevel {
+  DEBUG
+  INFO
+  WARN
+  ERROR
+  FATAL
+}
+
+// ===========================================
+// ANALYTICS & STATISTICS
+// ===========================================
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  title     String?
+  referrer  String?
+  userAgent String?
+  ip        String?
+  userId    String?
+  createdAt DateTime @default(now())
+
+  @@map("page_views")
+}
+
+model ContentAnalytics {
+  id           String   @id @default(cuid())
+  contentType  String   // blog, job, whitepaper, guide, changelog
+  contentId   String
+  views        Int      @default(0)
+  uniqueViews  Int      @default(0)
+  shares       Int      @default(0)
+  downloads    Int      @default(0)
+  lastViewed   DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([contentType, contentId])
+  @@map("content_analytics")
+}
+
+// ===========================================
+// COMMENTS & INTERACTIONS
+// ===========================================
+
+model Comment {
+  id         String      @id @default(cuid())
+  content    String      @db.Text
+  authorName String?
+  authorEmail String?
+  status     CommentStatus @default(PENDING)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  // Relations
+  blogPostId String?
+  blogPost   BlogPost?   @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+
+  parentId String?
+  parent   Comment?    @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  Comment[]    @relation("CommentReplies")
+
+  @@map("comments")
+}
+
+enum CommentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SPAM
+}
