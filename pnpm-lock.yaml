@@ -127,8 +127,8 @@ importers:
         specifier: 30.2.0
         version: 30.2.0(@types/node@24.7.0)(ts-node@10.9.2(@types/node@24.7.0)(typescript@5.9.3))
       snyk:
-        specifier: ^1.1300.0
-        version: 1.1300.0
+        specifier: ^1.1300.2
+        version: 1.1300.2
       supertest:
         specifier: ^7.1.4
         version: 7.1.4
@@ -3720,8 +3720,8 @@ packages:
     resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
     engines: {node: '>=10'}
 
-  snyk@1.1300.0:
-    resolution: {integrity: sha512-ARcMAHyCurt+yig1nrbNap4omkWtmVLCRViNJTU+4udkf0KcQ6nA9q9mInHUqdlgUAy5s3BDUNq69Mq5m88+JA==}
+  snyk@1.1300.2:
+    resolution: {integrity: sha512-wkJ1hTooKFaNZl8cl+G1EE15qhOLB54YCIcT0GsX/sTPUAgK7pTm7902QrBtODdL68+wzqazazyDRlElXC1U2w==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -8292,7 +8292,7 @@ snapshots:
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
 
-  snyk@1.1300.0:
+  snyk@1.1300.2:
     dependencies:
       '@sentry/node': 7.120.4
       global-agent: 3.0.0
