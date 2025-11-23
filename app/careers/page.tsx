@@ -156,7 +156,7 @@ const hiringProcess = [
   {
     step: '04',
     title: 'Take-Home Challenge',
-    description: 'Solve a real-world problem that reflects the work you\'ll do at Sky Genesis.'
+    description: 'Solve a real-world problem that reflects the work you\'ll do at Sky Genesis Enterprise.'
   },
   {
     step: '05',
@@ -553,7 +553,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* LIFE AT SKY GENESIS Enterprise*/}
+      {/* LIFE AT SKY GENESIS ENTERPRISE*/}
       <section id="life-at-sky-genesis" className="py-24 bg-black">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
