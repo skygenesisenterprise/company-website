@@ -17,7 +17,6 @@ export default function Footer() {
     { name: 'Vision', href: '/vision' },
     { name: 'Blog', href: '/blog' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Developer', href: '/developer' },
   ];
 
   // Resources Links
@@ -29,6 +28,7 @@ export default function Footer() {
     { name: 'Whitepapers', href: '/whitepaper' },
     { name: 'Developer Portal', href: 'https://developer.skygenesisenterprise.com' },
     { name: 'Newsletter', href: '/newsletter'},
+    { name: 'Certificates', href: '/certificates'}
   ];
 
   // Enterprise Solutions

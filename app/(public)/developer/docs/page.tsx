@@ -321,7 +321,7 @@ export default function DeveloperDocsPage() {
             </div>
 
             <div className="text-center mt-12">
-              <Link href="/docs/changelog" className="btn-secondary">
+              <Link href="/changelog" className="btn-secondary">
                 <Clock className="w-5 h-5" />
                 View Full Changelog
               </Link>

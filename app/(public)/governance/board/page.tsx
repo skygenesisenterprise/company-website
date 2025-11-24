@@ -312,10 +312,6 @@ export default function GovernanceBoardPage() {
                 The Governance Board provides strategic oversight, ensures regulatory compliance, and safeguards 
                 the long-term interests of all stakeholders through transparent, ethical, and accountable leadership.
               </p>
-              <p className="text-gray-400 text-lg">
-                Our board structure combines independent oversight with executive expertise to drive sustainable growth 
-                and maintain the highest standards of corporate governance.
-              </p>
             </div>
 
             {/* Stats */}

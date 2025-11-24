@@ -48,10 +48,6 @@ export default function CompliancePage() {
                 Sky Genesis Enterprise maintains rigorous adherence to international and European compliance standards, 
                 ensuring legal, security, and operational excellence across all our enterprise solutions.
               </p>
-              <p className="text-gray-400 text-lg">
-                Our commitment to regulatory compliance is built into every layer of our architecture, 
-                from data protection to operational transparency.
-              </p>
             </div>
 
             {/* Key stats */}
