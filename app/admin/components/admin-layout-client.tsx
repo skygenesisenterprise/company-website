@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/app/admin/lib/utils';
 import { Button } from './ui/button';
 import { 
@@ -19,7 +19,10 @@ import {
   Home,
   BarChart3,
   PenTool,
-  Shield
+  Shield,
+  User,
+  LogOut,
+  Key
 } from 'lucide-react';
 
 const navigation = [
@@ -66,10 +69,34 @@ interface AdminLayoutClientProps {
 
 export default function AdminLayoutClient({ children }: AdminLayoutClientProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>(['Content']);
+  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setAccountDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('idToken');
+    localStorage.removeItem('user');
+    router.push('/login');
+  };
 
   const toggleExpanded = (item: string) => {
     setExpandedItems(prev => 
@@ -231,14 +258,86 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
                 <BarChart3 className="h-4 w-4 mr-2" />
                 Analytics
               </Button>
-              <div className="flex items-center gap-3 pl-4 border-l border-slate-700">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                  <span className="text-sm font-bold text-white">A</span>
-                </div>
-                <div className="hidden sm:block">
-                  <div className="text-sm font-medium text-white">Admin User</div>
-                  <div className="text-xs text-slate-400">admin@skygenesis.com</div>
-                </div>
+              <div className="relative" ref={dropdownRef}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="flex items-center gap-3 pl-4 border-l border-slate-700 text-slate-400 hover:text-white"
+                  onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <span className="text-sm font-bold text-white">A</span>
+                  </div>
+                  <div className="hidden sm:block">
+                    <div className="text-sm font-medium text-white">Admin User</div>
+                    <div className="text-xs text-slate-400">admin@skygenesis.com</div>
+                  </div>
+                  <ChevronDown className={cn(
+                    "h-4 w-4 transition-transform duration-200",
+                    accountDropdownOpen && "rotate-180"
+                  )} />
+                </Button>
+
+                {/* Dropdown Menu */}
+                {accountDropdownOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-56 bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 rounded-xl shadow-2xl z-50">
+                    <div className="py-2">
+                      {/* Profile Link */}
+                      <Link
+                        href="/admin/profile"
+                        className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors"
+                        onClick={() => setAccountDropdownOpen(false)}
+                      >
+                        <User className="h-4 w-4" />
+                        <div>
+                          <div className="text-sm font-medium">Mon Profil</div>
+                          <div className="text-xs text-slate-500">Gérer mes informations</div>
+                        </div>
+                      </Link>
+
+                      {/* Account Settings */}
+                      <Link
+                        href="/admin/account/settings"
+                        className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors"
+                        onClick={() => setAccountDropdownOpen(false)}
+                      >
+                        <Settings className="h-4 w-4" />
+                        <div>
+                          <div className="text-sm font-medium">Paramètres du compte</div>
+                          <div className="text-xs text-slate-500">Sécurité et préférences</div>
+                        </div>
+                      </Link>
+
+                      {/* API Keys */}
+                      <Link
+                        href="/admin/api-keys"
+                        className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors"
+                        onClick={() => setAccountDropdownOpen(false)}
+                      >
+                        <Key className="h-4 w-4" />
+                        <div>
+                          <div className="text-sm font-medium">Clés API</div>
+                          <div className="text-xs text-slate-500">Gérer les accès</div>
+                        </div>
+                      </Link>
+
+                      {/* Divider */}
+                      <div className="mx-4 my-2 border-t border-slate-700/50"></div>
+
+                      {/* Logout */}
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-red-500/20 hover:text-red-400 transition-colors w-full text-left"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        <div>
+                          <div className="text-sm font-medium">Se déconnecter</div>
+                          <div className="text-xs text-slate-500">Quitter la session</div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

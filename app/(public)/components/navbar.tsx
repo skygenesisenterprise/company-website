@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { 
   Search, 
   Menu, 
@@ -15,7 +15,10 @@ import {
   Users,
   Globe,
   Code,
-  Sparkles
+  Sparkles,
+  User,
+  LogOut,
+  Settings
 } from 'lucide-react';
 
 
@@ -41,11 +44,57 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<{ username?: string; email?: string } | null>(null);
+  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const accountDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Handle client-side mount
+  // Handle client-side mount and auth state
   useEffect(() => {
     setIsMounted(true);
+    
+    // Check authentication status
+    const checkAuthStatus = () => {
+      const token = localStorage.getItem('authToken');
+      const userData = localStorage.getItem('user');
+      
+      if (token && userData) {
+        try {
+          const parsedUser = JSON.parse(userData);
+          setIsLoggedIn(true);
+          setUser({
+            username: parsedUser.username || parsedUser.email?.split('@')[0],
+            email: parsedUser.email
+          });
+        } catch (error) {
+          console.error('Failed to parse user data:', error);
+          // Clear invalid data
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('user');
+          setIsLoggedIn(false);
+          setUser(null);
+        }
+      } else {
+        setIsLoggedIn(false);
+        setUser(null);
+      }
+    };
+
+    checkAuthStatus();
+    
+    // Listen for storage changes (for login/logout from other tabs)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'authToken' || e.key === 'user') {
+        checkAuthStatus();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   // Handle scroll effect
@@ -78,8 +127,10 @@ export default function Navbar() {
   // Handle click outside dropdowns
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
+      const clickedElement = e.target as Node;
+      
+      // Close main navigation dropdowns
       if (activeDropdown) {
-        const clickedElement = e.target as Node;
         let isInsideDropdown = false;
         
         // Check if click is inside any dropdown
@@ -101,10 +152,16 @@ export default function Navbar() {
           setActiveDropdown(null);
         }
       }
+      
+      // Close account dropdown
+      if (accountDropdownOpen && accountDropdownRef.current && !accountDropdownRef.current.contains(clickedElement as Node)) {
+        setAccountDropdownOpen(false);
+      }
     };
+    
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [activeDropdown]);
+  }, [activeDropdown, accountDropdownOpen]);
 
   // Main navigation items
   const mainNavItems: NavItem[] = [
@@ -369,14 +426,93 @@ export default function Navbar() {
 
 
 
-              {/* Auth Button */}
+              {/* Auth/Account Section */}
               <div className="hidden lg:flex items-center">
-                <Link 
-                  href="/login" 
-                  className="text-sm font-medium text-blue-600 bg-white hover:bg-gray-100 transition-colors px-6 py-2 rounded-lg border border-blue-600"
-                >
-                  Login
-                </Link>
+                {isLoggedIn && user ? (
+                  <div className="relative" ref={accountDropdownRef}>
+                    <button
+                      className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                      onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">
+                          {user?.username ? user.username.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <div className="text-sm font-medium text-gray-900">{user?.username || user?.email}</div>
+                        <div className="text-xs text-gray-500">{user?.email}</div>
+                      </div>
+                      <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${
+                        accountDropdownOpen ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+
+                    {/* Account Dropdown */}
+                    {accountDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 z-50">
+                        <div className="py-2">
+                          {/* Profile Link */}
+                          <Link
+                            href="/admin/profile"
+                            className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
+                            onClick={() => setAccountDropdownOpen(false)}
+                          >
+                            <User className="w-4 h-4" />
+                            <div>
+                              <div className="text-sm font-medium">Mon Profil</div>
+                              <div className="text-xs text-gray-500">Gérer mes informations</div>
+                            </div>
+                          </Link>
+
+                          {/* Account Settings */}
+                          <Link
+                            href="/admin/account/settings"
+                            className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
+                            onClick={() => setAccountDropdownOpen(false)}
+                          >
+                            <Settings className="w-4 h-4" />
+                            <div>
+                              <div className="text-sm font-medium">Paramètres du compte</div>
+                              <div className="text-xs text-gray-500">Sécurité et préférences</div>
+                            </div>
+                          </Link>
+
+                          {/* Divider */}
+                          <div className="mx-4 my-2 border-t border-gray-200"></div>
+
+                          {/* Logout */}
+                          <button
+                            onClick={() => {
+                              localStorage.removeItem('authToken');
+                              localStorage.removeItem('refreshToken');
+                              localStorage.removeItem('idToken');
+                              localStorage.removeItem('user');
+                              setIsLoggedIn(false);
+                              setUser(null);
+                              setAccountDropdownOpen(false);
+                              window.location.href = '/login';
+                            }}
+                            className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors w-full text-left"
+                          >
+                            <LogOut className="w-4 h-4" />
+                            <div>
+                              <div className="text-sm font-medium">Se déconnecter</div>
+                              <div className="text-xs text-gray-500">Quitter la session</div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link 
+                    href="/login" 
+                    className="text-sm font-medium text-blue-600 bg-white hover:bg-gray-100 transition-colors px-6 py-2 rounded-lg border border-blue-600"
+                  >
+                    Login
+                  </Link>
+                )}
               </div>
 
               {/* Mobile Menu Button */}
@@ -479,16 +615,47 @@ export default function Navbar() {
                 ))}
               </div>
 
-              {/* Mobile Auth */}
-              <div className="mt-6 pt-6 border-t border-border/50">
-                <Link 
-                  href="/login" 
-                  className="block w-full text-center p-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 rounded-xl touch-manipulation active:scale-[0.98]"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Login
-                </Link>
-              </div>
+               {/* Mobile Auth */}
+               <div className="mt-6 pt-6 border-t border-border/50">
+                 {isLoggedIn && user ? (
+                   <div className="px-4 py-3">
+                     <div className="flex items-center gap-3 mb-3">
+                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                         <span className="text-white font-bold text-sm">
+                            {user?.username ? user.username.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
+                          </span>
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{user?.username || user?.email}</div>
+                          <div className="text-xs text-gray-500">{user?.email}</div>
+                       </div>
+                     </div>
+                     <button
+                       onClick={() => {
+                         localStorage.removeItem('authToken');
+                         localStorage.removeItem('refreshToken');
+                         localStorage.removeItem('idToken');
+                         localStorage.removeItem('user');
+                         setIsLoggedIn(false);
+                         setUser(null);
+                         setAccountDropdownOpen(false);
+                         window.location.href = '/login';
+                       }}
+                       className="w-full text-center p-3 text-base font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-all duration-200 rounded-xl touch-manipulation active:scale-[0.98]"
+                     >
+                       Se déconnecter
+                     </button>
+                   </div>
+                 ) : (
+                   <Link 
+                     href="/login" 
+                     className="block w-full text-center p-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 rounded-xl touch-manipulation active:scale-[0.98]"
+                     onClick={() => setIsOpen(false)}
+                   >
+                     Login
+                   </Link>
+                 )}
+               </div>
             </div>
           )}
         </div>

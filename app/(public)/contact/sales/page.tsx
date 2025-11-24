@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { ArrowRight, Users, Shield, Headphones, Clock, CheckCircle, Globe, Lock, Building, Phone, Mail, Calendar, FileText, Handshake } from 'lucide-react';
+import { ArrowRight, Users, Shield, Headphones, CheckCircle, Globe, Lock, Building, Calendar, FileText, Handshake } from 'lucide-react';
 
 export default function SalesPage() {
   const [formData, setFormData] = useState({
@@ -85,7 +85,7 @@ export default function SalesPage() {
             {/* Subtitle - Hero Section */}
             <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4 mb-12">
               <p>
-                Get tailored guidance for your organization's digital sovereignty journey. 
+                Get tailored guidance for your organization&apos;s digital sovereignty journey. 
                 Our enterprise specialists provide customized solutions for large-scale deployments 
                 and complex infrastructure requirements.
               </p>
@@ -376,7 +376,7 @@ export default function SalesPage() {
               Enterprise Benefits
             </h2>
             <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
-              Comprehensive support and expertise tailored for your organization's success
+              Comprehensive support and expertise tailored for your organization&apos;s success
             </p>
           </div>
 

@@ -4,12 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { ArrowRight, Building, MapPin, Phone, Mail, Clock, Globe, Users, Shield, Headphones, Calendar, FileText, Handshake, Navigation, Wifi, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowRight, Building, MapPin, Phone, Mail, Clock, Globe, Users, Shield, Headphones, Calendar, FileText, Handshake, Navigation, Wifi, X } from 'lucide-react';
 
 export default function LocationsPage() {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
-  const [showMap, setShowMap] = useState(true);
-  const [mapLoaded, setMapLoaded] = useState(false);
 
   const headquarters = {
     name: "Global Headquarters",
@@ -171,7 +169,11 @@ export default function LocationsPage() {
     return [x, y];
   }
 
-  function handleLocationClick(location: any) {
+  function handleLocationClick(location: {
+    name: string;
+    city: string;
+    description: string;
+  }) {
     const modal = document.getElementById('location-modal');
     const title = document.getElementById('modal-title');
     const city = document.getElementById('modal-city');
@@ -512,7 +514,6 @@ export default function LocationsPage() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => setShowMap(false)}
                       className="text-white hover:bg-white/10"
                     >
                       <X className="w-4 h-4" />

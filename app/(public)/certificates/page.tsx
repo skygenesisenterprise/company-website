@@ -8,26 +8,18 @@ import {
   BookOpen, 
   Clock, 
   CheckCircle, 
-  Star, 
   Users, 
   Target, 
   TrendingUp, 
-  ExternalLink,
   Search,
-  Filter,
   ChevronRight,
   Zap,
   Globe,
   Lock,
-  Database,
   Code,
   Server,
-  FileText,
-  BarChart3,
-  Building,
-  Settings,
+  Database,
   PlayCircle,
-  Download,
   Calendar
 } from 'lucide-react';
 
@@ -485,7 +477,7 @@ export default function CertificatesPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4">What You'll Learn</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4">What You&apos;ll Learn</h2>
               <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
                 Comprehensive curriculum designed to build practical, job-ready skills.
               </p>

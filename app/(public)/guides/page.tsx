@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, BookOpen, PlayCircle, Download, Wrench, Shield, Cpu, Globe, Zap, Clock, Star, Filter, Search, ChevronRight, Users, Code, Database, Lock } from 'lucide-react';
+import { ArrowRight, BookOpen, PlayCircle, Download, Wrench, Shield, Zap, Clock, ChevronRight, Users, Code, Database, Lock } from 'lucide-react';
 
 export default function GuidesPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -486,7 +486,7 @@ export default function GuidesPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold mb-6">Besoin d'aide ?</h2>
+              <h2 className="text-3xl font-bold mb-6">Besoin d&apos;aide ?</h2>
               <p className="text-lg text-gray-400 leading-relaxed mb-8">
                 Vous ne trouvez pas le guide dont vous avez besoin ? Notre équipe peut vous accompagner 
                 pour répondre à vos questions spécifiques et vous guider dans vos projets.
@@ -509,7 +509,7 @@ export default function GuidesPage() {
               Prêt à maîtriser nos solutions ?
             </h2>
             <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
-              Explorez notre bibliothèque complète de guides et devenez expert dans l'utilisation 
+              Explorez notre bibliothèque complète de guides et devenez expert dans l&apos;utilisation 
               de nos technologies enterprise.
             </p>
             

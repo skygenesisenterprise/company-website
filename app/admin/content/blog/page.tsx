@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/app/admin/components/ui/card';
 import { Button } from '@/app/admin/components/ui/button';
 import { Input } from '@/app/admin/components/ui/input';
+import { cmsService, BlogPost } from '@/app/admin/lib/services/cms-service';
 import { 
   CheckCircle, 
   AlertCircle, 
@@ -12,51 +13,9 @@ import {
   Archive, 
   Eye, 
   Edit, 
-  Trash2 
+  Trash2,
+  Loader2
 } from 'lucide-react';
-
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Building Scalable Enterprise Applications',
-    author: 'John Doe',
-    tags: ['Architecture', 'Scalability', 'Enterprise'],
-    status: 'published',
-    date: '2024-01-15',
-    views: 1234,
-    excerpt: 'Learn how to build enterprise-grade applications that can scale to millions of users...'
-  },
-  {
-    id: 2,
-    title: 'Microservices Best Practices',
-    author: 'Jane Smith',
-    tags: ['Microservices', 'Best Practices'],
-    status: 'draft',
-    date: '2024-01-14',
-    views: 0,
-    excerpt: 'Discover best practices for designing and implementing microservices architecture...'
-  },
-  {
-    id: 3,
-    title: 'Cloud Security Fundamentals',
-    author: 'Mike Johnson',
-    tags: ['Security', 'Cloud'],
-    status: 'published',
-    date: '2024-01-13',
-    views: 892,
-    excerpt: 'Essential security practices for cloud-native applications and infrastructure...'
-  },
-  {
-    id: 4,
-    title: 'DevOps Transformation Guide',
-    author: 'Sarah Wilson',
-    tags: ['DevOps', 'Transformation'],
-    status: 'scheduled',
-    date: '2024-01-20',
-    views: 0,
-    excerpt: 'Complete guide to transforming your organization with DevOps practices...'
-  }
-];
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -91,16 +50,34 @@ const getStatusIcon = (status: string) => {
 export default function BlogManagement() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredPosts = blogPosts.filter(post => 
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        setLoading(true);
+        const response = await cmsService.getBlogPosts({
+          search: searchTerm || undefined,
+          status: selectedStatus !== 'all' ? selectedStatus : undefined
+        });
+        
+        if (response.success && response.data) {
+          setBlogPosts(response.data.posts);
+        } else {
+          setError(response.error || 'Failed to fetch blog posts');
+        }
+      } catch (err) {
+        setError('Failed to fetch blog posts');
+        console.error('Error fetching blog posts:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const sortedPosts = [...filteredPosts].sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+    fetchBlogPosts();
+  }, [searchTerm, selectedStatus]);
 
   return (
     <div className="space-y-6 p-6">
@@ -155,8 +132,19 @@ export default function BlogManagement() {
           <CardTitle className="text-white text-xl">Blog Posts</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-blue-400" />
+              <span className="ml-2 text-slate-400">Loading blog posts...</span>
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="text-red-400 mb-4">{error}</p>
+              <Button onClick={() => window.location.reload()}>Try Again</Button>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
               <thead>
                 <tr className="border-b border-slate-700/50">
                   <th className="text-left py-3 px-4 text-sm font-medium text-slate-400">Title</th>
@@ -168,19 +156,21 @@ export default function BlogManagement() {
                 </tr>
               </thead>
               <tbody>
-                {sortedPosts.map((post) => (
+                {blogPosts.map((post) => (
                   <tr key={post.id} className="border-b border-slate-800/30 hover:bg-slate-800/50 transition-colors">
                     <td className="py-3 px-4">
                       <div className="text-white font-medium">{post.title}</div>
                     </td>
                     <td className="py-3 px-4">
-                      <div className="text-slate-300">{post.author}</div>
+                      <div className="text-slate-300">
+                        {`${post.author.firstName || ''} ${post.author.lastName || ''}`.trim() || post.author.email}
+                      </div>
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex flex-wrap gap-1">
-                        {post.tags.map((tag, index) => (
-                          <span key={index} className="inline-flex items-center gap-1 px-2 py-1 text-xs bg-slate-800/50 text-slate-300 rounded-full">
-                            {tag}
+                        {post.tags.map((tag) => (
+                          <span key={tag.id} className="inline-flex items-center gap-1 px-2 py-1 text-xs bg-slate-800/50 text-slate-300 rounded-full">
+                            {tag.name}
                           </span>
                         ))}
                       </div>
@@ -192,7 +182,7 @@ export default function BlogManagement() {
                       </span>
                     </td>
                     <td className="py-3 px-4">
-                      <div className="text-slate-300">{post.date}</div>
+                      <div className="text-slate-300">{new Date(post.createdAt).toLocaleDateString()}</div>
                     </td>
                     <td className="py-3 px-4">
                       <div className="text-slate-300">{post.views.toLocaleString()}</div>
@@ -213,8 +203,9 @@ export default function BlogManagement() {
                   </tr>
                 ))}
               </tbody>
-            </table>
-          </div>
+              </table>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

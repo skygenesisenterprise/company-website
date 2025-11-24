@@ -18,12 +18,7 @@ export default function CookiesPolicy() {
     setExpandedSection(expandedSection === section ? null : section);
   };
 
-  const handleCookieChange = (category: string, value: boolean) => {
-    setCookiePreferences(prev => ({
-      ...prev,
-      [category]: value
-    }));
-  };
+
 
   const savePreferences = () => {
     // Save cookie preferences logic here

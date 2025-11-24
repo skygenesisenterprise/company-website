@@ -198,7 +198,7 @@ export default function AetherOffice() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-start justify-center pt-24 sm:pt-32 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with subtle gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
         
@@ -214,12 +214,17 @@ export default function AetherOffice() {
         <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
         
-        <div className="relative z-10 container mx-auto px-4 pt-8 sm:pt-12">
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-7xl mx-auto text-center">
+            {/* Enterprise badge */}
+            <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 mb-12 hover:border-white/20 transition-all duration-300">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+              Aether Office Platform
+            </div>
 
             {/* Main title */}
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 md:mb-12 leading-tight tracking-tight mx-auto text-center">
-              <div className="max-w-5xl mx-auto px-2 sm:px-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight tracking-tight mx-auto text-center px-4">
+              <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <span className="text-white">Aether</span>
                   <span className="text-white">Office</span>
@@ -231,7 +236,7 @@ export default function AetherOffice() {
             </h1>
 
             {/* Subtitle */}
-            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center mb-12">
+            <div className="space-y-3 md:space-y-4 text-base md:text-lg max-w-4xl mx-auto leading-relaxed text-center px-4 mb-12">
               <p>
                 Collaborate, communicate, and create securely with our unified suite of enterprise applications. 
                 Transform how your organization works with a single, integrated platform.
@@ -239,51 +244,23 @@ export default function AetherOffice() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 px-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-20 px-4">
               <Link 
                 href="https://office.skygenesisenterprise.com" 
-                className="bg-white text-black px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-base lg:text-lg whitespace-nowrap"
+                className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-sm sm:text-base whitespace-nowrap"
               >
                 Get Started
-                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 href="https://office.skygenesisenterprise.com" 
-                className="border border-white/20 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-base lg:text-lg whitespace-nowrap"
+                className="border border-white/20 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-white/5 transition-all duration-300 text-sm sm:text-base whitespace-nowrap"
               >
                 Request a Demo
               </Link>
             </div>
 
-            {/* Dashboard Preview */}
-            <div className="relative max-w-5xl mx-auto px-4">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
-                  {applications.slice(0, 5).map((app) => (
-                    <div 
-                      key={app.id}
-                      className="bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 hover:bg-white/10 transition-all cursor-pointer relative touch-manipulation active:scale-[0.98]"
-                      onMouseEnter={() => setActiveApp(app.id)}
-                      onMouseLeave={() => setActiveApp(null)}
-                    >
-                      <a 
-                        href={app.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/10 z-10"
-                        aria-label={`View ${app.name} on GitHub`}
-                      >
-                        <Github className="w-3 h-3 sm:w-4 sm:h-4" />
-                      </a>
-                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${app.color} rounded-lg flex items-center justify-center mb-2 sm:mb-3`}>
-                        <app.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                      </div>
-                      <h4 className="text-xs sm:text-sm font-medium text-white leading-tight">{app.name}</h4>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>

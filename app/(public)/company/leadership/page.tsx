@@ -17,10 +17,7 @@ import {
   Zap,
   Eye,
   Heart,
-  Code,
-  Database,
-  Cpu,
-  BarChart3
+  Code
 } from 'lucide-react';
 
 interface Leader {
@@ -707,12 +704,12 @@ export default function LeadershipPage() {
             {/* Enhanced subtitle */}
             <div className="space-y-4 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-center mb-16">
               <p className="text-white/95">
-                Be part of a team that's shaping the future of European digital sovereignty. 
-                Whether you're seeking to join our leadership team, explore partnerships, 
-                or engage with our vision, we're ready to connect.
+                Be part of a team that&apos;s shaping the future of European digital sovereignty. 
+                Whether you&apos;re seeking to join our leadership team, explore partnerships, 
+                or engage with our vision, we&apos;re ready to connect.
               </p>
               <p className="text-white/80 text-base md:text-lg">
-                Together, we're building the next generation of enterprise technology 
+                Together, we&apos;re building the next generation of enterprise technology 
                 with European values at our core.
               </p>
             </div>

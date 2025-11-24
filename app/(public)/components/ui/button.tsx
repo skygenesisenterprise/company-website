@@ -42,18 +42,22 @@ function Button({
   size,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
+}: Omit<React.ComponentProps<"button">, 'style'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
 
+  const filteredProps = Object.fromEntries(
+    Object.entries(props).filter(([key]) => key !== 'style')
+  );
+  
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       suppressHydrationWarning
-      {...props}
+      {...filteredProps}
     />
   )
 }

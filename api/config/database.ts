@@ -1,23 +1,16 @@
-import { Pool } from 'pg';
+import { PrismaClient } from '@prisma/client';
 
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: parseInt(process.env.PG_PORT || '5432', 10),
-});
+const prisma = new PrismaClient();
 
 const connectDB = async () => {
   try {
-    const client = await pool.connect();
-    console.log('PostgreSQL connected');
-    client.release();
+    await prisma.$connect();
+    console.log('SQLite database connected');
   } catch (error) {
-    console.error('PostgreSQL connection failed:', error);
+    console.error('Database connection failed:', error);
     process.exit(1);
   }
 };
 
-export { pool };
+export { prisma };
 export default connectDB;

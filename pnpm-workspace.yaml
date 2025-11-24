@@ -1,4 +1,7 @@
 ignoredBuiltDependencies:
+  - '@scarf/scarf'
   - '@tailwindcss/oxide'
+  - cypress
   - sharp
+  - snyk
   - unrs-resolver

@@ -96,7 +96,7 @@ export default function NewsletterPage() {
                 onClick={() => document.getElementById('newsletter-form')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center group text-sm sm:text-base whitespace-nowrap"
               >
-                S'abonner à la newsletter
+                S&apos;abonner à la newsletter
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -142,11 +142,11 @@ export default function NewsletterPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-4">Centres d'intérêt</label>
+                  <label className="block text-sm font-medium mb-4">Centres d&apos;intérêt</label>
                   <div className="space-y-3">
                     {[
                       { key: 'insights', label: 'Actualités essentielles' },
-                      { key: 'analyses', label: 'Analyses d\'experts' },
+                      { key: 'analyses', label: 'Analyses d&apos;experts' },
                       { key: 'guides', label: 'Guides exclusifs' },
                       { key: 'events', label: 'Invitations à des événements' }
                     ].map((item) => (
@@ -178,7 +178,7 @@ export default function NewsletterPage() {
                   type="submit"
                   className="w-full bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  S'abonner maintenant
+                  S&apos;abonner maintenant
                 </button>
               </form>
             </div>
@@ -191,10 +191,10 @@ export default function NewsletterPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 space-y-4 md:space-y-6 max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-              Pourquoi s'abonner ?
+              Pourquoi s&apos;abonner ?
             </h2>
             <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
-              Accédez à des contenus exclusifs pour rester à la pointe de l'innovation enterprise.
+              Accédez à des contenus exclusifs pour rester à la pointe de l&apos;innovation enterprise.
             </p>
           </div>
 
@@ -213,9 +213,9 @@ export default function NewsletterPage() {
               <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                 <Star className="w-8 h-8 text-green-400" />
               </div>
-              <h3 className="text-xl lg:text-2xl font-bold mb-4">Analyses d'experts</h3>
+              <h3 className="text-xl lg:text-2xl font-bold mb-4">Analyses d&apos;experts</h3>
               <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
-                Bénéficiez d'analyses approfondies de nos experts sur les technologies enterprise.
+                Bénéficiez d&apos;analyses approfondies de nos experts sur les technologies enterprise.
               </p>
             </div>
 
@@ -247,7 +247,7 @@ export default function NewsletterPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 space-y-4 md:space-y-6 max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-              Exemple d'éditions précédentes
+              Exemple d&apos;éditions précédentes
             </h2>
             <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
               Découvrez le type de contenu que nous partageons chaque mois.
@@ -257,15 +257,15 @@ export default function NewsletterPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
               <div className="text-sm text-blue-400 mb-3">Novembre 2024</div>
-              <h3 className="text-xl font-bold mb-4">L'avenir de l'IA enterprise</h3>
+              <h3 className="text-xl font-bold mb-4">L&apos;avenir de l&apos;IA enterprise</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li className="flex items-start">
                   <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Stratégies d'implémentation IA dans les grandes entreprises</span>
+                  <span>Stratégies d&apos;implémentation IA dans les grandes entreprises</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Cas d'usage : Transformation digitale chez EuroCorp</span>
+                  <span>Cas d&apos;usage : Transformation digitale chez EuroCorp</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
@@ -334,7 +334,7 @@ export default function NewsletterPage() {
               </div>
             </div>
             <p className="text-xl text-gray-400 mb-12">
-              Abonnés actifs dans toute l'Europe
+              Abonnés actifs dans toute l&apos;Europe
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -345,8 +345,8 @@ export default function NewsletterPage() {
                   ))}
                 </div>
                 <p className="text-gray-300 italic mb-4">
-                  "La meilleure newsletter pour rester à jour sur les technologies enterprise. 
-                  Contenu toujours pertinent et bien analysé."
+                  &quot;La meilleure newsletter pour rester à jour sur les technologies enterprise. 
+                  Contenu toujours pertinent et bien analysé.&quot;
                 </p>
                 <p className="text-sm text-gray-400">— Marie D., CTO Paris</p>
               </div>
@@ -358,8 +358,8 @@ export default function NewsletterPage() {
                   ))}
                 </div>
                 <p className="text-gray-300 italic mb-4">
-                  "Des analyses pointues qui m'aident dans mes décisions stratégiques. 
-                  Indispensable pour tout dirigeant tech."
+                  &quot;Des analyses pointues qui m&apos;aident dans mes décisions stratégiques. 
+                  Indispensable pour tout dirigeant tech.&quot;
                 </p>
                 <p className="text-sm text-gray-400">— Thomas L., CEO Berlin</p>
               </div>
@@ -371,8 +371,8 @@ export default function NewsletterPage() {
                   ))}
                 </div>
                 <p className="text-gray-300 italic mb-4">
-                  "Les guides pratiques sont excellents. J'ai appliqué plusieurs recommandations 
-                  avec des résultats mesurables."
+                  &quot;Les guides pratiques sont excellents. J&apos;ai appliqué plusieurs recommandations 
+                  avec des résultats mesurables.&quot;
                 </p>
                 <p className="text-sm text-gray-400">— Sophie M., CIO Amsterdam</p>
               </div>

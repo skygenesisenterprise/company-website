@@ -1,12 +1,13 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/admin/components/ui/card';
 import { Button } from '@/app/admin/components/ui/button';
+import { cmsService, DashboardStats, BlogPost } from '@/app/admin/lib/services/cms-service';
 import { 
   FileText, 
   Briefcase, 
   BookOpen, 
-  Image, 
   TrendingUp,
   Eye,
   Users,
@@ -19,84 +20,6 @@ import {
   Zap,
   Target
 } from 'lucide-react';
-
-const stats = [
-  {
-    title: 'Total Blog Posts',
-    value: '24',
-    change: '+3 this week',
-    trend: 'up',
-    icon: FileText,
-    color: 'from-blue-500 to-blue-600',
-    bgColor: 'from-blue-500/10 to-blue-600/10',
-  },
-  {
-    title: 'Open Positions',
-    value: '8',
-    change: '+2 new',
-    trend: 'up',
-    icon: Briefcase,
-    color: 'from-green-500 to-green-600',
-    bgColor: 'from-green-500/10 to-green-600/10',
-  },
-  {
-    title: 'Whitepapers',
-    value: '12',
-    change: '+1 this month',
-    trend: 'up',
-    icon: BookOpen,
-    color: 'from-purple-500 to-purple-600',
-    bgColor: 'from-purple-500/10 to-purple-600/10',
-  },
-  {
-    title: 'Media Files',
-    value: '156',
-    change: '+12 this week',
-    trend: 'up',
-    icon: Image,
-    color: 'from-orange-500 to-orange-600',
-    bgColor: 'from-orange-500/10 to-orange-600/10',
-  },
-];
-
-const recentContent = [
-  {
-    type: 'Blog Post',
-    title: 'Building Scalable Enterprise Applications',
-    author: 'John Doe',
-    date: '2 hours ago',
-    status: 'published',
-    icon: FileText,
-    color: 'text-blue-400',
-  },
-  {
-    type: 'Changelog',
-    title: 'Version 2.4.1 - Security Updates',
-    author: 'System',
-    date: '1 day ago',
-    status: 'published',
-    icon: TrendingUp,
-    color: 'text-green-400',
-  },
-  {
-    type: 'Job Opening',
-    title: 'Senior Frontend Developer',
-    author: 'HR Team',
-    date: '3 days ago',
-    status: 'open',
-    icon: Briefcase,
-    color: 'text-purple-400',
-  },
-  {
-    type: 'Whitepaper',
-    title: 'Cloud Migration Best Practices',
-    author: 'Tech Team',
-    date: '1 week ago',
-    status: 'draft',
-    icon: BookOpen,
-    color: 'text-orange-400',
-  },
-];
 
 const quickActions = [
   {
@@ -161,6 +84,75 @@ const systemMetrics = [
 ];
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [recentContent, setRecentContent] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await cmsService.getDashboardStats();
+        if (response.success && response.data) {
+          setStats(response.data.stats);
+          setRecentContent(response.data.recentContent);
+        }
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  const statsData = stats ? [
+    {
+      title: 'Total Blog Posts',
+      value: stats.blogPosts.total.toString(),
+      change: `+${stats.blogPosts.published} published`,
+      trend: 'up' as const,
+      icon: FileText,
+      color: 'from-blue-500 to-blue-600',
+      bgColor: 'from-blue-500/10 to-blue-600/10',
+    },
+    {
+      title: 'Open Positions',
+      value: stats.jobPostings.open.toString(),
+      change: `${stats.jobPostings.total} total`,
+      trend: 'up' as const,
+      icon: Briefcase,
+      color: 'from-green-500 to-green-600',
+      bgColor: 'from-green-500/10 to-green-600/10',
+    },
+    {
+      title: 'Whitepapers',
+      value: stats.whitepapers.toString(),
+      change: 'Available',
+      trend: 'up' as const,
+      icon: BookOpen,
+      color: 'from-purple-500 to-purple-600',
+      bgColor: 'from-purple-500/10 to-purple-600/10',
+    },
+    {
+      title: 'Total Users',
+      value: stats.users.toString(),
+      change: 'Registered',
+      trend: 'up' as const,
+      icon: Users,
+      color: 'from-orange-500 to-orange-600',
+      bgColor: 'from-orange-500/10 to-orange-600/10',
+    },
+  ] : [];
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-white">Loading dashboard...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8 p-6">
       {/* Header */}
@@ -183,7 +175,7 @@ export default function AdminDashboard() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat) => {
+        {statsData.map((stat) => {
           const Icon = stat.icon;
           return (
             <Card key={stat.title} className="bg-slate-900/50 border-slate-800/50 backdrop-blur-sm hover:bg-slate-900/70 transition-all duration-300">
@@ -227,28 +219,28 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentContent.map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/50 transition-all duration-200 group">
+              {recentContent.map((post) => (
+                <div key={post.id} className="flex items-center justify-between p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/50 transition-all duration-200 group">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${item.color} bg-slate-900/50`}>
-                        <item.icon className="h-4 w-4" />
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center text-blue-400 bg-slate-900/50">
+                        <FileText className="h-4 w-4" />
                       </div>
-                      <span className="text-xs font-medium text-slate-400 uppercase">{item.type}</span>
+                      <span className="text-xs font-medium text-slate-400 uppercase">Blog Post</span>
                       <span className={cn(
                         "text-xs px-2 py-1 rounded-full font-medium",
-                        item.status === 'published' ? "bg-green-500/20 text-green-400" :
-                        item.status === 'open' ? "bg-blue-500/20 text-blue-400" :
+                        post.status === 'PUBLISHED' ? "bg-green-500/20 text-green-400" :
+                        post.status === 'DRAFT' ? "bg-gray-500/20 text-gray-400" :
                         "bg-slate-700/50 text-slate-400"
                       )}>
-                        {item.status}
+                        {post.status.toLowerCase()}
                       </span>
                     </div>
                     <h4 className="text-white font-semibold mb-1 group-hover:text-blue-400 transition-colors">
-                      {item.title}
+                      {post.title}
                     </h4>
                     <p className="text-sm text-slate-400">
-                      {item.author} • {item.date}
+                      {`${post.author.firstName || ''} ${post.author.lastName || ''}`.trim() || post.author.email} • {new Date(post.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                   <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity">
