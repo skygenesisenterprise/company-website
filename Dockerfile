@@ -26,9 +26,6 @@ COPY . .
 # Build application
 RUN pnpm run build 
 
-# Build the application with optimizations
-RUN pnpm run build
-
 # Production stage
 FROM node:18-alpine AS production
 
