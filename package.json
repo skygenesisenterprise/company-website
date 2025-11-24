@@ -8,6 +8,7 @@
     "dev:frontend": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start -H 0.0.0.0",
+    "start:backend": "ts-node api/server.ts",
     "lint": "eslint .",
     "test": "jest",
     "test:integration": "cypress run",
