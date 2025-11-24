@@ -41,7 +41,28 @@ const nextConfig: NextConfig = {
       };
     }
 
+    // Exclude API folder from compilation
+    config.externals = {
+      ...config.externals,
+      './api/config/database.ts': 'commonjs ./api/config/database.ts',
+      './api/models/accountModels.ts': 'commonjs ./api/models/accountModels.ts',
+      './api/services/accountServices.ts': 'commonjs ./api/services/accountServices.ts',
+      './api/controllers/accountControllers.ts': 'commonjs ./api/controllers/accountControllers.ts',
+      './api/middlewares/accountMiddlewares.ts': 'commonjs ./api/middlewares/accountMiddlewares.ts',
+      './api/routes/account.Routes.ts': 'commonjs ./api/routes/account.Routes.ts',
+      './api/controllers/cmsControllers.ts': 'commonjs ./api/controllers/cmsControllers.ts',
+      './api/routes/cms.Routes.ts': 'commonjs ./api/routes/cms.Routes.ts',
+      './api/utils/logger.ts': 'commonjs ./api/utils/logger.ts',
+      './api/server.ts': 'commonjs ./api/server.ts',
+    };
+
     return config;
+  },
+
+  // Exclude API folder from TypeScript compilation
+  typescript: {
+    ignoreBuildErrors: false,
+    tsconfigPath: './tsconfig.json',
   },
 
   // Security headers
