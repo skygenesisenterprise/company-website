@@ -28,6 +28,7 @@ export default function Footer() {
     { name: 'Changelog', href: '/changelog' },
     { name: 'Whitepapers', href: '/whitepaper' },
     { name: 'Developer Portal', href: 'https://developer.skygenesisenterprise.com' },
+    { name: 'Newsletter', href: '/newsletter'},
   ];
 
   // Enterprise Solutions
