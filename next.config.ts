@@ -25,13 +25,22 @@ const nextConfig: NextConfig = {
   },
 
   // Path aliases for clean imports
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     // Add any custom webpack config here if needed
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": path.resolve(__dirname, "./app"),
       "@api": path.resolve(__dirname, "./api"),
     };
+
+    // Exclude API folder from client-side bundle
+    if (!isServer) {
+      config.externals = {
+        ...config.externals,
+        '@prisma/client': 'commonjs @prisma/client',
+      };
+    }
+
     return config;
   },
 
