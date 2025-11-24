@@ -1,7 +1,10 @@
 ignoredBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
   - '@scarf/scarf'
   - '@tailwindcss/oxide'
   - cypress
+  - prisma
   - sharp
   - snyk
   - unrs-resolver
