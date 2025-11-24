@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { 
   Users, 
   Shield, 
@@ -22,6 +21,7 @@ import {
   Scale,
   Handshake
 } from 'lucide-react';
+import Link from 'next/link';
 
 interface BoardMember {
   name: string;
@@ -52,49 +52,49 @@ const boardComposition: BoardMember[] = [
     name: 'CEO',
     title: 'Chief Executive Officer',
     type: 'executive',
-    description: 'Executive leadership and operational management of the enterprise',
+    description: 'Executive leadership and operational management of enterprise',
     expertise: ['Business Strategy', 'Operations', 'Executive Leadership']
   },
   {
-    name: 'CFO',
+    name: 'Position Open',
     title: 'Chief Financial Officer',
     type: 'executive',
-    description: 'Financial oversight, reporting, and fiscal strategy development',
+    description: 'We are seeking a financial leader to oversee financial reporting, fiscal strategy, and regulatory compliance. This role will drive financial oversight and strategic planning.',
     expertise: ['Financial Management', 'Regulatory Compliance', 'Strategic Planning']
   },
   {
-    name: 'CTO',
+    name: 'Position Open',
     title: 'Chief Technology Officer',
     type: 'technical',
-    description: 'Technology strategy, innovation oversight, and technical governance',
+    description: 'We are looking for a technology visionary to lead innovation strategy and technical governance. This role will shape our technology roadmap and digital transformation.',
     expertise: ['Technology Strategy', 'Innovation', 'Technical Architecture']
   },
   {
-    name: 'CSO',
+    name: 'Position Open',
     title: 'Chief Security Officer',
     type: 'compliance',
-    description: 'Security governance, risk management, and compliance oversight',
+    description: 'We are seeking a security expert to lead governance, risk management, and compliance programs. This role will ensure enterprise security and regulatory adherence.',
     expertise: ['Security Governance', 'Risk Management', 'Compliance']
   },
   {
-    name: 'Independent Director 1',
+    name: 'Position Open',
     title: 'Independent Director',
     type: 'independent',
-    description: 'Independent oversight and strategic guidance',
+    description: 'We are looking for independent directors to provide oversight and strategic guidance. This role will bring objective perspective to board decisions.',
     expertise: ['Corporate Governance', 'Strategic Advisory', 'Risk Oversight']
   },
   {
-    name: 'Independent Director 2',
+    name: 'Position Open',
     title: 'Independent Director',
     type: 'independent',
-    description: 'Independent oversight and strategic guidance',
+    description: 'We are seeking additional independent directors to strengthen board oversight. This role will contribute diverse expertise and independent judgment.',
     expertise: ['Corporate Governance', 'Strategic Advisory', 'Risk Oversight']
   },
   {
-    name: 'Technical Advisor',
+    name: 'Position Open',
     title: 'Chief Technical Advisor',
     type: 'technical',
-    description: 'Technical expertise and innovation guidance',
+    description: 'We are seeking technical expertise to guide innovation and architecture decisions. This role will provide strategic technical counsel to the board.',
     expertise: ['Technical Advisory', 'Innovation Strategy', 'Architecture Review']
   }
 ];
@@ -424,33 +424,73 @@ export default function GovernanceBoardPage() {
               </p>
             </div>
             
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm">
+                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                Multiple board positions available
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {boardComposition.map((member, index) => (
-                <div key={index} className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-1">{member.name}</h3>
-                      <p className="text-gray-400 text-sm mb-2">{member.title}</p>
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${getMemberTypeColor(member.type)}`}>
-                        {getMemberTypeLabel(member.type)}
-                      </span>
+              {boardComposition.map((member, index) => {
+                const isOpenPosition = member.name === 'Position Open';
+                return (
+                  <div key={index} className={`group relative bg-gray-900/50 border ${isOpenPosition ? 'border-green-500/30 hover:border-green-500/40' : 'border-gray-800 hover:border-gray-700'} rounded-xl p-6 transition-all`}>
+                    {/* Position Open Badge */}
+                    {isOpenPosition && (
+                      <div className="absolute -top-2 -right-2 z-10">
+                        <div className="relative">
+                          <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                          <div className="absolute inset-0 bg-green-400 rounded-full animate-ping"></div>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className={`text-lg font-semibold mb-1 ${isOpenPosition ? 'text-green-400' : 'text-white'}`}>{member.name}</h3>
+                        <p className={`text-sm mb-2 ${isOpenPosition ? 'text-green-300' : 'text-gray-400'}`}>{member.title}</p>
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${isOpenPosition ? 'bg-green-500/10 border-green-500/20 text-green-400' : getMemberTypeColor(member.type)}`}>
+                          {isOpenPosition ? 'Open' : getMemberTypeLabel(member.type)}
+                        </span>
+                      </div>
+                      <div className={`w-10 h-10 ${isOpenPosition ? 'bg-green-800/20 border-2 border-dashed border-green-500/30' : 'bg-gray-800'} rounded-full flex items-center justify-center`}>
+                        {isOpenPosition ? (
+                          <div className="text-center">
+                            <UserCheck className="w-5 h-5 text-green-400" />
+                            <span className="text-xs text-green-400 font-semibold block mt-0.5">OPEN</span>
+                          </div>
+                        ) : (
+                          <UserCheck className="w-5 h-5 text-gray-400" />
+                        )}
+                      </div>
                     </div>
-                    <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
-                      <UserCheck className="w-5 h-5 text-gray-400" />
+                    
+                    <p className="text-gray-300 text-sm mb-4 leading-relaxed">{member.description}</p>
+                    
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {member.expertise.map((skill, skillIndex) => (
+                        <span key={skillIndex} className={`text-xs px-2 py-1 rounded ${isOpenPosition ? 'bg-green-800/30 text-green-400' : 'bg-gray-800 text-gray-400'}`}>
+                          {skill}
+                        </span>
+                      ))}
                     </div>
+
+                    {/* CTA Button for open positions */}
+                    {isOpenPosition && (
+                      <div className="flex justify-center">
+                        <a 
+                          href="/careers?board=true"
+                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-lg hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 text-sm"
+                        >
+                          <Target className="w-4 h-4 mr-2" />
+                          Apply for Board Position
+                        </a>
+                      </div>
+                    )}
                   </div>
-                  
-                  <p className="text-gray-300 text-sm mb-4 leading-relaxed">{member.description}</p>
-                  
-                  <div className="flex flex-wrap gap-1">
-                    {member.expertise.map((skill, skillIndex) => (
-                      <span key={skillIndex} className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-400">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

@@ -181,12 +181,14 @@ export default function UnifiedAuthForm() {
     }
   }
 
-  // Check if user is already logged in
+  // Check if user is already logged in (only redirect from non-login pages)
   useEffect(() => {
     const token = localStorage.getItem("authToken")
-    if (token) {
-      // User is already logged in, redirect to dashboard
-      router.push("/home")
+    const currentPath = window.location.pathname
+    
+    if (token && currentPath !== "/login") {
+      // User is already logged in and not on login page, redirect to dashboard
+      router.push("/admin/dashboard")
     }
   }, [router])
 
