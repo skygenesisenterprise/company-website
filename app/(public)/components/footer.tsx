@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Linkedin as LinkedinIcon, Twitter as TwitterIcon, Github as GithubIcon, Mail, MessageCircle, Camera, Globe } from 'lucide-react';
+import { Linkedin as LinkedinIcon, Twitter as TwitterIcon, Github as GithubIcon, Mail, MessageCircle, Camera, Globe, Youtube, Twitch } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Footer() {
@@ -72,6 +72,8 @@ export default function Footer() {
     { name: 'LinkedIn', href: 'https://linkedin.com/company/skygenesisenterprise', icon: <LinkedinIcon className="w-5 h-5" /> },
     { name: 'Twitter', href: 'https://twitter.com/skyGenterprise', icon: <TwitterIcon className="w-5 h-5" /> },
     { name: 'GitHub', href: 'https://github.com/skygenesisenterprise', icon: <GithubIcon className="w-5 h-5" /> },
+    { name: 'YouTube', href: 'https://youtube.com/@skygenesisenterprise', icon: <Youtube className="w-5 h-5" /> },
+    { name: 'Twitch', href: 'https://twitch.tv/skygenesisenterprise', icon: <Twitch className="w-5 h-5" /> },
     { name: 'Discord', href: 'https://skygenesisenterprise.com/discord', icon: <MessageCircle className="w-5 h-5" /> },
     { name: 'Instagram', href: 'https://instagram.com/skygenesisenterprise', icon: <Camera className="w-5 h-5" /> },
     { name: 'Mastodon', href: 'https://mastodon.social/@skygenesisenterprise', icon: <Globe className="w-5 h-5" /> },
@@ -140,13 +142,18 @@ export default function Footer() {
                   ))}
                 </div>
 
-                {/* Service Status */}
-                <div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm text-gray-400">All services are online</span>
-                  </div>
-                </div>
+                 {/* Service Status */}
+                 <div>
+                   <a 
+                     href="https://status.skygenesisenterprise.com" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
+                   >
+                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                     <span className="text-sm">All services are online</span>
+                   </a>
+                 </div>
               </div>
 
               {/* Navigation Links - Right */}
