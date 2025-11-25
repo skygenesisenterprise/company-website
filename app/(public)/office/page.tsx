@@ -24,7 +24,20 @@ import {
   Rocket,
   Building2,
   ChevronRight,
-  Github
+  Github,
+  Lock,
+  MessageSquare,
+  Star,
+  Quote,
+  User,
+  Briefcase,
+  PieChart,
+  Headphones,
+  Cpu,
+  Cloud,
+  Eye,
+  Award,
+  Target
 } from 'lucide-react';
 
 export default function AetherOffice() {
@@ -265,31 +278,40 @@ export default function AetherOffice() {
         </div>
       </section>
 
-      {/* Key Applications Section */}
+      {/* APPLICATION SUITE */}
       <section className="py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-center">Complete Application Suite</h2>
-            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400 mb-6">
+              <Cpu className="w-4 h-4 mr-2" />
+              Complete Application Suite
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-center">
+              All your applications
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                unified in one platform
+              </span>
+            </h2>
+            <div className="space-y-4 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center text-gray-300">
               <p>
-                Everything your enterprise needs in one integrated platform. 
-                From communication to collaboration, we&apos;ve got you covered.
+                Communication, collaboration, productivity. Every application is designed 
+                to work perfectly with others, creating an integrated ecosystem that 
+                transforms the way you work.
               </p>
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {applications.map((app) => (
               <div 
                 key={app.id}
-                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105 touch-manipulation active:scale-[0.98]"
-                onMouseEnter={() => setActiveApp(app.id)}
-                onMouseLeave={() => setActiveApp(null)}
+                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${app.color} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${app.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
                 
                 {/* GitHub Link */}
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
                   <a 
                     href={app.githubUrl}
                     target="_blank"
@@ -302,329 +324,278 @@ export default function AetherOffice() {
                 </div>
                 
                 <div className="relative">
-                  <div className={`w-14 h-14 bg-gradient-to-r ${app.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <app.icon className="w-7 h-7 text-white" />
+                  <div className={`w-16 h-16 bg-gradient-to-r ${app.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <app.icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-xl font-semibold mb-2 text-white">{app.name}</h3>
-                  <p className="text-gray-400 mb-4">{app.description}</p>
+                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                    {app.name}
+                  </h3>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{app.description}</p>
                   
-                  <div className="space-y-2">
-                    {app.features.map((feature, index) => (
+                  <div className="space-y-3">
+                    {app.features.slice(0, 3).map((feature, index) => (
                       <div key={index} className="flex items-center text-sm text-gray-500">
-                        <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                        {feature}
+                        <CheckCircle className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 pt-6 border-t border-white/10">
+                    <button className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center group">
+                      Learn more
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VALUE PROPOSITION */}
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-sm text-purple-400 mb-6">
+              <Target className="w-4 h-4 mr-2" />
+              Competitive Advantages
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-center">
+              Why choose
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Aether Office
+              </span>
+            </h2>
+            <div className="space-y-4 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center text-gray-300">
+              <p>
+                More than an application suite, a true digital transformation 
+                for your business. Security, performance, and European digital sovereignty.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="space-y-8">
+              {benefits.slice(0, 3).map((benefit, index) => (
+                <div key={index} className="group">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <benefit.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-gray-400 mb-3 leading-relaxed">{benefit.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {benefit.features.slice(0, 2).map((feature, idx) => (
+                          <span key={idx} className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-8">
+              {benefits.slice(3, 6).map((benefit, index) => (
+                <div key={index} className="group">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <benefit.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-gray-400 mb-3 leading-relaxed">{benefit.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {benefit.features.slice(0, 2).map((feature, idx) => (
+                          <span key={idx} className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INTERNAL INTEGRATIONS */}
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-sm text-green-400 mb-6">
+              <Settings className="w-4 h-4 mr-2" />
+              Native Integrations
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-center">
+              The unified
+              <br />
+              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                Aether ecosystem
+              </span>
+            </h2>
+            <div className="space-y-4 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center text-gray-300">
+              <p>
+                Every Aether service integrates seamlessly with Office to create 
+                a consistent and powerful experience.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-16 lg:space-y-24">
+            {/* Office + Identity */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="order-2 lg:order-1">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400">
+                    <Lock className="w-4 h-4 mr-2" />
+                    Office + Identity
+                  </div>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-white">
+                    Unified authentication
+                    <br />
+                    <span className="text-blue-400">Centralized SSO</span>
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    One identity to access all your applications. 
+                    Centralized permission management, multi-factor authentication, 
+                    and built-in GDPR compliance.
+                  </p>
+                  <div className="space-y-3">
+                    {['Single Sign-On (SSO)', 'Multi-factor authentication', 'Role-based access control'].map((item, index) => (
+                      <div key={index} className="flex items-center text-gray-400">
+                        <CheckCircle className="w-5 h-5 mr-3 text-green-500" />
+                        <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container mx-auto px-4 text-center">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">How It Works</h2>
-            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
-              <p>
-                Get up and running in days, not months. Our streamlined process ensures 
-                smooth adoption and immediate value.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
-            {workflowSteps.map((step) => (
-              <div key={step.step} className="text-center">
-                <div className="relative mb-4 sm:mb-6">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                  </div>
-                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-white text-black rounded-full flex items-center justify-center text-xs sm:text-sm font-bold">
-                    {step.step}
+              <div className="order-1 lg:order-2">
+                <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 lg:p-12">
+                  <div className="w-full h-64 lg:h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center">
+                    <Lock className="w-16 h-16 lg:w-24 lg:h-24 text-blue-400" />
                   </div>
                 </div>
-                
-                <h3 className="text-sm sm:text-lg font-semibold mb-2 text-white">{step.title}</h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{step.description}</p>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-16 text-center">
-            <Link 
-              href="/onboarding"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
-            >
-              Start Your Journey
-              <Rocket className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Enterprise Benefits Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Enterprise Benefits</h2>
-            <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
-              <p>
-                Built for the modern enterprise. Security, scalability, and performance 
-                that organizations can rely on.
-              </p>
             </div>
-          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-white/20 transition-all">
-                <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                  <benefit.icon className="w-7 h-7 text-white" />
+            {/* Office + Drive */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div>
+                <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8 lg:p-12">
+                  <div className="w-full h-64 lg:h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center">
+                    <Cloud className="w-16 h-16 lg:w-24 lg:h-24 text-purple-400" />
+                  </div>
                 </div>
-                
-                <h3 className="text-xl font-semibold mb-3 text-white">{benefit.title}</h3>
-                <p className="text-gray-400 mb-4">{benefit.description}</p>
-                
-                <ul className="space-y-2">
-                  {benefit.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-500">
-                      <ChevronRight className="w-4 h-4 mr-2 text-blue-500" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4">Aether Office Pricing</h2>
-              <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center">
-                <p>
-                  Flexible plans for individuals, teams, and enterprises. Start free or scale with our enterprise solutions.
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-sm text-purple-400">
+                  <Cloud className="w-4 h-4 mr-2" />
+                  Office + Drive
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white">
+                  Unlimited storage
+                  <br />
+                  <span className="text-purple-400">Smart sharing</span>
+                </h3>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Native integration with Aether Drive for secure storage 
+                  and seamless sharing. Automatic versioning, real-time collaboration, 
+                  and multi-device synchronization.
                 </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
-              {/* Free / Open-Source Plan */}
-              <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-2 text-white">Free</h3>
-                  <p className="text-gray-400 mb-6">Open-Source</p>
-                  <div className="text-5xl font-bold text-white mb-1">0 €</div>
-                  <p className="text-gray-500 text-sm">per user / month</p>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Aether Mail, Chat, Meet</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Aether Docs & Sheets</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Aether Drive</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Aether Teams</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Aether Auth (SSO/permissions)</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Basic API & Webhooks</span>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <div className="text-center mb-4">
-                    <span className="text-xs text-gray-500 bg-gray-800 px-3 py-1 rounded-full">
-                      Target Audience
-                    </span>
-                  </div>
-                  <p className="text-center text-sm text-gray-400">
-                    Individuals, small teams, open-source communities, initial adoption
-                  </p>
-                </div>
-
-                <div className="mt-8">
-                  <Link 
-                    href="https://account.skygenesisenterprise.com"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-lg hover:bg-white/20 transition-all"
-                  >
-                    Get Started Free
-                  </Link>
-                </div>
-              </div>
-
-              {/* Enterprise Plan */}
-              <div className="relative bg-gradient-to-br from-blue-500/10 to-blue-600/10 backdrop-blur-sm border-2 border-blue-500/30 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-blue-500 text-white text-xs font-semibold px-4 py-1 rounded-full">
-                    RECOMMENDED
-                  </div>
-                </div>
-
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-2 text-white">Enterprise</h3>
-                  <p className="text-blue-400 mb-6">Most Popular</p>
-                  <div className="text-5xl font-bold text-white mb-1">10–15 €</div>
-                  <p className="text-gray-500 text-sm">per user / month</p>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Everything in Free, plus:</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                    <span>Priority support & 99.9% SLA</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                    <span>Advanced encryption</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                    <span>Role management & compliance</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                    <span>Automated migration (G Suite / Microsoft 365)</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                    <span>Advanced offline sync</span>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <div className="text-center mb-4">
-                    <span className="text-xs text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/30">
-                      Target Audience
-                    </span>
-                  </div>
-                  <p className="text-center text-sm text-gray-400">
-                    SMEs, startups, mid-sized teams
-                  </p>
-                </div>
-
-                <div className="mt-8">
-                  <Link 
-                    href="https://account.skygenesisenterprise.com"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 border border-blue-600"
-                  >
-                    Request a Demo
-                  </Link>
-                </div>
-              </div>
-
-              {/* Organization Plan */}
-              <div className="relative bg-gradient-to-br from-purple-500/10 to-purple-600/10 backdrop-blur-sm border-2 border-purple-500/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-2 text-white">Organization</h3>
-                  <p className="text-purple-400 mb-6">Enterprise Grade</p>
-                  <div className="text-5xl font-bold text-white mb-1">500–3000 €</div>
-                  <p className="text-gray-500 text-sm">per month (custom pricing)</p>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                    <span>Everything in Enterprise, plus:</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
-                    <span>Unlimited users</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
-                    <span>Extended storage & optional sovereign cloud</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
-                    <span>Aether Security Essentials included</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
-                    <span>Advanced monitoring & audits</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="w-4 h-4 mr-3 text-purple-400 flex-shrink-0" />
-                    <span>Premium support</span>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <div className="text-center mb-4">
-                    <span className="text-xs text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/30">
-                      Target Audience
-                    </span>
-                  </div>
-                  <p className="text-center text-sm text-gray-400">
-                    Large enterprises, institutions, multi-site organizations
-                  </p>
-                </div>
-
-                <div className="mt-8">
-                  <Link 
-                    href="https://account.skygenesisenterprise.com"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-purple-500 text-white font-medium rounded-lg hover:bg-purple-600 transition-all transform hover:scale-105"
-                  >
-                    Contact Sales
-                  </Link>
+                <div className="space-y-3">
+                  {['Unlimited storage', 'Real-time collaboration', 'Version control & backup'].map((item, index) => (
+                    <div key={index} className="flex items-center text-gray-400">
+                      <CheckCircle className="w-5 h-5 mr-3 text-green-500" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Additional Information */}
-            <div className="mt-16 text-center">
-              <div className="max-w-4xl mx-auto">
-                <h3 className="text-xl font-semibold mb-6 text-white">All plans include:</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 text-sm text-gray-400">
-                  <div className="flex items-center justify-center">
-                    <Shield className="w-4 h-4 mr-2 text-green-400" />
-                    <span>GDPR compliant</span>
+            {/* Office + AI */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="order-2 lg:order-1">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-sm text-green-400">
+                    <Cpu className="w-4 h-4 mr-2" />
+                    Office + AI
                   </div>
-                  <div className="flex items-center justify-center">
-                    <Shield className="w-4 h-4 mr-2 text-green-400" />
-                    <span>99.99% uptime SLA</span>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-white">
+                    Artificial intelligence
+                    <br />
+                    <span className="text-green-400">Enhanced productivity</span>
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    AI assistants integrated into every application. Content generation, 
+                    automatic analysis, intelligent suggestions, and automation 
+                    of repetitive tasks.
+                  </p>
+                  <div className="space-y-3">
+                    {['Smart content generation', 'Automated workflows', 'Predictive analytics'].map((item, index) => (
+                      <div key={index} className="flex items-center text-gray-400">
+                        <CheckCircle className="w-5 h-5 mr-3 text-green-500" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center justify-center">
-                    <Shield className="w-4 h-4 mr-2 text-green-400" />
-                    <span>European data centers</span>
+                </div>
+              </div>
+              <div className="order-1 lg:order-2">
+                <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 backdrop-blur-sm border border-green-500/20 rounded-2xl p-8 lg:p-12">
+                  <div className="w-full h-64 lg:h-80 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-xl flex items-center justify-center">
+                    <Cpu className="w-16 h-16 lg:w-24 lg:h-24 text-green-400" />
                   </div>
-                  <div className="flex items-center justify-center">
-                    <Shield className="w-4 h-4 mr-2 text-green-400" />
-                    <span>24/7 support (Enterprise)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Office + Admin Console */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div>
+                <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 backdrop-blur-sm border border-orange-500/20 rounded-2xl p-8 lg:p-12">
+                  <div className="w-full h-64 lg:h-80 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl flex items-center justify-center">
+                    <Settings className="w-16 h-16 lg:w-24 lg:h-24 text-orange-400" />
                   </div>
-                  <div className="flex items-center justify-center">
-                    <Shield className="w-4 h-4 mr-2 text-green-400" />
-                    <span>Zero-trust architecture</span>
-                  </div>
-                  <div className="flex items-center justify-center">
-                    <Shield className="w-4 h-4 mr-2 text-green-400" />
-                    <span>Open-source transparency</span>
-                  </div>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-full text-sm text-orange-400">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Office + Admin Console
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white">
+                  Centralized administration
+                  <br />
+                  <span className="text-orange-400">Complete control</span>
+                </h3>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Unified administration console to manage all aspects of your 
+                  Office ecosystem. Real-time monitoring, detailed reports, 
+                  and security policy management.
+                </p>
+                <div className="space-y-3">
+                  {['Centralized dashboard', 'Advanced monitoring', 'Security policy management'].map((item, index) => (
+                    <div key={index} className="flex items-center text-gray-400">
+                      <CheckCircle className="w-5 h-5 mr-3 text-green-500" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -632,42 +603,251 @@ export default function AetherOffice() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-r from-blue-600 to-purple-600 relative overflow-hidden">
+      {/* TRANSFORMATION IMPACT */}
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-sm text-yellow-400 mb-6">
+              <TrendingUp className="w-4 h-4 mr-2" />
+              Transformation Impact
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-center">
+              How Aether Office
+              <br />
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                transforms work
+              </span>
+            </h2>
+            <div className="space-y-4 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center text-gray-300">
+              <p>
+                Beyond tools and features, discover the real impact on daily operations, 
+                collaboration, and business growth.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Impact 1: Collaboration Revolution */}
+            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all group">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Collaboration Revolution</h3>
+                  <p className="text-gray-400 text-sm">Breaking silos</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <p className="text-gray-300 leading-relaxed">
+                  Transform how teams work together with real-time collaboration across all applications. No more version conflicts or communication gaps.
+                </p>
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <Zap className="w-4 h-4 mr-2 text-blue-400" />
+                    <span className="text-sm font-semibold text-blue-400">Key Impact</span>
+                  </div>
+                  <p className="text-sm text-gray-300">
+                    Teams collaborate 5x faster with unified workspace and real-time editing capabilities
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>Real-time document collaboration</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>Cross-functional project spaces</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>Unified communication channels</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Impact 2: Security & Compliance */}
+            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all group">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Security by Design</h3>
+                  <p className="text-gray-400 text-sm">Built-in protection</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <p className="text-gray-300 leading-relaxed">
+                  Enterprise-grade security embedded in every layer. From encryption to compliance, protect your data without compromising productivity.
+                </p>
+                <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <Lock className="w-4 h-4 mr-2 text-purple-400" />
+                    <span className="text-sm font-semibold text-purple-400">Key Impact</span>
+                  </div>
+                  <p className="text-sm text-gray-300">
+                    Zero-trust architecture reduces security incidents by 85% while maintaining seamless user experience
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>End-to-end encryption</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>GDPR & compliance automation</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>European data sovereignty</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Impact 3: Productivity Amplification */}
+            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all group">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                  <Rocket className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Productivity Amplified</h3>
+                  <p className="text-gray-400 text-sm">Smart workflows</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <p className="text-gray-300 leading-relaxed">
+                  AI-powered automation and intelligent workflows eliminate repetitive tasks, allowing teams to focus on high-value work that drives business growth.
+                </p>
+                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <Cpu className="w-4 h-4 mr-2 text-green-400" />
+                    <span className="text-sm font-semibold text-green-400">Key Impact</span>
+                  </div>
+                  <p className="text-sm text-gray-300">
+                    AI automation saves 15+ hours per employee monthly while improving work quality by 40%
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>AI-powered content generation</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>Automated workflow orchestration</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  <span>Smart task prioritization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Impact Metrics */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-bold text-blue-400 mb-2">5x</div>
+              <p className="text-gray-300 font-medium">Faster collaboration</p>
+              <p className="text-gray-500 text-sm mt-1">Real-time workflows</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-bold text-purple-400 mb-2">85%</div>
+              <p className="text-gray-300 font-medium">Fewer security incidents</p>
+              <p className="text-gray-500 text-sm mt-1">Zero-trust protection</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-bold text-green-400 mb-2">15h+</div>
+              <p className="text-gray-300 font-medium">Saved per employee monthly</p>
+              <p className="text-gray-500 text-sm mt-1">AI automation</p>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300">
+              <Target className="w-4 h-4 mr-2" />
+              <span>Measurable business impact across all industries</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-20 lg:py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         
+        {/* Animated background elements */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
         <div className="relative container mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
-            Ready to Transform Your Enterprise?
-          </h2>
-          <div className="space-y-4 md:space-y-6 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center mb-8">
-            <p className="text-white/90">
-              Join thousands of organizations that have already made the switch to Aether Office. 
-              Start your free trial today and see the difference for yourself.
-            </p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/trial"
-              className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
-            >
-              Try Aether Office Free
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+          <div className="max-w-4xl mx-auto">
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm text-white mb-8">
+              <Award className="w-4 h-4 mr-2" />
+              Start for free
+            </div>
             
-            <Link 
-              href="/demo"
-              className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-lg hover:bg-white/30 transition-all"
-            >
-              Request a Demo
-              <Calendar className="ml-2 w-5 h-5" />
-            </Link>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
+              Ready to transform
+              <br />
+              <span className="text-yellow-300">your business?</span>
+            </h2>
+            
+            <div className="space-y-6 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-center mb-12">
+              <p className="text-white/90">
+                Join thousands of organizations that have already chosen 
+                Aether Office. 14-day free trial, no commitment.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+              <Link 
+                href="https://account.skygenesisenterprise.com"
+                className="group inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
+              >
+                Start free trial
+                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              
+              <Link 
+                href="/contact/sales"
+                className="group inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300"
+              >
+                Request a demo
+                <MessageSquare className="ml-3 w-5 h-5 group-hover:scale-110 transition-transform" />
+              </Link>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-white/70">
+              <div className="flex items-center">
+                <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
+                <span>14-day trial</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
+                <span>Full feature access</span>
+              </div>
+            </div>
           </div>
-          
-          <p className="text-white/70 mt-6 text-sm">
-            No credit card required • 14-day free trial • Full feature access
-          </p>
         </div>
       </section>
     </div>
