@@ -8,6 +8,44 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
 
+  // Security: Sanitize user input
+  const sanitizeText = (text: string): string => {
+    return text.replace(/[<>'"&]/g, '').trim().substring(0, 100);
+  };
+
+  // Security: Validate URLs for external links
+  const isValidUrl = (url: string): boolean => {
+    try {
+      // Allow relative URLs, same-origin absolute URLs, and specific external domains
+      if (url.startsWith('/')) return true;
+      if (url.startsWith('http')) {
+        const parsed = new URL(url);
+        const allowedDomains = [
+          'skygenesisenterprise.com',
+          'linkedin.com',
+          'twitter.com',
+          'github.com',
+          'youtube.com',
+          'twitch.tv',
+          'instagram.com',
+          'mastodon.social'
+        ];
+        return allowedDomains.some(domain => 
+          parsed.hostname === domain || parsed.hostname.endsWith(`.${domain}`)
+        );
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
+  // Security: Validate email format
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   // Main Navigation Links
   const navigationLinks = [
     { name: 'Home', href: '/' },
@@ -81,8 +119,19 @@ export default function Footer() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Security: Validate email before processing
+    const sanitizedEmail = sanitizeText(email);
+    
+    if (!isValidEmail(sanitizedEmail)) {
+      // Handle invalid email (show error message, etc.)
+      console.error('Invalid email format');
+      return;
+    }
+    
     // Handle newsletter subscription logic here
-    console.log('Newsletter subscription:', email);
+    // TODO: Replace with actual API call
+    // console.log('Newsletter subscription:', sanitizedEmail);
     setEmail('');
   };
 
@@ -126,15 +175,15 @@ export default function Footer() {
                 
                 {/* Social Media */}
                 <div className="flex space-x-3 mb-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group"
-                      aria-label={social.name}
-                    >
+                   {socialLinks.map((social) => (
+                     <a
+                       key={social.name}
+                       href={isValidUrl(social.href) ? social.href : '#'}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="w-10 h-10 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group"
+                       aria-label={sanitizeText(social.name)}
+                     >
                       <span className="group-hover:scale-110 transition-transform duration-300">
                         {social.icon}
                       </span>
@@ -144,12 +193,12 @@ export default function Footer() {
 
                  {/* Service Status */}
                  <div>
-                   <a 
-                     href="https://status.skygenesisenterprise.com" 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
-                   >
+                    <a 
+                      href={isValidUrl("https://status.skygenesisenterprise.com") ? "https://status.skygenesisenterprise.com" : "#"} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
+                    >
                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                      <span className="text-sm">All services are online</span>
                    </a>
@@ -165,18 +214,18 @@ export default function Footer() {
                       Navigation
                     </h4>
                     <ul className="space-y-3">
-                      {navigationLinks.map((link) => (
-                        <li key={link.name}>
-                          <Link
-                            href={link.href}
-                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
-                          >
-                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
-                              {link.name}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
+                       {navigationLinks.map((link) => (
+                         <li key={sanitizeText(link.name)}>
+                           <Link
+                             href={isValidUrl(link.href) ? link.href : '/'}
+                             className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                           >
+                             <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                               {sanitizeText(link.name)}
+                             </span>
+                           </Link>
+                         </li>
+                       ))}
                     </ul>
                   </div>
 
@@ -186,18 +235,18 @@ export default function Footer() {
                       Resources
                     </h4>
                     <ul className="space-y-3">
-                      {resourcesLinks.map((link) => (
-                        <li key={link.name}>
-                          <Link
-                            href={link.href}
-                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
-                          >
-                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
-                              {link.name}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
+                       {resourcesLinks.map((link) => (
+                         <li key={sanitizeText(link.name)}>
+                           <Link
+                             href={isValidUrl(link.href) ? link.href : '/docs'}
+                             className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                           >
+                             <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                               {sanitizeText(link.name)}
+                             </span>
+                           </Link>
+                         </li>
+                       ))}
                     </ul>
                   </div>
 
@@ -207,18 +256,18 @@ export default function Footer() {
                       Enterprise Solutions
                     </h4>
                     <ul className="space-y-3">
-                      {enterpriseSolutions.map((solution) => (
-                        <li key={solution.name}>
-                          <Link
-                            href={solution.href}
-                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
-                          >
-                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
-                              {solution.name}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
+                       {enterpriseSolutions.map((solution) => (
+                         <li key={sanitizeText(solution.name)}>
+                           <Link
+                             href={isValidUrl(solution.href) ? solution.href : '/solutions/security'}
+                             className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                           >
+                             <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                               {sanitizeText(solution.name)}
+                             </span>
+                           </Link>
+                         </li>
+                       ))}
                     </ul>
                   </div>
 
@@ -228,18 +277,18 @@ export default function Footer() {
                       Contact & Support
                     </h4>
                     <ul className="space-y-3">
-                      {contactSupportLinks.map((link) => (
-                        <li key={link.name}>
-                          <Link
-                            href={link.href}
-                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
-                          >
-                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
-                              {link.name}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
+                       {contactSupportLinks.map((link) => (
+                         <li key={sanitizeText(link.name)}>
+                           <Link
+                             href={isValidUrl(link.href) ? link.href : '/contact/sales'}
+                             className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                           >
+                             <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                               {sanitizeText(link.name)}
+                             </span>
+                           </Link>
+                         </li>
+                       ))}
                     </ul>
                   </div>
 
@@ -249,18 +298,18 @@ export default function Footer() {
                       Legal & Policies
                     </h4>
                     <ul className="space-y-3">
-                      {legalLinks.map((link) => (
-                        <li key={link.name}>
-                          <Link
-                            href={link.href}
-                            className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
-                          >
-                            <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
-                              {link.name}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
+                       {legalLinks.map((link) => (
+                         <li key={sanitizeText(link.name)}>
+                           <Link
+                             href={isValidUrl(link.href) ? link.href : '/policies/privacy'}
+                             className="text-sm text-gray-400 hover:text-white transition-colors duration-200 group flex items-center"
+                           >
+                             <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                               {sanitizeText(link.name)}
+                             </span>
+                           </Link>
+                         </li>
+                       ))}
                     </ul>
                   </div>
                 </div>
@@ -281,14 +330,15 @@ export default function Footer() {
               </p>
 
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gray-600 focus:bg-gray-800 transition-all duration-200"
-                />
+                 <input
+                   type="email"
+                   value={email}
+                   onChange={(e) => setEmail(sanitizeText(e.target.value))}
+                   placeholder="Enter your email address"
+                   required
+                   maxLength={100}
+                   className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gray-600 focus:bg-gray-800 transition-all duration-200"
+                 />
                 <button
                   type="submit"
                   className="bg-white text-black px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors duration-200 transform hover:scale-105 whitespace-nowrap"

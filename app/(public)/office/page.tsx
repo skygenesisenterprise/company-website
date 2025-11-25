@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+
 import Link from 'next/link';
 import { 
   Mail, 
@@ -23,25 +23,45 @@ import {
   Settings,
   Rocket,
   Building2,
-  ChevronRight,
   Github,
   Lock,
   MessageSquare,
-  Star,
-  Quote,
-  User,
-  Briefcase,
-  PieChart,
-  Headphones,
   Cpu,
   Cloud,
-  Eye,
   Award,
   Target
 } from 'lucide-react';
 
 export default function AetherOffice() {
-  const [, setActiveApp] = useState<string | null>(null);
+
+  // Security: Validate CSS classes to prevent injection
+  const allowedColors = [
+    'from-blue-500 to-blue-600',
+    'from-green-500 to-green-600', 
+    'from-purple-500 to-purple-600',
+    'from-orange-500 to-orange-600',
+    'from-pink-500 to-pink-600',
+    'from-red-500 to-red-600',
+    'from-indigo-500 to-indigo-600',
+    'from-teal-500 to-teal-600',
+    'from-emerald-500 to-emerald-600',
+    'from-cyan-500 to-cyan-600'
+  ];
+
+  // Security: Validate GitHub URLs to prevent phishing
+  const isValidGitHubUrl = (url: string): boolean => {
+    try {
+      const parsed = new URL(url);
+      return parsed.hostname === 'github.com' && parsed.pathname.startsWith('/');
+    } catch {
+      return false;
+    }
+  };
+
+  // Security: Sanitize text content for attributes
+  const sanitizeText = (text: string): string => {
+    return text.replace(/[<>'"&]/g, '');
+  };
 
   const applications = [
     {
@@ -175,38 +195,7 @@ export default function AetherOffice() {
     }
   ];
 
-  const workflowSteps = [
-    {
-      step: 1,
-      title: 'Onboarding & Setup',
-      description: 'Quick setup with guided configuration and user provisioning.',
-      icon: Rocket
-    },
-    {
-      step: 2,
-      title: 'App Integration',
-      description: 'Seamlessly integrate all applications with existing workflows.',
-      icon: Settings
-    },
-    {
-      step: 3,
-      title: 'Collaboration',
-      description: 'Enable teams to work together across all applications.',
-      icon: Users
-    },
-    {
-      step: 4,
-      title: 'Governance & Security',
-      description: 'Implement enterprise-grade security and compliance controls.',
-      icon: Shield
-    },
-    {
-      step: 5,
-      title: 'Analytics & Automation',
-      description: 'Gain insights and automate repetitive tasks.',
-      icon: BarChart3
-    }
-  ];
+
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -308,23 +297,23 @@ export default function AetherOffice() {
                 key={app.id}
                 className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${app.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
                 
                 {/* GitHub Link */}
                 <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
                   <a 
-                    href={app.githubUrl}
+                    href={isValidGitHubUrl(app.githubUrl) ? app.githubUrl : '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
-                    aria-label={`View ${app.name} on GitHub`}
+                    aria-label={`View ${sanitizeText(app.name)} on GitHub`}
                   >
                     <Github className="w-5 h-5" />
                   </a>
                 </div>
                 
                 <div className="relative">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${app.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div className={`w-16 h-16 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                     <app.icon className="w-8 h-8 text-white" />
                   </div>
                   

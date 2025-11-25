@@ -50,6 +50,33 @@ export default function Navbar() {
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const accountDropdownRef = useRef<HTMLDivElement>(null);
 
+  // Security: Sanitize user input
+  const sanitizeText = (text: string): string => {
+    return text.replace(/[<>'"&]/g, '').trim().substring(0, 100);
+  };
+
+  // Security: Validate URLs for navigation
+  const isValidUrl = (url: string): boolean => {
+    try {
+      // Only allow relative URLs or same-origin absolute URLs
+      if (url.startsWith('/')) return true;
+      if (url.startsWith('http')) {
+        const parsed = new URL(url);
+        return parsed.hostname === window.location.hostname;
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
+  // Security: Safe navigation
+  const safeNavigate = (url: string) => {
+    if (isValidUrl(url) && !url.includes('javascript:')) {
+      window.location.href = url;
+    }
+  };
+
   // Handle client-side mount and auth state
   useEffect(() => {
     setIsMounted(true);
@@ -64,8 +91,8 @@ export default function Navbar() {
           const parsedUser = JSON.parse(userData);
           setIsLoggedIn(true);
           setUser({
-            username: parsedUser.username || parsedUser.email?.split('@')[0],
-            email: parsedUser.email
+            username: sanitizeText(parsedUser.username) || sanitizeText(parsedUser.email?.split('@')[0] || ''),
+            email: sanitizeText(parsedUser.email || '')
           });
         } catch (error) {
           console.error('Failed to parse user data:', error);
@@ -354,10 +381,10 @@ export default function Navbar() {
                        }`} />
                      </button>
                   ) : (
-                     <Link
-                       href={item.href}
-                       className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
-                     >
+                      <Link
+                        href={isValidUrl(item.href) ? item.href : '/home'}
+                        className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                      >
                        {item.name}
                      </Link>
                   )}
@@ -367,12 +394,12 @@ export default function Navbar() {
                      <div className="absolute top-full left-0 mt-2 min-w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200">
                        <div className="py-2">
                          {getDropdownItems(item.name).map((subItem) => (
-                           <Link
-                             key={subItem.title}
-                             href={subItem.href}
-                             className="flex items-center space-x-3 px-3 py-2 hover:bg-muted/50 transition-colors group"
-                             onClick={() => setActiveDropdown(null)}
-                           >
+                            <Link
+                              key={subItem.title}
+                              href={isValidUrl(subItem.href) ? subItem.href : '/home'}
+                              className="flex items-center space-x-3 px-3 py-2 hover:bg-muted/50 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
                              <div className="text-muted-foreground group-hover:text-primary transition-colors">
                                {subItem.icon}
                              </div>
@@ -435,14 +462,14 @@ export default function Navbar() {
                       onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
                     >
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">
-                          {user?.username ? user.username.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
-                        </span>
+                         <span className="text-white font-bold text-sm">
+                           {user?.username ? sanitizeText(user.username).charAt(0).toUpperCase() : sanitizeText(user?.email || '').charAt(0).toUpperCase() || 'U'}
+                         </span>
                       </div>
-                      <div className="text-left">
-                        <div className="text-sm font-medium text-gray-900">{user?.username || user?.email}</div>
-                        <div className="text-xs text-gray-500">{user?.email}</div>
-                      </div>
+                        <div className="text-left">
+                          <div className="text-sm font-medium text-gray-900">{sanitizeText(user?.username || user?.email || '')}</div>
+                          <div className="text-xs text-gray-500">{sanitizeText(user?.email || '')}</div>
+                        </div>
                       <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${
                         accountDropdownOpen ? 'rotate-180' : ''
                       }`} />
@@ -488,10 +515,10 @@ export default function Navbar() {
                               localStorage.removeItem('refreshToken');
                               localStorage.removeItem('idToken');
                               localStorage.removeItem('user');
-                              setIsLoggedIn(false);
-                              setUser(null);
-                              setAccountDropdownOpen(false);
-                              window.location.href = '/login';
+                               setIsLoggedIn(false);
+                               setUser(null);
+                               setAccountDropdownOpen(false);
+                               safeNavigate('/login');
                             }}
                             className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors w-full text-left"
                           >
@@ -572,8 +599,8 @@ export default function Navbar() {
                                   e.preventDefault();
                                   setActiveDropdown(null);
                                   setIsOpen(false);
-                                  // Navigate manually to ensure it works
-                                  window.location.href = subItem.href;
+                                   // Navigate safely to ensure it works
+                                   safeNavigate(subItem.href);
                                 }}
                               >
                                 <div className="text-primary flex-shrink-0">
@@ -604,8 +631,8 @@ export default function Navbar() {
                         onClick={(e) => {
                           e.preventDefault();
                           setIsOpen(false);
-                          // Navigate manually to ensure it works
-                          window.location.href = item.href;
+                           // Navigate safely to ensure it works
+                           safeNavigate(item.href);
                         }}
                       >
                         {item.name}
@@ -621,14 +648,14 @@ export default function Navbar() {
                    <div className="px-4 py-3">
                      <div className="flex items-center gap-3 mb-3">
                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                         <span className="text-white font-bold text-sm">
-                            {user?.username ? user.username.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
-                          </span>
+                          <span className="text-white font-bold text-sm">
+                             {user?.username ? sanitizeText(user.username).charAt(0).toUpperCase() : sanitizeText(user?.email || '').charAt(0).toUpperCase() || 'U'}
+                           </span>
                         </div>
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">{user?.username || user?.email}</div>
-                          <div className="text-xs text-gray-500">{user?.email}</div>
-                       </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">{sanitizeText(user?.username || user?.email || '')}</div>
+                            <div className="text-xs text-gray-500">{sanitizeText(user?.email || '')}</div>
+                         </div>
                      </div>
                      <button
                        onClick={() => {
@@ -637,9 +664,9 @@ export default function Navbar() {
                          localStorage.removeItem('idToken');
                          localStorage.removeItem('user');
                          setIsLoggedIn(false);
-                         setUser(null);
-                         setAccountDropdownOpen(false);
-                         window.location.href = '/login';
+                          setUser(null);
+                          setAccountDropdownOpen(false);
+                          safeNavigate('/login');
                        }}
                        className="w-full text-center p-3 text-base font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-all duration-200 rounded-xl touch-manipulation active:scale-[0.98]"
                      >

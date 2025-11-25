@@ -28,6 +28,10 @@ import {
 } from 'lucide-react';
 
 export default function HomePage() {
+  // Security: Sanitize text content for future dynamic data
+  // const sanitizeText = (text: string): string => {
+  //   return text.replace(/[<>'"&]/g, '');
+  // };
   return (
     <div className="min-h-screen bg-black text-white">
       {/* HERO SECTION */}
