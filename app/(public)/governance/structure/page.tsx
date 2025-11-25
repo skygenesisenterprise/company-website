@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { 
   Users, 
@@ -20,181 +19,6 @@ import {
   UserCheck,
   BarChart3
 } from 'lucide-react';
-import OrganizationalStructure from '../../components/organizational-structure';
-
-interface OrgNode {
-  id: string;
-  name: string;
-  title: string;
-  description: string;
-  children?: OrgNode[];
-  icon?: React.ReactNode;
-}
-
-interface CommitteeMember {
-  name: string;
-  title: string;
-  bio: string;
-  expertise: string[];
-  avatar?: string;
-}
-
-interface Committee {
-  name: string;
-  description: string;
-  responsibilities: string[];
-  members: CommitteeMember[];
-  icon: React.ReactNode;
-  color: string;
-}
-
-const organizationalChart: OrgNode = {
-  id: 'board',
-  name: 'Board of Directors',
-  title: 'Strategic Oversight',
-  description: 'Provides strategic direction and governance oversight',
-  icon: <Users className="w-6 h-6" />,
-  children: [
-    {
-      id: 'ceo',
-      name: 'CEO Office',
-      title: 'Executive Leadership',
-      description: 'Operational management and strategic execution',
-      icon: <Building className="w-6 h-6" />,
-      children: [
-        {
-          id: 'cto',
-          name: 'CTO Office',
-          title: 'Technology & Innovation',
-          description: 'Technology strategy and R&D oversight',
-          icon: <Cpu className="w-6 h-6" />
-        },
-        {
-          id: 'cso',
-          name: 'CSO Office',
-          title: 'Security & Compliance',
-          description: 'Security governance and risk management',
-          icon: <Shield className="w-6 h-6" />
-        },
-        {
-          id: 'coo',
-          name: 'COO Office',
-          title: 'Operations & Infrastructure',
-          description: 'Operational excellence and infrastructure',
-          icon: <Database className="w-6 h-6" />
-        }
-      ]
-    }
-  ]
-};
-
-const committees: Committee[] = [
-  {
-    name: 'Technical Committee',
-    description: 'Oversees technical architecture, standards, and innovation initiatives',
-    responsibilities: [
-      'Technical architecture review',
-      'Open-source strategy',
-      'Technology standards compliance',
-      'Innovation roadmap development'
-    ],
-    icon: <Cpu className="w-6 h-6" />,
-    color: 'blue',
-    members: [
-      {
-        name: 'Dr. Sarah Chen',
-        title: 'Chief Technology Officer',
-        bio: '15+ years in enterprise architecture and distributed systems',
-        expertise: ['Cloud Architecture', 'Microservices', 'DevOps']
-      },
-      {
-        name: 'Marcus Weber',
-        title: 'Head of Engineering',
-        bio: 'Expert in scalable systems and open-source contributions',
-        expertise: ['System Design', 'Performance', 'Open Source']
-      }
-    ]
-  },
-  {
-    name: 'Security & Compliance Committee',
-    description: 'Ensures security standards, regulatory compliance, and risk management',
-    responsibilities: [
-      'Security policy development',
-      'Compliance monitoring',
-      'Risk assessment',
-      'Audit coordination'
-    ],
-    icon: <Shield className="w-6 h-6" />,
-    color: 'green',
-    members: [
-      {
-        name: 'Elena Rodriguez',
-        title: 'Chief Security Officer',
-        bio: 'Former cybersecurity consultant with Fortune 500 experience',
-        expertise: ['Zero Trust', 'GDPR', 'ISO 27001']
-      },
-      {
-        name: 'James Mitchell',
-        title: 'Compliance Director',
-        bio: 'Specialist in international data protection regulations',
-        expertise: ['GDPR', 'SOC 2', 'Risk Management']
-      }
-    ]
-  },
-  {
-    name: 'Research & Innovation Committee',
-    description: 'Drives research initiatives and evaluates emerging technologies',
-    responsibilities: [
-      'Research strategy development',
-      'Innovation pipeline management',
-      'Technology scouting',
-      'Academic partnerships'
-    ],
-    icon: <Target className="w-6 h-6" />,
-    color: 'purple',
-    members: [
-      {
-        name: 'Prof. David Kumar',
-        title: 'Head of Research',
-        bio: 'Academic background in AI and distributed systems',
-        expertise: ['AI/ML', 'Research', 'Innovation']
-      },
-      {
-        name: 'Lisa Zhang',
-        title: 'Innovation Director',
-        bio: 'Expert in emerging technologies and market analysis',
-        expertise: ['Blockchain', 'IoT', 'Market Analysis']
-      }
-    ]
-  }
-];
-
-const decisionProcess = [
-  {
-    step: 1,
-    title: 'Strategic Planning',
-    description: 'Board defines strategic objectives and KPIs',
-    icon: <Target className="w-6 h-6" />
-  },
-  {
-    step: 2,
-    title: 'Committee Review',
-    description: 'Technical, security, and innovation committees evaluate proposals',
-    icon: <Users className="w-6 h-6" />
-  },
-  {
-    step: 3,
-    title: 'Executive Approval',
-    description: 'CEO office reviews and approves implementation plans',
-    icon: <CheckCircle className="w-6 h-6" />
-  },
-  {
-    step: 4,
-    title: 'Division Execution',
-    description: 'Product divisions implement with oversight and reporting',
-    icon: <GitBranch className="w-6 h-6" />
-  }
-];
 
 const governanceStats = [
   {
@@ -224,54 +48,6 @@ const governanceStats = [
 ];
 
 export default function GovernanceStructurePage() {
-  const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [expandedCommittee, setExpandedCommittee] = useState<string | null>(null);
-
-  const renderOrgNode = (node: OrgNode, level: number = 0) => {
-    const isSelected = selectedNode === node.id;
-    const hasChildren = node.children && node.children.length > 0;
-
-    return (
-      <div key={node.id} className={`${level > 0 ? 'ml-8' : ''}`}>
-        <div
-          className={`bg-gray-900/50 border rounded-xl p-4 mb-4 cursor-pointer transition-all duration-300 ${
-            isSelected 
-              ? 'border-blue-500 bg-blue-500/10' 
-              : 'border-gray-800 hover:border-gray-700 hover:bg-gray-800/50'
-          }`}
-          onClick={() => setSelectedNode(isSelected ? null : node.id)}
-        >
-          <div className="flex items-center space-x-3">
-            {node.icon && (
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                isSelected ? 'bg-blue-500/20' : 'bg-gray-800'
-              }`}>
-                <div className={isSelected ? 'text-blue-400' : 'text-gray-400'}>
-                  {node.icon}
-                </div>
-              </div>
-            )}
-            <div className="flex-1">
-              <h3 className="font-semibold text-white">{node.name}</h3>
-              <p className="text-sm text-gray-400">{node.title}</p>
-              <p className="text-xs text-gray-500 mt-1">{node.description}</p>
-            </div>
-            {hasChildren && (
-              <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${
-                isSelected ? 'rotate-90' : ''
-              }`} />
-            )}
-          </div>
-        </div>
-        
-        {isSelected && hasChildren && (
-          <div className="mt-4 space-y-2 animate-in slide-in-from-top-2 duration-300">
-            {node.children?.map(child => renderOrgNode(child, level + 1))}
-          </div>
-        )}
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -334,204 +110,477 @@ export default function GovernanceStructurePage() {
         </div>
       </section>
 
-      {/* ORGANIZATIONAL CHART */}
-      <section className="py-20 border-t border-gray-800">
+      {/* PRÉSENTATION GÉNÉRALE DE LA STRUCTURE ORGANISATIONNELLE */}
+      <section className="py-20 border-t border-gray-800 bg-gray-900/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Organizational Chart</h2>
-              <p className="text-gray-400 text-lg">
-                Interactive hierarchical structure showing leadership and reporting lines
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Organizational Philosophy</h2>
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+                A structured approach to governance that balances strategic oversight with operational agility, 
+                ensuring accountability while fostering innovation across all enterprise divisions.
               </p>
             </div>
             
-            <div className="max-w-4xl mx-auto">
-              {renderOrgNode(organizationalChart)}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* LEADERSHIP & COMMITTEES */}
-      <section className="py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Leadership & Committees</h2>
-              <p className="text-gray-400 text-lg">
-                Specialized committees providing expert oversight and strategic guidance
-              </p>
-            </div>
-            
-            <div className="space-y-8">
-              {committees.map((committee) => (
-                <div key={committee.name} className="bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden">
-                  <button
-                    onClick={() => setExpandedCommittee(expandedCommittee === committee.name ? null : committee.name)}
-                    className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-800/50 transition-colors"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                        committee.color === 'blue' ? 'bg-blue-500/20' :
-                        committee.color === 'green' ? 'bg-green-500/20' :
-                        'bg-purple-500/20'
-                      }`}>
-                        <div className={
-                          committee.color === 'blue' ? 'text-blue-400' :
-                          committee.color === 'green' ? 'text-green-400' :
-                          'text-purple-400'
-                        }>
-                          {committee.icon}
-                        </div>
-                      </div>
-                      <div className="text-left">
-                        <h3 className="text-xl font-semibold">{committee.name}</h3>
-                        <p className="text-gray-400 text-sm">{committee.description}</p>
-                      </div>
-                    </div>
-                    <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${
-                      expandedCommittee === committee.name ? 'rotate-90' : ''
-                    }`} />
-                  </button>
-                  
-                  {expandedCommittee === committee.name && (
-                    <div className="border-t border-gray-800 p-6">
-                      <div className="grid md:grid-cols-2 gap-8">
-                        <div>
-                          <h4 className="font-semibold mb-4 text-white">Responsibilities</h4>
-                          <ul className="space-y-2">
-                            {committee.responsibilities.map((responsibility, index) => (
-                              <li key={index} className="flex items-center space-x-2">
-                                <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                                <span className="text-gray-300 text-sm">{responsibility}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <h4 className="font-semibold mb-4 text-white">Key Members</h4>
-                          <div className="space-y-4">
-                            {committee.members.map((member, index) => (
-                              <div key={index} className="bg-gray-800/50 rounded-lg p-3">
-                                <div className="flex items-center space-x-3">
-                                  <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                                    <UserCheck className="w-5 h-5 text-gray-400" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <h5 className="font-medium text-white text-sm">{member.name}</h5>
-                                    <p className="text-xs text-gray-400">{member.title}</p>
-                                    <p className="text-xs text-gray-500 mt-1">{member.bio}</p>
-                                    <div className="flex flex-wrap gap-1 mt-2">
-                                      {member.expertise.map((skill, skillIndex) => (
-                                        <span key={skillIndex} className="text-xs bg-gray-700 px-2 py-1 rounded">
-                                          {skill}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-white">Governance Excellence</h3>
+                <div className="space-y-4">
+                  <p className="text-gray-300 leading-relaxed">
+                    Sky Genesis Enterprise operates under a decentralized governance model that empowers 
+                    autonomous business units while maintaining centralized strategic oversight. This approach 
+                    enables rapid decision-making at the operational level while ensuring alignment with 
+                    corporate objectives and regulatory requirements.
+                  </p>
+                  <p className="text-gray-300 leading-relaxed">
+                    Our governance framework is built on three core pillars: transparency in decision-making, 
+                    accountability at all levels, and adaptability to market changes. Each subsidiary maintains 
+                    operational independence within defined governance boundaries, reporting through established 
+                    channels to the executive leadership team.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DECISION-MAKING PROCESS */}
-      <section className="py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Decision-Making Process</h2>
-              <p className="text-gray-400 text-lg">
-                Transparent flow from strategic planning to execution with oversight
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-4 gap-6">
-              {decisionProcess.map((step, index) => (
-                <div key={step.step} className="relative">
-                  {index < decisionProcess.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-gray-700 to-transparent"></div>
-                  )}
-                  
-                  <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-colors">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                        <div className="text-blue-400">{step.icon}</div>
-                      </div>
-                      <div className="text-2xl font-bold text-gray-600">{step.step}</div>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-8">
+                <h4 className="text-xl font-semibold mb-6 text-white">Core Governance Principles</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Target className="w-4 h-4 text-blue-400" />
                     </div>
-                    
-                    <h3 className="font-semibold text-white mb-2">{step.title}</h3>
-                    <p className="text-gray-400 text-sm">{step.description}</p>
+                    <div>
+                      <h5 className="font-semibold text-white mb-1">Strategic Alignment</h5>
+                      <p className="text-gray-400 text-sm">All operations aligned with corporate vision and stakeholder interests</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Shield className="w-4 h-4 text-green-400" />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-white mb-1">Risk Management</h5>
+                      <p className="text-gray-400 text-sm">Proactive identification and mitigation of enterprise risks</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Users className="w-4 h-4 text-purple-400" />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-white mb-1">Stakeholder Focus</h5>
+                      <p className="text-gray-400 text-sm">Balanced consideration of all stakeholder interests</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <TrendingUp className="w-4 h-4 text-orange-400" />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-white mb-1">Continuous Improvement</h5>
+                      <p className="text-gray-400 text-sm">Regular review and enhancement of governance processes</p>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* POLICIES & STANDARDS */}
+      {/* ORGANIGRAMME / DIAGRAMME STRUCTUREL */}
       <section className="py-20 border-t border-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Policies & Standards</h2>
-              <p className="text-gray-400 text-lg">
-                Governance guidelines, security policies, and compliance frameworks
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Corporate Structure</h2>
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+                Hierarchical representation of our organizational entities, reporting lines, and governance relationships
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 mb-12">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full">
+                  <Building className="w-5 h-5 text-blue-400 mr-2" />
+                  <span className="text-blue-400 font-semibold">Sky Genesis Enterprise Group</span>
+                </div>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 text-center">
+                  <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Board of Directors</h3>
+                  <p className="text-gray-400 text-sm mb-4">Strategic oversight and governance</p>
+                  <div className="text-xs text-gray-500">12 Members • 4 Committees</div>
+                </div>
+                
+                <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 text-center">
+                  <div className="w-16 h-16 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Building className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Executive Leadership</h3>
+                  <p className="text-gray-400 text-sm mb-4">CEO Office & C-Suite</p>
+                  <div className="text-xs text-gray-500">CEO, CTO, CSO, COO, CFO</div>
+                </div>
+                
+                <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 text-center">
+                  <div className="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <GitBranch className="w-8 h-8 text-purple-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Business Divisions</h3>
+                  <p className="text-gray-400 text-sm mb-4">Autonomous operating units</p>
+                  <div className="text-xs text-gray-500">6 Major Divisions</div>
+                </div>
+              </div>
+              
+              <div className="border-t border-gray-700 pt-8">
+                <h4 className="text-xl font-semibold text-white mb-6 text-center">Specialized Committees</h4>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 text-center">
+                    <Cpu className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                    <h5 className="text-sm font-medium text-white">Technical Committee</h5>
+                    <p className="text-xs text-gray-400 mt-1">Architecture & Innovation</p>
+                  </div>
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 text-center">
+                    <Shield className="w-6 h-6 text-green-400 mx-auto mb-2" />
+                    <h5 className="text-sm font-medium text-white">Security Committee</h5>
+                    <p className="text-xs text-gray-400 mt-1">Risk & Compliance</p>
+                  </div>
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 text-center">
+                    <Target className="w-6 h-6 text-purple-400 mx-auto mb-2" />
+                    <h5 className="text-sm font-medium text-white">Research Committee</h5>
+                    <p className="text-xs text-gray-400 mt-1">Innovation & R&D</p>
+                  </div>
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 text-center">
+                    <FileText className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+                    <h5 className="text-sm font-medium text-white">Audit Committee</h5>
+                    <p className="text-xs text-gray-400 mt-1">Financial Oversight</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GROUP ENTITIES ET FILIALES */}
+      <section className="py-20 border-t border-gray-800 bg-gray-900/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Group Entities & Subsidiaries</h2>
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+                Our diverse portfolio of specialized business units, each operating with strategic autonomy 
+                while contributing to the collective strength of Sky Genesis Enterprise.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all group">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                    <Database className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <span className="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded-full">Financial Services</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">Vaelix Bank</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Digital banking and financial services platform providing innovative solutions for modern banking needs.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Founded: 2021</span>
+                  <span>Employees: 250+</span>
+                </div>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all group">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                    <Cpu className="w-6 h-6 text-green-400" />
+                  </div>
+                  <span className="text-xs bg-green-500/10 text-green-400 px-2 py-1 rounded-full">Cloud Infrastructure</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">Zenth Cloud</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Enterprise cloud computing services with focus on scalability, security, and performance optimization.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Founded: 2020</span>
+                  <span>Employees: 180+</span>
+                </div>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all group">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                    <Users className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-1 rounded-full">Digital Community</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-400 transition-colors">Astron Collection</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Premium digital community platform and Discord ecosystem for exclusive content and experiences.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Founded: 2022</span>
+                  <span>Members: 50K+</span>
+                </div>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all group">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                    <Target className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <span className="text-xs bg-orange-500/10 text-orange-400 px-2 py-1 rounded-full">Aerospace</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-400 transition-colors">Aerospace Division</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Advanced aerospace technology development and satellite communication systems.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Founded: 2019</span>
+                  <span>Employees: 120+</span>
+                </div>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all group">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+                    <GitBranch className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <span className="text-xs bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded-full">Logistics</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">Logistics Network</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Global supply chain management and logistics optimization solutions for enterprise clients.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Founded: 2020</span>
+                  <span>Employees: 200+</span>
+                </div>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all group">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center">
+                    <Award className="w-6 h-6 text-indigo-400" />
+                  </div>
+                  <span className="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-full">Innovation Lab</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors">R&D Division</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                    Research and development division focused on emerging technologies and breakthrough innovations.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Founded: 2018</span>
+                  <span>Researchers: 80+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CADRE DÉCISIONNEL */}
+      <section className="py-20 border-t border-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Decision-Making Framework</h2>
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+                Structured approach to organizational decision-making ensuring transparency, accountability, 
+                and strategic alignment across all levels of the enterprise.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-12 mb-16">
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-white">Governance Levels</h3>
+                <div className="space-y-6">
+                  <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+                    <div className="flex items-center space-x-4 mb-3">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <span className="text-blue-400 font-bold">1</span>
+                      </div>
+                      <h4 className="text-lg font-semibold text-white">Strategic Level</h4>
+                    </div>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Board of Directors and Executive Committee define long-term strategy, major investments, 
+                      and corporate governance policies.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded">Annual Planning</span>
+                      <span className="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded">Major Investments</span>
+                      <span className="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded">Policy Setting</span>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+                    <div className="flex items-center space-x-4 mb-3">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                        <span className="text-green-400 font-bold">2</span>
+                      </div>
+                      <h4 className="text-lg font-semibold text-white">Tactical Level</h4>
+                    </div>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Division leadership and specialized committees oversee operational strategies, resource allocation, 
+                      and cross-functional coordination.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs bg-green-500/10 text-green-400 px-2 py-1 rounded">Quarterly Reviews</span>
+                      <span className="text-xs bg-green-500/10 text-green-400 px-2 py-1 rounded">Budget Management</span>
+                      <span className="text-xs bg-green-500/10 text-green-400 px-2 py-1 rounded">Resource Planning</span>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+                    <div className="flex items-center space-x-4 mb-3">
+                      <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                        <span className="text-purple-400 font-bold">3</span>
+                      </div>
+                      <h4 className="text-lg font-semibold text-white">Operational Level</h4>
+                    </div>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Business unit management handles day-to-day operations, team leadership, and implementation 
+                      of strategic initiatives.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-1 rounded">Daily Operations</span>
+                      <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-1 rounded">Team Management</span>
+                      <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-1 rounded">Project Execution</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-white">Decision Processes</h3>
+                <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-8">
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <FileText className="w-4 h-4 text-orange-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-2">Proposal Development</h4>
+                        <p className="text-gray-400 text-sm">
+                          Initiatives are developed with clear objectives, risk assessments, and resource requirements.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Users className="w-4 h-4 text-blue-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-2">Stakeholder Consultation</h4>
+                        <p className="text-gray-400 text-sm">
+                          Relevant stakeholders review and provide input on proposals within their domains.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-2">Committee Review</h4>
+                        <p className="text-gray-400 text-sm">
+                          Specialized committees evaluate proposals against strategic objectives and compliance requirements.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Target className="w-4 h-4 text-purple-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-2">Executive Approval</h4>
+                        <p className="text-gray-400 text-sm">
+                          Final approval by appropriate authority level based on impact and resource requirements.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <TrendingUp className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-2">Implementation & Monitoring</h4>
+                        <p className="text-gray-400 text-sm">
+                          Execution with defined KPIs and regular progress reporting to governance bodies.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NAVIGATION VERS AUTRES PAGES GOVERNANCE */}
+      <section className="py-20 border-t border-gray-800 bg-gray-900/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Governance Ecosystem</h2>
+              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+                Explore our comprehensive governance framework across all organizational domains and regulatory areas.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Link 
+                href="/governance/board"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-400 transition-colors">
+                      Governance Board
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Board composition, committees, and leadership oversight structures
+                    </p>
+                    <span className="text-blue-400 text-sm font-medium flex items-center">
+                      Explore Board <ChevronRight className="w-4 h-4 ml-1" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+              
               <Link 
                 href="/governance/policies"
                 className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-400 transition-colors">
-                      Governance Guidelines
-                    </h3>
-                    <p className="text-gray-400 text-sm mb-3">
-                      Internal governance policies and procedures
-                    </p>
-                    <span className="text-blue-400 text-sm font-medium flex items-center">
-                      View Guidelines <ArrowRight className="w-4 h-4 ml-1" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-              
-              <Link 
-                href="/governance/compliance"
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-5 h-5 text-green-400" />
+                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-6 h-6 text-green-400" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-2 group-hover:text-green-400 transition-colors">
-                      Security Policies
+                      Policies & Procedures
                     </h3>
                     <p className="text-gray-400 text-sm mb-3">
-                      Security frameworks and compliance standards
+                      Comprehensive governance policies and operational procedures
                     </p>
                     <span className="text-green-400 text-sm font-medium flex items-center">
-                      View Policies <ArrowRight className="w-4 h-4 ml-1" />
+                      View Policies <ChevronRight className="w-4 h-4 ml-1" />
                     </span>
                   </div>
                 </div>
@@ -542,77 +591,88 @@ export default function GovernanceStructurePage() {
                 className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Award className="w-5 h-5 text-purple-400" />
+                  <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-6 h-6 text-purple-400" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-2 group-hover:text-purple-400 transition-colors">
-                      Compliance Audits
+                      Compliance & Standards
                     </h3>
                     <p className="text-gray-400 text-sm mb-3">
-                      ISO standards and audit reports
+                      Regulatory compliance and international certification standards
                     </p>
                     <span className="text-purple-400 text-sm font-medium flex items-center">
-                      View Audits <ArrowRight className="w-4 h-4 ml-1" />
+                      Check Compliance <ChevronRight className="w-4 h-4 ml-1" />
                     </span>
                   </div>
                 </div>
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ORGANIZATIONAL STRUCTURE SECTION */}
-      <OrganizationalStructure />
-
-      {/* ORGANIZATIONAL KPIs */}
-      <section className="py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Organizational Metrics</h2>
-              <p className="text-gray-400 text-lg">
-                Key performance indicators showing governance effectiveness
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <BarChart3 className="w-6 h-6 text-blue-400" />
-                </div>
-                <div className="text-3xl font-bold text-white mb-2">98%</div>
-                <div className="text-gray-400 mb-1">Decision Efficiency</div>
-                <div className="text-xs text-gray-500">Average time to strategic decision</div>
-              </div>
               
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-6 h-6 text-green-400" />
+              <Link 
+                href="/license"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Award className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold mb-2 group-hover:text-orange-400 transition-colors">
+                      License & Legal
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Enterprise licensing, legal documentation, and certifications
+                    </p>
+                    <span className="text-orange-400 text-sm font-medium flex items-center">
+                      View Licenses <ChevronRight className="w-4 h-4 ml-1" />
+                    </span>
+                  </div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">100%</div>
-                <div className="text-gray-400 mb-1">Compliance Rate</div>
-                <div className="text-xs text-gray-500">ISO and regulatory compliance</div>
-              </div>
+              </Link>
               
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-6 h-6 text-purple-400" />
+              <Link 
+                href="/company/subsidiaries"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Building className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold mb-2 group-hover:text-cyan-400 transition-colors">
+                      Subsidiaries
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Detailed information about our subsidiary companies and divisions
+                    </p>
+                    <span className="text-cyan-400 text-sm font-medium flex items-center">
+                      Explore Entities <ChevronRight className="w-4 h-4 ml-1" />
+                    </span>
+                  </div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">24</div>
-                <div className="text-gray-400 mb-1">Audits Completed</div>
-                <div className="text-xs text-gray-500">This year with zero findings</div>
-              </div>
+              </Link>
               
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-yellow-400" />
+              <Link 
+                href="/company/about"
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all hover:scale-[1.02] group"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Eye className="w-6 h-6 text-indigo-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold mb-2 group-hover:text-indigo-400 transition-colors">
+                      About Us
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-3">
+                      Company overview, mission, and corporate information
+                    </p>
+                    <span className="text-indigo-400 text-sm font-medium flex items-center">
+                      Learn More <ChevronRight className="w-4 h-4 ml-1" />
+                    </span>
+                  </div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">500+</div>
-                <div className="text-gray-400 mb-1">Governance Training</div>
-                <div className="text-xs text-gray-500">Employees certified annually</div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
