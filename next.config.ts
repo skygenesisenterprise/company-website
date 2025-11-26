@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   // Standalone output for containerized deployments
-  // output: 'standalone',
+  output: 'standalone',
 
   // Image optimization settings
   images: {
