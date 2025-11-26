@@ -1,7 +1,7 @@
 "use client";
 
-import { AuthProvider } from "../(public)/context/JwtAuthContext";
-import { Toaster } from "../(public)/components/ui/toaster";
+import { AuthProvider } from "../context/JwtAuthContext";
+import { Toaster } from "../components/ui/toaster";
 
 export default function LoginLayout({
   children,

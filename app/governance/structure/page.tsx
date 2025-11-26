@@ -5,7 +5,6 @@ import {
   Users, 
   Shield, 
   ChevronRight, 
-  ArrowRight, 
   Building, 
   Eye, 
   CheckCircle, 
@@ -15,9 +14,7 @@ import {
   Target,
   GitBranch,
   Database,
-  Cpu,
-  UserCheck,
-  BarChart3
+  Cpu
 } from 'lucide-react';
 
 const governanceStats = [
