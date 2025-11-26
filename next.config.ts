@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   // Standalone output for containerized deployments
   output: 'standalone',
 
+  // Configure hostname for containerized environments
+  hostname: '0.0.0.0',
+
   // Image optimization settings
   images: {
     // Add domains if using external images
