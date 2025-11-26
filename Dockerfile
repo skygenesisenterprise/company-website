@@ -23,9 +23,9 @@ RUN pnpm run build
 # Production stage
 FROM node:18-alpine AS production
 
-# Install pnpm, Prisma CLI and system dependencies
-RUN npm install -g pnpm prisma
-RUN apk add --no-cache postgresql-client openssl-dev
+# Install pnpm and system dependencies
+RUN npm install -g pnpm
+RUN apk add --no-cache openssl-dev
 
 # Set working directory
 WORKDIR /app
@@ -67,5 +67,5 @@ ENV HEALTH_PATH=/home
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD node -e "const http = require('http'); const checkPath = process.env.HEALTH_PATH || '/home'; const req = http.get('http://localhost:3000' + checkPath, (res) => { process.exit(res.statusCode < 400 ? 0 : 1); }); req.on('error', () => process.exit(1)); req.setTimeout(5000, () => { req.destroy(); process.exit(1); });"
 
-# Run database migrations and start both services
-CMD ["sh", "-c", "npx prisma db push && pnpm start & pnpm run start:backend"]
+# Start both services
+CMD ["sh", "-c", "pnpm start & pnpm run start:backend"]
