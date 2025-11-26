@@ -13,8 +13,7 @@ RUN echo "* hard nofile 65536" >> /etc/security/limits.conf
 RUN echo "root soft nofile 65536" >> /etc/security/limits.conf
 RUN echo "root hard nofile 65536" >> /etc/security/limits.conf
 
-# Set kernel parameters for better file handling
-RUN sysctl -w fs.file-max=2097152
+# Set kernel parameters for better file handling (only for runtime, not build)
 RUN echo "fs.file-max=2097152" >> /etc/sysctl.conf
 
 # Set working directory
@@ -47,8 +46,7 @@ RUN echo "* hard nofile 65536" >> /etc/security/limits.conf
 RUN echo "root soft nofile 65536" >> /etc/security/limits.conf
 RUN echo "root hard nofile 65536" >> /etc/security/limits.conf
 
-# Set kernel parameters for better file handling
-RUN sysctl -w fs.file-max=2097152
+# Set kernel parameters for better file handling (only for runtime, not build)
 RUN echo "fs.file-max=2097152" >> /etc/sysctl.conf
 
 # Set working directory
