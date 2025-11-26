@@ -33,8 +33,8 @@ WORKDIR /app
 # Copy package files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install only production dependencies (excluding backend dev dependencies)
-RUN pnpm install --no-frozen-lockfile --prod --filter=!@types/express --filter=!@types/body-parser
+# Install only production dependencies
+RUN pnpm install --no-frozen-lockfile --prod
 
 # Copy built application from base stage
 COPY --from=base /app/.next ./.next
