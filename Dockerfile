@@ -14,12 +14,6 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 # Install all dependencies (including dev for build)
 RUN pnpm install --no-frozen-lockfile
 
-# Copy Prisma schema first
-COPY prisma ./prisma/
-
-# Generate Prisma client (will be used during build)
-RUN npx prisma generate
-
 # Copy source code
 COPY . .
 
@@ -41,11 +35,6 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install only production dependencies
 RUN pnpm install --no-frozen-lockfile --prod
-
-# Copy Prisma schema and generated client from base stage
-COPY --from=base /app/prisma ./prisma/
-COPY --from=base /app/node_modules/.prisma ./node_modules/.prisma/
-COPY --from=base /app/node_modules/@prisma ./node_modules/@prisma/
 
 # Copy built application from base stage
 COPY --from=base /app/.next ./.next
@@ -73,7 +62,6 @@ ENV PORT=3000
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV ENVIRONMENT=production
 ENV HEALTH_PATH=/home
-ENV PRISMA_GENERATE_DATAPROXY=false
 
 # Health check with better error handling
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
