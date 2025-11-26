@@ -33,14 +33,13 @@ WORKDIR /app
 # Copy package files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install only production dependencies
-RUN pnpm install --no-frozen-lockfile --prod
+# Install only production dependencies (excluding backend dev dependencies)
+RUN pnpm install --no-frozen-lockfile --prod --filter=!@types/express --filter=!@types/body-parser
 
 # Copy built application from base stage
 COPY --from=base /app/.next ./.next
 COPY --from=base /app/public ./public
 COPY --from=base /app/next.config.ts ./
-COPY --from=base /app/api ./api
 COPY --from=base /app/tsconfig.json ./
 
 # Create non-root user
@@ -63,9 +62,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV ENVIRONMENT=production
 ENV HEALTH_PATH=/home
 
-# Health check with better error handling
+# Health check for frontend only
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD node -e "const http = require('http'); const checkPath = process.env.HEALTH_PATH || '/home'; const req = http.get('http://localhost:3000' + checkPath, (res) => { process.exit(res.statusCode < 400 ? 0 : 1); }); req.on('error', () => process.exit(1)); req.setTimeout(5000, () => { req.destroy(); process.exit(1); });"
 
-# Start both services and keep container running
-CMD ["sh", "-c", "pnpm start & pnpm run start:backend & wait"]
+# Start only frontend service
+CMD ["pnpm", "start"]
