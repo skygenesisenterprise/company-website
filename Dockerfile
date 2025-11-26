@@ -67,5 +67,5 @@ ENV HEALTH_PATH=/home
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD node -e "const http = require('http'); const checkPath = process.env.HEALTH_PATH || '/home'; const req = http.get('http://localhost:3000' + checkPath, (res) => { process.exit(res.statusCode < 400 ? 0 : 1); }); req.on('error', () => process.exit(1)); req.setTimeout(5000, () => { req.destroy(); process.exit(1); });"
 
-# Start both services
-CMD ["sh", "-c", "pnpm start & pnpm run start:backend"]
+# Start both services and keep container running
+CMD ["sh", "-c", "pnpm start & pnpm run start:backend & wait"]
