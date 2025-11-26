@@ -6,6 +6,8 @@ RUN npm install -g pnpm
 RUN apk add --no-cache openssl-dev
 
 # Configure system limits to prevent "Too many open files" error
+# Create limits.conf directory and file for Alpine
+RUN mkdir -p /etc/security
 RUN echo "* soft nofile 65536" >> /etc/security/limits.conf
 RUN echo "* hard nofile 65536" >> /etc/security/limits.conf
 RUN echo "root soft nofile 65536" >> /etc/security/limits.conf
@@ -38,6 +40,8 @@ RUN npm install -g pnpm
 RUN apk add --no-cache openssl-dev
 
 # Configure system limits to prevent "Too many open files" error
+# Create limits.conf directory and file for Alpine
+RUN mkdir -p /etc/security
 RUN echo "* soft nofile 65536" >> /etc/security/limits.conf
 RUN echo "* hard nofile 65536" >> /etc/security/limits.conf
 RUN echo "root soft nofile 65536" >> /etc/security/limits.conf
