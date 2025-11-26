@@ -5,6 +5,16 @@ FROM node:18-alpine AS base
 RUN npm install -g pnpm
 RUN apk add --no-cache openssl-dev
 
+# Configure system limits to prevent "Too many open files" error
+RUN echo "* soft nofile 65536" >> /etc/security/limits.conf
+RUN echo "* hard nofile 65536" >> /etc/security/limits.conf
+RUN echo "root soft nofile 65536" >> /etc/security/limits.conf
+RUN echo "root hard nofile 65536" >> /etc/security/limits.conf
+
+# Set kernel parameters for better file handling
+RUN sysctl -w fs.file-max=2097152
+RUN echo "fs.file-max=2097152" >> /etc/sysctl.conf
+
 # Set working directory
 WORKDIR /app
 
@@ -12,7 +22,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install all dependencies (including dev for build)
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Copy source code
 COPY . .
@@ -27,6 +37,16 @@ FROM node:18-alpine AS production
 RUN npm install -g pnpm
 RUN apk add --no-cache openssl-dev
 
+# Configure system limits to prevent "Too many open files" error
+RUN echo "* soft nofile 65536" >> /etc/security/limits.conf
+RUN echo "* hard nofile 65536" >> /etc/security/limits.conf
+RUN echo "root soft nofile 65536" >> /etc/security/limits.conf
+RUN echo "root hard nofile 65536" >> /etc/security/limits.conf
+
+# Set kernel parameters for better file handling
+RUN sysctl -w fs.file-max=2097152
+RUN echo "fs.file-max=2097152" >> /etc/sysctl.conf
+
 # Set working directory
 WORKDIR /app
 
@@ -34,17 +54,20 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install only production dependencies
-RUN pnpm install --no-frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile --prod
 
 # Copy built application from base stage
-COPY --from=base /app/.next ./.next
+COPY --from=base /app/.next/standalone ./
+COPY --from=base /app/.next/static ./.next/static
 COPY --from=base /app/public ./public
-COPY --from=base /app/next.config.ts ./
-COPY --from=base /app/tsconfig.json ./
 
-# Create non-root user
+# Create non-root user with proper limits
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
+
+# Set user-specific limits
+RUN echo "nextjs soft nofile 65536" >> /etc/security/limits.conf
+RUN echo "nextjs hard nofile 65536" >> /etc/security/limits.conf
 
 # Change ownership of the app directory
 RUN chown -R nextjs:nodejs /app
@@ -66,5 +89,5 @@ ENV HEALTH_PATH=/home
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD node -e "const http = require('http'); const checkPath = process.env.HEALTH_PATH || '/home'; const req = http.get('http://localhost:3000' + checkPath, (res) => { process.exit(res.statusCode < 400 ? 0 : 1); }); req.on('error', () => process.exit(1)); req.setTimeout(5000, () => { req.destroy(); process.exit(1); });"
 
-# Start only frontend service
-CMD ["pnpm", "start"]
+# Start the standalone server
+CMD ["node", "server.js"]

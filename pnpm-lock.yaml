@@ -29,6 +29,12 @@ importers:
       '@types/bcryptjs':
         specifier: ^3.0.0
         version: 3.0.0
+      '@types/body-parser':
+        specifier: ^1.19.6
+        version: 1.19.6
+      '@types/express':
+        specifier: ^5.0.5
+        version: 5.0.5
       '@types/jsonwebtoken':
         specifier: ^9.0.10
         version: 9.0.10
@@ -39,7 +45,7 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       body-parser:
-        specifier: ^2.2.1
+        specifier: ^2.2.0
         version: 2.2.1
       class-variance-authority:
         specifier: ^0.7.1
@@ -96,15 +102,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.1.17
         version: 4.1.17
-      '@types/body-parser':
-        specifier: ^1.19.6
-        version: 1.19.6
       '@types/dotenv':
         specifier: 6.1.1
         version: 6.1.1
-      '@types/express':
-        specifier: ^5.0.5
-        version: 5.0.5
       '@types/node':
         specifier: 24.7.0
         version: 24.7.0
