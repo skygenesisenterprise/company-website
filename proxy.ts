@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { requiresAuthentication } from './app/lib/navigation-config';
+import { requiresAuthentication } from './app/(public)/lib/navigation-config';
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

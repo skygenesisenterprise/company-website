@@ -4,13 +4,13 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Label } from "../components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
-import { Separator } from "../components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
-import { useToast } from "../components/ui/use-toast"
+import { Button } from "../(public)/components/ui/button"
+import { Input } from "../(public)/components/ui/input"
+import { Label } from "../(public)/components/ui/label"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../(public)/components/ui/card"
+import { Separator } from "../(public)/components/ui/separator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../(public)/components/ui/tabs"
+import { useToast } from "../(public)/components/ui/use-toast"
 
 export default function UnifiedAuthForm() {
   const router = useRouter()

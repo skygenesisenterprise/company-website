@@ -1,12 +1,11 @@
 'use client';
 
-import Link from 'next/link';
+
 import { 
   Server, 
   Cloud, 
   Database, 
   HardDrive, 
-  Wifi, 
   Zap, 
   Shield, 
   Activity, 
@@ -16,17 +15,13 @@ import {
   RefreshCw, 
   TrendingUp, 
   ArrowRight, 
-  ChevronRight, 
   Download, 
   Mail, 
   Building, 
   Cpu, 
-  MemoryStick, 
-  Network, 
+  Network,
   BarChart, 
   CheckCircle, 
-  AlertCircle, 
-  Users, 
   Settings, 
   Monitor, 
   Router
