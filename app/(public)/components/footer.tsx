@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Linkedin as LinkedinIcon, Twitter as TwitterIcon, Github as GithubIcon, Mail, MessageCircle, Camera, Globe, Youtube, Twitch } from 'lucide-react';
+import { Button } from './ui/button';
 import { useState } from 'react';
 
 export default function Footer() {
@@ -112,7 +113,7 @@ export default function Footer() {
     { name: 'GitHub', href: 'https://github.com/skygenesisenterprise', icon: <GithubIcon className="w-5 h-5" /> },
     { name: 'YouTube', href: 'https://youtube.com/@skygenesisenterprise', icon: <Youtube className="w-5 h-5" /> },
     { name: 'Twitch', href: 'https://twitch.tv/skygenesisenterprise', icon: <Twitch className="w-5 h-5" /> },
-    { name: 'Discord', href: 'https://skygenesisenterprise.com/discord', icon: <MessageCircle className="w-5 h-5" /> },
+    { name: 'Discord', href: '/discord', icon: <MessageCircle className="w-5 h-5" /> },
     { name: 'Instagram', href: 'https://instagram.com/skygenesisenterprise', icon: <Camera className="w-5 h-5" /> },
     { name: 'Mastodon', href: 'https://mastodon.social/@skygenesisenterprise', icon: <Globe className="w-5 h-5" /> },
   ];
@@ -176,19 +177,23 @@ export default function Footer() {
                 {/* Social Media */}
                 <div className="flex space-x-3 mb-4">
                    {socialLinks.map((social) => (
-                     <a
+                     <Button
                        key={social.name}
-                       href={isValidUrl(social.href) ? social.href : '#'}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="w-10 h-10 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group"
-                       aria-label={sanitizeText(social.name)}
+                       variant="outline"
+                       size="icon"
+                       asChild
+                       className="w-10 h-10 bg-gray-900 border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 hover:bg-gray-800"
                      >
-                      <span className="group-hover:scale-110 transition-transform duration-300">
-                        {social.icon}
-                      </span>
-                    </a>
-                  ))}
+                       <a
+                         href={isValidUrl(social.href) ? social.href : '#'}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         aria-label={sanitizeText(social.name)}
+                       >
+                         {social.icon}
+                       </a>
+                     </Button>
+                   ))}
                 </div>
 
                  {/* Service Status */}
