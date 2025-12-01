@@ -1,6 +1,6 @@
 'use client';
 
-
+import { useState } from 'react';
 import Link from 'next/link';
 import { 
   Mail, 
@@ -29,41 +29,18 @@ import {
   Cpu,
   Cloud,
   Award,
-  Target
+  Target,
+  Euro,
+  PiggyBank,
+  Search,
+  Grid3X3,
+  List,
+  Star
 } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Input } from '../components/ui/input';
 
-export default function AetherOffice() {
-
-  // Security: Validate CSS classes to prevent injection
-  const allowedColors = [
-    'from-blue-500 to-blue-600',
-    'from-green-500 to-green-600', 
-    'from-purple-500 to-purple-600',
-    'from-orange-500 to-orange-600',
-    'from-pink-500 to-pink-600',
-    'from-red-500 to-red-600',
-    'from-indigo-500 to-indigo-600',
-    'from-teal-500 to-teal-600',
-    'from-emerald-500 to-emerald-600',
-    'from-cyan-500 to-cyan-600'
-  ];
-
-  // Security: Validate GitHub URLs to prevent phishing
-  const isValidGitHubUrl = (url: string): boolean => {
-    try {
-      const parsed = new URL(url);
-      return parsed.hostname === 'github.com' && parsed.pathname.startsWith('/');
-    } catch {
-      return false;
-    }
-  };
-
-  // Security: Sanitize text content for attributes
-  const sanitizeText = (text: string): string => {
-    return text.replace(/[<>'"&]/g, '');
-  };
-
-  const applications = [
+const applications = [
     {
       id: 'mail',
       name: 'Aether Mail',
@@ -71,7 +48,10 @@ export default function AetherOffice() {
       icon: Mail,
       color: 'from-blue-500 to-blue-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-mail',
-      features: ['End-to-end encryption', 'Advanced spam filtering', 'Calendar integration']
+      features: ['End-to-end encryption', 'Advanced spam filtering', 'Calendar integration'],
+      category: 'communication',
+      popularity: 'high',
+      isNew: false
     },
     {
       id: 'meet',
@@ -80,7 +60,10 @@ export default function AetherOffice() {
       icon: Video,
       color: 'from-green-500 to-green-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-meet',
-      features: ['HD video quality', 'Screen sharing', 'Recording capabilities']
+      features: ['HD video quality', 'Screen sharing', 'Recording capabilities'],
+      category: 'communication',
+      popularity: 'high',
+      isNew: false
     },
     {
       id: 'drive',
@@ -89,7 +72,10 @@ export default function AetherOffice() {
       icon: HardDrive,
       color: 'from-purple-500 to-purple-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-drive',
-      features: ['Unlimited storage', 'Version control', 'Real-time collaboration']
+      features: ['Unlimited storage', 'Version control', 'Real-time collaboration'],
+      category: 'management',
+      popularity: 'high',
+      isNew: false
     },
     {
       id: 'slide',
@@ -98,7 +84,10 @@ export default function AetherOffice() {
       icon: FileText,
       color: 'from-orange-500 to-orange-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-slide',
-      features: ['Professional templates', 'Real-time editing', 'Export options']
+      features: ['Professional templates', 'Real-time editing', 'Export options'],
+      category: 'productivity',
+      popularity: 'medium',
+      isNew: false
     },
     {
       id: 'sites',
@@ -107,7 +96,10 @@ export default function AetherOffice() {
       icon: Globe,
       color: 'from-pink-500 to-pink-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-sites',
-      features: ['Drag-and-drop builder', 'Responsive design', 'Custom domains']
+      features: ['Drag-and-drop builder', 'Responsive design', 'Custom domains'],
+      category: 'productivity',
+      popularity: 'medium',
+      isNew: true
     },
     {
       id: 'vids',
@@ -116,7 +108,10 @@ export default function AetherOffice() {
       icon: Play,
       color: 'from-red-500 to-red-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-vids',
-      features: ['Secure hosting', 'Analytics', 'Embedding options']
+      features: ['Secure hosting', 'Analytics', 'Embedding options'],
+      category: 'management',
+      popularity: 'low',
+      isNew: true
     },
     {
       id: 'desk',
@@ -125,7 +120,10 @@ export default function AetherOffice() {
       icon: HelpCircle,
       color: 'from-indigo-500 to-indigo-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-desk',
-      features: ['Ticket management', 'Knowledge base', 'SLA tracking']
+      features: ['Ticket management', 'Knowledge base', 'SLA tracking'],
+      category: 'management',
+      popularity: 'medium',
+      isNew: false
     },
     {
       id: 'calendar',
@@ -134,7 +132,10 @@ export default function AetherOffice() {
       icon: Calendar,
       color: 'from-teal-500 to-teal-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-calendar',
-      features: ['Shared calendars', 'Meeting scheduling', 'Reminders']
+      features: ['Shared calendars', 'Meeting scheduling', 'Reminders'],
+      category: 'communication',
+      popularity: 'high',
+      isNew: false
     },
     {
       id: 'sheet',
@@ -143,7 +144,10 @@ export default function AetherOffice() {
       icon: Table,
       color: 'from-emerald-500 to-emerald-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-sheet',
-      features: ['Advanced formulas', 'Data visualization', 'Collaboration']
+      features: ['Advanced formulas', 'Data visualization', 'Collaboration'],
+      category: 'productivity',
+      popularity: 'high',
+      isNew: false
     },
     {
       id: 'form',
@@ -152,9 +156,33 @@ export default function AetherOffice() {
       icon: ClipboardList,
       color: 'from-cyan-500 to-cyan-600',
       githubUrl: 'https://github.com/skygenesisenterprise/aether-form',
-      features: ['Custom forms', 'Data analysis', 'Automated workflows']
+      features: ['Custom forms', 'Data analysis', 'Automated workflows'],
+      category: 'productivity',
+      popularity: 'medium',
+      isNew: false
     }
   ];
+
+  const appCategories = {
+    communication: {
+      name: "Communication & Collaboration",
+      description: "Connect your team seamlessly",
+      icon: MessageSquare,
+      color: 'from-blue-500 to-blue-600'
+    },
+    productivity: {
+      name: "Productivity & Creation", 
+      description: "Create and collaborate effectively",
+      icon: Cpu,
+      color: 'from-emerald-500 to-emerald-600'
+    },
+    management: {
+      name: "Management & Support",
+      description: "Manage and support your operations",
+      icon: Settings,
+      color: 'from-purple-500 to-purple-600'
+    }
+  };
 
   const benefits = [
     {
@@ -192,6 +220,93 @@ export default function AetherOffice() {
       title: 'Analytics & Automation',
       description: 'Advanced analytics and workflow automation to drive business insights.',
       features: ['Real-time analytics', 'Custom workflows', 'AI-powered insights']
+    }
+  ];
+
+export default function AetherOffice() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
+  // Security: Validate CSS classes to prevent injection
+  const allowedColors = [
+    'from-blue-500 to-blue-600',
+    'from-green-500 to-green-600', 
+    'from-purple-500 to-purple-600',
+    'from-orange-500 to-orange-600',
+    'from-pink-500 to-pink-600',
+    'from-red-500 to-red-600',
+    'from-indigo-500 to-indigo-600',
+    'from-teal-500 to-teal-600',
+    'from-emerald-500 to-emerald-600',
+    'from-cyan-500 to-cyan-600'
+  ];
+
+  // Security: Validate GitHub URLs to prevent phishing
+  const isValidGitHubUrl = (url: string): boolean => {
+    try {
+      const parsed = new URL(url);
+      return parsed.hostname === 'github.com' && parsed.pathname.startsWith('/');
+    } catch {
+      return false;
+    }
+  };
+
+  // Security: Sanitize text content for attributes
+  const sanitizeText = (text: string): string => {
+    return text.replace(/[<>'"&]/g, '');
+  };
+
+  // Filter applications based on search and category
+  const filteredApplications = applications.filter(app => {
+    const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         app.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         app.features.some((feature: string) => feature.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesCategory = selectedCategory === 'all' || app.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  // Sort applications by popularity and new status
+  const sortedApplications = [...filteredApplications].sort((a, b) => {
+    if (a.isNew && !b.isNew) return -1;
+    if (!a.isNew && b.isNew) return 1;
+    const popularityOrder = { high: 0, medium: 1, low: 2 };
+    return popularityOrder[a.popularity as keyof typeof popularityOrder] - popularityOrder[b.popularity as keyof typeof popularityOrder];
+  });
+
+  const pricingComparison = [
+    {
+      id: 'opensource',
+      name: 'Open-Source Tier',
+      price: 'Free',
+      savings: '100% less expensive',
+      competitor: 'Google Workspace Basic: $6/user/month',
+      features: ['Core collaboration tools', 'Community support', 'Self-hosted option'],
+      whyCheaper: 'Open-source foundation, no licensing fees',
+      color: 'from-emerald-500 to-emerald-600',
+      savingsPercentage: 100
+    },
+    {
+      id: 'enterprise',
+      name: 'Enterprise Tier',
+      price: '€10-15/user/month',
+      savings: '55% less expensive',
+      competitor: 'Microsoft 365 Business: $22/user/month',
+      features: ['All enterprise features', 'EU data sovereignty', 'Priority support', 'Advanced security'],
+      whyCheaper: 'Unified platform, no complex licensing',
+      color: 'from-blue-500 to-blue-600',
+      savingsPercentage: 55
+    },
+    {
+      id: 'organization',
+      name: 'Organization Tier',
+      price: '€500-3000/year',
+      savings: '40% less expensive',
+      competitor: 'Salesforce Enterprise: $150+/user/month',
+      features: ['Custom integrations', 'Dedicated account manager', 'SLA guarantees', 'Advanced compliance'],
+      whyCheaper: 'No per-seat complexity, transparent pricing',
+      color: 'from-purple-500 to-purple-600',
+      savingsPercentage: 40
     }
   ];
 
@@ -276,71 +391,246 @@ export default function AetherOffice() {
               Complete Application Suite
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-center">
-              All your applications
+              The right tools for
               <br />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                unified in one platform
+                every workflow
               </span>
             </h2>
             <div className="space-y-4 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center text-gray-300">
               <p>
-                Communication, collaboration, productivity. Every application is designed 
-                to work perfectly with others, creating an integrated ecosystem that 
-                transforms the way you work.
+                Discover how Aether apps work together to transform your daily operations. 
+                Communication, collaboration, productivity—every tool designed to integrate seamlessly.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {applications.map((app) => (
-              <div 
-                key={app.id}
-                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
-                
-                {/* GitHub Link */}
-                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <a 
-                    href={isValidGitHubUrl(app.githubUrl) ? app.githubUrl : '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
-                    aria-label={`View ${sanitizeText(app.name)} on GitHub`}
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                </div>
-                
-                <div className="relative">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <app.icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
-                    {app.name}
-                  </h3>
-                  <p className="text-gray-400 mb-6 leading-relaxed">{app.description}</p>
-                  
-                  <div className="space-y-3">
-                    {app.features.slice(0, 3).map((feature, index) => (
-                      <div key={index} className="flex items-center text-sm text-gray-500">
-                        <CheckCircle className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 pt-6 border-t border-white/10">
-                    <button className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center group">
-                      Learn more
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </div>
+          {/* Search and Filter Controls */}
+          <div className="mb-12 max-w-4xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+              {/* Search Bar */}
+              <div className="relative flex-1 w-full lg:w-auto">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder="Search applications, features, or use cases..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-12 bg-white/5 border-white/10 text-white placeholder-gray-400 focus:border-blue-400 w-full"
+                />
               </div>
-            ))}
+              
+              {/* View Mode Toggle */}
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-1">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  <Grid3X3 className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2 rounded ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  <List className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Category Tabs */}
+            <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="mt-8">
+              <TabsList className="bg-white/5 border border-white/10 w-full justify-start">
+                <TabsTrigger value="all" className="data-[state=active]:bg-white/10 text-white">
+                  All Applications ({applications.length})
+                </TabsTrigger>
+                {Object.entries(appCategories).map(([key, category]) => (
+                  <TabsTrigger 
+                    key={key} 
+                    value={key} 
+                    className="data-[state=active]:bg-white/10 text-white"
+                  >
+                    <category.icon className="w-4 h-4 mr-2" />
+                    {category.name}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
           </div>
+
+          {/* Results Summary */}
+          <div className="mb-8 text-center">
+            <p className="text-gray-400">
+              Showing {sortedApplications.length} of {applications.length} applications
+              {searchTerm && ` for "${searchTerm}"`}
+              {selectedCategory !== 'all' && ` in ${appCategories[selectedCategory as keyof typeof appCategories].name}`}
+            </p>
+          </div>
+
+          {/* Applications Display */}
+          {viewMode === 'grid' ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {sortedApplications.map((app) => (
+                <div 
+                  key={app.id}
+                  className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl"
+                >
+                  {/* New Badge */}
+                  {app.isNew && (
+                    <div className="absolute -top-3 left-6 z-10">
+                      <div className="inline-flex items-center px-3 py-1 bg-emerald-500 text-white text-xs font-bold rounded-full">
+                        <Star className="w-3 h-3 mr-1" />
+                        NEW
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Popularity Indicator */}
+                  {app.popularity === 'high' && !app.isNew && (
+                    <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center text-yellow-400 text-xs">
+                        <Star className="w-4 h-4 mr-1" />
+                        Popular
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className={`absolute inset-0 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
+                  
+                  {/* GitHub Link */}
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <a 
+                      href={isValidGitHubUrl(app.githubUrl) ? app.githubUrl : '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
+                      aria-label={`View ${sanitizeText(app.name)} on GitHub`}
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  </div>
+                  
+                  <div className="relative">
+                    <div className={`w-16 h-16 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <app.icon className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                      {app.name}
+                    </h3>
+                    <p className="text-gray-400 mb-6 leading-relaxed">{app.description}</p>
+                    
+                    <div className="space-y-3">
+{app.features.slice(0, 3).map((feature) => (
+                        <div key={feature} className="flex items-center text-sm text-gray-500">
+                          <CheckCircle className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-white/10">
+                      <button className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center group">
+                        Learn more
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {sortedApplications.map((app) => (
+                <div 
+                  key={app.id}
+                  className="group bg-gradient-to-r from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-6">
+                    {/* App Icon and Badges */}
+                    <div className="relative flex-shrink-0">
+                      <div className={`w-16 h-16 bg-gradient-to-r ${allowedColors.includes(app.color) ? app.color : 'from-gray-500 to-gray-600'} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <app.icon className="w-8 h-8 text-white" />
+                      </div>
+                      {app.isNew && (
+                        <div className="absolute -top-2 -right-2">
+                          <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
+                            <Star className="w-3 h-3 text-white" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* App Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">
+                            {app.name}
+                          </h3>
+                          <p className="text-gray-400 mb-4 leading-relaxed">{app.description}</p>
+                          
+                          {/* Features */}
+                          <div className="flex flex-wrap gap-2 mb-4">
+{app.features.slice(0, 3).map((feature, index) => (
+                              <span key={index} className="inline-flex items-center text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400">
+                                <CheckCircle className="w-3 h-3 mr-2 text-green-500" />
+                                {feature}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Actions */}
+                        <div className="flex items-center gap-3 flex-shrink-0">
+                          {app.popularity === 'high' && (
+                            <div className="flex items-center text-yellow-400 text-xs">
+                              <Star className="w-4 h-4 mr-1" />
+                              Popular
+                            </div>
+                          )}
+                          <a 
+                            href={isValidGitHubUrl(app.githubUrl) ? app.githubUrl : '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
+                            aria-label={`View ${sanitizeText(app.name)} on GitHub`}
+                          >
+                            <Github className="w-5 h-5" />
+                          </a>
+                          <button className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center group">
+                            Learn more
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* No Results State */}
+          {sortedApplications.length === 0 && (
+            <div className="text-center py-16">
+              <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-12 h-12 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">No applications found</h3>
+              <p className="text-gray-400 mb-6">
+                Try adjusting your search or browse all categories
+              </p>
+              <button 
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory('all');
+                }}
+                className="text-blue-400 hover:text-blue-300 font-medium"
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -769,6 +1059,127 @@ export default function AetherOffice() {
             <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300">
               <Target className="w-4 h-4 mr-2" />
               <span>Measurable business impact across all industries</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING COMPARISON */}
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-sm text-emerald-400 mb-6">
+              <PiggyBank className="w-4 h-4 mr-2" />
+              Cost Advantage
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-center">
+              Why Aether Office costs
+              <br />
+              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
+                40-60% less than competitors
+              </span>
+            </h2>
+            <div className="space-y-4 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-center text-gray-300">
+              <p>
+                Enterprise-grade features without enterprise pricing. 
+                Transparent costs with no hidden fees or complex licensing.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {pricingComparison.map((plan, index) => (
+              <div 
+                key={plan.id}
+                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl"
+              >
+                {/* Savings badge */}
+                <div className="absolute -top-4 right-6 z-10">
+                  <div className={`inline-flex items-center px-4 py-2 bg-gradient-to-r ${plan.color} text-white text-sm font-bold rounded-full shadow-lg`}>
+                    <TrendingUp className="w-4 h-4 mr-2" />
+                    {plan.savings}
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  {/* Plan header */}
+                  <div className={`w-16 h-16 bg-gradient-to-r ${plan.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <Euro className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                    {plan.name}
+                  </h3>
+                  
+                  <div className="mb-6">
+                    <div className="text-3xl font-bold text-white mb-2">{plan.price}</div>
+                    <div className="text-sm text-emerald-400 font-medium">{plan.savings}</div>
+                  </div>
+                  
+                  {/* Competitor comparison */}
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-6">
+                    <div className="flex items-center mb-2">
+                      <BarChart3 className="w-4 h-4 mr-2 text-red-400" />
+                      <span className="text-sm font-semibold text-red-400">Competitor Price</span>
+                    </div>
+                    <p className="text-sm text-gray-300">{plan.competitor}</p>
+                  </div>
+                  
+                  {/* Features */}
+                  <div className="space-y-3 mb-6">
+                    {plan.features.slice(0, 3).map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-sm text-gray-400">
+                        <CheckCircle className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Why cheaper */}
+                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 mb-6">
+                    <div className="flex items-center mb-2">
+                      <Target className="w-4 h-4 mr-2 text-emerald-400" />
+                      <span className="text-sm font-semibold text-emerald-400">Why We're Cheaper</span>
+                    </div>
+                    <p className="text-sm text-gray-300">{plan.whyCheaper}</p>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="mt-6 pt-6 border-t border-white/10">
+                    <button className="w-full text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center justify-center group">
+                      Calculate your savings
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom trust indicators */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300">
+              <Award className="w-4 h-4 mr-2" />
+              <span>Transforming enterprise economics worldwide</span>
+            </div>
+          </div>
+
+          {/* Savings summary */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-bold text-emerald-400 mb-2">100%</div>
+              <p className="text-gray-300 font-medium">Open-source savings</p>
+              <p className="text-gray-500 text-sm mt-1">No licensing fees</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-bold text-blue-400 mb-2">55%</div>
+              <p className="text-gray-300 font-medium">Enterprise tier savings</p>
+              <p className="text-gray-500 text-sm mt-1">vs Microsoft 365</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-bold text-purple-400 mb-2">40%</div>
+              <p className="text-gray-300 font-medium">Organization tier savings</p>
+              <p className="text-gray-500 text-sm mt-1">vs Salesforce Enterprise</p>
             </div>
           </div>
         </div>
