@@ -571,12 +571,12 @@ export default function AetherOffice() {
                           
                           {/* Features */}
                           <div className="flex flex-wrap gap-2 mb-4">
-{app.features.slice(0, 3).map((feature, index) => (
-                              <span key={index} className="inline-flex items-center text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-400">
-                                <CheckCircle className="w-3 h-3 mr-2 text-green-500" />
-                                {feature}
-                              </span>
-                            ))}
+{app.features.slice(0, 3).map((feature) => (
+                        <div key={feature} className="flex items-center text-sm text-gray-500">
+                          <CheckCircle className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
                           </div>
                         </div>
                         
@@ -1088,7 +1088,7 @@ export default function AetherOffice() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {pricingComparison.map((plan, index) => (
+            {pricingComparison.map((plan) => (
               <div 
                 key={plan.id}
                 className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl"
@@ -1139,7 +1139,7 @@ export default function AetherOffice() {
                   <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 mb-6">
                     <div className="flex items-center mb-2">
                       <Target className="w-4 h-4 mr-2 text-emerald-400" />
-                      <span className="text-sm font-semibold text-emerald-400">Why We're Cheaper</span>
+                      <span className="text-sm font-semibold text-emerald-400">Why We&apos;re Cheaper</span>
                     </div>
                     <p className="text-sm text-gray-300">{plan.whyCheaper}</p>
                   </div>
