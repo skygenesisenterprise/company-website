@@ -1,10 +1,16 @@
+packages:
+  - "app"
+  - "tools"
+  - "tests"
+  - "options"
+  - "electron"
+  - "package/snap"
+  - "server/prisma"
+  - "package/node"
+  - "package/github"
+  - "package/vscode"
+  - "package/cli"
+
 ignoredBuiltDependencies:
-  - '@prisma/client'
-  - '@prisma/engines'
-  - '@scarf/scarf'
-  - '@tailwindcss/oxide'
-  - cypress
-  - prisma
   - sharp
-  - snyk
   - unrs-resolver
