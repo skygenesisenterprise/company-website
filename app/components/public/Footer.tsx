@@ -270,17 +270,6 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
         <div className="mx-auto max-w-7xl px-6 py-10">
           <div className="max-w-xs">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <div className="w-7 h-7 rounded bg-footer-accent flex items-center justify-center shrink-0">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path
-                    d="M7 1L13 4V10L7 13L1 10V4L7 1Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                    className="text-footer"
-                  />
-                </svg>
-              </div>
               <span className="text-base font-semibold text-footer-heading tracking-tight group-hover:text-footer-link-hover transition-colors">
                 Sky Genesis Enterprise
               </span>

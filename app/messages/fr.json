@@ -30,6 +30,41 @@
   },
 
   "Public": {
+    "hero": {
+      "badge": "Plateforme d'Identité Open Source",
+      "title": "Infrastructure d'Identité d'Entreprise Sous Votre Contrôle",
+      "description": "Un fournisseur OAuth 2.0 et OpenID Connect auto-hébergé conçu pour les organisations qui nécessitent une souveraineté complète sur l'authentification, l'autorisation et les données utilisateurs.",
+      "ctaDocs": "Voir la Documentation",
+      "ctaGithub": "Dépôt GitHub"
+    },
+    "team": {
+      "title": "Construit Par des Experts",
+      "description": "Notre équipe apporte des décennies d'expérience en identité, sécurité et infrastructure d'entreprise.",
+      "alex": "Alex Chen",
+      "alexRole": "PDG & Fondateur",
+      "sarah": "Sarah Miller",
+      "sarahRole": "CTO",
+      "james": "James Wilson",
+      "jamesRole": "VP Ingénierie",
+      "emily": "Emily Davis",
+      "emilyRole": "Responsable de la Sécurité"
+    },
+    "updates": {
+      "title": "Mises à Jour Récentes",
+      "description": "Restez à jour avec les dernières fonctionnalités et améliorations.",
+      "v240": "Mars 2026",
+      "v240Desc": "Support WebAuthn et flux MFA améliorés",
+      "v230": "Février 2026",
+      "v230Desc": "Journalisation d'audit améliorée et rapports de conformité",
+      "v220": "Janvier 2026",
+      "v220Desc": "Améliorations de l'opérateur Kubernetes et des charts Helm"
+    },
+    "cta": {
+      "title": "Prenez le Contrôle de Votre Infrastructure Numérique",
+      "description": "Faites confiance à Sky Genesis Enterprise et éliminez votre dépendance aux fournisseurs tiers. Open source, auto-hébergé, prêt pour l'entreprise.",
+      "getStarted": "Commencer",
+      "contactSales": "Contacter les Ventes"
+    },
     "footer": {
       "product": "Produit",
       "solutions": "Solutions",
@@ -308,7 +343,7 @@
     "cookies": {
       "badge": "Politique des Cookies",
       "heroTitle": "Politique des Cookies",
-      "heroDescription": "Découvrez comment Aether Identity utilise les cookies et technologies similaires pour améliorer votre expérience et sécuriser notre plateforme.",
+      "heroDescription": "Découvrez comment Sky Genesis Enterprise utilise les cookies et technologies similaires pour améliorer votre expérience et sécuriser notre plateforme.",
       "viewPrivacy": "Voir la Politique de Confidentialité",
       "viewTerms": "Voir les Conditions d'Utilisation",
       "categoriesTitle": "Catégories de Cookies",
@@ -335,7 +370,7 @@
       "lastUpdated": "Dernière mise à jour",
       "lastUpdatedDate": "15 Mars 2026",
       "introTitle": "Introduction",
-      "introContent": "Cette Politique de Cookies explique comment Aether Identity (\"nous\", \"notre\" ou \"nos\") utilise les cookies et technologies de suivi similaires lorsque vous visitez notre site web ou utilisez notre plateforme.\n\nEn utilisant notre Service, vous consentez à l'utilisation des cookies comme décrit dans cette politique.",
+      "introContent": "Cette Politique de Cookies explique comment Sky Genesis Enterprise (\"nous\", \"notre\" ou \"nos\") utilise les cookies et technologies de suivi similaires lorsque vous visitez notre site web ou utilisez notre plateforme.\n\nEn utilisant notre Service, vous consentez à l'utilisation des cookies comme décrit dans cette politique.",
       "whatAreTitle": "Que Sont les Cookies?",
       "whatAreContent": "Les cookies sont de petits fichiers texte stockés sur votre appareil lorsque vous visitez des sites web. Ils aident à mémoriser vos préférences, analyser le trafic du site et fournir des expériences personnalisées.\n\nNous utilisons à la fois des cookies de session (qui expirent lorsque vous fermez votre navigateur) et des cookies persistants (qui restent sur votre appareil pour une période définie).",
       "howWeUseTitle": "Comment Nous Utilisons les Cookies",
@@ -385,7 +420,7 @@
       "securityGovTitle": "Sécurité & Gouvernance",
       "securityGovDesc": "Confiance zéro, Conformité, Identité et solutions de sécurité d'entreprise.",
       "explore": "Explorer",
-      "whyUsTitle": "Pourquoi Sky Genesis Enterprise",
+      "whyUsTitle": "Pourquoi Sky Genesis Enterprise ?",
       "whyUsDesc": "Les avantages concurrentiels qui nous distinguent",
       "valueOpenSourceTitle": "Fondation Open-Source",
       "valueOpenSourceDesc": "Codebase transparente et auditable avec innovation pilotée par la communauté et aucun verrouillage fournisseur.",
@@ -635,7 +670,44 @@
       "questionsTitle": "Questions Sur le RGPD?",
       "questionsDescription": "Si vous avez des questions sur notre conformité RGPD ou sur nos pratiques de traitement des données, veuillez contacter notre équipe.",
       "emailDpo": "Envoyer un Email au RPD"
-    }
+    },
+    "about": {
+      "heroTitle": "À Propos de Sky Genesis Enterprise",
+      "heroDescription": "Notre mission est de fournir aux organisations un contrôle total sur leur infrastructure d'identité. Auto-hébergement, open-source et conçu pour l'entreprise moderne.",
+      "missionLabel": "Notre Mission",
+      "missionTitle": "Donner aux Organisations la Souveraineté sur l'Identité",
+      "missionDescription": "Nous croyons que l'identité est un droit fondamental. Chaque organisation devrait avoir le plein contrôle sur son authentification, autorisation et données utilisateur sans verrouillage fournisseur ou dépendance aux services tiers.",
+      "securityStat": "100%",
+      "securityStatLabel": "SLA de Disponibilité",
+      "globalStat": "190+",
+      "globalStatLabel": "Pays",
+      "usersStat": "50M+",
+      "usersStatLabel": "Authentifications/mois",
+      "uptimeStat": "99.99%",
+      "uptimeStatLabel": "Disponibilité de la Plateforme",
+      "valuesTitle": "Nos Valeurs",
+      "valuesDescription": "Les principes qui guident tout ce que nous faisons.",
+      "securityTitle": "Sécurité en Premier",
+      "securityDesc": "Nous construisons avec la sécurité au cœur. Chaque version undergoes des audits de sécurité rigoureux et des vérifications de conformité.",
+      "customerFocusTitle": "Focus Client",
+      "customerFocusDesc": "Votre succès est notre succès. Nous travaillons en étroite collaboration avec les clients pour garantir que notre plateforme répond à vos besoins.",
+      "innovationTitle": "Innovation Continue",
+      "innovationDesc": "Nous faisons constamment évoluer notre plateforme avec les dernières normes et technologies de sécurité.",
+      "opennessTitle": "Open Source",
+      "opennessDesc": "La transparence et la communauté nous animent. Notre code est ouvert à la révision et à la contribution.",
+      "storyTitle": "Notre Parcours",
+      "storyDescription": "Des débuts humble à l'infrastructure d'identité de qualité entreprise.",
+      "milestone2021": "Fondation",
+      "milestone2021Desc": "Commencé avec une vision pour révolutionner la gestion d'identité",
+      "milestone2022": "Lancement Open Source",
+      "milestone2022Desc": "Publié Aether Community Edition avec le support OAuth/OIDC principal",
+      "milestone2023": "Croissance Entreprise",
+      "milestone2023Desc": "Servi plus de 1000 clients entreprise dans plus de 150 pays",
+      "milestone2024": "Expansion Mondiale",
+      "milestone2024Desc": "Ouvert des centres de données dans 5 nouvelles régions",
+      "milestone2025": "IA & Automatisation",
+      "milestone2025Desc": "Lancé la solution d'identité pour Agents IA pour les systèmes autonomes"
+    }    
   },
   "Header": {
     "product": "Produit",

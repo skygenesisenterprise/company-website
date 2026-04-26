@@ -300,7 +300,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </section>
 
-        {/* Why Sky Genesis Section */}
+        {/* Why SGE Section */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center mb-16">
@@ -485,90 +485,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </section>
 
-        {/* Careers Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-6 py-3 bg-orange-500/10 border border-orange-500/20 rounded-full text-orange-400 text-sm mb-8">
-                <div className="w-2 h-2 bg-orange-400 rounded-full mr-3 animate-pulse" />
-                {t("home.weAreHiring")}
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
-                {t("home.careersTitle")}
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                {t("home.careersDesc")}
-              </p>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-              <div className="p-8 rounded-lg border border-orange-500/20 bg-linear-to-br from-orange-900/20 to-red-900/10">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-orange-500/20 rounded-xl flex items-center justify-center">
-                    <Rocket className="w-8 h-8 text-orange-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{t("home.whyJoinUs")}</h3>
-                    <p className="text-orange-400 text-sm">{t("home.buildWhatMatters")}</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  {careerBenefits.map((benefit) => (
-                    <div key={benefit.title} className="flex items-start space-x-3">
-                      <benefit.icon className="w-5 h-5 text-yellow-400 mt-0.5 shrink-0" />
-                      <div>
-                        <div className="font-semibold text-foreground mb-1">{benefit.title}</div>
-                        <div className="text-sm text-muted-foreground">{benefit.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-8 rounded-lg border border-blue-500/20 bg-linear-to-br from-blue-900/20 to-purple-900/10">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                    <UserCheck className="w-8 h-8 text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{t("home.lookingFor")}</h3>
-                    <p className="text-blue-400 text-sm">{t("home.talentInnovation")}</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  {openPositions.map((position) => (
-                    <div key={position.title} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0" />
-                      <div>
-                        <div className="font-semibold text-foreground mb-1">{position.title}</div>
-                        <div className="text-sm text-muted-foreground">{position.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-card border border-border rounded-full text-muted-foreground text-sm mb-8">
-                <TrendingUp className="w-4 h-4 mr-3" />
-                {t("home.openPositions")}
-              </div>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href={`/${locale}/careers`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
-                    {t("home.exploreCareers")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href={`/${locale}/careers#culture`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
-                    {t("home.learnCulture")}
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Strategic Ecosystem Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -637,43 +553,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
         </section>
-
-        {/* Transformation CTA Section */}
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-6 py-3 bg-linear-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm mb-8">
-                <Zap className="w-4 h-4 mr-3" />
-                {t("home.transformationJourney")}
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
-                {t("home.ctaTitle")}
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                {t("home.ctaDesc")}
-              </p>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-              <div className="p-8 rounded-lg border border-blue-500/20 bg-linear-to-br from-blue-900/20 to-blue-800/10 text-center hover:border-foreground/20 transition-colors">
-                <div className="w-20 h-20 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <Building className="w-10 h-10 text-blue-400" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{t("home.consultationTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("home.consultationDesc")}</p>
-              </div>
-            </div>
-            <div className="text-center">
-              <Link href={`/${locale}/contact`}>
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
-                  {t("home.startTransformation")}
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
-
       <Footer locale={locale as "fr" | "be_fr" | "be_nl" | "ch_fr"} />
     </div>
   );
