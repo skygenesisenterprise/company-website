@@ -302,15 +302,9 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center gap-8">
             <Link href={getLocaleHref("/")} className="flex items-center gap-2.5 group">
-              <div className="relative">
-                <Shield className="h-7 w-7 text-foreground transition-transform group-hover:scale-105" />
-              </div>
               <div className="flex flex-col">
                 <span className="font-semibold text-base text-foreground leading-tight">
                   {t("brandName")}
-                </span>
-                <span className="text-[10px] text-muted-foreground leading-tight tracking-wide">
-                  {t("bySkyGenesis")}
                 </span>
               </div>
             </Link>

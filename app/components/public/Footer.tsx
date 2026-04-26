@@ -282,7 +282,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                 </svg>
               </div>
               <span className="text-base font-semibold text-footer-heading tracking-tight group-hover:text-footer-link-hover transition-colors">
-                Aether Identity
+                Sky Genesis Enterprise
               </span>
             </Link>
             <p className="mt-4 text-sm text-footer-link leading-relaxed">{t("brandDescription")}</p>
@@ -308,15 +308,6 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs text-footer-muted">
               {t("copyright")}
-              <span className="mx-2 opacity-40">|</span>
-              <Link
-                href="https://skygenesisenterprise.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-footer-link-hover transition-colors duration-150"
-              >
-                {t("enterpriseproprietary")}
-              </Link>
             </p>
             <p className="text-xs text-footer-muted">
               <Link
