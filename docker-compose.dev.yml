@@ -1,10 +1,10 @@
 services:
-  aethervault:
+  company-website:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: skygenesisenterprise/aethervault:latest
-    container_name: aethervault
+    image: skygenesisenterprise/company-website:latest
+    container_name: company-website
     restart: unless-stopped
     ports:
       - "3000:3000"

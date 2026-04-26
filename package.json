@@ -1,7 +1,7 @@
 {
-  "name": "aether-vault",
+  "name": "company-website",
   "version": "0.1.0",
-  "description": "An open-source secrets and TOTP vault designed as a security control plane for developers.",
+  "description": "Welcome to the official repository for the Sky Genesis Enterprise website.",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -71,12 +71,12 @@
   "packageManager": "pnpm@8.15.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/skygenesisenterprise/aether-vault.git"
+    "url": "https://github.com/skygenesisenterprise/company-website.git"
   },
   "keywords": [
-    "vault",
-    "password-manager",
-    "password-storage",
+    "website",
+    "company",
+    "skygenesisenterprise",
     "password-security",
     "password-management",
     "password-generator",
@@ -93,9 +93,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/skygenesisenterprise/aether-vault/issues"
+    "url": "https://github.com/skygenesisenterprise/company-website/issues"
   },
-  "homepage": "https://github.com/skygenesisenterprise/aether-vault#readme",
+  "homepage": "https://github.com/skygenesisenterprise/company-website#readme",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix --quiet",

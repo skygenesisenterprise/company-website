@@ -2,7 +2,7 @@
 set -e
 
 # =============================================================================
-# Aether Vault - Production Service Entry Point
+# Company Website - Production Service Entry Point
 # =============================================================================
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/go/bin:/go/bin:/root/go/bin:/root/.local/share/corepack"
@@ -50,7 +50,7 @@ log_error() {
 display_header() {
     echo ""
     echo "╔══════════════════════════════════════════════════════════════════════╗"
-    echo "║                        Aether Vault                                  ║"
+    echo "║                       Company Website                                ║"
     echo "║               Enterprise Account Management                          ║"
     echo "║                   Version 1.0.0-production                           ║"
     echo "╚══════════════════════════════════════════════════════════════════════╝"
