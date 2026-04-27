@@ -241,6 +241,40 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </section>
 
+        {/* Client Logos & Social Proof */}
+        <section className="py-16 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-center text-sm text-muted-foreground mb-8">
+              {t("home.trustedBy")}
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+              {["Aerospace Corp", "Banque Européenne", "Santé Publique", "Gouvernement FR", "Tech EU"].map((client) => (
+                <div key={client} className="text-lg font-semibold text-muted-foreground">
+                  {client}
+                </div>
+              ))}
+            </div>
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-3xl mx-auto">
+              <div>
+                <div className="text-3xl font-bold text-foreground">200+</div>
+                <div className="text-sm text-muted-foreground">{t("home.statEnterprises")}</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-foreground">99.99%</div>
+                <div className="text-sm text-muted-foreground">{t("home.statUptime")}</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-foreground">12</div>
+                <div className="text-sm text-muted-foreground">{t("home.statCountries")}</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-foreground">48h</div>
+                <div className="text-sm text-muted-foreground">{t("home.statSupport")}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Mission & Vision Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -368,6 +402,38 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                {t("home.testimonialsTitle")}
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {[
+                {
+                  quote: t("home.testimonial1Quote"),
+                  author: t("home.testimonial1Author"),
+                  role: t("home.testimonial1Role"),
+                },
+                {
+                  quote: t("home.testimonial2Quote"),
+                  author: t("home.testimonial2Author"),
+                  role: t("home.testimonial2Role"),
+                },
+              ].map((testimonial, i) => (
+                <div key={i} className="p-8 rounded-lg border border-border bg-card">
+                  <Eye className="w-8 h-8 text-blue-400 mb-4" />
+                  <p className="text-foreground leading-relaxed mb-4">"{testimonial.quote}"</p>
+                  <div className="text-sm font-medium text-foreground">{testimonial.author}</div>
+                  <div className="text-xs text-muted-foreground">{testimonial.role}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Latest Updates Section */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -443,6 +509,37 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   {t("home.viewAll")} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 lg:py-28 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                {t("home.faqTitle")}
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+                {t("home.faqDesc")}
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto space-y-4">
+              {[
+                { q: t("home.faq1Q"), a: t("home.faq1A") },
+                { q: t("home.faq2Q"), a: t("home.faq2A") },
+                { q: t("home.faq3Q"), a: t("home.faq3A") },
+              ].map((faq, i) => (
+                <div key={i} className="p-6 rounded-lg border border-border bg-card">
+                  <h3 className="font-semibold text-foreground mb-2">{faq.q}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link href={`/${locale}/faq`} className="text-sm font-medium text-blue-400 hover:opacity-80">
+                {t("home.viewAllFAQ")}
+              </Link>
             </div>
           </div>
         </section>
@@ -552,6 +649,48 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   </Button>
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Careers Section */}
+        <section className="py-20 lg:py-28 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                {t("home.careersTitle")}
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+                {t("home.careersDesc")}
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+              {careerBenefits.map((benefit) => (
+                <div key={benefit.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center">
+                  <benefit.icon className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
+                  <p className="text-sm text-muted-foreground">{benefit.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="max-w-2xl mx-auto space-y-4 mb-8">
+              {openPositions.map((position) => (
+                <div key={position.title} className="p-4 rounded-lg border border-border bg-card flex justify-between items-center">
+                  <div>
+                    <h4 className="font-semibold text-foreground">{position.title}</h4>
+                    <p className="text-sm text-muted-foreground">{position.desc}</p>
+                  </div>
+                  <UserCheck className="w-5 h-5 text-green-400 shrink-0" />
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link href={`/${locale}/company/careers`}>
+                <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  {t("home.viewAllPositions")}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

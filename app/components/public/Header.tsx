@@ -23,6 +23,7 @@ import {
   Mail,
   Inbox,
   Table2,
+  Network,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -292,25 +293,25 @@ function getPlateformeMenuData(): MegaMenuData {
           {
             titleKey: "edge",
             descKey: "edgeDesc",
-            href: "/products/edge",
+            href: "/platform/edge",
             icon: <Server className="h-5 w-5" />,
           },
           {
-            titleKey: "vpn",
-            descKey: "vpnDesc",
-            href: "/products/vpn",
-            icon: <Shield className="h-5 w-5" />,
+            titleKey: "bank",
+            descKey: "bankDesc",
+            href: "/platform/bank",
+            icon: <Building2 className="h-5 w-5" />,
           },
           {
             titleKey: "status",
             descKey: "statusDesc",
-            href: "/products/status",
+            href: "/platform/status",
             icon: <Zap className="h-5 w-5" />,
           },
           {
             titleKey: "search",
             descKey: "searchDesc",
-            href: "/products/search",
+            href: "/platform/search",
             icon: <Code className="h-5 w-5" />,
           },
         ],
@@ -321,26 +322,26 @@ function getPlateformeMenuData(): MegaMenuData {
           {
             titleKey: "identity",
             descKey: "identityDesc",
-            href: "/products/identity",
+            href: "/platform/identity",
             icon: <Lock className="h-5 w-5" />,
-          },
-          {
-            titleKey: "shield",
-            descKey: "shieldDesc",
-            href: "/products/shield",
-            icon: <Shield className="h-5 w-5" />,
           },
           {
             titleKey: "maps",
             descKey: "mapsDesc",
-            href: "/products/maps",
+            href: "/platform/maps",
             icon: <Globe className="h-5 w-5" />,
           },
           {
             titleKey: "vault",
             descKey: "vaultDesc",
-            href: "/products/vault",
+            href: "/platform/vault",
             icon: <Key className="h-5 w-5" />,
+          },
+          {
+            titleKey: "schematik",
+            descKey: "schematikDesc",
+            href: "/platform/schematik",
+            icon: <Network className="h-5 w-5" />,
           },
         ],
       },
