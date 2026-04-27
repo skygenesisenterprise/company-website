@@ -20,6 +20,9 @@ import {
   Database,
   Settings,
   LifeBuoy,
+  Mail,
+  Inbox,
+  Table2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -88,7 +91,7 @@ function getProductMenuData(): MegaMenuData {
             titleKey: "mail",
             descKey: "mailDesc",
             href: "/products/mail",
-            icon: <Globe className="h-5 w-5" />,
+            icon: <Mail className="h-5 w-5" />,
           },
           {
             titleKey: "meet",
@@ -100,13 +103,13 @@ function getProductMenuData(): MegaMenuData {
             titleKey: "mailer",
             descKey: "mailerDesc",
             href: "/products/mailer",
-            icon: <Zap className="h-5 w-5" />,
+            icon: <Inbox className="h-5 w-5" />,
           },
           {
             titleKey: "sheets",
             descKey: "sheetsDesc",
-            href: "/products/sheet",
-            icon: <Database className="h-5 w-5" />,
+            href: "/products/sheets",
+            icon: <Table2 className="h-5 w-5" />,
           },
         ],
       },

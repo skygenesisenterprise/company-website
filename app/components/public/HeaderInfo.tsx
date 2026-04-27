@@ -5,30 +5,35 @@ import { Search, Globe, ChevronDown, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const languages = [
-  { code: "fr", label: "Français" },
-  { code: "en", label: "English" },
-  { code: "de", label: "Deutsch" },
-  { code: "es", label: "Español" },
-  { code: "it", label: "Italiano" },
-  { code: "pt", label: "Português" },
-  { code: "nl", label: "Nederlands" },
-  { code: "pl", label: "Polski" },
-  { code: "ru", label: "Русский" },
-  { code: "zh", label: "中文" },
-  { code: "ja", label: "日本語" },
-  { code: "ko", label: "한국어" },
-  { code: "ar", label: "العربية" },
-];
+interface Language {
+  code: string;
+  label: string;
+}
+
+interface Translations {
+  search: string;
+  closeSearch: string;
+  assistance: string;
+  salesServices: string;
+  phoneNumber: string;
+}
 
 interface HeaderInfoProps {
   locale?: string;
+  t?: Translations;
+  languages?: Language[];
 }
 
-export function HeaderInfo({ locale = "fr" }: HeaderInfoProps) {
+export function HeaderInfo({ locale = "fr", t, languages = [] }: HeaderInfoProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLangOpen, setIsLangOpen] = useState(false);
+
+  const searchLabel = t?.search || "Rechercher";
+  const closeSearchLabel = t?.closeSearch || "Fermer la recherche";
+  const assistanceLabel = t?.assistance || "Assistance";
+  const salesLabel = t?.salesServices || "Services Commerciaux";
+  const phoneLabel = t?.phoneNumber || "Non disponible";
 
   return (
     <div className="bg-muted/30">
@@ -40,7 +45,7 @@ export function HeaderInfo({ locale = "fr" }: HeaderInfoProps) {
               <div className="flex items-center gap-2 animate-in slide-in-from-right-4 fade-in duration-200">
                 <input
                   type="text"
-                  placeholder="Rechercher..."
+                  placeholder={searchLabel}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="h-7 px-3 text-sm bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary w-48"
@@ -52,7 +57,7 @@ export function HeaderInfo({ locale = "fr" }: HeaderInfoProps) {
                     setSearchQuery("");
                   }}
                   className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Fermer la recherche"
+                  aria-label={closeSearchLabel}
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -61,7 +66,7 @@ export function HeaderInfo({ locale = "fr" }: HeaderInfoProps) {
               <button
                 onClick={() => setIsSearchOpen(true)}
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Rechercher"
+                aria-label={searchLabel}
               >
                 <Search className="h-4 w-4" />
               </button>
@@ -75,12 +80,12 @@ export function HeaderInfo({ locale = "fr" }: HeaderInfoProps) {
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            Assistance
+            {assistanceLabel}
           </Link>
 
           {/* Services Commerciaux */}
           <div className="text-sm text-muted-foreground">
-            Services Commerciaux: +33 1 23 45 67 89
+            {salesLabel}: {phoneLabel}
           </div>
 
           {/* Language Selector */}
@@ -101,7 +106,7 @@ export function HeaderInfo({ locale = "fr" }: HeaderInfoProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full pt-2 z-[60]"
+                  className="absolute right-0 top-full pt-2 z-60"
                 >
                   <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-40">
                     <div className="p-2">
