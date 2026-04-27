@@ -28,6 +28,10 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         t("partners.benefit3"),
         t("partners.benefit4"),
       ],
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/20",
+      borderColor: "border-blue-500/20",
+      bgGradient: "bg-gradient-to-br from-blue-900/20 to-blue-800/10",
     },
     {
       title: t("partners.solutionTitle"),
@@ -38,6 +42,10 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         t("partners.benefit7"),
         t("partners.benefit8"),
       ],
+      color: "text-green-400",
+      bgColor: "bg-green-500/20",
+      borderColor: "border-green-500/20",
+      bgGradient: "bg-gradient-to-br from-green-900/20 to-green-800/10",
     },
     {
       title: t("partners.managedTitle"),
@@ -48,18 +56,22 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         t("partners.benefit11"),
         t("partners.benefit12"),
       ],
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/20",
+      borderColor: "border-purple-500/20",
+      bgGradient: "bg-gradient-to-br from-purple-900/20 to-purple-800/10",
     },
   ];
 
   const featuredPartners = [
-    { name: "AWS", category: t("partners.categoryCloud"), logo: "AWS" },
-    { name: "Microsoft Azure", category: t("partners.categoryCloud"), logo: "Azure" },
-    { name: "Google Cloud", category: t("partners.categoryCloud"), logo: "GCP" },
-    { name: "Kubernetes", category: t("partners.categoryContainer"), logo: "K8s" },
-    { name: "Docker", category: t("partners.categoryContainer"), logo: "Docker" },
-    { name: "Terraform", category: t("partners.categoryInfrastructure"), logo: "TF" },
-    { name: "Datadog", category: t("partners.categoryMonitoring"), logo: "DD" },
-    { name: "HashiCorp", category: t("partners.categoryInfrastructure"), logo: "HC" },
+    { name: "AWS", category: t("partners.categoryCloud"), logo: "AWS", color: "text-orange-400", bgColor: "bg-orange-500/20" },
+    { name: "Microsoft Azure", category: t("partners.categoryCloud"), logo: "Azure", color: "text-blue-400", bgColor: "bg-blue-500/20" },
+    { name: "Google Cloud", category: t("partners.categoryCloud"), logo: "GCP", color: "text-green-400", bgColor: "bg-green-500/20" },
+    { name: "Kubernetes", category: t("partners.categoryContainer"), logo: "K8s", color: "text-blue-400", bgColor: "bg-blue-500/20" },
+    { name: "Docker", category: t("partners.categoryContainer"), logo: "Docker", color: "text-blue-400", bgColor: "bg-blue-500/20" },
+    { name: "Terraform", category: t("partners.categoryInfrastructure"), logo: "TF", color: "text-purple-400", bgColor: "bg-purple-500/20" },
+    { name: "Datadog", category: t("partners.categoryMonitoring"), logo: "DD", color: "text-green-400", bgColor: "bg-green-500/20" },
+    { name: "HashiCorp", category: t("partners.categoryInfrastructure"), logo: "HC", color: "text-purple-400", bgColor: "bg-purple-500/20" },
   ];
 
   const testimonials = [
@@ -88,18 +100,18 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                <Handshake className="h-4 w-4 text-emerald-500" />
-                <span className="font-medium">{t("partners.badge")}</span>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="font-medium">{t("home.enterpriseBadge")}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("partners.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("partners.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/contact`}>
                   <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("partners.becomePartner")}
@@ -117,12 +129,13 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         </section>
 
         {/* Featured Partners */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                <Handshake className="w-4 h-4 mr-3" />
                 {t("partners.featuredTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("partners.featuredDescription")}
               </p>
@@ -131,10 +144,10 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
               {featuredPartners.map((partner) => (
                 <div
                   key={partner.name}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center"
+                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center group"
                 >
-                  <div className="w-16 h-16 rounded-lg bg-foreground/5 flex items-center justify-center mx-auto mb-3">
-                    <span className="text-lg font-semibold text-foreground">{partner.logo}</span>
+                  <div className={`w-16 h-16 ${partner.bgColor} rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:opacity-80 transition-opacity`}>
+                    <span className={`text-lg font-semibold ${partner.color}`}>{partner.logo}</span>
                   </div>
                   <h3 className="text-base font-semibold text-foreground">{partner.name}</h3>
                   <p className="text-sm text-muted-foreground">{partner.category}</p>
@@ -145,12 +158,13 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         </section>
 
         {/* Partnership Levels */}
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
+                <Star className="w-4 h-4 mr-3" />
                 {t("partners.levelsTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("partners.levelsDescription")}
               </p>
@@ -159,22 +173,24 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
               {partnershipLevels.map((level) => (
                 <div
                   key={level.title}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
+                  className={`p-8 rounded-lg border ${level.borderColor} ${level.bgGradient} hover:border-foreground/20 transition-colors`}
                 >
-                  <Building2 className="h-8 w-8 text-foreground mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{level.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                  <div className={`w-16 h-16 ${level.bgColor} rounded-xl flex items-center justify-center mb-6`}>
+                    <Building2 className={`w-8 h-8 ${level.color}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{level.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                     {level.description}
                   </p>
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 mb-6">
                     {level.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{benefit}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6">
+                  <div className="mt-auto">
                     <Link href={`/${locale}/contact`}>
                       <Button variant="outline" className="w-full">
                         {t("partners.learnMore")}
@@ -189,19 +205,20 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm mb-6">
+                <Star className="w-4 h-4 mr-3" />
                 {t("partners.testimonialsTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("partners.testimonialsDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="p-6 rounded-lg border border-border bg-card">
+                <div key={index} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -227,15 +244,16 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
-                <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                  <Shield className="w-4 h-4 mr-3" />
                   {t("partners.whyTitle")}
-                </h2>
+                </div>
                 <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                   {t("partners.whyDescription")}
                 </p>
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <Shield className="h-6 w-6 text-foreground mb-2" />
+                  <div className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <Shield className="h-6 w-6 text-blue-400 mb-2" />
                     <div className="text-lg font-semibold text-foreground">
                       {t("partners.whyStat1")}
                     </div>
@@ -243,8 +261,8 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
                       {t("partners.whyStat1Label")}
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <Users className="h-6 w-6 text-foreground mb-2" />
+                  <div className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <Users className="h-6 w-6 text-green-400 mb-2" />
                     <div className="text-lg font-semibold text-foreground">
                       {t("partners.whyStat2")}
                     </div>
@@ -252,8 +270,8 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
                       {t("partners.whyStat2Label")}
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <Globe className="h-6 w-6 text-foreground mb-2" />
+                  <div className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <Globe className="h-6 w-6 text-purple-400 mb-2" />
                     <div className="text-lg font-semibold text-foreground">
                       {t("partners.whyStat3")}
                     </div>
@@ -261,8 +279,8 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
                       {t("partners.whyStat3Label")}
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <Handshake className="h-6 w-6 text-foreground mb-2" />
+                  <div className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <Handshake className="h-6 w-6 text-orange-400 mb-2" />
                     <div className="text-lg font-semibold text-foreground">
                       {t("partners.whyStat4")}
                     </div>
@@ -272,7 +290,7 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
                   </div>
                 </div>
               </div>
-              <div className="p-8 rounded-lg border border-border bg-card">
+              <div className="p-8 rounded-lg border border-blue-500/20 bg-gradient-to-br from-blue-900/20 to-blue-800/10">
                 <h3 className="text-xl font-semibold text-foreground mb-6">
                   {t("partners.ctaTitle")}
                 </h3>

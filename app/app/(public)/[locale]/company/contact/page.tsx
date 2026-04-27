@@ -27,6 +27,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       description: t("contact.salesDesc"),
       cta: t("contact.contactSales"),
       href: `/${locale}/contact`,
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/20",
     },
     {
       icon: HeadphonesIcon,
@@ -34,6 +36,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       description: t("contact.supportDesc"),
       cta: t("contact.getSupport"),
       href: "https://support.skygenesisenterprise.com",
+      color: "text-green-400",
+      bgColor: "bg-green-500/20",
     },
     {
       icon: Zap,
@@ -41,6 +45,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       description: t("contact.technicalDesc"),
       cta: t("contact.viewDocs"),
       href: `/${locale}/docs`,
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/20",
     },
   ];
 
@@ -70,11 +76,15 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+              </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("contact.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("contact.heroDescription")}
               </p>
             </div>
@@ -84,22 +94,29 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         {/* Contact Options */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                {t("contact.salesTitle")}
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+                {t("contact.salesDesc")}
+              </p>
+            </div>
             <div className="grid md:grid-cols-3 gap-6">
               {contactOptions.map((option) => (
                 <div
                   key={option.title}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
+                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group"
                 >
-                  <option.icon className="h-8 w-8 text-foreground mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{option.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  <div className={`w-16 h-16 ${option.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity`}>
+                    <option.icon className={`w-8 h-8 ${option.color}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{option.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                     {option.description}
                   </p>
-                  <Link href={option.href}>
-                    <Button variant="outline" className="w-full">
-                      {option.cta}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
+                  <Link href={option.href} className={`text-sm font-semibold flex items-center gap-1 ${option.color} hover:opacity-80 transition-opacity`}>
+                    {option.cta} <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
               ))}
@@ -165,7 +182,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </form>
               </div>
 
-              {/* Office Information */}
+                {/* Office Information */}
               <div>
                 <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-4">
                   {t("contact.officeTitle")}
@@ -173,12 +190,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 <p className="text-lg text-muted-foreground mb-8">
                   {t("contact.officeDescription")}
                 </p>
-                <div className="space-y-6">
+                <div className="grid gap-6">
                   {offices.map((office) => (
-                    <div key={office.city} className="p-6 rounded-lg border border-border bg-card">
+                    <div key={office.city} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                       <div className="flex items-start gap-4">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-foreground/5 shrink-0">
-                          <Building2 className="h-5 w-5 text-foreground" />
+                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/20 shrink-0">
+                          <Building2 className="h-6 w-6 text-blue-400" />
                         </div>
                         <div>
                           <h3 className="text-base font-semibold text-foreground mb-1">
@@ -195,9 +212,9 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                   ))}
                 </div>
 
-                <div className="mt-8 p-6 rounded-lg bg-muted/50 border border-border">
+                <div className="mt-6 p-6 rounded-lg border border-green-500/20 bg-gradient-to-br from-green-900/20 to-green-800/10">
                   <div className="flex items-start gap-4">
-                    <Clock className="h-5 w-5 text-foreground mt-0.5" />
+                    <Clock className="h-6 w-6 text-green-400 mt-0.5" />
                     <div>
                       <h3 className="text-base font-semibold text-foreground mb-1">
                         {t("contact.responseTime")}
@@ -214,20 +231,22 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Emergency Support */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <div className="inline-flex items-center px-6 py-3 bg-orange-500/10 border border-orange-500/20 rounded-full text-orange-400 text-sm mb-8">
+                <Zap className="w-4 h-4 mr-3" />
                 {t("contact.emergencyTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("contact.emergencyDescription")}
               </p>
-              <div className="mt-8">
+              <div className="mt-10">
                 <a href="mailto:support@skygenesisenterprise.com">
-                  <Button variant="outline" size="lg">
-                    <Mail className="h-4 w-4 mr-2" />
+                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                    <Mail className="h-4 w-4" />
                     {t("contact.emergencyButton")}
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
               </div>

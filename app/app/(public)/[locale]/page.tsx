@@ -106,6 +106,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       href: "/office",
       color: "text-blue-400",
       borderColor: "border-blue-500/20",
+      bgColor: "bg-blue-500/20",
       bgGradient: "bg-gradient-to-br from-blue-900/20 to-blue-800/10",
     },
     {
@@ -117,6 +118,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       href: "/solutions/infrastructure",
       color: "text-green-400",
       borderColor: "border-green-500/20",
+      bgColor: "bg-green-500/20",
       bgGradient: "bg-gradient-to-br from-green-900/20 to-green-800/10",
     },
   ];

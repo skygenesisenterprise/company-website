@@ -75,18 +75,18 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                <Scale className="h-4 w-4 text-emerald-500" />
-                <span className="font-medium">{t("terms.badge")}</span>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="font-medium">{t("home.enterpriseBadge")}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("terms.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("terms.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/contact`}>
                   <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("terms.contactUs")}
@@ -106,31 +106,38 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         {/* Quick Summary */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                <Scale className="w-4 h-4 mr-3" />
                 {t("terms.summaryTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("terms.summaryDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <Users className="h-8 w-8 text-foreground mb-4" />
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity">
+                  <Users className="w-8 h-8 text-blue-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("terms.summaryAccountTitle")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("terms.summaryAccountDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <Lock className="h-8 w-8 text-foreground mb-4" />
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
+                <div className="w-16 h-16 bg-green-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity">
+                  <Lock className="w-8 h-8 text-green-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("terms.summarySecurityTitle")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("terms.summarySecurityDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <Globe className="h-8 w-8 text-foreground mb-4" />
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity">
+                  <Globe className="w-8 h-8 text-purple-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("terms.summaryDataTitle")}
                 </h3>
@@ -141,7 +148,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         </section>
 
         {/* Terms Content */}
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-muted-foreground mb-12">
@@ -163,20 +170,22 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
+                <Mail className="w-4 h-4 mr-3" />
                 {t("terms.questionsTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("terms.questionsDescription")}
               </p>
-              <div className="mt-8">
+              <div className="mt-10">
                 <a href="mailto:legal@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2">
+                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     <Mail className="h-4 w-4" />
                     {t("terms.emailLegal")}
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
               </div>

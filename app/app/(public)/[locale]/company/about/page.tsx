@@ -3,11 +3,9 @@ import { getTranslations } from "next-intl/server";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
-import { GitHubIcon } from "@/components/ui/icons/GitHubIcon";
 import {
   ArrowRight,
   Clock,
-  CheckCircle2,
   Target,
   Shield,
   Users,
@@ -16,6 +14,7 @@ import {
   Award,
   Heart,
   Lightbulb,
+  Building,
 } from "lucide-react";
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -27,21 +26,29 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       icon: Shield,
       title: t("about.securityTitle"),
       description: t("about.securityDesc"),
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/20",
     },
     {
       icon: Users,
       title: t("about.customerFocusTitle"),
       description: t("about.customerFocusDesc"),
+      color: "text-green-400",
+      bgColor: "bg-green-500/20",
     },
     {
       icon: Zap,
       title: t("about.innovationTitle"),
       description: t("about.innovationDesc"),
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/20",
     },
     {
       icon: Globe,
       title: t("about.opennessTitle"),
       description: t("about.opennessDesc"),
+      color: "text-orange-400",
+      bgColor: "bg-orange-500/20",
     },
   ];
 
@@ -74,24 +81,27 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+              </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("about.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("about.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/docs`}>
                   <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("hero.ctaDocs")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Link href="https://github.com/skygenesisenterprise/aether-identity">
+                <Link href={`/${locale}/contact`}>
                   <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
-                    <GitHubIcon className="h-4 w-4" />
-                    {t("hero.ctaGithub")}
+                    {t("cta.contactSales")}
                   </Button>
                 </Link>
               </div>
@@ -102,50 +112,48 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {/* Mission Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                  <Target className="h-4 w-4 text-emerald-500" />
-                  <span className="font-medium">{t("about.missionLabel")}</span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
-                  {t("about.missionTitle")}
-                </h2>
-                <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                  {t("about.missionDescription")}
-                </p>
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                <Target className="w-4 h-4 mr-3" />
+                {t("about.missionLabel")}
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-6 rounded-lg bg-muted/50 border border-border">
-                  <Shield className="h-8 w-8 text-foreground mb-3" />
-                  <div className="text-2xl font-semibold text-foreground">
-                    {t("about.securityStat")}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {t("about.securityStatLabel")}
-                  </div>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                {t("about.missionTitle")}
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+                {t("about.missionDescription")}
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center">
+                <Shield className="h-8 w-8 text-blue-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold text-foreground">
+                  {t("about.securityStat")}
                 </div>
-                <div className="p-6 rounded-lg bg-muted/50 border border-border">
-                  <Globe className="h-8 w-8 text-foreground mb-3" />
-                  <div className="text-2xl font-semibold text-foreground">
-                    {t("about.globalStat")}
-                  </div>
-                  <div className="text-sm text-muted-foreground">{t("about.globalStatLabel")}</div>
+                <div className="text-sm text-muted-foreground">
+                  {t("about.securityStatLabel")}
                 </div>
-                <div className="p-6 rounded-lg bg-muted/50 border border-border">
-                  <Users className="h-8 w-8 text-foreground mb-3" />
-                  <div className="text-2xl font-semibold text-foreground">
-                    {t("about.usersStat")}
-                  </div>
-                  <div className="text-sm text-muted-foreground">{t("about.usersStatLabel")}</div>
+              </div>
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center">
+                <Globe className="h-8 w-8 text-green-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold text-foreground">
+                  {t("about.globalStat")}
                 </div>
-                <div className="p-6 rounded-lg bg-muted/50 border border-border">
-                  <Award className="h-8 w-8 text-foreground mb-3" />
-                  <div className="text-2xl font-semibold text-foreground">
-                    {t("about.uptimeStat")}
-                  </div>
-                  <div className="text-sm text-muted-foreground">{t("about.uptimeStatLabel")}</div>
+                <div className="text-sm text-muted-foreground">{t("about.globalStatLabel")}</div>
+              </div>
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center">
+                <Users className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold text-foreground">
+                  {t("about.usersStat")}
                 </div>
+                <div className="text-sm text-muted-foreground">{t("about.usersStatLabel")}</div>
+              </div>
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center">
+                <Award className="h-8 w-8 text-orange-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold text-foreground">
+                  {t("about.uptimeStat")}
+                </div>
+                <div className="text-sm text-muted-foreground">{t("about.uptimeStatLabel")}</div>
               </div>
             </div>
           </div>
@@ -154,10 +162,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {/* Values Section */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm mb-6">
+                <Heart className="w-4 h-4 mr-3" />
                 {t("about.valuesTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("about.valuesDescription")}
               </p>
@@ -166,13 +175,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
+                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group"
                 >
-                  <value.icon className="h-8 w-8 text-foreground mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{value.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {value.description}
-                  </p>
+                  <div className={`w-16 h-16 ${value.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity`}>
+                    <value.icon className={`w-8 h-8 ${value.color}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -180,12 +189,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </section>
 
         {/* Story/Milestones Section */}
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
+                <Building className="w-4 h-4 mr-3" />
                 {t("about.storyTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("about.storyDescription")}
               </p>
@@ -228,10 +238,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {/* Team Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
+                <Users className="w-4 h-4 mr-3" />
                 {t("team.title")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("team.description")}
               </p>
@@ -240,10 +251,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {teamMembers.map((member) => (
                 <div
                   key={member.nameKey}
-                  className="p-6 rounded-lg border border-border bg-card text-center"
+                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center group"
                 >
-                  <div className="w-16 h-16 rounded-full bg-foreground/10 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-xl font-semibold text-foreground">{member.image}</span>
+                  <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 group-hover:opacity-80 transition-opacity">
+                    <span className="text-xl font-semibold text-blue-400">{member.image}</span>
                   </div>
                   <h3 className="text-base font-semibold text-foreground">{t(member.nameKey)}</h3>
                   <p className="text-sm text-muted-foreground">{t(member.roleKey)}</p>
@@ -254,12 +265,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </section>
 
         {/* Recent Updates */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-full text-orange-400 text-sm mb-6">
+                <Lightbulb className="w-4 h-4 mr-3" />
                 {t("updates.title")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("updates.description")}
               </p>
@@ -288,9 +300,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                <Zap className="w-4 h-4 mr-3" />
                 {t("cta.title")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground">{t("cta.description")}</p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href={`/${locale}/docs`}>

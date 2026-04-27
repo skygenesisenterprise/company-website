@@ -27,16 +27,22 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
       icon: Users,
       title: t("privacy.personalDataTitle"),
       description: t("privacy.personalDataDesc"),
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/20",
     },
     {
       icon: Server,
       title: t("privacy.usageDataTitle"),
       description: t("privacy.usageDataDesc"),
+      color: "text-green-400",
+      bgColor: "bg-green-500/20",
     },
     {
       icon: Globe,
       title: t("privacy.technicalDataTitle"),
       description: t("privacy.technicalDataDesc"),
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/20",
     },
   ];
 
@@ -100,18 +106,18 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                <Shield className="h-4 w-4 text-emerald-500" />
-                <span className="font-medium">{t("privacy.badge")}</span>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="font-medium">{t("home.enterpriseBadge")}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("privacy.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("privacy.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/contact`}>
                   <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("privacy.contactUs")}
@@ -131,10 +137,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         {/* Data We Collect */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                <Shield className="w-4 h-4 mr-3" />
                 {t("privacy.dataWeCollect")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("privacy.dataWeCollectDescription")}
               </p>
@@ -143,11 +150,13 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               {dataTypes.map((data) => (
                 <div
                   key={data.title}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
+                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group"
                 >
-                  <data.icon className="h-8 w-8 text-foreground mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{data.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <div className={`w-16 h-16 ${data.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity`}>
+                    <data.icon className={`w-8 h-8 ${data.color}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{data.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {data.description}
                   </p>
                 </div>
@@ -159,19 +168,20 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         {/* Your Rights */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
+                <Lock className="w-4 h-4 mr-3" />
                 {t("privacy.yourRightsTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("privacy.yourRightsDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {rights.map((right) => (
-                <div key={right.title} className="p-6 rounded-lg border border-border bg-card">
+                <div key={right.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                    <CheckCircle2 className="h-5 w-5 text-green-400" />
                     <h3 className="text-base font-semibold text-foreground">{right.title}</h3>
                   </div>
                   <p className="text-sm text-muted-foreground">{right.description}</p>
@@ -182,7 +192,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Privacy Policy Content */}
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-muted-foreground mb-12">
@@ -204,20 +214,22 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
+                <Mail className="w-4 h-4 mr-3" />
                 {t("privacy.questionsTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("privacy.questionsDescription")}
               </p>
-              <div className="mt-8">
+              <div className="mt-10">
                 <a href="mailto:privacy@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2">
+                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     <Mail className="h-4 w-4" />
                     {t("privacy.emailPrivacy")}
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
               </div>

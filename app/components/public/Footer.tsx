@@ -193,7 +193,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
     developers: {
       title: t("developers"),
       links: [
-        { name: t("documentation"), href: `/${locale}/docs` },
+        { name: t("documentation"), href: "https://docs.skygenesisenterprise.com" },
         { name: t("apiReference"), href: `/${locale}/docs/api` },
         { name: t("sdks"), href: `/${locale}/docs/sdks` },
         { name: t("quickstarts"), href: `/${locale}/docs/quickstarts` },

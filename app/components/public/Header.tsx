@@ -112,12 +112,6 @@ function getProductMenuData(): MegaMenuData {
         ],
       },
     ],
-    featured: {
-      titleKey: "aiAgents",
-      descKey: "aiAgentsDesc",
-      href: "/products/ai-agents",
-      badgeKey: "new",
-    },
   };
 }
 
@@ -130,7 +124,7 @@ function getDevelopersMenuData(): MegaMenuData {
           {
             titleKey: "documentation",
             descKey: "documentationDesc",
-            href: "/developers",
+            href: "/developers/docs",
             icon: <BookOpen className="h-5 w-5" />,
           },
           {

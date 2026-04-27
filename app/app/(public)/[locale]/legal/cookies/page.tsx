@@ -26,24 +26,32 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
       title: t("cookies.essentialTitle"),
       description: t("cookies.essentialDesc"),
       required: true,
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/20",
     },
     {
       icon: Settings,
       title: t("cookies.functionalTitle"),
       description: t("cookies.functionalDesc"),
       required: false,
+      color: "text-green-400",
+      bgColor: "bg-green-500/20",
     },
     {
       icon: BarChart3,
       title: t("cookies.analyticsTitle"),
       description: t("cookies.analyticsDesc"),
       required: false,
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/20",
     },
     {
       icon: Bell,
       title: t("cookies.marketingTitle"),
       description: t("cookies.marketingDesc"),
       required: false,
+      color: "text-orange-400",
+      bgColor: "bg-orange-500/20",
     },
   ];
 
@@ -90,18 +98,18 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                <Cookie className="h-4 w-4 text-emerald-500" />
-                <span className="font-medium">{t("cookies.badge")}</span>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="font-medium">{t("home.enterpriseBadge")}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("cookies.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("cookies.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/privacy`}>
                   <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("cookies.viewPrivacy")}
@@ -121,24 +129,27 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
         {/* Cookie Categories */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
+                <Cookie className="w-4 h-4 mr-3" />
                 {t("cookies.typesTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("cookies.categoriesDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               {cookieCategories.map((category) => (
-                <div key={category.title} className="p-6 rounded-lg border border-border bg-card">
+                <div key={category.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <category.icon className="h-6 w-6 text-foreground" />
+                      <div className={`w-10 h-10 ${category.bgColor} rounded-lg flex items-center justify-center`}>
+                        <category.icon className={`h-5 w-5 ${category.color}`} />
+                      </div>
                       <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
                     </div>
                     {category.required ? (
-                      <span className="text-xs font-medium px-2 py-1 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+                      <span className="text-xs font-medium px-2 py-1 rounded bg-green-500/20 text-green-400">
                         {t("cookies.required")}
                       </span>
                     ) : (
@@ -157,24 +168,29 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
         {/* Cookie Settings */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
+                <Settings className="w-4 h-4 mr-3" />
                 {t("cookies.controlTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("cookies.controlDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <Eye className="h-8 w-8 text-foreground mb-4" />
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
+                <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
+                  <Eye className="h-7 w-7 text-blue-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("cookies.controlBrowserTitle")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("cookies.controlBrowserDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <Settings className="h-8 w-8 text-foreground mb-4" />
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
+                <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
+                  <Settings className="h-7 w-7 text-green-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("cookies.controlPreferencesTitle")}
                 </h3>
@@ -182,8 +198,10 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
                   {t("cookies.controlPreferencesDesc")}
                 </p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <Clock className="h-8 w-8 text-foreground mb-4" />
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
+                <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
+                  <Clock className="h-7 w-7 text-purple-400" />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("cookies.controlRetentionTitle")}
                 </h3>
@@ -194,7 +212,7 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Cookie Policy Content */}
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-muted-foreground mb-12">
@@ -216,20 +234,22 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
+                <Mail className="w-4 h-4 mr-3" />
                 {t("cookies.questionsTitle")}
-              </h2>
+              </div>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("cookies.questionsDescription")}
               </p>
-              <div className="mt-8">
+              <div className="mt-10">
                 <a href="mailto:privacy@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2">
+                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     <Mail className="h-4 w-4" />
                     {t("cookies.emailPrivacy")}
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
               </div>
