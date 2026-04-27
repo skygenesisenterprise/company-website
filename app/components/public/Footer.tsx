@@ -287,6 +287,9 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                 </Link>
               ))}
             </div>
+            <p className="mt-4 text-sm text-footer-link">
+              {t("salesServices")}: {t("phoneNumber")}
+            </p>
           </div>
         </div>
       </div>

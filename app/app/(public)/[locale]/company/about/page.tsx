@@ -87,7 +87,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <span className="font-medium">{t("home.enterpriseBadge")}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
-                {t("about.heroTitle")}
+                <span className="block">À Propos de</span>
+                <span className="block text-blue-400">Sky Genesis Enterprise</span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("about.heroDescription")}

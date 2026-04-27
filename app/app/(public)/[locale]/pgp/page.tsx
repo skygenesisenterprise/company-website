@@ -26,18 +26,18 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                <Key className="h-4 w-4 text-emerald-500" />
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
                 <span className="font-medium">{t("pgp.badge")}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
                 {t("pgp.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("pgp.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/security`}>
                   <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("pgp.viewSecurity")}
@@ -57,7 +57,7 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
         {/* Why Verify Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
+            <div className="max-w-2xl mx-auto text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
                 {t("pgp.whyTitle")}
               </h2>
@@ -66,21 +66,21 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card">
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                 <Shield className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("pgp.whyAuthTitle")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("pgp.whyAuthDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                 <CheckCircle2 className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("pgp.whyTrustTitle")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("pgp.whyTrustDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                 <Key className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t("pgp.whySecureTitle")}
@@ -94,7 +94,7 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
         {/* PGP Key Section */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
+            <div className="max-w-2xl mx-auto text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
                 {t("pgp.publicKeyTitle")}
               </h2>
@@ -102,8 +102,8 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
                 {t("pgp.publicKeyDescription")}
               </p>
             </div>
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="p-6 rounded-lg border border-border bg-card">
+            <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                 <h3 className="text-lg font-semibold text-foreground mb-4">
                   {t("pgp.keyBlockTitle")}
                 </h3>
@@ -119,7 +119,7 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
                   </Button>
                 </div>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
+              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                 <h3 className="text-lg font-semibold text-foreground mb-4">
                   {t("pgp.fingerprintTitle")}
                 </h3>
@@ -137,7 +137,7 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
         {/* How to Verify Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
+            <div className="max-w-2xl mx-auto text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
                 {t("pgp.howVerifyTitle")}
               </h2>
@@ -145,12 +145,12 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
                 {t("pgp.howVerifyDescription")}
               </p>
             </div>
-            <div className="max-w-3xl">
+            <div className="max-w-3xl mx-auto">
               <ol className="space-y-4">
                 {steps.map((step, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-4 p-4 rounded-lg border border-border bg-card"
+                    className="flex items-start gap-4 p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
                   >
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-foreground text-background font-semibold shrink-0">
                       {index + 1}
@@ -163,10 +163,10 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
           </div>
         </section>
 
-        {/* Usage Section */}
+{/* Usage Section */}
         <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
+            <div className="max-w-2xl mx-auto text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
                 {t("pgp.usageTitle")}
               </h2>
@@ -174,9 +174,9 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
                 {t("pgp.usageDescription")}
               </p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {uses.map((use) => (
-                <div key={use.title} className="p-6 rounded-lg border border-border bg-card">
+                <div key={use.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                     <h3 className="text-base font-semibold text-foreground">{use.title}</h3>
@@ -191,7 +191,7 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
         {/* Warning Section */}
         <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-2xl mx-auto">
               <div className="p-6 rounded-lg border border-yellow-500/50 bg-yellow-500/10">
                 <div className="flex items-start gap-4">
                   <AlertTriangle className="h-6 w-6 text-yellow-500 shrink-0 mt-1" />
@@ -208,7 +208,7 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-28 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
@@ -217,9 +217,9 @@ export default async function PGPPage({ params }: { params: Promise<{ locale: st
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {t("pgp.questionsDescription")}
               </p>
-              <div className="mt-8">
+              <div className="mt-10">
                 <a href="mailto:security@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2">
+                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
                     <Mail className="h-4 w-4" />
                     {t("pgp.emailSecurity")}
                   </Button>

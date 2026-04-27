@@ -20,6 +20,7 @@ import {
   Database,
   Settings,
   LifeBuoy,
+  Languages,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -53,64 +54,70 @@ function getProductMenuData(): MegaMenuData {
   return {
     sections: [
       {
-        titleKey: "identitySecurity",
+        titleKey: "corePlatform",
         items: [
           {
-            titleKey: "identity",
-            descKey: "identityDesc",
-            href: "/products/identity",
+            titleKey: "universalLogin",
+            descKey: "universalLoginDesc",
+            href: "/products/universal-login",
             icon: <Lock className="h-5 w-5" />,
           },
           {
-            titleKey: "shield",
-            descKey: "shieldDesc",
-            href: "/products/shield",
-            icon: <Shield className="h-5 w-5" />,
-          },
-          {
-            titleKey: "vault",
-            descKey: "vaultDesc",
-            href: "/products/vault",
+            titleKey: "singleSignOn",
+            descKey: "singleSignOnDesc",
+            href: "/products/sso",
             icon: <Key className="h-5 w-5" />,
           },
           {
-            titleKey: "vpn",
-            descKey: "vpnDesc",
-            href: "/products/vpn",
+            titleKey: "multiFactorAuth",
+            descKey: "multiFactorAuthDesc",
+            href: "/products/mfa",
             icon: <Shield className="h-5 w-5" />,
+          },
+          {
+            titleKey: "userManagement",
+            descKey: "userManagementDesc",
+            href: "/products/user-management",
+            icon: <Users className="h-5 w-5" />,
           },
         ],
       },
       {
-        titleKey: "collaboration",
+        titleKey: "enterprise",
         items: [
           {
-            titleKey: "mail",
-            descKey: "mailDesc",
-            href: "/products/mail",
-            icon: <Globe className="h-5 w-5" />,
+            titleKey: "enterpriseConnections",
+            descKey: "enterpriseConnectionsDesc",
+            href: "/products/enterprise",
+            icon: <Building2 className="h-5 w-5" />,
           },
           {
-            titleKey: "meet",
-            descKey: "meetDesc",
-            href: "/products/meet",
-            icon: <Users className="h-5 w-5" />,
+            titleKey: "organizations",
+            descKey: "organizationsDesc",
+            href: "/products/organizations",
+            icon: <Layers className="h-5 w-5" />,
           },
           {
-            titleKey: "mailer",
-            descKey: "mailerDesc",
-            href: "/products/mailer",
-            icon: <Zap className="h-5 w-5" />,
+            titleKey: "fineGrainedAuthorization",
+            descKey: "fineGrainedAuthorizationDesc",
+            href: "/products/fga",
+            icon: <Settings className="h-5 w-5" />,
           },
           {
-            titleKey: "sheets",
-            descKey: "sheetsDesc",
-            href: "/products/sheet",
-            icon: <Database className="h-5 w-5" />,
+            titleKey: "privateCloud",
+            descKey: "privateCloudDesc",
+            href: "/products/private-cloud",
+            icon: <Server className="h-5 w-5" />,
           },
         ],
       },
     ],
+    featured: {
+      titleKey: "aiAgents",
+      descKey: "aiAgentsDesc",
+      href: "/products/ai-agents",
+      badgeKey: "new",
+    },
   };
 }
 
@@ -123,7 +130,7 @@ function getDevelopersMenuData(): MegaMenuData {
           {
             titleKey: "documentation",
             descKey: "documentationDesc",
-            href: "/developers/docs",
+            href: "/developers",
             icon: <BookOpen className="h-5 w-5" />,
           },
           {
@@ -183,7 +190,7 @@ function getSolutionsMenuData(): MegaMenuData {
   return {
     sections: [
       {
-        titleKey: "useCases",
+        titleKey: "byUseCase",
         items: [
           {
             titleKey: "b2cIdentity",
@@ -244,158 +251,35 @@ function getSolutionsMenuData(): MegaMenuData {
   };
 }
 
-function getEnterpriseMenuData(): MegaMenuData {
-  return {
-    sections: [
-      {
-        titleKey: "company",
-        items: [
-          {
-            titleKey: "about",
-            descKey: "aboutDesc",
-            href: "/company/about",
-            icon: <Building2 className="h-5 w-5" />,
-          },
-          {
-            titleKey: "careers",
-            descKey: "careersDesc",
-            href: "/company/careers",
-            icon: <Users className="h-5 w-5" />,
-          },
-          {
-            titleKey: "contact",
-            descKey: "contactDesc",
-            href: "/company/contact",
-            icon: <LifeBuoy className="h-5 w-5" />,
-          },
-          {
-            titleKey: "press",
-            descKey: "pressDesc",
-            href: "/company/press",
-            icon: <FileText className="h-5 w-5" />,
-          },
-        ],
-      },
-    ],
-  };
-}
+const languages = [
+  { code: "en", flag: "🇬🇧" },
+  { code: "fr", flag: "🇫🇷" },
+];
 
-function getPlateformeMenuData(): MegaMenuData {
-  return {
-    sections: [
-      {
-        titleKey: "infrastructureCloud",
-        items: [
-          {
-            titleKey: "edge",
-            descKey: "edgeDesc",
-            href: "/products/edge",
-            icon: <Server className="h-5 w-5" />,
-          },
-          {
-            titleKey: "vpn",
-            descKey: "vpnDesc",
-            href: "/products/vpn",
-            icon: <Shield className="h-5 w-5" />,
-          },
-          {
-            titleKey: "status",
-            descKey: "statusDesc",
-            href: "/products/status",
-            icon: <Zap className="h-5 w-5" />,
-          },
-          {
-            titleKey: "search",
-            descKey: "searchDesc",
-            href: "/products/search",
-            icon: <Code className="h-5 w-5" />,
-          },
-        ],
-      },
-      {
-        titleKey: "userServices",
-        items: [
-          {
-            titleKey: "identity",
-            descKey: "identityDesc",
-            href: "/products/identity",
-            icon: <Lock className="h-5 w-5" />,
-          },
-          {
-            titleKey: "shield",
-            descKey: "shieldDesc",
-            href: "/products/shield",
-            icon: <Shield className="h-5 w-5" />,
-          },
-          {
-            titleKey: "maps",
-            descKey: "mapsDesc",
-            href: "/products/maps",
-            icon: <Globe className="h-5 w-5" />,
-          },
-          {
-            titleKey: "vault",
-            descKey: "vaultDesc",
-            href: "/products/vault",
-            icon: <Key className="h-5 w-5" />,
-          },
-        ],
-      },
-    ],
-  };
-}
+function LanguageSwitcher({ locale }: { locale: string }) {
+  const currentLang = languages.find((l) => l.code === locale) || languages[0];
 
-function getPartnersMenuData(): MegaMenuData {
-  return {
-    sections: [
-      {
-        titleKey: "partnersSolution",
-        items: [
-          {
-            titleKey: "technologyPartners",
-            descKey: "technologyPartnersDesc",
-            href: "/partners/technology",
-            icon: <Code className="h-5 w-5" />,
-          },
-          {
-            titleKey: "servicePartners",
-            descKey: "servicePartnersDesc",
-            href: "/partners/service",
-            icon: <Users className="h-5 w-5" />,
-          },
-          {
-            titleKey: "distributionPartners",
-            descKey: "distributionPartnersDesc",
-            href: "/partners/distribution",
-            icon: <Building2 className="h-5 w-5" />,
-          },
-        ],
-      },
-      {
-        titleKey: "partnerProgram",
-        items: [
-          {
-            titleKey: "program",
-            descKey: "programDesc",
-            href: "/partners/program",
-            icon: <FileText className="h-5 w-5" />,
-          },
-          {
-            titleKey: "becomePartner",
-            descKey: "becomePartnerDesc",
-            href: "/partners/become",
-            icon: <Zap className="h-5 w-5" />,
-          },
-          {
-            titleKey: "partnerResources",
-            descKey: "partnerResourcesDesc",
-            href: "/partners/resources",
-            icon: <BookOpen className="h-5 w-5" />,
-          },
-        ],
-      },
-    ],
-  };
+  return (
+    <div className="relative group">
+      <button
+        className="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
+        aria-label="Select language"
+      >
+        <Languages className="h-4 w-4" />
+      </button>
+      <div className="absolute right-0 top-full mt-1 w-40 bg-background border border-border rounded-lg shadow-lg overflow-hidden z-50 hidden group-hover:block">
+        {languages.map((lang) => (
+          <Link
+            key={lang.code}
+            href={`/${lang.code}`}
+            className="w-full px-3 py-2 text-left text-sm flex items-center gap-2 hover:bg-muted transition-colors"
+          >
+            <span>{lang.flag}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export async function Header({ locale: initialLocale }: HeaderProps) {
@@ -405,9 +289,6 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
   const productMenuData = getProductMenuData();
   const developersMenuData = getDevelopersMenuData();
   const solutionsMenuData = getSolutionsMenuData();
-  const plateformeMenuData = getPlateformeMenuData();
-  const enterpriseMenuData = getEnterpriseMenuData();
-  const partnersMenuData = getPartnersMenuData();
 
   const getLocaleHref = (href: string) => {
     if (href === "/") return `/${locale}`;
@@ -421,9 +302,15 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center gap-8">
             <Link href={getLocaleHref("/")} className="flex items-center gap-2.5 group">
+              <div className="relative">
+                <Shield className="h-7 w-7 text-foreground transition-transform group-hover:scale-105" />
+              </div>
               <div className="flex flex-col">
                 <span className="font-semibold text-base text-foreground leading-tight">
                   {t("brandName")}
+                </span>
+                <span className="text-[10px] text-muted-foreground leading-tight tracking-wide">
+                  {t("bySkyGenesis")}
                 </span>
               </div>
             </Link>
@@ -432,52 +319,6 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center">
             <ul className="flex items-center gap-1">
-              <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                  {t("plateforme")}
-                  <ChevronDown className="h-3.5 w-3.5" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
-                          {plateformeMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-1">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
               <li className="relative group">
                 <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                   {t("product")}
@@ -616,92 +457,13 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
                 </div>
               </li>
 
-              <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                  {t("partners")}
-                  <ChevronDown className="h-3.5 w-3.5" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
-                          {partnersMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-1">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                  {t("enterprise")}
-                  <ChevronDown className="h-3.5 w-3.5" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-64">
-                    <div className="p-6">
-                      {enterpriseMenuData.sections.map((section) => (
-                        <div key={section.titleKey}>
-                          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                            {t(section.titleKey)}
-                          </h3>
-                          <ul className="space-y-1">
-                            {section.items.map((item) => (
-                              <li key={item.titleKey}>
-                                <Link
-                                  href={getLocaleHref(item.href)}
-                                  className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
-                                >
-                                  <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
-                                    {item.icon}
-                                  </span>
-                                  <div>
-                                    <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
-                                      {t(item.titleKey)}
-                                    </span>
-                                    <span className="block text-xs text-muted-foreground mt-0.5">
-                                      {t(item.descKey)}
-                                    </span>
-                                  </div>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <li>
+                <Link
+                  href={getLocaleHref("/pricing")}
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t("pricing")}
+                </Link>
               </li>
 
               <li>
@@ -717,6 +479,7 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2">
+            <LanguageSwitcher locale={locale} />
 
             <Link href="/login">
               <Button
