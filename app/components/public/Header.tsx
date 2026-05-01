@@ -26,6 +26,7 @@ import {
   Network,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HeaderAuthButton } from "./HeaderAuthButton";
 
 interface HeaderProps {
   locale?: Locale;
@@ -721,21 +722,11 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2">
-
-            <Link href="/login">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-9 px-4 font-medium text-muted-foreground hover:text-foreground"
-              >
-                {t("login")}
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm" className="h-9 px-4 font-medium">
-                {t("signUp")}
-              </Button>
-            </Link>
+            <HeaderAuthButton
+              loginText={t("login")}
+              accountText={t("account")}
+              signUpText={t("signUp")}
+            />
 
             {/* Mobile Menu Button - placeholder, needs client component */}
             <div className="lg:hidden">
