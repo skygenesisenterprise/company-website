@@ -341,7 +341,7 @@ function getPlateformeMenuData(): MegaMenuData {
           {
             titleKey: "mailer",
             descKey: "mailerDesc",
-            href: "/products/mailer",
+            href: "/platform/mailer",
             icon: <Inbox className="h-5 w-5" />,
           },
         ],
