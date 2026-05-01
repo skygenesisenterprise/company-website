@@ -24,8 +24,8 @@ import {
   Inbox,
   Table2,
   Network,
+  DatabaseSearch,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { HeaderAuthButton } from "./HeaderAuthButton";
 
 interface HeaderProps {
@@ -102,10 +102,10 @@ function getProductMenuData(): MegaMenuData {
             icon: <Users className="h-5 w-5" />,
           },
           {
-            titleKey: "mailer",
-            descKey: "mailerDesc",
-            href: "/products/mailer",
-            icon: <Inbox className="h-5 w-5" />,
+            titleKey: "schematik",
+            descKey: "schematikDesc",
+            href: "/products/schematik",
+            icon: <Network className="h-5 w-5" />,
           },
           {
             titleKey: "sheets",
@@ -313,7 +313,7 @@ function getPlateformeMenuData(): MegaMenuData {
             titleKey: "search",
             descKey: "searchDesc",
             href: "/platform/search",
-            icon: <Code className="h-5 w-5" />,
+            icon: <DatabaseSearch className="h-5 w-5" />,
           },
         ],
       },
@@ -339,10 +339,10 @@ function getPlateformeMenuData(): MegaMenuData {
             icon: <Key className="h-5 w-5" />,
           },
           {
-            titleKey: "schematik",
-            descKey: "schematikDesc",
-            href: "/platform/schematik",
-            icon: <Network className="h-5 w-5" />,
+            titleKey: "mailer",
+            descKey: "mailerDesc",
+            href: "/products/mailer",
+            icon: <Inbox className="h-5 w-5" />,
           },
         ],
       },

@@ -12,7 +12,6 @@ import {
   Network,
   Database,
   Layers,
-  Zap,
   Lock,
   CheckCircle2,
   ArrowDown,
@@ -23,8 +22,10 @@ import {
   RefreshCw,
   Power,
   Scale,
-  Eye,
   Target,
+  Zap,
+  Activity,
+  Clock,
 } from "lucide-react";
 
 export default async function PlatformEdgePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -132,6 +133,29 @@ export default async function PlatformEdgePage({ params }: { params: Promise<{ l
     },
   ];
 
+  const metrics = [
+    {
+      icon: Zap,
+      value: t("edge.metricLatencyValue"),
+      label: t("edge.metricLatencyLabel"),
+    },
+    {
+      icon: Activity,
+      value: t("edge.metricUptimeValue"),
+      label: t("edge.metricUptimeLabel"),
+    },
+    {
+      icon: Globe,
+      value: t("edge.metricNodesValue"),
+      label: t("edge.metricNodesLabel"),
+    },
+    {
+      icon: Clock,
+      value: t("edge.metricSyncValue"),
+      label: t("edge.metricSyncLabel"),
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header locale={locale as import("@/lib/locale").Locale} />
@@ -162,6 +186,27 @@ export default async function PlatformEdgePage({ params }: { params: Promise<{ l
                   </Button>
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Metrics Section */}
+        <section className="py-16 lg:py-20 border-b border-border bg-muted/30">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {metrics.map((metric) => (
+                <div key={metric.label} className="text-center">
+                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <metric.icon className="w-6 h-6 text-green-400" />
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+                    {metric.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {metric.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -459,7 +504,7 @@ export default async function PlatformEdgePage({ params }: { params: Promise<{ l
                   {t("edge.deployNow")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
-                <Link href={`/${locale}/developer/open-source`}>
+                <Link href="https://github.com/skygenesisenterprise/aether-edge" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
                     {t("edge.contribute")}
                     <ArrowRight className="h-4 w-4" />

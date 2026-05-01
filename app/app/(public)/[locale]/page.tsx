@@ -17,7 +17,6 @@ import {
   Building,
   Cloud,
   FileText,
-  Rocket,
   Award,
   GitBranch,
   Activity,
