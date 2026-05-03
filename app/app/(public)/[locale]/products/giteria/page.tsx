@@ -320,11 +320,11 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t("giteria.devexUnifiedDesc")}</p>
                 <div className="p-4 rounded bg-muted/50 font-mono text-xs text-muted-foreground">
                   <div className="mb-2"># Initialize a new project</div>
-                  <div className="text-green-400">giteria init my-project</div>
+                  <div className="text-green-400">ga init my-project</div>
                   <div className="mt-4 mb-2"># Deploy to edge</div>
-                  <div className="text-green-400">giteria deploy --edge global</div>
+                  <div className="text-green-400">ga deploy --edge global</div>
                   <div className="mt-4 mb-2"># View real-time logs</div>
-                  <div className="text-green-400">giteria logs --follow</div>
+                  <div className="text-green-400">ga logs --follow</div>
                 </div>
               </div>
               <div className="p-8 rounded-lg border border-border bg-card">

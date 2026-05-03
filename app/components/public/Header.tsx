@@ -27,6 +27,7 @@ import {
   DatabaseSearch,
   GlobeLock,
   FolderGit2,
+  MessageCircle,
 } from "lucide-react";
 import { HeaderAuthButton } from "./HeaderAuthButton";
 
@@ -107,7 +108,7 @@ function getProductMenuData(): MegaMenuData {
             titleKey: "chat",
             descKey: "chatDesc",
             href: "/products/chat",
-            icon: <Inbox className="h-5 w-5" />,
+            icon: <MessageCircle className="h-5 w-5" />,
           },
           {
             titleKey: "sheets",
