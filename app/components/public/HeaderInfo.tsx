@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Search, Globe, ChevronDown, X } from "lucide-react";
-import { useState } from "react";
+import { Search, Globe, ChevronDown, X, Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 interface Language {
   code: string;
@@ -28,6 +29,12 @@ export function HeaderInfo({ locale = "fr", t, languages = [] }: HeaderInfoProps
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const searchLabel = t?.search || "Rechercher";
   const closeSearchLabel = t?.closeSearch || "Fermer la recherche";
@@ -87,6 +94,17 @@ export function HeaderInfo({ locale = "fr", t, languages = [] }: HeaderInfoProps
           <div className="text-sm text-muted-foreground">
             {salesLabel}: {phoneLabel}
           </div>
+
+          {/* Theme Toggle */}
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+          )}
 
           {/* Language Selector */}
           <div

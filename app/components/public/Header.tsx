@@ -427,8 +427,8 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-8">
-            <Link href={getLocaleHref("/")} className="flex items-center gap-2.5 group">
+          <div className="flex items-center gap-6">
+            <Link href={getLocaleHref("/")} className="flex items-center gap-2 group">
               <div className="flex flex-col">
                 <span className="font-semibold text-base text-foreground leading-tight">
                   {t("brandName")}
