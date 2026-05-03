@@ -684,7 +684,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               ))}
             </div>
             <div className="text-center">
-              <Link href={`/${locale}/company/careers`}>
+              <Link href="https://jobs.skygenesisenterprise.com/">
                 <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
                   {t("home.viewAllPositions")}
                   <ArrowRight className="h-4 w-4" />

@@ -25,6 +25,8 @@ import {
   Table2,
   Network,
   DatabaseSearch,
+  GlobeLock,
+  FolderGit2,
 } from "lucide-react";
 import { HeaderAuthButton } from "./HeaderAuthButton";
 
@@ -61,28 +63,28 @@ function getProductMenuData(): MegaMenuData {
         titleKey: "identitySecurity",
         items: [
           {
-            titleKey: "identity",
-            descKey: "identityDesc",
-            href: "/products/identity",
-            icon: <Lock className="h-5 w-5" />,
-          },
-          {
             titleKey: "shield",
             descKey: "shieldDesc",
             href: "/products/shield",
             icon: <Shield className="h-5 w-5" />,
           },
           {
-            titleKey: "vault",
-            descKey: "vaultDesc",
-            href: "/products/vault",
-            icon: <Key className="h-5 w-5" />,
-          },
-          {
             titleKey: "vpn",
             descKey: "vpnDesc",
             href: "/products/vpn",
-            icon: <Shield className="h-5 w-5" />,
+            icon: <GlobeLock className="h-5 w-5" />,
+          },
+          {
+            titleKey: "giteria",
+            descKey: "giteriaDesc",
+            href: "/products/giteria",
+            icon: <FolderGit2 className="h-5 w-5" />,
+          },
+          {
+            titleKey: "schematik",
+            descKey: "schematikDesc",
+            href: "/products/schematik",
+            icon: <Network className="h-5 w-5" />,
           },
         ],
       },
@@ -102,10 +104,10 @@ function getProductMenuData(): MegaMenuData {
             icon: <Users className="h-5 w-5" />,
           },
           {
-            titleKey: "schematik",
-            descKey: "schematikDesc",
-            href: "/products/schematik",
-            icon: <Network className="h-5 w-5" />,
+            titleKey: "chat",
+            descKey: "chatDesc",
+            href: "/products/chat",
+            icon: <Inbox className="h-5 w-5" />,
           },
           {
             titleKey: "sheets",

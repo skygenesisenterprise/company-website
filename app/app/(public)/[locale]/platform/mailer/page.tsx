@@ -19,9 +19,7 @@ import {
   Home,
   Building2,
   GitBranch,
-  RefreshCw,
   Power,
-  Scale,
   Target,
   Zap,
   Activity,
@@ -31,10 +29,8 @@ import {
   Code,
   Box,
   Aperture,
-  Webhook,
   ShieldCheck,
   Users,
-  Briefcase,
 } from "lucide-react";
 
 export default async function PlatformMailerPage({ params }: { params: Promise<{ locale: string }> }) {
