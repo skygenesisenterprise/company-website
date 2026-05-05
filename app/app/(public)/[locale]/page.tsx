@@ -23,8 +23,6 @@ import {
   CheckCircle2,
   Star,
   Eye,
-  UserCheck,
-  TrendingUp,
 } from "lucide-react";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -210,28 +208,28 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("home.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {t("home.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("home.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/office`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {t("home.discoverAether")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/vision`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("home.exploreVision")}
                   </Button>
                 </Link>
@@ -241,66 +239,61 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Client Logos & Social Proof */}
-        <section className="py-16 border-b border-border">
+        <section className="py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm text-muted-foreground mb-8">
-              {t("home.trustedBy")}
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 grayscale mb-24">
               {["Aerospace Corp", "Banque Européenne", "Santé Publique", "Gouvernement FR", "Tech EU"].map((client) => (
-                <div key={client} className="text-lg font-semibold text-muted-foreground">
+                <div key={client} className="text-base font-medium text-muted-foreground">
                   {client}
                 </div>
               ))}
             </div>
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               <div>
-                <div className="text-3xl font-bold text-foreground">200+</div>
-                <div className="text-sm text-muted-foreground">{t("home.statEnterprises")}</div>
+                <div className="text-4xl lg:text-5xl font-normal text-foreground">200+</div>
+                <div className="mt-2 text-sm text-muted-foreground">{t("home.statEnterprises")}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-foreground">99.99%</div>
-                <div className="text-sm text-muted-foreground">{t("home.statUptime")}</div>
+                <div className="text-4xl lg:text-5xl font-normal text-foreground">99.99%</div>
+                <div className="mt-2 text-sm text-muted-foreground">{t("home.statUptime")}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-foreground">12</div>
-                <div className="text-sm text-muted-foreground">{t("home.statCountries")}</div>
+                <div className="text-4xl lg:text-5xl font-normal text-foreground">12</div>
+                <div className="mt-2 text-sm text-muted-foreground">{t("home.statCountries")}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-foreground">48h</div>
-                <div className="text-sm text-muted-foreground">{t("home.statSupport")}</div>
+                <div className="text-4xl lg:text-5xl font-normal text-foreground">48h</div>
+                <div className="mt-2 text-sm text-muted-foreground">{t("home.statSupport")}</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Mission & Vision Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.missionVisionTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.missionVisionDesc")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {missionVision.map((item) => (
-                <div key={item.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-6">
-                    <item.icon className="w-8 h-8 text-blue-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 text-center">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-center">{item.description}</p>
+                <div key={item.title} className="p-10 rounded-2xl bg-card">
+                  <item.icon className="w-10 h-10 text-blue-500 mb-6" />
+                  <h3 className="text-2xl font-medium text-foreground mb-4">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 max-w-4xl mx-auto">
               {coreValues.map((value) => (
                 <div key={value.label} className="text-center">
-                  <div className="text-3xl font-bold text-foreground mb-2">{value.label}</div>
-                  <div className="text-sm text-muted-foreground">{value.desc}</div>
+                  <div className="text-2xl font-normal text-foreground mb-2">{value.label}</div>
+                  <div className="text-xs text-muted-foreground">{value.desc}</div>
                 </div>
               ))}
             </div>
@@ -308,52 +301,53 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Product Ecosystem Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.productEcosystemTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.productEcosystemDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {products.map((product) => (
-                <div key={product.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                  <div className={`w-16 h-16 ${product.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity`}>
-                    <product.icon className={`w-8 h-8 ${product.color}`} />
+                <Link
+                  key={product.title}
+                  href={`/${locale}${product.href}`}
+                  className="group p-8 rounded-2xl bg-card hover:bg-card/80 transition-colors"
+                >
+                  <product.icon className={`w-10 h-10 ${product.color} mb-6`} />
+                  <h3 className="text-lg font-medium text-foreground mb-3">{product.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{product.description}</p>
+                  <div className="flex items-center gap-1 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                    {t("home.explore")}
+                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{product.title}</h3>
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{product.description}</p>
-                  <Link href={`/${locale}${product.href}`} className={`text-sm font-semibold flex items-center gap-1 ${product.color} hover:opacity-80 transition-opacity`}>
-                    {t("home.explore")} <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
         {/* Why SGE Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.whyUsTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.whyUsDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {valueProps.map((prop) => (
-                <div key={prop.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-14 h-14 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <prop.icon className="w-7 h-7 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{prop.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{prop.desc}</p>
+                <div key={prop.title} className="p-8 rounded-2xl bg-card">
+                  <prop.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{prop.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{prop.desc}</p>
                 </div>
               ))}
             </div>
@@ -361,39 +355,46 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Featured Products Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.featuredProductsTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.featuredProductsDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredProducts.map((product) => (
-                <div key={product.title} className={`p-8 rounded-lg border ${product.borderColor} ${product.bgGradient}`}>
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className={`w-16 h-16 ${product.bgColor} rounded-xl flex items-center justify-center`}>
-                      <product.icon className={`w-8 h-8 ${product.color}`} />
+                <div
+                  key={product.title}
+                  className="p-10 rounded-3xl bg-card border border-border/50"
+                >
+                  <div className="flex items-center gap-5 mb-8">
+                    <div className={`w-14 h-14 rounded-2xl ${product.bgColor} flex items-center justify-center`}>
+                      <product.icon className={`w-7 h-7 ${product.color}`} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-foreground">{product.title}</h3>
-                      <p className={product.color}>{product.subtitle}</p>
+                      <h3 className="text-2xl font-medium text-foreground">{product.title}</h3>
+                      <p className={`text-sm ${product.color}`}>{product.subtitle}</p>
                     </div>
                   </div>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">{product.description}</p>
-                  <div className="space-y-3 mb-6">
+                  <p className="text-muted-foreground mb-8 leading-relaxed">{product.description}</p>
+                  <ul className="space-y-3 mb-8">
                     {product.features.map((feature) => (
-                      <div key={feature} className="flex items-center text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 mr-3 shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </div>
+                      <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
+                        <span>{feature}</span>
+                      </li>
                     ))}
-                  </div>
-                  <Link href={`/${locale}${product.href}`} className={`inline-flex items-center gap-2 font-semibold ${product.color} hover:opacity-80 transition-opacity`}>
-                    {t("home.learnMore")} <ArrowRight className="w-4 h-4" />
+                  </ul>
+                  <Link
+                    href={`/${locale}${product.href}`}
+                    className={`inline-flex items-center gap-2 text-sm font-medium ${product.color}`}
+                  >
+                    {t("home.learnMore")}
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               ))}
@@ -402,10 +403,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.testimonialsTitle")}
               </h2>
             </div>
@@ -422,9 +423,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   role: t("home.testimonial2Role"),
                 },
               ].map((testimonial, i) => (
-                <div key={i} className="p-8 rounded-lg border border-border bg-card">
-                  <Eye className="w-8 h-8 text-blue-400 mb-4" />
-                  <p className="text-foreground leading-relaxed mb-4">"{testimonial.quote}"</p>
+                <div key={i} className="p-10 rounded-2xl bg-card">
+                  <Eye className="w-8 h-8 text-foreground mb-6 opacity-70" />
+                  <p className="text-foreground leading-relaxed mb-6">"{testimonial.quote}"</p>
                   <div className="text-sm font-medium text-foreground">{testimonial.author}</div>
                   <div className="text-xs text-muted-foreground">{testimonial.role}</div>
                 </div>
@@ -434,77 +435,75 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Latest Updates Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.latestUpdatesTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.latestUpdatesDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Blog Posts */}
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <FileText className="w-5 h-5 text-blue-400" />
-                  <h3 className="text-lg font-semibold text-foreground">{t("home.blogTitle")}</h3>
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <FileText className="w-5 h-5 text-foreground" />
+                  <h3 className="text-base font-medium text-foreground">{t("home.blogTitle")}</h3>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {blogPosts.map((post) => (
-                    <div key={post.title} className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <Link key={post.title} href={`/${locale}${post.href}`} className="block group">
                       <div className="text-xs text-muted-foreground mb-2">{post.date}</div>
-                      <h4 className="font-semibold text-foreground mb-2 hover:text-blue-400 transition-colors">
-                        <Link href={`/${locale}${post.href}`}>{post.title}</Link>
+                      <h4 className="font-medium text-foreground group-hover:text-foreground/70 transition-colors mb-1">
+                        {post.title}
                       </h4>
                       <p className="text-sm text-muted-foreground">{post.desc}</p>
-                    </div>
+                    </Link>
                   ))}
                 </div>
-                <Link href={`/${locale}/blog`} className="text-sm font-medium flex items-center gap-1 text-blue-400 hover:opacity-80 transition-opacity">
+                <Link href={`/${locale}/blog`} className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-foreground hover:text-foreground/70">
                   {t("home.viewAll")} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
 
               {/* Changelog */}
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Activity className="w-5 h-5 text-green-400" />
-                  <h3 className="text-lg font-semibold text-foreground">{t("home.changelogTitle")}</h3>
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Activity className="w-5 h-5 text-foreground" />
+                  <h3 className="text-base font-medium text-foreground">{t("home.changelogTitle")}</h3>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {changelog.map((item) => (
-                    <div key={item.title} className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <div key={item.title} className="p-4 rounded-xl bg-card">
                       <div className="text-xs text-muted-foreground mb-2">{item.version}</div>
-                      <h4 className="font-semibold text-foreground mb-2">{item.title}</h4>
+                      <h4 className="font-medium text-foreground mb-1">{item.title}</h4>
                       <p className="text-sm text-muted-foreground">{item.desc}</p>
                     </div>
                   ))}
                 </div>
-                <Link href={`/${locale}/changelog`} className="text-sm font-medium flex items-center gap-1 text-green-400 hover:opacity-80 transition-opacity">
+                <Link href={`/${locale}/changelog`} className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-foreground hover:text-foreground/70">
                   {t("home.viewAll")} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
 
               {/* Whitepapers */}
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <BookOpen className="w-5 h-5 text-purple-400" />
-                  <h3 className="text-lg font-semibold text-foreground">{t("home.whitepapersTitle")}</h3>
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <BookOpen className="w-5 h-5 text-foreground" />
+                  <h3 className="text-base font-medium text-foreground">{t("home.whitepapersTitle")}</h3>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {whitepapers.map((paper) => (
-                    <div key={paper.title} className="p-4 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                    <div key={paper.title} className="p-4 rounded-xl bg-card">
                       <div className="text-xs text-muted-foreground mb-2">{t("home.whitepaperNew")}</div>
-                      <h4 className="font-semibold text-foreground mb-2 hover:text-purple-400 transition-colors">
-                        <Link href={`/${locale}${paper.href}`}>{paper.title}</Link>
-                      </h4>
+                      <h4 className="font-medium text-foreground mb-1">{paper.title}</h4>
                       <p className="text-sm text-muted-foreground">{paper.desc}</p>
                     </div>
                   ))}
                 </div>
-                <Link href={`/${locale}/whitepaper`} className="text-sm font-medium flex items-center gap-1 text-purple-400 hover:opacity-80 transition-opacity">
+                <Link href={`/${locale}/whitepaper`} className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-foreground hover:text-foreground/70">
                   {t("home.viewAll")} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -513,13 +512,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.faqTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.faqDesc")}
               </p>
             </div>
@@ -529,14 +528,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 { q: t("home.faq2Q"), a: t("home.faq2A") },
                 { q: t("home.faq3Q"), a: t("home.faq3A") },
               ].map((faq, i) => (
-                <div key={i} className="p-6 rounded-lg border border-border bg-card">
-                  <h3 className="font-semibold text-foreground mb-2">{faq.q}</h3>
+                <div key={i} className="p-8 rounded-2xl bg-card">
+                  <h3 className="font-medium text-foreground mb-3">{faq.q}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>
             <div className="text-center mt-8">
-              <Link href={`/${locale}/faq`} className="text-sm font-medium text-blue-400 hover:opacity-80">
+              <Link href={`/${locale}/faq`} className="text-sm font-medium text-foreground hover:text-foreground/70">
                 {t("home.viewAllFAQ")}
               </Link>
             </div>
@@ -544,148 +543,114 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Open-Source Commitment Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.openSourceTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.openSourceDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
               {openSourceStats.map((stat) => (
-                <div key={stat.label} className={`p-8 rounded-lg border ${stat.borderColor} ${stat.bgGradient} text-center hover:border-foreground/20 transition-colors`}>
-                  <div className="w-16 h-16 rounded-xl bg-card flex items-center justify-center mx-auto mb-6">
-                    <stat.icon className={`w-8 h-8 ${stat.color}`} />
-                  </div>
-                  <div className={`text-3xl font-bold mb-2 ${stat.color}`}>{stat.value}</div>
+                <div key={stat.label} className="p-10 rounded-2xl bg-card text-center">
+                  <stat.icon className={`w-10 h-10 ${stat.color} mx-auto mb-6`} />
+                  <div className="text-4xl font-normal text-foreground mb-2">{stat.value}</div>
                   <div className="text-sm text-muted-foreground mb-4">{stat.label}</div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{stat.desc}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{stat.desc}</p>
                 </div>
               ))}
             </div>
             <div className="text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-card border border-border rounded-full text-muted-foreground text-sm mb-8">
-                <CheckCircle2 className="w-4 h-4 text-green-400 mr-3" />
-                {t("home.fullyTransparent")}
-              </div>
-              <div className="flex justify-center">
-                <Link href={`/${locale}/developer/open-source`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
-                    {t("home.exploreOSS")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
+              <Link href={`/${locale}/developer/open-source`}>
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
+                  {t("home.exploreOSS")}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Strategic Ecosystem Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
-                <Target className="w-4 h-4 mr-3" />
-                {t("home.strategicVision")}
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.ecosystemTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.ecosystemDesc")}
               </p>
             </div>
-            <div className="space-y-20">
+            <div className="space-y-16">
               {ecosystemCategories.map((category) => (
                 <div key={category.title}>
-                  <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-foreground mb-2">{category.title}</h3>
-                    <div className={`w-16 h-0.5 bg-linear-to-r ${category.color} to-transparent`} />
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  <h3 className="text-lg font-medium text-foreground mb-6">{category.title}</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {category.orgs.map((org) => (
-                      <div key={org.name} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center group">
-                        <div className="w-12 h-12 bg-card border border-border rounded-lg mx-auto mb-3 flex items-center justify-center">
-                          <div className="w-6 h-6 bg-muted rounded" />
-                        </div>
-                        <div className="text-sm font-medium text-foreground group-hover:text-foreground/80 transition-colors">{org.name}</div>
-                        <div className="text-xs text-muted-foreground mt-1">{org.desc}</div>
-                        <div className="mt-2">
-                          <span className={`inline-flex items-center px-2 py-1 bg-card border ${category.borderColor} rounded-full text-xs ${category.color}`}>
-                            {org.status}
-                          </span>
-                        </div>
+                      <div key={org.name} className="p-5 rounded-xl bg-card border border-border/50">
+                        <div className="text-sm font-medium text-foreground mb-1">{org.name}</div>
+                        <div className="text-xs text-muted-foreground">{org.desc}</div>
+                        <div className={`mt-3 text-xs ${category.color}`}>{org.status}</div>
                       </div>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-            <div className="text-center mt-20">
-              <div className="inline-flex items-center px-6 py-3 bg-card border border-border rounded-full text-muted-foreground text-sm mb-8">
-                <TrendingUp className="w-4 h-4 mr-3" />
-                {t("home.europeanExcellence")}
-              </div>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-                {t("home.ecosystemCommitment")}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href={`/${locale}/company/about`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
-                    <Target className="h-5 w-5" />
-                    {t("home.strategicVisionLink")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href={`/${locale}/governance`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
-                    <Shield className="h-5 w-5" />
-                    {t("home.governanceLink")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
+            <div className="flex justify-center gap-4 mt-20">
+              <Link href={`/${locale}/company/about`}>
+                <Button size="lg" className="gap-2 h-14 px-8 text-base">
+                  {t("home.strategicVisionLink")}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href={`/${locale}/governance`}>
+                <Button variant="outline" size="lg" className="gap-2 h-14 px-8 text-base">
+                  {t("home.governanceLink")}
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Careers Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("home.careersTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("home.careersDesc")}
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
               {careerBenefits.map((benefit) => (
-                <div key={benefit.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center">
-                  <benefit.icon className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
+                <div key={benefit.title} className="p-8 rounded-2xl bg-card text-center">
+                  <benefit.icon className="w-8 h-8 text-foreground mx-auto mb-4 opacity-70" />
+                  <h3 className="text-base font-medium text-foreground mb-2">{benefit.title}</h3>
                   <p className="text-sm text-muted-foreground">{benefit.desc}</p>
                 </div>
               ))}
             </div>
-            <div className="max-w-2xl mx-auto space-y-4 mb-8">
+            <div className="max-w-2xl mx-auto space-y-3 mb-12">
               {openPositions.map((position) => (
-                <div key={position.title} className="p-4 rounded-lg border border-border bg-card flex justify-between items-center">
+                <div key={position.title} className="flex justify-between items-center p-5 rounded-xl bg-card">
                   <div>
-                    <h4 className="font-semibold text-foreground">{position.title}</h4>
+                    <h4 className="font-medium text-foreground">{position.title}</h4>
                     <p className="text-sm text-muted-foreground">{position.desc}</p>
                   </div>
-                  <UserCheck className="w-5 h-5 text-green-400 shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </div>
               ))}
             </div>
             <div className="text-center">
               <Link href="https://jobs.skygenesisenterprise.com/">
-                <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                <Button variant="outline" size="lg" className="gap-2 h-14 px-8 text-base">
                   {t("home.viewAllPositions")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>

@@ -12,12 +12,9 @@ import {
   Cpu,
   Network,
   Database,
-  Layers,
   CheckCircle2,
-  ArrowDown,
   Cloud,
   GitBranch,
-  RefreshCw,
   Activity,
   Clock,
   Globe,
@@ -184,7 +181,7 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-24 lg:py-32 border-b border-border overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-b from-green-500/5 via-transparent to-transparent" />
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-10 w-72 h-72 bg-green-500/20 rounded-full blur-3xl" />
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
@@ -225,7 +222,7 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
                       Aether Sheets — Untitled Spreadsheet
                     </div>
                   </div>
-                  <div className="p-8 bg-gradient-to-br from-card to-muted/30">
+                  <div className="p-8 bg-linear-to-br from-card to-muted/30">
                     <div className="grid grid-cols-6 gap-2 text-xs font-mono">
                       <div className="text-muted-foreground" />
                       {['A', 'B', 'C', 'D', 'E', 'F'].map((col) => (

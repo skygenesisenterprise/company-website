@@ -13,16 +13,13 @@ import {
   Layers,
   Lock,
   CheckCircle2,
-  ArrowDown,
   Cloud,
   Home,
   Building2,
-  Power,
-  Scale,
+  Route,
   Zap,
   Activity,
   Clock,
-  Route,
   Grid3X3,
   Box,
   Terminal,
@@ -33,7 +30,6 @@ import {
   Truck,
   Factory,
   Smartphone,
-  LeafyGreen,
 } from "lucide-react";
 
 export default async function PlatformMapsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -67,7 +63,7 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
       description: t("maps.privacyDescription"),
     },
     {
-      icon: Scale,
+      icon: Building2,
       title: t("maps.deploymentTitle"),
       description: t("maps.deploymentDescription"),
     },
@@ -118,7 +114,7 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
       description: t("maps.privacyLocalFirstDesc"),
     },
     {
-      icon: Power,
+      icon: Building2,
       title: t("maps.privacyOfflineTitle"),
       description: t("maps.privacyOfflineDesc"),
     },
@@ -236,22 +232,18 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
 
   const metrics = [
     {
-      icon: Zap,
       value: t("maps.metricLatencyValue"),
       label: t("maps.metricLatencyLabel"),
     },
     {
-      icon: Activity,
       value: t("maps.metricUptimeValue"),
       label: t("maps.metricUptimeLabel"),
     },
     {
-      icon: Globe,
       value: t("maps.metricCoverageValue"),
       label: t("maps.metricCoverageLabel"),
     },
     {
-      icon: Clock,
       value: t("maps.metricRefreshValue"),
       label: t("maps.metricRefreshLabel"),
     },
@@ -263,26 +255,26 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("maps.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("maps.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {t("maps.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("maps.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("maps.getStarted")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href={`/${locale}/contact`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("maps.contactSales")}
                   </Button>
                 </Link>
@@ -292,15 +284,12 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Metrics Section */}
-        <section className="py-16 lg:py-20 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <metric.icon className="w-6 h-6 text-green-400" />
-                  </div>
-                  <div className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+                <div key={metric.label}>
+                  <div className="text-4xl lg:text-5xl font-normal text-foreground mb-2">
                     {metric.value}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -313,65 +302,57 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Core Value Proposition */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.valuePropTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.valuePropDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Globe className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.valueProp1Title")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.valueProp1Desc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <Globe className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-4">{t("maps.valueProp1Title")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("maps.valueProp1Desc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Network className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.valueProp2Title")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.valueProp2Desc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <Network className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-4">{t("maps.valueProp2Title")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("maps.valueProp2Desc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Lock className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.valueProp3Title")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.valueProp3Desc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <Lock className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-4">{t("maps.valueProp3Title")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("maps.valueProp3Desc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Infrastructure Architecture */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.infrastructureTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.infrastructureDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {infrastructureComponents.map((component) => (
-                <div key={component.title} className="p-6 rounded-lg border border-border bg-card">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <component.icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{component.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{component.description}</p>
-                  <ul className="space-y-2">
+                <div key={component.title} className="p-10 rounded-2xl bg-card">
+                  <component.icon className="w-10 h-10 text-blue-500 mb-6" />
+                  <h3 className="text-2xl font-medium text-foreground mb-4">{component.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{component.description}</p>
+                  <ul className="space-y-3">
                     {component.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                      <li key={detail} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -379,12 +360,12 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
                 </div>
               ))}
             </div>
-            <div className="mt-12 max-w-3xl mx-auto p-6 rounded-lg border border-green-500/20 bg-green-500/5">
+            <div className="mt-12 max-w-3xl mx-auto p-10 rounded-2xl bg-card">
               <div className="flex items-start gap-4">
-                <Power className="w-6 h-6 text-green-400 shrink-0 mt-1" />
+                <Building2 className="w-10 h-10 text-blue-500 mb-6" />
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">{t("maps.resilienceTitle")}</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.resilienceDesc")}</p>
+                  <h4 className="text-xl font-medium text-foreground mb-4">{t("maps.resilienceTitle")}</h4>
+                  <p className="text-muted-foreground leading-relaxed">{t("maps.resilienceDesc")}</p>
                 </div>
               </div>
             </div>
@@ -392,24 +373,22 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Privacy by Design */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.privacyTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.privacyDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {privacyFeatures.map((feature) => (
-                <div key={feature.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-14 h-14 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-7 h-7 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                <div key={feature.title} className="p-8 rounded-2xl bg-card">
+                  <feature.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -417,24 +396,22 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Developer Platform */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.developerTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.developerDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {developerTools.map((tool) => (
-                <div key={tool.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                  <div className="w-16 h-16 bg-orange-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity">
-                    <tool.icon className="w-8 h-8 text-orange-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{tool.title}</h3>
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{tool.description}</p>
+                <div key={tool.title} className="p-8 rounded-2xl bg-card">
+                  <tool.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{tool.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{tool.description}</p>
                 </div>
               ))}
             </div>
@@ -442,24 +419,22 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Ecosystem Integration */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.ecosystemTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.ecosystemDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {ecosystemIntegrations.map((integration) => (
-                <div key={integration.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <integration.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{integration.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{integration.description}</p>
+                <div key={integration.title} className="p-8 rounded-2xl bg-card">
+                  <integration.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{integration.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{integration.description}</p>
                 </div>
               ))}
             </div>
@@ -467,24 +442,22 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Use Cases */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.useCasesTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.useCasesDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {useCases.map((useCase) => (
-                <div key={useCase.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <useCase.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{useCase.description}</p>
+                <div key={useCase.title} className="p-8 rounded-2xl bg-card">
+                  <useCase.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{useCase.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{useCase.description}</p>
                 </div>
               ))}
             </div>
@@ -492,47 +465,37 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Deployment Modes */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.deploymentTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.deploymentDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {deploymentModes.map((mode, index) => (
-                <div key={mode.title} className="p-6 rounded-lg border border-border bg-card relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
-                      <mode.icon className="w-6 h-6 text-green-400" />
-                    </div>
-                    {index < deploymentModes.length - 1 && (
-                      <ArrowDown className="w-5 h-5 text-muted-foreground lg:hidden" />
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{mode.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{mode.description}</p>
-                  <div className="p-3 rounded bg-muted/50 mb-4">
-                    <p className="text-xs text-muted-foreground">
-                      <span className="font-semibold text-foreground">{t("maps.useCaseLabel")}</span>
+              {deploymentModes.map((mode) => (
+                <div key={mode.title} className="p-10 rounded-2xl bg-card">
+                  <mode.icon className="w-10 h-10 text-blue-500 mb-6" />
+                  <h3 className="text-2xl font-medium text-foreground mb-4">{mode.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{mode.description}</p>
+                  <div className="p-4 rounded-2xl bg-muted/20 mb-6">
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">{t("maps.useCaseLabel")}</span>
                       <br />
                       {mode.useCase}
                     </p>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {mode.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                      <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  {index < deploymentModes.length - 1 && (
-                    <ArrowDown className="w-5 h-5 text-muted-foreground mx-auto mt-6 hidden lg:block" />
-                  )}
                 </div>
               ))}
             </div>
@@ -540,66 +503,58 @@ export default async function PlatformMapsPage({ params }: { params: Promise<{ l
         </section>
 
         {/* Open & Extensible */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.openTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.openDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <LeafyGreen className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.openSourceTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.openSourceDesc")}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              <div className="p-10 rounded-2xl bg-card">
+                <Globe className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-lg font-medium text-foreground mb-4">{t("maps.openSourceTitle")}</h3>
+                <p className="text-sm text-muted-foreground">{t("maps.openSourceDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Home className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.selfHostingTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.selfHostingDesc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <Home className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-lg font-medium text-foreground mb-4">{t("maps.selfHostingTitle")}</h3>
+                <p className="text-sm text-muted-foreground">{t("maps.selfHostingDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Layers className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.modularComponentsTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.modularComponentsDesc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <Layers className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-lg font-medium text-foreground mb-4">{t("maps.modularComponentsTitle")}</h3>
+                <p className="text-sm text-muted-foreground">{t("maps.modularComponentsDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Globe className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("maps.communityDrivenTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("maps.communityDrivenDesc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <Globe className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-lg font-medium text-foreground mb-4">{t("maps.communityDrivenTitle")}</h3>
+                <p className="text-sm text-muted-foreground">{t("maps.communityDrivenDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("maps.ctaTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("maps.ctaDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("maps.buildNow")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href="https://github.com/skygenesisenterprise/aether-maps" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("maps.contribute")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>

@@ -14,7 +14,6 @@ import {
   Globe,
   Shield,
   Cpu,
-  ArrowDown,
   CheckCircle2,
   Activity,
   Clock,
@@ -83,22 +82,18 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
 
   const metrics = [
     {
-      icon: Zap,
       value: t("search.metricLatencyValue"),
       label: t("search.metricLatencyLabel"),
     },
     {
-      icon: Activity,
       value: t("search.metricAccuracyValue"),
       label: t("search.metricAccuracyLabel"),
     },
     {
-      icon: Database,
       value: t("search.metricServicesValue"),
       label: t("search.metricServicesLabel"),
     },
     {
-      icon: Clock,
       value: t("search.metricIndexValue"),
       label: t("search.metricIndexLabel"),
     },
@@ -133,26 +128,26 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("search.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("search.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {t("search.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("search.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("search.deployNow")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href={`/${locale}/contact`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("search.contactSales")}
                   </Button>
                 </Link>
@@ -162,15 +157,12 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* Metrics Section */}
-        <section className="py-16 lg:py-20 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <metric.icon className="w-6 h-6 text-cyan-400" />
-                  </div>
-                  <div className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+                <div key={metric.label}>
+                  <div className="text-4xl lg:text-5xl font-normal text-foreground mb-2">
                     {metric.value}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -183,46 +175,43 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* Concept Overview Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-8">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.conceptTitle")}
               </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+                {t("search.conceptDescription")}
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  {t("search.conceptDesc1")}
-                </p>
-                <p>
-                  {t("search.conceptDesc2")}
-                </p>
-                <p>
-                  {t("search.conceptDesc3")}
-                </p>
+                <p>{t("search.conceptDesc1")}</p>
+                <p>{t("search.conceptDesc2")}</p>
+                <p>{t("search.conceptDesc3")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Key Capabilities Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.capabilitiesTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("search.capabilitiesDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {capabilities.map((capability) => (
-                <div key={capability.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-14 h-14 bg-cyan-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <capability.icon className="w-7 h-7 text-cyan-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{capability.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{capability.description}</p>
+                <div key={capability.title} className="p-10 rounded-2xl bg-card">
+                  <capability.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{capability.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{capability.description}</p>
                 </div>
               ))}
             </div>
@@ -230,49 +219,39 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* How It Works - Pipeline Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.pipelineTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("search.pipelineDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {pipelineSteps.map((step, index) => (
-                <div key={step.title} className="p-6 rounded-lg border border-border bg-card relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
-                      <step.icon className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    {index < pipelineSteps.length - 1 && (
-                      <ArrowDown className="w-5 h-5 text-muted-foreground lg:hidden" />
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{step.description}</p>
-                  <ul className="space-y-2">
+              {pipelineSteps.map((step) => (
+                <div key={step.title} className="p-10 rounded-2xl bg-card">
+                  <step.icon className="w-10 h-10 text-blue-500 mb-6" />
+                  <h3 className="text-xl font-medium text-foreground mb-4">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{step.description}</p>
+                  <ul className="space-y-3">
                     {step.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                      <li key={detail} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                         <span>{detail}</span>
                       </li>
                     ))}
                   </ul>
-                  {index < pipelineSteps.length - 1 && (
-                    <ArrowDown className="w-5 h-5 text-muted-foreground mx-auto mt-6 hidden lg:block" />
-                  )}
                 </div>
               ))}
             </div>
-            <div className="mt-12 max-w-3xl mx-auto p-6 rounded-lg border border-cyan-500/20 bg-cyan-500/5">
+            <div className="mt-12 max-w-3xl mx-auto p-10 rounded-2xl bg-card">
               <div className="flex items-start gap-4">
-                <Layers className="w-6 h-6 text-cyan-400 shrink-0 mt-1" />
+                <Layers className="w-10 h-10 text-blue-500 mb-6" />
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">{t("search.orchestrationTitle")}</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{t("search.orchestrationDesc")}</p>
+                  <h4 className="text-xl font-medium text-foreground mb-4">{t("search.orchestrationTitle")}</h4>
+                  <p className="text-muted-foreground leading-relaxed">{t("search.orchestrationDesc")}</p>
                 </div>
               </div>
             </div>
@@ -280,64 +259,60 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* Integration with Aether Edge Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.edgeIntegrationTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("search.edgeIntegrationDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="p-8 rounded-lg border border-border bg-card">
-                <div className="flex items-center gap-3 mb-6">
-                  <Search className="w-8 h-8 text-cyan-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("search.aetherSearchRoleTitle")}</h3>
-                </div>
+              <div className="p-10 rounded-2xl bg-card">
+                <Search className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-6">{t("search.aetherSearchRoleTitle")}</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("search.aetherSearchRolePoint1")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("search.aetherSearchRolePoint2")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("search.aetherSearchRolePoint3")}</span>
                   </li>
                 </ul>
               </div>
-              <div className="p-8 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="flex items-center gap-3 mb-6">
-                  <Globe className="w-8 h-8 text-green-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("search.aetherEdgeRoleTitle")}</h3>
-                </div>
+              <div className="p-10 rounded-2xl bg-card">
+                <Globe className="w-10 h-10 text-blue-500 mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-6">{t("search.aetherEdgeRoleTitle")}</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("search.aetherEdgeRolePoint1")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("search.aetherEdgeRolePoint2")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("search.aetherEdgeRolePoint3")}</span>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="mt-12 max-w-3xl mx-auto p-6 rounded-lg border border-cyan-500/20 bg-cyan-500/5">
+            <div className="mt-12 max-w-3xl mx-auto p-10 rounded-2xl bg-card">
               <div className="flex items-start gap-4">
-                <Command className="w-6 h-6 text-cyan-400 shrink-0 mt-1" />
+                <Command className="w-10 h-10 text-blue-500 mb-6" />
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">{t("search.commandExecutionTitle")}</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{t("search.commandExecutionDesc")}</p>
+                  <h4 className="text-xl font-medium text-foreground mb-4">{t("search.commandExecutionTitle")}</h4>
+                  <p className="text-muted-foreground leading-relaxed">{t("search.commandExecutionDesc")}</p>
                 </div>
               </div>
             </div>
@@ -345,24 +320,22 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* Design Philosophy Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.designTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("search.designDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {designPrinciples.map((principle) => (
-                <div key={principle.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <principle.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{principle.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{principle.description}</p>
+                <div key={principle.title} className="p-8 rounded-2xl bg-card">
+                  <principle.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{principle.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
                 </div>
               ))}
             </div>
@@ -370,13 +343,13 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* Closing Statement Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-8">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.closingTitle")}
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("search.closingDescription")}
               </p>
             </div>
@@ -384,22 +357,22 @@ export default async function PlatformSearchPage({ params }: { params: Promise<{
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("search.ctaTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("search.ctaDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("search.deployNow")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href={`/${locale}/contact`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("search.contactSales")}
                   </Button>
                 </Link>

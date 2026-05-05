@@ -423,50 +423,48 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/60">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <div className="flex items-center gap-6">
-            <Link href={getLocaleHref("/")} className="flex items-center gap-2 group">
-              <div className="flex flex-col">
-                <span className="font-semibold text-base text-foreground leading-tight">
-                  {t("brandName")}
-                </span>
-              </div>
+          <div className="flex items-center gap-4">
+            <Link href={getLocaleHref("/")} className="flex items-center gap-2">
+              <span className="font-medium text-sm text-foreground tracking-tight">
+                {t("brandName")}
+              </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center">
-            <ul className="flex items-center gap-1">
+            <ul className="flex items-center gap-0">
               <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
                   {t("plateforme")}
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
                 </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
                     <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
+                      <div className="flex-1 p-5">
+                        <div className="grid grid-cols-2 gap-6">
                           {plateformeMenuData.sections.map((section) => (
                             <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
                                 {t(section.titleKey)}
                               </h3>
-                              <ul className="space-y-1">
+                              <ul className="space-y-0.5">
                                 {section.items.map((item) => (
                                   <li key={item.titleKey}>
                                     <Link
                                       href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
+                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
                                     >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                                         {item.icon}
                                       </span>
                                       <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
+                                        <span className="block text-sm font-medium text-foreground">
                                           {t(item.titleKey)}
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
@@ -487,32 +485,32 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               </li>
 
               <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
                   {t("product")}
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
                 </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
                     <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
+                      <div className="flex-1 p-5">
+                        <div className="grid grid-cols-2 gap-6">
                           {productMenuData.sections.map((section) => (
                             <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
                                 {t(section.titleKey)}
                               </h3>
-                              <ul className="space-y-1">
+                              <ul className="space-y-0.5">
                                 {section.items.map((item) => (
                                   <li key={item.titleKey}>
                                     <Link
                                       href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
+                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
                                     >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                                         {item.icon}
                                       </span>
                                       <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
+                                        <span className="block text-sm font-medium text-foreground">
                                           {t(item.titleKey)}
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
@@ -533,32 +531,32 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               </li>
 
               <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
                   {t("solutions")}
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
                 </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
                     <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
+                      <div className="flex-1 p-5">
+                        <div className="grid grid-cols-2 gap-6">
                           {solutionsMenuData.sections.map((section) => (
                             <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
                                 {t(section.titleKey)}
                               </h3>
-                              <ul className="space-y-1">
+                              <ul className="space-y-0.5">
                                 {section.items.map((item) => (
                                   <li key={item.titleKey}>
                                     <Link
                                       href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
+                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
                                     >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                                         {item.icon}
                                       </span>
                                       <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
+                                        <span className="block text-sm font-medium text-foreground">
                                           {t(item.titleKey)}
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
@@ -579,32 +577,32 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               </li>
 
               <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
                   {t("developers")}
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
                 </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
                     <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
+                      <div className="flex-1 p-5">
+                        <div className="grid grid-cols-2 gap-6">
                           {developersMenuData.sections.map((section) => (
                             <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
                                 {t(section.titleKey)}
                               </h3>
-                              <ul className="space-y-1">
+                              <ul className="space-y-0.5">
                                 {section.items.map((item) => (
                                   <li key={item.titleKey}>
                                     <Link
                                       href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
+                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
                                     >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                                         {item.icon}
                                       </span>
                                       <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
+                                        <span className="block text-sm font-medium text-foreground">
                                           {t(item.titleKey)}
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
@@ -625,32 +623,32 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               </li>
 
               <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
                   {t("partners")}
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
                 </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-170">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
                     <div className="flex">
-                      <div className="flex-1 p-6">
-                        <div className="grid grid-cols-2 gap-8">
+                      <div className="flex-1 p-5">
+                        <div className="grid grid-cols-2 gap-6">
                           {partnersMenuData.sections.map((section) => (
                             <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
                                 {t(section.titleKey)}
                               </h3>
-                              <ul className="space-y-1">
+                              <ul className="space-y-0.5">
                                 {section.items.map((item) => (
                                   <li key={item.titleKey}>
                                     <Link
                                       href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
+                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
                                     >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                                         {item.icon}
                                       </span>
                                       <div>
-                                        <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
+                                        <span className="block text-sm font-medium text-foreground">
                                           {t(item.titleKey)}
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
@@ -671,30 +669,30 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               </li>
 
               <li className="relative group">
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
                   {t("enterprise")}
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
                 </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block">
-                  <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-64">
-                    <div className="p-6">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-64">
+                    <div className="p-5">
                       {enterpriseMenuData.sections.map((section) => (
                         <div key={section.titleKey}>
-                          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
                             {t(section.titleKey)}
                           </h3>
-                          <ul className="space-y-1">
+                          <ul className="space-y-0.5">
                             {section.items.map((item) => (
                               <li key={item.titleKey}>
                                 <Link
                                   href={getLocaleHref(item.href)}
-                                  className="group flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-muted transition-colors"
+                                  className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
                                 >
-                                  <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                                  <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                                     {item.icon}
                                   </span>
                                   <div>
-                                    <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
+                                    <span className="block text-sm font-medium text-foreground">
                                       {t(item.titleKey)}
                                     </span>
                                     <span className="block text-xs text-muted-foreground mt-0.5">
@@ -715,7 +713,7 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               <li>
                 <Link
                   href={getLocaleHref("/blog")}
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
                 >
                   {t("blog")}
                 </Link>
@@ -735,7 +733,7 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
             <div className="lg:hidden">
               <Link
                 href="#"
-                className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
+                className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors duration-150"
               >
                 <Menu className="h-5 w-5" />
               </Link>
