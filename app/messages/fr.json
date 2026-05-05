@@ -1382,7 +1382,7 @@
       "useCaseInfrastructureTitle": "Planification d'Infrastructure",
       "useCaseInfrastructureDesc": "Réseaux utilities, data centers et infrastructures urbaines.",
       "ecosystemTitle": "Intégration Écosystème",
-      "ecosystemDescription": "Schematik s'intègre naturellement avec l'écosystème Sky Genesis Enterprise.",
+      "ecosystemDescription": "Schematik s'intègre naturellement avec l'écosystème Aether Office.",
       "ecoEdgeTitle": "Aether Edge",
       "ecoEdgeDesc": "Déploiement des designs sur infrastructure edge pour prototypage rapide.",
       "ecoIdentityTitle": "Aether Identity",
@@ -2056,7 +2056,7 @@
       "integrationMeetDesc": "Collaborez sur des sheets pendant les réunions avec partage d'écran intégré.",
       "integrationChatTitle": "Aether Chat",
       "integrationChatDesc": "Partagez et intégrez des sheets directement dans les conversations d'équipe.",
-      "comparisonTitle": "La Différence Aether",
+      "comparisonTitle": "La Différence Aether Office",
       "comparisonDescription": "Comment Aether Sheets se compare aux tableurs traditionnels.",
       "traditionalTitle": "Tableurs Traditionnels",
       "traditionalPoint1": "Calculs basés sur le cloud avec latence élevée",
@@ -2297,7 +2297,7 @@
       "emailPrivacy": "Envoyer un Email à l'Équipe Confidentialité"
     },
     "home": {
-      "enterpriseBadge": "Sky Genesis Enterprise",
+      "enterpriseBadge": "Le future du numérique européen",
       "heroTitle": "Redéfinir la Souveraineté Numérique Européenne",
       "heroDescription": "Sky Genesis Enterprise développe des plateformes unifiées pour la collaboration sécurisée, la gouvernance et les opérations numériques à grande échelle.",
       "discoverAether": "Découvrir Aether Office",

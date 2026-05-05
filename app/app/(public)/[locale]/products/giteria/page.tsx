@@ -140,26 +140,26 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("giteria.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("giteria.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {t("giteria.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("giteria.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("giteria.getStarted")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href={`/${locale}/contact`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("giteria.contactSales")}
                   </Button>
                 </Link>
@@ -169,15 +169,12 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Metrics Section */}
-        <section className="py-16 lg:py-20 border-b border-border bg-muted/30">
+        <section className="py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <metric.icon className="w-6 h-6 text-green-400" />
-                  </div>
-                  <div className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+                <div key={metric.label}>
+                  <div className="text-4xl lg:text-5xl font-normal text-foreground mb-2">
                     {metric.value}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -190,10 +187,10 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Vision Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-8">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground mb-8">
                 {t("giteria.visionTitle")}
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
@@ -206,24 +203,22 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Platform & Features Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("giteria.platformTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.platformDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature) => (
-                <div key={feature.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-14 h-14 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-7 h-7 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                <div key={feature.title} className="p-10 rounded-2xl bg-card">
+                  <feature.icon className="w-10 h-10 text-blue-500 mb-6" />
+                  <h3 className="text-2xl font-medium text-foreground mb-4">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -231,65 +226,57 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Aether Edge Integration Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("giteria.edgeIntegrationTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.edgeIntegrationDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Globe className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("giteria.edgeDeployTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("giteria.edgeDeployDesc")}</p>
+              <div className="p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center">
+                <Globe className="w-10 h-10 text-green-400 mx-auto mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-3">{t("giteria.edgeDeployTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("giteria.edgeDeployDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Zap className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("giteria.edgeExecuteTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("giteria.edgeExecuteDesc")}</p>
+              <div className="p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center">
+                <Zap className="w-10 h-10 text-green-400 mx-auto mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-3">{t("giteria.edgeExecuteTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("giteria.edgeExecuteDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Scale className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("giteria.edgeScaleTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("giteria.edgeScaleDesc")}</p>
+              <div className="p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center">
+                <Scale className="w-10 h-10 text-green-400 mx-auto mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-3">{t("giteria.edgeScaleTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("giteria.edgeScaleDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Architecture Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("giteria.architectureTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.architectureDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {architectureComponents.map((component) => (
-                <div key={component.title} className="p-6 rounded-lg border border-border bg-card">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <component.icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{component.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{component.description}</p>
-                  <ul className="space-y-2">
+                <div key={component.title} className="p-10 rounded-2xl bg-card">
+                  <component.icon className="w-10 h-10 text-blue-500 mb-6" />
+                  <h3 className="text-2xl font-medium text-foreground mb-4">{component.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{component.description}</p>
+                  <ul className="space-y-3">
                     {component.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                      <li key={detail} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -301,24 +288,24 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Developer Experience Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("giteria.devexTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.devexDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="p-8 rounded-lg border border-border bg-card">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <Terminal className="w-8 h-8 text-green-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("giteria.devexUnifiedTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("giteria.devexUnifiedTitle")}</h3>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t("giteria.devexUnifiedDesc")}</p>
-                <div className="p-4 rounded bg-muted/50 font-mono text-xs text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed mb-6">{t("giteria.devexUnifiedDesc")}</p>
+                <div className="p-4 rounded-xl bg-muted/50 font-mono text-xs text-muted-foreground">
                   <div className="mb-2"># Initialize a new project</div>
                   <div className="text-green-400">ga init my-project</div>
                   <div className="mt-4 mb-2"># Deploy to edge</div>
@@ -327,26 +314,26 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
                   <div className="text-green-400">ga logs --follow</div>
                 </div>
               </div>
-              <div className="p-8 rounded-lg border border-border bg-card">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <RefreshCw className="w-8 h-8 text-blue-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("giteria.devexAutomationTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("giteria.devexAutomationTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("giteria.devexAutomationPoint1")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("giteria.devexAutomationPoint2")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("giteria.devexAutomationPoint3")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("giteria.devexAutomationPoint4")}</span>
                   </li>
                 </ul>
@@ -356,24 +343,22 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Use Cases Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("giteria.useCasesTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.useCasesDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {useCases.map((useCase) => (
-                <div key={useCase.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <useCase.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{useCase.description}</p>
+                <div key={useCase.title} className="p-10 rounded-2xl bg-card text-center">
+                  <useCase.icon className="w-10 h-10 text-foreground mx-auto mb-6 opacity-70" />
+                  <h3 className="text-xl font-medium text-foreground mb-4">{useCase.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{useCase.description}</p>
                 </div>
               ))}
             </div>
@@ -381,59 +366,53 @@ export default async function PlatformGiteriaPage({ params }: { params: Promise<
         </section>
 
         {/* Ecosystem Integration Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("giteria.ecosystemTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.ecosystemDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Globe className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("giteria.ecoEdgeTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("giteria.ecoEdgeDesc")}</p>
+              <div className="p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center">
+                <Globe className="w-10 h-10 text-green-400 mx-auto mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-3">{t("giteria.ecoEdgeTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("giteria.ecoEdgeDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Key className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("giteria.ecoIdentityTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("giteria.ecoIdentityDesc")}</p>
+              <div className="p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center">
+                <Key className="w-10 h-10 text-green-400 mx-auto mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-3">{t("giteria.ecoIdentityTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("giteria.ecoIdentityDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("giteria.ecoVaultTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("giteria.ecoVaultDesc")}</p>
+              <div className="p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center">
+                <Shield className="w-10 h-10 text-green-400 mx-auto mb-6" />
+                <h3 className="text-xl font-medium text-foreground mb-3">{t("giteria.ecoVaultTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("giteria.ecoVaultDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground mb-6">
                 {t("giteria.ctaTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 {t("giteria.ctaDesc")}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("giteria.deployNow")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href="https://github.com/skygenesisenterprise/giteria" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="outline" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("giteria.viewGithub")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
