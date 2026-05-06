@@ -1,4 +1,20 @@
 {
+  "Consent": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic et personnaliser le contenu. En cliquant sur \"Tout accepter\", vous consentez à l'utilisation de tous les cookies.",
+    "acceptAll": "Tout accepter",
+    "customize": "Personnaliser",
+    "rejectAll": "Tout refuser",
+    "savePreferences": "Enregistrer les préférences",
+    "dialogTitle": "Gérer vos préférences de cookies",
+    "dialogDescription": "Choisissez les catégories de cookies que vous acceptez. Les cookies nécessaires sont toujours activés.",
+    "necessaryTitle": "Nécessaires",
+    "necessaryDescription": "Ces cookies sont indispensables au fonctionnement du site et ne peuvent pas être désactivés.",
+    "analyticsTitle": "Analytiques",
+    "analyticsDescription": "Ces cookies nous aident à comprendre comment les visiteurs interagissent avec le site.",
+    "marketingTitle": "Marketing",
+    "marketingDescription": "Ces cookies sont utilisés pour diffuser des publicités pertinentes."
+  },
     "Navigation": {
     "home": "Accueil",
     "news": "Actualités",

@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import { LocaleProvider } from "@/context/locale-context";
 import { Locale } from "@/lib/locale";
 import { HeaderInfo } from "@/components/public/headerinfo/HeaderInfo";
+import { ConsentBanner } from "@/components/consent-banner";
 
 export default async function LocaleLayout({
   children,
@@ -29,6 +30,7 @@ export default async function LocaleLayout({
             locale={locale}
           />
           {children}
+          <ConsentBanner />
         </div>
       </LocaleProvider>
     </NextIntlClientProvider>
