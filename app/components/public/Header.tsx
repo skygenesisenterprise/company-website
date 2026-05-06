@@ -28,6 +28,9 @@ import {
   GlobeLock,
   FolderGit2,
   MessageCircle,
+  Briefcase,
+  Landmark,
+  ShoppingCart,
 } from "lucide-react";
 import { HeaderAuthButton } from "./HeaderAuthButton";
 
@@ -208,14 +211,14 @@ function getSolutionsMenuData(): MegaMenuData {
           {
             titleKey: "machineToMachine",
             descKey: "machineToMachineDesc",
-            href: "/solutions/m2m",
+            href: "/solutions/infrastructure",
             icon: <Server className="h-5 w-5" />,
           },
           {
             titleKey: "passwordless",
             descKey: "passwordlessDesc",
-            href: "/solutions/passwordless",
-            icon: <Key className="h-5 w-5" />,
+            href: "/solutions/workplace",
+            icon: <Briefcase className="h-5 w-5" />,
           },
         ],
       },
@@ -226,7 +229,7 @@ function getSolutionsMenuData(): MegaMenuData {
             titleKey: "financialServices",
             descKey: "financialServicesDesc",
             href: "/solutions/financial",
-            icon: <Shield className="h-5 w-5" />,
+            icon: <Landmark className="h-5 w-5" />,
           },
           {
             titleKey: "healthcare",
@@ -238,7 +241,7 @@ function getSolutionsMenuData(): MegaMenuData {
             titleKey: "retailEcommerce",
             descKey: "retailEcommerceDesc",
             href: "/solutions/retail",
-            icon: <Globe className="h-5 w-5" />,
+            icon: <ShoppingCart className="h-5 w-5" />,
           },
           {
             titleKey: "publicSector",

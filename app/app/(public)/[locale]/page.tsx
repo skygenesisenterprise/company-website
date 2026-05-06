@@ -54,7 +54,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       icon: Users,
       title: t("home.aetherOfficeTitle"),
       description: t("home.aetherOfficeDesc"),
-      href: "/office",
+      href: "/solutions/workplace",
       color: "text-blue-400",
       bgColor: "bg-blue-500/20",
     },
@@ -100,7 +100,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       subtitle: t("home.aetherOfficeSubtitle"),
       description: t("home.aetherOfficeFeaturedDesc"),
       features: [t("home.aetherFeature1"), t("home.aetherFeature2"), t("home.aetherFeature3")],
-      href: "/office",
+      href: "/solutions/workplace",
       color: "text-blue-400",
       borderColor: "border-blue-500/20",
       bgColor: "bg-blue-500/20",
@@ -222,13 +222,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 {t("home.heroDescription")}
               </p>
               <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-                <Link href={`/${locale}/office`}>
+                <Link href={`/${locale}/solutions/workplace`}>
                   <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {t("home.discoverAether")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Link href={`/${locale}/vision`}>
+                <Link href={`/${locale}/company/about`}>
                   <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("home.exploreVision")}
                   </Button>

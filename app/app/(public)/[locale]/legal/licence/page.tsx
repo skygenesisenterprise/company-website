@@ -16,29 +16,29 @@ export default async function LicencePage({ params }: { params: Promise<{ locale
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("badge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("badge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {t("heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href="https://github.com/skygenesisenterprise/aether-identity/blob/main/LICENSE">
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     <GitHubIcon className="h-4 w-4" />
                     {t("ctaGithub")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/legal/terms`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     <FileText className="h-4 w-4" />
                     {t("ctaTerms")}
                   </Button>
@@ -49,92 +49,88 @@ export default async function LicencePage({ params }: { params: Promise<{ locale
         </section>
 
         {/* License Info */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
-                <Scale className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("aboutTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("aboutDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
-                  <Scale className="h-7 w-7 text-blue-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
+                  <Scale className="w-7 h-7 text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{t("freeTitle")}</h3>
-                <p className="text-sm text-muted-foreground">{t("freeDesc")}</p>
+                <h3 className="text-2xl font-medium text-foreground mb-4">{t("freeTitle")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("freeDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
-                  <GitHubIcon className="h-7 w-7 text-green-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center mb-6">
+                  <GitHubIcon className="w-7 h-7 text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-2xl font-medium text-foreground mb-4">
                   {t("openSourceTitle")}
                 </h3>
-                <p className="text-sm text-muted-foreground">{t("openDesc")}</p>
+                <p className="text-muted-foreground leading-relaxed">{t("openDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
-                  <FileText className="h-7 w-7 text-purple-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center mb-6">
+                  <FileText className="w-7 h-7 text-purple-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-2xl font-medium text-foreground mb-4">
                   {t("permissiveTitle")}
                 </h3>
-                <p className="text-sm text-muted-foreground">{t("permissiveDesc")}</p>
+                <p className="text-muted-foreground leading-relaxed">{t("permissiveDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* License Text */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-lg max-w-none">
-              <h2 className="text-2xl font-semibold text-foreground mb-4">
-                {t("licenseTextTitle")}
-              </h2>
-              <div className="bg-muted/30 p-8 rounded-lg border border-border font-mono text-sm">
-                <p className="mb-4">{t("licenseText")}</p>
-              </div>
+            <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground mb-8">
+              {t("licenseTextTitle")}
+            </h2>
+            <div className="bg-card p-10 rounded-2xl font-mono text-sm text-muted-foreground">
+              <p className="mb-4">{t("licenseText")}</p>
             </div>
           </div>
         </section>
 
         {/* Permissions */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
-                <FileText className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("permissionsTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("permissionsDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+              <div className="p-8 rounded-2xl bg-card">
+                <h3 className="text-lg font-medium text-foreground mb-3">
                   {t("permCommercial")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("permCommercialDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{t("permModify")}</h3>
+              <div className="p-8 rounded-2xl bg-card">
+                <h3 className="text-lg font-medium text-foreground mb-3">{t("permModify")}</h3>
                 <p className="text-sm text-muted-foreground">{t("permModifyDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+              <div className="p-8 rounded-2xl bg-card">
+                <h3 className="text-lg font-medium text-foreground mb-3">
                   {t("permDistribute")}
                 </h3>
                 <p className="text-sm text-muted-foreground">{t("permDistributeDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{t("permPrivate")}</h3>
+              <div className="p-8 rounded-2xl bg-card">
+                <h3 className="text-lg font-medium text-foreground mb-3">{t("permPrivate")}</h3>
                 <p className="text-sm text-muted-foreground">{t("permPrivateDesc")}</p>
               </div>
             </div>
@@ -142,44 +138,42 @@ export default async function LicencePage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Conditions */}
-        <section className="py-20 lg:py-28">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
-                <Scale className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("conditionsTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("conditionsDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{t("condCopyright")}</h3>
-                <p className="text-sm text-muted-foreground">{t("condCopyrightDesc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <h3 className="text-2xl font-medium text-foreground mb-4">{t("condCopyright")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("condCopyrightDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{t("condWarranty")}</h3>
-                <p className="text-sm text-muted-foreground">{t("condWarrantyDesc")}</p>
+              <div className="p-10 rounded-2xl bg-card">
+                <h3 className="text-2xl font-medium text-foreground mb-4">{t("condWarranty")}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t("condWarrantyDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
-                <Scale className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("questionsTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("questionsDescription")}
               </p>
               <div className="mt-10">
                 <a href="mailto:legal@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {t("contactButton")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>

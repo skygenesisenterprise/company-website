@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Scale, FileText, Shield, CheckCircle2, Mail } from "lucide-react";
+import { ArrowRight, FileText, Shield, CheckCircle2, Mail } from "lucide-react";
 
 export default async function CGUPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -42,28 +42,28 @@ export default async function CGUPage({ params }: { params: Promise<{ locale: st
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("home.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 Conditions Générales d&apos;Utilisation
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Les présentes conditions régissent votre utilisation de notre plateforme et définissent vos droits et obligations.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/contact`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     Nous Contacter
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/privacy`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     Politique de Confidentialité
                   </Button>
                 </Link>
@@ -73,54 +73,51 @@ export default async function CGUPage({ params }: { params: Promise<{ locale: st
         </section>
 
         {/* Points clés */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
-                <Scale className="w-4 h-4 mr-3" />
-                Points Essentiels
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                Les éléments clés à retenir de nos conditions d'utilisation.
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">Points Essentiels</h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+                Les éléments clés à retenir de nos conditions d&apos;utilisation.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
-                  <Shield className="h-7 w-7 text-blue-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
+                  <Shield className="w-7 h-7 text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Utilisation Responsable</h3>
-                <p className="text-sm text-muted-foreground">Vous acceptez d'utiliser le site conformément aux lois en vigueur et de manière responsable.</p>
+                <h3 className="text-2xl font-medium text-foreground mb-4">Utilisation Responsable</h3>
+                <p className="text-muted-foreground leading-relaxed">Vous acceptez d&apos;utiliser le site conformément aux lois en vigueur et de manière responsable.</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
-                  <FileText className="h-7 w-7 text-green-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center mb-6">
+                  <FileText className="w-7 h-7 text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Propriété Intellectuelle</h3>
-                <p className="text-sm text-muted-foreground">Tous les contenus sont protégés. Toute reproduction non autorisée est interdite.</p>
+                <h3 className="text-2xl font-medium text-foreground mb-4">Propriété Intellectuelle</h3>
+                <p className="text-muted-foreground leading-relaxed">Tous les contenus sont protégés. Toute reproduction non autorisée est interdite.</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:opacity-80 transition-opacity">
-                  <CheckCircle2 className="h-7 w-7 text-purple-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center mb-6">
+                  <CheckCircle2 className="w-7 h-7 text-purple-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Compte Utilisateur</h3>
-                <p className="text-sm text-muted-foreground">Vous êtes responsable de la confidentialité de vos identifiants de connexion.</p>
+                <h3 className="text-2xl font-medium text-foreground mb-4">Compte Utilisateur</h3>
+                <p className="text-muted-foreground leading-relaxed">Vous êtes responsable de la confidentialité de vos identifiants de connexion.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CGU Content */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-muted-foreground mb-12">
-                Dernière mise à jour : Mars 2026
-              </p>
+            <p className="text-lg text-muted-foreground mb-12">
+              Dernière mise à jour : Mars 2026
+            </p>
 
+            <div className="space-y-16">
               {sections.map((section) => (
-                <div key={section.title} className="mb-12">
-                  <h2 className="text-2xl font-semibold text-foreground mb-4">{section.title}</h2>
+                <div key={section.title}>
+                  <h2 className="text-2xl font-medium text-foreground mb-4">{section.title}</h2>
                   <div className="text-muted-foreground space-y-4">
                     {section.content.split("\n\n").map((paragraph, idx) => (
                       <p key={idx}>{paragraph}</p>
@@ -133,19 +130,16 @@ export default async function CGUPage({ params }: { params: Promise<{ locale: st
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
-                <Mail className="w-4 h-4 mr-3" />
-                Une Question ?
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                Pour toute question concernant ces conditions générales d'utilisation, n'hésitez pas à nous contacter.
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">Une Question ?</h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+                Pour toute question concernant ces conditions générales d&apos;utilisation, n&apos;hésitez pas à nous contacter.
               </p>
               <div className="mt-10">
                 <a href="mailto:legal@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     <Mail className="h-4 w-4" />
                     Nous Contacter
                     <ArrowRight className="h-4 w-4" />

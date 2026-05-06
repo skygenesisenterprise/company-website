@@ -117,28 +117,28 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("home.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {t("gdpr.heroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("gdpr.heroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/contact`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {t("gdpr.contactUs")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/privacy`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("gdpr.viewPrivacy")}
                   </Button>
                 </Link>
@@ -148,14 +148,13 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* GDPR Principles */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
-                <Shield className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("gdpr.principlesTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("gdpr.principlesDescription")}
               </p>
             </div>
@@ -163,17 +162,17 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
               {gdprPrinciples.map((principle, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
+                  className="p-8 rounded-2xl bg-card"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-500/20">
-                      <span className="text-sm font-semibold text-blue-400">
+                    <div className="w-10 h-10 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                      <span className="text-sm font-medium text-blue-400">
                         {index + 1}
                       </span>
                     </div>
-                    <h3 className="text-base font-semibold text-foreground">{principle.title}</h3>
+                    <h3 className="text-lg font-medium text-foreground mb-3">{principle.title}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground">{principle.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
                 </div>
               ))}
             </div>
@@ -181,23 +180,22 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Data Subject Rights */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
-                <Eye className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("gdpr.rightsSectionTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("gdpr.rightsSectionDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               {rights.map((right) => (
-                <div key={right.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
+                <div key={right.title} className="p-8 rounded-2xl bg-card">
                   <div className="flex items-center gap-3 mb-3">
-                    <right.icon className="h-5 w-5 text-green-400" />
-                    <h3 className="text-base font-semibold text-foreground">{right.title}</h3>
+                    <right.icon className="w-5 h-5 text-green-400" />
+                    <h3 className="text-base font-medium text-foreground mb-3">{right.title}</h3>
                   </div>
                   <p className="text-sm text-muted-foreground">{right.description}</p>
                 </div>
@@ -207,80 +205,79 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Compliance Measures */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm mb-6">
-                <FileText className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("gdpr.complianceTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("gdpr.complianceDescription")}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Shield className="h-7 w-7 text-blue-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
+                  <Shield className="w-7 h-7 text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-2xl font-medium text-foreground mb-4">
                   {t("gdpr.technicalTitle")}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.technical1")}</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.technical2")}</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.technical3")}</span>
                   </li>
                 </ul>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Users className="h-7 w-7 text-green-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center mb-6">
+                  <Users className="w-7 h-7 text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-2xl font-medium text-foreground mb-4">
                   {t("gdpr.organizationalTitle")}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.organizational1")}</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.organizational2")}</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.organizational3")}</span>
                   </li>
                 </ul>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <FileText className="h-7 w-7 text-purple-400" />
+              <div className="p-10 rounded-2xl bg-card">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center mb-6">
+                  <FileText className="w-7 h-7 text-purple-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-2xl font-medium text-foreground mb-4">
                   {t("gdpr.accountabilityTitle")}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.accountability1")}</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.accountability2")}</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{t("gdpr.accountability3")}</span>
                   </li>
                 </ul>
@@ -290,16 +287,16 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* GDPR Policy Content */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-muted-foreground mb-12">
-                {t("gdpr.lastUpdated")}: {t("gdpr.lastUpdatedDate")}
-              </p>
+            <p className="text-lg text-muted-foreground mb-12">
+              {t("gdpr.lastUpdated")}: {t("gdpr.lastUpdatedDate")}
+            </p>
 
+            <div className="space-y-16">
               {sections.map((section) => (
-                <div key={section.title} className="mb-12">
-                  <h2 className="text-2xl font-semibold text-foreground mb-4">{section.title}</h2>
+                <div key={section.title}>
+                  <h2 className="text-2xl font-medium text-foreground mb-4">{section.title}</h2>
                   <div className="text-muted-foreground space-y-4">
                     {section.content.split("\n\n").map((paragraph, idx) => (
                       <p key={idx}>{paragraph}</p>
@@ -312,19 +309,18 @@ export default async function GdprPage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
-                <Mail className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("gdpr.questionsTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("gdpr.questionsDescription")}
               </p>
               <div className="mt-10">
                 <a href="mailto:gdpr@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     <Mail className="h-4 w-4" />
                     {t("gdpr.emailDpo")}
                     <ArrowRight className="h-4 w-4" />

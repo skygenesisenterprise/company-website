@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, FileText, Lock, Mail, CheckCircle2, Users, Globe } from "lucide-react";
+import { ArrowRight, Shield, Lock, Mail, CheckCircle2, Users, Globe } from "lucide-react";
 
 export default async function ConfidentialitePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -67,28 +67,28 @@ export default async function ConfidentialitePage({ params }: { params: Promise<
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{t("home.enterpriseBadge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 Politique de Confidentialité
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Nous prenez très au sérieux la protection de vos données personnelles. Découvrez comment nous protégeons votre vie privée.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/contact`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     Nous Contacter
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/cookies`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     Politique des Cookies
                   </Button>
                 </Link>
@@ -98,25 +98,24 @@ export default async function ConfidentialitePage({ params }: { params: Promise<
         </section>
 
         {/* Données collectées */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-6">
-                <Shield className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 Données que nous collectons
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 Nous collectons différents types de données pour améliorer nos services et votre expérience.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {dataTypes.map((data) => (
-                <div key={data.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                  <div className={`w-16 h-16 ${data.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity`}>
-                    <data.icon className={`w-8 h-8 ${data.color}`} />
+                <div key={data.title} className="p-10 rounded-2xl bg-card">
+                  <div className={`w-14 h-14 ${data.bgColor} rounded-2xl flex items-center justify-center mb-6`}>
+                    <data.icon className={`w-7 h-7 ${data.color}`} />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{data.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{data.description}</p>
+                  <h3 className="text-2xl font-medium text-foreground mb-4">{data.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{data.description}</p>
                 </div>
               ))}
             </div>
@@ -124,23 +123,22 @@ export default async function ConfidentialitePage({ params }: { params: Promise<
         </section>
 
         {/* Vos droits */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm mb-6">
-                <Lock className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 Vos Droits
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {rights.map((right) => (
-                <div key={right.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <CheckCircle2 className="h-5 w-5 text-green-400" />
-                    <h3 className="text-base font-semibold text-foreground">{right.title}</h3>
+                <div key={right.title} className="p-8 rounded-2xl bg-card">
+                  <div className="flex items-start gap-3 mb-3">
+                    <CheckCircle2 className="h-4 w-4 text-foreground mt-0.5 shrink-0" />
+                    <h3 className="text-base font-medium text-foreground">{right.title}</h3>
                   </div>
                   <p className="text-sm text-muted-foreground">{right.description}</p>
                 </div>
@@ -150,16 +148,16 @@ export default async function ConfidentialitePage({ params }: { params: Promise<
         </section>
 
         {/* Politique Content */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-muted-foreground mb-12">
-                Dernière mise à jour : Mars 2026
-              </p>
+            <p className="text-lg text-muted-foreground mb-12">
+              Dernière mise à jour : Mars 2026
+            </p>
 
+            <div className="space-y-16">
               {sections.map((section) => (
-                <div key={section.title} className="mb-12">
-                  <h2 className="text-2xl font-semibold text-foreground mb-4">{section.title}</h2>
+                <div key={section.title}>
+                  <h2 className="text-2xl font-medium text-foreground mb-4">{section.title}</h2>
                   <div className="text-muted-foreground space-y-4">
                     {section.content.split("\n\n").map((paragraph, idx) => (
                       <p key={idx}>{paragraph}</p>
@@ -172,19 +170,18 @@ export default async function ConfidentialitePage({ params }: { params: Promise<
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 lg:py-28">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm mb-8">
-                <Mail className="w-4 h-4 mr-3" />
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 Une Question ?
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, contactez notre délégué à la protection des données (DPO).
               </p>
               <div className="mt-10">
                 <a href="mailto:privacy@etheriatimes.com">
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     <Mail className="h-4 w-4" />
                     Nous Contacter
                     <ArrowRight className="h-4 w-4" />
