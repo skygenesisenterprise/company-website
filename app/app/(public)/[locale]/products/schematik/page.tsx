@@ -213,16 +213,13 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Metrics Section */}
         <section className="py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <metric.icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div className="text-4xl lg:text-5xl font-normal text-foreground mb-2">
+                <div key={metric.label}>
+                  <div className="text-4xl lg:text-5xl font-normal text-foreground">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="mt-2 text-sm text-muted-foreground">
                     {metric.label}
                   </div>
                 </div>
@@ -234,7 +231,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Problem Statement Section */}
         <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.problemTitle")}
               </h2>
@@ -242,21 +239,21 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.problemDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="p-10 rounded-2xl bg-card">
-                <CircuitBoard className="w-10 h-10 text-red-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.problem1Title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.problem1Desc")}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-8 rounded-2xl bg-card">
+                <CircuitBoard className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.problem1Title")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.problem1Desc")}</p>
               </div>
-              <div className="p-10 rounded-2xl bg-card">
-                <Users className="w-10 h-10 text-orange-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.problem2Title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.problem2Desc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Users className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.problem2Title")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.problem2Desc")}</p>
               </div>
-              <div className="p-10 rounded-2xl bg-card">
-                <Activity className="w-10 h-10 text-yellow-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.problem3Title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.problem3Desc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Activity className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.problem3Title")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.problem3Desc")}</p>
               </div>
             </div>
           </div>
@@ -265,7 +262,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Solution Overview Section */}
         <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.solutionTitle")}
               </h2>
@@ -273,21 +270,21 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.solutionDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="p-10 rounded-2xl bg-card border border-blue-500/20">
-                <CircuitBoard className="w-10 h-10 text-blue-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.solution1Title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.solution1Desc")}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-8 rounded-2xl bg-card">
+                <CircuitBoard className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.solution1Title")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.solution1Desc")}</p>
               </div>
-              <div className="p-10 rounded-2xl bg-card border border-blue-500/20">
-                <Globe className="w-10 h-10 text-blue-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.solution2Title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.solution2Desc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Globe className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.solution2Title")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.solution2Desc")}</p>
               </div>
-              <div className="p-10 rounded-2xl bg-card border border-blue-500/20">
-                <Layers className="w-10 h-10 text-blue-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.solution3Title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.solution3Desc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Layers className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.solution3Title")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.solution3Desc")}</p>
               </div>
             </div>
           </div>
@@ -296,7 +293,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Key Features Section */}
         <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.featuresTitle")}
               </h2>
@@ -306,10 +303,10 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature) => (
-                <div key={feature.title} className="p-10 rounded-2xl bg-card">
-                  <feature.icon className="w-10 h-10 text-blue-500 mb-6" />
-                  <h3 className="text-2xl font-medium text-foreground mb-4">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <div key={feature.title} className="p-8 rounded-2xl bg-card">
+                  <feature.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -319,7 +316,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Architecture Section */}
         <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.architectureTitle")}
               </h2>
@@ -327,20 +324,12 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.architectureDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-24 max-w-4xl mx-auto">
               {architectureComponents.map((component) => (
-                <div key={component.title} className="p-10 rounded-2xl bg-card">
-                  <component.icon className="w-10 h-10 text-blue-500 mb-6" />
-                  <h3 className="text-2xl font-medium text-foreground mb-4">{component.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{component.description}</p>
-                  <ul className="space-y-2">
-                    {component.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div key={component.title} className="text-center">
+                  <component.icon className="w-10 h-10 text-blue-500 mx-auto mb-6" />
+                  <h3 className="text-2xl font-normal text-foreground mb-2">{component.title}</h3>
+                  <p className="text-xs text-muted-foreground">{component.description}</p>
                 </div>
               ))}
             </div>
@@ -350,7 +339,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Deployment Modes Section */}
         <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.deploymentTitle")}
               </h2>
@@ -358,37 +347,12 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.deploymentDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {deploymentModes.map((mode, index) => (
-                <div key={mode.title} className="p-10 rounded-2xl bg-card relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                      <mode.icon className="w-6 h-6 text-blue-400" />
-                    </div>
-                    {index < deploymentModes.length - 1 && (
-                      <ArrowDown className="w-5 h-5 text-muted-foreground lg:hidden" />
-                    )}
-                  </div>
-                  <h3 className="text-2xl font-medium text-foreground mb-3">{mode.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{mode.description}</p>
-                  <div className="p-3 rounded bg-muted/50 mb-4">
-                    <p className="text-xs text-muted-foreground">
-                      <span className="font-semibold text-foreground">{t("schematik.useCaseLabel")}</span>
-                      <br />
-                      {mode.useCase}
-                    </p>
-                  </div>
-                  <ul className="space-y-2">
-                    {mode.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {index < deploymentModes.length - 1 && (
-                    <ArrowDown className="w-5 h-5 text-muted-foreground mx-auto mt-6 hidden lg:block" />
-                  )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {deploymentModes.map((mode) => (
+                <div key={mode.title} className="p-8 rounded-2xl bg-card">
+                  <mode.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{mode.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{mode.description}</p>
                 </div>
               ))}
             </div>
@@ -398,7 +362,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Use Cases Section */}
         <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.useCasesTitle")}
               </h2>
@@ -406,12 +370,12 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.useCasesDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-24 max-w-4xl mx-auto">
               {useCases.map((useCase) => (
-                <div key={useCase.title} className="p-10 rounded-2xl bg-card">
-                  <useCase.icon className="w-10 h-10 text-blue-500 mb-6" />
-                  <h3 className="text-2xl font-medium text-foreground mb-4">{useCase.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{useCase.description}</p>
+                <div key={useCase.title} className="text-center">
+                  <useCase.icon className="w-10 h-10 text-foreground mx-auto mb-6 opacity-70" />
+                  <h3 className="text-2xl font-normal text-foreground mb-2">{useCase.title}</h3>
+                  <p className="text-xs text-muted-foreground">{useCase.description}</p>
                 </div>
               ))}
             </div>
@@ -421,7 +385,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Aether Edge Integration Section */}
         <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.ecosystemTitle")}
               </h2>
@@ -429,21 +393,21 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.ecosystemDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="p-10 rounded-2xl bg-card">
-                <Globe className="w-10 h-10 text-green-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.ecoEdgeTitle")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.ecoEdgeDesc")}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-8 rounded-2xl bg-card">
+                <Globe className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.ecoEdgeTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.ecoEdgeDesc")}</p>
               </div>
-              <div className="p-10 rounded-2xl bg-card">
-                <Lock className="w-10 h-10 text-purple-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.ecoIdentityTitle")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.ecoIdentityDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Lock className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.ecoIdentityTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.ecoIdentityDesc")}</p>
               </div>
-              <div className="p-10 rounded-2xl bg-card">
-                <Settings className="w-10 h-10 text-orange-500 mb-6" />
-                <h3 className="text-2xl font-medium text-foreground mb-4">{t("schematik.ecoVaultTitle")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("schematik.ecoVaultDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Settings className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("schematik.ecoVaultTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("schematik.ecoVaultDesc")}</p>
               </div>
             </div>
           </div>
@@ -452,7 +416,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* Comparison Section */}
         <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.comparisonTitle")}
               </h2>
@@ -460,11 +424,11 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
                 {t("schematik.comparisonDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <CircuitBoard className="w-8 h-8 text-orange-400" />
-                  <h3 className="text-2xl font-medium text-foreground">{t("schematik.traditionalCadTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("schematik.traditionalCadTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -488,7 +452,7 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
               <div className="p-10 rounded-2xl bg-card border border-blue-500/20">
                 <div className="flex items-center gap-3 mb-6">
                   <Sparkles className="w-8 h-8 text-blue-400" />
-                  <h3 className="text-2xl font-medium text-foreground">{t("schematik.aetherSchematikTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("schematik.aetherSchematikTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -516,15 +480,17 @@ export default async function PlatformSchematikPage({ params }: { params: Promis
         {/* CTA Section */}
         <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto text-center mb-20">
               <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("schematik.ctaTitle")}
               </h2>
               <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("schematik.ctaDescription")}
               </p>
+            </div>
+            <div className="text-center">
               <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-14 px-8 text-base">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("schematik.startDesigning")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>

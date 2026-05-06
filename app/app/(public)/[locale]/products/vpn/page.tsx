@@ -198,18 +198,15 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Metrics Section */}
-        <section className="py-16 lg:py-20 border-b border-border bg-muted/30">
+        <section className="py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <metric.icon className="w-6 h-6 text-green-400" />
-                  </div>
-                  <div className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+                <div key={metric.label}>
+                  <div className="text-4xl lg:text-5xl font-normal text-foreground">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="mt-2 text-sm text-muted-foreground">
                     {metric.label}
                   </div>
                 </div>
@@ -219,40 +216,36 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Overview Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-8">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.overviewTitle")}
               </h2>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                <p>{t("vpn.overviewDesc1")}</p>
-                <p>{t("vpn.overviewDesc2")}</p>
-                <p>{t("vpn.overviewDesc3")}</p>
-              </div>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+                {t("vpn.overviewDesc1")}
+              </p>
             </div>
           </div>
         </section>
 
         {/* Key Features Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.featuresTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.featuresDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature) => (
-                <div key={feature.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-14 h-14 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-7 h-7 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                <div key={feature.title} className="p-8 rounded-2xl bg-card">
+                  <feature.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -260,32 +253,22 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Architecture Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.architectureTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.architectureDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-24 max-w-4xl mx-auto">
               {architectureComponents.map((component) => (
-                <div key={component.title} className="p-6 rounded-lg border border-border bg-card">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <component.icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{component.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{component.description}</p>
-                  <ul className="space-y-2">
-                    {component.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div key={component.title} className="text-center">
+                  <component.icon className="w-10 h-10 text-blue-500 mx-auto mb-6" />
+                  <h3 className="text-2xl font-normal text-foreground mb-2">{component.title}</h3>
+                  <p className="text-xs text-muted-foreground">{component.description}</p>
                 </div>
               ))}
             </div>
@@ -293,21 +276,21 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Open Source Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.openSourceSectionTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.openSourceSectionDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="p-8 rounded-lg border border-green-500/20 bg-green-500/5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <Eye className="w-8 h-8 text-green-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("vpn.transparencyTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("vpn.transparencyTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -324,10 +307,10 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
                   </li>
                 </ul>
               </div>
-              <div className="p-8 rounded-lg border border-border bg-card">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <Home className="w-8 h-8 text-blue-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("vpn.selfHostingTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("vpn.selfHostingTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -349,82 +332,70 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Enterprise Ready Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.enterpriseTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.enterpriseDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Scale className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.entScalabilityTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.entScalabilityDesc")}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="p-8 rounded-2xl bg-card">
+                <Scale className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.entScalabilityTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.entScalabilityDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Building2 className="w-6 h-6 text-blue-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.entTeamTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.entTeamDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Building2 className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.entTeamTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.entTeamDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Lock className="w-6 h-6 text-purple-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.entAclTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.entAclDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Lock className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.entAclTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.entAclDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Activity className="w-6 h-6 text-orange-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.entObservabilityTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.entObservabilityDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Activity className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.entObservabilityTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.entObservabilityDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <GitBranch className="w-6 h-6 text-red-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.entIntegrationTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.entIntegrationDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <GitBranch className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.entIntegrationTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.entIntegrationDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-yellow-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.entComplianceTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.entComplianceDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Shield className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.entComplianceTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.entComplianceDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CLI & Automation Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.cliTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.cliDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="p-8 rounded-lg border border-border bg-card">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <Terminal className="w-8 h-8 text-green-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("vpn.cliFullTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("vpn.cliFullTitle")}</h3>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t("vpn.cliFullDesc")}</p>
-                <div className="p-4 rounded bg-muted/50 font-mono text-xs text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed mb-6">{t("vpn.cliFullDesc")}</p>
+                <div className="p-4 rounded-xl bg-muted/50 font-mono text-xs text-muted-foreground">
                   <div className="mb-2"># Connect to a network</div>
                   <div className="text-green-400">avpn connect &lt;network-name&gt;</div>
                   <div className="mt-4 mb-2"># List available networks</div>
@@ -433,26 +404,26 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
                   <div className="text-green-400">avpn status</div>
                 </div>
               </div>
-              <div className="p-8 rounded-lg border border-border bg-card">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <RefreshCw className="w-8 h-8 text-blue-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("vpn.automationTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("vpn.automationTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("vpn.automationPoint1")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("vpn.automationPoint2")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("vpn.automationPoint3")}</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
                     <span>{t("vpn.automationPoint4")}</span>
                   </li>
                 </ul>
@@ -462,47 +433,22 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Deployment Modes Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.deploymentTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.deploymentDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {deploymentModes.map((mode, index) => (
-                <div key={mode.title} className="p-6 rounded-lg border border-border bg-card relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
-                      <mode.icon className="w-6 h-6 text-green-400" />
-                    </div>
-                    {index < deploymentModes.length - 1 && (
-                      <ArrowDown className="w-5 h-5 text-muted-foreground lg:hidden" />
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{mode.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{mode.description}</p>
-                  <div className="p-3 rounded bg-muted/50 mb-4">
-                    <p className="text-xs text-muted-foreground">
-                      <span className="font-semibold text-foreground">{t("vpn.useCaseLabel")}</span>
-                      <br />
-                      {mode.useCase}
-                    </p>
-                  </div>
-                  <ul className="space-y-2">
-                    {mode.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {index < deploymentModes.length - 1 && (
-                    <ArrowDown className="w-5 h-5 text-muted-foreground mx-auto mt-6 hidden lg:block" />
-                  )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {deploymentModes.map((mode) => (
+                <div key={mode.title} className="p-8 rounded-2xl bg-card">
+                  <mode.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{mode.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{mode.description}</p>
                 </div>
               ))}
             </div>
@@ -510,24 +456,22 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Use Cases Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.useCasesTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.useCasesDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {useCases.map((useCase) => (
-                <div key={useCase.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <useCase.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{useCase.description}</p>
+                <div key={useCase.title} className="p-8 rounded-2xl bg-card">
+                  <useCase.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{useCase.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{useCase.description}</p>
                 </div>
               ))}
             </div>
@@ -535,59 +479,55 @@ export default async function PlatformVpnPage({ params }: { params: Promise<{ lo
         </section>
 
         {/* Ecosystem Integration Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.ecosystemTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.ecosystemDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Globe className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.ecoEdgeTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.ecoEdgeDesc")}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-8 rounded-2xl bg-card">
+                <Globe className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.ecoEdgeTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.ecoEdgeDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Layers className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.ecoOfficeTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.ecoOfficeDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Layers className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.ecoOfficeTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.ecoOfficeDesc")}</p>
               </div>
-              <div className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <Key className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("vpn.ecoApiTitle")}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{t("vpn.ecoApiDesc")}</p>
+              <div className="p-8 rounded-2xl bg-card">
+                <Key className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("vpn.ecoApiTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("vpn.ecoApiDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("vpn.ctaTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("vpn.ctaDesc")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+            </div>
+            <div className="text-center">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("vpn.deployNow")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href="https://github.com/skygenesisenterprise/aether-vpn" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="outline" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("vpn.viewGithub")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>

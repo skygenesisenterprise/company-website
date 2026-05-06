@@ -264,18 +264,15 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
         </section>
 
         {/* Metrics Section */}
-        <section className="py-16 lg:py-20 border-b border-border bg-muted/30">
+        <section className="py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <metric.icon className="w-6 h-6 text-green-400" />
-                  </div>
-                  <div className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+                <div key={metric.label}>
+                  <div className="text-4xl lg:text-5xl font-normal text-foreground">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="mt-2 text-sm text-muted-foreground">
                     {metric.label}
                   </div>
                 </div>
@@ -285,32 +282,22 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
         </section>
 
         {/* Core Value Proposition */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.pillarsTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.pillarsDescription")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {pillars.map((pillar) => (
-                <div key={pillar.title} className="p-6 rounded-lg border border-border bg-card hover:border-green-500/20 transition-colors">
-                  <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <pillar.icon className="w-7 h-7 text-green-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{pillar.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{pillar.description}</p>
-                  <ul className="space-y-2">
-                    {pillar.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div key={pillar.title} className="p-8 rounded-2xl bg-card">
+                  <pillar.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{pillar.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{pillar.description}</p>
                 </div>
               ))}
             </div>
@@ -318,32 +305,22 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
         </section>
 
         {/* Feature Showcase */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.featuresTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.featuresDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {features.map((feature) => (
-                <div key={feature.title} className="p-6 rounded-lg border border-border bg-card">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{feature.description}</p>
-                  <ul className="space-y-2">
-                    {feature.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div key={feature.title} className="p-8 rounded-2xl bg-card">
+                  <feature.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -351,66 +328,45 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
         </section>
 
         {/* Edge Architecture Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.architectureTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.architectureDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-24 max-w-4xl mx-auto">
               {architectureComponents.map((component) => (
-                <div key={component.title} className="p-6 rounded-lg border border-border bg-card">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <component.icon className="w-6 h-6 text-green-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{component.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{component.description}</p>
-                  <ul className="space-y-2">
-                    {component.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div key={component.title} className="text-center">
+                  <component.icon className="w-10 h-10 text-green-500 mx-auto mb-6" />
+                  <h3 className="text-2xl font-normal text-foreground mb-2">{component.title}</h3>
+                  <p className="text-xs text-muted-foreground">{component.description}</p>
                 </div>
               ))}
-            </div>
-            <div className="mt-12 max-w-3xl mx-auto p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-              <div className="flex items-start gap-4">
-                <Sparkles className="w-6 h-6 text-green-400 shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">{t("sheets.edgePoweredTitle")}</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{t("sheets.edgePoweredDesc")}</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* Use Cases Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.useCasesTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.useCasesDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-24 max-w-4xl mx-auto">
               {useCases.map((useCase) => (
-                <div key={useCase.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <useCase.icon className="w-6 h-6 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{useCase.description}</p>
+                <div key={useCase.title} className="text-center">
+                  <useCase.icon className="w-10 h-10 text-foreground mx-auto mb-6 opacity-70" />
+                  <h3 className="text-2xl font-normal text-foreground mb-2">{useCase.title}</h3>
+                  <p className="text-xs text-muted-foreground">{useCase.description}</p>
                 </div>
               ))}
             </div>
@@ -418,46 +374,52 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
         </section>
 
         {/* Integration Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.integrationTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.integrationDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {integrations.map((integration) => (
-                <div key={integration.title} className="p-6 rounded-lg border border-green-500/20 bg-green-500/5">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <integration.icon className="w-6 h-6 text-green-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{integration.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{integration.description}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-8 rounded-2xl bg-card">
+                <Mail className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("sheets.integrationMailTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("sheets.integrationMailDesc")}</p>
+              </div>
+              <div className="p-8 rounded-2xl bg-card">
+                <Video className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("sheets.integrationMeetTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("sheets.integrationMeetDesc")}</p>
+              </div>
+              <div className="p-8 rounded-2xl bg-card">
+                <MessageSquare className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                <h3 className="text-base font-medium text-foreground mb-3">{t("sheets.integrationChatTitle")}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("sheets.integrationChatDesc")}</p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Comparison Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.comparisonTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.comparisonDescription")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="p-8 rounded-lg border border-border bg-card">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="p-10 rounded-2xl bg-card">
                 <div className="flex items-center gap-3 mb-6">
                   <Cloud className="w-8 h-8 text-muted-foreground" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("sheets.traditionalTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("sheets.traditionalTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -478,10 +440,10 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
                   </li>
                 </ul>
               </div>
-              <div className="p-8 rounded-lg border border-green-500/20 bg-green-500/5">
+              <div className="p-10 rounded-2xl bg-card border border-green-500/20">
                 <div className="flex items-center gap-3 mb-6">
                   <FileSpreadsheet className="w-8 h-8 text-green-400" />
-                  <h3 className="text-xl font-semibold text-foreground">{t("sheets.aetherTitle")}</h3>
+                  <h3 className="text-xl font-medium text-foreground">{t("sheets.aetherTitle")}</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -507,22 +469,24 @@ export default async function SheetsPage({ params }: { params: Promise<{ locale:
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {t("sheets.ctaTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {t("sheets.ctaDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="gap-2 h-12 px-6 text-base">
+            </div>
+            <div className="text-center">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                   {t("sheets.startBuilding")}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Link href={`/${locale}/contact`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="outline" size="lg" className="gap-2 h-14 px-8 text-base">
                     {t("sheets.contactSales")}
                   </Button>
                 </Link>
