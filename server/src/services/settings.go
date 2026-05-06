@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/skygenesisenterprise/aether-mail/server/src/models"
+	"github.com/skygenesisenterprise/company-website/server/src/models"
 )
 
 type SettingsService struct {

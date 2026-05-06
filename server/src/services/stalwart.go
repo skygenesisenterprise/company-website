@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/skygenesisenterprise/aether-mail/server/src/config"
-	"github.com/skygenesisenterprise/aether-mail/server/src/models"
-	"github.com/skygenesisenterprise/aether-mail/server/src/utils"
+	"github.com/skygenesisenterprise/company-website/server/src/config"
+	"github.com/skygenesisenterprise/company-website/server/src/models"
+	"github.com/skygenesisenterprise/company-website/server/src/utils"
 )
 
 type StalwartService struct {

@@ -20,7 +20,7 @@ import (
 	"unicode/utf8"
 
 	"golang.org/x/text/encoding/charmap"
-	"github.com/skygenesisenterprise/aether-mail/server/src/models"
+	"github.com/skygenesisenterprise/company-website/server/src/models"
 )
 
 func ParseEmail(rawEmail string) (*models.Email, error) {

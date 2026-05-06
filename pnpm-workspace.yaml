@@ -2,8 +2,6 @@ packages:
   - "app"
   - "tools"
   - "tests"
-  - "options"
-  - "electron"
   - "package/snap"
   - "server/prisma"
   - "package/node"
