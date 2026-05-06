@@ -730,6 +730,7 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               loginText={t("login")}
               accountText={t("account")}
               signUpText={t("signUp")}
+              signUpHref={getLocaleHref("/under-attack-online")}
             />
 
             {/* Mobile Menu Button - placeholder, needs client component */}

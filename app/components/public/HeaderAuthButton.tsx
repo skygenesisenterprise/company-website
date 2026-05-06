@@ -8,9 +8,10 @@ interface HeaderAuthButtonProps {
   loginText: string;
   accountText: string;
   signUpText: string;
+  signUpHref: string;
 }
 
-export function HeaderAuthButton({ loginText, accountText, signUpText }: HeaderAuthButtonProps) {
+export function HeaderAuthButton({ loginText, accountText, signUpText, signUpHref }: HeaderAuthButtonProps) {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
@@ -45,7 +46,7 @@ export function HeaderAuthButton({ loginText, accountText, signUpText }: HeaderA
           </Button>
         </Link>
       )}
-      <Link href="/under-attack-online">
+      <Link href={signUpHref}>
         <Button size="sm" className="h-9 px-4 font-medium">
           {signUpText}
         </Button>

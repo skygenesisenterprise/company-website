@@ -2840,8 +2840,8 @@
     "b2bSaasDesc": "Applications entreprise multi-tenant",
     "machineToMachine": "Infrastructure",
     "machineToMachineDesc": "Authentification API et service",
-    "passwordless": "Espace de travail",
-    "passwordlessDesc": "Authentification sans friction",
+    "passwordless": "Espace de Travail",
+    "passwordlessDesc": "Espace de travail pour les entreprises",
     "byIndustry": "Par Industrie",
     "financialServices": "Secteur Financiers",
     "financialServicesDesc": "Solutions bancaires et fintech",
@@ -2908,7 +2908,8 @@
       "ja": "日本語",
       "ko": "한국어",
       "ar": "العربية"
-    }
+    },
+    "officialSitesInfo": "Tous les sites officiels de Sky Genesis Enterprise sont sous le domaine \"*.skygenesisenterprise.com\" pour votre sécurité"
   },
   "Partners": {
     "badge": "Partenaires Technologiques",
