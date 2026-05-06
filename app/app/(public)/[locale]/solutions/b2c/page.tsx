@@ -385,7 +385,7 @@ export default async function B2CSolutionsPage({
                 {t("b2c.ctaFinalDescription")}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link href={`/${locale}/contact`}>
+                <Link href={`/${locale}/company/contact`}>
                   <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {t("b2c.ctaFinalPrimary")}
                     <ArrowRight className="h-4 w-4" />

@@ -16,7 +16,7 @@ import {
   Star,
 } from "lucide-react";
 
-export default async function PartnersDistributionPagePage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function PartnersDistributionPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Public" });
   const tPartners = await getTranslations({ locale, namespace: "Partners" });
@@ -64,27 +64,28 @@ export default async function PartnersDistributionPagePage({ params }: { params:
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
+        <section className="relative py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
-                {tPartners("badge")}
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-8">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span>{tPartners("badge")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-foreground leading-tight">
                 {tPartners("distributionHeroTitle")}
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {tPartners("distributionHeroDescription")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href={`/${locale}/partners/become`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {tPartners("ctaBecome")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/partners/resources`}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button variant="ghost" size="lg" className="gap-2 h-14 px-8 text-base">
                     {tPartners("ctaResources")}
                   </Button>
                 </Link>
@@ -94,24 +95,22 @@ export default async function PartnersDistributionPagePage({ params }: { params:
         </section>
 
         {/* Features Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {tPartners("featuresTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {tPartners("featuresDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature) => (
-                <div key={feature.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group">
-                  <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-7 h-7 text-blue-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                <div key={feature.title} className="p-8 rounded-2xl bg-card hover:bg-card/80 transition-colors">
+                  <feature.icon className="w-10 h-10 text-blue-400 mb-6" />
+                  <h3 className="text-lg font-medium text-foreground mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -119,24 +118,22 @@ export default async function PartnersDistributionPagePage({ params }: { params:
         </section>
 
         {/* Benefits Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {tPartners("benefitsTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {tPartners("benefitsDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((benefit) => (
-                <div key={benefit.title} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                  <div className="w-14 h-14 bg-card border border-border rounded-xl flex items-center justify-center mb-4">
-                    <benefit.icon className="w-7 h-7 text-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">{benefit.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{benefit.description}</p>
+                <div key={benefit.title} className="p-8 rounded-2xl bg-card">
+                  <benefit.icon className="w-8 h-8 text-foreground mb-5 opacity-80" />
+                  <h3 className="text-base font-medium text-foreground mb-3">{benefit.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
                 </div>
               ))}
             </div>
@@ -144,27 +141,25 @@ export default async function PartnersDistributionPagePage({ params }: { params:
         </section>
 
         {/* Partners Grid Section */}
-        <section className="py-20 lg:py-28 border-b border-border">
+        <section className="py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {tPartners("ourPartnersTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {tPartners("ourPartnersDesc")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {partners.map((partner) => (
-                <div key={partner.name} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors text-center group">
-                  <div className="w-12 h-12 bg-muted rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <Globe className="w-6 h-6 text-muted-foreground" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{partner.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{partner.type}</p>
-                  <div className="flex items-center justify-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-400" />
-                    <span className="text-sm text-green-400">{partner.status}</span>
+                <div key={partner.name} className="p-8 rounded-2xl bg-card text-center">
+                  <Globe className="w-10 h-10 text-muted-foreground mx-auto mb-6" />
+                  <h3 className="text-lg font-medium text-foreground mb-2">{partner.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{partner.type}</p>
+                  <div className="flex items-center justify-center gap-2 text-sm text-green-400">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>{partner.status}</span>
                   </div>
                 </div>
               ))}
@@ -173,18 +168,18 @@ export default async function PartnersDistributionPagePage({ params }: { params:
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 lg:py-28 border-b border-border bg-muted/30">
+        <section className="py-32 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight text-foreground">
                 {tPartners("ctaTitle")}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {tPartners("ctaDescription")}
               </p>
-              <div className="mt-10">
+              <div className="mt-12">
                 <Link href={`/${locale}/partners/become`}>
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
+                  <Button size="lg" className="gap-2 h-14 px-8 text-base font-medium">
                     {tPartners("ctaJoin")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
