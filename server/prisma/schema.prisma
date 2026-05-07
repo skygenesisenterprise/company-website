@@ -1,0 +1,1419 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  AUTHOR
+  SUBSCRIBER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+enum ArticleStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum SubscriptionPlan {
+  ESSENTIAL
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  PAST_DUE
+}
+
+enum NotificationType {
+  ARTICLE
+  BOOKMARK
+  SYSTEM
+  ACCOUNT
+  COMMENT
+}
+
+enum NotificationPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+  AUDIO
+  OTHER
+}
+
+enum ApiKeyType {
+  PUBLIC
+  SECRET
+}
+
+enum ApiKeyStatus {
+  ACTIVE
+  EXPIRED
+  REVOKED
+}
+
+enum AdCampaignStatus {
+  ACTIVE
+  PAUSED
+  DRAFT
+  COMPLETED
+}
+
+enum AdType {
+  BANNER
+  SPONSORED
+  VIDEO
+  NATIVE
+}
+
+enum AuditLogStatus {
+  SUCCESS
+  FAILED
+  WARNING
+}
+
+enum PublicationStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  FAILED
+}
+
+enum SocialPlatform {
+  TWITTER
+  FACEBOOK
+  INSTAGRAM
+  LINKEDIN
+  YOUTUBE
+  TWITCH
+  DISCORD
+}
+
+enum NewsletterStatus {
+  DRAFT
+  SCHEDULED
+  SENT
+  FAILED
+}
+
+enum SubscriberStatus {
+  ACTIVE
+  UNSUBSCRIBED
+  BOUNCED
+  SPAM
+}
+
+enum SeoAuditStatus {
+  SUCCESS
+  WARNING
+  ERROR
+}
+
+enum SeoIssueType {
+  ERROR
+  WARNING
+  SUCCESS
+}
+
+enum KeywordTrend {
+  UP
+  DOWN
+  STABLE
+}
+
+enum OAuthProvider {
+  GOOGLE
+  MICROSOFT
+  GITHUB
+  PROTON
+}
+
+enum Locale {
+  FR
+  BE_FR
+  BE_NL
+  CH_FR
+}
+
+enum PartnerType {
+  TECHNOLOGY
+  SERVICE
+  DISTRIBUTION
+  RESELLER
+  INTEGRATION
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  passwordHash   String?
+  name           String?
+  firstName      String?
+  lastName       String?
+  username       String?   @unique
+  avatarUrl      String?
+  phone          String?
+  role           UserRole  @default(SUBSCRIBER)
+  status         UserStatus @default(PENDING)
+  gender         String?
+  birthDate      DateTime?
+  language       String    @default("fr")
+  aetherId       String?
+  accountType    String?
+  emailVerified  DateTime?
+  isActive       Boolean   @default(true)
+  lastLoginAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  accounts         Account[]
+  sessions         Session[]
+  oauthAccounts    OAuthAccount[]
+  organizationMembers OrganizationMember[]
+  articles         Article[]
+  comments         Comment[]
+  bookmarks        Bookmark[]
+  readingHistory   ReadingHistory[]
+  notifications    EtheriaNotification[]
+  subscription     Subscription?
+  settings         UserSettings?
+  socialAccounts   SocialAccount[]
+  apiKeys          ApiKey[]
+  auditLogs        AuditLog[]
+  devices          Device[]
+  passwords        Password[]
+  contacts         Contact[]
+  contactGroups    ContactGroup[]
+  folders          Folder[]
+  calendars        Calendar[]
+  meetings         Meeting[]
+  meetingParticipants MeetingParticipant[]
+  todoLists        TodoList[]
+  signatures       Signature[]
+  emails           Email[]
+  labels           Label[]
+  filters          Filter[]
+
+  @@map("users")
+}
+
+model Account {
+  id         String   @id @default(cuid())
+  userId     String
+  provider   String
+  providerAccountId String
+  type       String?
+  tokenType  String?
+  accessToken String?
+  refreshToken String?
+  expiresAt  Int?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  userId     String
+  token      String   @unique
+  deviceId   String?
+  ipAddress  String?
+  userAgent  String?
+  isTrusted  Boolean  @default(false)
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model OAuthAccount {
+  id              String       @id @default(cuid())
+  userId          String
+  provider        OAuthProvider
+  providerUserId  String
+  providerEmail   String?
+  accessToken     String?
+  refreshToken    String?
+  tokenExpiresAt  DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerUserId])
+  @@map("oauth_accounts")
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  logoUrl     String?
+  website     String?
+  email       String?
+  phone       String?
+  address     String?
+  city        String?
+  country     String?
+  postalCode  String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members  OrganizationMember[]
+  domains  OrganizationDomain[]
+  partners Partner[]
+
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String         @id @default(cuid())
+  organizationId String
+  userId         String
+  role           String         @default("member")
+  isActive       Boolean        @default(true)
+  joinedAt       DateTime       @default(now())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@map("organization_members")
+}
+
+model OrganizationDomain {
+  id             String   @id @default(cuid())
+  organizationId String
+  domain         String
+  isVerified     Boolean  @default(false)
+  verifiedAt     DateTime?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, domain])
+  @@map("organization_domains")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  color       String?
+  icon        String?
+  isVisible   Boolean  @default(true)
+  parentId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryHierarchy")
+  articles Article[]
+  medias   Media[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  color     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles ArticleTag[]
+
+  @@map("tags")
+}
+
+model Article {
+  id            String        @id @default(cuid())
+  title         String
+  slug          String        @unique
+  excerpt       String?
+  content       String
+  contentHtml   String?
+  status        ArticleStatus @default(DRAFT)
+  featured      Boolean       @default(false)
+  isBreaking    Boolean       @default(false)
+  isSubscriberOnly Boolean    @default(false)
+  publishedAt   DateTime?
+  scheduledAt   DateTime?
+  viewCount     Int           @default(0)
+  readTime      Int           @default(1)
+  imageUrl      String?
+  imageAlt      String?
+  seoTitle      String?
+  seoDescription String?
+  seoKeywords   String?
+  allowComments Boolean      @default(true)
+  locale        Locale?
+  authorId      String
+  categoryId    String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  author     User         @relation(fields: [authorId], references: [id])
+  category   Category?    @relation(fields: [categoryId], references: [id])
+  tags       ArticleTag[]
+  comments   Comment[]
+  bookmarks  Bookmark[]
+  readingHistory ReadingHistory[]
+  medias     Media[]
+  dossierArticles DossierArticle[]
+
+  @@index([status, publishedAt])
+  @@index([authorId])
+  @@index([categoryId])
+  @@map("articles")
+}
+
+model ArticleTag {
+  articleId String
+  tagId     String
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  tag     Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, tagId])
+  @@map("article_tags")
+}
+
+model Comment {
+  id         String   @id @default(cuid())
+  content    String
+  isApproved Boolean  @default(false)
+  isFlagged  Boolean  @default(false)
+  flagReason String?
+  parentId   String?
+  articleId  String
+  authorId   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  parent  Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies Comment[] @relation("CommentReplies")
+  article Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  author  User      @relation(fields: [authorId], references: [id])
+
+  @@index([articleId])
+  @@index([authorId])
+  @@map("comments")
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  articleId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, articleId])
+  @@map("bookmarks")
+}
+
+model ReadingHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  articleId String
+  readAt    DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("reading_history")
+}
+
+model Media {
+  id           String    @id @default(cuid())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  url          String
+  alt          String?
+  caption      String?
+  width        Int?
+  height       Int?
+  articleId    String?
+  categoryId   String?
+  userId       String?
+  createdAt    DateTime  @default(now())
+
+  article  Article?  @relation(fields: [articleId], references: [id])
+  category Category? @relation(fields: [categoryId], references: [id])
+
+  @@map("medias")
+}
+
+model Dossier {
+  id          String   @id @default(cuid())
+  name        String
+  title       String?
+  description String?
+  content     String?
+  imageUrl    String?
+  isVisible   Boolean  @default(true)
+  locale      Locale?
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  articles DossierArticle[]
+
+  @@unique([name, locale])
+  @@map("dossiers")
+}
+
+model DossierArticle {
+  dossierId String
+  articleId String
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  dossier Dossier @relation(fields: [dossierId], references: [id], onDelete: Cascade)
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@id([dossierId, articleId])
+  @@map("dossier_articles")
+}
+
+model Subscription {
+  id              String             @id @default(cuid())
+  userId          String             @unique
+  plan            SubscriptionPlan
+  status          SubscriptionStatus @default(ACTIVE)
+  startedAt       DateTime           @default(now())
+  expiresAt       DateTime?
+  lastPaymentDate DateTime?
+  nextPaymentDate DateTime?
+  paymentMethod   String?
+  paymentLast4    String?
+  cancelAtPeriodEnd Boolean          @default(false)
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model EtheriaNotification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  title     String
+  message   String
+  link      String?
+  isRead    Boolean          @default(false)
+  priority  NotificationPriority @default(MEDIUM)
+  userId    String
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model Newsletter {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  template    String?
+  fromName    String?
+  fromEmail   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  campaigns NewsletterCampaign[]
+  subscribers Subscriber[]
+
+  @@map("newsletters")
+}
+
+model Subscriber {
+  id             String           @id @default(cuid())
+  email          String
+  name           String?
+  newsletterId   String?
+  status         SubscriberStatus @default(ACTIVE)
+  subscribedAt   DateTime         @default(now())
+  unsubscribedAt DateTime?
+  lastReceivedAt DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  newsletter Newsletter? @relation(fields: [newsletterId], references: [id])
+
+  @@unique([email, newsletterId])
+  @@map("subscribers")
+}
+
+model NewsletterCampaign {
+  id              String          @id @default(cuid())
+  newsletterId    String
+  subject         String
+  content         String
+  template        String?
+  status          NewsletterStatus @default(DRAFT)
+  scheduledAt     DateTime?
+  sentAt          DateTime?
+  recipients      Int             @default(0)
+  opened          Int             @default(0)
+  clicked         Int             @default(0)
+  openRate        Float?
+  clickRate       Float?
+  targetAudience  String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  newsletter Newsletter @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
+
+  @@map("newsletter_campaigns")
+}
+
+model SystemSettings {
+  id               String  @id @default(cuid())
+  siteName         String
+  siteDescription  String?
+  siteUrl          String?
+  logoUrl          String?
+  faviconUrl       String?
+  email            String?
+  smtpHost         String?
+  smtpPort         Int?
+  smtpUser         String?
+  fromName         String?
+  fromEmail        String?
+  maintenanceMode  Boolean @default(false)
+  registrationOpen Boolean @default(true)
+  commentsEnabled  Boolean @default(true)
+  newsletterEnabled Boolean @default(true)
+  analyticsEnabled Boolean @default(true)
+  sslEnforced      Boolean @default(true)
+  dockerImage      String  @default("")
+  version          String  @default("1.0.0")
+  defaultSeoTitle  String?
+  defaultSeoDescription String?
+  defaultOgImage   String?
+  googleAnalyticsId String?
+  googleVerification String?
+  bingVerification String?
+  yandexVerification String?
+  robotsTxt        String?
+  canonicalUrl     String?
+  enableSitemap    Boolean @default(true)
+  autoGenerateSitemap Boolean @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("system_settings")
+}
+
+model UserSettings {
+  id                 String  @id @default(cuid())
+  userId             String  @unique
+  emailNotifications Boolean @default(true)
+  pushNotifications  Boolean @default(true)
+  displayLanguage    String  @default("fr")
+  timezone           String  @default("Europe/Paris")
+  theme              String  @default("system")
+  profileVisibility  String  @default("public")
+  showEmail          Boolean @default(false)
+  showPhone          Boolean @default(false)
+  showActivity       Boolean @default(true)
+  dataCollection     Boolean @default(true)
+  personalizedAds    Boolean @default(true)
+  analytics          Boolean @default(true)
+  locationTracking   Boolean @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_settings")
+}
+
+model ApiKey {
+  id          String      @id @default(cuid())
+  name        String
+  prefix      String
+  key         String      @unique
+  type        ApiKeyType  @default(PUBLIC)
+  permissions String[]
+  lastUsed    DateTime?
+  expiresAt   DateTime?
+  status      ApiKeyStatus @default(ACTIVE)
+  userId      String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("api_keys")
+}
+
+model AuditLog {
+  id         String        @id @default(cuid())
+  timestamp  DateTime      @default(now())
+  userId     String
+  userName   String?
+  userEmail  String?
+  action     String
+  resource   String
+  resourceId String?
+  ipAddress  String?
+  userAgent  String?
+  details    String?
+  status     AuditLogStatus @default(SUCCESS)
+  createdAt  DateTime      @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([timestamp])
+  @@index([action])
+  @@map("audit_logs")
+}
+
+model FooterLink {
+  id        String  @id @default(cuid())
+  category  String
+  title     String
+  name      String
+  href      String
+  locale    Locale  @default(FR)
+  position  Int     @default(0)
+  isVisible Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([locale, category])
+  @@map("footer_links")
+}
+
+model SeoAudit {
+  id             String        @id @default(cuid())
+  url            String
+  title          String?
+  metaDescription String?
+  h1             String?
+  status         SeoAuditStatus @default(SUCCESS)
+  score          Int           @default(0)
+  lastChecked    DateTime      @default(now())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  issues SeoIssue[]
+
+  @@index([url])
+  @@map("seo_audits")
+}
+
+model SeoIssue {
+  id      String       @id @default(cuid())
+  auditId String
+  type    SeoIssueType
+  message String
+  field   String
+  createdAt DateTime  @default(now())
+
+  audit SeoAudit @relation(fields: [auditId], references: [id], onDelete: Cascade)
+
+  @@map("seo_issues")
+}
+
+model Keyword {
+  id               String       @id @default(cuid())
+  keyword          String
+  position         Int          @default(0)
+  previousPosition Int          @default(0)
+  volume           Int          @default(0)
+  difficulty       String?
+  trend            KeywordTrend @default(STABLE)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  @@map("keywords")
+}
+
+model MetaTag {
+  id        String   @id @default(cuid())
+  name      String
+  content   String
+  page      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([page])
+  @@map("meta_tags")
+}
+
+model SocialAccount {
+  id             String        @id @default(cuid())
+  platform       SocialPlatform
+  accountName    String
+  accountId      String
+  connected      Boolean       @default(false)
+  lastSync       DateTime?
+  followers      Int           @default(0)
+  following      Int           @default(0)
+  posts          Int           @default(0)
+  autoPost       Boolean       @default(false)
+  accessToken    String?
+  refreshToken   String?
+  tokenExpiresAt DateTime?
+  userId         String
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  user  User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  socialPosts SocialPost[]
+
+  @@unique([userId, platform, accountId])
+  @@map("social_accounts")
+}
+
+model SocialPost {
+  id            String        @id @default(cuid())
+  platform      SocialPlatform
+  content       String
+  postId        String?
+  postedAt      DateTime?
+  likes         Int           @default(0)
+  comments      Int           @default(0)
+  shares        Int           @default(0)
+  impressions   Int           @default(0)
+  reach         Int           @default(0)
+  engagement    Float?
+  postType      String?
+  url           String?
+  mediaUrls     String[]
+  accountId     String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  account SocialAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId, platform])
+  @@map("social_posts")
+}
+
+model SocialAnalytics {
+  id          String        @id @default(cuid())
+  platform    SocialPlatform
+  accountId   String
+  date        DateTime
+  followers   Int           @default(0)
+  followersGained Int       @default(0)
+  followersLost Int         @default(0)
+  impressions Int           @default(0)
+  reach       Int           @default(0)
+  engagement  Float         @default(0)
+  posts       Int           @default(0)
+  likes       Int           @default(0)
+  comments    Int           @default(0)
+  shares      Int           @default(0)
+  clicks      Int           @default(0)
+  createdAt   DateTime      @default(now())
+
+  @@unique([accountId, platform, date])
+  @@map("social_analytics")
+}
+
+model AdCampaign {
+  id          String          @id @default(cuid())
+  name        String
+  status      AdCampaignStatus @default(DRAFT)
+  type        AdType          @default(BANNER)
+  impressions Int             @default(0)
+  clicks      Int             @default(0)
+  ctr         Float           @default(0)
+  spend       Float           @default(0)
+  budget      Float           @default(0)
+  startDate   DateTime
+  endDate     DateTime?
+  advertiser  String
+  targetUrl   String?
+  zones       String[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@map("ad_campaigns")
+}
+
+model AdPlacement {
+  id          String   @id @default(cuid())
+  name        String
+  zone        String
+  format      String
+  position    String
+  impressions Int      @default(0)
+  clicks      Int      @default(0)
+  ctr         Float    @default(0)
+  revenue     Float    @default(0)
+  status      String   @default("active")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("ad_placements")
+}
+
+model Publication {
+  id          String            @id @default(cuid())
+  content     String
+  platform    SocialPlatform
+  status      PublicationStatus @default(DRAFT)
+  scheduledAt DateTime?
+  publishedAt DateTime?
+  articleId   String?
+  articleTitle String?
+  likes       Int               @default(0)
+  comments    Int               @default(0)
+  shares      Int               @default(0)
+  reach       Int?
+  mediaIds    String[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([platform, status])
+  @@map("publications")
+}
+
+model ScheduledPost {
+  id              String        @id @default(cuid())
+  content         String
+  platform        SocialPlatform
+  scheduledAt     DateTime
+  status          String        @default("scheduled")
+  articleId       String?
+  articleTitle    String?
+  mediaCount      Int           @default(0)
+  recurring       Boolean       @default(false)
+  recurringPattern String?
+  timezone        String        @default("Europe/Paris")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([scheduledAt, status])
+  @@map("scheduled_posts")
+}
+
+model Device {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  type      String
+  os        String?
+  browser   String?
+  lastSeen  DateTime?
+  isTrusted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("devices")
+}
+
+model Password {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  username  String
+  password  String
+  url       String?
+  favorite  Boolean  @default(false)
+  category  String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("passwords")
+}
+
+model Contact {
+  id         String   @id @default(cuid())
+  userId     String
+  name       String
+  firstName  String?
+  lastName   String?
+  email      String
+  nickname   String?
+  company    String?
+  jobTitle   String?
+  department String?
+  phone      String?
+  mobile     String?
+  address    String?
+  avatarUrl  String?
+  starred    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  groups ContactGroupMember[]
+
+  @@index([userId])
+  @@map("contacts")
+}
+
+model ContactGroup {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user     User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  members  ContactGroupMember[]
+
+  @@index([userId])
+  @@map("contact_groups")
+}
+
+model ContactGroupMember {
+  contactId String
+  groupId   String
+
+  contact Contact     @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  group   ContactGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@id([contactId, groupId])
+  @@map("contact_group_members")
+}
+
+model Folder {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  parentId  String?
+  isSystem  Boolean  @default(false)
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent   Folder?  @relation("FolderHierarchy", fields: [parentId], references: [id])
+  children Folder[] @relation("FolderHierarchy")
+  emails   Email[]
+
+  @@unique([userId, name])
+  @@map("folders")
+}
+
+model Email {
+  id          String   @id @default(cuid())
+  userId      String
+  folderId    String?
+  messageId   String   @unique
+  subject     String
+  snippet     String?
+  bodyText    String?
+  bodyHtml    String?
+  isRead      Boolean  @default(false)
+  isStarred   Boolean  @default(false)
+  isFlagged   Boolean  @default(false)
+  isDraft     Boolean  @default(false)
+  isTrash     Boolean  @default(false)
+  isSpam      Boolean  @default(false)
+  size        Int      @default(0)
+  receivedAt  DateTime
+  sentAt      DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  folder     Folder?   @relation(fields: [folderId], references: [id])
+  addresses  EmailAddress[]
+  attachments Attachment[]
+  thread     EmailThread? @relation("ThreadEmails", fields: [threadId], references: [id])
+  threadId   String?
+
+  @@index([userId, folderId])
+  @@index([receivedAt])
+  @@map("emails")
+}
+
+model EmailAddress {
+  id      String @id @default(cuid())
+  emailId String
+  type    String
+  address String
+  name    String?
+
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade)
+
+  @@map("email_addresses")
+}
+
+model Attachment {
+  id          String   @id @default(cuid())
+  emailId     String
+  filename    String
+  mimeType    String
+  size        Int
+  url         String
+  contentId   String?
+  isInline    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade)
+
+  @@map("attachments")
+}
+
+model EmailThread {
+  id         String   @id @default(cuid())
+  userId     String
+  subject    String
+  snippet    String?
+  messageCount Int    @default(0)
+  isRead     Boolean  @default(false)
+  isStarred  Boolean  @default(false)
+  labels     String[]
+  lastMessageAt DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  emails Email[] @relation("ThreadEmails")
+
+  @@index([userId])
+  @@map("email_threads")
+}
+
+model Label {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  color     String?
+  position  Int      @default(0)
+  isSystem  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, name])
+  @@map("labels")
+}
+
+model Filter {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  conditions  Json
+  actions     Json
+  position    Int      @default(0)
+  isEnabled   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("filters")
+}
+
+model Signature {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  name      String?
+  content   String?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("signatures")
+}
+
+model Calendar {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  color       String   @default("#3b82f6")
+  isPrimary   Boolean  @default(false)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  events CalendarEvent[]
+
+  @@index([userId])
+  @@map("calendars")
+}
+
+model CalendarEvent {
+  id          String   @id @default(cuid())
+  calendarId  String
+  title       String
+  description String?
+  location    String?
+  startDate   DateTime
+  endDate     DateTime
+  isAllDay    Boolean  @default(false)
+  isRecurring Boolean  @default(false)
+  recurrenceRule String?
+  color       String?
+  status      String   @default("confirmed")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  calendar Calendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+
+  @@index([calendarId, startDate])
+  @@map("calendar_events")
+}
+
+model Meeting {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String?
+  startTime   DateTime
+  endTime     DateTime?
+  timezone    String   @default("Europe/Paris")
+  status      String   @default("scheduled")
+  roomUrl     String?
+  recordingUrl String?
+  settings    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user         User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  participants MeetingParticipant[]
+  recordings   MeetingRecording[]
+
+  @@index([userId])
+  @@map("meetings")
+}
+
+model MeetingParticipant {
+  id        String   @id @default(cuid())
+  meetingId String
+  userId    String
+  email     String?
+  name      String?
+  role      String   @default("participant")
+  status    String   @default("invited")
+  joinedAt  DateTime?
+  leftAt    DateTime?
+  createdAt DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([meetingId, userId])
+  @@map("meeting_participants")
+}
+
+model MeetingRecording {
+  id        String   @id @default(cuid())
+  meetingId String
+  url       String
+  duration  Int?
+  size      Int?
+  format    String?
+  createdAt DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+
+  @@map("meeting_recordings")
+}
+
+model TodoList {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  color     String   @default("#3b82f6")
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  todos Todo[]
+
+  @@index([userId])
+  @@map("todo_lists")
+}
+
+model Todo {
+  id          String   @id @default(cuid())
+  todoListId  String
+  title       String
+  description String?
+  isCompleted Boolean  @default(false)
+  dueDate     DateTime?
+  priority    String   @default("medium")
+  position    Int      @default(0)
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  list TodoList @relation(fields: [todoListId], references: [id], onDelete: Cascade)
+
+  @@index([todoListId])
+  @@map("todos")
+}
+
+model PressRelease {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  content     String?
+  date        DateTime
+  link        String?
+  imageUrl    String?
+  isPublished Boolean  @default(true)
+  locale      Locale?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("press_releases")
+}
+
+model Partner {
+  id          String      @id @default(cuid())
+  name        String
+  slug        String      @unique
+  description String?
+  logoUrl     String?
+  website     String?
+  type        PartnerType
+  contactEmail String?
+  isActive    Boolean     @default(true)
+  position    Int         @default(0)
+  organizationId String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  organization Organization? @relation(fields: [organizationId], references: [id])
+
+  @@map("partners")
+}
+
+model JobPosition {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  department  String?
+  location    String?
+  type        String   @default("full-time")
+  isRemote    Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  postedAt    DateTime @default(now())
+  closedAt    DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("job_positions")
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  title     String?
+  referrer  String?
+  userAgent String?
+  ipAddress String?
+  country   String?
+  device    String?
+  browser   String?
+  duration  Int?
+  userId    String?
+  articleId String?
+  locale    Locale?
+  timestamp DateTime @default(now())
+
+  @@index([path, timestamp])
+  @@index([timestamp])
+  @@map("page_views")
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  name      String
+  category  String?
+  label     String?
+  value     Float?
+  userId    String?
+  sessionId String?
+  url       String?
+  metadata  Json?
+  timestamp DateTime @default(now())
+
+  @@index([name, timestamp])
+  @@index([timestamp])
+  @@map("analytics_events")
+}
+
+model Translation {
+  id        String   @id @default(cuid())
+  key       String
+  value     String
+  namespace String
+  locale    Locale
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([key, namespace, locale])
+  @@map("translations")
+}
+
+model ThirdPartyApp {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  accessLevel String
+  connectedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("third_party_apps")
+}

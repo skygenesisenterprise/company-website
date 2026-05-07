@@ -3403,6 +3403,7 @@
   "Blog": {
     "heroTitle": "Blog & Forum Communautaire",
     "heroDescription": "Articles techniques, annonces produit, et discussions de la communauté. Partagez vos connaissances et apprenez des autres.",
+    "communityBadge": "Communauté Active",
     "searchPlaceholder": "Rechercher des articles, des discussions...",
     "searchButton": "Rechercher",
     "allCategories": "Toutes les Catégories",

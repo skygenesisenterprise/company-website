@@ -31,6 +31,8 @@ import {
   ChevronRight,
   PenSquare,
   List,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 
 import {
@@ -46,6 +48,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 interface NavItem {
   title: string;
@@ -391,18 +394,34 @@ function SidebarSection({ label, items }: { label: string; items: NavItem[] }) {
 }
 
 export function AdminSidebar() {
+  const { state, toggleSidebar } = useSidebar();
+
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
       <SidebarHeader className="p-4">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Newspaper className="h-4 w-4" />
-          </div>
-          <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <span className="font-serif text-sm font-bold">Sky Genesis Enterprise</span>
-            <span className="text-[10px] text-muted-foreground">Console Admin</span>
-          </div>
-        </Link>
+        <div className="flex items-center justify-between gap-2">
+          <Link href="/dashboard" className="flex items-center gap-2 min-w-0">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <Newspaper className="h-4 w-4" />
+            </div>
+            <div className="flex flex-col group-data-[collapsible=icon]:hidden">
+              <span className="font-serif text-sm font-bold">Sky Genesis Enterprise</span>
+              <span className="text-[10px] text-muted-foreground">Console Admin</span>
+            </div>
+          </Link>
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+            title={state === "expanded" ? "Réduire la sidebar" : "Agrandir la sidebar"}
+          >
+            {state === "expanded" ? (
+              <PanelLeftClose className="h-4 w-4" />
+            ) : (
+              <PanelLeftOpen className="h-4 w-4" />
+            )}
+          </button>
+        </div>
       </SidebarHeader>
 
       <SidebarContent>

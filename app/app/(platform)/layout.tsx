@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AdminSidebar } from "@/components/platform/sidebar";
 import { AdminHeader } from "@/components/platform/header";
 // import { ProtectedRoute } from "@/components/ProtectedRoute";
+
+export const metadata: Metadata = {
+  title: "Sky Genesis Enterprise | Dashboard",
+};
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
