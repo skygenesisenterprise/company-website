@@ -183,7 +183,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
     { name: t("pricing"), href: `${prefix}/pricing` },
     { name: t("connectApi"), href: "https://api.skygenesisenterprise.com", external: true },
     { name: t("apiDocumentation"), href: "https://docs.skygenesisenterprise.com", external: true },
-    { name: t("developerForum"), href: `${prefix}/community/developers` },
+    { name: t("developerForum"), href: "https://developer.skygenesisenterprise.com", external: true },
   ];
 
   const developerLinks: FooterLink[] = [
