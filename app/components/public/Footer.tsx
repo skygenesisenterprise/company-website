@@ -237,7 +237,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   const otherLinks: FooterLink[] = [
     { name: t("news"), href: `${prefix}/blog` },
     { name: t("academy"), href: `${prefix}/academy` },
-    { name: t("liveStreams"), href: `${prefix}/live` },
+    { name: t("liveStreams"), href: "https://live.skygenesisenterprise.com", external: true },
     { name: t("podcast"), href: `${prefix}/podcast` },
     { name: t("rss"), href: `${prefix}/rss.xml` },
   ];
