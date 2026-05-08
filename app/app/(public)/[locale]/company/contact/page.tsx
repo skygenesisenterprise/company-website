@@ -1,261 +1,191 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Header } from "@/components/public/Header";
-import { Footer } from "@/components/public/Footer";
+import {
+  BriefcaseBusiness,
+  Handshake,
+  Headphones,
+  Mail,
+  Megaphone,
+  Send,
+  ShieldAlert,
+  ShoppingBag,
+} from "lucide-react";
+import {
+  CompanyCard,
+  CompanyHero,
+  CompanyPageShell,
+  CompanySection,
+} from "@/components/public/company/company-page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  ArrowRight,
-  Mail,
-  Phone,
-  Clock,
-  MessageSquare,
-  HeadphonesIcon,
-  Zap,
-  Building2,
-} from "lucide-react";
 
-export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+interface RouteContent {
+  title: string;
+  description: string;
+  href: string;
+  cta: string;
+}
+
+interface OfficialContact {
+  label: string;
+  value: string;
+  href: string;
+}
+
+interface MetadataParams {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: MetadataParams): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Public" });
+  const t = await getTranslations({ locale, namespace: "CompanyPages.contact.metadata" });
 
-  const contactOptions = [
-    {
-      icon: MessageSquare,
-      title: t("contact.salesTitle"),
-      description: t("contact.salesDesc"),
-      cta: t("contact.contactSales"),
-      href: `/${locale}/contact`,
-      color: "text-blue-400",
-      bgColor: "bg-blue-500/20",
-    },
-    {
-      icon: HeadphonesIcon,
-      title: t("contact.supportTitle"),
-      description: t("contact.supportDesc"),
-      cta: t("contact.getSupport"),
-      href: "https://support.skygenesisenterprise.com",
-      color: "text-green-400",
-      bgColor: "bg-green-500/20",
-    },
-    {
-      icon: Zap,
-      title: t("contact.technicalTitle"),
-      description: t("contact.technicalDesc"),
-      cta: t("contact.viewDocs"),
-      href: `/${locale}/docs`,
-      color: "text-purple-400",
-      bgColor: "bg-purple-500/20",
-    },
-  ];
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
-  const offices = [
-    {
-      city: t("contact.officeSanFrancisco"),
-      address: t("contact.officeSanFranciscoAddress"),
-      phone: "+1 (415) 555-0123",
-    },
-    {
-      city: t("contact.officeLondon"),
-      address: t("contact.officeLondonAddress"),
-      phone: "+44 20 7946 0958",
-    },
-    {
-      city: t("contact.officeSingapore"),
-      address: t("contact.officeSingaporeAddress"),
-      phone: "+65 6789 0123",
-    },
-  ];
+export default async function ContactPage({ params }: MetadataParams) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "CompanyPages.contact" });
+  const common = await getTranslations({ locale, namespace: "CompanyPages.common" });
+
+  const routes = t.raw("routing.items") as RouteContent[];
+  const contacts = t.raw("official.items") as OfficialContact[];
+  const icons = [ShoppingBag, Handshake, Megaphone, BriefcaseBusiness, Headphones, ShieldAlert];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header locale={locale as import("@/lib/locale").Locale} />
+    <CompanyPageShell locale={locale}>
+      <CompanyHero
+        eyebrow={common("eyebrow")}
+        title={t("hero.title")}
+        description={t("hero.description")}
+      />
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 border-b border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-medium">{t("home.enterpriseBadge")}</span>
+      <CompanySection
+        eyebrow={t("routing.eyebrow")}
+        title={t("routing.title")}
+        description={t("routing.description")}
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {routes.map((route, index) => (
+            <CompanyCard
+              key={route.title}
+              icon={icons[index]}
+              title={route.title}
+              description={route.description}
+              href={route.href}
+              cta={route.cta}
+            />
+          ))}
+        </div>
+      </CompanySection>
+
+      <CompanySection
+        eyebrow={t("form.eyebrow")}
+        title={t("form.title")}
+        description={t("form.description")}
+        muted
+      >
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <form
+            action="mailto:contact@skygenesisenterprise.com"
+            method="post"
+            encType="text/plain"
+            className="rounded-lg border border-border/60 bg-background p-6 sm:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-2">
+                <label htmlFor="firstName" className="text-sm font-medium text-foreground">
+                  {t("form.firstName")}
+                </label>
+                <Input id="firstName" name="firstName" placeholder={t("form.firstNamePlaceholder")} />
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-tight text-balance">
-                {t("contact.heroTitle")}
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                {t("contact.heroDescription")}
-              </p>
+              <div className="space-y-2">
+                <label htmlFor="lastName" className="text-sm font-medium text-foreground">
+                  {t("form.lastName")}
+                </label>
+                <Input id="lastName" name="lastName" placeholder={t("form.lastNamePlaceholder")} />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                  {t("form.email")}
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder={t("form.emailPlaceholder")}
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="company" className="text-sm font-medium text-foreground">
+                  {t("form.company")}
+                </label>
+                <Input id="company" name="company" placeholder={t("form.companyPlaceholder")} />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <label htmlFor="topic" className="text-sm font-medium text-foreground">
+                  {t("form.topic")}
+                </label>
+                <Input id="topic" name="topic" placeholder={t("form.topicPlaceholder")} />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <label htmlFor="message" className="text-sm font-medium text-foreground">
+                  {t("form.message")}
+                </label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  placeholder={t("form.messagePlaceholder")}
+                />
+              </div>
             </div>
+            <Button type="submit" size="lg" className="mt-6 h-12 px-6">
+              {t("form.submit")}
+              <Send className="ml-2 h-4 w-4" />
+            </Button>
+          </form>
+
+          <div className="space-y-5">
+            {contacts.map((contact) => (
+              <a
+                key={contact.value}
+                href={contact.href}
+                className="flex items-start gap-4 rounded-lg border border-border/60 bg-card p-5 transition-colors hover:border-foreground/20"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/60 bg-muted/30">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <span>
+                  <span className="block text-sm font-medium text-foreground">
+                    {contact.label}
+                  </span>
+                  <span className="mt-1 block text-sm text-muted-foreground">
+                    {contact.value}
+                  </span>
+                </span>
+              </a>
+            ))}
           </div>
-        </section>
+        </div>
+      </CompanySection>
 
-        {/* Contact Options */}
-        <section className="py-20 lg:py-28 border-b border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-foreground">
-                {t("contact.salesTitle")}
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                {t("contact.salesDesc")}
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {contactOptions.map((option) => (
-                <div
-                  key={option.title}
-                  className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors group"
-                >
-                  <div className={`w-16 h-16 ${option.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-opacity`}>
-                    <option.icon className={`w-8 h-8 ${option.color}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{option.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {option.description}
-                  </p>
-                  <Link href={option.href} className={`text-sm font-semibold flex items-center gap-1 ${option.color} hover:opacity-80 transition-opacity`}>
-                    {option.cta} <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Form & Office Info */}
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-              {/* Contact Form */}
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-4">
-                  {t("contact.formTitle")}
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8">{t("contact.formDescription")}</p>
-                <form className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="firstName" className="text-sm font-medium text-foreground">
-                        {t("contact.formFirstName")}
-                      </label>
-                      <Input id="firstName" placeholder={t("contact.formFirstNamePlaceholder")} />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="lastName" className="text-sm font-medium text-foreground">
-                        {t("contact.formLastName")}
-                      </label>
-                      <Input id="lastName" placeholder={t("contact.formLastNamePlaceholder")} />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-foreground">
-                      {t("contact.formEmail")}
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder={t("contact.formEmailPlaceholder")}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium text-foreground">
-                      {t("contact.formCompany")}
-                    </label>
-                    <Input id="company" placeholder={t("contact.formCompanyPlaceholder")} />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-foreground">
-                      {t("contact.formMessage")}
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder={t("contact.formMessagePlaceholder")}
-                      rows={5}
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full">
-                    {t("contact.formSubmit")}
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </form>
-              </div>
-
-                {/* Office Information */}
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-4">
-                  {t("contact.officeTitle")}
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8">
-                  {t("contact.officeDescription")}
-                </p>
-                <div className="grid gap-6">
-                  {offices.map((office) => (
-                    <div key={office.city} className="p-6 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors">
-                      <div className="flex items-start gap-4">
-                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/20 shrink-0">
-                          <Building2 className="h-6 w-6 text-blue-400" />
-                        </div>
-                        <div>
-                          <h3 className="text-base font-semibold text-foreground mb-1">
-                            {office.city}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-2">{office.address}</p>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Phone className="h-3 w-3" />
-                            <span>{office.phone}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 p-6 rounded-lg border border-green-500/20 bg-gradient-to-br from-green-900/20 to-green-800/10">
-                  <div className="flex items-start gap-4">
-                    <Clock className="h-6 w-6 text-green-400 mt-0.5" />
-                    <div>
-                      <h3 className="text-base font-semibold text-foreground mb-1">
-                        {t("contact.responseTime")}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {t("contact.responseTimeDesc")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Emergency Support */}
-        <section className="py-20 lg:py-28 border-b border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center px-6 py-3 bg-orange-500/10 border border-orange-500/20 rounded-full text-orange-400 text-sm mb-8">
-                <Zap className="w-4 h-4 mr-3" />
-                {t("contact.emergencyTitle")}
-              </div>
-              <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                {t("contact.emergencyDescription")}
-              </p>
-              <div className="mt-10">
-                <a href="mailto:support@skygenesisenterprise.com">
-                  <Button size="lg" className="gap-2 h-12 px-6 text-base">
-                    <Mail className="h-4 w-4" />
-                    {t("contact.emergencyButton")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer locale={locale as "fr" | "be_fr" | "be_nl" | "ch_fr"} />
-    </div>
+      <CompanySection
+        eyebrow={t("trust.eyebrow")}
+        title={t("trust.title")}
+        description={t("trust.description")}
+        className="border-b-0"
+      >
+        <div className="rounded-lg border border-border/60 bg-card p-6 sm:p-8">
+          <p className="max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">
+            {t("trust.body")}
+          </p>
+        </div>
+      </CompanySection>
+    </CompanyPageShell>
   );
 }

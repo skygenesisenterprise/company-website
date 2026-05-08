@@ -3399,6 +3399,384 @@
     "ctaFinalContact": "Contacter les Ventes"
   }
   },
+  "CompanyPages": {
+    "common": {
+      "eyebrow": "Sky Genesis Enterprise",
+      "about": "À propos",
+      "careers": "Carrières",
+      "contact": "Contacter l'équipe",
+      "platform": "Découvrir la plateforme"
+    },
+    "about": {
+      "metadata": {
+        "title": "À propos | Sky Genesis Enterprise",
+        "description": "Découvrez la mission, la vision et les principes fondateurs de Sky Genesis Enterprise, jeune entreprise technologique européenne."
+      },
+      "hero": {
+        "title": "Construire une entreprise technologique européenne durable.",
+        "description": "Sky Genesis Enterprise conçoit, développe et opère des produits numériques, des plateformes et des infrastructures avec une ambition simple : renforcer la maîtrise technologique des organisations européennes sur le long terme."
+      },
+      "mission": {
+        "eyebrow": "Mission",
+        "title": "Créer des fondations numériques sérieuses pour les organisations qui veulent garder la maîtrise.",
+        "description": "Notre travail consiste à transformer des besoins critiques en produits exploitables, maintenables et compréhensibles.",
+        "cardTitle": "Une entreprise de construction technologique",
+        "cardDescription": "SGE ne se limite pas à éditer des interfaces. L'entreprise structure des briques produit, plateforme et infrastructure destinées à fonctionner ensemble.",
+        "statement": "Nous construisons des services numériques qui privilégient la fiabilité, la sécurité, l'interopérabilité et la capacité d'évolution plutôt que la dépendance à court terme."
+      },
+      "vision": {
+        "eyebrow": "Vision long terme",
+        "title": "Faire émerger une alternative européenne crédible.",
+        "description": "La souveraineté numérique ne se décrète pas. Elle se construit par des produits utilisables, des architectures lisibles et une exploitation rigoureuse.",
+        "body": "Notre vision est celle d'un écosystème technologique européen capable d'offrir des services modernes sans perdre la maîtrise de ses données, de ses dépendances et de ses choix d'architecture. SGE avance progressivement, avec une attention particulière portée aux fondations techniques, à la documentation, à la sécurité et à la continuité opérationnelle."
+      },
+      "model": {
+        "eyebrow": "Modèle d'entreprise",
+        "title": "Produits, plateformes, infrastructures et verticales spécialisées.",
+        "description": "L'entreprise se développe comme un système cohérent plutôt qu'une collection d'initiatives isolées.",
+        "items": [
+          {
+            "title": "Produits numériques",
+            "description": "Des applications et services destinés aux usages professionnels, conçus pour être clairs, fiables et intégrables."
+          },
+          {
+            "title": "Plateformes",
+            "description": "Des socles communs pour l'identité, les données, l'expérience utilisateur, l'administration et les intégrations."
+          },
+          {
+            "title": "Infrastructures",
+            "description": "Des capacités d'exploitation, de réseau, de sécurité et d'observabilité pensées comme des fondations durables."
+          },
+          {
+            "title": "Verticales spécialisées",
+            "description": "Des réponses adaptées à des domaines où la confiance, la conformité et la continuité de service comptent réellement."
+          }
+        ]
+      },
+      "principles": {
+        "eyebrow": "Principes fondateurs",
+        "title": "Des choix de construction avant des slogans.",
+        "description": "Ces principes guident la manière dont SGE conçoit ses produits, ses systèmes et ses relations externes.",
+        "items": [
+          {
+            "title": "Souveraineté technologique",
+            "description": "Rendre les dépendances visibles, réduire les verrouillages inutiles et préserver la capacité de choix."
+          },
+          {
+            "title": "Sécurité par conception",
+            "description": "Intégrer la sécurité dans l'architecture, les processus et les paramètres par défaut."
+          },
+          {
+            "title": "Excellence opérationnelle",
+            "description": "Traiter la fiabilité, le support, l'observabilité et la maintenance comme des sujets produit."
+          },
+          {
+            "title": "Interopérabilité",
+            "description": "Privilégier les interfaces claires, les standards ouverts et les intégrations compréhensibles."
+          },
+          {
+            "title": "Durabilité",
+            "description": "Construire des systèmes qui peuvent être maintenus, transmis et améliorés sans dette excessive."
+          }
+        ]
+      },
+      "now": {
+        "eyebrow": "Pourquoi maintenant",
+        "title": "Le besoin de confiance numérique devient structurel.",
+        "description": "Les organisations européennes ont besoin d'alternatives solides qui combinent maîtrise technique, exigence opérationnelle et compréhension des contraintes locales.",
+        "items": [
+          {
+            "title": "Alternatives européennes",
+            "description": "Le marché a besoin d'acteurs capables de proposer des solutions crédibles sans importer automatiquement tous les modèles existants."
+          },
+          {
+            "title": "Maîtrise de l'infrastructure",
+            "description": "Les choix d'infrastructure influencent la sécurité, la résilience, les coûts, la conformité et la liberté d'évolution."
+          },
+          {
+            "title": "Confiance numérique",
+            "description": "La confiance se gagne par la transparence, la qualité d'exécution et la capacité à expliquer clairement ce qui est construit."
+          }
+        ]
+      },
+      "cta": {
+        "eyebrow": "Entrer en relation",
+        "title": "Parlons de ce que SGE construit et de la manière d'y contribuer.",
+        "description": "Les demandes externes, les candidatures et les discussions plateforme sont orientées vers les points d'entrée adaptés."
+      }
+    },
+    "careers": {
+      "metadata": {
+        "title": "Carrières | Sky Genesis Enterprise",
+        "description": "Rejoindre Sky Genesis Enterprise : culture, profils recherchés et candidatures spontanées."
+      },
+      "hero": {
+        "title": "Rejoindre une entreprise qui construit sérieusement.",
+        "description": "SGE recherche des personnes capables de prendre des responsabilités, documenter leurs décisions et contribuer à des systèmes numériques destinés à durer."
+      },
+      "culture": {
+        "eyebrow": "Culture",
+        "title": "Autonomie, responsabilité et rigueur.",
+        "description": "L'environnement visé est exigeant, lisible et orienté apprentissage continu.",
+        "items": [
+          {
+            "title": "Autonomie",
+            "description": "Chaque personne doit pouvoir avancer avec un contexte clair, des objectifs compris et des marges de décision réelles."
+          },
+          {
+            "title": "Responsabilité",
+            "description": "Les décisions techniques, produit ou opérationnelles sont assumées, expliquées et suivies dans le temps."
+          },
+          {
+            "title": "Rigueur",
+            "description": "La qualité du raisonnement, des interfaces et de l'exécution compte autant que la vitesse."
+          },
+          {
+            "title": "Documentation",
+            "description": "Les choix importants doivent rester compréhensibles pour les équipes présentes et futures."
+          },
+          {
+            "title": "Apprentissage continu",
+            "description": "Les outils évoluent vite ; la capacité à apprendre, tester et formaliser est essentielle."
+          }
+        ]
+      },
+      "profiles": {
+        "eyebrow": "Profils recherchés",
+        "title": "Des profils ambitieux, structurés et responsables.",
+        "description": "SGE ne publie pas de fausses offres. Les futures opportunités seront ajoutées ici lorsqu'elles seront ouvertes.",
+        "items": [
+          {
+            "title": "Engineering",
+            "description": "Développement produit, systèmes distribués, interfaces, APIs, qualité logicielle et architecture applicative."
+          },
+          {
+            "title": "Infrastructure",
+            "description": "Cloud, réseau, observabilité, fiabilité, automatisation et exploitation de plateformes."
+          },
+          {
+            "title": "Security",
+            "description": "Sécurité applicative, identité, chiffrement, revue de conception, politiques et réponse aux risques."
+          },
+          {
+            "title": "Product & Design",
+            "description": "Définition produit, expérience utilisateur, systèmes de design et clarté des parcours."
+          },
+          {
+            "title": "Operations",
+            "description": "Structuration, support, processus, conformité, suivi d'exécution et amélioration continue."
+          },
+          {
+            "title": "Partnerships",
+            "description": "Relations stratégiques, écosystèmes technologiques, intégrations et développement de collaborations."
+          }
+        ]
+      },
+      "work": {
+        "eyebrow": "Manière de travailler",
+        "title": "Des équipes responsables, outillées et attentives aux détails.",
+        "description": "La performance vient d'un ownership clair, d'une communication précise et d'une utilisation pragmatique de l'IA.",
+        "items": [
+          {
+            "title": "Ownership clair",
+            "description": "Les sujets ont des responsables identifiés, des critères de réussite explicites et une traçabilité des décisions."
+          },
+          {
+            "title": "Équipes responsables",
+            "description": "Les équipes doivent comprendre les effets de leurs choix sur le produit, l'exploitation et les utilisateurs."
+          },
+          {
+            "title": "IA comme levier d'exécution",
+            "description": "L'IA est utilisée pour accélérer l'analyse, la production et la vérification, sans remplacer le jugement."
+          }
+        ]
+      },
+      "open": {
+        "eyebrow": "Candidature spontanée",
+        "title": "Les candidatures spontanées sont ouvertes.",
+        "description": "Aucune liste d'offres ouvertes n'est affichée tant qu'une opportunité réelle n'est pas publiée.",
+        "body": "Les profils qui se reconnaissent dans cette manière de construire peuvent nous contacter avec un parcours, des exemples de réalisations et le type de contribution envisagé. Les futures opportunités seront publiées ici lorsqu'elles seront disponibles."
+      },
+      "cta": {
+        "eyebrow": "Premier échange",
+        "title": "Présentez votre profil avec précision.",
+        "description": "Expliquez ce que vous avez construit, ce que vous savez opérer et les responsabilités que vous souhaitez prendre."
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "Contact | Sky Genesis Enterprise",
+        "description": "Contacter Sky Genesis Enterprise pour les demandes commerciales, partenariats, presse, carrières, support ou sécurité."
+      },
+      "hero": {
+        "title": "Un point d'entrée clair pour chaque demande.",
+        "description": "Cette page oriente les demandes externes vers le bon canal afin de qualifier les sujets, prioriser les urgences et répondre avec le bon niveau de contexte."
+      },
+      "routing": {
+        "eyebrow": "Routage",
+        "title": "Choisir le bon canal dès le départ.",
+        "description": "Chaque type de demande suit un traitement adapté à sa nature.",
+        "items": [
+          {
+            "title": "Commercial",
+            "description": "Présenter un besoin produit, plateforme ou infrastructure et initier une discussion qualifiée.",
+            "href": "mailto:contact@skygenesisenterprise.com",
+            "cta": "Écrire"
+          },
+          {
+            "title": "Partenariat",
+            "description": "Proposer une collaboration technologique, opérationnelle, commerciale ou institutionnelle.",
+            "href": "mailto:partners@skygenesisenterprise.com",
+            "cta": "Proposer"
+          },
+          {
+            "title": "Presse",
+            "description": "Demande média, citation, clarification institutionnelle ou échange avec l'équipe presse.",
+            "href": "mailto:press@skygenesisenterprise.com",
+            "cta": "Contacter"
+          },
+          {
+            "title": "Carrières",
+            "description": "Candidature spontanée ou prise de contact concernant de futures opportunités.",
+            "href": "mailto:careers@skygenesisenterprise.com",
+            "cta": "Candidater"
+          },
+          {
+            "title": "Support",
+            "description": "Question liée à un service, un accès, une configuration ou une difficulté d'utilisation.",
+            "href": "mailto:support@skygenesisenterprise.com",
+            "cta": "Demander de l'aide"
+          },
+          {
+            "title": "Sécurité / signalement",
+            "description": "Signalement de vulnérabilité, abus, incident potentiel ou information sensible.",
+            "href": "mailto:security@skygenesisenterprise.com",
+            "cta": "Signaler"
+          }
+        ]
+      },
+      "form": {
+        "eyebrow": "Formulaire",
+        "title": "Décrire la demande avec le bon niveau de contexte.",
+        "description": "Le formulaire prépare un message structuré vers l'adresse de contact officielle.",
+        "firstName": "Prénom",
+        "firstNamePlaceholder": "Jean",
+        "lastName": "Nom",
+        "lastNamePlaceholder": "Dupont",
+        "email": "Email professionnel",
+        "emailPlaceholder": "jean@entreprise.com",
+        "company": "Organisation",
+        "companyPlaceholder": "Nom de l'organisation",
+        "topic": "Type de demande",
+        "topicPlaceholder": "Commercial, partenariat, presse, carrières, support, sécurité...",
+        "message": "Message",
+        "messagePlaceholder": "Décrivez le contexte, l'objectif, le niveau d'urgence et les informations utiles.",
+        "submit": "Préparer l'envoi"
+      },
+      "official": {
+        "items": [
+          {
+            "label": "Contact général",
+            "value": "contact@skygenesisenterprise.com",
+            "href": "mailto:contact@skygenesisenterprise.com"
+          },
+          {
+            "label": "Presse",
+            "value": "press@skygenesisenterprise.com",
+            "href": "mailto:press@skygenesisenterprise.com"
+          },
+          {
+            "label": "Sécurité",
+            "value": "security@skygenesisenterprise.com",
+            "href": "mailto:security@skygenesisenterprise.com"
+          },
+          {
+            "label": "Partenariats",
+            "value": "partners@skygenesisenterprise.com",
+            "href": "mailto:partners@skygenesisenterprise.com"
+          }
+        ]
+      },
+      "trust": {
+        "eyebrow": "Traitement des demandes",
+        "title": "Les demandes sont qualifiées selon leur nature et leur priorité.",
+        "description": "Les sujets sensibles, urgents ou liés à la sécurité doivent contenir les informations nécessaires pour être évalués rapidement.",
+        "body": "SGE privilégie les échanges précis : contexte, organisation concernée, objectif, contrainte de calendrier et niveau de sensibilité. Les signalements de sécurité sont traités séparément des demandes commerciales ou média afin de préserver la confidentialité et la réactivité."
+      }
+    },
+    "press": {
+      "metadata": {
+        "title": "Presse | Sky Genesis Enterprise",
+        "description": "Informations presse, boilerplates, repères institutionnels et contact média de Sky Genesis Enterprise."
+      },
+      "hero": {
+        "title": "Informations presse et repères institutionnels.",
+        "description": "Une base claire pour comprendre, citer ou contacter Sky Genesis Enterprise sans extrapoler au-delà des informations publiques disponibles.",
+        "cta": "Contacter la presse"
+      },
+      "boilerplate": {
+        "eyebrow": "Boilerplates",
+        "title": "Présenter SGE avec précision.",
+        "description": "Ces textes peuvent servir de base pour une citation courte ou une présentation plus complète.",
+        "shortLabel": "Version courte",
+        "short": "Sky Genesis Enterprise est une jeune entreprise technologique européenne qui conçoit, développe et opère des produits numériques, plateformes et infrastructures orientés souveraineté, sécurité et fiabilité opérationnelle.",
+        "longLabel": "Version longue",
+        "long": "Sky Genesis Enterprise construit un écosystème technologique européen composé de produits numériques, de plateformes communes et de fondations d'infrastructure. L'entreprise travaille sur des services destinés aux organisations qui recherchent davantage de maîtrise, d'interopérabilité et de confiance dans leurs environnements numériques. Son approche privilégie la sécurité par conception, la documentation, la qualité opérationnelle et une progression structurée plutôt que les effets d'annonce."
+      },
+      "facts": {
+        "eyebrow": "Repères institutionnels",
+        "title": "Ce qui peut être affirmé publiquement.",
+        "description": "La page évite les chiffres, clients, levées de fonds ou implantations qui ne sont pas vérifiés publiquement.",
+        "items": [
+          {
+            "title": "Nature",
+            "description": "Entreprise technologique européenne en développement, orientée produits, plateformes et infrastructures numériques."
+          },
+          {
+            "title": "Positionnement",
+            "description": "Construction de services sobres, interopérables et sécurisés pour renforcer la maîtrise numérique des organisations."
+          },
+          {
+            "title": "Approche",
+            "description": "Progression structurée, documentation, sécurité par conception et attention à la continuité opérationnelle."
+          }
+        ]
+      },
+      "kit": {
+        "eyebrow": "Kit média",
+        "title": "Ressources de marque et documents presse.",
+        "description": "Le kit média public sera complété progressivement avec des ressources validées.",
+        "status": "À venir",
+        "items": [
+          {
+            "title": "Logotypes",
+            "description": "Versions officielles du logo et consignes d'usage pour les supports externes."
+          },
+          {
+            "title": "Présentation société",
+            "description": "Fiche synthétique avec positionnement, boilerplates et informations de contact."
+          },
+          {
+            "title": "Visuels presse",
+            "description": "Éléments visuels approuvés pour illustrer SGE sans déformer son identité."
+          }
+        ]
+      },
+      "contact": {
+        "eyebrow": "Contact presse",
+        "title": "Un canal dédié pour les demandes média.",
+        "description": "Les demandes d'interview, de clarification ou de citation doivent préciser le média, le sujet, le délai et le contexte de publication.",
+        "cardTitle": "Équipe presse",
+        "cardDescription": "Pour les demandes média, citations institutionnelles, vérifications factuelles ou informations complémentaires.",
+        "cta": "Écrire à press@skygenesisenterprise.com"
+      },
+      "cta": {
+        "eyebrow": "Demande externe",
+        "title": "Besoin d'un autre point d'entrée ?",
+        "description": "Les demandes commerciales, partenariats, carrières, support ou sécurité doivent passer par la page contact pour être orientées correctement."
+      }
+    }
+  },
   "Header": {
     "product": "Application",
     "solutions": "Solutions",
