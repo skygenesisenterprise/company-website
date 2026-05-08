@@ -3778,96 +3778,227 @@
     "resourcesCtaJoin": "Se Connecter"
   },
   "Blog": {
-    "heroTitle": "Blog & Forum Communautaire",
-    "heroDescription": "Articles techniques, annonces produit, et discussions de la communauté. Partagez vos connaissances et apprenez des autres.",
-    "communityBadge": "Communauté Active",
-    "searchPlaceholder": "Rechercher des articles, des discussions...",
-    "searchButton": "Rechercher",
-    "allCategories": "Toutes les Catégories",
-    "allTags": "Tous les Tags",
-    "sortBy": "Trier par",
-    "newest": "Plus Récent",
-    "oldest": "Plus Ancien",
-    "mostDiscussed": "Plus Discuté",
-    "mostLiked": "Plus Aimé",
+    "journalBadge": "SGE Journal",
+    "journalHeroTitle": "Actualités, analyses et coulisses de Sky Genesis Enterprise",
+    "journalHeroDescription": "Un espace éditorial pour suivre la construction de nos plateformes, nos recherches, nos choix techniques et notre vision d'une infrastructure numérique européenne.",
+    "readFeatured": "Lire la une",
+    "subscribe": "S'abonner",
+    "categoriesLabel": "Rubriques éditoriales",
     "categories": {
-      "announcements": "Annonces",
-      "tutorials": "Tutoriels",
-      "community": "Communauté",
-      "technical": "Technique",
-      "updates": "Mises à Jour",
-      "bestPractices": "Bonnes Pratiques"
-    },
-    "tags": {
+      "featured": "À la une",
+      "sge": "SGE",
+      "infrastructure": "Infrastructure",
       "security": "Sécurité",
-      "identity": "Identité",
-      "cloud": "Cloud",
-      "devops": "DevOps",
-      "api": "API",
-      "integration": "Intégration",
-      "opensource": "Open Source",
-      "enterprise": "Entreprise"
+      "openSource": "Open Source",
+      "ai": "IA",
+      "developers": "Développeurs",
+      "europe": "Europe",
+      "opinions": "Opinions"
     },
-    "featuredTitle": "Articles en Vedette",
-    "featuredDescription": "Contenu sélectionné par notre équipe",
-    "discussionsTitle": "Discussions Récentes",
-    "discussionsDescription": "Rejoignez la conversation avec la communauté",
-    "newDiscussion": "Nouvelle Discussion",
-    "newPost": "Nouvel Article",
-    "viewAll": "Voir Tout",
-    "readMore": "Lire la Suite",
-    "comments": "commentaires",
-    "likes": "j'aime",
-    "views": "vues",
-    "postedBy": "Publié par",
-    "onDate": "le",
-    "inCategory": "dans",
-    "relatedPosts": "Articles Liés",
-    "newsletterTitle": "Restez Informé",
-    "newsletterDescription": "Abonnez-vous à notre newsletter pour recevoir les derniers articles et mises à jour.",
-    "newsletterPlaceholder": "Votre email",
+    "featured": "À la une",
+    "latest": "Dernières publications",
+    "mostRead": "Les plus lus",
+    "dossiers": "Dossiers",
+    "newsletterTitle": "Newsletter",
+    "newsletterDescription": "Recevez les articles, notes techniques et annonces majeures de Sky Genesis Enterprise.",
+    "newsletterPlaceholder": "Adresse email professionnelle",
     "newsletterButton": "S'abonner",
-    "newsletterSuccess": "Merci de vous être abonné!",
-    "noPostsFound": "Aucun article trouvé",
-    "noPostsDescription": "Essayez de modifier vos filtres ou votre recherche",
-    "clearFilters": "Effacer les Filtres",
-    "loadMore": "Charger Plus",
-    "sharePost": "Partager",
-    "copyLink": "Copier le Lien",
-    "shareTwitter": "Partager sur Twitter",
-    "shareLinkedIn": "Partager sur LinkedIn",
-    "shareFacebook": "Partager sur Facebook",
-    "author": {
-      "bio": "Biographie",
-      "otherPosts": "Autres Articles",
-      "socialLinks": "Réseaux Sociaux",
-      "joinedDate": "Membre depuis"
+    "rss": "Flux RSS",
+    "rssDescription": "Suivre les publications via RSS",
+    "infrastructure": "Infrastructure",
+    "security": "Sécurité",
+    "openSource": "Open Source",
+    "aiResearch": "IA & Recherche",
+    "opinions": "Analyses & opinions",
+    "opinionsDescription": "Tribunes, notes stratégiques et réflexions longues pour éclairer nos choix de marché, de produit et d'infrastructure.",
+    "formats": "Formats",
+    "formatsDescription": "Plusieurs formats éditoriaux pour suivre la construction de SGE selon votre rythme.",
+    "readMore": "Lire l'article",
+    "viewCategory": "Voir toute la rubrique",
+    "followConstruction": "Suivre la construction de SGE",
+    "followConstructionDescription": "Recevez nos articles, notes techniques et annonces majeures."
+  },
+  "BlogArticle": {
+    "publicationName": "SGE Journal",
+    "backToJournal": "Retour au SGE Journal",
+    "byline": "Par {author}",
+    "publishedIn": "Publié dans {publication}",
+    "summaryTitle": "À retenir",
+    "editorialNoteTitle": "Note éditoriale",
+    "editorialNoteDescription": "Cet article fait partie du média officiel de Sky Genesis Enterprise. Les contenus publiés ici expliquent nos choix de construction, nos recherches et notre vision d'une infrastructure numérique européenne.",
+    "articleInfoTitle": "Informations",
+    "authorLabel": "Auteur",
+    "categoryLabel": "Rubrique",
+    "readTimeLabel": "Temps de lecture",
+    "relatedTitle": "À lire aussi",
+    "newsletterTitle": "Suivre SGE Journal",
+    "newsletterDescription": "Recevez nos articles, notes techniques et annonces majeures autour de la construction de Sky Genesis Enterprise.",
+    "newsletterLink": "S'abonner",
+    "rssTitle": "Flux RSS",
+    "rssLink": "Suivre les publications",
+    "articles": {
+      "infrastructure": {
+        "title": "Construire une infrastructure numérique européenne : où en est Sky Genesis Enterprise ?",
+        "excerpt": "Identité, cloud, données, sécurité et applications métier : point d'étape sur la construction de la plateforme Sky Genesis Enterprise.",
+        "category": "Infrastructure",
+        "author": "Équipe SGE",
+        "date": "8 mai 2026",
+        "readTime": "7 min",
+        "takeaways": [
+          "SGE construit une plateforme en couches, pensée pour relier identité, données, sécurité et applications.",
+          "La souveraineté numérique implique des choix d'architecture autant que des choix d'hébergement.",
+          "Le média SGE Journal documente la progression produit sans transformer la construction en promesse prématurée."
+        ],
+        "paragraphs": [
+          "Sky Genesis Enterprise se construit autour d'une conviction simple : les organisations européennes ont besoin d'infrastructures numériques lisibles, intégrées et maîtrisables. L'enjeu n'est pas seulement de proposer une alternative à des services existants, mais de créer une base cohérente sur laquelle les équipes peuvent travailler, sécuriser et faire évoluer leurs usages.",
+          "Notre approche part de l'identité. Une plateforme ne peut pas rester fiable si les accès, les rôles, les politiques et les organisations sont traités comme des sujets secondaires. Aether Identity doit donc devenir le socle commun des services SGE, afin que chaque produit bénéficie d'un modèle de confiance partagé.",
+          "La deuxième couche concerne les données. SkyDB, Aether Vault et les services associés doivent permettre de stocker, protéger et retrouver l'information sans multiplier les dépendances invisibles. Cette couche impose des décisions techniques exigeantes : sauvegarde, chiffrement, isolation, observabilité et reprise d'activité doivent être pensés ensemble.",
+          "La troisième couche est applicative. Aether Office, Aether Mail, Aether Meet et les autres produits ne sont pas conçus comme des îlots séparés. Ils doivent former un environnement de travail souverain, capable de rester compréhensible pour les utilisateurs comme pour les administrateurs.",
+          "La construction reste progressive. Nous préférons documenter les choix, tester les fondations et ouvrir les briques au bon moment plutôt que d'accumuler les annonces. C'est précisément le rôle du SGE Journal : rendre visible cette progression et expliquer les arbitrages qui façonnent la plateforme."
+        ]
+      },
+      "identity": {
+        "title": "Pourquoi l'identité devient le socle de nos services",
+        "excerpt": "Aether Identity structure les accès, les organisations et la confiance applicative dans l'écosystème SGE.",
+        "category": "Identité",
+        "author": "Équipe Infrastructure",
+        "date": "6 mai 2026",
+        "readTime": "5 min",
+        "takeaways": [
+          "L'identité relie les produits SGE au lieu de les laisser gérer leurs accès séparément.",
+          "Les organisations, rôles et politiques doivent rester lisibles pour les équipes clientes.",
+          "Une bonne couche d'identité réduit la complexité de sécurité dans tous les services."
+        ],
+        "paragraphs": [
+          "Dans une suite de services numériques, l'identité n'est pas une fonctionnalité isolée. Elle définit qui peut accéder à quoi, dans quel contexte, avec quel niveau de confiance et selon quelles règles. Pour SGE, cette couche doit être commune, robuste et compréhensible.",
+          "Aether Identity a vocation à porter cette responsabilité. Le service doit gérer les organisations, les rôles, les politiques d'accès et les mécanismes d'authentification sans forcer chaque produit à réinventer son propre modèle.",
+          "Cette décision a un impact direct sur la sécurité. Une identité cohérente facilite l'audit, limite les erreurs de configuration et permet d'appliquer des règles homogènes entre les applications. Elle améliore aussi l'expérience administrateur, car les droits ne sont pas dispersés dans une multitude d'interfaces.",
+          "Le défi consiste à rester simple sans devenir simpliste. Les entreprises ont besoin de finesse, mais elles ont aussi besoin de lisibilité. Notre travail consiste donc à concevoir une couche d'identité qui accompagne la croissance de la plateforme sans imposer une complexité inutile."
+        ]
+      },
+      "aetherOffice": {
+        "title": "Aether Office : vers une suite workplace souveraine",
+        "excerpt": "Comment nous pensons la collaboration, la messagerie et les documents dans une suite cohérente.",
+        "category": "Produits Aether",
+        "author": "Équipe SGE",
+        "date": "8 mai 2026",
+        "readTime": "6 min",
+        "takeaways": [
+          "Aether Office doit réunir les usages de travail sans disperser les données et les accès.",
+          "La cohérence entre messagerie, documents et réunions est un sujet d'architecture produit.",
+          "La souveraineté se joue aussi dans les workflows quotidiens des équipes."
+        ],
+        "paragraphs": [
+          "Une suite workplace ne se résume pas à une liste d'applications. Les équipes passent d'un message à un document, d'un document à une réunion, puis d'une réunion à une décision. Si chaque étape fonctionne avec ses propres règles, la collaboration devient fragile.",
+          "Aether Office vise à construire un environnement cohérent pour ces usages. La messagerie, les fichiers, les réunions et les documents doivent partager une base d'identité, de sécurité et de gouvernance. Cette continuité est essentielle pour éviter que la souveraineté ne s'arrête à la page de connexion.",
+          "Nous abordons ce sujet avec prudence. Le marché des suites collaboratives est mature, et les habitudes des utilisateurs sont fortes. La valeur d'une alternative ne viendra pas d'une simple reproduction fonctionnelle, mais d'une meilleure maîtrise des données, des accès et de l'intégration avec le reste de la plateforme SGE.",
+          "Aether Office sera donc construit comme une brique de l'écosystème, pas comme un produit isolé. C'est cette logique de plateforme qui doit permettre aux organisations de gagner en contrôle sans perdre en ergonomie."
+        ]
+      },
+      "openSource": {
+        "title": "Open-source : ouvrir progressivement sans perdre la cohérence",
+        "excerpt": "Ouvrir sans fragmenter : les principes qui encadrent nos futurs dépôts publics et notre documentation.",
+        "category": "Open Source",
+        "author": "SGE Open Source",
+        "date": "30 avril 2026",
+        "readTime": "4 min",
+        "takeaways": [
+          "L'ouverture doit servir la maintenabilité, la confiance et les usages réels.",
+          "Tous les composants ne doivent pas être publiés au même moment ni avec le même niveau de maturité.",
+          "La documentation est une partie centrale de notre stratégie open-source."
+        ],
+        "paragraphs": [
+          "L'open-source est une direction importante pour SGE, mais elle doit être abordée avec méthode. Publier du code sans contexte, sans gouvernance et sans trajectoire de maintenance ne crée pas automatiquement de la confiance.",
+          "Notre stratégie consiste à ouvrir progressivement. Les premières briques doivent être utiles, documentées et suffisamment découplées pour être comprises sans exposer prématurément des parties instables de la plateforme.",
+          "Cette ouverture concerne aussi la documentation. Les décisions d'architecture, les conventions d'API et les outils développeurs peuvent créer de la valeur avant même que tous les composants soient publics. Ils permettent de comprendre comment SGE construit ses services et comment les équipes pourront s'y intégrer.",
+          "L'objectif n'est pas de revendiquer une posture, mais de construire un rapport durable avec les développeurs, les organisations et les contributeurs européens."
+        ]
+      },
+      "security": {
+        "title": "Sécurité par défaut : notre approche produit",
+        "excerpt": "Réduire les configurations risquées et rendre les bons choix plus naturels pour les équipes.",
+        "category": "Sécurité",
+        "author": "Équipe Sécurité",
+        "date": "5 mai 2026",
+        "readTime": "5 min",
+        "takeaways": [
+          "La sécurité doit être intégrée aux produits plutôt qu'ajoutée après coup.",
+          "Les paramètres sûrs doivent devenir les chemins les plus simples.",
+          "La lisibilité des règles est aussi importante que leur niveau technique."
+        ],
+        "paragraphs": [
+          "La sécurité par défaut commence par une question produit : que se passe-t-il lorsqu'une équipe ne configure rien de plus que le strict nécessaire ? Si la réponse crée un risque, le produit demande trop d'efforts à ses utilisateurs.",
+          "Chez SGE, nous voulons que les configurations sûres soient les plus naturelles. Cela concerne les permissions, le chiffrement, les sauvegardes, les sessions, les journaux et les intégrations entre services.",
+          "Cette approche ne remplace pas les contrôles avancés. Les organisations complexes auront toujours besoin de politiques fines. Mais ces politiques doivent s'appuyer sur une base saine, lisible et testée.",
+          "La sécurité est donc traitée comme une propriété de la plateforme. Elle doit se retrouver dans l'identité, les données, les applications et les opérations, sans dépendre d'une série de réglages dispersés."
+        ]
+      },
+      "sovereignty": {
+        "title": "Ce que signifie vraiment la souveraineté numérique",
+        "excerpt": "Une souveraineté utile ne se limite pas à l'hébergement : elle touche la maîtrise produit, les dépendances et les compétences.",
+        "category": "Souveraineté numérique",
+        "author": "SGE Research",
+        "date": "1 mai 2026",
+        "readTime": "8 min",
+        "takeaways": [
+          "La souveraineté numérique est une capacité opérationnelle, pas seulement une localisation.",
+          "Les dépendances techniques, juridiques et humaines doivent être rendues visibles.",
+          "Une plateforme souveraine doit rester utilisable, maintenable et économiquement réaliste."
+        ],
+        "paragraphs": [
+          "La souveraineté numérique est souvent réduite à la question de l'hébergement. Cette dimension compte, mais elle ne suffit pas. Une organisation peut héberger localement un service tout en dépendant entièrement de technologies, de processus ou de compétences qu'elle ne maîtrise pas.",
+          "Pour SGE, la souveraineté est d'abord une capacité à comprendre, exploiter, sécuriser et faire évoluer son environnement numérique. Cela implique des choix d'architecture, des interfaces lisibles, une documentation claire et une réduction des dépendances invisibles.",
+          "Cette ambition doit rester pragmatique. Une plateforme souveraine qui serait difficile à utiliser ou impossible à maintenir ne résoudrait pas le problème. Elle déplacerait seulement la dépendance vers une autre forme de complexité.",
+          "Notre travail consiste donc à construire des services qui renforcent la maîtrise sans sacrifier l'ergonomie. C'est un équilibre exigeant, mais c'est celui qui peut rendre la souveraineté réellement utile aux entreprises européennes."
+        ]
+      }
     },
-    "commentSection": {
-      "title": "Commentaires",
-      "placeholder": "Ajoutez un commentaire...",
-      "submitButton": "Publier le Commentaire",
-      "loginToComment": "Connectez-vous pour commenter",
-      "sortBy": "Trier les commentaires",
-      "newest": "Plus Récent",
-      "oldest": "Plus Ancien",
-      "top": "Meilleurs"
-    },
-    "forumStats": {
-      "members": "Membres",
-      "discussions": "Discussions",
-      "posts": "Articles",
-      "online": "En Ligne"
-    },
-    "topContributors": "Top Contributeurs",
-    "recentActivity": "Activité Récente",
-    "popularTopics": "Sujets Populaires",
-    "startDiscussion": "Démarrer une Discussion",
-    "discussionTitle": "Titre de la Discussion",
-    "discussionContent": "Contenu de la Discussion",
-    "discussionCategory": "Catégorie",
-    "discussionTags": "Tags (séparés par des virgules)",
-    "submitDiscussion": "Publier la Discussion",
-    "cancel": "Annuler"
+    "related": {
+      "identity": {
+        "title": "Pourquoi l'identité devient le socle de nos services",
+        "category": "Identité",
+        "href": "/blog/identite-socle-services-sge"
+      },
+      "cloud": {
+        "title": "Vers une plateforme cloud plus souveraine",
+        "category": "Infrastructure",
+        "href": "/blog/plateforme-cloud-plus-souveraine"
+      },
+      "security": {
+        "title": "Sécurité par défaut : notre approche produit",
+        "category": "Sécurité",
+        "href": "/blog/securite-par-defaut-approche-produit"
+      },
+      "infrastructure": {
+        "title": "Construire une infrastructure numérique européenne",
+        "category": "Infrastructure",
+        "href": "/blog/construire-infrastructure-numerique-europeenne"
+      },
+      "developers": {
+        "title": "Préparer les API publiques de l'écosystème SGE",
+        "category": "Développeurs",
+        "href": "/blog/api-publiques-ecosysteme-sge"
+      },
+      "sovereignty": {
+        "title": "Ce que signifie vraiment la souveraineté numérique",
+        "category": "Souveraineté",
+        "href": "/blog/signifie-vraiment-souverainete-numerique"
+      },
+      "openSource": {
+        "title": "Open-source : ouvrir progressivement sans perdre la cohérence",
+        "category": "Open Source",
+        "href": "/blog/open-source-ouverture-progressive"
+      },
+      "aetherOffice": {
+        "title": "Aether Office : vers une suite workplace souveraine",
+        "category": "Produits Aether",
+        "href": "/blog/aether-office-workplace-souverain"
+      },
+      "research": {
+        "title": "IA européenne : construire utile avant de promettre trop",
+        "category": "IA & Recherche",
+        "href": "/blog/ia-europeenne-construire-utile"
+      }
+    }
   }
 }
