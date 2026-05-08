@@ -1,3 +1,15 @@
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Component: FaqAccordion
+ * Layer: Public UI
+ * Purpose: Provides a collapsible FAQ section for the website.
+ *
+ * Stability: Active
+ * Owner: SGE Web Platform
+ * Contact: contact@skygenesisenterprise.com
+ */
 "use client";
 
 import { useState } from "react";

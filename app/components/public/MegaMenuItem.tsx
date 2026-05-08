@@ -1,3 +1,15 @@
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Component: MegaMenuItem
+ * Layer: Public UI
+ * Purpose: Provides a mega menu item with a dropdown.
+ *
+ * Stability: Active
+ * Owner: SGE Web Platform
+ * Contact: contact@skygenesisenterprise.com
+ */
 "use client";
 
 import * as React from "react";

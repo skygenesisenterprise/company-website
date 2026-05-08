@@ -1,3 +1,15 @@
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Component: CodeBlock
+ * Layer: Public UI
+ * Purpose: Displays code samples with syntax highlighting.
+ *
+ * Stability: Active
+ * Owner: SGE Web Platform
+ * Contact: contact@skygenesisenterprise.com
+ */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -65,7 +77,7 @@ export function CodeBlock({
 
   if (!mounted || !selectedLang) {
     return (
-      <div className="relative rounded-lg border border-background/20 bg-background/5 overflow-hidden h-[200px]" />
+      <div className="relative rounded-lg border border-background/20 bg-background/5 overflow-hidden h-50" />
     );
   }
 

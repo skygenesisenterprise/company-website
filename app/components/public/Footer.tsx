@@ -1,74 +1,63 @@
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Component: Footer
+ * Layer: Public UI
+ * Purpose: Provides global navigation, legal links, resources and trust entry points.
+ *
+ * Stability: Active
+ * Owner: SGE Web Platform
+ * Contact: contact@skygenesisenterprise.com
+ */
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { locales, type Locale } from "@/lib/locale";
+import { ArrowUpRight } from "lucide-react";
+import { type Locale } from "@/lib/locale";
 
 interface FooterProps {
   locale?: Locale;
 }
 
-interface FooterLinkGroup {
-  title: string;
-  links: { name: string; href: string }[];
-}
-
-function getDefaultFooterLinks(locale: string): Record<string, FooterLinkGroup> {
-  const prefix = `/${locale}`;
-  return {
-    developers: {
-      title: "Developers",
-      links: [
-        { name: "Documentation", href: `${prefix}/developer` },
-        { name: "API Reference", href: `${prefix}/developer/api` },
-        { name: "SDKs", href: `${prefix}/developer/sdks` },
-        { name: "Quickstarts", href: `${prefix}/developer/quickstarts` },
-        { name: "Status Page", href: "https://status.skygenesisenterprise.com" },
-      ],
-    },
-    resources: {
-      title: "Resources",
-      links: [
-        { name: "Blog", href: `${prefix}/blog` },
-        { name: "Case Studies", href: `${prefix}/resources/case-studies` },
-        { name: "Whitepapers", href: `${prefix}/resources/whitepapers` },
-        { name: "Webinars", href: `${prefix}/resources/webinars` },
-        { name: "Community", href: `${prefix}/resources/community` },
-      ],
-    },
-    company: {
-      title: "Company",
-      links: [
-        { name: "About Us", href: `${prefix}/company/about` },
-        { name: "Careers", href: `${prefix}/company/careers` },
-        { name: "Press", href: `${prefix}/company/press` },
-        { name: "Partners", href: `${prefix}/company/partners` },
-        { name: "Contact", href: `${prefix}/contact` },
-      ],
-    },
-  };
+interface FooterLink {
+  name: string;
+  href: string;
+  external?: boolean;
 }
 
 interface LinkColumnProps {
   title: string;
-  links: readonly { name: string; href: string }[];
+  links: readonly FooterLink[];
 }
 
 function LinkColumn({ title, links }: LinkColumnProps) {
   return (
     <div className="flex flex-col">
-      <h3 className="text-xs font-semibold text-footer-heading mb-5 uppercase tracking-widest">
+      <h3 className="text-xs font-semibold text-foreground mb-5 uppercase tracking-widest">
         {title}
       </h3>
       <ul className="space-y-3">
-        {links.map((link) => (
-          <li key={link.name}>
-            <Link
-              href={link.href}
-              className="text-sm text-footer-link hover:text-footer-link-hover transition-colors duration-150 block"
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
+        {links.map((link) => {
+          const isExternal = link.external ?? link.href.startsWith("https://");
+          return (
+            <li key={link.name}>
+              <Link
+                href={link.href}
+                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                {...(isExternal
+                  ? {
+                      target: "_blank",
+                      rel: "noreferrer",
+                      "aria-label": `${link.name} (ouvre dans une nouvelle fenêtre)`,
+                    }
+                  : {})}
+              >
+                {link.name}
+                {isExternal && <ArrowUpRight className="h-3 w-3" />}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -187,56 +176,88 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   const locale = initialLocale || "fr";
   const t = await getTranslations({ locale, namespace: "Public.footer" });
 
-  const currentLocale = locales.find((l) => l.code === locale);
-
-  const footerLinks = {
-    developers: {
-      title: t("developers"),
-      links: [
-        { name: t("documentation"), href: "https://docs.skygenesisenterprise.com" },
-        { name: t("apiReference"), href: `/${locale}/docs/api` },
-        { name: t("sdks"), href: `/${locale}/docs/sdks` },
-        { name: t("quickstarts"), href: `/${locale}/docs/quickstarts` },
-        { name: t("statusPage"), href: "https://status.skygenesisenterprise.com" },
-      ],
-    },
-    resources: {
-      title: t("resources"),
-      links: [
-        { name: t("blog"), href: `/${locale}/blog` },
-        { name: t("caseStudies"), href: `/${locale}/case-studies` },
-        { name: t("whitepapers"), href: `/${locale}/resources/whitepapers` },
-        { name: t("webinars"), href: `/${locale}/resources/webinars` },
-        { name: t("community"), href: "/discord" },
-      ],
-    },
-    company: {
-      title: t("company"),
-      links: [
-        { name: t("about"), href: `/${locale}/company/about` },
-        { name: t("careers"), href: "https://jobs.skygenesisenterprise.com" },
-        { name: t("press"), href: `/${locale}/company/press` },
-        { name: t("partners"), href: `/${locale}/company/partners` },
-        { name: t("contact"), href: `/${locale}/company/contact` },
-      ],
-    },
-  };
-
   const prefix = `/${locale}`;
 
-  const subscriptionLinks = [
-    { name: t("pricingPlans"), href: `${prefix}/pricing` },
-    { name: t("freeTrial"), href: `${prefix}/trial` },
-    { name: t("enterprise"), href: `${prefix}/enterprise` },
+  const platformApiLinks: FooterLink[] = [
+    { name: t("platformOverview"), href: `${prefix}/platform` },
+    { name: t("pricing"), href: `${prefix}/pricing` },
+    { name: t("connectApi"), href: "https://api.skygenesisenterprise.com", external: true },
+    { name: t("apiDocumentation"), href: "https://docs.skygenesisenterprise.com", external: true },
+    { name: t("developerForum"), href: `${prefix}/community/developers` },
   ];
 
-  const legalLinks = [
+  const developerLinks: FooterLink[] = [
+    { name: t("documentation"), href: "https://docs.skygenesisenterprise.com", external: true },
+    { name: t("apiReference"), href: `${prefix}/developers/api` },
+    { name: t("sdks"), href: `${prefix}/developers/sdks` },
+    { name: t("quickstarts"), href: `${prefix}/developers/quickstarts` },
+    { name: t("statusPage"), href: "https://status.skygenesisenterprise.com", external: true },
+  ];
+
+  const securityLinks: FooterLink[] = [
+    { name: t("securityApproach"), href: `${prefix}/security` },
+    { name: t("securityPrivacy"), href: `${prefix}/security/privacy` },
+    { name: t("trustTransparency"), href: `${prefix}/trust` },
+    { name: t("testimonials"), href: `${prefix}/customers` },
+  ];
+
+  const resourcesLinks: FooterLink[] = [
+    { name: t("blog"), href: `${prefix}/blog` },
+    { name: t("caseStudies"), href: `${prefix}/case-studies` },
+    { name: t("whitepapers"), href: `${prefix}/resources/whitepapers` },
+    { name: t("webinars"), href: `${prefix}/resources/webinars` },
+    { name: t("community"), href: "https://discord.gg/skygenesisenterprise", external: true },
+  ];
+
+  const companyLinks: FooterLink[] = [
+    { name: t("about"), href: `${prefix}/company/about` },
+    { name: t("careers"), href: "https://jobs.skygenesisenterprise.com", external: true },
+    { name: t("press"), href: `${prefix}/company/press` },
+    { name: t("partners"), href: `${prefix}/company/partners` },
+    { name: t("contact"), href: `${prefix}/company/contact` },
+  ];
+
+  const supportLinks: FooterLink[] = [
+    { name: t("helpCenter"), href: "https://support.skygenesisenterprise.com", external: true },
+    { name: t("contact"), href: `${prefix}/company/contact` },
+    { name: t("serviceStatus"), href: "https://status.skygenesisenterprise.com", external: true },
+    { name: t("reportIssue"), href: `${prefix}/support/report` },
+    { name: t("developerSupport"), href: "https://developer.skygenesisenterprise.com", external: true },
+  ];
+
+  const legalLinks: FooterLink[] = [
     { name: t("privacy"), href: `${prefix}/legal/privacy` },
     { name: t("terms"), href: `${prefix}/legal/terms` },
     { name: t("cookiePolicy"), href: `${prefix}/legal/cookies` },
     { name: "GDPR", href: `${prefix}/legal/gdpr` },
     { name: t("security"), href: `${prefix}/legal/security` },
     { name: "licence", href: `${prefix}/legal/licence` },
+  ];
+
+  const otherLinks: FooterLink[] = [
+    { name: t("news"), href: `${prefix}/blog` },
+    { name: t("academy"), href: `${prefix}/academy` },
+    { name: t("liveStreams"), href: `${prefix}/live` },
+    { name: t("podcast"), href: `${prefix}/podcast` },
+    { name: t("rss"), href: `${prefix}/rss.xml` },
+  ];
+
+  const subscriptionLinks: FooterLink[] = [
+    { name: t("pricingPlans"), href: `${prefix}/pricing` },
+    { name: t("freeTrial"), href: `${prefix}/trial` },
+    { name: t("enterprise"), href: `${prefix}/enterprise` },
+  ];
+
+  const footerSections = [
+    { title: t("platformApi"), links: platformApiLinks },
+    { title: t("developers"), links: developerLinks },
+    { title: t("security"), links: securityLinks },
+    { title: t("resources"), links: resourcesLinks },
+    { title: t("company"), links: companyLinks },
+    { title: t("support"), links: supportLinks },
+    { title: t("legal"), links: legalLinks },
+    { title: t("other"), links: otherLinks },
+    { title: t("getStarted"), links: subscriptionLinks },
   ];
 
   const socialLinks = [
@@ -253,15 +274,17 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-footer text-footer-link border-t border-footer-border">
+    <footer className="bg-background text-muted-foreground border-t border-border">
       {/* Main link columns */}
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 border-b border-footer-border">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-12">
-          <LinkColumn title={t("developers")} links={footerLinks.developers?.links || []} />
-          <LinkColumn title={t("resources")} links={footerLinks.resources?.links || []} />
-          <LinkColumn title={t("company")} links={footerLinks.company?.links || []} />
-          <LinkColumn title={t("legal")} links={legalLinks} />
-          <LinkColumn title={t("getStarted")} links={subscriptionLinks} />
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 border-b border-border">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-10 gap-y-12">
+          {footerSections.map((section) => (
+            <LinkColumn
+              key={section.title}
+              title={section.title}
+              links={section.links}
+            />
+          ))}
         </div>
       </div>
 
@@ -270,24 +293,28 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
         <div className="mx-auto max-w-7xl px-6 py-10">
           <div className="max-w-xs">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <span className="text-base font-semibold text-footer-heading tracking-tight group-hover:text-footer-link-hover transition-colors">
+              <span className="text-base font-semibold text-foreground tracking-tight group-hover:text-foreground transition-colors">
                 Sky Genesis Enterprise
               </span>
             </Link>
-            <p className="mt-4 text-sm text-footer-link leading-relaxed">{t("brandDescription")}</p>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              {t("brandDescription")}
+            </p>
             <div className="flex items-center gap-3 mt-6">
               {socialLinks.map((social) => (
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="text-footer-link hover:text-footer-link-hover transition-colors duration-150"
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-150"
                   aria-label={social.name}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <SocialIcon name={social.name} />
                 </Link>
               ))}
             </div>
-            <p className="mt-4 text-sm text-footer-link">
+            <p className="mt-4 text-sm text-muted-foreground">
               {t("salesServices")}: {t("phoneNumber")}
             </p>
           </div>
@@ -295,16 +322,14 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-footer-border">
+      <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-footer-muted">
-              {t("copyright")}
-            </p>
-            <p className="text-xs text-footer-muted">
+            <p className="text-xs text-muted-foreground">{t("copyright")}</p>
+            <p className="text-xs text-muted-foreground">
               <Link
                 href={`${prefix}/pgp`}
-                className="hover:text-footer-link-hover transition-colors duration-150"
+                className="hover:text-foreground transition-colors duration-150"
               >
                 {t("verifyKey")}
               </Link>

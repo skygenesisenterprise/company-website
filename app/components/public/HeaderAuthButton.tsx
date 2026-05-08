@@ -1,3 +1,15 @@
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Component: HeaderAuthButton
+ * Layer: Public UI
+ * Purpose: Provides authentication buttons in the header.
+ *
+ * Stability: Active
+ * Owner: SGE Web Platform
+ * Contact: contact@skygenesisenterprise.com
+ */
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
