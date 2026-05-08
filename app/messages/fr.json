@@ -3775,7 +3775,590 @@
     "resourcesBenefit4Desc": "Ticket prioritaire",
     "resourcesCtaTitle": "Accédez aux ressources?",
     "resourcesCtaDescription": "Connectez-vous pour accéder à tous les contenus",
-    "resourcesCtaJoin": "Se Connecter"
+    "resourcesCtaJoin": "Se Connecter",
+    "common": {
+      "becomeCta": "Devenir partenaire",
+      "programCta": "Voir le programme",
+      "resourcesCta": "Consulter les ressources"
+    },
+    "technology": {
+      "badge": "Partenaires technologiques",
+      "heroTitle": "Construisez avec l'écosystème Sky Genesis Enterprise",
+      "heroDescription": "Connectez vos produits, intégrations et services techniques à une plateforme souveraine pensée pour les organisations européennes.",
+      "primaryCta": "Devenir partenaire technologique",
+      "audienceTitle": "Pour les éditeurs, intégrateurs et équipes produit",
+      "audienceDescription": "Le programme technologique s'adresse aux acteurs qui veulent bâtir des intégrations fiables autour de nos briques d'identité, de données, de sécurité et de collaboration.",
+      "audienceItems": [
+        "Éditeurs SaaS et fournisseurs de solutions métier",
+        "Intégrateurs API, SSO, IAM et sécurité",
+        "Équipes open source et studios de développement",
+        "Fournisseurs d'infrastructure, d'observabilité et de conformité"
+      ],
+      "buildTitle": "Ce que vous pouvez construire",
+      "buildDescription": "Nous fournissons des fondations techniques pour créer des intégrations utiles, testables et maintenables.",
+      "buildItems": [
+        {
+          "title": "Connecteurs d'identité",
+          "description": "Reliez authentification, annuaires, rôles et politiques d'accès aux organisations clientes."
+        },
+        {
+          "title": "Déploiements souverains",
+          "description": "Adaptez vos solutions à des environnements maîtrisés, documentés et conformes."
+        },
+        {
+          "title": "Sécurité applicative",
+          "description": "Exploitez les journaux, permissions et modèles de confiance pour durcir vos intégrations."
+        },
+        {
+          "title": "Automatisations développeur",
+          "description": "Créez des workflows, CLI, SDK et extensions alignés avec nos produits."
+        },
+        {
+          "title": "Interopérabilité data",
+          "description": "Travaillez avec des échanges de données structurés et auditables."
+        },
+        {
+          "title": "Expériences embarquées",
+          "description": "Intégrez vos usages dans les parcours de collaboration, support et administration."
+        }
+      ],
+      "collaborationTitle": "Comment nous collaborons",
+      "collaborationDescription": "Le partenariat se construit autour d'un cadre technique clair, d'une validation progressive et d'une relation directe avec nos équipes.",
+      "collaborationItems": [
+        {
+          "title": "Cadrage d'intégration",
+          "description": "Nous validons les cas d'usage, les dépendances et les contraintes de sécurité avant de lancer."
+        },
+        {
+          "title": "Accès techniques",
+          "description": "Vous recevez la documentation, les environnements et les clés nécessaires au développement."
+        },
+        {
+          "title": "Revue conjointe",
+          "description": "Chaque intégration est revue sur la qualité, la fiabilité et l'expérience utilisateur."
+        }
+      ],
+      "processTitle": "Processus de partenariat",
+      "processDescription": "Un parcours court pour qualifier l'opportunité, construire l'intégration et la rendre exploitable.",
+      "processItems": [
+        {
+          "title": "Qualification",
+          "description": "Nous évaluons le périmètre, le marché cible et le niveau de maturité de l'intégration."
+        },
+        {
+          "title": "Conception",
+          "description": "Les flux, contrats API, responsabilités et exigences de support sont définis."
+        },
+        {
+          "title": "Validation",
+          "description": "L'intégration est testée, documentée et préparée pour les premiers clients."
+        },
+        {
+          "title": "Publication",
+          "description": "Nous coordonnons la mise à disposition, les ressources commerciales et le suivi."
+        }
+      ],
+      "resourcesTitle": "Ressources techniques",
+      "resourcesDescription": "Des ressources pour accélérer le développement et garder des intégrations fiables dans le temps.",
+      "resourcesItems": [
+        {
+          "title": "Documentation API",
+          "description": "Références, exemples et guides de bonnes pratiques."
+        },
+        {
+          "title": "Environnements de test",
+          "description": "Espaces dédiés pour valider les parcours avant mise en production."
+        },
+        {
+          "title": "Support partenaire",
+          "description": "Canal de suivi pour les sujets techniques et les évolutions."
+        }
+      ],
+      "ctaTitle": "Prêt à créer une intégration SGE ?",
+      "ctaDescription": "Présentez votre solution et construisons le bon parcours technique ensemble.",
+      "ctaLabel": "Devenir partenaire"
+    },
+    "service": {
+      "badge": "Partenaires de service",
+      "heroTitle": "Accompagnez les organisations avec Sky Genesis Enterprise",
+      "heroDescription": "Rejoignez un réseau de conseil, d'intégration et de support capable d'aider les clients à adopter nos solutions durablement.",
+      "primaryCta": "Devenir partenaire service",
+      "audienceTitle": "Pour les cabinets, intégrateurs et experts terrain",
+      "audienceDescription": "Ce programme s'adresse aux équipes qui déploient, forment et accompagnent des organisations sur des environnements numériques critiques.",
+      "audienceItems": [
+        "Cabinets de conseil numérique et cybersécurité",
+        "Intégrateurs cloud, identité et collaboration",
+        "Prestataires de formation et conduite du changement",
+        "Équipes support et infogérance spécialisées"
+      ],
+      "buildTitle": "Services à développer",
+      "buildDescription": "Structurez une offre de services cohérente autour du déploiement, de l'exploitation et de l'adoption.",
+      "buildItems": [
+        {
+          "title": "Audit et cadrage",
+          "description": "Évaluez les besoins, les risques, les dépendances et les priorités de migration."
+        },
+        {
+          "title": "Architecture de déploiement",
+          "description": "Concevez des environnements adaptés aux contraintes clients."
+        },
+        {
+          "title": "Formation utilisateurs",
+          "description": "Préparez les équipes à adopter les outils avec des parcours clairs."
+        },
+        {
+          "title": "Validation conformité",
+          "description": "Documentez les contrôles et exigences attendus par les organisations."
+        },
+        {
+          "title": "Support opérationnel",
+          "description": "Accompagnez les clients dans la durée avec un suivi structuré."
+        }
+      ],
+      "collaborationTitle": "Un cadre de delivery partagé",
+      "collaborationDescription": "Nous travaillons avec les partenaires de service sur des méthodes, supports et standards communs.",
+      "collaborationItems": [
+        {
+          "title": "Méthodologie",
+          "description": "Guides de cadrage, checklists et modèles de déploiement."
+        },
+        {
+          "title": "Certification",
+          "description": "Parcours de montée en compétence pour qualifier les équipes."
+        },
+        {
+          "title": "Escalade support",
+          "description": "Canal de coordination pour les incidents, questions produit et retours terrain."
+        },
+        {
+          "title": "Suivi client",
+          "description": "Organisation des retours d'expérience et des opportunités d'amélioration."
+        }
+      ],
+      "processTitle": "Devenir partenaire service",
+      "processDescription": "Nous validons les compétences, la capacité d'accompagnement et le périmètre commercial avant l'activation.",
+      "processItems": [
+        {
+          "title": "Présentation",
+          "description": "Vous décrivez votre expertise, vos marchés et vos références."
+        },
+        {
+          "title": "Qualification",
+          "description": "Nous identifions les offres de service pertinentes et les besoins de formation."
+        },
+        {
+          "title": "Activation",
+          "description": "Vos équipes accèdent aux ressources, supports et parcours de certification."
+        },
+        {
+          "title": "Suivi",
+          "description": "Nous pilotons les premiers projets et ajustons le modèle de collaboration."
+        }
+      ],
+      "resourcesTitle": "Ressources service",
+      "resourcesDescription": "Des supports pour cadrer, vendre, déployer et maintenir les projets clients.",
+      "resourcesItems": [
+        {
+          "title": "Guides projet",
+          "description": "Documents de cadrage, modèles de planning et checklists de déploiement."
+        },
+        {
+          "title": "Formations",
+          "description": "Parcours pour les consultants, administrateurs et équipes support."
+        },
+        {
+          "title": "Base support",
+          "description": "Procédures, FAQ et canaux d'escalade dédiés aux partenaires."
+        }
+      ],
+      "ctaTitle": "Construisons votre offre de services SGE",
+      "ctaDescription": "Présentez votre expertise et voyons comment l'intégrer au programme partenaire.",
+      "ctaLabel": "Devenir partenaire"
+    },
+    "distribution": {
+      "badge": "Partenaires de distribution",
+      "heroTitle": "Distribuez Sky Genesis Enterprise sur vos marchés",
+      "heroDescription": "Rejoignez notre réseau de distribution pour commercialiser nos solutions auprès des organisations de votre région.",
+      "primaryCta": "Devenir distributeur",
+      "audienceTitle": "Pour les revendeurs et réseaux commerciaux",
+      "audienceDescription": "Le programme distribution s'adresse aux acteurs capables d'identifier, qualifier et accompagner les opportunités commerciales localement.",
+      "audienceItems": [
+        "Revendeurs B2B et VAR",
+        "Distributeurs régionaux",
+        "Agences spécialisées secteur public ou santé",
+        "Réseaux commerciaux orientés PME et ETI"
+      ],
+      "buildTitle": "Votre offre commerciale",
+      "buildDescription": "Structurez une proposition de valeur claire pour vos clients et vos secteurs prioritaires.",
+      "buildItems": [
+        {
+          "title": "Revente autorisée",
+          "description": "Commercialisez les offres SGE dans un cadre contractuel défini."
+        },
+        {
+          "title": "Approche secteur public",
+          "description": "Adressez les besoins de souveraineté, sécurité et conformité."
+        },
+        {
+          "title": "Formation commerciale",
+          "description": "Accédez aux supports pour qualifier et présenter les solutions."
+        },
+        {
+          "title": "Canal local",
+          "description": "Développez une présence adaptée à votre territoire."
+        },
+        {
+          "title": "Offres packagées",
+          "description": "Associez produits, services et support dans des propositions lisibles."
+        },
+        {
+          "title": "Modèle de revenus",
+          "description": "Travaillez sur des opportunités récurrentes et suivies."
+        }
+      ],
+      "collaborationTitle": "Un partenariat commercial structuré",
+      "collaborationDescription": "Nous coordonnons le positionnement, la qualification des comptes et les supports nécessaires à la vente.",
+      "collaborationItems": [
+        {
+          "title": "Qualification des opportunités",
+          "description": "Alignement sur les comptes, secteurs et priorités de marché."
+        },
+        {
+          "title": "Supports de vente",
+          "description": "Présentations, fiches offres et réponses aux objections."
+        },
+        {
+          "title": "Marketing partenaire",
+          "description": "Actions coordonnées pour générer et soutenir la demande."
+        }
+      ],
+      "processTitle": "Activation distribution",
+      "processDescription": "Un parcours pour valider votre positionnement et lancer les premières opportunités.",
+      "processItems": [
+        {
+          "title": "Candidature",
+          "description": "Vous indiquez vos marchés, capacités commerciales et secteurs cibles."
+        },
+        {
+          "title": "Accord",
+          "description": "Nous cadrons le territoire, les offres et les conditions."
+        },
+        {
+          "title": "Formation",
+          "description": "Vos équipes accèdent aux ressources produit et vente."
+        },
+        {
+          "title": "Lancement",
+          "description": "Nous suivons les premières opportunités et ajustons le go-to-market."
+        }
+      ],
+      "resourcesTitle": "Ressources commerciales",
+      "resourcesDescription": "Tout le nécessaire pour présenter, qualifier et convertir les opportunités.",
+      "resourcesItems": [
+        {
+          "title": "Kits de vente",
+          "description": "Slides, fiches offres et argumentaires."
+        },
+        {
+          "title": "Supports formation",
+          "description": "Modules pour comprendre les produits et cas d'usage."
+        },
+        {
+          "title": "Coordination partenaire",
+          "description": "Point de contact pour les opportunités et demandes clients."
+        }
+      ],
+      "ctaTitle": "Prêt à distribuer SGE ?",
+      "ctaDescription": "Présentez votre réseau et lançons un cadre commercial adapté.",
+      "ctaLabel": "Devenir distributeur"
+    },
+    "program": {
+      "badge": "Programme partenaire",
+      "heroTitle": "Un programme partenaire progressif et lisible",
+      "heroDescription": "Découvrez les niveaux, ressources et modes de collaboration qui structurent l'écosystème Sky Genesis Enterprise.",
+      "primaryCta": "Rejoindre le programme",
+      "audienceTitle": "Un cadre pour chaque profil de partenaire",
+      "audienceDescription": "Le programme rassemble les partenaires technologiques, services et distribution autour de règles communes et de parcours adaptés.",
+      "audienceItems": [
+        "Partenaires technologiques",
+        "Partenaires de service",
+        "Partenaires de distribution",
+        "Partenaires stratégiques et sectoriels"
+      ],
+      "buildTitle": "Ce que le programme apporte",
+      "buildDescription": "Des niveaux de partenariat, ressources et avantages pensés pour accompagner la progression.",
+      "buildItems": [
+        {
+          "title": "Niveaux de partenariat",
+          "description": "Des statuts progressifs selon l'engagement, l'expertise et l'activité."
+        },
+        {
+          "title": "Avantages associés",
+          "description": "Accès aux ressources, visibilité, support et coordination commerciale."
+        },
+        {
+          "title": "Formation continue",
+          "description": "Parcours pour maintenir les compétences et suivre l'évolution des produits."
+        },
+        {
+          "title": "Collaboration produit",
+          "description": "Boucles de retour terrain pour améliorer les offres et intégrations."
+        }
+      ],
+      "collaborationTitle": "Fonctionnement du programme",
+      "collaborationDescription": "Chaque partenaire avance avec un périmètre clair, des objectifs partagés et une revue régulière.",
+      "collaborationItems": [
+        {
+          "title": "Onboarding",
+          "description": "Cadrage initial, accès aux ressources et plan de montée en compétence."
+        },
+        {
+          "title": "Suivi d'activité",
+          "description": "Points réguliers sur les opportunités, projets et besoins support."
+        },
+        {
+          "title": "Certification",
+          "description": "Validation des compétences clés selon le rôle partenaire."
+        },
+        {
+          "title": "Évolution",
+          "description": "Progression de niveau selon les résultats et la qualité de collaboration."
+        }
+      ],
+      "processTitle": "Parcours d'adhésion",
+      "processDescription": "Un processus transparent pour rejoindre le programme et définir votre rôle.",
+      "processItems": [
+        {
+          "title": "Contact",
+          "description": "Vous présentez votre organisation, vos marchés et vos objectifs."
+        },
+        {
+          "title": "Évaluation",
+          "description": "Nous qualifions le type de partenariat le plus pertinent."
+        },
+        {
+          "title": "Onboarding",
+          "description": "Vous accédez aux ressources, contacts et premières actions."
+        },
+        {
+          "title": "Développement",
+          "description": "Le partenariat est suivi et renforcé dans la durée."
+        }
+      ],
+      "resourcesTitle": "Ressources du programme",
+      "resourcesDescription": "Des supports communs pour comprendre le programme, les niveaux et les attentes.",
+      "resourcesItems": [
+        {
+          "title": "Guide partenaire",
+          "description": "Règles, niveaux, avantages et responsabilités."
+        },
+        {
+          "title": "Documents de conformité",
+          "description": "Cadres contractuels, sécurité et exigences opérationnelles."
+        },
+        {
+          "title": "Formations",
+          "description": "Parcours adaptés aux profils technologie, service et distribution."
+        }
+      ],
+      "ctaTitle": "Rejoignez le programme partenaire",
+      "ctaDescription": "Présentez votre activité et définissons le bon niveau de collaboration.",
+      "ctaLabel": "Rejoindre le programme"
+    },
+    "become": {
+      "badge": "Devenir partenaire",
+      "heroTitle": "Présentez votre projet de partenariat",
+      "heroDescription": "Partagez votre expertise, votre marché et vos objectifs pour rejoindre l'écosystème Sky Genesis Enterprise.",
+      "primaryCta": "Contacter l'équipe partenaires",
+      "audienceTitle": "Ce que nous évaluons",
+      "audienceDescription": "Nous cherchons des partenaires capables d'apporter une valeur claire aux clients et de travailler dans un cadre durable.",
+      "audienceItems": [
+        "Expertise technique, service ou commerciale",
+        "Marchés et secteurs adressés",
+        "Capacité de support et d'accompagnement",
+        "Alignement avec les exigences de sécurité et de souveraineté"
+      ],
+      "buildTitle": "Préparer votre candidature",
+      "buildDescription": "Quelques éléments permettent de qualifier rapidement le bon type de partenariat.",
+      "buildItems": [
+        {
+          "title": "Votre organisation",
+          "description": "Taille, localisation, domaines d'expertise et références."
+        },
+        {
+          "title": "Votre proposition",
+          "description": "Intégration, service, distribution ou partenariat sectoriel."
+        },
+        {
+          "title": "Vos compétences",
+          "description": "Équipe, certifications, expérience client et capacité de delivery."
+        },
+        {
+          "title": "Vos questions",
+          "description": "Points à clarifier sur le programme, les ressources ou le go-to-market."
+        }
+      ],
+      "collaborationTitle": "Après le premier contact",
+      "collaborationDescription": "Nous avançons par étapes pour éviter les partenariats flous et cadrer les responsabilités.",
+      "collaborationItems": [
+        {
+          "title": "Analyse de fit",
+          "description": "Nous vérifions la cohérence entre votre offre et nos priorités."
+        },
+        {
+          "title": "Objectifs partagés",
+          "description": "Nous définissons le périmètre, les premiers cas d'usage et les ressources nécessaires."
+        },
+        {
+          "title": "Interlocuteurs",
+          "description": "Chaque partie identifie les contacts responsables du suivi."
+        },
+        {
+          "title": "Documentation",
+          "description": "Les éléments contractuels, techniques ou commerciaux sont préparés."
+        },
+        {
+          "title": "Activation",
+          "description": "Le partenariat démarre avec un plan d'actions concret."
+        }
+      ],
+      "processTitle": "Processus de candidature",
+      "processDescription": "Un parcours simple pour passer d'un premier échange à un partenariat activable.",
+      "processItems": [
+        {
+          "title": "Message initial",
+          "description": "Contactez-nous avec une présentation courte de votre organisation."
+        },
+        {
+          "title": "Échange de qualification",
+          "description": "Nous clarifions le type de partenariat et les objectifs."
+        },
+        {
+          "title": "Validation",
+          "description": "Nous confirmons le cadre, les ressources et les prochaines étapes."
+        },
+        {
+          "title": "Lancement",
+          "description": "Vous entrez dans le programme avec un plan de collaboration."
+        }
+      ],
+      "resourcesTitle": "Ressources utiles",
+      "resourcesDescription": "Avant de nous contacter, vous pouvez préparer les éléments qui accélèrent l'évaluation.",
+      "resourcesItems": [
+        {
+          "title": "Présentation société",
+          "description": "Une synthèse de votre activité et de vos références."
+        },
+        {
+          "title": "Questions clés",
+          "description": "Les sujets techniques, commerciaux ou contractuels à clarifier."
+        },
+        {
+          "title": "Objectifs",
+          "description": "Les résultats attendus du partenariat à court et moyen terme."
+        }
+      ],
+      "ctaTitle": "Contactez l'équipe partenaires",
+      "ctaDescription": "Envoyez-nous votre présentation et nous reviendrons avec les prochaines étapes.",
+      "ctaLabel": "Écrire à l'équipe"
+    },
+    "resources": {
+      "badge": "Ressources partenaires",
+      "heroTitle": "Les ressources pour réussir avec SGE",
+      "heroDescription": "Accédez aux guides, supports et informations nécessaires pour construire, vendre et accompagner les solutions Sky Genesis Enterprise.",
+      "primaryCta": "Voir le programme",
+      "audienceTitle": "Une bibliothèque pour chaque rôle",
+      "audienceDescription": "Les ressources sont organisées pour répondre aux besoins des partenaires techniques, service et distribution.",
+      "audienceItems": [
+        "Documentation technique et API",
+        "Supports de vente et de présentation",
+        "Guides de déploiement et de support",
+        "Parcours de formation et certification"
+      ],
+      "buildTitle": "Contenus disponibles",
+      "buildDescription": "Retrouvez les supports utiles pour travailler avec les équipes SGE et vos clients.",
+      "buildItems": [
+        {
+          "title": "Documentation produit",
+          "description": "Guides fonctionnels, références techniques et modèles d'architecture."
+        },
+        {
+          "title": "Supports de marque",
+          "description": "Éléments de présentation et règles d'utilisation pour les partenaires."
+        },
+        {
+          "title": "Exemples techniques",
+          "description": "Snippets, schémas et parcours d'intégration."
+        },
+        {
+          "title": "Kits marketing",
+          "description": "Ressources pour expliquer les offres et préparer les campagnes."
+        },
+        {
+          "title": "Références sécurité",
+          "description": "Informations utiles pour les audits, la conformité et les appels d'offres."
+        },
+        {
+          "title": "Outils développeur",
+          "description": "Ressources pour tester, intégrer et automatiser."
+        }
+      ],
+      "collaborationTitle": "Des ressources maintenues avec les partenaires",
+      "collaborationDescription": "Nous améliorons la documentation et les supports à partir des retours terrain.",
+      "collaborationItems": [
+        {
+          "title": "Mises à jour",
+          "description": "Les ressources évoluent avec les produits et les besoins clients."
+        },
+        {
+          "title": "Accès contrôlés",
+          "description": "Certains documents sont réservés aux partenaires activés."
+        },
+        {
+          "title": "Feedback",
+          "description": "Les retours partenaires alimentent les guides et supports."
+        }
+      ],
+      "processTitle": "Accès aux ressources",
+      "processDescription": "L'accès dépend du rôle partenaire, du niveau de confidentialité et du besoin opérationnel.",
+      "processItems": [
+        {
+          "title": "Identifier le besoin",
+          "description": "Technique, commercial, support ou formation."
+        },
+        {
+          "title": "Vérifier l'accès",
+          "description": "Certaines ressources nécessitent une activation partenaire."
+        },
+        {
+          "title": "Utiliser les supports",
+          "description": "Les documents sont conçus pour les projets clients et les actions de vente."
+        },
+        {
+          "title": "Partager les retours",
+          "description": "Les corrections et besoins nouveaux sont intégrés au fil de l'eau."
+        }
+      ],
+      "resourcesTitle": "Catégories principales",
+      "resourcesDescription": "Un point d'entrée unique pour retrouver les contenus essentiels.",
+      "resourcesItems": [
+        {
+          "title": "Technique",
+          "description": "API, architecture, sécurité et intégration."
+        },
+        {
+          "title": "Commercial",
+          "description": "Argumentaires, fiches offres et présentations."
+        },
+        {
+          "title": "Support",
+          "description": "FAQ, procédures et canaux d'escalade."
+        }
+      ],
+      "ctaTitle": "Besoin d'un accès partenaire ?",
+      "ctaDescription": "Rejoignez le programme pour accéder aux ressources adaptées à votre rôle.",
+      "ctaLabel": "Voir le programme"
+    }
   },
   "Blog": {
     "journalBadge": "SGE Journal",
