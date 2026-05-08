@@ -10,12 +10,14 @@
  * Owner: SGE Web Platform
  * Contact: contact@skygenesisenterprise.com
  */
+import * as React from "react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { locales, type Locale } from "@/lib/locale";
+import { type Locale } from "@/lib/locale";
 import {
   Menu,
   ChevronDown,
+  ArrowRight,
   Shield,
   Users,
   Key,
@@ -70,6 +72,108 @@ interface MegaMenuData {
     href: string;
     badgeKey?: string;
   };
+}
+
+type MegaMenuProps = {
+  label: string;
+  data: MegaMenuData;
+  getLocaleHref: (href: string) => string;
+  t: (key: string) => string;
+  compact?: boolean;
+};
+
+function MegaMenu({
+  label,
+  data,
+  getLocaleHref,
+  t,
+  compact = false,
+}: MegaMenuProps) {
+  const panelWidth = compact ? "w-[560px]" : "w-[820px]";
+  const sectionGrid = compact ? "grid-cols-1" : "grid-cols-2";
+  const hasFeatured = Boolean(data.featured);
+
+  return (
+    <li className="relative group">
+      <button
+        className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
+        aria-haspopup="true"
+        aria-expanded={false}
+      >
+        {label}
+        <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
+      </button>
+      <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-3 group-hover:block group-focus-within:block">
+        <div
+          className={`${panelWidth} overflow-hidden rounded-2xl border border-border/60 bg-background shadow-lg`}
+        >
+          <div className={hasFeatured ? "grid grid-cols-[1fr_260px]" : "grid"}>
+            <div className="p-6">
+              <div className={`grid ${sectionGrid} gap-6`}>
+                {data.sections.map((section) => (
+                  <div key={section.titleKey}>
+                    <h3 className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                      {t(section.titleKey)}
+                    </h3>
+                    <ul className="space-y-1">
+                      {section.items.map((item) => (
+                        <li key={item.titleKey}>
+                          <Link
+                            href={getLocaleHref(item.href)}
+                            className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-muted/50 focus:bg-muted/50 focus:outline-none"
+                          >
+                            <span className="mt-0.5 shrink-0 text-muted-foreground transition-colors group-hover/item:text-foreground">
+                              {item.icon}
+                            </span>
+                            <span>
+                              <span className="block text-sm font-medium text-foreground">
+                                {t(item.titleKey)}
+                              </span>
+                              <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                                {t(item.descKey)}
+                              </span>
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {data.featured ? (
+              <aside className="border-l border-border/60 bg-muted/30 p-6">
+                <Link
+                  href={getLocaleHref(data.featured.href)}
+                  className="group/featured flex h-full flex-col justify-between rounded-xl bg-card p-5 ring-1 ring-border/50 transition-colors hover:bg-background focus:outline-none focus:ring-2 focus:ring-ring/30"
+                >
+                  <span>
+                    {data.featured.badgeKey ? (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                        {t(data.featured.badgeKey)}
+                      </span>
+                    ) : null}
+                    <span className="mt-5 block text-sm font-medium text-foreground">
+                      {t(data.featured.titleKey)}
+                    </span>
+                    <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
+                      {t(data.featured.descKey)}
+                    </span>
+                  </span>
+                  <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
+                    {t("learnMore")}
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/featured:translate-x-0.5" />
+                  </span>
+                </Link>
+              </aside>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </li>
+  );
 }
 
 function getProductMenuData(): MegaMenuData {
@@ -134,6 +238,12 @@ function getProductMenuData(): MegaMenuData {
         ],
       },
     ],
+    featured: {
+      badgeKey: "productsFeaturedBadge",
+      titleKey: "productsFeaturedTitle",
+      descKey: "productsFeaturedDesc",
+      href: "/products",
+    },
   };
 }
 
@@ -199,6 +309,12 @@ function getDevelopersMenuData(): MegaMenuData {
         ],
       },
     ],
+    featured: {
+      badgeKey: "developersFeaturedBadge",
+      titleKey: "developersFeaturedTitle",
+      descKey: "developersFeaturedDesc",
+      href: "/developers/docs",
+    },
   };
 }
 
@@ -264,6 +380,12 @@ function getSolutionsMenuData(): MegaMenuData {
         ],
       },
     ],
+    featured: {
+      badgeKey: "solutionsFeaturedBadge",
+      titleKey: "solutionsFeaturedTitle",
+      descKey: "solutionsFeaturedDesc",
+      href: "/solutions",
+    },
   };
 }
 
@@ -300,6 +422,12 @@ function getEnterpriseMenuData(): MegaMenuData {
         ],
       },
     ],
+    featured: {
+      badgeKey: "enterpriseFeaturedBadge",
+      titleKey: "enterpriseFeaturedTitle",
+      descKey: "enterpriseFeaturedDesc",
+      href: "/company/about",
+    },
   };
 }
 
@@ -365,6 +493,12 @@ function getPlateformeMenuData(): MegaMenuData {
         ],
       },
     ],
+    featured: {
+      badgeKey: "platformFeaturedBadge",
+      titleKey: "platformFeaturedTitle",
+      descKey: "platformFeaturedDesc",
+      href: "/platform",
+    },
   };
 }
 
@@ -418,6 +552,12 @@ function getPartnersMenuData(): MegaMenuData {
         ],
       },
     ],
+    featured: {
+      badgeKey: "partnersFeaturedBadge",
+      titleKey: "partnersFeaturedTitle",
+      descKey: "partnersFeaturedDesc",
+      href: "/partners/program",
+    },
   };
 }
 
@@ -453,277 +593,43 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center">
             <ul className="flex items-center gap-0">
-              <li className="relative group">
-                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
-                  {t("plateforme")}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-5">
-                        <div className="grid grid-cols-2 gap-6">
-                          {plateformeMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-0.5">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li className="relative group">
-                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
-                  {t("product")}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-5">
-                        <div className="grid grid-cols-2 gap-6">
-                          {productMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-0.5">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li className="relative group">
-                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
-                  {t("solutions")}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-5">
-                        <div className="grid grid-cols-2 gap-6">
-                          {solutionsMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-0.5">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li className="relative group">
-                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
-                  {t("developers")}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-5">
-                        <div className="grid grid-cols-2 gap-6">
-                          {developersMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-0.5">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li className="relative group">
-                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
-                  {t("partners")}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-170">
-                    <div className="flex">
-                      <div className="flex-1 p-5">
-                        <div className="grid grid-cols-2 gap-6">
-                          {partnersMenuData.sections.map((section) => (
-                            <div key={section.titleKey}>
-                              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
-                                {t(section.titleKey)}
-                              </h3>
-                              <ul className="space-y-0.5">
-                                {section.items.map((item) => (
-                                  <li key={item.titleKey}>
-                                    <Link
-                                      href={getLocaleHref(item.href)}
-                                      className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
-                                    >
-                                      <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
-                                        {item.icon}
-                                      </span>
-                                      <div>
-                                        <span className="block text-sm font-medium text-foreground">
-                                          {t(item.titleKey)}
-                                        </span>
-                                        <span className="block text-xs text-muted-foreground mt-0.5">
-                                          {t(item.descKey)}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li className="relative group">
-                <button className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150">
-                  {t("enterprise")}
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
-                </button>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                  <div className="bg-background border border-border/80 rounded-lg shadow-sm overflow-hidden min-w-64">
-                    <div className="p-5">
-                      {enterpriseMenuData.sections.map((section) => (
-                        <div key={section.titleKey}>
-                          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3.5">
-                            {t(section.titleKey)}
-                          </h3>
-                          <ul className="space-y-0.5">
-                            {section.items.map((item) => (
-                              <li key={item.titleKey}>
-                                <Link
-                                  href={getLocaleHref(item.href)}
-                                  className="group flex items-start gap-2.5 p-2 -mx-2 rounded-md hover:bg-muted/60 transition-colors duration-150"
-                                >
-                                  <span className="shrink-0 mt-0.5 text-muted-foreground group-hover:text-foreground transition-colors duration-150">
-                                    {item.icon}
-                                  </span>
-                                  <div>
-                                    <span className="block text-sm font-medium text-foreground">
-                                      {t(item.titleKey)}
-                                    </span>
-                                    <span className="block text-xs text-muted-foreground mt-0.5">
-                                      {t(item.descKey)}
-                                    </span>
-                                  </div>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </li>
+              <MegaMenu
+                label={t("plateforme")}
+                data={plateformeMenuData}
+                getLocaleHref={getLocaleHref}
+                t={t}
+              />
+              <MegaMenu
+                label={t("product")}
+                data={productMenuData}
+                getLocaleHref={getLocaleHref}
+                t={t}
+              />
+              <MegaMenu
+                label={t("solutions")}
+                data={solutionsMenuData}
+                getLocaleHref={getLocaleHref}
+                t={t}
+              />
+              <MegaMenu
+                label={t("developers")}
+                data={developersMenuData}
+                getLocaleHref={getLocaleHref}
+                t={t}
+              />
+              <MegaMenu
+                label={t("partners")}
+                data={partnersMenuData}
+                getLocaleHref={getLocaleHref}
+                t={t}
+              />
+              <MegaMenu
+                label={t("enterprise")}
+                data={enterpriseMenuData}
+                getLocaleHref={getLocaleHref}
+                t={t}
+                compact
+              />
 
               <li>
                 <Link

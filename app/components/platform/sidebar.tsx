@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Activity,
   LayoutDashboard,
   FileText,
   Users,
@@ -24,13 +25,20 @@ import {
   Shield,
   Share2,
   Globe,
-  Clock,
+  Server,
   BookOpen,
   Link2,
   Calendar,
+  CalendarDays,
   ChevronRight,
   PenSquare,
   List,
+  FileClock,
+  FilePenLine,
+  Layers,
+  Radio,
+  Webhook,
+  LockKeyhole,
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
@@ -51,25 +59,44 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 interface NavItem {
+  id?: string;
   title: string;
   href: string;
   icon: React.ElementType | string;
+  badge?: string;
+  status?: "new" | "beta" | "soon";
   items?: NavItem[];
 }
 
-const mainNavItems: NavItem[] = [
+const overviewNavItems: NavItem[] = [
   {
     title: "Tableau de bord",
     href: "/dashboard",
     icon: LayoutDashboard,
   },
   {
+    title: "Activité récente",
+    href: "/dashboard/activity",
+    icon: Activity,
+  },
+  {
+    title: "Calendrier éditorial",
+    href: "/dashboard/editorial-calendar",
+    icon: CalendarDays,
+  },
+];
+
+const contentNavItems: NavItem[] = [
+  {
+    id: "content-articles",
     title: "Articles",
     href: "/dashboard/articles",
     icon: FileText,
     items: [
       { title: "Tous les articles", href: "/dashboard/articles", icon: List },
       { title: "Nouvel article", href: "/dashboard/articles/new", icon: PenSquare },
+      { title: "Brouillons", href: "/dashboard/articles/drafts", icon: FilePenLine },
+      { title: "Planifiés", href: "/dashboard/articles/scheduled", icon: FileClock },
     ],
   },
   {
@@ -88,13 +115,41 @@ const mainNavItems: NavItem[] = [
     icon: BookOpen,
   },
   {
-    title: "Linker",
+    title: "Pages",
+    href: "/dashboard/pages",
+    icon: Layers,
+  },
+];
+
+const platformNavItems: NavItem[] = [
+  {
+    title: "Services",
+    href: "/dashboard/services",
+    icon: Server,
+  },
+  {
+    title: "Statut",
+    href: "/dashboard/status",
+    icon: Radio,
+  },
+  {
+    title: "API Keys",
+    href: "/dashboard/api-keys",
+    icon: Key,
+  },
+  {
+    title: "Webhooks",
+    href: "/dashboard/webhooks",
+    icon: Webhook,
+  },
+  {
+    title: "Liens courts",
     href: "/dashboard/linker",
     icon: Link2,
   },
 ];
 
-const managementNavItems = [
+const audienceNavItems: NavItem[] = [
   {
     title: "Utilisateurs",
     href: "/dashboard/users",
@@ -106,6 +161,19 @@ const managementNavItems = [
     icon: MessageSquare,
   },
   {
+    title: "Abonnements",
+    href: "/dashboard/subscriptions",
+    icon: CreditCard,
+  },
+  {
+    title: "Newsletter",
+    href: "/dashboard/newsletter",
+    icon: Mail,
+  },
+];
+
+const operationsNavItems: NavItem[] = [
+  {
     title: "Statistiques",
     href: "/dashboard/analytics",
     icon: BarChart3,
@@ -116,9 +184,65 @@ const managementNavItems = [
     icon: Bell,
   },
   {
-    title: "Abonnements",
-    href: "/dashboard/subscriptions",
-    icon: CreditCard,
+    title: "Planification",
+    href: "/dashboard/scheduling",
+    icon: Calendar,
+  },
+  {
+    title: "Audit Logs",
+    href: "/dashboard/audit-logs",
+    icon: Shield,
+  },
+];
+
+const socialAccountItems: NavItem[] = [
+  {
+    title: "X",
+    href: "/dashboard/social/twitter",
+    icon: "twitter",
+  },
+  {
+    title: "Facebook",
+    href: "/dashboard/social/facebook",
+    icon: "facebook",
+  },
+  {
+    title: "Instagram",
+    href: "/dashboard/social/instagram",
+    icon: "instagram",
+  },
+  {
+    title: "LinkedIn",
+    href: "/dashboard/social/linkedin",
+    icon: "linkedin",
+  },
+  {
+    title: "YouTube",
+    href: "/dashboard/social/youtube",
+    icon: "youtube",
+  },
+  {
+    title: "Discord",
+    href: "/dashboard/social/discord",
+    icon: "discord",
+  },
+  {
+    title: "Twitch",
+    href: "/dashboard/social/twitch",
+    icon: "twitch",
+  },
+];
+
+const growthNavItems: NavItem[] = [
+  {
+    title: "SEO",
+    href: "/dashboard/seo",
+    icon: Search,
+  },
+  {
+    title: "Campagnes",
+    href: "/dashboard/campaigns",
+    icon: Megaphone,
   },
   {
     title: "Publicités",
@@ -126,65 +250,46 @@ const managementNavItems = [
     icon: Megaphone,
   },
   {
-    title: "Newsletter",
-    href: "/dashboard/newsletter",
-    icon: Mail,
-  },
-  {
-    title: "API Keys",
-    href: "/dashboard/api-keys",
-    icon: Key,
-  },
-  {
-    title: "SEO",
-    href: "/dashboard/seo",
-    icon: Search,
-  },
-  {
-    title: "Audit Logs",
-    href: "/dashboard/audit-logs",
-    icon: Shield,
-  },
-  {
-    title: "Planification",
-    href: "/dashboard/scheduling",
-    icon: Calendar,
+    id: "growth-social",
+    title: "Réseaux sociaux",
+    href: "/dashboard/social",
+    icon: Share2,
+    items: [
+      {
+        title: "Publications",
+        href: "/dashboard/publications",
+        icon: Share2,
+      },
+      {
+        title: "Comptes sociaux",
+        href: "/dashboard/social-accounts",
+        icon: Globe,
+        items: socialAccountItems,
+      },
+      {
+        title: "Statistiques sociales",
+        href: "/dashboard/social-analytics",
+        icon: BarChart3,
+      },
+    ],
   },
 ];
 
-const settingsNavItems = [
+const securitySettingsNavItems: NavItem[] = [
   {
-    title: "Paramètres",
-    href: "/dashboard/settings",
-    icon: Settings,
+    title: "Sécurité",
+    href: "/dashboard/security",
+    icon: LockKeyhole,
   },
   {
     title: "Logs",
     href: "/dashboard/logs",
     icon: Terminal,
   },
-];
-
-const socialNavItems = [
   {
-    title: "Publications",
-    href: "/dashboard/publications",
-    icon: Share2,
-  },
-  {
-    title: "Comptes sociaux",
-    href: "/dashboard/social-accounts",
-    icon: Globe,
-  },
-  {
-    title: "Planification",
-    href: "/dashboard/scheduling",
-    icon: Clock,
-  },
-  {
-    title: "Statistiques sociales",
-    href: "/dashboard/social-analytics",
-    icon: BarChart3,
+    title: "Paramètres",
+    href: "/dashboard/settings",
+    icon: Settings,
   },
 ];
 
@@ -284,7 +389,7 @@ function SocialIcon({ name }: { name: string }) {
 }
 
 function NavItem({ item, pathname }: { item: NavItem; pathname: string }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const hasActiveChild = item.items?.some(
     (sub) => pathname === sub.href || pathname.startsWith(`${sub.href}/`)
@@ -425,11 +530,14 @@ export function AdminSidebar() {
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarSection label="Principal" items={mainNavItems} />
-        <SidebarSection label="Gestion" items={managementNavItems} />
-        <SidebarSection label="Réseaux sociaux" items={socialNavItems} />
+        <SidebarSection label="Vue d'ensemble" items={overviewNavItems} />
+        <SidebarSection label="Contenu" items={contentNavItems} />
+        <SidebarSection label="Plateforme" items={platformNavItems} />
+        <SidebarSection label="Audience" items={audienceNavItems} />
+        <SidebarSection label="Opérations" items={operationsNavItems} />
+        <SidebarSection label="Croissance" items={growthNavItems} />
         <SidebarSection label="Plateformes" items={socialMediaNavItems} />
-        <SidebarSection label="Configuration" items={settingsNavItems} />
+        <SidebarSection label="Configuration" items={securitySettingsNavItems} />
       </SidebarContent>
     </Sidebar>
   );

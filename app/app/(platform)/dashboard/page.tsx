@@ -1,34 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import * as React from "react";
 import {
-  FileText,
-  Eye,
-  Users,
-  MessageSquare,
-  TrendingUp,
-  Clock,
+  Activity,
+  AlertCircle,
   ArrowUpRight,
+  BarChart3,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
+  FileCheck2,
+  FileText,
+  Globe,
+  Layers3,
+  Mail,
   MoreHorizontal,
   Plus,
-  Bell,
-  Share2,
-  Mail,
-  DollarSign,
-  BarChart3,
-  Globe,
-  Activity,
-  Calendar,
+  Search,
+  Send,
+  ShieldCheck,
+  Users,
+  Workflow,
 } from "lucide-react";
 import Link from "next/link";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import { StatsCard } from "@/components/admin/stats-card";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -43,322 +45,370 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const viewsData = [
-  { date: "Lun", views: 12400, visitors: 8200 },
-  { date: "Mar", views: 14200, visitors: 9100 },
-  { date: "Mer", views: 18900, visitors: 12300 },
-  { date: "Jeu", views: 16100, visitors: 10800 },
-  { date: "Ven", views: 21500, visitors: 14200 },
-  { date: "Sam", views: 19300, visitors: 12900 },
-  { date: "Dim", views: 15600, visitors: 10100 },
+const systemHealth = [
+  { label: "Site public", value: "Opérationnel", tone: "operational" },
+  { label: "Status page", value: "Synchronisée", tone: "operational" },
+  { label: "Dernière publication", value: "il y a 2h", tone: "neutral" },
+  { label: "Alertes ouvertes", value: "2", tone: "attention" },
 ];
 
-const socialData = [
-  { platform: "Twitter", followers: 45230, growth: 5.2, color: "#000000" },
-  { platform: "Facebook", followers: 125400, growth: 2.1, color: "#1877F2" },
-  { platform: "Instagram", followers: 89200, growth: 8.4, color: "#E1306C" },
-  { platform: "LinkedIn", followers: 15600, growth: 12.3, color: "#0A66C2" },
-];
-
-const categoryData = [
-  { category: "Politique", articles: 45, color: "#8B5CF6" },
-  { category: "Économie", articles: 38, color: "#06B6D4" },
-  { category: "International", articles: 32, color: "#10B981" },
-  { category: "Culture", articles: 28, color: "#F59E0B" },
-  { category: "Sport", articles: 24, color: "#EF4444" },
-];
-
-const recentArticles = [
+const priorityActions = [
   {
-    id: 1,
-    title: "Les nouvelles mesures économiques annoncées par le gouvernement",
-    category: "Économie",
-    author: "Marie Dupont",
-    status: "published",
-    views: 3420,
-    date: "Il y a 2h",
+    label: "Nouvel article",
+    description: "Créer une publication pour le journal SGE.",
+    href: "/dashboard/articles/new",
+    icon: FileText,
   },
   {
-    id: 2,
-    title: "Sommet international sur le climat : les enjeux majeurs",
-    category: "International",
-    author: "Jean Martin",
-    status: "published",
-    views: 2890,
-    date: "Il y a 4h",
+    label: "Publier une annonce",
+    description: "Préparer une communication publique prioritaire.",
+    href: "/dashboard/articles/new?type=announcement",
+    icon: Send,
   },
   {
-    id: 3,
-    title: "Réforme de l'éducation : ce qui va changer",
-    category: "Politique",
-    author: "Sophie Bernard",
-    status: "draft",
-    views: 0,
-    date: "Il y a 5h",
+    label: "Vérifier le statut",
+    description: "Contrôler les signaux de disponibilité publics.",
+    href: "/fr/platform/status",
+    icon: ShieldCheck,
   },
   {
-    id: 4,
-    title: "Le nouveau festival de musique fait sensation",
-    category: "Culture",
-    author: "Lucas Petit",
-    status: "review",
-    views: 0,
-    date: "Il y a 6h",
-  },
-  {
-    id: 5,
-    title: "Victoire historique de l'équipe nationale",
-    category: "Sport",
-    author: "Emma Leroy",
-    status: "published",
-    views: 5670,
-    date: "Il y a 8h",
+    label: "Consulter les rapports",
+    description: "Analyser le trafic, les contenus et les signaux.",
+    href: "/dashboard/analytics",
+    icon: BarChart3,
   },
 ];
 
-const topAuthors = [
-  { name: "Marie Dupont", articles: 24, views: 45200, avatar: "" },
-  { name: "Jean Martin", articles: 19, views: 38100, avatar: "" },
-  { name: "Sophie Bernard", articles: 17, views: 32800, avatar: "" },
-  { name: "Lucas Petit", articles: 15, views: 28400, avatar: "" },
+const keyMetrics = [
+  { title: "Pages publiques", value: "128", description: "pages indexées", icon: Globe },
+  { title: "Articles publiés", value: "42", description: "journal et annonces", icon: FileText },
+  { title: "Visiteurs", value: "24.8K", description: "période sélectionnée", icon: Users },
+  { title: "Abonnés newsletter", value: "5.4K", description: "audience qualifiée", icon: Mail },
+  { title: "Uptime public", value: "99.98%", description: "disponibilité mesurée", icon: Activity },
+  { title: "Demandes contact", value: "18", description: "à qualifier", icon: Send },
+  { title: "Documents publiés", value: "12", description: "ressources officielles", icon: FileCheck2 },
+  { title: "Alertes ouvertes", value: "2", description: "requièrent attention", icon: AlertCircle },
+];
+
+const siteTrafficData = [
+  { date: "Lun", views: 18400, visitors: 11200 },
+  { date: "Mar", views: 21600, visitors: 13400 },
+  { date: "Mer", views: 24800, visitors: 15100 },
+  { date: "Jeu", views: 23100, visitors: 14300 },
+  { date: "Ven", views: 26700, visitors: 16800 },
+  { date: "Sam", views: 19800, visitors: 12100 },
+  { date: "Dim", views: 17400, visitors: 10800 },
+];
+
+const mainChannels = [
+  { name: "Direct", value: "38%", detail: "Trafic marque et accès directs" },
+  { name: "Recherche", value: "27%", detail: "Pages produits et articles" },
+  { name: "Référents", value: "16%", detail: "Partenaires et mentions" },
+  { name: "Social", value: "11%", detail: "Relais institutionnels" },
+  { name: "Documentation", value: "8%", detail: "Guides, PGP et plateformes" },
+];
+
+const editorialStates = [
+  { label: "Brouillons", value: "7", description: "contenus en préparation" },
+  { label: "En révision", value: "5", description: "validation éditoriale" },
+  { label: "Planifiés", value: "4", description: "publications à venir" },
+  { label: "Publiés", value: "42", description: "contenus actifs" },
+];
+
+const editorialPipeline = [
+  {
+    title: "Aether Office : état d’avancement",
+    type: "Article produit",
+    status: "En révision",
+    date: "Aujourd’hui",
+    owner: "Équipe Web Platform",
+  },
+  {
+    title: "Refonte Platform",
+    type: "Page publique",
+    status: "Brouillon",
+    date: "Demain",
+    owner: "Équipe Platform",
+  },
+  {
+    title: "Trust Center PGP",
+    type: "Confiance",
+    status: "Publié",
+    date: "il y a 2h",
+    owner: "Équipe Security",
+  },
+  {
+    title: "Programme partenaires SGE",
+    type: "Partenaires",
+    status: "Planifié",
+    date: "12 mai",
+    owner: "Équipe SGE",
+  },
+  {
+    title: "SGE Journal",
+    type: "Journal",
+    status: "Publié",
+    date: "il y a 2h",
+    owner: "Équipe Editorial",
+  },
+];
+
+const publicModules = [
+  { name: "Edge", status: "En consolidation", updatedAt: "il y a 1h", href: "/fr/platform/edge" },
+  {
+    name: "Identity",
+    status: "Développement avancé",
+    updatedAt: "hier",
+    href: "/fr/platform/identity",
+  },
+  { name: "Vault", status: "Développement actif", updatedAt: "hier", href: "/fr/platform/vault" },
+  {
+    name: "Status",
+    status: "Prêt pour intégration",
+    updatedAt: "il y a 2h",
+    href: "/fr/platform/status",
+  },
+  {
+    name: "Search",
+    status: "Prototype avancé",
+    updatedAt: "il y a 3j",
+    href: "/fr/platform/search",
+  },
+  {
+    name: "Mailer",
+    status: "En développement",
+    updatedAt: "il y a 4j",
+    href: "/fr/platform/mailer",
+  },
 ];
 
 const recentActivity = [
   {
-    type: "article",
-    user: "Marie Dupont",
+    team: "Équipe Web",
     action: "a publié",
-    target: "Les nouvelles mesures économiques",
-    time: "Il y a 2h",
+    target: "SGE Journal",
+    time: "il y a 2h",
     icon: FileText,
   },
   {
-    type: "comment",
-    user: "Jean Martin",
-    action: "a commenté",
-    target: "Sommet international sur le climat",
-    time: "Il y a 3h",
-    icon: MessageSquare,
+    team: "Security",
+    action: "a mis à jour",
+    target: "la page PGP",
+    time: "il y a 3h",
+    icon: ShieldCheck,
   },
   {
-    type: "user",
-    user: "Sophie Bernard",
-    action: "s'est inscrit",
-    target: "",
-    time: "Il y a 4h",
-    icon: Users,
+    team: "Platform",
+    action: "a modifié",
+    target: "la page Edge",
+    time: "il y a 5h",
+    icon: Layers3,
   },
   {
-    type: "social",
-    user: "System",
-    action: "a publié sur",
-    target: "Twitter",
-    time: "Il y a 5h",
-    icon: Share2,
+    team: "System",
+    action: "a synchronisé",
+    target: "le sitemap",
+    time: "il y a 6h",
+    icon: Workflow,
   },
   {
-    type: "newsletter",
-    user: "Lucas Petit",
-    action: "a envoyé",
-    target: "Newsletter hebdomadaire",
-    time: "Il y a 6h",
-    icon: Mail,
+    team: "Content",
+    action: "a planifié",
+    target: "une annonce",
+    time: "hier",
+    icon: Calendar,
   },
 ];
 
-const quickActions = [
-  { label: "Nouvel article", href: "/dashboard/articles/new", icon: Plus, color: "bg-blue-500" },
-  { label: "Voir le site", href: "/", icon: Globe, color: "bg-green-500" },
-  { label: "Notifications", href: "/dashboard/notifications", icon: Bell, color: "bg-orange-500" },
-  { label: "Statistiques", href: "/dashboard/analytics", icon: BarChart3, color: "bg-purple-500" },
+const upcomingItems = [
+  { title: "Newsletter hebdomadaire", date: "Lundi", owner: "Équipe Editorial" },
+  { title: "Publication Platform", date: "Mardi", owner: "Équipe Platform" },
+  { title: "Note sécurité", date: "Jeudi", owner: "Équipe Security" },
+  { title: "Revue partenaires", date: "Vendredi", owner: "Équipe SGE" },
 ];
 
-const viewsChartConfig = {
-  views: { label: "Vues", color: "oklch(0.5 0.2 25)" },
-  visitors: { label: "Visiteurs", color: "oklch(0.7 0.15 250)" },
-};
+const quickLinks = [
+  { label: "Site public", href: "/fr", icon: Globe },
+  { label: "Journal", href: "/fr/blog", icon: FileText },
+  { label: "Status page", href: "/fr/platform/status", icon: Activity },
+  { label: "Documentation", href: "/fr/developers", icon: FileCheck2 },
+  { label: "PGP", href: "/fr/pgp", icon: ShieldCheck },
+  { label: "Partners", href: "/fr/partners/program", icon: Users },
+  { label: "Platform", href: "/fr/platform/edge", icon: Layers3 },
+  { label: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
+];
 
-const categoryChartConfig = {
-  articles: { label: "Articles", color: "oklch(0.5 0.2 25)" },
-};
+const trafficChartConfig = {
+  views: { label: "Pages vues", color: "var(--chart-1)" },
+  visitors: { label: "Visiteurs uniques", color: "var(--chart-2)" },
+} satisfies ChartConfig;
 
-function getStatusBadge(status: string) {
-  switch (status) {
-    case "published":
-      return <Badge className="bg-green-100 text-green-700 hover:bg-green-100">Publié</Badge>;
-    case "draft":
-      return <Badge variant="secondary">Brouillon</Badge>;
-    case "review":
-      return <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100">En révision</Badge>;
-    default:
-      return <Badge variant="outline">{status}</Badge>;
+function StatusDot({ tone }: { tone: string }) {
+  const className =
+    tone === "operational"
+      ? "bg-emerald-500"
+      : tone === "attention"
+        ? "bg-amber-500"
+        : "bg-muted-foreground";
+
+  return <span className={`h-2.5 w-2.5 rounded-full ${className}`} aria-hidden="true" />;
+}
+
+function StatusBadge({ status }: { status: string }) {
+  if (status === "Publié" || status === "Prêt pour intégration") {
+    return <Badge variant="secondary">Stable</Badge>;
   }
+
+  if (status === "En révision" || status === "En consolidation") {
+    return <Badge variant="outline">À valider</Badge>;
+  }
+
+  if (status === "Planifié" || status === "Prototype avancé") {
+    return <Badge variant="outline">Planifié</Badge>;
+  }
+
+  return <Badge variant="secondary">{status}</Badge>;
 }
 
 function getInitials(name: string) {
   return name
     .split(" ")
-    .map((n) => n[0])
+    .map((part) => part[0])
     .join("")
+    .slice(0, 2)
     .toUpperCase();
 }
 
-function formatNumber(num: number) {
-  if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-  if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  return num.toString();
-}
-
 export default function DashboardPage() {
-  const [timeRange, setTimeRange] = useState("14d");
+  const [timeRange, setTimeRange] = React.useState("14d");
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Page Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Tableau de bord</h1>
-          <p className="text-sm text-muted-foreground">
-            Bienvenue sur la console d&apos;administration de Sky Genesis Enterprise
+    <div className="bg-background p-6 space-y-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-medium text-foreground">Vue d’ensemble</h1>
+          <p className="max-w-3xl text-sm text-muted-foreground">
+            Pilotez le site officiel, les contenus, les signaux de confiance et les services
+            publics de Sky Genesis Enterprise.
           </p>
         </div>
-        <Select value={timeRange} onValueChange={setTimeRange}>
-          <SelectTrigger className="w-40">
-            <Calendar className="mr-2 h-4 w-4" />
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="7d">7 derniers jours</SelectItem>
-            <SelectItem value="14d">14 derniers jours</SelectItem>
-            <SelectItem value="30d">30 derniers jours</SelectItem>
-            <SelectItem value="90d">3 derniers mois</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {quickActions.map((action) => (
-          <Button
-            key={action.label}
-            variant="outline"
-            className="h-auto py-4 flex flex-col items-center gap-2"
-            asChild
-          >
-            <Link href={action.href}>
-              <div className={`p-2 rounded-lg ${action.color}`}>
-                <action.icon className="h-4 w-4 text-white" />
-              </div>
-              <span className="text-sm">{action.label}</span>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Select value={timeRange} onValueChange={setTimeRange}>
+            <SelectTrigger className="w-full sm:w-44">
+              <Calendar className="mr-2 h-4 w-4" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="7d">7 derniers jours</SelectItem>
+              <SelectItem value="14d">14 derniers jours</SelectItem>
+              <SelectItem value="30d">30 derniers jours</SelectItem>
+              <SelectItem value="90d">3 derniers mois</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button variant="outline" asChild>
+            <Link href="/fr">
+              Voir le site
+              <ExternalLink className="h-4 w-4" />
             </Link>
           </Button>
+          <Button asChild>
+            <Link href="/dashboard/articles/new">
+              Nouvel article
+              <Plus className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {systemHealth.map((item) => (
+          <Card key={item.label} className="rounded-2xl border-border/50 bg-card py-4 shadow-none">
+            <CardContent className="px-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">{item.label}</p>
+                  <p className="text-sm font-medium text-foreground">{item.value}</p>
+                </div>
+                <StatusDot tone={item.tone} />
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
-      {/* Stats Cards Row 1 */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <StatsCard
-          title="Articles publiés"
-          value="1,247"
-          change="+12%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={FileText}
-        />
-        <StatsCard
-          title="Vues totales"
-          value="2.4M"
-          change="+18%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={Eye}
-        />
-        <StatsCard
-          title="Abonnés"
-          value="48,293"
-          change="+5.2%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={Users}
-        />
-        <StatsCard
-          title="Commentaires"
-          value="12,847"
-          change="-3%"
-          changeType="negative"
-          description="vs période précédente"
-          icon={MessageSquare}
-        />
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {priorityActions.map((action) => (
+          <Card
+            key={action.label}
+            className="rounded-2xl border-border/50 bg-card py-0 shadow-none transition-colors hover:bg-muted/20"
+          >
+            <Link href={action.href} className="flex h-full flex-col gap-4 p-5">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted/40">
+                  <action.icon className="h-5 w-5 text-muted-foreground" />
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <div className="space-y-1">
+                <h2 className="text-base font-medium text-foreground">{action.label}</h2>
+                <p className="text-sm text-muted-foreground">{action.description}</p>
+              </div>
+            </Link>
+          </Card>
+        ))}
       </div>
 
-      {/* Stats Cards Row 2 - Social & Revenue */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <StatsCard
-          title="Abonnés sociaux"
-          value="275K"
-          change="+7.2%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={Share2}
-        />
-        <StatsCard
-          title="Newsletter"
-          value="5,420"
-          change="+8.5%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={Mail}
-        />
-        <StatsCard
-          title="Revenus pub"
-          value="€12,450"
-          change="+15%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={DollarSign}
-        />
-        <StatsCard
-          title="Taux d'engagement"
-          value="4.2%"
-          change="+0.8%"
-          changeType="positive"
-          description="vs période précédente"
-          icon={Activity}
-        />
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {keyMetrics.map((metric) => (
+          <Card key={metric.title} className="rounded-2xl border-border/50 bg-card py-4 shadow-none">
+            <CardContent className="px-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">{metric.title}</p>
+                  <p className="text-2xl font-medium tracking-tight text-foreground">{metric.value}</p>
+                  <p className="text-xs text-muted-foreground">{metric.description}</p>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted/40">
+                  <metric.icon className="h-5 w-5 text-muted-foreground" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
-      {/* Charts Row */}
-      <div className="grid gap-6 lg:grid-cols-7">
-        {/* Views Chart */}
-        <Card className="lg:col-span-4">
+      <div className="grid gap-6 xl:grid-cols-7">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none xl:col-span-4">
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-base">Trafic du site</CardTitle>
-                <CardDescription>Vues et visiteurs cette semaine</CardDescription>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Trafic public</CardTitle>
+                <CardDescription>
+                  Pages vues et visiteurs uniques sur la période sélectionnée.
+                </CardDescription>
               </div>
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-1.5">
                   <div className="h-2.5 w-2.5 rounded-full bg-primary" />
-                  <span className="text-muted-foreground">Vues</span>
+                  <span className="text-muted-foreground">Pages vues</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="h-2.5 w-2.5 rounded-full bg-[oklch(0.7_0.15_250)]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground" />
                   <span className="text-muted-foreground">Visiteurs</span>
                 </div>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={viewsChartConfig} className="h-70 w-full">
-              <AreaChart data={viewsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+            <ChartContainer config={trafficChartConfig} className="h-70 w-full">
+              <AreaChart data={siteTrafficData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="fillViews" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--color-views)" stopOpacity={0.3} />
+                  <linearGradient id="fillPublicViews" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--color-views)" stopOpacity={0.24} />
                     <stop offset="95%" stopColor="var(--color-views)" stopOpacity={0} />
                   </linearGradient>
-                  <linearGradient id="fillVisitors" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--color-visitors)" stopOpacity={0.3} />
+                  <linearGradient id="fillPublicVisitors" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--color-visitors)" stopOpacity={0.16} />
                     <stop offset="95%" stopColor="var(--color-visitors)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
@@ -381,53 +431,42 @@ export default function DashboardPage() {
                   dataKey="visitors"
                   stroke="var(--color-visitors)"
                   strokeWidth={2}
-                  fill="url(#fillVisitors)"
+                  fill="url(#fillPublicVisitors)"
                 />
                 <Area
                   type="monotone"
                   dataKey="views"
                   stroke="var(--color-views)"
                   strokeWidth={2}
-                  fill="url(#fillViews)"
+                  fill="url(#fillPublicViews)"
                 />
               </AreaChart>
             </ChartContainer>
           </CardContent>
         </Card>
 
-        {/* Social Overview */}
-        <Card className="lg:col-span-3">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none xl:col-span-3">
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-base">Réseaux sociaux</CardTitle>
-                <CardDescription>Abonnés par plateforme</CardDescription>
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Canaux principaux</CardTitle>
+                <CardDescription>Origine du trafic utile vers les surfaces publiques.</CardDescription>
               </div>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/dashboard/social-analytics" className="gap-1">
-                  Voir tout
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
-              </Button>
+              <Search className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {socialData.map((social) => (
-                <div key={social.platform} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-3 h-3 rounded-full"
-                      style={{ backgroundColor: social.color }}
-                    />
-                    <span className="text-sm font-medium">{social.platform}</span>
+              {mainChannels.map((channel) => (
+                <div key={channel.name} className="flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-muted-foreground" />
+                    <div className="space-y-0.5">
+                      <p className="text-sm font-medium text-foreground">{channel.name}</p>
+                      <p className="text-xs text-muted-foreground">{channel.detail}</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm">{formatNumber(social.followers)}</span>
-                    <Badge variant="outline" className="text-xs text-green-600">
-                      <ArrowUpRight className="h-3 w-3 mr-1" />+{social.growth}%
-                    </Badge>
-                  </div>
+                  <Badge variant="outline">{channel.value}</Badge>
                 </div>
               ))}
             </div>
@@ -435,145 +474,61 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      {/* Second Row Charts */}
-      <div className="grid gap-6 lg:grid-cols-7">
-        {/* Categories */}
-        <Card className="lg:col-span-3">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Articles par catégorie</CardTitle>
-            <CardDescription>Répartition ce mois</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={categoryChartConfig} className="h-62.5 w-full">
-              <BarChart
-                data={categoryData}
-                layout="vertical"
-                margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="var(--border)" />
-                <XAxis type="number" tickLine={false} axisLine={false} tick={{ fontSize: 12 }} />
-                <YAxis
-                  type="category"
-                  dataKey="category"
-                  tickLine={false}
-                  axisLine={false}
-                  tick={{ fontSize: 12 }}
-                  width={80}
-                />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="articles" radius={[0, 4, 4, 0]} />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-
-        {/* Recent Activity */}
-        <Card className="lg:col-span-4">
+      <div className="grid gap-6 xl:grid-cols-7">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none xl:col-span-4">
           <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-base">Activité récente</CardTitle>
-                <CardDescription>Dernières actions sur la plateforme</CardDescription>
-              </div>
-              <Activity className="h-4 w-4 text-muted-foreground" />
-            </div>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="divide-y divide-border">
-              {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-center gap-3 px-6 py-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
-                    <activity.icon className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm">
-                      <span className="font-medium">{activity.user}</span>{" "}
-                      <span className="text-muted-foreground">{activity.action}</span>
-                      {activity.target && (
-                        <>
-                          {" "}
-                          <span className="font-medium">{activity.target}</span>
-                        </>
-                      )}
-                    </p>
-                    <p className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      {activity.time}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Recent Articles & Top Authors */}
-      <div className="grid gap-6 lg:grid-cols-7">
-        {/* Recent Articles */}
-        <Card className="lg:col-span-5">
-          <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-base">Articles récents</CardTitle>
-                <CardDescription>Les derniers articles créés ou modifiés</CardDescription>
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Pipeline éditorial</CardTitle>
+                <CardDescription>Contenus publics en cours de production et validation.</CardDescription>
               </div>
               <Button variant="ghost" size="sm" asChild>
-                <Link href="/dashboard/articles" className="gap-1">
-                  Voir tout
+                <Link href="/dashboard/articles">
+                  Voir les contenus
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="p-0">
-            <div className="divide-y divide-border">
-              {recentArticles.map((article) => (
-                <div key={article.id} className="flex items-center gap-4 px-6 py-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-normal">
-                        {article.category}
-                      </Badge>
-                      {getStatusBadge(article.status)}
+          <CardContent className="space-y-5">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {editorialStates.map((state) => (
+                <div key={state.label} className="rounded-2xl border border-border/50 bg-muted/20 p-4">
+                  <p className="text-sm text-muted-foreground">{state.label}</p>
+                  <p className="mt-1 text-2xl font-medium text-foreground">{state.value}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{state.description}</p>
+                </div>
+              ))}
+            </div>
+            <div className="divide-y divide-border/50">
+              {editorialPipeline.map((item) => (
+                <div key={item.title} className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
+                  <Avatar className="h-9 w-9">
+                    <AvatarFallback className="bg-muted text-xs text-muted-foreground">
+                      {getInitials(item.owner)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
+                      <Badge variant="outline">{item.type}</Badge>
+                      <StatusBadge status={item.status} />
                     </div>
-                    <h4 className="font-medium text-sm truncate">{article.title}</h4>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="flex items-center gap-1.5">
-                        <Avatar className="h-4 w-4">
-                          <AvatarFallback className="text-[8px] bg-muted">
-                            {getInitials(article.author)}
-                          </AvatarFallback>
-                        </Avatar>
-                        <span className="text-xs text-muted-foreground">{article.author}</span>
-                      </div>
-                      <span className="text-xs text-muted-foreground">•</span>
-                      <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {article.date}
-                      </span>
-                      {article.views > 0 && (
-                        <>
-                          <span className="text-xs text-muted-foreground">•</span>
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <Eye className="h-3 w-3" />
-                            {article.views.toLocaleString("en-US")}
-                          </span>
-                        </>
-                      )}
-                    </div>
+                    <p className="truncate text-sm font-medium text-foreground">{item.title}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {item.owner} · {item.date} · {item.status}
+                    </p>
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
                         <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Actions</span>
+                        <span className="sr-only">Actions pour {item.title}</span>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Modifier</DropdownMenuItem>
-                      <DropdownMenuItem>Voir</DropdownMenuItem>
-                      <DropdownMenuItem className="text-destructive">Supprimer</DropdownMenuItem>
+                      <DropdownMenuItem>Ouvrir</DropdownMenuItem>
+                      <DropdownMenuItem>Planifier</DropdownMenuItem>
+                      <DropdownMenuItem>Assigner</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
@@ -582,32 +537,124 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        {/* Top Authors */}
-        <Card className="lg:col-span-2">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none xl:col-span-3">
           <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-base">Top rédacteurs</CardTitle>
-                <CardDescription>Ce mois-ci</CardDescription>
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Modules publics suivis</CardTitle>
+                <CardDescription>État éditorial des modules visibles publiquement.</CardDescription>
               </div>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <Layers3 className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="divide-y divide-border">
-              {topAuthors.map((author, index) => (
-                <div key={author.name} className="flex items-center gap-3 px-6 py-3">
-                  <span className="text-sm font-medium text-muted-foreground w-4">{index + 1}</span>
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="text-xs bg-primary/10 text-primary">
-                      {getInitials(author.name)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{author.name}</p>
-                    <p className="text-xs text-muted-foreground">{author.views} vues</p>
+            <div className="divide-y divide-border/50">
+              {publicModules.map((module) => (
+                <div key={module.name} className="flex items-center justify-between gap-4 px-6 py-3">
+                  <div className="min-w-0 space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-sm font-medium text-foreground">{module.name}</p>
+                      <StatusBadge status={module.status} />
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {module.status} · Mise à jour {module.updatedAt}
+                    </p>
+                  </div>
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link href={module.href}>
+                      Voir <span className="sr-only">{module.name}</span>
+                    </Link>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-3">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Activité récente</CardTitle>
+                <CardDescription>Dernières actions sur la console SGE.</CardDescription>
+              </div>
+              <Clock className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="divide-y divide-border/50">
+              {recentActivity.map((activity) => (
+                <div key={`${activity.team}-${activity.target}`} className="flex gap-3 px-6 py-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted/40">
+                    <activity.icon className="h-4 w-4 text-muted-foreground" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm text-foreground">
+                      <span className="font-medium">{activity.team}</span>{" "}
+                      <span className="text-muted-foreground">{activity.action}</span>{" "}
+                      <span className="font-medium">{activity.target}</span>
+                    </p>
+                    <p className="text-xs text-muted-foreground">{activity.time}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">À venir</CardTitle>
+                <CardDescription>Calendrier éditorial et opérations publiques.</CardDescription>
+              </div>
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {upcomingItems.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-border/50 bg-muted/20 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium text-foreground">{item.title}</p>
+                      <p className="text-xs text-muted-foreground">{item.owner}</p>
+                    </div>
+                    <Badge variant="outline">{item.date}</Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Accès rapides</CardTitle>
+                <CardDescription>Surfaces publiques et outils de pilotage.</CardDescription>
+              </div>
+              <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-2">
+              {quickLinks.map((link) => (
+                <Button
+                  key={link.label}
+                  variant="outline"
+                  className="h-auto justify-start gap-2 rounded-xl py-3"
+                  asChild
+                >
+                  <Link href={link.href}>
+                    <link.icon className="h-4 w-4 text-muted-foreground" />
+                    <span className="truncate">{link.label}</span>
+                  </Link>
+                </Button>
               ))}
             </div>
           </CardContent>
