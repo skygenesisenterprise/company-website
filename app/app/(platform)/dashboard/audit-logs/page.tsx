@@ -1,28 +1,32 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Shield,
-  Search,
-  Download,
-  Filter,
-  User,
-  Clock,
-  Globe,
-  Key,
-  Trash2,
-  Edit,
-  LogIn,
-  LogOut,
-  Settings,
-  FileText,
-  AlertTriangle,
-} from "lucide-react";
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Route: /dashboard/audit-logs
+ * Layer: Dashboard Page
+ * Purpose: Provides an audit logging view aligned with the main dashboard overview.
+ */
 
+import * as React from "react";
+import { Check, Clipboard, Download, Eye, FileText, KeyRound, LogIn, MoreHorizontal, ShieldCheck, ShieldAlert, UserPen } from "lucide-react";
+
+import {
+  DashboardEmptyState,
+  DashboardMetricCard,
+  DashboardPageHeader,
+  DashboardSearch,
+  DashboardStatusBadge,
+  DashboardToolbar,
+} from "@/components/dashboard/cms-shell";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Select,
   SelectContent,
@@ -39,479 +43,322 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface AuditLog {
+type AuditActionType = "creation" | "modification" | "suppression" | "publication" | "connexion" | "security" | "integration";
+type AuditLevel = "info" | "warning" | "critical";
+
+interface AuditEvent {
   id: string;
-  timestamp: string;
-  userId: string;
-  userName: string;
-  userEmail: string;
   action: string;
+  type: AuditActionType;
+  user: string;
   resource: string;
-  resourceId?: string;
-  ipAddress: string;
-  userAgent: string;
-  details?: string;
-  status: "success" | "failed" | "warning";
+  occurredAt: string;
+  ipAddress?: string;
+  level: AuditLevel;
+  details: string;
 }
 
-const mockAuditLogs: AuditLog[] = [
+const auditEvents: AuditEvent[] = [
   {
-    id: "1",
-    timestamp: "2026-03-27T14:30:00Z",
-    userId: "1",
-    userName: "Admin Principal",
-    userEmail: "admin@etheriatimes.com",
-    action: "LOGIN",
-    resource: "auth",
-    ipAddress: "192.168.1.100",
-    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    status: "success",
+    id: "aud_demo_1001",
+    action: "Publication validée",
+    type: "publication",
+    user: "Admin contenu",
+    resource: "Page /security",
+    occurredAt: "2026-05-08T14:20:00Z",
+    ipAddress: "192.0.2.24",
+    level: "info",
+    details: "Mise en ligne d'une page institutionnelle.",
   },
   {
-    id: "2",
-    timestamp: "2026-03-27T14:25:00Z",
-    userId: "2",
-    userName: "John Doe",
-    userEmail: "john@example.com",
-    action: "ARTICLE_CREATE",
-    resource: "articles",
-    resourceId: "42",
-    ipAddress: "192.168.1.101",
-    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
-    details: "Article: 'Les nouvelles technologies de 2026'",
-    status: "success",
+    id: "aud_demo_1002",
+    action: "Clé API désactivée",
+    type: "integration",
+    user: "Responsable intégrations",
+    resource: "Connecteur analytics",
+    occurredAt: "2026-05-08T09:35:00Z",
+    ipAddress: "198.51.100.18",
+    level: "warning",
+    details: "Accès suspendu après rotation prévue.",
   },
   {
-    id: "3",
-    timestamp: "2026-03-27T14:20:00Z",
-    userId: "1",
-    userName: "Admin Principal",
-    userEmail: "admin@etheriatimes.com",
-    action: "USER_UPDATE",
-    resource: "users",
-    resourceId: "3",
-    ipAddress: "192.168.1.100",
-    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    details: "Role changed from 'editor' to 'admin'",
-    status: "success",
+    id: "aud_demo_1003",
+    action: "Tentative de connexion refusée",
+    type: "security",
+    user: "Compte inconnu",
+    resource: "Dashboard",
+    occurredAt: "2026-05-07T17:05:00Z",
+    ipAddress: "203.0.113.42",
+    level: "critical",
+    details: "Échec répété détecté, aucun secret exposé.",
   },
   {
-    id: "4",
-    timestamp: "2026-03-27T14:15:00Z",
-    userId: "4",
-    userName: "Jane Smith",
-    userEmail: "jane@example.com",
-    action: "LOGIN_FAILED",
-    resource: "auth",
-    ipAddress: "192.168.1.102",
-    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0)",
-    details: "Invalid password",
-    status: "failed",
+    id: "aud_demo_1004",
+    action: "Dossier modifié",
+    type: "modification",
+    user: "Éditeur",
+    resource: "Dossier entreprise",
+    occurredAt: "2026-05-07T11:12:00Z",
+    ipAddress: "192.0.2.31",
+    level: "info",
+    details: "Mise à jour du résumé et des métadonnées.",
   },
   {
-    id: "5",
-    timestamp: "2026-03-27T14:10:00Z",
-    userId: "2",
-    userName: "John Doe",
-    userEmail: "john@example.com",
-    action: "ARTICLE_DELETE",
-    resource: "articles",
-    resourceId: "38",
-    ipAddress: "192.168.1.101",
-    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
-    details: "Article: 'Ancienne nouvelle supprimée'",
-    status: "warning",
-  },
-  {
-    id: "6",
-    timestamp: "2026-03-27T14:05:00Z",
-    userId: "1",
-    userName: "Admin Principal",
-    userEmail: "admin@etheriatimes.com",
-    action: "SETTINGS_UPDATE",
-    resource: "settings",
-    ipAddress: "192.168.1.100",
-    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    details: "Site title updated",
-    status: "success",
-  },
-  {
-    id: "7",
-    timestamp: "2026-03-27T14:00:00Z",
-    userId: "3",
-    userName: "Editor User",
-    userEmail: "editor@etheriatimes.com",
-    action: "CATEGORY_CREATE",
-    resource: "categories",
-    resourceId: "15",
-    ipAddress: "192.168.1.103",
-    userAgent: "Mozilla/5.0 (X11; Linux x86_64)",
-    details: "Category: 'Politique Internationale'",
-    status: "success",
-  },
-  {
-    id: "8",
-    timestamp: "2026-03-27T13:55:00Z",
-    userId: "1",
-    userName: "Admin Principal",
-    userEmail: "admin@etheriatimes.com",
-    action: "API_KEY_CREATE",
-    resource: "api_keys",
-    resourceId: "key_123",
-    ipAddress: "192.168.1.100",
-    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    details: "New API key created: 'Production Key'",
-    status: "success",
-  },
-  {
-    id: "9",
-    timestamp: "2026-03-27T13:50:00Z",
-    userId: "2",
-    userName: "John Doe",
-    userEmail: "john@example.com",
-    action: "MEDIA_UPLOAD",
-    resource: "medias",
-    resourceId: "media_456",
-    ipAddress: "192.168.1.101",
-    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
-    details: "Image uploaded: banner-2026.jpg (2.5 MB)",
-    status: "success",
-  },
-  {
-    id: "10",
-    timestamp: "2026-03-27T13:45:00Z",
-    userId: "1",
-    userName: "Admin Principal",
-    userEmail: "admin@etheriatimes.com",
-    action: "LOGOUT",
-    resource: "auth",
-    ipAddress: "192.168.1.100",
-    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    status: "success",
+    id: "aud_demo_1005",
+    action: "Notification créée",
+    type: "creation",
+    user: "Admin système",
+    resource: "Notification maintenance",
+    occurredAt: "2026-05-06T16:44:00Z",
+    ipAddress: "192.0.2.45",
+    level: "info",
+    details: "Brouillon de notification interne préparé.",
   },
 ];
 
-const actionConfig: Record<string, { label: string; icon: React.ElementType; color: string }> = {
-  LOGIN: { label: "Connexion", icon: LogIn, color: "text-green-500" },
-  LOGOUT: { label: "Déconnexion", icon: LogOut, color: "text-gray-500" },
-  LOGIN_FAILED: { label: "Échec connexion", icon: AlertTriangle, color: "text-red-500" },
-  USER_CREATE: { label: "Utilisateur créé", icon: User, color: "text-blue-500" },
-  USER_UPDATE: { label: "Utilisateur modifié", icon: Edit, color: "text-blue-500" },
-  USER_DELETE: { label: "Utilisateur supprimé", icon: Trash2, color: "text-red-500" },
-  ARTICLE_CREATE: { label: "Article créé", icon: FileText, color: "text-green-500" },
-  ARTICLE_UPDATE: { label: "Article modifié", icon: Edit, color: "text-blue-500" },
-  ARTICLE_DELETE: { label: "Article supprimé", icon: Trash2, color: "text-red-500" },
-  CATEGORY_CREATE: { label: "Catégorie créée", icon: FileText, color: "text-green-500" },
-  CATEGORY_UPDATE: { label: "Catégorie modifiée", icon: Edit, color: "text-blue-500" },
-  CATEGORY_DELETE: { label: "Catégorie supprimée", icon: Trash2, color: "text-red-500" },
-  MEDIA_UPLOAD: { label: "Médias uploadé", icon: FileText, color: "text-purple-500" },
-  MEDIA_DELETE: { label: "Médias supprimé", icon: Trash2, color: "text-red-500" },
-  SETTINGS_UPDATE: { label: "Paramètres modifiés", icon: Settings, color: "text-orange-500" },
-  API_KEY_CREATE: { label: "Clé API créée", icon: Key, color: "text-green-500" },
-  API_KEY_DELETE: { label: "Clé API supprimée", icon: Trash2, color: "text-red-500" },
+const typeOptions = [
+  { value: "all", label: "Tous les types" },
+  { value: "creation", label: "Création" },
+  { value: "modification", label: "Modification" },
+  { value: "suppression", label: "Suppression" },
+  { value: "publication", label: "Publication" },
+  { value: "connexion", label: "Connexion" },
+  { value: "security", label: "Sécurité" },
+  { value: "integration", label: "Intégration" },
+];
+
+const levelOptions = [
+  { value: "all", label: "Tous les niveaux" },
+  { value: "info", label: "Info" },
+  { value: "warning", label: "Warning" },
+  { value: "critical", label: "Critical" },
+];
+
+const levelLabels: Record<AuditLevel, string> = {
+  info: "Info",
+  warning: "Warning",
+  critical: "Critical",
 };
 
-const statusConfig = {
-  success: { label: "Succès", color: "bg-green-100 text-green-800" },
-  failed: { label: "Échec", color: "bg-red-100 text-red-800" },
-  warning: { label: "Avertissement", color: "bg-yellow-100 text-yellow-800" },
+const levelTones: Record<AuditLevel, "blue" | "amber" | "red"> = {
+  info: "blue",
+  warning: "amber",
+  critical: "red",
 };
+
+const typeIcons: Record<AuditActionType, React.ElementType> = {
+  creation: FileText,
+  modification: UserPen,
+  suppression: ShieldAlert,
+  publication: Check,
+  connexion: LogIn,
+  security: ShieldCheck,
+  integration: KeyRound,
+};
+
+function formatDateTime(value: string) {
+  return new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/Paris",
+  }).format(new Date(value));
+}
 
 export default function AuditLogsPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [actionFilter, setActionFilter] = useState<string>("all");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [resourceFilter, setResourceFilter] = useState<string>("all");
-  const [auditLogs] = useState<AuditLog[]>(mockAuditLogs);
+  const [query, setQuery] = React.useState("");
+  const [type, setType] = React.useState("all");
+  const [level, setLevel] = React.useState("all");
+  const [copiedId, setCopiedId] = React.useState<string | null>(null);
 
-  const filteredLogs = auditLogs.filter((log) => {
-    const matchesSearch =
-      log.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.userEmail.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.action.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (log.details && log.details.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesAction = actionFilter === "all" || log.action === actionFilter;
-    const matchesStatus = statusFilter === "all" || log.status === statusFilter;
-    const matchesResource = resourceFilter === "all" || log.resource === resourceFilter;
-    return matchesSearch && matchesAction && matchesStatus && matchesResource;
+  const filteredEvents = auditEvents.filter((event) => {
+    const search = query.toLowerCase();
+    const matchesQuery =
+      event.action.toLowerCase().includes(search) ||
+      event.user.toLowerCase().includes(search) ||
+      event.resource.toLowerCase().includes(search) ||
+      event.id.toLowerCase().includes(search) ||
+      event.ipAddress?.toLowerCase().includes(search);
+    const matchesType = type === "all" || event.type === type;
+    const matchesLevel = level === "all" || event.level === level;
+    return matchesQuery && matchesType && matchesLevel;
   });
 
-  const stats = {
-    total: auditLogs.length,
-    success: auditLogs.filter((l) => l.status === "success").length,
-    failed: auditLogs.filter((l) => l.status === "failed").length,
-    warning: auditLogs.filter((l) => l.status === "warning").length,
+  const copyEventId = async (id: string) => {
+    await navigator.clipboard.writeText(id);
+    setCopiedId(id);
+    window.setTimeout(() => setCopiedId(null), 1600);
   };
-
-  const formatDateTime = (dateString: string) => {
-    const date = new Date(dateString);
-    const day = date.getUTCDate().toString().padStart(2, "0");
-    const month = [
-      "jan",
-      "fév",
-      "mar",
-      "avr",
-      "mai",
-      "juin",
-      "juil",
-      "aoû",
-      "sep",
-      "oct",
-      "nov",
-      "déc",
-    ][date.getUTCMonth()];
-    const year = date.getUTCFullYear();
-    const hours = date.getUTCHours().toString().padStart(2, "0");
-    const minutes = date.getUTCMinutes().toString().padStart(2, "0");
-    return `${day} ${month} ${year}, ${hours}:${minutes}`;
-  };
-
-  const uniqueActions = Array.from(new Set(auditLogs.map((log) => log.action)));
-  const uniqueResources = Array.from(new Set(auditLogs.map((log) => log.resource)));
 
   const handleExport = () => {
-    const headers = ["Date", "Utilisateur", "Email", "Action", "Ressource", "IP", "Statut"];
-    const csvContent = [
-      headers.join(","),
-      ...filteredLogs.map((log) =>
-        [
-          log.timestamp,
-          log.userName,
-          log.userEmail,
-          log.action,
-          log.resource,
-          log.ipAddress,
-          log.status,
-        ].join(",")
-      ),
-    ].join("\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
+    const headers = ["id", "date", "action", "user", "resource", "level"];
+    const rows = filteredEvents.map((event) =>
+      [event.id, event.occurredAt, event.action, event.user, event.resource, event.level].join(","),
+    );
+    const blob = new Blob([[headers.join(","), ...rows].join("\n")], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `audit-logs-${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "audit-logs-demo.csv";
+    anchor.click();
     URL.revokeObjectURL(url);
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Audit Logs</h1>
-          <p className="text-sm text-muted-foreground">
-            Suivi des actions et événements sur la plateforme
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={handleExport}>
-            <Download className="h-4 w-4 mr-2" />
+    <div className="space-y-6 p-6">
+      <DashboardPageHeader
+        title="Audit logs"
+        description="Consultez les actions importantes réalisées dans le dashboard."
+        action={
+          <Button variant="outline" onClick={handleExport}>
+            <Download className="mr-2 size-4" />
             Exporter
           </Button>
-        </div>
+        }
+      />
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <DashboardMetricCard label="Événements" value={auditEvents.length} detail="Entrées fictives listées" icon={ShieldCheck} />
+        <DashboardMetricCard label="Info" value={auditEvents.filter((event) => event.level === "info").length} detail="Actions nominales" icon={FileText} />
+        <DashboardMetricCard label="Warning" value={auditEvents.filter((event) => event.level === "warning").length} detail="Points à vérifier" icon={ShieldAlert} />
+        <DashboardMetricCard label="Critical" value={auditEvents.filter((event) => event.level === "critical").length} detail="À traiter en priorité" icon={ShieldCheck} />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <Shield className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Total</p>
-              <p className="text-2xl font-bold">{stats.total}</p>
-            </div>
-          </div>
+      <DashboardToolbar>
+        <DashboardSearch
+          value={query}
+          onChange={setQuery}
+          placeholder="Rechercher par utilisateur, action, ressource, IP ou identifiant..."
+        />
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Select value={type} onValueChange={setType}>
+            <SelectTrigger className="w-full sm:w-48" aria-label="Type d'action">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {typeOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={level} onValueChange={setLevel}>
+            <SelectTrigger className="w-full sm:w-44" aria-label="Niveau">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {levelOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
-              <LogIn className="h-5 w-5 text-green-500" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Succès</p>
-              <p className="text-2xl font-bold">{stats.success}</p>
-            </div>
-          </div>
-        </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/10">
-              <AlertTriangle className="h-5 w-5 text-red-500" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Échecs</p>
-              <p className="text-2xl font-bold">{stats.failed}</p>
-            </div>
-          </div>
-        </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500/10">
-              <Clock className="h-5 w-5 text-yellow-500" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Avertissements</p>
-              <p className="text-2xl font-bold">{stats.warning}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </DashboardToolbar>
 
-      <Card>
-        <CardHeader className="pb-3">
-          <div className="flex items-center gap-2">
-            <Shield className="h-4 w-4" />
-            <CardTitle className="text-base">Historique des actions</CardTitle>
-          </div>
-          <CardDescription>
-            Journal complet de toutes les actions effectuées sur la plateforme
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Rechercher dans les logs..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
-              />
-            </div>
-            <Select value={actionFilter} onValueChange={setActionFilter}>
-              <SelectTrigger className="w-full sm:w-48">
-                <Filter className="h-4 w-4 mr-2" />
-                <SelectValue placeholder="Action" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Toutes les actions</SelectItem>
-                {uniqueActions.map((action) => (
-                  <SelectItem key={action} value={action}>
-                    {actionConfig[action]?.label || action}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select value={resourceFilter} onValueChange={setResourceFilter}>
-              <SelectTrigger className="w-full sm:w-40">
-                <SelectValue placeholder="Ressource" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Toutes les ressources</SelectItem>
-                {uniqueResources.map((resource) => (
-                  <SelectItem key={resource} value={resource}>
-                    {resource}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-full sm:w-36">
-                <SelectValue placeholder="Statut" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Tous</SelectItem>
-                <SelectItem value="success">Succès</SelectItem>
-                <SelectItem value="failed">Échec</SelectItem>
-                <SelectItem value="warning">Avertissement</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="rounded-md border bg-card">
+      {filteredEvents.length === 0 ? (
+        <DashboardEmptyState
+          icon={ShieldCheck}
+          title="Aucun événement d'audit n'est disponible pour le moment"
+          description="Les actions importantes du dashboard apparaîtront ici."
+        />
+      ) : (
+        <>
+          <div className="hidden overflow-hidden rounded-lg border border-border/70 bg-card md:block">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Utilisateur</TableHead>
                   <TableHead>Action</TableHead>
+                  <TableHead>Utilisateur</TableHead>
                   <TableHead>Ressource</TableHead>
+                  <TableHead>Date</TableHead>
                   <TableHead>IP</TableHead>
-                  <TableHead>Statut</TableHead>
+                  <TableHead>Niveau</TableHead>
+                  <TableHead className="w-12" />
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredLogs.length === 0 ? (
-                  <TableRow>
-                    <TableCell colSpan={6} className="h-24 text-center">
-                      <div className="flex flex-col items-center gap-2">
-                        <Shield className="h-8 w-8 text-muted-foreground" />
-                        <p className="text-muted-foreground">Aucun log d&apos;audit trouvé</p>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ) : (
-                  filteredLogs.map((log) => {
-                    const actionInfo = actionConfig[log.action] || {
-                      label: log.action,
-                      icon: Shield,
-                      color: "text-gray-500",
-                    };
-                    const ActionIcon = actionInfo.icon;
-                    return (
-                      <TableRow key={log.id}>
-                        <TableCell className="whitespace-nowrap">
-                          <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">
-                              {formatDateTime(log.timestamp)}
-                            </span>
+                {filteredEvents.map((event) => {
+                  const Icon = typeIcons[event.type];
+                  return (
+                    <TableRow key={event.id} className="hover:bg-muted/30">
+                      <TableCell className="max-w-80">
+                        <div className="flex items-start gap-3">
+                          <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground">
+                            <Icon className="size-4" />
                           </div>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            <User className="h-4 w-4 text-muted-foreground" />
-                            <div>
-                              <p className="font-medium">{log.userName}</p>
-                              <p className="text-xs text-muted-foreground">{log.userEmail}</p>
-                            </div>
+                          <div className="min-w-0">
+                            <p className="truncate font-medium">{event.action}</p>
+                            <p className="truncate text-xs text-muted-foreground">{event.details}</p>
                           </div>
-                        </TableCell>
-                        <TableCell>
-                          <div className={`flex items-center gap-2 ${actionInfo.color}`}>
-                            <ActionIcon className="h-4 w-4" />
-                            <span className="font-medium">{actionInfo.label}</span>
-                            {log.resourceId && (
-                              <span className="text-xs text-muted-foreground">
-                                ({log.resourceId})
-                              </span>
-                            )}
-                          </div>
-                          {log.details && (
-                            <p className="text-xs text-muted-foreground mt-1">{log.details}</p>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            <Globe className="h-4 w-4 text-muted-foreground" />
-                            <span className="capitalize">{log.resource}</span>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <code className="text-xs bg-muted px-2 py-1 rounded">
-                            {log.ipAddress}
-                          </code>
-                        </TableCell>
-                        <TableCell>
-                          <Badge className={statusConfig[log.status].color}>
-                            {statusConfig[log.status].label}
-                          </Badge>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })
-                )}
+                        </div>
+                      </TableCell>
+                      <TableCell>{event.user}</TableCell>
+                      <TableCell className="max-w-52 truncate">{event.resource}</TableCell>
+                      <TableCell className="whitespace-nowrap text-muted-foreground">{formatDateTime(event.occurredAt)}</TableCell>
+                      <TableCell>
+                        <code className="rounded-md bg-muted px-2 py-1 text-xs">{event.ipAddress ?? "N/A"}</code>
+                      </TableCell>
+                      <TableCell>
+                        <DashboardStatusBadge tone={levelTones[event.level]}>{levelLabels[event.level]}</DashboardStatusBadge>
+                      </TableCell>
+                      <TableCell>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="size-8">
+                              <MoreHorizontal className="size-4" />
+                              <span className="sr-only">Actions</span>
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                              <Eye className="mr-2 size-4" />
+                              Consulter le détail
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => copyEventId(event.id)}>
+                              <Clipboard className="mr-2 size-4" />
+                              {copiedId === event.id ? "Identifiant copié" : "Copier l'identifiant"}
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{filteredLogs.length} entrées</span>
+          <div className="grid gap-3 md:hidden">
+            {filteredEvents.map((event) => {
+              const Icon = typeIcons[event.type];
+              return (
+                <article key={event.id} className="rounded-lg border border-border/70 bg-card p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex min-w-0 items-start gap-3">
+                      <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground">
+                        <Icon className="size-4" />
+                      </div>
+                      <div className="min-w-0">
+                        <h2 className="truncate text-sm font-semibold">{event.action}</h2>
+                        <p className="mt-1 text-xs text-muted-foreground">{event.resource}</p>
+                      </div>
+                    </div>
+                    <DashboardStatusBadge tone={levelTones[event.level]}>{levelLabels[event.level]}</DashboardStatusBadge>
+                  </div>
+                  <p className="mt-3 text-sm text-muted-foreground">{event.details}</p>
+                  <div className="mt-3 grid gap-1 text-xs text-muted-foreground">
+                    <span>{event.user}</span>
+                    <span>{formatDateTime(event.occurredAt)}</span>
+                    <span>{event.ipAddress ?? "IP non disponible"}</span>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </CardContent>
-      </Card>
+        </>
+      )}
     </div>
   );
 }

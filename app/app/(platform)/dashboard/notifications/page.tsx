@@ -1,21 +1,35 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  Bell,
-  Check,
-  Trash2,
-  Clock,
-  FileText,
-  Users,
-  Send,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+/**
+ * Sky Genesis Enterprise
+ *
+ * Scope: Official Website
+ * Route: /dashboard/notifications
+ * Layer: Dashboard Page
+ * Purpose: Provides a notification management view aligned with the main dashboard overview.
+ */
 
+import * as React from "react";
+import { Archive, Bell, Check, Eye, Loader2, MoreHorizontal, Plus, Send, ShieldAlert, Trash2 } from "lucide-react";
+
+import {
+  DashboardConfirmDialog,
+  DashboardEmptyState,
+  DashboardMetricCard,
+  DashboardPageHeader,
+  DashboardSearch,
+  DashboardToolbar,
+} from "@/components/dashboard/audience-dashboard";
+import { DashboardStatusBadge as GovernanceStatusBadge } from "@/components/dashboard/cms-shell";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Select,
   SelectContent,
@@ -23,384 +37,377 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { notificationsApi } from "@/lib/api";
-import type { EtheriaNotification } from "@/lib/api/types";
 
-interface NotificationDisplay {
+type NotificationType = "system" | "security" | "content" | "user" | "integration" | "maintenance";
+type NotificationStatus = "unread" | "read" | "archived" | "sent" | "draft";
+
+interface InternalNotification {
   id: string;
-  type: "system" | "user" | "article" | "comment";
   title: string;
   message: string;
-  time: string;
-  read: boolean;
-  priority: "low" | "medium" | "high";
+  type: NotificationType;
+  status: NotificationStatus;
+  audience: string;
+  createdAt: string;
+  sentAt?: string;
 }
 
-const mockNotifications: NotificationDisplay[] = [
+const demoNotifications: InternalNotification[] = [
   {
-    id: "1",
-    type: "article",
-    title: "Nouvel article soumis",
-    message: "Marie Dupont a soumis un nouvel article pour révision",
-    time: "2026-03-26T10:30:00",
-    read: false,
-    priority: "medium",
+    id: "notif_demo_1",
+    title: "Maintenance du site officiel",
+    message: "Fenêtre de maintenance prévue sur les pages publiques institutionnelles.",
+    type: "maintenance",
+    status: "draft",
+    audience: "Administrateurs",
+    createdAt: "2026-05-08T10:00:00Z",
   },
   {
-    id: "2",
-    type: "comment",
+    id: "notif_demo_2",
+    title: "Rotation de clé intégration",
+    message: "Une clé de test a été désactivée après rotation planifiée.",
+    type: "integration",
+    status: "sent",
+    audience: "Équipe technique",
+    createdAt: "2026-05-07T08:20:00Z",
+    sentAt: "2026-05-07T08:25:00Z",
+  },
+  {
+    id: "notif_demo_3",
     title: "Commentaire signalé",
-    message: "Un commentaire a été signalé comme inapproprié sur l'article 'Économie mondiale'",
-    time: "2026-03-26T09:15:00",
-    read: false,
-    priority: "high",
+    message: "Un commentaire attend une vérification de modération.",
+    type: "content",
+    status: "unread",
+    audience: "Modération",
+    createdAt: "2026-05-06T15:45:00Z",
   },
   {
-    id: "3",
-    type: "user",
-    title: "Nouvel utilisateur",
-    message: "Pierre Martin s'est inscrit sur la plateforme",
-    time: "2026-03-26T08:00:00",
-    read: true,
-    priority: "low",
-  },
-  {
-    id: "4",
-    type: "system",
-    title: "Mise à jour système",
-    message: "Le système a été mis à jour vers la version 2.1.0",
-    time: "2026-03-25T14:00:00",
-    read: true,
-    priority: "low",
-  },
-  {
-    id: "5",
-    type: "article",
-    title: "Article publié",
-    message: "L'article 'Les réformes économiques' est maintenant publié",
-    time: "2026-03-25T11:30:00",
-    read: true,
-    priority: "medium",
-  },
-  {
-    id: "6",
-    type: "comment",
-    title: "Nouveau commentaire",
-    message: "Nouveau commentaire sur l'article 'Victoire historique'",
-    time: "2026-03-25T10:00:00",
-    read: true,
-    priority: "low",
-  },
-  {
-    id: "7",
-    type: "system",
-    title: "Alerte de sécurité",
-    message: "Tentative de connexion suspecte détectée",
-    time: "2026-03-24T16:45:00",
-    read: false,
-    priority: "high",
+    id: "notif_demo_4",
+    title: "Connexion inhabituelle",
+    message: "Un événement de sécurité critique a été ajouté aux journaux d'audit.",
+    type: "security",
+    status: "read",
+    audience: "Administrateurs",
+    createdAt: "2026-05-06T11:10:00Z",
   },
 ];
 
-const typeConfig = {
-  system: { icon: AlertCircle, color: "text-purple-500", bg: "bg-purple-500/10" },
-  user: { icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
-  article: { icon: FileText, color: "text-green-500", bg: "bg-green-500/10" },
-  comment: { icon: Send, color: "text-yellow-500", bg: "bg-yellow-500/10" },
+const typeLabels: Record<NotificationType, string> = {
+  system: "Système",
+  security: "Sécurité",
+  content: "Contenu",
+  user: "Utilisateur",
+  integration: "Intégration",
+  maintenance: "Maintenance",
 };
 
-const priorityConfig = {
-  low: { label: "Basse", variant: "secondary" as const },
-  medium: { label: "Moyenne", variant: "outline" as const },
-  high: { label: "Haute", variant: "destructive" as const },
+const statusLabels: Record<NotificationStatus, string> = {
+  unread: "Non lue",
+  read: "Lue",
+  archived: "Archivée",
+  sent: "Envoyée",
+  draft: "Brouillon",
 };
+
+const statusTones: Record<NotificationStatus, "green" | "blue" | "gray" | "amber"> = {
+  unread: "amber",
+  read: "blue",
+  archived: "gray",
+  sent: "green",
+  draft: "amber",
+};
+
+const typeOptions = [
+  { value: "all", label: "Tous les types" },
+  { value: "system", label: "Système" },
+  { value: "security", label: "Sécurité" },
+  { value: "content", label: "Contenu" },
+  { value: "user", label: "Utilisateur" },
+  { value: "integration", label: "Intégration" },
+  { value: "maintenance", label: "Maintenance" },
+];
+
+const statusOptions = [
+  { value: "all", label: "Tous les statuts" },
+  { value: "unread", label: "Non lue" },
+  { value: "read", label: "Lue" },
+  { value: "archived", label: "Archivée" },
+  { value: "sent", label: "Envoyée" },
+  { value: "draft", label: "Brouillon" },
+];
+
+function formatDate(value?: string) {
+  if (!value) return "Non envoyée";
+  return new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/Paris",
+  }).format(new Date(value));
+}
 
 export default function NotificationsPage() {
-  const [notifications, setNotifications] = useState<NotificationDisplay[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [filter, setFilter] = useState<"all" | "unread">("all");
-  const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [notificationToDelete, setNotificationToDelete] = useState<NotificationDisplay | null>(
-    null
-  );
+  const [notifications, setNotifications] = React.useState<InternalNotification[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+  const [query, setQuery] = React.useState("");
+  const [status, setStatus] = React.useState("all");
+  const [type, setType] = React.useState("all");
+  const [confirmAction, setConfirmAction] = React.useState<{
+    title: string;
+    description: string;
+    label: string;
+    run: () => void;
+  } | null>(null);
 
-  useEffect(() => {
-    loadNotifications();
-  }, []);
-
-  async function loadNotifications() {
+  const loadNotifications = React.useCallback(async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const response = await notificationsApi.list({ pageSize: 50 });
       if (response.success && response.data) {
-        const mapped: NotificationDisplay[] = response.data.map((n) => ({
-          id: n.id,
-          type: (n.type?.toLowerCase() as "system" | "user" | "article" | "comment") || "system",
-          title: n.title,
-          message: n.message,
-          time: n.createdAt,
-          read: n.isRead ?? false,
-          priority: (n.priority === "HIGH"
-            ? "high"
-            : n.priority === "MEDIUM"
-              ? "medium"
-              : "low") as "low" | "medium" | "high",
-        }));
-        setNotifications(mapped);
+        setNotifications(
+          response.data.map((notification) => ({
+            id: notification.id,
+            title: notification.title,
+            message: notification.message,
+            type: normalizeType(notification.type),
+            status: notification.isRead ? "read" : "unread",
+            audience: "Dashboard interne",
+            createdAt: notification.createdAt,
+          })),
+        );
+      } else {
+        setNotifications(demoNotifications);
       }
-    } catch (error) {
-      console.error("Failed to load notifications:", error);
-      setNotifications(mockNotifications);
+    } catch {
+      setError("Les notifications API sont indisponibles. Des données fictives sont affichées.");
+      setNotifications(demoNotifications);
     } finally {
       setIsLoading(false);
     }
-  }
+  }, []);
 
-  async function handleMarkAsRead(id: string) {
-    try {
-      await notificationsApi.markRead(id);
-      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
-    } catch (error) {
-      console.error("Failed to mark as read:", error);
-    }
-  }
+  React.useEffect(() => {
+    loadNotifications();
+  }, [loadNotifications]);
 
-  async function handleMarkAllAsRead() {
-    try {
-      await notificationsApi.markAllRead();
-      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-    } catch (error) {
-      console.error("Failed to mark all as read:", error);
-    }
-  }
-
-  async function handleDeleteNotification() {
-    if (!notificationToDelete) return;
-    try {
-      await notificationsApi.delete(notificationToDelete.id);
-      setNotifications((prev) => prev.filter((n) => n.id !== notificationToDelete.id));
-    } catch (error) {
-      console.error("Failed to delete notification:", error);
-    }
-    setDeleteDialogOpen(false);
-    setNotificationToDelete(null);
-  }
-
-  async function handleDeleteAll() {
-    for (const n of notifications) {
-      try {
-        await notificationsApi.delete(n.id);
-      } catch (error) {
-        console.error("Failed to delete notification:", error);
-      }
-    }
-    setNotifications([]);
-  }
-
-  const filteredNotifications = notifications.filter((n) => {
-    const matchesRead = filter === "unread" ? !n.read : true;
-    const matchesType = typeFilter === "all" || n.type === typeFilter;
-    return matchesRead && matchesType;
+  const filteredNotifications = notifications.filter((notification) => {
+    const search = query.toLowerCase();
+    const matchesQuery =
+      notification.title.toLowerCase().includes(search) ||
+      notification.message.toLowerCase().includes(search) ||
+      notification.audience.toLowerCase().includes(search) ||
+      typeLabels[notification.type].toLowerCase().includes(search);
+    const matchesStatus = status === "all" || notification.status === status;
+    const matchesType = type === "all" || notification.type === type;
+    return matchesQuery && matchesStatus && matchesType;
   });
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
-
-  const handleDelete = (notification: NotificationDisplay) => {
-    setNotificationToDelete(notification);
-    setDeleteDialogOpen(true);
+  const updateStatus = (id: string, nextStatus: NotificationStatus) => {
+    setNotifications((current) =>
+      current.map((notification) =>
+        notification.id === id
+          ? {
+              ...notification,
+              status: nextStatus,
+              sentAt: nextStatus === "sent" ? new Date().toISOString() : notification.sentAt,
+            }
+          : notification,
+      ),
+    );
   };
 
-  const confirmDelete = () => {
-    handleDeleteNotification();
-  };
-
-  const formatTime = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("fr-FR", {
-      day: "numeric",
-      month: "short",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+  const deleteNotification = async (id: string) => {
+    try {
+      await notificationsApi.delete(id);
+    } catch {
+      setError("La suppression distante n'a pas abouti. L'élément est retiré localement.");
+    }
+    setNotifications((current) => current.filter((notification) => notification.id !== id));
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Notifications</h1>
-          <p className="text-sm text-muted-foreground">Gérez les notifications de la plateforme</p>
-        </div>
-        <div className="flex gap-2">
-          {unreadCount > 0 && (
-            <Button variant="outline" size="sm" onClick={handleMarkAllAsRead}>
-              <Check className="mr-2 h-4 w-4" />
-              Tout marquer comme lu
-            </Button>
-          )}
-          {notifications.length > 0 && (
-            <Button variant="outline" size="sm" onClick={handleDeleteAll}>
-              <Trash2 className="mr-2 h-4 w-4" />
-              Tout effacer
-            </Button>
-          )}
-        </div>
+    <div className="space-y-6 p-6">
+      <DashboardPageHeader
+        title="Notifications internes"
+        description="Gérez les notifications internes et alertes système du dashboard."
+        action={
+          <Button variant="outline">
+            <Plus className="mr-2 size-4" />
+            Créer
+          </Button>
+        }
+      />
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <DashboardMetricCard label="Notifications" value={notifications.length} helper="Internes et système" icon={Bell} />
+        <DashboardMetricCard label="Non lues" value={notifications.filter((item) => item.status === "unread").length} helper="À traiter" icon={ShieldAlert} />
+        <DashboardMetricCard label="Envoyées" value={notifications.filter((item) => item.status === "sent").length} helper="Diffusées" icon={Send} />
+        <DashboardMetricCard label="Brouillons" value={notifications.filter((item) => item.status === "draft").length} helper="Non envoyées" icon={Archive} />
       </div>
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <div className="flex gap-2">
-          <Button
-            variant={filter === "all" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setFilter("all")}
-          >
-            Toutes
-          </Button>
-          <Button
-            variant={filter === "unread" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setFilter("unread")}
-          >
-            Non lues
-            {unreadCount > 0 && (
-              <Badge variant="secondary" className="ml-2">
-                {unreadCount}
-              </Badge>
-            )}
-          </Button>
+      <DashboardToolbar>
+        <DashboardSearch
+          value={query}
+          onChange={setQuery}
+          placeholder="Rechercher par titre, type, message ou destinataire..."
+        />
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Select value={status} onValueChange={setStatus}>
+            <SelectTrigger className="w-full sm:w-48" aria-label="Statut">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {statusOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={type} onValueChange={setType}>
+            <SelectTrigger className="w-full sm:w-48" aria-label="Type">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {typeOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
-        <Select value={typeFilter} onValueChange={setTypeFilter}>
-          <SelectTrigger className="w-40">
-            <SelectValue placeholder="Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tous les types</SelectItem>
-            <SelectItem value="system">Système</SelectItem>
-            <SelectItem value="user">Utilisateur</SelectItem>
-            <SelectItem value="article">Article</SelectItem>
-            <SelectItem value="comment">Commentaire</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      </DashboardToolbar>
 
-      <div className="rounded-lg border border-border bg-card">
-        <div className="divide-y divide-border">
+      {error ? (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          {error}
+        </div>
+      ) : null}
+
+      <Card className="rounded-lg border-border/70 shadow-none">
+        <CardContent className="p-0">
           {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground mb-4" />
-              <p className="text-sm text-muted-foreground">Chargement...</p>
+            <div className="flex min-h-56 flex-col items-center justify-center gap-3 text-muted-foreground">
+              <Loader2 className="size-6 animate-spin" />
+              <span className="text-sm">Chargement des notifications internes...</span>
             </div>
           ) : filteredNotifications.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Bell className="h-12 w-12 text-muted-foreground mb-4" />
-              <p className="text-lg font-medium text-foreground">Aucune notification</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                {filter === "unread"
-                  ? "Vous avez lu toutes vos notifications"
-                  : "Aucune notification disponible"}
-              </p>
-            </div>
+            <DashboardEmptyState
+              icon={Bell}
+              title="Aucune notification interne n'est disponible pour le moment"
+              description="Les alertes système, brouillons et messages administratifs apparaîtront ici."
+            />
           ) : (
-            filteredNotifications.map((notification) => {
-              const config = typeConfig[notification.type];
-              const Icon = config.icon;
-              const priority = priorityConfig[notification.priority];
-
-              return (
-                <div
-                  key={notification.id}
-                  className={`flex items-start gap-4 p-4 ${
-                    notification.read ? "bg-card" : "bg-primary/5"
-                  }`}
-                >
-                  <div className={`rounded-full p-2 ${config.bg}`}>
-                    <Icon className={`h-4 w-4 ${config.color}`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="font-medium text-foreground">{notification.title}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{notification.message}</p>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Clock className="h-3 w-3 text-muted-foreground" />
-                          <span className="text-xs text-muted-foreground">
-                            {formatTime(notification.time)}
-                          </span>
-                          <Badge variant={priority.variant} className="text-xs">
-                            {priority.label}
-                          </Badge>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        {!notification.read && (
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => handleMarkAsRead(notification.id)}
-                          >
-                            <Check className="h-4 w-4" />
-                          </Button>
-                        )}
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuItem
-                              className="text-destructive"
-                              onClick={() => handleDelete(notification)}
-                            >
-                              <Trash2 className="mr-2 h-4 w-4" />
-                              Supprimer
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </div>
+            <div className="divide-y divide-border/70">
+              {filteredNotifications.map((notification) => (
+                <article key={notification.id} className="grid gap-4 p-4 hover:bg-muted/20 lg:grid-cols-[minmax(0,1fr)_12rem_11rem_3rem] lg:items-center">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="truncate text-sm font-semibold text-foreground">{notification.title}</h2>
+                      <GovernanceStatusBadge tone={statusTones[notification.status]}>
+                        {statusLabels[notification.status]}
+                      </GovernanceStatusBadge>
                     </div>
+                    <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{notification.message}</p>
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      {typeLabels[notification.type]} · {notification.audience}
+                    </p>
                   </div>
-                </div>
-              );
-            })
+                  <div className="text-sm text-muted-foreground">
+                    <p>Créée le</p>
+                    <p className="font-medium text-foreground">{formatDate(notification.createdAt)}</p>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    <p>Envoi</p>
+                    <p className="font-medium text-foreground">{formatDate(notification.sentAt)}</p>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon" className="size-8 justify-self-start lg:justify-self-end">
+                        <MoreHorizontal className="size-4" />
+                        <span className="sr-only">Actions</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>
+                        <Eye className="mr-2 size-4" />
+                        Consulter le détail
+                      </DropdownMenuItem>
+                      {notification.status === "unread" ? (
+                        <DropdownMenuItem onClick={() => updateStatus(notification.id, "read")}>
+                          <Check className="mr-2 size-4" />
+                          Marquer comme lue
+                        </DropdownMenuItem>
+                      ) : null}
+                      {notification.status === "draft" ? (
+                        <DropdownMenuItem
+                          onClick={() =>
+                            setConfirmAction({
+                              title: "Envoyer la notification",
+                              description: "Cette action marquera la notification comme envoyée dans ce tableau interne.",
+                              label: "Envoyer",
+                              run: () => updateStatus(notification.id, "sent"),
+                            })
+                          }
+                        >
+                          <Send className="mr-2 size-4" />
+                          Envoyer
+                        </DropdownMenuItem>
+                      ) : null}
+                      <DropdownMenuItem onClick={() => updateStatus(notification.id, "archived")}>
+                        <Archive className="mr-2 size-4" />
+                        Archiver
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        className="text-destructive focus:text-destructive"
+                        onClick={() =>
+                          setConfirmAction({
+                            title: "Supprimer la notification",
+                            description: "Cette action retire la notification de la liste interne.",
+                            label: "Supprimer",
+                            run: () => void deleteNotification(notification.id),
+                          })
+                        }
+                      >
+                        <Trash2 className="mr-2 size-4" />
+                        Supprimer
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </article>
+              ))}
+            </div>
           )}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Supprimer la notification</DialogTitle>
-            <DialogDescription>
-              Êtes-vous sûr de vouloir supprimer cette notification ?
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>
-              Annuler
-            </Button>
-            <Button variant="destructive" onClick={confirmDelete}>
-              Supprimer
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DashboardConfirmDialog
+        open={confirmAction !== null}
+        onOpenChange={(open) => {
+          if (!open) setConfirmAction(null);
+        }}
+        title={confirmAction?.title ?? ""}
+        description={confirmAction?.description ?? ""}
+        confirmLabel={confirmAction?.label ?? "Confirmer"}
+        onConfirm={() => {
+          confirmAction?.run();
+          setConfirmAction(null);
+        }}
+      />
     </div>
   );
+}
+
+function normalizeType(value?: string): NotificationType {
+  const normalized = value?.toLowerCase();
+  if (normalized === "security") return "security";
+  if (normalized === "content" || normalized === "article" || normalized === "comment") return "content";
+  if (normalized === "user") return "user";
+  if (normalized === "integration") return "integration";
+  if (normalized === "maintenance") return "maintenance";
+  return "system";
 }

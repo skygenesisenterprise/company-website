@@ -1,161 +1,129 @@
+"use client";
+
 /**
  * Sky Genesis Enterprise
  *
  * Scope: Official Website
  * Route: /dashboard/editorial-calendar
  * Layer: Dashboard Page
- * Purpose: Provides an editorial planning view for articles, announcements, newsletters and public content.
- *
- * Stability: Active
- * Owner: SGE Web Platform
- * Contact: contact@skygenesisenterprise.com
+ * Purpose: Provides an editorial planning view aligned with the main dashboard overview.
  */
 
+import * as React from "react";
 import Link from "next/link";
 import {
-  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  Calendar,
   CalendarDays,
-  Clock3,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
+  FileCheck2,
   FileText,
-  ListChecks,
-  Megaphone,
+  Globe,
+  Layers3,
+  Mail,
+  MoreHorizontal,
   Plus,
-  Radio,
+  Send,
   ShieldCheck,
-  Sparkles,
+  Users,
 } from "lucide-react";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-type CalendarItem = {
-  id: string;
+type EditorialStatus = "draft" | "review" | "scheduled" | "published" | "late";
+type EditorialType = "article" | "announcement" | "newsletter" | "page" | "technical";
+
+interface EditorialItem {
   title: string;
-  type: "article" | "announcement" | "newsletter" | "page" | "live" | "technical";
-  status: "draft" | "review" | "scheduled" | "published" | "late";
+  type: EditorialType;
+  status: EditorialStatus;
+  date: string;
   time: string;
-  team: string;
-  priority: "low" | "medium" | "high";
-  href: string;
-};
-
-type CalendarDay = {
-  day: string;
-  date: string;
-  items: CalendarItem[];
-};
-
-type UpcomingContent = {
-  id: string;
-  title: string;
-  channel: string;
-  date: string;
-  status: CalendarItem["status"];
   owner: string;
   href: string;
-};
+}
 
-const statusLabels: Record<CalendarItem["status"], string> = {
-  draft: "Brouillon",
-  review: "En révision",
-  scheduled: "Planifié",
-  published: "Publié",
-  late: "En retard",
-};
+const editorialHealth = [
+  { label: "Cycle éditorial", value: "Semaine active", tone: "operational" },
+  { label: "Dernière publication", value: "il y a 2h", tone: "neutral" },
+  { label: "Contenus à valider", value: "5", tone: "attention" },
+  { label: "Planifiés", value: "4", tone: "operational" },
+];
 
-const typeLabels: Record<CalendarItem["type"], string> = {
-  article: "Article",
-  announcement: "Annonce",
-  newsletter: "Newsletter",
-  page: "Page publique",
-  live: "Live",
-  technical: "Technique",
-};
-
-const priorityLabels: Record<CalendarItem["priority"], string> = {
-  low: "Basse",
-  medium: "Moyenne",
-  high: "Haute",
-};
-
-const statusStyles: Record<CalendarItem["status"], string> = {
-  draft: "border-border/60 bg-muted/30 text-muted-foreground",
-  review: "border-amber-500/25 bg-amber-500/10 text-amber-700 dark:text-amber-300",
-  scheduled: "border-sky-500/25 bg-sky-500/10 text-sky-700 dark:text-sky-300",
-  published: "border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
-  late: "border-rose-500/25 bg-rose-500/10 text-rose-700 dark:text-rose-300",
-};
-
-const priorityStyles: Record<CalendarItem["priority"], string> = {
-  low: "border-border/60 bg-muted/20 text-muted-foreground",
-  medium: "border-primary/20 bg-primary/10 text-primary",
-  high: "border-rose-500/25 bg-rose-500/10 text-rose-700 dark:text-rose-300",
-};
-
-const summaryCards = [
+const priorityActions = [
   {
-    label: "Cette semaine",
-    value: "8 contenus",
+    label: "Nouvel article",
+    description: "Créer une publication pour le journal SGE.",
+    href: "/dashboard/articles/new",
+    icon: FileText,
+  },
+  {
+    label: "Planifier une publication",
+    description: "Programmer une publication, une page ou une opération éditoriale.",
+    href: "/dashboard/scheduling",
     icon: CalendarDays,
   },
   {
-    label: "En révision",
-    value: "4",
-    icon: ListChecks,
+    label: "Préparer la newsletter",
+    description: "Coordonner les contenus du prochain envoi.",
+    href: "/dashboard/newsletter",
+    icon: Mail,
   },
   {
-    label: "Planifiés",
-    value: "6",
-    icon: Clock3,
-  },
-  {
-    label: "En retard",
-    value: "2",
-    icon: ShieldCheck,
+    label: "Voir les analytics",
+    description: "Relier le planning aux signaux de lecture.",
+    href: "/dashboard/analytics",
+    icon: BarChart3,
   },
 ];
 
-const filters = [
-  "Tous",
-  "Articles",
-  "Annonces",
-  "Newsletter",
-  "Pages publiques",
-  "Live",
-  "Technique",
+const editorialMetrics = [
+  { title: "Brouillons", value: "7", description: "contenus en préparation", icon: FileText },
+  { title: "En révision", value: "5", description: "validation éditoriale", icon: FileCheck2 },
+  { title: "Planifiés", value: "4", description: "publications à venir", icon: Calendar },
+  { title: "Publiés", value: "42", description: "contenus actifs", icon: CheckCircle2 },
 ];
 
-const calendarDays: CalendarDay[] = [
+const weeklyPlan: Array<{ day: string; date: string; items: EditorialItem[] }> = [
   {
     day: "Lundi",
     date: "11 mai",
     items: [
       {
-        id: "aether-office",
-        title: "Point d'avancement Aether Office",
+        title: "Aether Office : état d'avancement",
         type: "article",
         status: "review",
+        date: "11 mai",
         time: "09:30",
-        team: "SGE Journal",
-        priority: "high",
+        owner: "Équipe Web Platform",
         href: "/dashboard/articles/aether-office",
       },
       {
-        id: "edge-update",
-        title: "Mise à jour Platform Edge",
+        title: "Annonce Platform Edge",
         type: "announcement",
         status: "scheduled",
+        date: "11 mai",
         time: "14:00",
-        team: "Platform",
-        priority: "medium",
+        owner: "Équipe Platform",
         href: "/dashboard/publications/platform-edge",
       },
     ],
@@ -165,14 +133,22 @@ const calendarDays: CalendarDay[] = [
     date: "12 mai",
     items: [
       {
-        id: "weekly-newsletter",
         title: "Newsletter hebdomadaire",
         type: "newsletter",
         status: "draft",
+        date: "12 mai",
         time: "08:45",
-        team: "Editorial",
-        priority: "medium",
+        owner: "Équipe Editorial",
         href: "/dashboard/newsletter",
+      },
+      {
+        title: "Programme partenaires SGE",
+        type: "page",
+        status: "scheduled",
+        date: "12 mai",
+        time: "16:00",
+        owner: "Équipe SGE",
+        href: "/dashboard/publications/partners-program",
       },
     ],
   },
@@ -181,24 +157,13 @@ const calendarDays: CalendarDay[] = [
     date: "13 mai",
     items: [
       {
-        id: "trust-center-pgp",
-        title: "Publication Trust Center PGP",
+        title: "Trust Center PGP",
         type: "page",
         status: "late",
+        date: "13 mai",
         time: "10:15",
-        team: "Trust & Security",
-        priority: "high",
-        href: "/dashboard/publications/trust-center-pgp",
-      },
-      {
-        id: "partners-program",
-        title: "Annonce Partners Program",
-        type: "announcement",
-        status: "scheduled",
-        time: "16:30",
-        team: "Partners",
-        priority: "medium",
-        href: "/dashboard/publications/partners-program",
+        owner: "Équipe Security",
+        href: "/dashboard/pages",
       },
     ],
   },
@@ -207,13 +172,12 @@ const calendarDays: CalendarDay[] = [
     date: "14 mai",
     items: [
       {
-        id: "skydb-note",
         title: "Note technique SkyDB",
         type: "technical",
         status: "review",
+        date: "14 mai",
         time: "11:00",
-        team: "Engineering",
-        priority: "high",
+        owner: "Équipe Engineering",
         href: "/dashboard/articles/skydb-note",
       },
     ],
@@ -223,324 +187,434 @@ const calendarDays: CalendarDay[] = [
     date: "15 mai",
     items: [
       {
-        id: "journal-recap",
         title: "Récapitulatif SGE Journal",
         type: "article",
         status: "scheduled",
+        date: "15 mai",
         time: "09:00",
-        team: "SGE Journal",
-        priority: "low",
+        owner: "Équipe Editorial",
         href: "/dashboard/articles/journal-recap",
       },
     ],
   },
-  {
-    day: "Weekend",
-    date: "16-17 mai",
-    items: [
-      {
-        id: "live-platform",
-        title: "Live Platform Office Hours",
-        type: "live",
-        status: "scheduled",
-        time: "17:00",
-        team: "Community",
-        priority: "medium",
-        href: "/dashboard/scheduling",
-      },
-    ],
-  },
 ];
 
-const upcomingContents: UpcomingContent[] = [
-  {
-    id: "public-roadmap",
-    title: "Page publique Roadmap Cloud",
-    channel: "Pages publiques",
-    date: "18 mai 2026",
-    status: "review",
-    owner: "Platform",
-    href: "/dashboard/publications/public-roadmap",
-  },
-  {
-    id: "podcast-founders",
-    title: "Podcast SGE Founders Notes",
-    channel: "Podcast",
-    date: "19 mai 2026",
-    status: "scheduled",
-    owner: "Editorial",
-    href: "/dashboard/publications/podcast-founders",
-  },
-  {
-    id: "security-brief",
-    title: "Brief sécurité Data Residency",
-    channel: "Trust Center",
-    date: "20 mai 2026",
-    status: "draft",
-    owner: "Trust & Security",
-    href: "/dashboard/publications/security-brief",
-  },
-  {
-    id: "partner-spotlight",
-    title: "Partner Spotlight: Integrations Hub",
-    channel: "Blog",
-    date: "21 mai 2026",
-    status: "scheduled",
-    owner: "Partners",
-    href: "/dashboard/articles/partner-spotlight",
-  },
+const trackedModules = [
+  { name: "Platform", status: "En révision", updatedAt: "hier", href: "/fr/platform/edge" },
+  { name: "Trust Center", status: "À valider", updatedAt: "il y a 3h", href: "/fr/pgp" },
+  { name: "Partners", status: "Planifié", updatedAt: "il y a 1j", href: "/fr/partners/program" },
+  { name: "Journal", status: "Publié", updatedAt: "il y a 2h", href: "/fr/blog" },
 ];
 
-const editorialPriorities = ["Platform", "Trust & Security", "Partners", "SGE Journal"];
-const channels = ["Blog", "Newsletter", "Live", "Podcast", "Pages publiques"];
-const shortcuts = [
-  { label: "Nouvel article", href: "/dashboard/articles/new" },
-  { label: "Brouillons", href: "/dashboard/articles?status=draft" },
-  { label: "Planification", href: "/dashboard/scheduling" },
-  { label: "Newsletter", href: "/dashboard/newsletter" },
-  { label: "Analytics", href: "/dashboard/analytics" },
+const recentActivity = [
+  { team: "Équipe Web", action: "a publié", target: "SGE Journal", time: "il y a 2h", icon: FileText },
+  { team: "Security", action: "a mis à jour", target: "la page PGP", time: "il y a 3h", icon: ShieldCheck },
+  { team: "Platform", action: "a planifié", target: "une annonce Edge", time: "hier", icon: Layers3 },
+  { team: "Editorial", action: "a préparé", target: "la newsletter", time: "hier", icon: Mail },
 ];
+
+const quickLinks = [
+  { label: "Site public", href: "/fr", icon: Globe },
+  { label: "Articles", href: "/dashboard/articles", icon: FileText },
+  { label: "Planification", href: "/dashboard/scheduling", icon: CalendarDays },
+  { label: "Pages", href: "/dashboard/pages", icon: Layers3 },
+  { label: "Newsletter", href: "/dashboard/newsletter", icon: Mail },
+  { label: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
+];
+
+const typeLabels: Record<EditorialType, string> = {
+  article: "Article",
+  announcement: "Annonce",
+  newsletter: "Newsletter",
+  page: "Page publique",
+  technical: "Technique",
+};
+
+const statusLabels: Record<EditorialStatus, string> = {
+  draft: "Brouillon",
+  review: "En révision",
+  scheduled: "Planifié",
+  published: "Publié",
+  late: "En retard",
+};
+
+const statusClasses: Record<EditorialStatus, string> = {
+  draft: "border-slate-200 bg-slate-50 text-slate-700",
+  review: "border-amber-200 bg-amber-50 text-amber-700",
+  scheduled: "border-blue-200 bg-blue-50 text-blue-700",
+  published: "border-emerald-200 bg-emerald-50 text-emerald-700",
+  late: "border-rose-200 bg-rose-50 text-rose-700",
+};
+
+function StatusDot({ tone }: { tone: string }) {
+  const className =
+    tone === "operational"
+      ? "bg-emerald-500"
+      : tone === "attention"
+        ? "bg-amber-500"
+        : "bg-muted-foreground";
+
+  return <span className={`h-2.5 w-2.5 rounded-full ${className}`} aria-hidden="true" />;
+}
+
+function StatusBadge({ status }: { status: EditorialStatus }) {
+  return (
+    <Badge variant="outline" className={statusClasses[status]}>
+      {statusLabels[status]}
+    </Badge>
+  );
+}
+
+function ModuleStatusBadge({ status }: { status: string }) {
+  if (status === "Publié") return <Badge variant="secondary">Stable</Badge>;
+  if (status === "Planifié") return <Badge variant="outline">Planifié</Badge>;
+  return <Badge variant="outline">À valider</Badge>;
+}
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
 
 export default function EditorialCalendarPage() {
+  const [timeRange, setTimeRange] = React.useState("week");
+  const [statusFilter, setStatusFilter] = React.useState("all");
+
+  const flatItems = weeklyPlan.flatMap((day) => day.items);
+  const filteredPlan = weeklyPlan.map((day) => ({
+    ...day,
+    items: day.items.filter((item) => statusFilter === "all" || item.status === statusFilter),
+  }));
+
   return (
-    <div className="space-y-6 bg-background">
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-            <Sparkles className="size-4" />
-            Console SGE
-          </div>
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight">Calendrier éditorial</h1>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Planifiez les publications, annonces, newsletters et contenus publics de Sky Genesis
-              Enterprise.
-            </p>
-          </div>
+    <div className="space-y-6 bg-background p-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-medium text-foreground">Calendrier éditorial</h1>
+          <p className="max-w-3xl text-sm text-muted-foreground">
+            Pilotez les publications, annonces, newsletters et pages publiques en cohérence avec la
+            vue d'ensemble du site officiel.
+          </p>
         </div>
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <Button asChild variant="outline" className="rounded-2xl">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Select value={timeRange} onValueChange={setTimeRange}>
+            <SelectTrigger className="w-full sm:w-44">
+              <Calendar className="mr-2 h-4 w-4" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="week">Cette semaine</SelectItem>
+              <SelectItem value="next">Semaine prochaine</SelectItem>
+              <SelectItem value="month">Ce mois</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button variant="outline" asChild>
+            <Link href="/fr">
+              Voir le site
+              <ExternalLink className="h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild>
             <Link href="/dashboard/articles/new">
-              <Plus className="size-4" />
               Nouvel article
-            </Link>
-          </Button>
-          <Button asChild className="rounded-2xl">
-            <Link href="/dashboard/scheduling">
-              <CalendarDays className="size-4" />
-              Planifier une publication
+              <Plus className="h-4 w-4" />
             </Link>
           </Button>
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {summaryCards.map((card) => {
-          const Icon = card.icon;
-
-          return (
-            <Card key={card.label} className="rounded-2xl border-border/50 bg-card">
-              <CardContent className="flex items-center justify-between gap-4 pt-0">
-                <div>
-                  <p className="text-sm text-muted-foreground">{card.label}</p>
-                  <p className="mt-2 text-2xl font-semibold">{card.value}</p>
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {editorialHealth.map((item) => (
+          <Card key={item.label} className="rounded-2xl border-border/50 bg-card py-4 shadow-none">
+            <CardContent className="px-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">{item.label}</p>
+                  <p className="text-sm font-medium text-foreground">{item.value}</p>
                 </div>
-                <div className="rounded-2xl border border-border/50 bg-muted/20 p-3">
-                  <Icon className="size-5 text-muted-foreground" />
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <main className="space-y-6">
-          <Card className="rounded-2xl border-border/50 bg-card">
-            <CardContent className="pt-0">
-              <div className="flex flex-wrap gap-2">
-                {filters.map((filter, index) => (
-                  <Button
-                    key={filter}
-                    variant={index === 0 ? "default" : "outline"}
-                    size="sm"
-                    className="rounded-2xl"
-                  >
-                    {filter}
-                  </Button>
-                ))}
+                <StatusDot tone={item.tone} />
               </div>
             </CardContent>
           </Card>
+        ))}
+      </div>
 
-          <Card className="rounded-2xl border-border/50 bg-card">
-            <CardHeader>
-              <CardTitle>Vue semaine éditoriale</CardTitle>
-              <CardDescription>
-                Suivi opérationnel des contenus à produire, valider et publier.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
-                {calendarDays.map((day) => (
-                  <section
-                    key={day.day}
-                    className="min-h-64 rounded-2xl border border-border/50 bg-muted/20 p-3"
-                  >
-                    <div className="mb-3 flex items-start justify-between gap-3">
-                      <div>
-                        <h2 className="text-sm font-semibold">{day.day}</h2>
-                        <p className="text-xs text-muted-foreground">{day.date}</p>
-                      </div>
-                      <Badge variant="outline" className="bg-card text-xs">
-                        {day.items.length}
-                      </Badge>
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {priorityActions.map((action) => (
+          <Card
+            key={action.label}
+            className="rounded-2xl border-border/50 bg-card py-0 shadow-none transition-colors hover:bg-muted/20"
+          >
+            <Link href={action.href} className="flex h-full flex-col gap-4 p-5">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted/40">
+                  <action.icon className="h-5 w-5 text-muted-foreground" />
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <div className="space-y-1">
+                <h2 className="text-base font-medium text-foreground">{action.label}</h2>
+                <p className="text-sm text-muted-foreground">{action.description}</p>
+              </div>
+            </Link>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {editorialMetrics.map((metric) => (
+          <Card key={metric.title} className="rounded-2xl border-border/50 bg-card py-4 shadow-none">
+            <CardContent className="px-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">{metric.title}</p>
+                  <p className="text-2xl font-medium tracking-tight text-foreground">{metric.value}</p>
+                  <p className="text-xs text-muted-foreground">{metric.description}</p>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted/40">
+                  <metric.icon className="h-5 w-5 text-muted-foreground" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-7">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none xl:col-span-4">
+          <CardHeader className="pb-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Vue semaine éditoriale</CardTitle>
+                <CardDescription>
+                  Contenus publics à produire, valider et publier sur la période sélectionnée.
+                </CardDescription>
+              </div>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-full sm:w-44">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Tous les statuts</SelectItem>
+                  <SelectItem value="draft">Brouillons</SelectItem>
+                  <SelectItem value="review">En révision</SelectItem>
+                  <SelectItem value="scheduled">Planifiés</SelectItem>
+                  <SelectItem value="published">Publiés</SelectItem>
+                  <SelectItem value="late">En retard</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-5">
+              {filteredPlan.map((day) => (
+                <section key={day.day} className="min-h-64 rounded-2xl border border-border/50 bg-muted/20 p-3">
+                  <div className="mb-3 flex items-start justify-between gap-3">
+                    <div>
+                      <h2 className="text-sm font-medium text-foreground">{day.day}</h2>
+                      <p className="text-xs text-muted-foreground">{day.date}</p>
                     </div>
+                    <Badge variant="outline" className="bg-card text-xs">
+                      {day.items.length}
+                    </Badge>
+                  </div>
 
-                    <div className="space-y-3">
-                      {day.items.map((item) => (
+                  <div className="space-y-3">
+                    {day.items.length === 0 ? (
+                      <div className="rounded-2xl border border-dashed border-border/60 bg-card/50 p-3 text-xs text-muted-foreground">
+                        Aucun contenu pour ce filtre.
+                      </div>
+                    ) : (
+                      day.items.map((item) => (
                         <Link
-                          key={item.id}
+                          key={`${day.day}-${item.title}`}
                           href={item.href}
                           className="block rounded-2xl border border-border/50 bg-card p-3 transition-colors hover:bg-muted/20"
                         >
                           <div className="space-y-3">
-                            <div className="space-y-2">
-                              <div className="flex items-center justify-between gap-2">
-                                <Badge variant="outline" className="bg-muted/20">
-                                  {typeLabels[item.type]}
-                                </Badge>
-                                <Badge
-                                  variant="outline"
-                                  className={cn(priorityStyles[item.priority])}
-                                >
-                                  {priorityLabels[item.priority]}
-                                </Badge>
-                              </div>
-                              <h3 className="text-sm font-medium leading-snug">{item.title}</h3>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <Badge variant="outline" className="bg-muted/20">
+                                {typeLabels[item.type]}
+                              </Badge>
+                              <StatusBadge status={item.status} />
                             </div>
-
+                            <h3 className="line-clamp-2 text-sm font-medium leading-snug text-foreground">
+                              {item.title}
+                            </h3>
                             <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                               <span className="inline-flex items-center gap-1">
-                                <Clock3 className="size-3" />
+                                <Clock className="h-3 w-3" />
                                 {item.time}
                               </span>
-                              <span>{item.team}</span>
+                              <span>{item.owner}</span>
                             </div>
-
-                            <Badge variant="outline" className={cn(statusStyles[item.status])}>
-                              {statusLabels[item.status]}
-                            </Badge>
                           </div>
                         </Link>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-2xl border-border/50 bg-card">
-            <CardHeader>
-              <CardTitle>À publier prochainement</CardTitle>
-              <CardDescription>
-                Contenus SGE à finaliser sur les prochains cycles de publication.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {upcomingContents.map((content) => (
-                  <div
-                    key={content.id}
-                    className="grid gap-3 rounded-2xl border border-border/50 bg-muted/20 p-4 md:grid-cols-[1fr_150px_120px_auto] md:items-center"
-                  >
-                    <div className="min-w-0">
-                      <p className="font-medium">{content.title}</p>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {content.channel} · {content.owner}
-                      </p>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{content.date}</p>
-                    <Badge variant="outline" className={cn(statusStyles[content.status])}>
-                      {statusLabels[content.status]}
-                    </Badge>
-                    <Button asChild variant="outline" size="sm" className="rounded-2xl">
-                      <Link href={content.href}>
-                        Voir
-                        <ArrowRight className="size-4" />
-                      </Link>
-                    </Button>
+                      ))
+                    )}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </main>
+                </section>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-        <aside className="space-y-6">
-          <Card className="rounded-2xl border-border/50 bg-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Megaphone className="size-4" />
-                Priorités éditoriales
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {editorialPriorities.map((priority) => (
-                <div
-                  key={priority}
-                  className="flex items-center justify-between rounded-2xl border border-border/50 bg-muted/20 px-3 py-2 text-sm"
-                >
-                  <span>{priority}</span>
-                  <Badge variant="outline" className="bg-card">
-                    Actif
-                  </Badge>
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none xl:col-span-3">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Pipeline éditorial</CardTitle>
+                <CardDescription>Vue compacte alignée avec la vue d'ensemble.</CardDescription>
+              </div>
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/dashboard/articles">
+                  Voir les contenus
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="divide-y divide-border/50">
+              {flatItems.slice(0, 6).map((item) => (
+                <div key={`${item.date}-${item.title}`} className="flex items-center gap-4 px-6 py-4">
+                  <Avatar className="h-9 w-9">
+                    <AvatarFallback className="bg-muted text-xs text-muted-foreground">
+                      {getInitials(item.owner)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
+                      <Badge variant="outline">{typeLabels[item.type]}</Badge>
+                      <StatusBadge status={item.status} />
+                    </div>
+                    <p className="truncate text-sm font-medium text-foreground">{item.title}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {item.owner} · {item.date} · {item.time}
+                    </p>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Actions pour {item.title}</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem asChild>
+                        <Link href={item.href}>Ouvrir</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/dashboard/scheduling">Planifier</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>Assigner</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               ))}
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
-          <Card className="rounded-2xl border-border/50 bg-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Radio className="size-4" />
-                Canaux
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-              {channels.map((channel) => (
-                <Badge key={channel} variant="outline" className="bg-muted/20 px-3 py-1">
-                  {channel}
-                </Badge>
+      <div className="grid gap-6 xl:grid-cols-3">
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Modules publics suivis</CardTitle>
+                <CardDescription>État éditorial des surfaces visibles publiquement.</CardDescription>
+              </div>
+              <Layers3 className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="divide-y divide-border/50">
+              {trackedModules.map((module) => (
+                <div key={module.name} className="flex items-center justify-between gap-4 px-6 py-3">
+                  <div className="min-w-0 space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-sm font-medium text-foreground">{module.name}</p>
+                      <ModuleStatusBadge status={module.status} />
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {module.status} · Mise à jour {module.updatedAt}
+                    </p>
+                  </div>
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link href={module.href}>
+                      Voir <span className="sr-only">{module.name}</span>
+                    </Link>
+                  </Button>
+                </div>
               ))}
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          <Card className="rounded-2xl border-border/50 bg-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <FileText className="size-4" />
-                Raccourcis
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {shortcuts.map((shortcut) => (
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Activité récente</CardTitle>
+                <CardDescription>Dernières actions éditoriales visibles dans le dashboard.</CardDescription>
+              </div>
+              <Clock className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="divide-y divide-border/50">
+              {recentActivity.map((activity) => (
+                <div key={`${activity.team}-${activity.target}`} className="flex gap-3 px-6 py-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted/40">
+                    <activity.icon className="h-4 w-4 text-muted-foreground" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm text-foreground">
+                      <span className="font-medium">{activity.team}</span>{" "}
+                      <span className="text-muted-foreground">{activity.action}</span>{" "}
+                      <span className="font-medium">{activity.target}</span>
+                    </p>
+                    <p className="text-xs text-muted-foreground">{activity.time}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl border-border/50 bg-card shadow-none">
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base font-medium">Accès rapides</CardTitle>
+                <CardDescription>Surfaces publiques et outils éditoriaux.</CardDescription>
+              </div>
+              <Users className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-2">
+              {quickLinks.map((link) => (
                 <Button
-                  key={shortcut.href}
-                  asChild
+                  key={link.label}
                   variant="outline"
-                  className="w-full justify-between rounded-2xl"
+                  className="h-auto justify-start gap-2 rounded-xl py-3"
+                  asChild
                 >
-                  <Link href={shortcut.href}>
-                    {shortcut.label}
-                    <ArrowRight className="size-4" />
+                  <Link href={link.href}>
+                    <link.icon className="h-4 w-4 text-muted-foreground" />
+                    <span className="truncate">{link.label}</span>
                   </Link>
                 </Button>
               ))}
-            </CardContent>
-          </Card>
-        </aside>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
