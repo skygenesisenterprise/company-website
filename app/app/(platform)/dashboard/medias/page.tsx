@@ -1,42 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import * as React from "react";
 import Image from "next/image";
-import {
-  Plus,
-  Search,
-  MoreHorizontal,
-  Pencil,
-  Trash2,
-  Eye,
-  Download,
-  Copy,
-  ImageIcon,
-  Film,
-  FileText,
-  File,
-  Loader2,
-} from "lucide-react";
+import { Copy, Eye, File, FileText, Film, ImageIcon, MoreHorizontal, Pencil, Plus, Trash2, Upload } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  DashboardCardGrid,
+  DashboardEmptyState,
+  DashboardErrorState,
+  DashboardLoadingRows,
+  DashboardPageHeader,
+  DashboardResourceCard,
+  DashboardSearch,
+  DashboardTableFrame,
+  DashboardToolbar,
+} from "@/components/dashboard/cms-shell";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -45,479 +25,379 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { mediaApi } from "@/lib/api";
-import type { Media as MediaType } from "@/lib/api/types";
+import type { Media } from "@/lib/api/types";
+
+type MediaKind = "all" | "image" | "video" | "document" | "other";
 
 interface MediaDisplay {
   id: string;
   name: string;
-  type: "image" | "video" | "document";
+  type: Exclude<MediaKind, "all">;
   url: string;
   size: string;
   dimensions?: string;
-  uploadedAt: string;
-  usedIn: number;
+  uploadedAt?: string;
+  author?: string;
 }
 
-const mockMedias: MediaDisplay[] = [
+const fallbackMedias: MediaDisplay[] = [
   {
-    id: "1",
-    name: "reforme-economique.jpg",
+    id: "hero-cloud",
+    name: "sge-cloud-platform.jpg",
     type: "image",
-    url: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=300&fit=crop",
-    size: "2.4 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-25",
-    usedIn: 3,
-  },
-  {
-    id: "2",
-    name: "victoire-sport.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&h=300&fit=crop",
-    size: "1.8 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-24",
-    usedIn: 2,
-  },
-  {
-    id: "3",
-    name: "negociations-geneva.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1524522173746-f628baad3644?w=400&h=300&fit=crop",
-    size: "3.1 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-23",
-    usedIn: 1,
-  },
-  {
-    id: "4",
-    name: "startup-energie.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop",
-    size: "2.2 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-22",
-    usedIn: 1,
-  },
-  {
-    id: "5",
-    name: "vague-chaleur.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1504370805625-d32c54b16100?w=400&h=300&fit=crop",
+    url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     size: "1.9 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-21",
-    usedIn: 2,
+    dimensions: "1600x1067",
+    uploadedAt: "2026-04-20",
+    author: "Équipe marque",
   },
   {
-    id: "6",
-    name: "festival-cinema.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=300&fit=crop",
-    size: "2.7 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-20",
-    usedIn: 1,
+    id: "trust-center",
+    name: "trust-center-brief.pdf",
+    type: "document",
+    url: "/documents/trust-center-brief.pdf",
+    size: "640 KB",
+    uploadedAt: "2026-04-14",
+    author: "Communication",
   },
   {
-    id: "7",
-    name: "musee-art-moderne.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=400&h=300&fit=crop",
-    size: "3.4 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-19",
-    usedIn: 1,
-  },
-  {
-    id: "8",
-    name: "interview-banquier.jpg",
-    type: "image",
-    url: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop",
-    size: "2.1 MB",
-    dimensions: "1920x1080",
-    uploadedAt: "2026-03-18",
-    usedIn: 0,
+    id: "founders-talk",
+    name: "founders-talk.mp4",
+    type: "video",
+    url: "/media/founders-talk.mp4",
+    size: "42.1 MB",
+    uploadedAt: "2026-04-03",
+    author: "Studio",
   },
 ];
 
-const typeConfig = {
-  image: { icon: ImageIcon, label: "Image", variant: "default" as const },
-  video: { icon: Film, label: "Vidéo", variant: "secondary" as const },
-  document: { icon: FileText, label: "Document", variant: "outline" as const },
+const typeLabels: Record<Exclude<MediaKind, "all">, string> = {
+  image: "Image",
+  video: "Vidéo",
+  document: "Document",
+  other: "Autre",
 };
 
+const typeIcons = {
+  image: ImageIcon,
+  video: Film,
+  document: FileText,
+  other: File,
+};
+
+function mediaKind(mimeType?: string): MediaDisplay["type"] {
+  if (!mimeType) return "other";
+  if (mimeType.startsWith("image/")) return "image";
+  if (mimeType.startsWith("video/")) return "video";
+  if (mimeType.includes("pdf") || mimeType.includes("document") || mimeType.includes("text")) return "document";
+  return "other";
+}
+
+function formatFileSize(bytes?: number): string {
+  if (!bytes) return "Non renseigné";
+  if (bytes < 1024) return `${bytes} o`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} Ko`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} Mo`;
+}
+
+function formatDate(value?: string) {
+  if (!value) return "Non renseigné";
+  return new Intl.DateTimeFormat("fr-FR", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(value));
+}
+
+function toMediaDisplay(media: Media): MediaDisplay {
+  return {
+    id: media.id,
+    name: media.originalName || media.filename,
+    type: mediaKind(media.mimeType),
+    url: media.url,
+    size: formatFileSize(media.size),
+    dimensions: media.width && media.height ? `${media.width}x${media.height}` : undefined,
+    uploadedAt: media.createdAt,
+  };
+}
+
+function MediaPreview({ media }: { media: MediaDisplay }) {
+  if (media.type === "image" && media.url) {
+    return (
+      <div className="relative size-12 overflow-hidden rounded-md border border-border/70 bg-muted">
+        <Image src={media.url} alt={media.name} fill className="object-cover" sizes="48px" />
+      </div>
+    );
+  }
+
+  const Icon = typeIcons[media.type];
+  return (
+    <div className="flex size-12 items-center justify-center rounded-md border border-border/70 bg-muted/30 text-muted-foreground">
+      <Icon className="size-5" />
+    </div>
+  );
+}
+
 export default function MediasPage() {
-  const [medias, setMedias] = useState<MediaDisplay[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedMedias, setSelectedMedias] = useState<string[]>([]);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [mediaToDelete, setMediaToDelete] = useState<MediaDisplay | null>(null);
-  const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
-  const [dragActive, setDragActive] = useState(false);
+  const [medias, setMedias] = React.useState<MediaDisplay[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [selectedType, setSelectedType] = React.useState<MediaKind>("all");
+  const [uploadDialogOpen, setUploadDialogOpen] = React.useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+  const [mediaToDelete, setMediaToDelete] = React.useState<MediaDisplay | null>(null);
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
+  const [isUploading, setIsUploading] = React.useState(false);
 
-  useEffect(() => {
-    loadMedias();
-  }, []);
-
-  async function loadMedias() {
+  const loadMedias = React.useCallback(async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const response = await mediaApi.list();
-      if (response.success && response.data) {
-        const mapped: MediaDisplay[] = response.data.map((m) => {
-          const mimeType = m.mimeType || "";
-          let type: "image" | "video" | "document" = "document";
-          if (mimeType.startsWith("image/")) type = "image";
-          else if (mimeType.startsWith("video/")) type = "video";
-
-          return {
-            id: m.id,
-            name: m.originalName || m.filename,
-            type,
-            url: m.url || "",
-            size: formatFileSize(m.size),
-            dimensions: m.width && m.height ? `${m.width}x${m.height}` : undefined,
-            uploadedAt: m.createdAt || new Date().toISOString(),
-            usedIn: 0,
-          };
-        });
-        setMedias(mapped);
-      }
-    } catch (error) {
-      console.error("Failed to load medias:", error);
-      setMedias(mockMedias);
+      setMedias(response.success && response.data ? response.data.map(toMediaDisplay) : []);
+    } catch {
+      setMedias(fallbackMedias);
+      setError("La médiathèque API ne répond pas. Les fichiers de démonstration restent visibles.");
     } finally {
       setIsLoading(false);
     }
-  }
+  }, []);
 
-  function formatFileSize(bytes: number): string {
-    if (bytes < 1024) return bytes + " B";
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
-    return (bytes / (1024 * 1024)).toFixed(1) + " MB";
-  }
+  React.useEffect(() => {
+    void loadMedias();
+  }, [loadMedias]);
 
-  async function handleDeleteMedia() {
+  const filteredMedias = medias.filter((media) => {
+    const query = searchQuery.toLowerCase();
+    const matchesSearch = media.name.toLowerCase().includes(query);
+    const matchesType = selectedType === "all" || media.type === selectedType;
+    return matchesSearch && matchesType;
+  });
+
+  const uploadMedia = async () => {
+    if (!selectedFile) return;
+    setIsUploading(true);
+    try {
+      const response = await mediaApi.upload(selectedFile);
+      if (response.success && response.data) {
+        setMedias((current) => [toMediaDisplay(response.data as Media), ...current]);
+      }
+    } catch {
+      setMedias((current) => [
+        {
+          id: `local-${Date.now()}`,
+          name: selectedFile.name,
+          type: mediaKind(selectedFile.type),
+          url: URL.createObjectURL(selectedFile),
+          size: formatFileSize(selectedFile.size),
+          uploadedAt: new Date().toISOString(),
+        },
+        ...current,
+      ]);
+    } finally {
+      setIsUploading(false);
+      setSelectedFile(null);
+      setUploadDialogOpen(false);
+    }
+  };
+
+  const deleteMedia = async () => {
     if (!mediaToDelete) return;
     try {
       await mediaApi.delete(mediaToDelete.id);
-      setMedias((prev) => prev.filter((m) => m.id !== mediaToDelete.id));
-      setSelectedMedias((prev) => prev.filter((id) => id !== mediaToDelete.id));
-    } catch (error) {
-      console.error("Failed to delete media:", error);
+    } catch {
+      // Local fallback keeps the management flow usable without the API.
     }
-    setDeleteDialogOpen(false);
+    setMedias((current) => current.filter((media) => media.id !== mediaToDelete.id));
     setMediaToDelete(null);
-  }
+    setDeleteDialogOpen(false);
+  };
 
-  const filteredMedias = medias.filter((media) =>
-    media.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const copyUrl = async (url: string) => {
+    if (!url || typeof navigator === "undefined") return;
+    await navigator.clipboard?.writeText(url);
+  };
+
+  const primaryAction = (
+    <Button onClick={() => setUploadDialogOpen(true)}>
+      <Plus className="size-4" />
+      Importer un média
+    </Button>
   );
 
-  const toggleSelectAll = () => {
-    if (selectedMedias.length === filteredMedias.length) {
-      setSelectedMedias([]);
-    } else {
-      setSelectedMedias(filteredMedias.map((m) => m.id));
-    }
-  };
-
-  const toggleSelectMedia = (id: string) => {
-    setSelectedMedias((prev) => (prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id]));
-  };
-
-  const handleDelete = (media: MediaDisplay) => {
-    setMediaToDelete(media);
-    setDeleteDialogOpen(true);
-  };
-
-  const confirmDelete = () => {
-    if (mediaToDelete) {
-      setMedias((prev) => prev.filter((m) => m.id !== mediaToDelete.id));
-      setSelectedMedias((prev) => prev.filter((id) => id !== mediaToDelete.id));
-    }
-    setDeleteDialogOpen(false);
-    setMediaToDelete(null);
-  };
-
-  const handleUpload = () => {
-    setIsUploading(true);
-    setUploadProgress(0);
-    const interval = setInterval(() => {
-      setUploadProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsUploading(false);
-          setUploadDialogOpen(false);
-          setUploadProgress(0);
-          const newMedia: MediaDisplay = {
-            id: Date.now().toString(),
-            name: "nouveau-media.jpg",
-            type: "image",
-            url: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=300&fit=crop",
-            size: "2.5 MB",
-            dimensions: "1920x1080",
-            uploadedAt: new Date().toISOString().split("T")[0],
-            usedIn: 0,
-          };
-          setMedias((prev) => [newMedia, ...prev]);
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 200);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("fr-FR", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-  };
-
   return (
-    <div className="p-6 space-y-6">
-      {/* Page Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Médias</h1>
-          <p className="text-sm text-muted-foreground">Gérez les médias de votre site</p>
-        </div>
-        <Button onClick={() => setUploadDialogOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" />
-          Ajouter un média
-        </Button>
-      </div>
+    <div className="space-y-6 bg-background p-4 sm:p-6">
+      <DashboardPageHeader
+        title="Médias"
+        description="Centralisez les fichiers utilisés par les pages publiques."
+        action={primaryAction}
+      />
 
-      {/* Filters */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            placeholder="Rechercher un média..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9"
-          />
-        </div>
-      </div>
+      {error ? <DashboardErrorState message={error} onRetry={loadMedias} /> : null}
 
-      {/* Bulk Actions */}
-      {selectedMedias.length > 0 && (
-        <div className="flex items-center gap-4 rounded-lg border border-border bg-muted/50 p-3">
-          <span className="text-sm text-muted-foreground">
-            {selectedMedias.length} média{selectedMedias.length > 1 ? "s" : ""} sélectionné
-            {selectedMedias.length > 1 ? "s" : ""}
-          </span>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm">
-              <Download className="mr-2 h-4 w-4" />
-              Télécharger
-            </Button>
-            <Button variant="destructive" size="sm">
-              <Trash2 className="mr-2 h-4 w-4" />
-              Supprimer
-            </Button>
-          </div>
-        </div>
+      <DashboardToolbar>
+        <DashboardSearch value={searchQuery} onChange={setSearchQuery} placeholder="Rechercher un fichier" />
+        <Select value={selectedType} onValueChange={(value) => setSelectedType(value as MediaKind)}>
+          <SelectTrigger className="w-full md:w-47.5">
+            <SelectValue placeholder="Type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tous les types</SelectItem>
+            <SelectItem value="image">Images</SelectItem>
+            <SelectItem value="document">Documents</SelectItem>
+            <SelectItem value="video">Vidéos</SelectItem>
+            <SelectItem value="other">Autres</SelectItem>
+          </SelectContent>
+        </Select>
+      </DashboardToolbar>
+
+      {isLoading ? (
+        <DashboardLoadingRows />
+      ) : filteredMedias.length === 0 ? (
+        <DashboardEmptyState
+          icon={Upload}
+          title={searchQuery || selectedType !== "all" ? "Aucun média ne correspond aux filtres" : "Aucun média importé"}
+          description={
+            searchQuery || selectedType !== "all"
+              ? "Ajustez la recherche ou le type de fichier pour retrouver un média."
+              : "Importez les visuels et documents nécessaires aux pages du site officiel."
+          }
+          action={!searchQuery && selectedType === "all" ? primaryAction : undefined}
+        />
+      ) : (
+        <>
+          <DashboardTableFrame>
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/20">
+                  <TableHead>Aperçu</TableHead>
+                  <TableHead>Nom</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Taille</TableHead>
+                  <TableHead>Dimensions</TableHead>
+                  <TableHead>Auteur</TableHead>
+                  <TableHead>Date d’ajout</TableHead>
+                  <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredMedias.map((media) => {
+                  const Icon = typeIcons[media.type];
+                  return (
+                    <TableRow key={media.id}>
+                      <TableCell><MediaPreview media={media} /></TableCell>
+                      <TableCell className="max-w-xs truncate font-medium">{media.name}</TableCell>
+                      <TableCell>
+                        <Badge variant="outline">
+                          <Icon className="size-3" />
+                          {typeLabels[media.type]}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-muted-foreground">{media.size}</TableCell>
+                      <TableCell className="text-muted-foreground">{media.dimensions || "-"}</TableCell>
+                      <TableCell className="text-muted-foreground">{media.author || "-"}</TableCell>
+                      <TableCell className="text-muted-foreground">{formatDate(media.uploadedAt)}</TableCell>
+                      <TableCell>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                              <MoreHorizontal className="size-4" />
+                              <span className="sr-only">Actions</span>
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                              <Eye className="size-4" />
+                              Voir les détails
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => void copyUrl(media.url)}>
+                              <Copy className="size-4" />
+                              Copier l’URL
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Pencil className="size-4" />
+                              Renommer
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              className="text-destructive focus:text-destructive"
+                              onClick={() => {
+                                setMediaToDelete(media);
+                                setDeleteDialogOpen(true);
+                              }}
+                            >
+                              <Trash2 className="size-4" />
+                              Supprimer
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </DashboardTableFrame>
+
+          <DashboardCardGrid>
+            {filteredMedias.map((media) => (
+              <DashboardResourceCard key={media.id}>
+                <div className="flex gap-3">
+                  <MediaPreview media={media} />
+                  <div className="min-w-0 flex-1">
+                    <h2 className="truncate font-medium">{media.name}</h2>
+                    <p className="text-sm text-muted-foreground">{typeLabels[media.type]} · {media.size}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{formatDate(media.uploadedAt)}</p>
+                  </div>
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <Button variant="outline" size="sm" onClick={() => void copyUrl(media.url)}>Copier l’URL</Button>
+                  <Button variant="outline" size="sm" onClick={() => {
+                    setMediaToDelete(media);
+                    setDeleteDialogOpen(true);
+                  }}>Supprimer</Button>
+                </div>
+              </DashboardResourceCard>
+            ))}
+          </DashboardCardGrid>
+        </>
       )}
 
-      {/* Medias Table */}
-      <div className="rounded-lg border border-border bg-card">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-12">
-                <Checkbox
-                  checked={
-                    selectedMedias.length === filteredMedias.length && filteredMedias.length > 0
-                  }
-                  onCheckedChange={toggleSelectAll}
-                  aria-label="Sélectionner tout"
-                />
-              </TableHead>
-              <TableHead>Aperçu</TableHead>
-              <TableHead>Nom</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Taille</TableHead>
-              <TableHead>Dimensions</TableHead>
-              <TableHead>Utilisé dans</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead className="w-12"></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredMedias.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={9} className="h-24 text-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <ImageIcon className="h-8 w-8 text-muted-foreground" />
-                    <p className="text-muted-foreground">Aucun média trouvé</p>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ) : (
-              filteredMedias.map((media) => {
-                const TypeIcon = typeConfig[media.type].icon;
-                return (
-                  <TableRow key={media.id}>
-                    <TableCell>
-                      <Checkbox
-                        checked={selectedMedias.includes(media.id)}
-                        onCheckedChange={() => toggleSelectMedia(media.id)}
-                        aria-label={`Sélectionner ${media.name}`}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <div className="relative h-12 w-16 overflow-hidden rounded">
-                        <Image src={media.url} alt={media.name} fill className="object-cover" />
-                      </div>
-                    </TableCell>
-                    <TableCell className="font-medium">{media.name}</TableCell>
-                    <TableCell>
-                      <Badge variant={typeConfig[media.type].variant} className="gap-1">
-                        <TypeIcon className="h-3 w-3" />
-                        {typeConfig[media.type].label}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground">{media.size}</TableCell>
-                    <TableCell className="text-muted-foreground">
-                      {media.dimensions || "-"}
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary">
-                        {media.usedIn} article{media.usedIn !== 1 ? "s" : ""}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground">
-                      {formatDate(media.uploadedAt)}
-                    </TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8">
-                            <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Eye className="mr-2 h-4 w-4" />
-                            Aperçu
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Download className="mr-2 h-4 w-4" />
-                            Télécharger
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Copy className="mr-2 h-4 w-4" />
-                            Copier l&apos;URL
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Pencil className="mr-2 h-4 w-4" />
-                            Renommer
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            className="text-destructive focus:text-destructive"
-                            onClick={() => handleDelete(media)}
-                          >
-                            <Trash2 className="mr-2 h-4 w-4" />
-                            Supprimer
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                );
-              })
-            )}
-          </TableBody>
-        </Table>
-      </div>
-
-      {/* Delete Confirmation Dialog */}
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+      <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Supprimer le média</DialogTitle>
-            <DialogDescription>
-              Êtes-vous sûr de vouloir supprimer &quot;{mediaToDelete?.name}&quot; ? Cette action
-              est irréversible.
-            </DialogDescription>
+            <DialogTitle>Importer un média</DialogTitle>
+            <DialogDescription>Ajoutez une image, un document ou une vidéo à la médiathèque.</DialogDescription>
           </DialogHeader>
+          <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border/80 bg-muted/10 p-6 text-center">
+            <Upload className="size-7 text-muted-foreground" />
+            <span className="text-sm font-medium">{selectedFile ? selectedFile.name : "Choisir un fichier"}</span>
+            <span className="text-xs text-muted-foreground">Le fichier sera ajouté à la médiathèque du site.</span>
+            <input type="file" className="sr-only" onChange={(event) => setSelectedFile(event.target.files?.[0] ?? null)} />
+          </label>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>
-              Annuler
-            </Button>
-            <Button variant="destructive" onClick={confirmDelete}>
-              Supprimer
-            </Button>
+            <Button variant="outline" onClick={() => setUploadDialogOpen(false)} disabled={isUploading}>Annuler</Button>
+            <Button onClick={uploadMedia} disabled={!selectedFile || isUploading}>{isUploading ? "Import..." : "Importer"}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      {/* Upload Dialog */}
-      <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Ajouter un média</DialogTitle>
-            <DialogDescription>
-              Téléchargez un fichier ou glissez-déposez-le dans la zone ci-dessous
-            </DialogDescription>
+            <DialogTitle>Supprimer le média</DialogTitle>
+            <DialogDescription>Le fichier “{mediaToDelete?.name}” ne sera plus disponible dans la médiathèque.</DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
-            <div
-              className={`relative flex flex-col items-center justify-center h-40 rounded-lg border-2 border-dashed transition-colors cursor-pointer ${
-                dragActive ? "border-primary bg-primary/5" : "border-border hover:border-primary"
-              }`}
-              onDragOver={(e) => {
-                e.preventDefault();
-                setDragActive(true);
-              }}
-              onDragLeave={() => setDragActive(false)}
-              onDrop={(e) => {
-                e.preventDefault();
-                setDragActive(false);
-              }}
-            >
-              <ImageIcon className="h-10 w-10 text-muted-foreground mb-2" />
-              <p className="text-sm text-muted-foreground">
-                Glissez-déposez un fichier ici ou cliquez pour sélectionner
-              </p>
-              <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
-            </div>
-            {isUploading && (
-              <div className="space-y-2">
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-primary transition-all duration-200"
-                    style={{ width: `${uploadProgress}%` }}
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground text-center">
-                  Téléchargement en cours... {uploadProgress}%
-                </p>
-              </div>
-            )}
-          </div>
           <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setUploadDialogOpen(false)}
-              disabled={isUploading}
-            >
-              Annuler
-            </Button>
-            <Button onClick={handleUpload} disabled={isUploading}>
-              {isUploading ? "Téléchargement..." : "Télécharger"}
-            </Button>
+            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>Annuler</Button>
+            <Button variant="destructive" onClick={deleteMedia}>Supprimer</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

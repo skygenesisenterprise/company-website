@@ -290,7 +290,7 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
                   </div>
                 </div>
               </div>
-              <div className="p-8 rounded-lg border border-blue-500/20 bg-gradient-to-br from-blue-900/20 to-blue-800/10">
+              <div className="p-8 rounded-lg border border-blue-500/20 bg-linear-to-br from-blue-900/20 to-blue-800/10">
                 <h3 className="text-xl font-semibold text-foreground mb-6">
                   {t("partners.ctaTitle")}
                 </h3>

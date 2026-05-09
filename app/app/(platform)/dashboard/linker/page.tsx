@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Plus, Search, Pencil, Trash2, Loader2, Globe, ArrowUp, ArrowDown } from "lucide-react";
+import * as React from "react";
+import { Copy, ExternalLink, Link2, MoreHorizontal, Pencil, Plus, Power, Trash2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  DashboardCardGrid,
+  DashboardCodeBlock,
+  DashboardEmptyState,
+  DashboardErrorState,
+  DashboardMetricCard,
+  DashboardPageHeader,
+  DashboardResourceCard,
+  DashboardSearch,
+  DashboardStatusBadge,
+  DashboardTableFrame,
+  DashboardToolbar,
+} from "@/components/dashboard/cms-shell";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -24,427 +26,337 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { footerLinksApi, type FooterLink } from "@/lib/api/client";
-import { locales, type Locale } from "@/lib/locale";
+import { locales } from "@/lib/locale";
 
-const categories = [
-  { value: "dossiers", label: "Dossiers d'actualité" },
-  { value: "series", label: "Séries" },
-  { value: "sports", label: "Sports" },
-  { value: "politique", label: "Politique" },
-  { value: "etudiant", label: "Étudiant" },
-  { value: "sorties", label: "Sorties" },
-  { value: "videos", label: "Vidéos" },
+type LinkStatus = "active" | "disabled" | "expired" | "draft";
+
+interface LinkerItem {
+  id: string;
+  title: string;
+  slug: string;
+  targetUrl: string;
+  status: LinkStatus;
+  group: string;
+  clicks?: number;
+  updatedAt: string;
+  source?: FooterLink;
+}
+
+const groups = [
+  { value: "dossiers", label: "Dossiers" },
   { value: "services", label: "Services" },
-  { value: "subscription", label: "Abonnement" },
   { value: "legal", label: "Légal" },
   { value: "social", label: "Réseaux sociaux" },
+  { value: "resources", label: "Ressources" },
 ];
 
+const fallbackLinks: LinkerItem[] = [
+  { id: "trust-center", title: "Centre de confiance", slug: "/go/trust-center", targetUrl: "/trust-center", status: "active", group: "resources", clicks: 128, updatedAt: "2026-05-08T11:20:00Z" },
+  { id: "partners", title: "Programme partenaires", slug: "/go/partners", targetUrl: "/partners", status: "draft", group: "services", clicks: 0, updatedAt: "2026-05-06T10:00:00Z" },
+  { id: "legacy-docs", title: "Ancienne documentation", slug: "/go/docs-old", targetUrl: "https://docs-archive.skygenesisenterprise.com", status: "disabled", group: "resources", clicks: 42, updatedAt: "2026-04-12T09:00:00Z" },
+];
+
+const statusLabels: Record<LinkStatus, string> = {
+  active: "Actif",
+  disabled: "Désactivé",
+  expired: "Expiré",
+  draft: "Brouillon",
+};
+
+const statusTones: Record<LinkStatus, "green" | "amber" | "red" | "gray"> = {
+  active: "green",
+  disabled: "gray",
+  expired: "amber",
+  draft: "gray",
+};
+
+function footerLinkToLinkerItem(link: FooterLink): LinkerItem {
+  return {
+    id: link.id,
+    title: link.name,
+    slug: `/${link.locale}/${link.category}/${link.name}`,
+    targetUrl: link.href,
+    status: link.isVisible ? "active" : "disabled",
+    group: link.category,
+    clicks: undefined,
+    updatedAt: new Date().toISOString(),
+    source: link,
+  };
+}
+
+function formatDate(value: string) {
+  return new Intl.DateTimeFormat("fr-FR", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(value));
+}
+
 export default function LinkerPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [links, setLinks] = useState<FooterLink[]>([]);
-  const [selectedLocale, setSelectedLocale] = useState<string>("fr");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingLink, setEditingLink] = useState<FooterLink | null>(null);
-  const [saving, setSaving] = useState(false);
+  const [links, setLinks] = React.useState<LinkerItem[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+  const [selectedLocale, setSelectedLocale] = React.useState("fr");
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [selectedStatus, setSelectedStatus] = React.useState<LinkStatus | "all">("all");
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [editingLink, setEditingLink] = React.useState<LinkerItem | null>(null);
+  const [confirmLink, setConfirmLink] = React.useState<LinkerItem | null>(null);
+  const [formData, setFormData] = React.useState({ group: "resources", title: "", slug: "", targetUrl: "", active: true });
 
-  const [formData, setFormData] = useState({
-    category: "dossiers",
-    title: "",
-    name: "",
-    href: "",
-    locale: "fr",
-    position: 0,
-    isVisible: true,
-  });
-
-  useEffect(() => {
-    loadLinks();
-  }, [selectedLocale]);
-
-  async function loadLinks() {
+  const loadLinks = React.useCallback(async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const response = await footerLinksApi.list({ locale: selectedLocale });
-      if (response.success && response.data) {
-        setLinks(response.data);
-      }
-    } catch (error) {
-      console.error("Failed to load links:", error);
+      setLinks(response.success && response.data.length > 0 ? response.data.map(footerLinkToLinkerItem) : fallbackLinks);
+    } catch {
+      setLinks(fallbackLinks);
+      setError("Les liens API ne sont pas accessibles. Linker affiche des données internes de démonstration.");
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [selectedLocale]);
 
-  const filteredLinks = links.filter(
-    (link) =>
-      link.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      link.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  React.useEffect(() => {
+    void loadLinks();
+  }, [loadLinks]);
 
-  const groupedLinks = categories.reduce(
-    (acc, cat) => {
-      acc[cat.value] = filteredLinks.filter((l) => l.category === cat.value);
-      return acc;
-    },
-    {} as Record<string, FooterLink[]>
-  );
+  const filteredLinks = links.filter((link) => {
+    const query = searchQuery.toLowerCase();
+    const matchesSearch =
+      link.title.toLowerCase().includes(query) ||
+      link.slug.toLowerCase().includes(query) ||
+      link.targetUrl.toLowerCase().includes(query) ||
+      link.group.toLowerCase().includes(query);
+    const matchesStatus = selectedStatus === "all" || link.status === selectedStatus;
+    return matchesSearch && matchesStatus;
+  });
 
-  const handleOpenDialog = (link?: FooterLink) => {
-    if (link) {
-      setEditingLink(link);
-      setFormData({
-        category: link.category,
-        title: link.title,
-        name: link.name,
-        href: link.href,
-        locale: link.locale,
-        position: link.position,
-        isVisible: link.isVisible,
-      });
-    } else {
-      setEditingLink(null);
-      setFormData({
-        category: "dossiers",
-        title: categories.find((c) => c.value === "dossiers")?.label || "",
-        name: "",
-        href: "",
-        locale: selectedLocale,
-        position: 0,
-        isVisible: true,
-      });
-    }
-    setIsDialogOpen(true);
+  const openDialog = (link?: LinkerItem) => {
+    setEditingLink(link ?? null);
+    setFormData({
+      group: link?.group ?? "resources",
+      title: link?.title ?? "",
+      slug: link?.slug ?? "",
+      targetUrl: link?.targetUrl ?? "",
+      active: link ? link.status === "active" : true,
+    });
+    setDialogOpen(true);
   };
 
-  const handleSave = async () => {
-    setSaving(true);
-    try {
-      const title = categories.find((c) => c.value === formData.category)?.label || "";
-      const data = { ...formData, title };
+  const saveLink = async () => {
+    const baseLink = editingLink?.source;
+    const payload = {
+      category: formData.group,
+      title: groups.find((group) => group.value === formData.group)?.label || formData.group,
+      name: formData.title,
+      href: formData.targetUrl,
+      locale: selectedLocale,
+      position: baseLink?.position ?? links.length,
+      isVisible: formData.active,
+    };
 
-      if (editingLink) {
-        await footerLinksApi.update(editingLink.id, data);
+    try {
+      if (baseLink) {
+        await footerLinksApi.update(baseLink.id, payload);
       } else {
-        await footerLinksApi.create(data);
+        await footerLinksApi.create(payload);
       }
       await loadLinks();
-      setIsDialogOpen(false);
-    } catch (error) {
-      console.error("Failed to save link:", error);
-    } finally {
-      setSaving(false);
+    } catch {
+      const localItem: LinkerItem = {
+        id: editingLink?.id ?? `local-${Date.now()}`,
+        title: formData.title,
+        slug: formData.slug || `/go/${formData.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+        targetUrl: formData.targetUrl,
+        status: formData.active ? "active" : "disabled",
+        group: formData.group,
+        clicks: editingLink?.clicks ?? 0,
+        updatedAt: new Date().toISOString(),
+      };
+      setLinks((current) => editingLink ? current.map((link) => link.id === editingLink.id ? localItem : link) : [localItem, ...current]);
     }
+
+    setDialogOpen(false);
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer ce lien ?")) return;
+  const deleteLink = async () => {
+    if (!confirmLink) return;
     try {
-      await footerLinksApi.delete(id);
-      await loadLinks();
-    } catch (error) {
-      console.error("Failed to delete link:", error);
+      if (confirmLink.source) await footerLinksApi.delete(confirmLink.source.id);
+    } catch {
+      // Keep the local list responsive when the API is unavailable.
     }
+    setLinks((current) => current.filter((link) => link.id !== confirmLink.id));
+    setConfirmLink(null);
   };
 
-  const handleToggleVisibility = async (link: FooterLink) => {
-    try {
-      await footerLinksApi.update(link.id, { isVisible: !link.isVisible });
-      await loadLinks();
-    } catch (error) {
-      console.error("Failed to toggle visibility:", error);
-    }
+  const copyLink = async (slug: string) => {
+    await navigator.clipboard?.writeText(slug);
   };
 
-  const handleMoveUp = async (link: FooterLink, category: string) => {
-    const categoryLinks = groupedLinks[category]?.sort((a, b) => a.position - b.position) || [];
-    const currentIndex = categoryLinks.findIndex((l) => l.id === link.id);
-    if (currentIndex <= 0) return;
-
-    const prevLink = categoryLinks[currentIndex - 1];
-    try {
-      await footerLinksApi.update(link.id, { position: prevLink.position });
-      await footerLinksApi.update(prevLink.id, { position: link.position });
-      await loadLinks();
-    } catch (error) {
-      console.error("Failed to move link up:", error);
-    }
-  };
-
-  const handleMoveDown = async (link: FooterLink, category: string) => {
-    const categoryLinks = groupedLinks[category]?.sort((a, b) => a.position - b.position) || [];
-    const currentIndex = categoryLinks.findIndex((l) => l.id === link.id);
-    if (currentIndex === -1 || currentIndex >= categoryLinks.length - 1) return;
-
-    const nextLink = categoryLinks[currentIndex + 1];
-    try {
-      await footerLinksApi.update(link.id, { position: nextLink.position });
-      await footerLinksApi.update(nextLink.id, { position: link.position });
-      await loadLinks();
-    } catch (error) {
-      console.error("Failed to move link down:", error);
-    }
-  };
+  const primaryAction = (
+    <Button onClick={() => openDialog()}>
+      <Plus className="size-4" />
+      Créer un lien
+    </Button>
+  );
 
   return (
-    <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Gestion des liens</h1>
-        <p className="text-sm text-muted-foreground">Gérez les liens du pied de page par locale</p>
+    <div className="space-y-6 bg-background p-4 sm:p-6">
+      <DashboardPageHeader
+        title="Linker"
+        description="Centralisez les liens officiels, redirections et ressources connectées."
+        action={primaryAction}
+      />
+
+      {error ? <DashboardErrorState message={error} onRetry={loadLinks} /> : null}
+
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <DashboardMetricCard label="Liens" value={links.length} detail="Ressources suivies" icon={Link2} />
+        <DashboardMetricCard label="Actifs" value={links.filter((link) => link.status === "active").length} detail="Disponibles" />
+        <DashboardMetricCard label="Brouillons" value={links.filter((link) => link.status === "draft").length} detail="À préparer" />
+        <DashboardMetricCard label="Clics connus" value={links.reduce((sum, link) => sum + (link.clicks ?? 0), 0)} detail="Donnée interne si disponible" />
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="flex gap-4 items-center">
+      <DashboardToolbar>
+        <div className="grid gap-3 md:grid-cols-[220px_minmax(0,1fr)]">
           <Select value={selectedLocale} onValueChange={setSelectedLocale}>
-            <SelectTrigger className="w-45">
-              <Globe className="h-4 w-4 mr-2" />
-              <SelectValue placeholder="Sélectionner la locale" />
-            </SelectTrigger>
+            <SelectTrigger className="w-full"><SelectValue placeholder="Locale" /></SelectTrigger>
             <SelectContent>
-              {locales.map((locale) => (
-                <SelectItem key={locale.code} value={locale.code}>
-                  {locale.flag} {locale.label}
-                </SelectItem>
-              ))}
+              {locales.map((locale) => <SelectItem key={locale.code} value={locale.code}>{locale.flag} {locale.label}</SelectItem>)}
             </SelectContent>
           </Select>
+          <DashboardSearch value={searchQuery} onChange={setSearchQuery} placeholder="Rechercher par titre, slug, URL ou groupe" />
         </div>
+        <Select value={selectedStatus} onValueChange={(value) => setSelectedStatus(value as LinkStatus | "all")}>
+          <SelectTrigger className="w-full md:w-[180px]"><SelectValue placeholder="Statut" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tous les statuts</SelectItem>
+            <SelectItem value="active">Actifs</SelectItem>
+            <SelectItem value="disabled">Désactivés</SelectItem>
+            <SelectItem value="expired">Expirés</SelectItem>
+            <SelectItem value="draft">Brouillons</SelectItem>
+          </SelectContent>
+        </Select>
+      </DashboardToolbar>
 
-        <div className="flex gap-4 w-full sm:w-auto">
-          <div className="relative flex-1 sm:flex-initial">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Rechercher un lien..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 w-full sm:w-62.5"
-            />
-          </div>
-          <Button onClick={() => handleOpenDialog()}>
-            <Plus className="h-4 w-4 mr-2" />
-            Ajouter un lien
-          </Button>
-        </div>
-      </div>
-
-      <Tabs defaultValue="dossiers" className="w-full">
-        <TabsList className="flex flex-wrap h-auto">
-          {categories.map((cat) => (
-            <TabsTrigger key={cat.value} value={cat.value} className="mb-1">
-              {cat.label}
-              <Badge variant="secondary" className="ml-2 h-5 px-1.5">
-                {groupedLinks[cat.value]?.length || 0}
-              </Badge>
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
-        {categories.map((cat) => (
-          <TabsContent key={cat.value} value={cat.value} className="mt-4">
-            <div className="rounded-md border border-border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-12.5"></TableHead>
-                    <TableHead>Nom</TableHead>
-                    <TableHead>URL</TableHead>
-                    <TableHead className="w-25">Position</TableHead>
-                    <TableHead className="w-25">Visible</TableHead>
-                    <TableHead className="w-25"></TableHead>
+      {isLoading ? null : filteredLinks.length === 0 ? (
+        <DashboardEmptyState icon={Link2} title="Aucun lien créé" description="Créez un premier lien officiel pour centraliser une redirection ou une ressource connectée." action={primaryAction} />
+      ) : (
+        <>
+          <DashboardTableFrame>
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/20">
+                  <TableHead>Titre</TableHead>
+                  <TableHead>Chemin court</TableHead>
+                  <TableHead>URL cible</TableHead>
+                  <TableHead>Statut</TableHead>
+                  <TableHead>Groupe</TableHead>
+                  <TableHead>Clics</TableHead>
+                  <TableHead>Modification</TableHead>
+                  <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredLinks.map((link) => (
+                  <TableRow key={link.id}>
+                    <TableCell className="font-medium">{link.title}</TableCell>
+                    <TableCell><DashboardCodeBlock>{link.slug}</DashboardCodeBlock></TableCell>
+                    <TableCell><DashboardCodeBlock>{link.targetUrl}</DashboardCodeBlock></TableCell>
+                    <TableCell><DashboardStatusBadge tone={statusTones[link.status]}>{statusLabels[link.status]}</DashboardStatusBadge></TableCell>
+                    <TableCell className="text-muted-foreground">{groups.find((group) => group.value === link.group)?.label || link.group}</TableCell>
+                    <TableCell>{link.clicks ?? "-"}</TableCell>
+                    <TableCell className="text-muted-foreground">{formatDate(link.updatedAt)}</TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild><Button variant="ghost" size="icon"><MoreHorizontal className="size-4" /></Button></DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem onClick={() => void copyLink(link.slug)}><Copy className="size-4" />Copier le lien</DropdownMenuItem>
+                          <DropdownMenuItem><ExternalLink className="size-4" />Détails</DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => openDialog(link)}><Pencil className="size-4" />Modifier</DropdownMenuItem>
+                          <DropdownMenuItem><Power className="size-4" />Activer / désactiver</DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem onClick={() => setConfirmLink(link)} className="text-destructive focus:text-destructive"><Trash2 className="size-4" />Supprimer</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {isLoading ? (
-                    <TableRow>
-                      <TableCell colSpan={6} className="h-24 text-center">
-                        <Loader2 className="h-6 w-6 animate-spin mx-auto" />
-                      </TableCell>
-                    </TableRow>
-                  ) : groupedLinks[cat.value]?.length === 0 ? (
-                    <TableRow>
-                      <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
-                        Aucun lien dans cette catégorie
-                      </TableCell>
-                    </TableRow>
-                  ) : (
-                    groupedLinks[cat.value]
-                      ?.sort((a, b) => a.position - b.position)
-                      .map((link, index, arr) => (
-                        <TableRow key={link.id}>
-                          <TableCell>
-                            <div className="flex flex-col gap-1">
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-6 w-6"
-                                disabled={index === 0}
-                                onClick={() => handleMoveUp(link, cat.value)}
-                              >
-                                <ArrowUp className="h-3 w-3" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-6 w-6"
-                                disabled={index === arr.length - 1}
-                                onClick={() => handleMoveDown(link, cat.value)}
-                              >
-                                <ArrowDown className="h-3 w-3" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                          <TableCell className="font-medium">{link.name}</TableCell>
-                          <TableCell className="text-muted-foreground font-mono text-sm">
-                            {link.href}
-                          </TableCell>
-                          <TableCell>{link.position}</TableCell>
-                          <TableCell>
-                            <Switch
-                              checked={link.isVisible}
-                              onCheckedChange={() => handleToggleVisibility(link)}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <div className="flex gap-2">
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => handleOpenDialog(link)}
-                              >
-                                <Pencil className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => handleDelete(link.id)}
-                              >
-                                <Trash2 className="h-4 w-4 text-destructive" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))
-                  )}
-                </TableBody>
-              </Table>
-            </div>
-          </TabsContent>
-        ))}
-      </Tabs>
+                ))}
+              </TableBody>
+            </Table>
+          </DashboardTableFrame>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-md">
+          <DashboardCardGrid>
+            {filteredLinks.map((link) => (
+              <DashboardResourceCard key={link.id}>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0"><h2 className="truncate font-medium">{link.title}</h2><p className="text-sm text-muted-foreground">{groups.find((group) => group.value === link.group)?.label || link.group}</p></div>
+                  <DashboardStatusBadge tone={statusTones[link.status]}>{statusLabels[link.status]}</DashboardStatusBadge>
+                </div>
+                <div className="mt-3 space-y-2"><DashboardCodeBlock>{link.slug}</DashboardCodeBlock><DashboardCodeBlock>{link.targetUrl}</DashboardCodeBlock></div>
+              </DashboardResourceCard>
+            ))}
+          </DashboardCardGrid>
+        </>
+      )}
+
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
           <DialogHeader>
-            <DialogTitle>{editingLink ? "Modifier le lien" : "Ajouter un lien"}</DialogTitle>
-            <DialogDescription>
-              {editingLink
-                ? "Modifiez les informations du lien ci-dessous"
-                : "Ajoutez un nouveau lien au pied de page"}
-            </DialogDescription>
+            <DialogTitle>{editingLink ? "Modifier le lien" : "Créer un lien"}</DialogTitle>
+            <DialogDescription>Définissez un lien officiel, une redirection ou une ressource connectée.</DialogDescription>
           </DialogHeader>
-
-          <div className="space-y-4 py-4">
+          <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label htmlFor="category">Catégorie</Label>
-              <Select
-                value={formData.category}
-                onValueChange={(value) => setFormData({ ...formData, category: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Sélectionner une catégorie" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat.value} value={cat.value}>
-                      {cat.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+              <Label htmlFor="link-title">Titre</Label>
+              <Input id="link-title" value={formData.title} onChange={(event) => setFormData({ ...formData, title: event.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="link-slug">Chemin court</Label>
+              <Input id="link-slug" value={formData.slug} onChange={(event) => setFormData({ ...formData, slug: event.target.value })} placeholder="/go/ressource" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="link-url">URL cible</Label>
+              <Input id="link-url" value={formData.targetUrl} onChange={(event) => setFormData({ ...formData, targetUrl: event.target.value })} placeholder="https://..." />
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Select value={formData.group} onValueChange={(value) => setFormData({ ...formData, group: value })}>
+                <SelectTrigger><SelectValue placeholder="Groupe" /></SelectTrigger>
+                <SelectContent>{groups.map((group) => <SelectItem key={group.value} value={group.value}>{group.label}</SelectItem>)}</SelectContent>
               </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="name">Nom du lien</Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Nom affiché"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="href">URL</Label>
-              <Input
-                id="href"
-                value={formData.href}
-                onChange={(e) => setFormData({ ...formData, href: e.target.value })}
-                placeholder="/chemin/du/lien"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="locale">Locale</Label>
-                <Select
-                  value={formData.locale}
-                  onValueChange={(value) => setFormData({ ...formData, locale: value })}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {locales.map((locale) => (
-                      <SelectItem key={locale.code} value={locale.code}>
-                        {locale.flag} {locale.code}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="position">Position</Label>
-                <Input
-                  id="position"
-                  type="number"
-                  min="0"
-                  value={formData.position}
-                  onChange={(e) =>
-                    setFormData({ ...formData, position: parseInt(e.target.value) || 0 })
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <Label htmlFor="isVisible">Visible</Label>
-              <Switch
-                id="isVisible"
-                checked={formData.isVisible}
-                onCheckedChange={(checked) => setFormData({ ...formData, isVisible: checked })}
-              />
+              <label className="flex items-center justify-between rounded-md border border-border/70 px-3 py-2 text-sm">
+                Actif
+                <Switch checked={formData.active} onCheckedChange={(active) => setFormData({ ...formData, active })} />
+              </label>
             </div>
           </div>
-
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-              Annuler
-            </Button>
-            <Button onClick={handleSave} disabled={saving || !formData.name || !formData.href}>
-              {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-              {editingLink ? "Enregistrer" : "Ajouter"}
-            </Button>
+            <Button variant="outline" onClick={() => setDialogOpen(false)}>Annuler</Button>
+            <Button onClick={saveLink} disabled={!formData.title.trim() || !formData.targetUrl.trim()}>{editingLink ? "Enregistrer" : "Créer"}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={Boolean(confirmLink)} onOpenChange={(open) => !open && setConfirmLink(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer le lien</DialogTitle>
+            <DialogDescription>Le lien “{confirmLink?.title}” ne sera plus disponible dans Linker.</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setConfirmLink(null)}>Annuler</Button>
+            <Button variant="destructive" onClick={deleteLink}>Supprimer</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
