@@ -400,7 +400,7 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={trafficChartConfig} className="h-70 w-full">
+            <ChartContainer config={trafficChartConfig} className="h-[17.5rem] w-full">
               <AreaChart data={siteTrafficData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="fillPublicViews" x1="0" y1="0" x2="0" y2="1">

@@ -391,19 +391,21 @@ function SocialIcon({ name }: { name: string }) {
 function NavItem({ item, pathname }: { item: NavItem; pathname: string }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const hasActiveChild = item.items?.some(
-    (sub) => pathname === sub.href || pathname.startsWith(`${sub.href}/`)
-  );
+  const hasActiveChild = React.useMemo(() => {
+    if (!item.items) return false;
+    return item.items.some((subItem) => isRouteMatch(pathname, subItem.href));
+  }, [item.items, pathname]);
 
-  const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
-  const shouldBeOpen = isOpen || hasActiveChild || isActive;
+  const isItemActive = isActive(pathname, item.href, item.items?.map((subItem) => subItem.href));
+  const isGroupActive = isRouteMatch(pathname, item.href);
+  const shouldBeOpen = isOpen || hasActiveChild || isGroupActive;
 
   if (item.items && item.items.length > 0) {
     return (
       <SidebarMenuItem>
         <SidebarMenuButton
           asChild
-          isActive={isActive}
+          isActive={isItemActive}
           tooltip={item.title}
           className="flex w-full items-center justify-between"
         >
@@ -444,7 +446,11 @@ function NavItem({ item, pathname }: { item: NavItem; pathname: string }) {
                   <SidebarMenuSubItem key={subItem.href}>
                     <SidebarMenuSubButton
                       asChild
-                      isActive={pathname === subItem.href}
+                      isActive={isActive(
+                        pathname,
+                        subItem.href,
+                        item.items?.map((siblingItem) => siblingItem.href)
+                      )}
                     >
                       <Link href={subItem.href}>
                         {typeof subItem.icon === "string" ? (
@@ -467,7 +473,7 @@ function NavItem({ item, pathname }: { item: NavItem; pathname: string }) {
 
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
+      <SidebarMenuButton asChild isActive={isItemActive} tooltip={item.title}>
         <Link href={item.href}>
           {typeof item.icon === "string" ? (
             <SocialIcon name={item.icon} />
@@ -479,6 +485,26 @@ function NavItem({ item, pathname }: { item: NavItem; pathname: string }) {
       </SidebarMenuButton>
     </SidebarMenuItem>
   );
+}
+
+function isActive(pathname: string, href: string, siblingHrefs: string[] = []): boolean {
+  if (!isRouteMatch(pathname, href)) return false;
+
+  return !siblingHrefs.some((siblingHref) => {
+    return (
+      siblingHref !== href &&
+      siblingHref.length > href.length &&
+      isRouteMatch(pathname, siblingHref)
+    );
+  });
+}
+
+function isRouteMatch(pathname: string, href: string): boolean {
+  if (href === "/dashboard") {
+    return pathname === href;
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 function SidebarSection({ label, items }: { label: string; items: NavItem[] }) {

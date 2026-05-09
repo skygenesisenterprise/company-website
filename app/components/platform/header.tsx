@@ -18,8 +18,6 @@ import { useRouter } from "next/navigation";
 import {
   Activity,
   Bell,
-  Building2,
-  Check,
   ChevronDown,
   LogOut,
   Search,
@@ -45,34 +43,6 @@ import {
 export function AdminHeader({ className }: { className?: string }) {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [selectedWorkspace, setSelectedWorkspace] = useState<string>("official-website");
-
-  const workspaces = [
-    {
-      id: "workspace_website",
-      name: "Official Website",
-      slug: "official-website",
-      description: "Pages publiques, contenus et navigation",
-    },
-    {
-      id: "workspace_journal",
-      name: "SGE Journal",
-      slug: "sge-journal",
-      description: "Articles, dossiers et publications",
-    },
-    {
-      id: "workspace_platform",
-      name: "Platform Pages",
-      slug: "platform-pages",
-      description: "Pages plateforme et modules publics",
-    },
-    {
-      id: "workspace_trust",
-      name: "Trust Center",
-      slug: "trust-center",
-      description: "PGP, sécurité et transparence",
-    },
-  ];
 
   const notifications = [
     {
@@ -98,17 +68,8 @@ export function AdminHeader({ className }: { className?: string }) {
     },
   ];
 
-  const currentWorkspace =
-    workspaces.find((workspace) => workspace.slug === selectedWorkspace) || workspaces[0];
-
-  const [isWorkspaceMenuOpen, setIsWorkspaceMenuOpen] = useState(false);
   const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-
-  const handleWorkspaceSwitch = (slug: string) => {
-    setSelectedWorkspace(slug);
-    setIsWorkspaceMenuOpen(false);
-  };
 
   const handleLogout = async () => {
     await logout();
@@ -126,69 +87,15 @@ export function AdminHeader({ className }: { className?: string }) {
   return (
     <header
       className={cn(
-        "flex h-14 items-center gap-4 border-b border-border/60 bg-background/95 px-4 backdrop-blur-sm lg:px-6",
+        "grid h-14 grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-border/60 bg-background/95 px-4 backdrop-blur-sm lg:px-6",
         className,
       )}
     >
-      <div className="flex min-w-0 flex-1 items-center gap-4">
-        <DropdownMenu open={isWorkspaceMenuOpen} onOpenChange={setIsWorkspaceMenuOpen}>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="min-w-0 rounded-xl border-border/60 bg-card px-3"
-              aria-label="Changer d'espace de travail"
-            >
-              <Building2 className="h-4 w-4 shrink-0 text-muted-foreground" />
-              <span className="hidden min-w-0 flex-col items-start leading-none sm:flex">
-                <span className="text-sm font-medium text-foreground">{currentWorkspace.name}</span>
-                <span className="mt-1 text-xs text-muted-foreground">{currentWorkspace.slug}</span>
-              </span>
-              <motion.div
-                animate={{ rotate: isWorkspaceMenuOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="shrink-0"
-              >
-                <ChevronDown className="h-3 w-3 text-muted-foreground" />
-              </motion.div>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-72 rounded-xl border-border/60 bg-card">
-            <DropdownMenuLabel>Changer d'espace</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {workspaces.map((workspace) => (
-              <DropdownMenuItem
-                key={workspace.id}
-                onClick={() => handleWorkspaceSwitch(workspace.slug)}
-                className="flex items-center justify-between gap-3"
-              >
-                <div className="flex min-w-0 flex-col">
-                  <span className="font-medium">{workspace.name}</span>
-                  <span className="line-clamp-1 text-xs text-muted-foreground">
-                    {workspace.description}
-                  </span>
-                </div>
-                {workspace.slug === selectedWorkspace && (
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-muted-foreground"
-                  >
-                    <Check className="h-4 w-4" />
-                  </motion.span>
-                )}
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => router.push("/dashboard/settings")}>
-              <Settings className="mr-2 h-4 w-4" />
-              Gérer les espaces
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
+      <div aria-hidden="true" />
+      <div className="flex min-w-0 justify-center">
         <button
           type="button"
-          className="hidden h-9 w-full max-w-md items-center gap-2 rounded-xl border border-border/60 bg-muted/30 px-3 text-sm text-muted-foreground md:flex"
+          className="hidden h-9 w-[min(36rem,50vw)] items-center gap-2 rounded-xl border border-border/60 bg-muted/30 px-3 text-sm text-muted-foreground md:flex"
           aria-label="Ouvrir la recherche globale"
         >
           <Search className="h-4 w-4 shrink-0" />
@@ -196,7 +103,7 @@ export function AdminHeader({ className }: { className?: string }) {
         </button>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-end gap-2">
         <Button
           variant="ghost"
           className="hidden rounded-full border border-border/60 bg-card px-3 py-1.5 text-xs text-foreground hover:bg-muted/30 sm:inline-flex"
