@@ -242,12 +242,6 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
     { name: t("rss"), href: `${prefix}/rss.xml` },
   ];
 
-  const subscriptionLinks: FooterLink[] = [
-    { name: t("pricingPlans"), href: `${prefix}/pricing` },
-    { name: t("freeTrial"), href: `${prefix}/trial` },
-    { name: t("enterprise"), href: `${prefix}/enterprise` },
-  ];
-
   const footerSections = [
     { title: t("platformApi"), links: platformApiLinks },
     { title: t("developers"), links: developerLinks },
@@ -257,7 +251,6 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
     { title: t("support"), links: supportLinks },
     { title: t("legal"), links: legalLinks },
     { title: t("other"), links: otherLinks },
-    { title: t("getStarted"), links: subscriptionLinks },
   ];
 
   const socialLinks = [
