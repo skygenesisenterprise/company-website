@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { HomePage } from "@/components/public/home/home-page";
 
 interface HomePageParams {
   params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: HomePageParams): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Public.home.page.metadata" });
+
   return {
-    title: "Sky Genesis Enterprise | Ecosysteme technologique europeen",
-    description:
-      "Sky Genesis Enterprise construit les fondations d'un ecosysteme technologique europeen: plateformes, produits, outils developpeurs et infrastructures numeriques.",
+    title: t("title"),
+    description: t("description"),
   };
 }
 

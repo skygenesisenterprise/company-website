@@ -2333,6 +2333,246 @@
       "emailPrivacy": "Envoyer un Email à l'Équipe Confidentialité"
     },
     "home": {
+      "page": {
+        "metadata": {
+          "title": "Sky Genesis Enterprise | Écosystème technologique européen",
+          "description": "Sky Genesis Enterprise construit les fondations d'un écosystème technologique européen : plateformes, produits, outils développeurs et infrastructures numériques."
+        },
+        "common": {
+          "explore": "Explorer"
+        },
+        "status": {
+          "Available": "Disponible",
+          "Private preview": "Préversion privée",
+          "In development": "En développement",
+          "Experimental": "Expérimental",
+          "Planned": "Planifié",
+          "Research": "Recherche"
+        },
+        "hero": {
+          "eyebrow": "Sky Genesis Enterprise",
+          "title": "Construire les fondations d'un écosystème technologique européen.",
+          "description": "Nous concevons des plateformes, produits et infrastructures numériques pensés pour la souveraineté, la sécurité et l'exécution long terme.",
+          "badge": "Écosystème en construction structurée, avec des statuts de maturité explicites.",
+          "primaryCta": "Explorer la plateforme",
+          "secondaryCta": "Comprendre l'entreprise"
+        },
+        "ecosystemMap": {
+          "title": "Carte de l'écosystème SGE",
+          "badge": "Conceptuel",
+          "center": "SGE",
+          "description": "Une carte abstraite des briques de l'écosystème, sans simuler de capture produit ou de capacité finalisée.",
+          "nodes": {
+            "platform": "Plateforme",
+            "products": "Produits",
+            "solutions": "Solutions",
+            "developers": "Développeurs",
+            "company": "Entreprise"
+          }
+        },
+        "whatWeBuild": {
+          "eyebrow": "Ce que nous construisons",
+          "title": "Un écosystème lisible, organisé par familles.",
+          "description": "La page d'accueil oriente vers les grands ensembles sans remplacer les pages détaillées.",
+          "items": {
+            "platform": {
+              "title": "Plateforme",
+              "description": "Les briques communes : identité, secrets, edge, statut, recherche, mailer, cartes et concepts ledger."
+            },
+            "products": {
+              "title": "Produits",
+              "description": "Des expériences visibles pour la sécurité, le travail, la collaboration, le code et les données."
+            },
+            "solutions": {
+              "title": "Solutions",
+              "description": "Des trajectoires d'usage pour organisations B2C, B2B, infrastructure et workplace."
+            },
+            "developerTools": {
+              "title": "Outils développeurs",
+              "description": "Documentation, APIs, SDKs et fondations open-source pour intégrer l'écosystème progressivement."
+            }
+          }
+        },
+        "platform": {
+          "eyebrow": "Fondation plateforme",
+          "title": "Le socle technique commun.",
+          "description": "Les services plateforme structurent les produits SGE. Leur maturité est affichée pour éviter toute surpromesse.",
+          "cta": "Voir la plateforme",
+          "services": {
+            "edge": {
+              "title": "Edge",
+              "promise": "Fondations de routage et de distribution pour les services publics et plateforme SGE."
+            },
+            "bank": {
+              "title": "Bank",
+              "promise": "Concepts d'infrastructure financière guidés par la recherche pour les transactions futures de l'écosystème."
+            },
+            "status": {
+              "title": "Status",
+              "promise": "État des services, communication d'incident et transparence de maintenance."
+            },
+            "search": {
+              "title": "Search",
+              "promise": "Découverte unifiée dans le contenu public, la documentation et les ressources plateforme."
+            },
+            "identity": {
+              "title": "Identity",
+              "promise": "Fondations communes d'identité et d'accès pour les produits SGE."
+            },
+            "maps": {
+              "title": "Maps",
+              "promise": "Contexte géographique pour les régions, emplacements de services et vues d'infrastructure."
+            },
+            "vault": {
+              "title": "Vault",
+              "promise": "Secrets et éléments sensibles d'intégration gérés avec une logique de politique et d'audit."
+            },
+            "mailer": {
+              "title": "Mailer",
+              "promise": "Communication transactionnelle pour les événements de compte, de sécurité et de système."
+            }
+          }
+        },
+        "products": {
+          "eyebrow": "Écosystème produit",
+          "title": "Les produits visibles de l'écosystème.",
+          "description": "Chaque produit est présenté comme une expérience utilisateur, avec un statut cohérent avec sa maturité.",
+          "cta": "Voir les produits",
+          "services": {
+            "shield": {
+              "title": "Shield",
+              "positioning": "Guidance de sécurité pour les comptes, les accès et le risque opérationnel."
+            },
+            "vpn": {
+              "title": "VPN",
+              "positioning": "Accès privé pour les équipes, appareils et ressources internes."
+            },
+            "giteria": {
+              "title": "Giteria",
+              "positioning": "Collaboration code pour les dépôts, revues et préparations de release."
+            },
+            "schematik": {
+              "title": "Schematik",
+              "positioning": "Modélisation visuelle pour les systèmes, l'infrastructure et la documentation technique."
+            },
+            "mail": {
+              "title": "Mail",
+              "positioning": "Email professionnel pour les comptes, équipes et communications workplace."
+            },
+            "meet": {
+              "title": "Meet",
+              "positioning": "Réunions connectées aux équipes, calendriers et contexte de travail."
+            },
+            "chat": {
+              "title": "Chat",
+              "positioning": "Communication structurée pour les espaces, canaux et équipes."
+            },
+            "sheets": {
+              "title": "Sheets",
+              "positioning": "Tableaux collaboratifs pour les données opérationnelles et workflows workplace."
+            }
+          }
+        },
+        "solutions": {
+          "eyebrow": "Solutions pour les organisations",
+          "title": "Des chemins d'adoption par usage.",
+          "description": "Les solutions relient les briques plateforme et les produits à des besoins d'organisation concrets.",
+          "items": {
+            "b2c": {
+              "title": "Support B2C",
+              "description": "Des expériences numériques pour relation client, confiance et services grand public."
+            },
+            "b2b": {
+              "title": "B2B SaaS",
+              "description": "Des fondations pour produits SaaS, comptes, espaces de travail et intégrations."
+            },
+            "infrastructure": {
+              "title": "Infrastructure",
+              "description": "Des trajectoires pour sécurité, accès, services plateforme et opérations."
+            },
+            "workplace": {
+              "title": "Workplace",
+              "description": "Des outils de collaboration, communication et données pour les équipes."
+            }
+          }
+        },
+        "developers": {
+          "eyebrow": "Développeurs & open-source",
+          "title": "Construire aussi pour les développeurs.",
+          "description": "SGE documente ses interfaces et prépare des fondations ouvertes sans présenter comme finalisé ce qui reste en construction.",
+          "primaryCta": "Explorer l'espace développeurs",
+          "secondaryCta": "Voir les docs",
+          "items": {
+            "documentation": {
+              "title": "Documentation",
+              "description": "Guides, références et trajectoire de documentation plateforme."
+            },
+            "sdks": {
+              "title": "SDKs",
+              "description": "Points d'intégration pour connecter progressivement produits et services."
+            },
+            "apis": {
+              "title": "APIs",
+              "description": "Interfaces techniques pour les usages développeurs exposés par SGE."
+            },
+            "openSource": {
+              "title": "Open-source",
+              "description": "Fondations ouvertes et collaboration technique à mesure que les projets se stabilisent."
+            }
+          }
+        },
+        "principles": {
+          "eyebrow": "Confiance & principes opérationnels",
+          "title": "Une ambition tenue par des principes opérationnels.",
+          "description": "La crédibilité vient de la clarté des limites, de la sécurité et d'une construction progressive.",
+          "securityCta": "Sécurité",
+          "trustCta": "Confiance",
+          "aboutCta": "À propos",
+          "items": {
+            "sovereignty": {
+              "title": "Souveraineté",
+              "description": "Concevoir avec une attention européenne à la maîtrise, aux données et à l'indépendance technique."
+            },
+            "security": {
+              "title": "Sécurité dès la conception",
+              "description": "Intégrer identité, secrets, audit et contrôles d'accès comme fondations, pas comme options tardives."
+            },
+            "operational": {
+              "title": "Excellence opérationnelle",
+              "description": "Documenter les statuts, incidents, limites et dépendances pour construire avec discipline."
+            },
+            "open": {
+              "title": "Fondations ouvertes",
+              "description": "Favoriser les standards, les APIs claires et les briques ouvertes quand elles sont suffisamment stables."
+            },
+            "longTerm": {
+              "title": "Infrastructure long terme",
+              "description": "Construire des produits autour d'un socle durable plutôt que de multiplier des expériences isolées."
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Prochaine étape",
+          "title": "Choisir le prochain point d'entrée.",
+          "actions": {
+            "organizations": {
+              "title": "Pour les organisations",
+              "description": "Discuter d'un besoin, d'une trajectoire d'adoption ou d'une solution.",
+              "label": "Contacter SGE"
+            },
+            "developers": {
+              "title": "Pour les développeurs",
+              "description": "Explorer les APIs, SDKs et ressources techniques disponibles.",
+              "label": "Aller aux développeurs"
+            },
+            "talent": {
+              "title": "Pour les talents",
+              "description": "Comprendre l'entreprise et les opportunités de contribution.",
+              "label": "Voir les carrières"
+            }
+          }
+        }
+      },
       "enterpriseBadge": "Plateforme numérique européenne en construction",
       "heroTitle": "Construire une infrastructure numérique européenne cohérente",
       "heroDescription": "Sky Genesis Enterprise développe un écosystème de services, d'infrastructures et d'outils souverains, avec plusieurs briques déjà avancées et une ouverture progressive.",
