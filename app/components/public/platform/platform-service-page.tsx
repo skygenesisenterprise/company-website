@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ArrowRight, Building2, CheckCircle2, Layers3, Network, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
@@ -63,6 +64,7 @@ function PlatformSection({
 }
 
 function PlatformStatusBadge({ status }: { status: PlatformServiceStatus }) {
+  const tStatus = useTranslations("Public.home.page.status");
   const toneByStatus: Record<PlatformServiceStatus, string> = {
     Available: "border-emerald-200 bg-emerald-50 text-emerald-800",
     "Private preview": "border-indigo-200 bg-indigo-50 text-indigo-800",
@@ -79,7 +81,7 @@ function PlatformStatusBadge({ status }: { status: PlatformServiceStatus }) {
         toneByStatus[status]
       )}
     >
-      {status}
+      {tStatus(status)}
     </span>
   );
 }
@@ -112,12 +114,15 @@ function PlatformCTA({
 }
 
 function PlatformHero({ locale, service }: PlatformServicePageProps) {
+  const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+
   return (
     <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div className="max-w-4xl">
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-indigo-700">
-            SGE Platform
+            {t("brand")}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <h1 className="text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
@@ -126,7 +131,7 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
             <PlatformStatusBadge status={service.status} />
           </div>
           <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
-            {service.promise}
+            {tPlatform(`${service.slug}.promise`)}
           </p>
           <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
             {service.description}
@@ -141,7 +146,7 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
           <div className="flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
-                Service profile
+                {t("serviceProfile")}
               </p>
               <p className="mt-2 text-lg font-semibold text-slate-950">
                 {service.title}
@@ -169,16 +174,18 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
 }
 
 function PlatformPurpose({ service }: { service: PlatformService }) {
+  const t = useTranslations("Public.home.platformPage");
+
   return (
     <PlatformSection
-      eyebrow="Purpose"
+      eyebrow={t("purpose.eyebrow")}
       title={service.purpose.title}
       description={service.purpose.problem}
     >
       <div className="grid gap-5 md:grid-cols-2">
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <h3 className="text-base font-semibold text-slate-950">
-            Ecosystem role
+            {t("purpose.ecosystemRole")}
           </h3>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             {service.purpose.ecosystem}
@@ -186,7 +193,7 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <h3 className="text-base font-semibold text-slate-950">
-            Platform benefit
+            {t("purpose.platformBenefit")}
           </h3>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             {service.purpose.benefit}
@@ -197,12 +204,59 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
   );
 }
 
-function PlatformCapabilities({ service }: { service: PlatformService }) {
+function PlatformWhyNow({ service }: { service: PlatformService }) {
+  const t = useTranslations("Public.home.platformPage");
+
+  const items = [
+    {
+      title: t("whyNow.items.control.title"),
+      description: t("whyNow.items.control.description"),
+      icon: ShieldCheck,
+    },
+    {
+      title: t("whyNow.items.clarity.title"),
+      description: t("whyNow.items.clarity.description"),
+      icon: CheckCircle2,
+    },
+    {
+      title: t("whyNow.items.execution.title", { service: service.title }),
+      description: t("whyNow.items.execution.description", { service: service.title }),
+      icon: Layers3,
+    },
+  ];
+
   return (
     <PlatformSection
-      eyebrow="Core capabilities"
-      title="Core capabilities"
-      description="The main functions are intentionally scoped to infrastructure needs and current maturity."
+      eyebrow={t("whyNow.eyebrow")}
+      title={t("whyNow.title")}
+      description={t("whyNow.description")}
+      muted
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <div key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
+              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </PlatformSection>
+  );
+}
+
+function PlatformCapabilities({ service }: { service: PlatformService }) {
+  const t = useTranslations("Public.home.platformPage");
+
+  return (
+    <PlatformSection
+      eyebrow={t("capabilities.eyebrow")}
+      title={t("capabilities.title")}
+      description={t("capabilities.description")}
       muted
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -231,12 +285,72 @@ function PlatformCapabilities({ service }: { service: PlatformService }) {
   );
 }
 
-function PlatformUseCases({ service }: { service: PlatformService }) {
+function PlatformEcosystemConnections({
+  locale,
+  service,
+}: PlatformServicePageProps) {
+  const t = useTranslations("Public.home.platformPage");
+
+  const items = [
+    {
+      title: t("ecosystemConnections.items.platform.title"),
+      description: t("ecosystemConnections.items.platform.description", { service: service.title }),
+      href: localizeHref(locale, "/platform"),
+      icon: Layers3,
+    },
+    {
+      title: t("ecosystemConnections.items.products.title"),
+      description: t("ecosystemConnections.items.products.description"),
+      href: localizeHref(locale, "/products"),
+      icon: Building2,
+    },
+    {
+      title: t("ecosystemConnections.items.solutions.title"),
+      description: t("ecosystemConnections.items.solutions.description"),
+      href: localizeHref(locale, "/solutions/infrastructure"),
+      icon: Network,
+    },
+  ];
+
   return (
     <PlatformSection
-      eyebrow="Use cases"
-      title="Practical use cases"
-      description="Short, realistic scenarios for how this service fits into SGE products and operations."
+      eyebrow={t("ecosystemConnections.eyebrow")}
+      title={t("ecosystemConnections.title")}
+      description={t("ecosystemConnections.description")}
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+            >
+              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+                {t("common.explore")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </PlatformSection>
+  );
+}
+
+function PlatformUseCases({ service }: { service: PlatformService }) {
+  const t = useTranslations("Public.home.platformPage");
+
+  return (
+    <PlatformSection
+      eyebrow={t("useCases.eyebrow")}
+      title={t("useCases.title")}
+      description={t("useCases.description")}
     >
       <div className="grid gap-5 md:grid-cols-3">
         {service.useCases.map((useCase, index) => (
@@ -260,28 +374,84 @@ function PlatformUseCases({ service }: { service: PlatformService }) {
   );
 }
 
-function PlatformIntegration({ service }: { service: PlatformService }) {
+function PlatformRecommendedNextStep({
+  locale,
+  service,
+}: PlatformServicePageProps) {
+  const t = useTranslations("Public.home.platformPage");
+
+  const items = [
+    {
+      title: t("recommendedNextStep.items.explore.title"),
+      description: t("recommendedNextStep.items.explore.description"),
+      href: localizeHref(locale, "/platform"),
+      label: t("recommendedNextStep.items.explore.label"),
+    },
+    {
+      title: t("recommendedNextStep.items.evaluate.title"),
+      description: t("recommendedNextStep.items.evaluate.description", { service: service.title }),
+      href: localizeHref(locale, "/solutions/infrastructure"),
+      label: t("recommendedNextStep.items.evaluate.label"),
+    },
+    {
+      title: t("recommendedNextStep.items.contact.title"),
+      description: t("recommendedNextStep.items.contact.description"),
+      href: localizeHref(locale, "/company/contact"),
+      label: t("recommendedNextStep.items.contact.label"),
+    },
+  ];
+
   return (
     <PlatformSection
-      eyebrow="Ecosystem integration"
-      title="Connects with the SGE ecosystem"
-      description="Each platform service is presented as part of a shared technical foundation, not as an isolated product."
+      eyebrow={t("recommendedNextStep.eyebrow")}
+      title={t("recommendedNextStep.title")}
+      description={t("recommendedNextStep.description")}
+      muted
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => (
+          <Link
+            key={item.title}
+            href={item.href}
+            className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+          >
+            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+              {item.label}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </span>
+          </Link>
+        ))}
+      </div>
+    </PlatformSection>
+  );
+}
+
+function PlatformIntegration({ service }: { service: PlatformService }) {
+  const t = useTranslations("Public.home.platformPage");
+
+  return (
+    <PlatformSection
+      eyebrow={t("integration.eyebrow")}
+      title={t("integration.title")}
+      description={t("integration.description")}
       muted
     >
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <p className="text-sm font-medium text-slate-950">Integration map</p>
+          <p className="text-sm font-medium text-slate-950">{t("integration.mapTitle")}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="rounded-md border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-900">
               {service.title}
             </span>
             <span className="h-px w-8 bg-slate-300" />
             <span className="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700">
-              SGE Platform
+              {t("brand")}
             </span>
           </div>
           <p className="mt-6 text-sm leading-7 text-slate-600">
-            The service exchanges signals, policies or product context with adjacent SGE systems according to its maturity.
+            {t("integration.mapDescription")}
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -303,11 +473,13 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
 }
 
 function PlatformArchitecture({ service }: { service: PlatformService }) {
+  const t = useTranslations("Public.home.platformPage");
+
   return (
     <PlatformSection
-      eyebrow="Architecture & operations"
-      title="Operational flow"
-      description="A simplified view of how requests, events or records move through this service."
+      eyebrow={t("architecture.eyebrow")}
+      title={t("architecture.title")}
+      description={t("architecture.description")}
     >
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="grid gap-3">
@@ -324,7 +496,7 @@ function PlatformArchitecture({ service }: { service: PlatformService }) {
         </div>
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
           <h3 className="text-base font-semibold text-slate-950">
-            Operational principles
+            {t("architecture.operationalPrinciples")}
           </h3>
           <ul className="mt-5 space-y-4">
             {service.operationalPrinciples.map((principle) => (
@@ -344,11 +516,48 @@ function PlatformAvailability({
   locale,
   service,
 }: PlatformServicePageProps) {
+  const t = useTranslations("Public.home.platformPage");
+  const tStatus = useTranslations("Public.home.page.status");
+  const isFrenchLocale = locale.startsWith("fr") || locale.startsWith("be_") || locale.startsWith("ch_");
+  const valueMap: Record<string, string> = {
+    "En progression": "En progression",
+    "Non disponible": "Non disponible",
+    Limité: "Limité",
+    Interne: "Interne",
+  };
+  const labelMap: Record<string, string> = {
+    "Current status": "Statut actuel",
+    "Statut actuel": "Statut actuel",
+    "Public API": "API publique",
+    "API publique": "API publique",
+    "Dashboard integration": "Intégration tableau de bord",
+    "Intégration dashboard": "Intégration tableau de bord",
+    Documentation: "Documentation",
+    "Workspace integration": "Intégration espace de travail",
+    "Intégration workspace": "Intégration espace de travail",
+  };
+
+  function toFrenchAvailabilityValue(value: string) {
+    if (value in valueMap) {
+      return valueMap[value];
+    }
+
+    try {
+      return tStatus(value);
+    } catch {
+      return value;
+    }
+  }
+
+  function toFrenchAvailabilityLabel(label: string) {
+    return labelMap[label] ?? label;
+  }
+
   return (
     <PlatformSection
-      eyebrow="Availability & next step"
-      title="Availability and next step"
-      description={service.nextStep}
+      eyebrow={t("availability.eyebrow")}
+      title={t("availability.title")}
+      description={isFrenchLocale ? t("availability.description") : service.nextStep}
       muted
     >
       <div className="grid gap-6 lg:grid-cols-[1fr_0.7fr]">
@@ -359,20 +568,20 @@ function PlatformAvailability({
               className="rounded-lg border border-slate-200 bg-white p-5"
             >
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
-                {item.label}
+                {toFrenchAvailabilityLabel(item.label)}
               </p>
               <p className="mt-3 text-sm font-semibold text-slate-950">
-                {item.value}
+                {toFrenchAvailabilityValue(item.value)}
               </p>
             </div>
           ))}
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <h3 className="text-lg font-semibold text-slate-950">
-            Continue with {service.title}
+            {t("availability.continueWith", { service: service.title })}
           </h3>
           <p className="mt-3 text-sm leading-7 text-slate-600">
-            Start from the most relevant SGE entry point for the current maturity of this service.
+            {t("availability.description")}
           </p>
           <div className="mt-6 flex flex-col gap-3">
             {service.ctas.map((cta) => (
@@ -392,10 +601,13 @@ export function PlatformServicePage({ locale, service }: PlatformServicePageProp
       <main className="flex-1">
         <PlatformHero locale={locale} service={service} />
         <PlatformPurpose service={service} />
+        <PlatformWhyNow service={service} />
         <PlatformCapabilities service={service} />
+        <PlatformEcosystemConnections locale={locale} service={service} />
         <PlatformUseCases service={service} />
         <PlatformIntegration service={service} />
         <PlatformArchitecture service={service} />
+        <PlatformRecommendedNextStep locale={locale} service={service} />
         <PlatformAvailability locale={locale} service={service} />
       </main>
       <Footer locale={locale as Locale} />
@@ -406,10 +618,13 @@ export function PlatformServicePage({ locale, service }: PlatformServicePageProp
 export {
   PlatformHero,
   PlatformPurpose,
+  PlatformWhyNow,
   PlatformCapabilities,
+  PlatformEcosystemConnections,
   PlatformUseCases,
   PlatformIntegration,
   PlatformArchitecture,
+  PlatformRecommendedNextStep,
   PlatformAvailability,
   PlatformStatusBadge,
   PlatformCTA,

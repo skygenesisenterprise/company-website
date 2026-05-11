@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
-import { PlatformServicePage } from "@/components/public/platform/platform-service-page";
-import { getPlatformService } from "@/lib/platform/platform-services";
+import {
+  generatePlatformMetadata,
+  type PlatformPageParams,
+  renderPlatformPage,
+} from "../page-helpers";
 
-interface PlatformPageParams {
-  params: Promise<{ locale: string }>;
-}
-
-const service = getPlatformService("identity");
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: `${service.title} | SGE Platform`,
-    description: service.description,
-  };
+export async function generateMetadata({ params }: PlatformPageParams): Promise<Metadata> {
+  return generatePlatformMetadata(params, "identity");
 }
 
 export default async function PlatformIdentityPage({ params }: PlatformPageParams) {
-  const { locale } = await params;
-
-  return <PlatformServicePage locale={locale} service={service} />;
+  return renderPlatformPage(params, "identity");
 }

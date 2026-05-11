@@ -237,6 +237,40 @@ function WhatWeBuild({ locale, t }: HomePageContentProps) {
   );
 }
 
+function WhyNow({ t }: HomePageContentProps) {
+  const items = [
+    {
+      title: t("whyNow.items.control.title"),
+      description: t("whyNow.items.control.description"),
+      icon: ShieldCheck,
+    },
+    {
+      title: t("whyNow.items.clarity.title"),
+      description: t("whyNow.items.clarity.description"),
+      icon: CheckCircle2,
+    },
+    {
+      title: t("whyNow.items.execution.title"),
+      description: t("whyNow.items.execution.description"),
+      icon: Layers3,
+    },
+  ];
+
+  return (
+    <HomeSection
+      eyebrow={t("whyNow.eyebrow")}
+      title={t("whyNow.title")}
+      description={t("whyNow.description")}
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => (
+          <HomeCard key={item.title} {...item} />
+        ))}
+      </div>
+    </HomeSection>
+  );
+}
+
 function HomePlatformGrid({ locale, t }: HomePageContentProps) {
   return (
     <HomeSection
@@ -308,6 +342,54 @@ function HomeProductGrid({ locale, t }: HomePageContentProps) {
   );
 }
 
+function EcosystemConnections({ locale, t }: HomePageContentProps) {
+  const items = [
+    {
+      title: t("ecosystemConnections.items.platform.title"),
+      description: t("ecosystemConnections.items.platform.description"),
+      href: localizeHref(locale, "/platform"),
+      label: t("common.explore"),
+      icon: Layers3,
+    },
+    {
+      title: t("ecosystemConnections.items.products.title"),
+      description: t("ecosystemConnections.items.products.description"),
+      href: localizeHref(locale, "/products"),
+      label: t("common.explore"),
+      icon: Building2,
+    },
+    {
+      title: t("ecosystemConnections.items.solutions.title"),
+      description: t("ecosystemConnections.items.solutions.description"),
+      href: localizeHref(locale, "/solutions/workplace"),
+      label: t("common.explore"),
+      icon: Network,
+    },
+    {
+      title: t("ecosystemConnections.items.company.title"),
+      description: t("ecosystemConnections.items.company.description"),
+      href: localizeHref(locale, "/company/about"),
+      label: t("common.explore"),
+      icon: Users,
+    },
+  ];
+
+  return (
+    <HomeSection
+      eyebrow={t("ecosystemConnections.eyebrow")}
+      title={t("ecosystemConnections.title")}
+      description={t("ecosystemConnections.description")}
+      muted
+    >
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {items.map((item) => (
+          <HomeCard key={item.title} {...item} />
+        ))}
+      </div>
+    </HomeSection>
+  );
+}
+
 function SolutionsForOrganizations({ locale, t }: HomePageContentProps) {
   const solutions = [
     {
@@ -350,6 +432,46 @@ function SolutionsForOrganizations({ locale, t }: HomePageContentProps) {
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {solutions.map((solution) => (
           <HomeCard key={solution.title} {...solution} />
+        ))}
+      </div>
+    </HomeSection>
+  );
+}
+
+function RecommendedNextStep({ locale, t }: HomePageContentProps) {
+  const items = [
+    {
+      title: t("recommendedNextStep.items.discover.title"),
+      description: t("recommendedNextStep.items.discover.description"),
+      href: localizeHref(locale, "/platform"),
+      label: t("recommendedNextStep.items.discover.label"),
+      icon: Layers3,
+    },
+    {
+      title: t("recommendedNextStep.items.evaluate.title"),
+      description: t("recommendedNextStep.items.evaluate.description"),
+      href: localizeHref(locale, "/solutions/b2b"),
+      label: t("recommendedNextStep.items.evaluate.label"),
+      icon: Building2,
+    },
+    {
+      title: t("recommendedNextStep.items.engage.title"),
+      description: t("recommendedNextStep.items.engage.description"),
+      href: localizeHref(locale, "/company/contact"),
+      label: t("recommendedNextStep.items.engage.label"),
+      icon: ArrowRight,
+    },
+  ];
+
+  return (
+    <HomeSection
+      eyebrow={t("recommendedNextStep.eyebrow")}
+      title={t("recommendedNextStep.title")}
+      description={t("recommendedNextStep.description")}
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => (
+          <HomeCard key={item.title} {...item} />
         ))}
       </div>
     </HomeSection>
@@ -486,11 +608,14 @@ export async function HomePage({ locale }: HomePageProps) {
       <main className="flex-1">
         <HomeHero locale={locale} t={t} />
         <WhatWeBuild locale={locale} t={t} />
+        <WhyNow locale={locale} t={t} />
         <HomePlatformGrid locale={locale} t={t} />
         <HomeProductGrid locale={locale} t={t} />
+        <EcosystemConnections locale={locale} t={t} />
         <SolutionsForOrganizations locale={locale} t={t} />
         <DeveloperOpenSource locale={locale} t={t} />
         <HomePrinciples locale={locale} t={t} />
+        <RecommendedNextStep locale={locale} t={t} />
         <HomeCTA locale={locale} t={t} />
       </main>
       <Footer locale={locale as Locale} />
@@ -503,8 +628,11 @@ export {
   HomeSection,
   HomeCard,
   HomeEcosystemMap,
+  WhyNow,
   HomePlatformGrid,
   HomeProductGrid,
+  EcosystemConnections,
   HomePrinciples,
+  RecommendedNextStep,
   HomeCTA,
 };

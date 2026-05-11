@@ -2393,6 +2393,25 @@
             }
           }
         },
+        "whyNow": {
+          "eyebrow": "Pourquoi maintenant",
+          "title": "Le contexte compte autant que les fonctionnalités.",
+          "description": "Les organisations cherchent plus de maîtrise, plus de lisibilité et des trajectoires d'adoption crédibles plutôt qu'une promesse technologique isolée.",
+          "items": {
+            "control": {
+              "title": "Reprendre le contrôle",
+              "description": "Réduire la dépendance, mieux cadrer l'identité, les accès et les composants critiques de l'infrastructure."
+            },
+            "clarity": {
+              "title": "Rendre la maturité lisible",
+              "description": "Afficher ce qui est disponible, en recherche ou en développement pour faciliter les décisions techniques et métier."
+            },
+            "execution": {
+              "title": "Construire pour durer",
+              "description": "Prioriser des fondations cohérentes qui peuvent soutenir plusieurs produits, solutions et usages long terme."
+            }
+          }
+        },
         "platform": {
           "eyebrow": "Fondation plateforme",
           "title": "Le socle technique commun.",
@@ -2496,6 +2515,29 @@
             }
           }
         },
+        "ecosystemConnections": {
+          "eyebrow": "Intégration dans l'écosystème",
+          "title": "Chaque page doit ouvrir des connexions utiles.",
+          "description": "L'écosystème public gagne en valeur quand les visiteurs comprennent rapidement comment plateforme, produits, solutions et entreprise se relient.",
+          "items": {
+            "platform": {
+              "title": "Commencer par le socle",
+              "description": "Explorer les briques communes qui structurent les expériences, les politiques et les intégrations."
+            },
+            "products": {
+              "title": "Voir les surfaces visibles",
+              "description": "Comprendre comment les produits exposent des usages concrets au-dessus du socle plateforme."
+            },
+            "solutions": {
+              "title": "Lire par trajectoire d'adoption",
+              "description": "Identifier les assemblages pertinents par contexte d'organisation, équipe ou secteur."
+            },
+            "company": {
+              "title": "Relier à la vision d'entreprise",
+              "description": "Situer chaque brique dans une logique plus large de souveraineté, d'exécution et de gouvernance."
+            }
+          }
+        },
         "developers": {
           "eyebrow": "Développeurs & open-source",
           "title": "Construire aussi pour les développeurs.",
@@ -2551,6 +2593,28 @@
             }
           }
         },
+        "recommendedNextStep": {
+          "eyebrow": "Prochaine étape recommandée",
+          "title": "Orienter selon le niveau de maturité du visiteur.",
+          "description": "Une home utile ne termine pas sur une simple description. Elle propose un chemin clair selon l'intention de découverte, d'évaluation ou de contact.",
+          "items": {
+            "discover": {
+              "title": "Découvrir le socle",
+              "description": "Parcourir les services plateforme pour comprendre les fondations techniques et leurs statuts.",
+              "label": "Voir la plateforme"
+            },
+            "evaluate": {
+              "title": "Évaluer un scénario",
+              "description": "Entrer par une solution pour relier rapidement besoins organisationnels, produits et infrastructure.",
+              "label": "Voir les solutions"
+            },
+            "engage": {
+              "title": "Parler à l'équipe",
+              "description": "Ouvrir un échange si vous cherchez un cadrage, une trajectoire d'adoption ou un point de contact concret.",
+              "label": "Contacter SGE"
+            }
+          }
+        },
         "cta": {
           "eyebrow": "Prochaine étape",
           "title": "Choisir le prochain point d'entrée.",
@@ -2569,6 +2633,107 @@
               "title": "Pour les talents",
               "description": "Comprendre l'entreprise et les opportunités de contribution.",
               "label": "Voir les carrières"
+            }
+          }
+        }
+      },
+      "platformPage": {
+        "brand": "Plateforme SGE",
+        "serviceProfile": "Profil du service",
+        "common": {
+          "explore": "Explorer"
+        },
+        "purpose": {
+          "eyebrow": "Objectif",
+          "ecosystemRole": "Rôle dans l'écosystème",
+          "platformBenefit": "Bénéfice plateforme"
+        },
+        "whyNow": {
+          "eyebrow": "Pourquoi c'est important maintenant",
+          "title": "Le contexte du service compte autant que ses capacités.",
+          "description": "Un service plateforme utile doit expliquer le problème qu'il cadre, la lisibilité de sa maturité et le rôle qu'il joue dans une architecture plus large.",
+          "items": {
+            "control": {
+              "title": "Renforcer la maîtrise",
+              "description": "Clarifier où se situe le contrôle opérationnel, de sécurité ou d'infrastructure pour les équipes qui dépendent de ce service."
+            },
+            "clarity": {
+              "title": "Rendre le statut compréhensible",
+              "description": "Présenter la disponibilité et les limites du service sans surpromesse produit ni confusion sur son niveau de maturité."
+            },
+            "execution": {
+              "title": "Structurer l'exécution autour de {service}",
+              "description": "Montrer comment ce service s'inscrit dans une trajectoire technique durable, au-delà d'une fonctionnalité isolée."
+            }
+          }
+        },
+        "capabilities": {
+          "eyebrow": "Capacités clés",
+          "title": "Capacités clés",
+          "description": "Les fonctions principales sont volontairement cadrées selon les besoins d'infrastructure et le niveau de maturité actuel."
+        },
+        "ecosystemConnections": {
+          "eyebrow": "Intégration dans l'écosystème",
+          "title": "Relier le service au reste du système.",
+          "description": "Une page plateforme devient plus utile lorsqu'elle explique immédiatement quels autres ensembles consulter pour comprendre l'adoption réelle.",
+          "items": {
+            "platform": {
+              "title": "Voir le socle complet",
+              "description": "{service} fait partie d'un ensemble de services plateforme qui se renforcent mutuellement."
+            },
+            "products": {
+              "title": "Comprendre les usages visibles",
+              "description": "Les produits traduisent les fondations plateforme en expériences concrètes pour équipes et organisations."
+            },
+            "solutions": {
+              "title": "Lire les scénarios d'adoption",
+              "description": "Les solutions relient les briques techniques à des contextes métier, d'infrastructure ou d'organisation."
+            }
+          }
+        },
+        "useCases": {
+          "eyebrow": "Cas d'usage",
+          "title": "Cas d'usage concrets",
+          "description": "Des scénarios courts et réalistes pour montrer comment ce service s'intègre aux produits et opérations SGE."
+        },
+        "integration": {
+          "eyebrow": "Intégration écosystème",
+          "title": "Connecté à l'écosystème SGE",
+          "description": "Chaque service plateforme est présenté comme une brique d'un socle technique commun, et non comme un produit isolé.",
+          "mapTitle": "Carte d'intégration",
+          "mapDescription": "Le service échange des signaux, des politiques ou du contexte produit avec les systèmes SGE adjacents selon sa maturité."
+        },
+        "architecture": {
+          "eyebrow": "Architecture & opérations",
+          "title": "Flux opérationnel",
+          "description": "Une vue simplifiée de la circulation des requêtes, événements ou enregistrements dans ce service.",
+          "operationalPrinciples": "Principes opérationnels"
+        },
+        "availability": {
+          "eyebrow": "Disponibilité & prochaine étape",
+          "title": "Disponibilité et prochaine étape",
+          "continueWith": "Continuer avec {service}",
+          "description": "Commencez par le point d'entrée SGE le plus pertinent selon la maturité actuelle de ce service."
+        },
+        "recommendedNextStep": {
+          "eyebrow": "Prochaine étape recommandée",
+          "title": "Proposer un chemin clair après la lecture.",
+          "description": "Selon le niveau de compréhension du visiteur, la page doit permettre d'approfondir le socle, d'évaluer un scénario ou d'ouvrir un échange.",
+          "items": {
+            "explore": {
+              "title": "Explorer la plateforme",
+              "description": "Comparer ce service aux autres briques du socle pour mieux comprendre l'architecture d'ensemble.",
+              "label": "Voir la plateforme"
+            },
+            "evaluate": {
+              "title": "Évaluer un cas d'usage",
+              "description": "Replacer {service} dans une trajectoire d'adoption plus concrète côté organisation ou infrastructure.",
+              "label": "Voir les solutions"
+            },
+            "contact": {
+              "title": "Parler à l'équipe",
+              "description": "Contacter SGE si vous avez besoin d'un cadrage, d'une intégration ou d'une lecture plus précise de la maturité du service.",
+              "label": "Contacter SGE"
             }
           }
         }
