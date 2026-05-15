@@ -36,6 +36,9 @@ type Config struct {
 	Server   ServerConfig
 	Log      LogConfig
 	Mail     MailConfig
+
+	Port      string
+	SystemKey string
 }
 
 type StalwartConfig struct {
@@ -114,7 +117,7 @@ type POP3Config struct {
 }
 
 func Load() *Config {
-	return &Config{
+	cfg := &Config{
 		Stalwart: StalwartConfig{
 			Host:       getEnv("STALWART_HOST", DefaultMailHostPrimary),
 			HTTPPort:   getEnvInt("STALWART_HTTP_PORT", 8080),
@@ -183,6 +186,15 @@ func Load() *Config {
 			},
 		},
 	}
+
+	cfg.Port = strconv.Itoa(cfg.Server.Port)
+	cfg.SystemKey = getEnv("SYSTEM_KEY", "")
+
+	return cfg
+}
+
+func LoadConfig() *Config {
+	return Load()
 }
 
 func getEnv(key, defaultValue string) string {
