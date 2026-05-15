@@ -93,6 +93,7 @@ COPY app/config/              ./app/config/
 COPY app/context/             ./app/context/
 COPY app/hooks/               ./app/hooks/
 COPY app/i18n/                ./app/i18n/
+COPY app/messages/            ./app/messages/
 COPY app/lib/                 ./app/lib/
 COPY app/public/              ./app/public/
 COPY app/styles/              ./app/styles/
