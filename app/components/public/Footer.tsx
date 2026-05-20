@@ -284,32 +284,58 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
       {/* Brand block */}
       <div>
         <div className="mx-auto max-w-7xl px-6 py-10">
-          <div className="max-w-xs">
-            <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <span className="text-base font-semibold text-foreground tracking-tight group-hover:text-foreground transition-colors">
-                Sky Genesis Enterprise
-              </span>
-            </Link>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              {t("brandDescription")}
-            </p>
-            <div className="flex items-center gap-3 mt-6">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-150"
-                  aria-label={social.name}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <SocialIcon name={social.name} />
-                </Link>
-              ))}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,24rem)_minmax(0,32rem)] lg:justify-between">
+            <div className="max-w-xs">
+              <Link href="/" className="inline-flex items-center gap-2.5 group">
+                <span className="text-base font-semibold text-foreground tracking-tight group-hover:text-foreground transition-colors">
+                  Sky Genesis Enterprise
+                </span>
+              </Link>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                {t("brandDescription")}
+              </p>
+              <div className="flex items-center gap-3 mt-6">
+                {socialLinks.map((social) => (
+                  <Link
+                    key={social.name}
+                    href={social.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+                    aria-label={social.name}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <SocialIcon name={social.name} />
+                  </Link>
+                ))}
+              </div>
+              <p className="mt-4 text-sm text-muted-foreground">
+                {t("salesServices")}: {t("phoneNumber")}
+              </p>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              {t("salesServices")}: {t("phoneNumber")}
-            </p>
+
+            <div className="max-w-2xl lg:justify-self-end">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-foreground">
+                {t("newsletterTitle")}
+              </h3>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                {t("newsletterDescription")}
+              </p>
+              <form className="mt-6 space-y-4">
+                <div className="max-w-xl">
+                  <label className="flex flex-col gap-2 text-sm text-foreground">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder={t("newsletterEmail")}
+                      className="h-11 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground"
+                    />
+                  </label>
+                </div>
+                <p className="max-w-xl text-xs leading-relaxed text-muted-foreground">
+                  {t("newsletterLegalNotice")}
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@ packages:
   - "tools"
   - "tests"
   - "package/snap"
-  - "server/prisma"
   - "package/node"
   - "package/github"
   - "package/vscode"

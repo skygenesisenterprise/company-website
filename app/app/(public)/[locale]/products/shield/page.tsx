@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
-import { ProductServicePage } from "@/components/public/products/product-service-page";
-import { getProductService } from "@/lib/products/product-services";
+import {
+  generateProductMetadata,
+  type ProductPageParams,
+  renderProductPage,
+} from "../page-helpers";
 
-interface ProductPageParams {
-  params: Promise<{ locale: string }>;
-}
-
-const product = getProductService("shield");
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: `${product.title} | SGE Products`,
-    description: product.description,
-  };
+export async function generateMetadata({ params }: ProductPageParams): Promise<Metadata> {
+  return generateProductMetadata(params, "shield");
 }
 
 export default async function ShieldProductPage({ params }: ProductPageParams) {
-  const { locale } = await params;
-
-  return <ProductServicePage locale={locale} product={product} />;
+  return renderProductPage(params, "shield");
 }

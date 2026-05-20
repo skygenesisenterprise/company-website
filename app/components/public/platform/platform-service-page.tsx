@@ -26,6 +26,11 @@ interface PlatformSectionProps {
   children: React.ReactNode;
 }
 
+interface PlatformTextCard {
+  title: string;
+  description: string;
+}
+
 function localizeHref(locale: string, href: string) {
   if (href.startsWith("http")) {
     return href;
@@ -33,6 +38,13 @@ function localizeHref(locale: string, href: string) {
 
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
 }
+
+const customAvailabilityValues = {
+  inProgress: true,
+  notAvailable: true,
+  limited: true,
+  internal: true,
+} as const;
 
 function PlatformSection({
   eyebrow,
@@ -88,9 +100,11 @@ function PlatformStatusBadge({ status }: { status: PlatformServiceStatus }) {
 
 function PlatformCTA({
   cta,
+  label,
   locale,
 }: {
   cta: PlatformCta;
+  label: string;
   locale: string;
 }) {
   const isPrimary = cta.variant !== "secondary";
@@ -106,7 +120,7 @@ function PlatformCTA({
       )}
     >
       <Link href={localizeHref(locale, cta.href)}>
-        {cta.label}
+        {label}
         {isPrimary ? <ArrowRight className="h-4 w-4" /> : null}
       </Link>
     </Button>
@@ -116,6 +130,9 @@ function PlatformCTA({
 function PlatformHero({ locale, service }: PlatformServicePageProps) {
   const t = useTranslations("Public.home.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
+  const tStatus = useTranslations("Public.home.page.status");
+  const serviceTitle = tPlatform(`${service.slug}.title`);
+  const ctaLabels = tPlatform.raw(`${service.slug}.ctas`) as [string, string];
 
   return (
     <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
@@ -126,7 +143,7 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <h1 className="text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-              {service.title}
+              {serviceTitle}
             </h1>
             <PlatformStatusBadge status={service.status} />
           </div>
@@ -134,11 +151,16 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
             {tPlatform(`${service.slug}.promise`)}
           </p>
           <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
-            {service.description}
+            {tPlatform(`${service.slug}.description`)}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            {service.ctas.map((cta) => (
-              <PlatformCTA key={cta.label} cta={cta} locale={locale} />
+            {service.ctas.map((cta, index) => (
+              <PlatformCTA
+                key={cta.href}
+                cta={cta}
+                label={ctaLabels[index]}
+                locale={locale}
+              />
             ))}
           </div>
         </div>
@@ -149,7 +171,7 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
                 {t("serviceProfile")}
               </p>
               <p className="mt-2 text-lg font-semibold text-slate-950">
-                {service.title}
+                {serviceTitle}
               </p>
             </div>
             <PlatformStatusBadge status={service.status} />
@@ -160,9 +182,13 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
                 key={item.label}
                 className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white px-4 py-3"
               >
-                <dt className="text-sm text-slate-500">{item.label}</dt>
+                <dt className="text-sm text-slate-500">
+                  {t(`availability.labels.${item.label}`)}
+                </dt>
                 <dd className="text-right text-sm font-medium text-slate-950">
-                  {item.value}
+                  {item.value in customAvailabilityValues
+                    ? t(`availability.values.${item.value}`)
+                    : tStatus(item.value)}
                 </dd>
               </div>
             ))}
@@ -175,12 +201,13 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
 
 function PlatformPurpose({ service }: { service: PlatformService }) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
 
   return (
     <PlatformSection
       eyebrow={t("purpose.eyebrow")}
-      title={service.purpose.title}
-      description={service.purpose.problem}
+      title={tPlatform(`${service.slug}.purpose.title`)}
+      description={tPlatform(`${service.slug}.purpose.problem`)}
     >
       <div className="grid gap-5 md:grid-cols-2">
         <div className="rounded-lg border border-slate-200 bg-white p-6">
@@ -188,7 +215,7 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
             {t("purpose.ecosystemRole")}
           </h3>
           <p className="mt-3 text-sm leading-7 text-slate-600">
-            {service.purpose.ecosystem}
+            {tPlatform(`${service.slug}.purpose.ecosystem`)}
           </p>
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-6">
@@ -196,7 +223,7 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
             {t("purpose.platformBenefit")}
           </h3>
           <p className="mt-3 text-sm leading-7 text-slate-600">
-            {service.purpose.benefit}
+            {tPlatform(`${service.slug}.purpose.benefit`)}
           </p>
         </div>
       </div>
@@ -206,6 +233,8 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
 
 function PlatformWhyNow({ service }: { service: PlatformService }) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const serviceTitle = tPlatform(`${service.slug}.title`);
 
   const items = [
     {
@@ -219,8 +248,8 @@ function PlatformWhyNow({ service }: { service: PlatformService }) {
       icon: CheckCircle2,
     },
     {
-      title: t("whyNow.items.execution.title", { service: service.title }),
-      description: t("whyNow.items.execution.description", { service: service.title }),
+      title: t("whyNow.items.execution.title", { service: serviceTitle }),
+      description: t("whyNow.items.execution.description", { service: serviceTitle }),
       icon: Layers3,
     },
   ];
@@ -251,6 +280,8 @@ function PlatformWhyNow({ service }: { service: PlatformService }) {
 
 function PlatformCapabilities({ service }: { service: PlatformService }) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const capabilities = tPlatform.raw(`${service.slug}.capabilities`) as PlatformTextCard[];
 
   return (
     <PlatformSection
@@ -260,22 +291,23 @@ function PlatformCapabilities({ service }: { service: PlatformService }) {
       muted
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {service.capabilities.map((capability) => {
+        {service.capabilities.map((capability, index) => {
           const Icon = capability.icon;
+          const capabilityText = capabilities[index];
 
           return (
             <div
-              key={capability.title}
+              key={capabilityText.title}
               className="rounded-lg border border-slate-200 bg-white p-6"
             >
               {Icon ? (
                 <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
               ) : null}
               <h3 className="text-base font-semibold text-slate-950">
-                {capability.title}
+                {capabilityText.title}
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">
-                {capability.description}
+                {capabilityText.description}
               </p>
             </div>
           );
@@ -290,11 +322,13 @@ function PlatformEcosystemConnections({
   service,
 }: PlatformServicePageProps) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const serviceTitle = tPlatform(`${service.slug}.title`);
 
   const items = [
     {
       title: t("ecosystemConnections.items.platform.title"),
-      description: t("ecosystemConnections.items.platform.description", { service: service.title }),
+      description: t("ecosystemConnections.items.platform.description", { service: serviceTitle }),
       href: localizeHref(locale, "/platform"),
       icon: Layers3,
     },
@@ -345,6 +379,8 @@ function PlatformEcosystemConnections({
 
 function PlatformUseCases({ service }: { service: PlatformService }) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const useCases = tPlatform.raw(`${service.slug}.useCases`) as PlatformTextCard[];
 
   return (
     <PlatformSection
@@ -353,7 +389,7 @@ function PlatformUseCases({ service }: { service: PlatformService }) {
       description={t("useCases.description")}
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {service.useCases.map((useCase, index) => (
+        {useCases.map((useCase, index) => (
           <div
             key={useCase.title}
             className="rounded-lg border border-slate-200 bg-white p-6"
@@ -379,6 +415,8 @@ function PlatformRecommendedNextStep({
   service,
 }: PlatformServicePageProps) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const serviceTitle = tPlatform(`${service.slug}.title`);
 
   const items = [
     {
@@ -389,7 +427,7 @@ function PlatformRecommendedNextStep({
     },
     {
       title: t("recommendedNextStep.items.evaluate.title"),
-      description: t("recommendedNextStep.items.evaluate.description", { service: service.title }),
+      description: t("recommendedNextStep.items.evaluate.description", { service: serviceTitle }),
       href: localizeHref(locale, "/solutions/infrastructure"),
       label: t("recommendedNextStep.items.evaluate.label"),
     },
@@ -430,6 +468,8 @@ function PlatformRecommendedNextStep({
 
 function PlatformIntegration({ service }: { service: PlatformService }) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const integrations = tPlatform.raw(`${service.slug}.integrations`) as string[];
 
   return (
     <PlatformSection
@@ -443,7 +483,7 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
           <p className="text-sm font-medium text-slate-950">{t("integration.mapTitle")}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="rounded-md border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-900">
-              {service.title}
+              {tPlatform(`${service.slug}.title`)}
             </span>
             <span className="h-px w-8 bg-slate-300" />
             <span className="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700">
@@ -455,7 +495,7 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          {service.integrations.map((integration) => (
+          {integrations.map((integration) => (
             <div
               key={integration}
               className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-4"
@@ -474,6 +514,9 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
 
 function PlatformArchitecture({ service }: { service: PlatformService }) {
   const t = useTranslations("Public.home.platformPage");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const architectureFlow = tPlatform.raw(`${service.slug}.architectureFlow`) as string[];
+  const operationalPrinciples = tPlatform.raw(`${service.slug}.operationalPrinciples`) as string[];
 
   return (
     <PlatformSection
@@ -483,7 +526,7 @@ function PlatformArchitecture({ service }: { service: PlatformService }) {
     >
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="grid gap-3">
-          {service.architectureFlow.map((step, index) => (
+          {architectureFlow.map((step, index) => (
             <div key={step} className="flex items-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-semibold text-slate-950">
                 {index + 1}
@@ -499,7 +542,7 @@ function PlatformArchitecture({ service }: { service: PlatformService }) {
             {t("architecture.operationalPrinciples")}
           </h3>
           <ul className="mt-5 space-y-4">
-            {service.operationalPrinciples.map((principle) => (
+            {operationalPrinciples.map((principle) => (
               <li key={principle} className="flex gap-3 text-sm leading-6 text-slate-600">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-700" />
                 {principle}
@@ -518,28 +561,14 @@ function PlatformAvailability({
 }: PlatformServicePageProps) {
   const t = useTranslations("Public.home.platformPage");
   const tStatus = useTranslations("Public.home.page.status");
+  const tPlatform = useTranslations("Public.home.page.platform.services");
+  const ctaLabels = tPlatform.raw(`${service.slug}.ctas`) as [string, string];
+  const serviceTitle = tPlatform(`${service.slug}.title`);
   const isFrenchLocale = locale.startsWith("fr") || locale.startsWith("be_") || locale.startsWith("ch_");
-  const valueMap: Record<string, string> = {
-    "En progression": "En progression",
-    "Non disponible": "Non disponible",
-    Limité: "Limité",
-    Interne: "Interne",
-  };
-  const labelMap: Record<string, string> = {
-    "Current status": "Statut actuel",
-    "Statut actuel": "Statut actuel",
-    "Public API": "API publique",
-    "API publique": "API publique",
-    "Dashboard integration": "Intégration tableau de bord",
-    "Intégration dashboard": "Intégration tableau de bord",
-    Documentation: "Documentation",
-    "Workspace integration": "Intégration espace de travail",
-    "Intégration workspace": "Intégration espace de travail",
-  };
 
   function toFrenchAvailabilityValue(value: string) {
-    if (value in valueMap) {
-      return valueMap[value];
+    if (value in customAvailabilityValues) {
+      return t(`availability.values.${value}`);
     }
 
     try {
@@ -549,15 +578,11 @@ function PlatformAvailability({
     }
   }
 
-  function toFrenchAvailabilityLabel(label: string) {
-    return labelMap[label] ?? label;
-  }
-
   return (
     <PlatformSection
       eyebrow={t("availability.eyebrow")}
       title={t("availability.title")}
-      description={isFrenchLocale ? t("availability.description") : service.nextStep}
+      description={isFrenchLocale ? t("availability.description") : tPlatform(`${service.slug}.nextStep`)}
       muted
     >
       <div className="grid gap-6 lg:grid-cols-[1fr_0.7fr]">
@@ -568,7 +593,7 @@ function PlatformAvailability({
               className="rounded-lg border border-slate-200 bg-white p-5"
             >
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
-                {toFrenchAvailabilityLabel(item.label)}
+                {t(`availability.labels.${item.label}`)}
               </p>
               <p className="mt-3 text-sm font-semibold text-slate-950">
                 {toFrenchAvailabilityValue(item.value)}
@@ -578,14 +603,19 @@ function PlatformAvailability({
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <h3 className="text-lg font-semibold text-slate-950">
-            {t("availability.continueWith", { service: service.title })}
+            {t("availability.continueWith", { service: serviceTitle })}
           </h3>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             {t("availability.description")}
           </p>
           <div className="mt-6 flex flex-col gap-3">
-            {service.ctas.map((cta) => (
-              <PlatformCTA key={cta.label} cta={cta} locale={locale} />
+            {service.ctas.map((cta, index) => (
+              <PlatformCTA
+                key={cta.href}
+                cta={cta}
+                label={ctaLabels[index]}
+                locale={locale}
+              />
             ))}
           </div>
         </div>

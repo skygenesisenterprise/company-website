@@ -135,6 +135,10 @@
       "reportIssue": "Signaler un problème",
       "developerSupport": "Support développeurs",
       "brandDescription": "Nous concevons et opérons les infrastructures numériques de demain, en développant des technologies souveraines au service d'un écosystème européen durable.",
+      "newsletterTitle": "Restez connecté",
+      "newsletterDescription": "Accédez à notre actualité cloud pour ne rien manquer de nos nouveautés",
+      "newsletterEmail": "Votre adresse e-mail",
+      "newsletterLegalNotice": "Sky Genesis Enterprise traite votre adresse de messagerie aux fins de vous adresser les newsletters des entités du Groupe Sky Genesis Enterprise. Vous pouvez à tout moment utiliser le lien de désabonnement intégré. En savoir plus sur la gestion de vos données et vos droits",
       "verifyKey": "Vérifiez notre clé publique PGP pour assurer l'authenticité du site",
       "salesServices": "Services Commerciaux",
       "phoneNumber": "Non disponnible"
@@ -2420,35 +2424,235 @@
           "services": {
             "edge": {
               "title": "Edge",
-              "promise": "Fondations de routage et de distribution pour les services publics et plateforme SGE."
+              "promise": "Fondations de routage et de distribution pour les services publics et plateforme SGE.",
+              "description": "Sky Genesis Edge décrit la couche de routage, de contrôle du trafic et de distribution prévue pour un accès résilient aux services SGE.",
+              "purpose": {
+                "title": "Une couche d'entrée réseau contrôlée pour les services plateforme",
+                "problem": "Les interfaces publiques et APIs plateforme ont besoin de routage, de supervision et de modèles de distribution régionale sans revendiquer une empreinte CDN hyperscale.",
+                "ecosystem": "Edge relie les services plateforme, le statut, les régions, la sécurité et le site public dans un modèle de livraison partagé.",
+                "benefit": "Les opérateurs peuvent raisonner sur les chemins de trafic, les points d'entrée service et la future distribution régionale via un même modèle d'infrastructure."
+              },
+              "capabilities": [
+                { "title": "Routage", "description": "Politiques de routage des requêtes pour services publics et origines contrôlées." },
+                { "title": "Distribution", "description": "Modèles de livraison préparés pour certains schémas de déploiement régional." },
+                { "title": "Préparation au cache", "description": "Points d'architecture pour le cache lorsque le comportement produit le permet." },
+                { "title": "Contrôle du trafic", "description": "Contrôles de routage pour maintenance, déploiement progressif et protection de service." },
+                { "title": "Protection Edge", "description": "Contrôles de sécurité et frontières protectrices aux points d'entrée publics." },
+                { "title": "Distribution régionale", "description": "Planification de livraison sensible aux régions sans exagérer la couverture globale." }
+              ],
+              "useCases": [
+                { "title": "Distribuer les interfaces publiques", "description": "Servir les surfaces publiques SGE via une couche d'entrée infrastructure cohérente." },
+                { "title": "Router le trafic service", "description": "Diriger le trafic vers la bonne origine de service avec une politique de routage explicite." },
+                { "title": "Préparer l'infrastructure multi-région", "description": "Modéliser la future distribution régionale en gardant la disponibilité actuelle claire." }
+              ],
+              "integrations": ["Services plateforme", "Status", "Régions", "Sécurité", "Site public"],
+              "architectureFlow": ["Requête", "Politique de routage", "Couche Edge", "Service d'origine", "Supervision"],
+              "operationalPrinciples": ["Politique de routage explicite", "Chemins de déploiement mesurés", "Protection des origines", "Préparation régionale"],
+              "ctas": ["Développeurs", "Contact"],
+              "nextStep": "Contactez SGE pour discuter des besoins de routage infrastructure et de la planification régionale future."
             },
             "bank": {
               "title": "Bank",
-              "promise": "Concepts d'infrastructure financière guidés par la recherche pour les transactions futures de l'écosystème."
+              "promise": "Concepts d'infrastructure financière guidés par la recherche pour les transactions futures de l'écosystème.",
+              "description": "Sky Genesis Bank n'est pas une banque opérationnelle ni un service financier réglementé public. C'est une piste de recherche pour les concepts de registre, les enregistrements internes et une future infrastructure économique.",
+              "purpose": {
+                "title": "Un concept de registre prudent pour la future économie plateforme",
+                "problem": "Les futures transactions de l'écosystème pourraient nécessiter des enregistrements structurés, une validation de politique et des pistes d'audit avant d'envisager toute capacité de paiement réglementée.",
+                "ecosystem": "Bank relie l'identité, les journaux d'audit, la planification conformité, la recherche sur les futurs paiements et un modèle de registre interne.",
+                "benefit": "SGE peut explorer l'infrastructure économique avec prudence sans présenter des services bancaires, de paiement ou de règlement comme disponibles."
+              },
+              "capabilities": [
+                { "title": "Concept de registre", "description": "Modèle de recherche pour des entrées de registre internes structurées et l'historique d'événements." },
+                { "title": "Enregistrements internes", "description": "Exploration de structures d'enregistrement financier pour les besoins comptables plateforme." },
+                { "title": "Préparation paiement", "description": "Concepts de planification pour de futures intégrations de paiement, sans service de paiement disponible." },
+                { "title": "Planification conformité", "description": "Analyse précoce des frontières de gouvernance, de politique et de réglementation." },
+                { "title": "Infrastructure économique", "description": "Réflexion long terme sur l'infrastructure des modèles transactionnels de l'écosystème." },
+                { "title": "Transactions écosystème", "description": "Flux transactionnels conceptuels pour les futurs produits et services SGE." }
+              ],
+              "useCases": [
+                { "title": "Modéliser un registre interne", "description": "Représenter des événements économiques sous forme d'entrées de registre structurées pour la recherche et la planification." },
+                { "title": "Préparer les futurs flux", "description": "Étudier comment les futures transactions de l'écosystème pourraient être validées et auditées." },
+                { "title": "Structurer la finance expérimentale", "description": "Définir les frontières avant toute poursuite d'une capacité financière réglementée." }
+              ],
+              "integrations": ["Identity", "Journaux d'audit", "Conformité", "Futurs paiements", "Registre interne"],
+              "architectureFlow": ["Événement économique", "Entrée de registre", "Validation de politique", "Piste d'audit", "Règlement futur"],
+              "operationalPrinciples": ["Aucune revendication bancaire publique", "Enregistrements pensés pour l'audit", "Conformité avant capacité", "Maturité de recherche"],
+              "ctas": ["Contact", "Explorer les développeurs"],
+              "nextStep": "Contactez SGE pour un contexte institutionnel. Aucun service public de banque, carte, compte ou paiement n'est disponible depuis cette page."
             },
             "status": {
               "title": "Status",
-              "promise": "État des services, communication d'incident et transparence de maintenance."
+              "promise": "État des services, communication d'incident et transparence de maintenance.",
+              "description": "Sky Genesis Status donne aux produits et aux opérateurs un modèle partagé pour publier l'état des services et communiquer les événements plateforme.",
+              "purpose": {
+                "title": "Un état de service transparent pour une plateforme multi-produits",
+                "problem": "Lorsque les produits partagent l'infrastructure, les utilisateurs et opérateurs ont besoin d'un point unique pour comprendre la santé, les incidents et les fenêtres de maintenance.",
+                "ecosystem": "Status relie les signaux de service, les notifications, la planification, les surfaces de statut publiques et les journaux d'audit.",
+                "benefit": "La plateforme peut communiquer les problèmes avec prudence sans exagérer l'automatisation ni masquer l'incertitude opérationnelle."
+              },
+              "capabilities": [
+                { "title": "Santé des services", "description": "États de santé pour les services publics et certaines dépendances internes." },
+                { "title": "Incidents", "description": "Entrées d'incident structurées avec chronologie et contexte opérationnel." },
+                { "title": "Fenêtres de maintenance", "description": "Communication de maintenance planifiée pour les changements plateforme." },
+                { "title": "Historique de statut", "description": "Historique des états de service et des revues d'incident." },
+                { "title": "Alertes internes", "description": "Canaux d'alerte destinés aux opérateurs pour les changements de statut." },
+                { "title": "Transparence publique", "description": "Communication de statut publique lorsque le contexte s'y prête." }
+              ],
+              "useCases": [
+                { "title": "Suivre la santé des services", "description": "Consulter l'état des services publics SGE depuis une surface de statut unique." },
+                { "title": "Préparer une maintenance", "description": "Publier une fenêtre de maintenance planifiée avant les changements opérationnels." },
+                { "title": "Communiquer les incidents", "description": "Partager l'état d'un incident et ses mises à jour avec une chronologie claire." }
+              ],
+              "integrations": ["Services", "Notifications", "Planification", "Page de statut publique", "Journaux d'audit"],
+              "architectureFlow": ["Signal de service", "Évaluation du statut", "Chronologie d'incident", "Notification interne", "Mise à jour publique"],
+              "operationalPrinciples": ["Vocabulaire d'état clair", "Mises à jour relues humainement", "Chronologies d'incident", "Traçabilité après événement"],
+              "ctas": ["Explorer les développeurs", "Contact"],
+              "nextStep": "Utilisez le modèle de statut public à mesure qu'il mûrit, ou contactez SGE pour vos besoins de communication opérationnelle."
             },
             "search": {
               "title": "Search",
-              "promise": "Découverte unifiée dans le contenu public, la documentation et les ressources plateforme."
+              "promise": "Découverte unifiée dans le contenu public, la documentation et les ressources plateforme.",
+              "description": "Sky Genesis Search organise le contenu indexable afin que les utilisateurs et développeurs trouvent les pages, docs et ressources produit pertinentes.",
+              "purpose": {
+                "title": "Une couche de découverte commune pour l'écosystème SGE",
+                "problem": "Les pages publiques, la documentation et les ressources produit deviennent difficiles à parcourir lorsque chaque surface implémente la recherche séparément.",
+                "ecosystem": "Search relie les pages CMS, la documentation, les produits, les ressources développeurs et les points d'entrée workspace.",
+                "benefit": "Les utilisateurs peuvent explorer la plateforme via un modèle de découverte cohérent, tandis que le réglage de pertinence reste sous contrôle opérateur."
+              },
+              "capabilities": [
+                { "title": "Recherche unifiée", "description": "Une expérience de recherche pour certaines surfaces publiques et développeurs SGE." },
+                { "title": "Indexation de contenu", "description": "Pipeline d'indexation pour les pages, la documentation et les métadonnées produit." },
+                { "title": "Recherche documentaire", "description": "Parcours de recherche optimisés pour le contenu développeur et support." },
+                { "title": "Découverte produit", "description": "Résultats qui font remonter ensemble ressources produit et plateforme." },
+                { "title": "Filtres", "description": "Filtrage structuré pour une navigation plus claire entre types de contenus." },
+                { "title": "Réglage de pertinence", "description": "Règles de classement ajustables à mesure que la couverture de contenu s'étend." }
+              ],
+              "useCases": [
+                { "title": "Rechercher des pages publiques", "description": "Trouver les pages officielles SGE sans parcourir toute la structure du site." },
+                { "title": "Retrouver la documentation", "description": "Localiser guides développeurs et ressources API depuis un point d'entrée unique." },
+                { "title": "Explorer les produits", "description": "Découvrir les pages produit et plateforme à partir de requêtes pertinentes." }
+              ],
+              "integrations": ["Pages CMS", "Docs", "Produits", "Développeurs", "Workspace"],
+              "architectureFlow": ["Source de contenu", "Indexation", "Classement", "Requête", "Livraison des résultats"],
+              "operationalPrinciples": ["Couverture de sources maîtrisée", "Classement explicable", "Respect du contenu publié", "Indexation progressive"],
+              "ctas": ["Développeurs", "Contact"],
+              "nextStep": "Explorez les ressources développeurs pendant que la surface de recherche unifiée continue de mûrir."
             },
             "identity": {
               "title": "Identity",
-              "promise": "Fondations communes d'identité et d'accès pour les produits SGE."
+              "promise": "Fondations communes d'identité et d'accès pour les produits SGE.",
+              "description": "Aether Identity fournit une couche d'authentification partagée pour les applications publiques, les sessions workspace et les intégrations développeurs.",
+              "purpose": {
+                "title": "Une base d'identité contrôlée pour la plateforme",
+                "problem": "Les applications ont besoin d'un modèle cohérent pour reconnaître les utilisateurs, émettre des sessions et appliquer les décisions d'accès sans reconstruire la logique de compte pour chaque produit.",
+                "ecosystem": "Identity ancre l'accès workspace, la sécurité du tableau de bord, les clés API, les SDKs et les futures intégrations tierces.",
+                "benefit": "Les équipes peuvent connecter les produits à un modèle de compte commun tout en gardant visibles l'authentification, les politiques de session et les événements d'audit."
+              },
+              "capabilities": [
+                { "title": "Authentification", "description": "Parcours de connexion conçus pour les surfaces publiques et workspace SGE." },
+                { "title": "Sessions", "description": "Gestion des sessions pour les applications navigateur et l'accès workspace contrôlé." },
+                { "title": "MFA", "description": "Prise en charge de l'authentification multifacteur pour les opérations de compte plus sensibles." },
+                { "title": "Intégration SDK", "description": "Points d'intégration développeurs pour les produits qui ont besoin d'une identité partagée." },
+                { "title": "Cycle de vie des comptes", "description": "Création, vérification et récupération de comptes pour les services SGE." },
+                { "title": "Contrôle d'accès", "description": "Décisions d'accès orientées politique et reliées à l'identité et aux événements d'audit." }
+              ],
+              "useCases": [
+                { "title": "Sécuriser la connexion applicative", "description": "Ajouter un modèle de connexion cohérent à une application SGE sans dupliquer la logique d'identité." },
+                { "title": "Gérer les sessions workspace", "description": "Administrer les sessions authentifiées entre surfaces workspace et tableau de bord." },
+                { "title": "Partager l'identité SDK", "description": "Connecter les SDKs développeurs à un socle commun de comptes et de jetons." }
+              ],
+              "integrations": ["Workspace", "Tableau de bord", "Vault", "Clés API", "SDKs", "Applications tierces"],
+              "architectureFlow": ["Requête utilisateur", "Authentification", "Politique de session", "Jeton d'accès", "Événement d'audit"],
+              "operationalPrinciples": ["Accès au moindre privilège", "Événements de session auditables", "Cycle de vie de compte partagé", "Contrôles de sécurité incrémentaux"],
+              "ctas": ["Développeurs", "Contact"],
+              "nextStep": "Consultez les points d'entrée développeurs ou contactez SGE pour cadrer le contexte d'intégration."
             },
             "maps": {
               "title": "Maps",
-              "promise": "Contexte géographique pour les régions, emplacements de services et vues d'infrastructure."
+              "promise": "Contexte géographique pour les régions, emplacements de services et vues d'infrastructure.",
+              "description": "Sky Genesis Maps fournit un modèle géographique pour représenter les régions plateforme, les services et les couches de données produit.",
+              "purpose": {
+                "title": "Visibilité géographique pour les décisions d'infrastructure",
+                "problem": "L'infrastructure, les produits et les organisations ont souvent besoin de contexte géographique, mais les vues cartographiques doivent rester fondées sur des données vérifiées.",
+                "ecosystem": "Maps relie les régions, l'infrastructure, les services, les produits et certaines couches de données.",
+                "benefit": "Les équipes peuvent visualiser la géographie des services et les modèles régionaux tout en séparant clairement les données expérimentales des affirmations de production."
+              },
+              "capabilities": [
+                { "title": "Données géographiques", "description": "Références géographiques structurées pour les contextes plateforme et produit." },
+                { "title": "Visualisation des régions", "description": "Vues pour les régions et la géographie opérationnelle." },
+                { "title": "Emplacements de services", "description": "Modèles d'emplacement pour la présence des services et la couverture prévue." },
+                { "title": "Cartographie réseau", "description": "Vues simples des relations réseau et infrastructure." },
+                { "title": "Couches de données", "description": "Modèle prêt pour superposer des données produit ou opérationnelles." },
+                { "title": "Intégration produit", "description": "Points d'intégration pour les produits qui ont besoin de contexte géographique." }
+              ],
+              "useCases": [
+                { "title": "Visualiser les régions", "description": "Représenter les régions SGE et zones d'infrastructure dans un modèle cartographique clair." },
+                { "title": "Localiser les services", "description": "Montrer où certains services sont prévus, disponibles ou en revue." },
+                { "title": "Représenter la géographie", "description": "Ajouter du contexte géographique aux données produit et infrastructure." }
+              ],
+              "integrations": ["Régions", "Infrastructure", "Services", "Produits", "Couches de données"],
+              "architectureFlow": ["Source géographique", "Normalisation des données", "Modèle régional", "Couche de visualisation", "Usage produit"],
+              "operationalPrinciples": ["Préférence aux sources vérifiées", "Libellés de maturité clairs", "Modèle de données en couches", "Visualisation peu bruitée"],
+              "ctas": ["Développeurs", "Contact"],
+              "nextStep": "Contactez SGE avant de vous appuyer sur Maps pour une géographie opérationnelle ou exposée aux clients."
             },
             "vault": {
               "title": "Vault",
-              "promise": "Secrets et éléments sensibles d'intégration gérés avec une logique de politique et d'audit."
+              "promise": "Secrets et éléments sensibles d'intégration gérés avec une logique de politique et d'audit.",
+              "description": "Sky Genesis Vault est la couche plateforme pour les clés API, les jetons et les secrets qui ne doivent pas vivre directement dans le code produit.",
+              "purpose": {
+                "title": "Un espace plus sûr pour les secrets plateforme",
+                "problem": "Les produits doivent stocker des secrets d'intégration sans disperser des éléments sensibles dans les dépôts, tableaux de bord ou configurations locales.",
+                "ecosystem": "Vault relie l'identité, les clés API, les webhooks et les journaux d'audit dans un workflow de secrets plus contrôlé.",
+                "benefit": "Les développeurs disposent d'un modèle cohérent pour demander des secrets, tandis que les opérateurs gardent la visibilité sur les accès et la préparation à la rotation."
+              },
+              "capabilities": [
+                { "title": "Gestion des secrets", "description": "Modèle de stockage centralisé pour les valeurs sensibles d'application et d'intégration." },
+                { "title": "Clés API", "description": "Gestion contrôlée des identifiants de service et des clés API produit." },
+                { "title": "Stockage des jetons", "description": "Modèles de stockage pour les jetons utilisés par les services internes et les intégrations." },
+                { "title": "Chiffrement", "description": "Traitement orienté chiffrement pour les valeurs sensibles et les frontières de transport." },
+                { "title": "Préparation à la rotation", "description": "Structure préparée pour les workflows de rotation de clés à mesure que les services mûrissent." },
+                { "title": "Audit des accès", "description": "Événements d'audit pour l'accès aux secrets, les contrôles de politique et les opérations sensibles." }
+              ],
+              "useCases": [
+                { "title": "Stocker les secrets d'intégration", "description": "Garder les identifiants de service hors du code applicatif et des documents partagés." },
+                { "title": "Protéger les clés API", "description": "Donner aux produits un moyen cohérent de demander des clés avec vérification d'identité." },
+                { "title": "Auditer les accès sensibles", "description": "Suivre les tentatives d'accès aux secrets pour revue opérationnelle et sécurité." }
+              ],
+              "integrations": ["Identity", "Clés API", "Webhooks", "Tableau de bord", "Journaux d'audit"],
+              "architectureFlow": ["Requête applicative", "Vérification d'identité", "Politique Vault", "Accès au secret", "Événement d'audit"],
+              "operationalPrinciples": ["Pas d'exposition directe des secrets par défaut", "Requêtes liées à l'identité", "Accès traçables", "Modèle de données prêt pour la rotation"],
+              "ctas": ["Développeurs", "Contact"],
+              "nextStep": "Utilisez les canaux développeurs SGE pour discuter de l'accès en préversion et des besoins d'intégration."
             },
             "mailer": {
               "title": "Mailer",
-              "promise": "Communication transactionnelle pour les événements de compte, de sécurité et de système."
+              "promise": "Communication transactionnelle pour les événements de compte, de sécurité et de système.",
+              "description": "Sky Genesis Mailer coordonne les flux email déclenchés par les applications avec modèles, routage et visibilité de livraison.",
+              "purpose": {
+                "title": "Une communication produit fiable sans logique mail ad hoc",
+                "problem": "La vérification de compte, les alertes de sécurité et les notifications système ont besoin d'un chemin de livraison partagé plutôt que d'implémentations séparées par produit.",
+                "ecosystem": "Mailer relie l'identité, la sécurité, la planification, la newsletter et les workflows de notification à travers la plateforme SGE.",
+                "benefit": "Les produits peuvent émettre des événements de communication clairs tandis que les opérations gardent modèles, journaux et routage sous revue."
+              },
+              "capabilities": [
+                { "title": "Emails transactionnels", "description": "Emails applicatifs pour les workflows de compte, de sécurité et de produit." },
+                { "title": "Alertes de sécurité", "description": "Routage email pour les événements sensibles de compte et d'accès." },
+                { "title": "Modèles email", "description": "Modèles réutilisables pour une communication institutionnelle cohérente." },
+                { "title": "Journaux de livraison", "description": "Visibilité de livraison de base pour la revue opérationnelle et le support." },
+                { "title": "Routage des notifications", "description": "Décisions de routage pour les événements de communication déclenchés par les produits." },
+                { "title": "Emails de cycle de vie", "description": "Messages de vérification, récupération et cycle de vie de compte." }
+              ],
+              "useCases": [
+                { "title": "Vérifier un compte", "description": "Envoyer un message structuré de vérification de compte depuis Identity." },
+                { "title": "Notifier une alerte de sécurité", "description": "Livrer un email clair lorsqu'un événement de sécurité sensible survient." },
+                { "title": "Envoyer une notification système", "description": "Router les événements produit vers l'email lorsqu'un message opérationnel est nécessaire." }
+              ],
+              "integrations": ["Identity", "Sécurité", "Newsletter", "Planification", "Notifications"],
+              "architectureFlow": ["Événement applicatif", "Routage Mailer", "Rendu du modèle", "Fournisseur de livraison", "Journaux et audit"],
+              "operationalPrinciples": ["Cohérence des modèles", "Routage par événement", "Traçabilité de livraison", "Abstraction fournisseur"],
+              "ctas": ["Développeurs", "Contact"],
+              "nextStep": "Suivez les mises à jour développeurs ou contactez SGE pour planifier une intégration email transactionnelle."
             }
           }
         },
@@ -2460,35 +2664,275 @@
           "services": {
             "shield": {
               "title": "Shield",
-              "positioning": "Guidance de sécurité pour les comptes, les accès et le risque opérationnel."
+              "positioning": "Guidance de sécurité pour les comptes, les accès et le risque opérationnel.",
+              "description": "Aether Shield est conçu comme une expérience produit de sécurité pour les équipes qui ont besoin d'une protection de compte plus lisible, d'une meilleure visibilité du risque et d'un accompagnement incident dans l'écosystème SGE.",
+              "problem": {
+                "title": "Les signaux de sécurité doivent être compréhensibles",
+                "current": "Les informations de sécurité sont souvent dispersées entre pages de paramètres, journaux et outils d'infrastructure.",
+                "userNeed": "Les administrateurs ont besoin d'une vue produit claire qui explique ce qui demande attention et quelle action reste raisonnable.",
+                "promise": "Shield réunit protection des comptes, supervision des accès et contrôles de confiance dans un espace de sécurité plus lisible.",
+                "value": "Les organisations peuvent examiner les signaux de risque sans dépendre d'un tableau de bord d'opérations sécurité complet pour chaque décision."
+              },
+              "experienceSteps": [
+                { "title": "Examiner la synthèse", "description": "Ouvrir une vue concise de la sécurité des comptes et des contrôles workspace." },
+                { "title": "Inspecter les signaux", "description": "Lire des signaux structurés qui expliquent ce qui peut demander une revue." },
+                { "title": "Vérifier les accès", "description": "Suivre les accès sensibles reliés à l'identité et aux événements d'audit." },
+                { "title": "Suivre la guidance", "description": "Utiliser des indications orientées incident sans automatisation excessive." }
+              ],
+              "features": [
+                { "title": "Vue sécurité", "description": "Une vue centrée sur la posture de sécurité des comptes et espaces de travail." },
+                { "title": "Protection des comptes", "description": "Contrôles et recommandations pour administrer les comptes plus prudemment." },
+                { "title": "Signaux de risque", "description": "Indicateurs lisibles pour les événements de compte et d'accès." },
+                { "title": "Supervision des accès", "description": "Visibilité sur les chemins d'accès sensibles et les actions importantes." },
+                { "title": "Guidance incident", "description": "Repères structurés pour répondre aux situations de sécurité courantes." },
+                { "title": "Contrôles de confiance", "description": "Contrôles reliés aux fondations d'identité, de politique et d'audit." }
+              ],
+              "useCases": [
+                { "title": "Protéger un compte administrateur", "description": "Examiner les accès, la posture MFA et les contrôles sensibles du compte." },
+                { "title": "Suivre les signaux de risque", "description": "Comprendre quels événements de sécurité demandent attention et pourquoi." },
+                { "title": "Guider une réponse incident", "description": "Utiliser des étapes claires lorsqu'un comportement de compte ou d'accès paraît inhabituel." }
+              ],
+              "integrations": ["Identity", "Vault", "Status", "Journaux d'audit", "Notifications"],
+              "ctas": ["Contacter SGE", "Voir la plateforme"],
+              "nextStep": "Contactez SGE pour cadrer le contexte sécurité pendant que Shield reste en développement."
             },
             "vpn": {
               "title": "VPN",
-              "positioning": "Accès privé pour les équipes, appareils et ressources internes."
+              "positioning": "Accès privé pour les équipes, appareils et ressources internes.",
+              "description": "Aether VPN est une direction produit pour l'accès distant sécurisé, la protection des appareils et la gestion des politiques réseau dans les workspaces SGE.",
+              "problem": {
+                "title": "L'accès distant doit être contrôlé et lisible",
+                "current": "Les équipes s'appuient souvent sur des tunnels, réglages d'appareils et règles réseau séparés, difficiles à relire ensemble.",
+                "userNeed": "Les utilisateurs ont besoin d'un accès privé simple, tandis que les administrateurs ont besoin de politiques, d'appareils et d'activité visibles.",
+                "promise": "VPN vise à réunir tunnels sécurisés, accès privé et contrôles de politique dans une seule expérience produit.",
+                "value": "Les organisations peuvent préparer des modèles d'accès pour équipes distribuées sans exposer largement les ressources internes."
+              },
+              "experienceSteps": [
+                { "title": "Enrôler l'appareil", "description": "Connecter un appareil géré au modèle d'accès du workspace." },
+                { "title": "Choisir une politique", "description": "Appliquer des règles d'accès par équipe, rôle ou groupe de ressources." },
+                { "title": "Ouvrir le tunnel", "description": "Démarrer une connexion privée vers les destinations approuvées." },
+                { "title": "Examiner l'activité", "description": "Consulter l'état de connexion et les événements opérationnels." }
+              ],
+              "features": [
+                { "title": "Tunnels sécurisés", "description": "Chemins d'accès chiffrés pour appareils et destinations approuvés." },
+                { "title": "Accès privé", "description": "Contrôles d'accès pour services internes et ressources workspace." },
+                { "title": "Protection des appareils", "description": "Vérifications orientées appareil avant les usages réseau sensibles." },
+                { "title": "Politiques réseau", "description": "Définitions de politiques pour équipes, rôles et ressources." },
+                { "title": "Routage régional", "description": "Plans de routage pouvant refléter une future infrastructure régionale." },
+                { "title": "Visibilité d'activité", "description": "Visibilité de connexion pour les opérateurs et le support." }
+              ],
+              "useCases": [
+                { "title": "Sécuriser l'accès distant", "description": "Donner à une équipe un chemin privé vers des ressources internes." },
+                { "title": "Connecter des ressources internes", "description": "Appliquer une politique d'accès avant d'exposer des systèmes opérationnels." },
+                { "title": "Appliquer des politiques réseau", "description": "Définir qui peut atteindre quelles ressources, et dans quelles conditions." }
+              ],
+              "integrations": ["Identity", "Vault", "Edge", "Status", "Journaux d'audit"],
+              "ctas": ["Demander la préversion", "Voir la plateforme"],
+              "nextStep": "Demandez un cadrage de préversion avant de planifier un usage VPN en environnement de production."
             },
             "giteria": {
               "title": "Giteria",
-              "positioning": "Collaboration code pour les dépôts, revues et préparations de release."
+              "positioning": "Collaboration code pour les dépôts, revues et préparations de release.",
+              "description": "Giteria est la direction produit SGE pour l'hébergement de code source et la collaboration développeur, reliée à l'identité, aux secrets et à l'observabilité plateforme.",
+              "problem": {
+                "title": "Le développement a besoin d'un espace de collaboration fiable",
+                "current": "Dépôts, tickets et releases sont souvent séparés des systèmes d'identité, de secrets et d'audit qui les soutiennent.",
+                "userNeed": "Les développeurs ont besoin d'un espace clair pour le code, la revue de contribution et la coordination d'équipe.",
+                "promise": "Giteria amène l'hébergement de dépôts et les workflows collaboratifs dans l'écosystème SGE.",
+                "value": "Les équipes peuvent préparer des workflows internes ou ouverts avec des liens plus clairs vers la sécurité et l'automatisation plateforme."
+              },
+              "experienceSteps": [
+                { "title": "Créer un dépôt", "description": "Démarrer un projet avec un contexte de propriété et d'organisation." },
+                { "title": "Ouvrir un ticket", "description": "Suivre le travail, les décisions et les discussions techniques." },
+                { "title": "Revoir une pull request", "description": "Relire les changements avant de les fusionner dans un code partagé." },
+                { "title": "Préparer une release", "description": "Organiser la préparation de release avec des signaux plateforme connectés." }
+              ],
+              "features": [
+                { "title": "Hébergement de dépôts", "description": "Organisation de dépôts pour le code produit et infrastructure." },
+                { "title": "Tickets", "description": "Suivi des bugs, tâches et plans techniques." },
+                { "title": "Pull requests", "description": "Workflows de revue pour changements de code et collaboration." },
+                { "title": "Organisations", "description": "Structures d'équipes et d'organisations pour la propriété des dépôts." },
+                { "title": "Préparation CI/CD", "description": "Modèle d'intégration préparé pour de futurs workflows de livraison automatisée." },
+                { "title": "Collaboration développeur", "description": "Discussions et revues autour des changements de code." }
+              ],
+              "useCases": [
+                { "title": "Héberger un projet ouvert", "description": "Préparer un dépôt et un modèle de contribution pour du code public." },
+                { "title": "Collaborer en interne", "description": "Coordonner un codebase interne via tickets et pull requests." },
+                { "title": "Préparer les contributions", "description": "Définir comment les équipes relisent, approuvent et livrent le code." }
+              ],
+              "integrations": ["Identity", "Vault", "Webhooks", "Status", "Search"],
+              "ctas": ["Explorer la documentation", "Contacter SGE"],
+              "nextStep": "Utilisez les ressources développeurs pour le contexte plateforme actuel pendant que Giteria mûrit."
             },
             "schematik": {
               "title": "Schematik",
-              "positioning": "Modélisation visuelle pour les systèmes, l'infrastructure et la documentation technique."
+              "positioning": "Modélisation visuelle pour les systèmes, l'infrastructure et la documentation technique.",
+              "description": "Aether Schematik est un produit expérimental pour dessiner et maintenir des diagrammes structurés reliés à la documentation et au contexte workspace.",
+              "problem": {
+                "title": "Les diagrammes d'architecture sont difficiles à garder utiles",
+                "current": "Les diagrammes techniques deviennent souvent des artefacts statiques déconnectés des docs, systèmes et revues.",
+                "userNeed": "Les équipes ont besoin de modèles visuels faciles à discuter, mettre à jour et référencer pendant les décisions techniques.",
+                "promise": "Schematik propose un espace plus lisible pour diagrammes, cartes d'infrastructure et modèles système.",
+                "value": "Les organisations peuvent améliorer les revues techniques sans traiter les premiers diagrammes comme des sources de vérité automatisées."
+              },
+              "experienceSteps": [
+                { "title": "Créer un diagramme", "description": "Démarrer un modèle système, processus ou infrastructure depuis un canevas structuré." },
+                { "title": "Cartographier les composants", "description": "Organiser visuellement services, régions et dépendances." },
+                { "title": "Relier la documentation", "description": "Connecter les diagrammes aux docs et notes workspace pertinentes." },
+                { "title": "Préparer la revue", "description": "Partager un modèle clair pour revue technique et planification." }
+              ],
+              "features": [
+                { "title": "Diagrammes visuels", "description": "Surfaces de diagramme structurées pour vues système et processus." },
+                { "title": "Cartographie infrastructure", "description": "Cartographier services, régions et dépendances à un niveau pratique." },
+                { "title": "Modélisation système", "description": "Modéliser les relations entre applications, données et opérations." },
+                { "title": "Collaboration équipe", "description": "Édition collaborative et revues pour équipes techniques." },
+                { "title": "Liens documentation", "description": "Liens des diagrammes vers docs, décisions et références." },
+                { "title": "Préparation export", "description": "Modèle orienté export pour partager les diagrammes hors du produit." }
+              ],
+              "useCases": [
+                { "title": "Documenter une architecture", "description": "Créer une référence visuelle partagée pour un système ou service." },
+                { "title": "Cartographier l'infrastructure", "description": "Représenter services, régions et dépendances opérationnelles." },
+                { "title": "Préparer une revue technique", "description": "Donner aux relecteurs un modèle clair avant les décisions d'implémentation." }
+              ],
+              "integrations": ["Identity", "Search", "Docs", "Workspace", "Outils d'export"],
+              "ctas": ["Contacter SGE", "Voir la plateforme"],
+              "nextStep": "Contactez SGE avant de vous appuyer sur Schematik pour des registres d'architecture formels."
             },
             "mail": {
               "title": "Mail",
-              "positioning": "Email professionnel pour les comptes, équipes et communications workplace."
+              "positioning": "Email professionnel pour les comptes, équipes et communications workplace.",
+              "description": "Aether Mail est une direction produit pour boîtes de réception professionnelles, domaines personnalisés et communication sécurisée reliée au workspace.",
+              "problem": {
+                "title": "L'email reste central au travail, mais fragmenté",
+                "current": "Les organisations séparent souvent boîtes mail, sécurité de compte, notifications et contexte workspace.",
+                "userNeed": "Les utilisateurs ont besoin d'une expérience mail fiable, tandis que les administrateurs ont besoin de contrôles de compte et de domaine plus clairs.",
+                "promise": "Mail réunit boîte de réception, identité et notifications plateforme dans une expérience produit SGE structurée.",
+                "value": "Les équipes peuvent planifier la communication professionnelle autour d'une identité et d'un socle workspace communs."
+              },
+              "experienceSteps": [
+                { "title": "Recevoir un message", "description": "Lire et organiser les emails dans une boîte de réception focalisée." },
+                { "title": "Organiser la boîte", "description": "Utiliser dossiers, labels ou modèles de boîte équipe à mesure que le produit mûrit." },
+                { "title": "Sécuriser le compte", "description": "Relier l'accès mail à l'identité et aux contrôles de protection de compte." },
+                { "title": "Connecter le workspace", "description": "Relier les messages aux notifications workspace et à l'activité produit." }
+              ],
+              "features": [
+                { "title": "Boîte de réception", "description": "Expérience de boîte mail professionnelle pour usages individuels et équipes." },
+                { "title": "Domaines personnalisés", "description": "Planification email orientée domaine pour les organisations." },
+                { "title": "Messages transactionnels", "description": "Messages déclenchés par les produits et reliés à la couche Mailer." },
+                { "title": "Alertes de sécurité", "description": "Notifications de compte et sécurité affichées via le mail." },
+                { "title": "Boîtes d'équipe", "description": "Modèles de boîtes partagées pour équipes et adresses opérationnelles." },
+                { "title": "Intégration identité", "description": "Accès mail connecté aux comptes et sessions SGE." }
+              ],
+              "useCases": [
+                { "title": "Gérer une adresse professionnelle", "description": "Utiliser une adresse adossée à un domaine pour la communication métier." },
+                { "title": "Envoyer des notifications système", "description": "Router les notifications produit via un chemin mail cohérent." },
+                { "title": "Connecter une boîte au workspace", "description": "Relier l'activité mail au contexte compte, équipe et workspace." }
+              ],
+              "integrations": ["Identity", "Mailer", "Vault", "Status", "Search"],
+              "ctas": ["Explorer la documentation", "Contacter SGE"],
+              "nextStep": "Suivez les ressources développeurs et les mises à jour produit pendant que Mail reste en développement."
             },
             "meet": {
               "title": "Meet",
-              "positioning": "Réunions connectées aux équipes, calendriers et contexte de travail."
+              "positioning": "Réunions connectées aux équipes, calendriers et contexte de travail.",
+              "description": "Sky Genesis Meet est prévu comme un produit de réunion pour salles d'équipe, sessions vidéo et collaboration reliée au workspace.",
+              "problem": {
+                "title": "Les réunions doivent rester connectées au travail autour d'elles",
+                "current": "Les appels vidéo vivent souvent hors de l'espace où les équipes planifient, documentent et suivent les actions.",
+                "userNeed": "Les équipes ont besoin d'un accès réunion simple à planifier, rejoindre et relier aux éléments workspace associés.",
+                "promise": "Meet vise à proposer des parcours de réunion simples avec identité, planification et contexte workspace.",
+                "value": "Les organisations peuvent penser les réunions comme partie d'un système collaboratif plus large plutôt qu'un outil d'appel isolé."
+              },
+              "experienceSteps": [
+                { "title": "Créer une salle", "description": "Préparer une salle d'équipe ou un lien de réunion avec contexte workspace." },
+                { "title": "Inviter des personnes", "description": "Inviter des membres via les chemins d'identité et de planification." },
+                { "title": "Partager l'écran", "description": "Utiliser le partage d'écran pour les discussions produit et équipe." },
+                { "title": "Capturer les notes", "description": "Relier les notes ou suivis de réunion au workspace." }
+              ],
+              "features": [
+                { "title": "Réunions vidéo", "description": "Expérience de réunion vidéo prévue pour équipes et organisations." },
+                { "title": "Salles d'équipe", "description": "Salles persistantes ou espaces de réunion connectés aux équipes." },
+                { "title": "Liens calendrier", "description": "Liens de planification pour réunions prévues et rappels." },
+                { "title": "Partage d'écran", "description": "Support de présentation et collaboration pendant les réunions." },
+                { "title": "Notes de réunion", "description": "Notes et suivis reliés au contexte workspace." },
+                { "title": "Accès sécurisé", "description": "Accès réunion connecté à l'identité et aux politiques SGE." }
+              ],
+              "useCases": [
+                { "title": "Organiser une réunion d'équipe", "description": "Créer un espace de réunion pour la coordination interne." },
+                { "title": "Planifier un échange client", "description": "Préparer une réunion externe structurée avec accès contrôlé." },
+                { "title": "Relier une réunion au workspace", "description": "Garder notes et actions de suivi près du travail concerné." }
+              ],
+              "integrations": ["Identity", "Mailer", "Calendrier/planification", "Status", "Workspace"],
+              "ctas": ["Contacter SGE", "Voir la plateforme"],
+              "nextStep": "Contactez SGE pour le contexte roadmap avant de planifier une dépendance opérationnelle à Meet."
             },
             "chat": {
               "title": "Chat",
-              "positioning": "Communication structurée pour les espaces, canaux et équipes."
+              "positioning": "Communication structurée pour les espaces, canaux et équipes.",
+              "description": "Aether Chat est une direction produit pour la communication d'équipe et communautaire reliée à l'identité, la recherche et les workflows workspace.",
+              "problem": {
+                "title": "La conversation a besoin de structure et de gouvernance",
+                "current": "Le chat d'équipe peut devenir bruyant lorsque espaces, rôles, recherche et intégrations sont gérés séparément.",
+                "userNeed": "Les utilisateurs veulent des conversations simples, tandis que les équipes ont besoin de rôles, modération et connexions applicatives.",
+                "promise": "Chat organise espaces, canaux et messages directs dans le modèle workspace SGE plus large.",
+                "value": "Les organisations peuvent coordonner la communication tout en gardant le contrôle sur les accès et intégrations."
+              },
+              "experienceSteps": [
+                { "title": "Créer un espace", "description": "Démarrer un espace workspace ou communautaire avec une appartenance claire." },
+                { "title": "Inviter des membres", "description": "Faire entrer les utilisateurs via des parcours d'accès liés à l'identité." },
+                { "title": "Organiser les canaux", "description": "Séparer sujets, équipes et conversations opérationnelles." },
+                { "title": "Connecter les apps", "description": "Router notifications et activité applicative vers les espaces pertinents." }
+              ],
+              "features": [
+                { "title": "Espaces", "description": "Espaces de conversation organisés pour équipes et communautés." },
+                { "title": "Canaux", "description": "Canaux par sujet pour une collaboration plus focalisée." },
+                { "title": "Messages directs", "description": "Modèles de communication privée entre utilisateurs." },
+                { "title": "Rôles", "description": "Planification d'accès et permissions selon les rôles." },
+                { "title": "Intégrations applicatives", "description": "Modèle d'intégration pour alertes produit, bots et workflows." },
+                { "title": "Outils de modération", "description": "Contrôles de modération et notifications pour des espaces plus sains." }
+              ],
+              "useCases": [
+                { "title": "Structurer une communauté", "description": "Organiser canaux et rôles autour des sujets communautaires." },
+                { "title": "Coordonner une équipe", "description": "Utiliser des espaces pour la collaboration produit, support ou opérationnelle." },
+                { "title": "Connecter apps et bots", "description": "Amener les événements produit dans les bons canaux de conversation." }
+              ],
+              "integrations": ["Identity", "Search", "Webhooks", "Notifications", "Workspace"],
+              "ctas": ["Explorer la documentation", "Contacter SGE"],
+              "nextStep": "Utilisez les ressources développeurs SGE pour le contexte d'intégration pendant que Chat se construit."
             },
             "sheets": {
               "title": "Sheets",
-              "positioning": "Tableaux collaboratifs pour les données opérationnelles et workflows workplace."
+              "positioning": "Tableaux collaboratifs pour les données opérationnelles et workflows workplace.",
+              "description": "Aether Sheets est un produit expérimental pour tableaux collaboratifs, données structurées et préparation à de futures automatisations.",
+              "problem": {
+                "title": "Les données opérationnelles vivent souvent dans des feuilles fragiles",
+                "current": "Les équipes utilisent des tableurs pour du travail réel, mais partage, permissions et automatisation peuvent devenir flous.",
+                "userNeed": "Les utilisateurs ont besoin de tableaux collaboratifs familiers avec une meilleure intégration workspace et un partage contrôlé.",
+                "promise": "Sheets propose une expérience de table structurée reliée à l'identité, la recherche et les workflows workspace.",
+                "value": "Les organisations peuvent organiser les données opérationnelles en préparant l'automatisation sans prétendre à une plateforme data finalisée."
+              },
+              "experienceSteps": [
+                { "title": "Créer une feuille", "description": "Démarrer une table structurée pour le suivi opérationnel." },
+                { "title": "Inviter des collaborateurs", "description": "Partager avec les coéquipiers via les contrôles workspace." },
+                { "title": "Organiser les données", "description": "Utiliser colonnes, vues et structure de table simple." },
+                { "title": "Préparer l'automatisation", "description": "Planifier imports, exports et hooks de workflow à mesure que le produit mûrit." }
+              ],
+              "features": [
+                { "title": "Feuilles collaboratives", "description": "Surfaces proches du tableur pour le travail d'équipe." },
+                { "title": "Tables structurées", "description": "Tables avec champs, vues et contexte opérationnel plus clairs." },
+                { "title": "Contrôles de partage", "description": "Modèles d'accès et de partage reliés à l'identité." },
+                { "title": "Intégration workspace", "description": "Sheets connecté aux équipes et activités workspace." },
+                { "title": "Imports/exports", "description": "Planification d'import et d'export pour les mouvements de données structurées." },
+                { "title": "Préparation automatisation", "description": "Modèle préparé pour de futurs hooks de workflow et planification." }
+              ],
+              "useCases": [
+                { "title": "Suivre des données opérationnelles", "description": "Maintenir une table partagée pour tâches, actifs ou registres de service." },
+                { "title": "Collaborer sur une table", "description": "Travailler avec l'équipe sur de l'information structurée dans un même workspace." },
+                { "title": "Préparer des automatisations", "description": "Organiser les données pour de futurs imports, exports et workflows planifiés." }
+              ],
+              "integrations": ["Identity", "Search", "Workspace", "Planification", "Outils d'export"],
+              "ctas": ["Contacter SGE", "Voir la plateforme"],
+              "nextStep": "Contactez SGE pour le contexte roadmap avant d'utiliser Sheets pour des registres opérationnels critiques."
             }
           }
         },
@@ -2512,6 +2956,256 @@
             "workplace": {
               "title": "Workplace",
               "description": "Des outils de collaboration, communication et données pour les équipes."
+            }
+          },
+          "services": {
+            "b2c": {
+              "title": "B2C",
+              "positioning": "Services numériques grand public structurés autour de l'identité, de la communication et de la confiance.",
+              "description": "Conçu pour les organisations qui ont besoin de comptes clients plus lisibles, de communication de cycle de vie et de chemins support sans reconstruire toutes les capacités plateforme.",
+              "challenge": {
+                "title": "Les expériences clients dépendent de nombreux systèmes cachés",
+                "context": "Les services B2C combinent souvent création de compte, notifications, support, signaux de sécurité et préparation analytique.",
+                "friction": "Lorsque ces systèmes sont assemblés séparément, les clients subissent des parcours incohérents et les équipes perdent en visibilité opérationnelle.",
+                "risk": "Une fondation fragmentée peut rendre la récupération de compte, le routage support et la communication sécurité plus difficiles à maintenir."
+              },
+              "approach": {
+                "title": "Une fondation client progressive",
+                "body": "SGE combine identité, mailer, recherche et statut avec des expériences produit comme Shield, Mail et Chat. L'approche aide les équipes à partir du parcours compte client, puis à ajouter progressivement communication et support.",
+                "principles": ["Modèle de compte piloté par l'identité", "Événements de cycle de vie clairs", "Signaux de sécurité avant automatisation", "Chemins support évolutifs"]
+              },
+              "capabilities": [
+                { "title": "Identité client", "description": "Accès compte et authentification pour services grand public." },
+                { "title": "Cycle de vie compte", "description": "Inscription, vérification, récupération et états de compte." },
+                { "title": "Notifications", "description": "Messages produit et compte routés par des chemins de communication contrôlés." },
+                { "title": "Routage support", "description": "Chemins aidant les demandes client à rejoindre le bon workflow interne." },
+                { "title": "Signaux de sécurité", "description": "Signaux conçus pour aider les équipes à comprendre les risques de compte et d'accès." },
+                { "title": "Préparation analytique", "description": "Structure d'événements pouvant soutenir de futures analyses produit et support." }
+              ],
+              "architectureFlow": ["Utilisateur", "Identity", "Compte", "Notifications", "Support", "Analytique"],
+              "adoptionPath": [
+                { "title": "Clarifier le parcours client", "description": "Identifier les moments compte, notification et support prioritaires." },
+                { "title": "Cartographier les services requis", "description": "Connecter identité, mailer, recherche et surfaces produit liées au support." },
+                { "title": "Construire progressivement", "description": "Commencer par les parcours compte avant d'ajouter analytique ou automatisation." }
+              ],
+              "ctas": ["Contacter SGE", "Voir les produits"]
+            },
+            "b2b": {
+              "title": "B2B SaaS",
+              "positioning": "Fondations organisation, équipe et développeurs pour produits SaaS.",
+              "description": "Pensé pour les équipes SaaS qui ont besoin de workspaces, d'accès organisation, d'intégrations et d'auditabilité à mesure que leur produit mûrit.",
+              "challenge": {
+                "title": "Un logiciel B2B a besoin de plus qu'une connexion utilisateur",
+                "context": "Les produits SaaS ont besoin d'organisations, d'équipes, de rôles, d'intégrations développeurs et d'activité opérationnelle traçable.",
+                "friction": "Ajouter ces capacités tardivement peut produire des permissions fragiles, des APIs incohérentes et des pistes d'audit floues.",
+                "risk": "Sans fondation structurée, passer d'une application simple à un produit prêt pour les organisations devient coûteux et risqué."
+              },
+              "approach": {
+                "title": "Une fondation SaaS centrée organisation",
+                "body": "SGE relie Identity, Vault, Status et les surfaces d'intégration avec des produits comme Giteria, Schematik et Shield. Les équipes peuvent commencer par les modèles workspace et rôles, puis avancer vers les workflows développeurs et l'audit.",
+                "principles": ["Contexte organisation par défaut", "Accès sensible aux rôles", "Préparation intégration développeur", "Auditabilité avant passage à l'échelle"]
+              },
+              "capabilities": [
+                { "title": "Gestion des organisations", "description": "Structures pour organisations, équipes et propriété produit." },
+                { "title": "Accès équipe", "description": "Modèles d'accès orientés équipe pour workspace et zones produit." },
+                { "title": "Permissions par rôle", "description": "Modèles de permissions conçus autour des rôles et frontières opérationnelles." },
+                { "title": "Intégrations développeurs", "description": "Préparation API, webhook et SDK pour l'extensibilité produit." },
+                { "title": "Pistes d'audit", "description": "Événements traçables pour accès, administration et actions sensibles." },
+                { "title": "Préparation workspace", "description": "Modèle workspace reliant surfaces produit, compte et équipe." }
+              ],
+              "architectureFlow": ["Organisation", "Identity", "Workspace", "Rôles", "APIs", "Journaux d'audit"],
+              "adoptionPath": [
+                { "title": "Clarifier le modèle SaaS", "description": "Définir organisations, équipes, rôles et workflows administrateur." },
+                { "title": "Cartographier les dépendances plateforme", "description": "Connecter identité, vault, webhooks et statut selon les besoins." },
+                { "title": "Construire progressivement", "description": "Ajouter audit et intégrations développeurs quand la surface produit se stabilise." }
+              ],
+              "ctas": ["Contacter SGE", "Explorer les développeurs"]
+            },
+            "infrastructure": {
+              "title": "Infrastructure",
+              "positioning": "Fondations opérationnelles pour services, secrets, visibilité et intégration.",
+              "description": "Destiné aux équipes qui doivent organiser accès service, clés, statut, webhooks et journaux opérationnels autour d'un modèle plateforme cohérent.",
+              "challenge": {
+                "title": "Les opérations infrastructure ont besoin de points de contrôle partagés",
+                "context": "Les services modernes dépendent de clés API, secrets, webhooks, signaux de santé et journaux dans plusieurs environnements.",
+                "friction": "Quand chaque service possède son propre modèle opérationnel, les équipes perdent en cohérence et la revue incident devient plus difficile.",
+                "risk": "Une infrastructure non structurée augmente l'exposition autour des secrets, des accès et de la visibilité service."
+              },
+              "approach": {
+                "title": "Un modèle d'opérations connecté à la plateforme",
+                "body": "SGE combine Edge, Vault, Status, Search et des produits comme Shield, VPN et Schematik pour soutenir un modèle d'exploitation progressif, centré sur visibilité, accès contrôlé et frontières de service maintenables.",
+                "principles": ["Frontières de service d'abord", "Secrets centralisés", "Visibilité du statut", "Journaux et audit là où ils comptent"]
+              },
+              "capabilities": [
+                { "title": "Orchestration service", "description": "Organisation conceptuelle des services entre routage, accès et opérations." },
+                { "title": "Visibilité statut", "description": "Visibilité santé et incident pour contextes plateforme et service." },
+                { "title": "Gestion des secrets", "description": "Gestion contrôlée des secrets, jetons et éléments sensibles d'intégration." },
+                { "title": "Clés API", "description": "Planification des clés API pour accès service à service et développeur." },
+                { "title": "Webhooks", "description": "Modèles de livraison d'événements pour workflows produit et infrastructure." },
+                { "title": "Journalisation opérationnelle", "description": "Journaux et événements d'audit pour revue opérationnelle." }
+              ],
+              "architectureFlow": ["Services", "Clés API", "Webhooks", "Vault", "Status", "Journaux d'audit"],
+              "adoptionPath": [
+                { "title": "Clarifier les frontières service", "description": "Identifier services, clés et événements nécessitant des contrôles partagés." },
+                { "title": "Cartographier les services requis", "description": "Relier vault, statut, edge et journaux au modèle opérationnel." },
+                { "title": "Construire progressivement", "description": "Commencer par secrets et visibilité avant d'étendre l'orchestration." }
+              ],
+              "ctas": ["Explorer la plateforme", "Contacter SGE"]
+            },
+            "workplace": {
+              "title": "Workplace",
+              "positioning": "Flux de communication et productivité connectés à l'identité et au contexte workspace.",
+              "description": "Conçu pour les équipes qui ont besoin de mail, chat, réunions et surfaces de travail structurées reliées à une fondation commune de compte et d'accès.",
+              "challenge": {
+                "title": "Les outils de travail se fragmentent rapidement",
+                "context": "Les équipes coordonnent chaque jour mail, chat, réunions, tableaux et paramètres de compte.",
+                "friction": "Quand chaque surface est déconnectée, onboarding, permissions, communication et suivi deviennent plus difficiles à gérer.",
+                "risk": "Un workplace fragmenté peut affaiblir la sécurité et rendre la continuité opérationnelle dépendante de trop d'outils isolés."
+              },
+              "approach": {
+                "title": "Un workspace construit sur des fondations partagées",
+                "body": "SGE connecte Identity, Vault, Mailer, Search et Status avec des produits comme Mail, Chat, Meet et Sheets. L'approche reste orientée produit tout en gardant visibles les fondations compte, accès et opérations.",
+                "principles": ["Identité commune", "Navigation workspace", "Communication sécurisée", "Adoption produit progressive"]
+              },
+              "capabilities": [
+                { "title": "Identité & accès", "description": "Fondation compte et accès partagée pour les outils workplace." },
+                { "title": "Mail", "description": "Communication professionnelle et messages liés aux comptes." },
+                { "title": "Chat", "description": "Espaces équipe, canaux et conversations opérationnelles." },
+                { "title": "Meet", "description": "Parcours de réunion liés au contexte workspace et planification." },
+                { "title": "Sheets", "description": "Tables collaboratives et données opérationnelles structurées." },
+                { "title": "Navigation workspace", "description": "Modèle de navigation cohérent entre surfaces workplace." }
+              ],
+              "architectureFlow": ["Identity", "Workspace", "Mail / Chat / Meet / Sheets", "Vault", "Status", "Journaux d'audit"],
+              "adoptionPath": [
+                { "title": "Clarifier les besoins workplace", "description": "Identifier communication, réunions et données nécessitant de la cohérence." },
+                { "title": "Cartographier les services requis", "description": "Connecter identité, mailer, recherche et statut." },
+                { "title": "Construire progressivement", "description": "Introduire les produits une surface à la fois à mesure que la maturité augmente." }
+              ],
+              "ctas": ["Voir les produits", "Contacter SGE"]
+            },
+            "financial": {
+              "title": "Services financiers",
+              "positioning": "Fondations sécurisées et auditables pour systèmes numériques proches des services financiers.",
+              "description": "Conçu pour une planification prudente autour de l'identité, de la protection des données, de l'auditabilité et de la préparation registre, sans revendiquer de service bancaire ou paiement réglementé disponible.",
+              "challenge": {
+                "title": "Les contextes financiers exigent retenue et auditabilité",
+                "context": "Les environnements financiers dépendent d'une identité sûre, de registres clairs, de protection des données et de transparence opérationnelle.",
+                "friction": "Les produits numériques de ce secteur deviennent risqués lorsque accès, audit et politiques sont ajoutés après coup.",
+                "risk": "Surpromettre des capacités financières est dangereux; tout travail lié au registre ou paiement doit rester explicite sur maturité et frontières réglementaires."
+              },
+              "approach": {
+                "title": "Planification sécurité d'abord sans revendication bancaire",
+                "body": "SGE relie Identity, Vault, Status et les concepts de recherche Bank avec Shield, VPN et Sheets pour soutenir auditabilité, accès contrôlé et structures d'enregistrement futures sans présenter de services réglementés comme disponibles.",
+                "principles": ["Aucune revendication bancaire publique", "Conception pensée pour l'audit", "Protection des données", "Planification des workflows conformité"]
+              },
+              "capabilities": [
+                { "title": "Identité sécurisée", "description": "Modèles d'identité et d'accès pour services numériques sensibles." },
+                { "title": "Auditabilité", "description": "Événements traçables pour accès, administration et actions liées aux registres." },
+                { "title": "Protection des données", "description": "Modèles de protection pour données sensibles et éléments d'intégration." },
+                { "title": "Préparation registre", "description": "Concepts de registre au stade recherche pour futurs enregistrements économiques." },
+                { "title": "Workflows conformité", "description": "Planification de workflows pour revue, politique et contrôles opérationnels." },
+                { "title": "Transparence opérationnelle", "description": "Modèles de statut et visibilité pour communication de service." }
+              ],
+              "architectureFlow": ["Utilisateur / Organisation", "Identity", "Préparation registre", "Journaux d'audit", "Workflows conformité", "Transparence opérationnelle"],
+              "adoptionPath": [
+                { "title": "Clarifier la frontière réglementée", "description": "Séparer les workflows numériques disponibles des capacités financières réglementées." },
+                { "title": "Cartographier les services requis", "description": "Identifier identité, vault, audit et statut avant la recherche registre." },
+                { "title": "Construire progressivement", "description": "Prototyper registres internes et gouvernance avant toute capacité publique." }
+              ],
+              "ctas": ["Contacter SGE", "Explorer la plateforme"]
+            },
+            "healthcare": {
+              "title": "Santé",
+              "positioning": "Modèles de coordination orientés confidentialité pour équipes et services sensibles.",
+              "description": "Destiné aux organisations proches de la santé qui doivent raisonner sur accès sécurisé, communication, frontières de données et visibilité disponibilité sans revendiquer de certification sectorielle.",
+              "challenge": {
+                "title": "La collaboration sensible exige des frontières claires",
+                "context": "Les contextes santé impliquent communication sensible, coordination d'équipes et fortes attentes de confidentialité.",
+                "friction": "Des outils non conçus autour de l'identité, des frontières et de l'audit rendent les opérations sensibles difficiles à gouverner.",
+                "risk": "Tout déploiement santé nécessite une revue juridique, sécurité et opérationnelle attentive avant production."
+              },
+              "approach": {
+                "title": "Briques confidentialité d'abord pour workflows d'équipe",
+                "body": "SGE combine Identity, Vault, Status et Mailer avec Shield, Mail, Meet et Sheets. L'approche vise accès contrôlé, communication sécurisée et coordination auditable, avec transparence sur la maturité.",
+                "principles": ["Accès confidentialité d'abord", "Communication sécurisée", "Événements auditables", "Conscience de disponibilité"]
+              },
+              "capabilities": [
+                { "title": "Accès confidentialité d'abord", "description": "Modèles d'accès conçus pour utilisateurs et équipes sensibles." },
+                { "title": "Communication sécurisée", "description": "Chemins de communication connectés à l'identité et aux contrôles sécurité." },
+                { "title": "Frontières de données", "description": "Frontières pour dossiers, messages et données opérationnelles sensibles." },
+                { "title": "Journaux d'audit", "description": "Événements traçables pour accès et workflows sensibles." },
+                { "title": "Visibilité disponibilité", "description": "Visibilité statut pour services soutenant la coordination." },
+                { "title": "Coordination équipe", "description": "Communication d'équipe et modèles workspace structurés." }
+              ],
+              "architectureFlow": ["Équipe de soin", "Identity", "Communication sécurisée", "Frontières de données", "Journaux d'audit", "Statut de disponibilité"],
+              "adoptionPath": [
+                { "title": "Clarifier le workflow de soin", "description": "Identifier les besoins sensibles de communication et coordination." },
+                { "title": "Cartographier les services requis", "description": "Connecter identité, vault, mailer et statut." },
+                { "title": "Construire progressivement", "description": "Valider confidentialité, juridique et sécurité avant dépendance opérationnelle." }
+              ],
+              "ctas": ["Contacter SGE", "Voir les produits"]
+            },
+            "retail": {
+              "title": "Retail & Ecommerce",
+              "positioning": "Comptes clients, communication et découverte pour équipes commerce.",
+              "description": "Conçu pour les contextes retail et ecommerce où identité client, liens campagne, notifications, recherche et routage support ont besoin d'une fondation plus claire.",
+              "challenge": {
+                "title": "Les expériences commerce dépendent de parcours clients fiables",
+                "context": "Les services retail ont besoin d'accès compte, communication campagne, découverte produit et continuité support.",
+                "friction": "Identité, messagerie et recherche fragmentées créent de la friction client et des angles morts support.",
+                "risk": "Des systèmes clients mal connectés peuvent affaiblir la confiance, augmenter la charge support et ralentir l'expérimentation."
+              },
+              "approach": {
+                "title": "Une fondation de parcours client pour le commerce",
+                "body": "SGE combine Identity, Search, Mailer et Status avec Mail, Chat et Sheets pour aider les équipes à construire des parcours clients progressivement tout en gardant support et communication visibles.",
+                "principles": ["Clarté du compte client", "Recherche et découverte", "Discipline de notification", "Continuité support"]
+              },
+              "capabilities": [
+                { "title": "Comptes clients", "description": "Parcours de compte et cycle de vie pour utilisateurs commerce." },
+                { "title": "Liens campagne", "description": "Points d'entrée campagne reliés à l'identité et à la communication." },
+                { "title": "Notifications", "description": "Notifications client et système routées par les fondations plateforme." },
+                { "title": "Recherche", "description": "Modèles de découverte pour contenu, produits et ressources support." },
+                { "title": "Routage support", "description": "Chemins conversation et support pour demandes clients." },
+                { "title": "Intégrations commerce", "description": "Planification d'intégration pour systèmes commerce et données opérationnelles." }
+              ],
+              "architectureFlow": ["Client", "Identity", "Lien campagne", "Notification", "Recherche", "Routage support"],
+              "adoptionPath": [
+                { "title": "Clarifier le parcours client", "description": "Cartographier compte, campagne, notification et moments support." },
+                { "title": "Cartographier les services requis", "description": "Connecter identité, recherche, mailer et surfaces support." },
+                { "title": "Construire progressivement", "description": "Commencer par compte et communication avant l'automatisation commerce." }
+              ],
+              "ctas": ["Contacter SGE", "Voir les produits"]
+            },
+            "government": {
+              "title": "Secteur public",
+              "positioning": "Fondations souveraines et maintenables pour services numériques publics.",
+              "description": "Conçu pour la planification secteur public autour d'identité sécurisée, transparence, gouvernance des accès et maintenabilité long terme, sans revendiquer de certification ou référence de déploiement.",
+              "challenge": {
+                "title": "Les services publics numériques exigent des fondations durables",
+                "context": "Les services publics ont besoin d'identité, sécurité, transparence, standards ouverts et opérations maintenables sur des horizons longs.",
+                "friction": "Des décisions d'outillage court terme créent dépendance, fragmentation et obligations de maintenance difficiles.",
+                "risk": "Sans gouvernance claire et transparence opérationnelle, les services publics numériques deviennent difficiles à faire durer et à faire accepter."
+              },
+              "approach": {
+                "title": "Architecture souveraine avec fondations ouvertes",
+                "body": "SGE connecte Identity, Vault, Edge, Status et Search avec Shield, VPN et Schematik pour soutenir livraison sécurisée, transparence publique et opérations long terme sans surpromettre la maturité.",
+                "principles": ["Infrastructure souveraine", "Identité sécurisée", "Standards ouverts", "Opérations maintenables"]
+              },
+              "capabilities": [
+                { "title": "Infrastructure souveraine", "description": "Planification infrastructure avec contrôle européen et maintenabilité." },
+                { "title": "Identité sécurisée", "description": "Fondations d'identité et d'accès pour agents et usagers." },
+                { "title": "Transparence publique", "description": "Modèles de statut et communication pour visibilité de service public." },
+                { "title": "Gouvernance des accès", "description": "Modèles de gouvernance pour rôles, accès et actions sensibles." },
+                { "title": "Standards ouverts", "description": "Préférence pour interfaces documentées et fondations ouvertes lorsque possible." },
+                { "title": "Maintenabilité long terme", "description": "Structures destinées à rester compréhensibles et opérables dans le temps." }
+              ],
+              "architectureFlow": ["Citoyen / Agent", "Identity", "Service sécurisé", "Transparence publique", "Audit", "Opérations long terme"],
+              "adoptionPath": [
+                { "title": "Clarifier le service public", "description": "Définir usagers, agents, frontières de données et attentes de transparence." },
+                { "title": "Cartographier les services requis", "description": "Connecter identity, vault, edge, status et search." },
+                { "title": "Construire progressivement", "description": "Prototyper avec standards ouverts et gouvernance avant exploitation long terme." }
+              ],
+              "ctas": ["Contacter SGE", "Explorer la plateforme"]
             }
           }
         },
@@ -2637,6 +3331,188 @@
           }
         }
       },
+      "solutionPage": {
+        "brand": "Solutions SGE",
+        "metadata": {
+          "title": "Solutions | Sky Genesis Enterprise",
+          "detailTitle": "{solution} Solutions | Sky Genesis Enterprise",
+          "description": "Explorez les chemins solution SGE par usage ou par secteur, en reliant fondations plateforme et expériences produit aux contextes d'organisation."
+        },
+        "common": {
+          "explore": "Explorer",
+          "openSolution": "Ouvrir la solution"
+        },
+        "categories": {
+          "useCase": "Cas d'usage",
+          "industry": "Secteur"
+        },
+        "hub": {
+          "hero": {
+            "title": "Choisir un chemin par usage ou par secteur.",
+            "description": "Les solutions SGE relient les fondations plateforme et les expériences produit à des contextes d'organisation. Elles décrivent des chemins d'adoption, pas des déploiements sectoriels finalisés.",
+            "primaryCta": "Contacter SGE",
+            "secondaryCta": "Explorer la plateforme",
+            "model": {
+              "title": "Modèle de solution",
+              "steps": ["Cas d'usage", "Services plateforme", "Produits", "Chemin d'adoption"],
+              "description": "Un modèle de navigation léger pour comprendre où SGE peut soutenir une organisation progressivement."
+            }
+          },
+          "useCases": {
+            "eyebrow": "Choisir par usage",
+            "title": "Partir du travail à réaliser.",
+            "description": "Ces solutions décrivent des contextes opérationnels pouvant s'appliquer à plusieurs secteurs."
+          },
+          "industries": {
+            "eyebrow": "Choisir par secteur",
+            "title": "Explorer des trajectoires de planification sectorielles.",
+            "description": "Les pages secteur restent prudentes : elles décrivent l'adéquation et la planification, pas des certifications ou déploiements clients."
+          },
+          "how": {
+            "eyebrow": "Comment SGE construit les solutions",
+            "title": "Une approche progressive, pas un lot générique.",
+            "description": "Les solutions sont assemblées à partir de services plateforme, de produits et d'outils développeurs selon le contexte.",
+            "items": [
+              { "title": "Partir de l'organisation", "description": "Clarifier utilisateurs, équipes, frontières de données et contraintes opérationnelles avant de choisir les produits." },
+              { "title": "Relier les fondations plateforme", "description": "Mobiliser identité, vault, statut, recherche, mailer et edge là où ces capacités sont pertinentes." },
+              { "title": "Adopter les produits progressivement", "description": "Introduire les surfaces produit seulement lorsqu'elles soutiennent le modèle opérationnel et la maturité du contexte." }
+            ]
+          },
+          "platformProducts": {
+            "eyebrow": "Connexion plateforme + produits",
+            "title": "Les solutions se situent entre infrastructure et expérience produit.",
+            "description": "La plateforme définit le socle technique. Les produits créent les expériences visibles. Les solutions expliquent comment les organisations peuvent combiner les deux.",
+            "items": [
+              { "title": "Plateforme", "description": "Identity, Vault, Edge, Mailer, Status, Search, Maps et recherche Bank.", "href": "/platform" },
+              { "title": "Produits", "description": "Shield, VPN, Giteria, Schematik, Mail, Meet, Chat et Sheets.", "href": "/products" },
+              { "title": "Développeurs", "description": "APIs, SDKs et documentation pour les chemins d'intégration technique.", "href": "/developers" }
+            ]
+          },
+          "cta": {
+            "eyebrow": "Prochaine étape",
+            "title": "Clarifier où SGE peut aider.",
+            "description": "Contactez SGE pour cartographier un cas d'usage, ou commencez par explorer les couches plateforme et produit.",
+            "contact": "Contacter SGE",
+            "platform": "Explorer la plateforme",
+            "products": "Voir les produits"
+          }
+        },
+        "hero": {
+          "solutionFrame": "Cadre de solution"
+        },
+        "challenge": {
+          "eyebrow": "Défi",
+          "description": "Le défi est cadré au niveau organisation avant de choisir un produit ou un service plateforme.",
+          "items": {
+            "context": "Contexte",
+            "friction": "Friction",
+            "risk": "Risque"
+          }
+        },
+        "whyNow": {
+          "eyebrow": "Pourquoi c'est important maintenant",
+          "title": "Cadrer la solution avant de choisir les outils.",
+          "description": "Comme les pages produits, les pages solutions expliquent contexte, maturité et intégration écosystème avant de lister les capacités.",
+          "items": {
+            "clarity": {
+              "title": "Clarifier la frontière de maturité",
+              "description": "La page cadre ce que la solution peut organiser sans impliquer un déploiement finalisé, une certification ou une revendication sectorielle."
+            },
+            "context": {
+              "title": "Partir de {solution}",
+              "description": "La solution garde le contexte organisation visible avant de sélectionner des surfaces produit ou services plateforme."
+            },
+            "foundation": {
+              "title": "Connecter les bonnes fondations",
+              "description": "Services plateforme, produits et étapes opérationnelles sont présentés ensemble pour garder l'adoption progressive et relisible."
+            }
+          }
+        },
+        "approach": {
+          "eyebrow": "Approche SGE"
+        },
+        "capabilities": {
+          "eyebrow": "Capacités",
+          "title": "Capacités mobilisées par cette solution",
+          "description": "Ces capacités sont au niveau solution, assemblées depuis les fondations produit, plateforme et opérationnelles."
+        },
+        "ecosystemConnections": {
+          "eyebrow": "Connexions écosystème",
+          "title": "Relier la solution au reste de SGE.",
+          "description": "Une page solution doit aider les visiteurs à passer du contexte aux fondations plateforme et aux expériences produit.",
+          "items": {
+            "solutions": {
+              "title": "Explorer les chemins solution",
+              "description": "{solution} existe aux côtés d'autres chemins solution qui décrivent différents contextes d'organisation."
+            },
+            "platform": {
+              "title": "Comprendre la plateforme",
+              "description": "Les services plateforme expliquent les fondations techniques utilisées par les pages solutions et produits."
+            },
+            "products": {
+              "title": "Examiner les surfaces produit",
+              "description": "Les produits montrent les expériences visibles pouvant soutenir un chemin solution lorsque la maturité le permet."
+            }
+          }
+        },
+        "architecture": {
+          "eyebrow": "Architecture de référence",
+          "title": "Un flux conceptuel simple",
+          "description": "Ce schéma montre comment les pièces principales peuvent se connecter. Ce n'est pas une architecture de production ni une garantie de déploiement."
+        },
+        "relatedStack": {
+          "eyebrow": "Produits & plateforme liés",
+          "title": "Briques SGE connectées",
+          "description": "Chaque solution relie les besoins organisationnels aux services plateforme et aux expériences produit.",
+          "platformTitle": "Services plateforme",
+          "productsTitle": "Produits"
+        },
+        "recommendedNextStep": {
+          "eyebrow": "Prochaine étape recommandée",
+          "title": "Donner un chemin clair après la lecture.",
+          "description": "La page peut terminer sur le détail d'adoption parce que le visiteur a déjà vu le contexte, les liens écosystème et les briques connectées.",
+          "items": {
+            "compare": {
+              "title": "Comparer les solutions",
+              "description": "Examiner les pages solutions voisines avant de s'engager dans un chemin d'adoption spécifique.",
+              "label": "Voir les solutions"
+            },
+            "evaluate": {
+              "title": "Évaluer le socle",
+              "description": "Cartographier {solution} avec les services plateforme et produits dont elle dépend.",
+              "label": "Voir la plateforme"
+            },
+            "contact": {
+              "title": "Parler à l'équipe",
+              "description": "Contacter SGE si vous avez besoin d'aide pour cadrer maturité, périmètre d'intégration ou adéquation organisationnelle.",
+              "label": "Contacter SGE"
+            }
+          }
+        },
+        "adoptionPath": {
+          "eyebrow": "Chemin d'adoption",
+          "title": "Commencer progressivement",
+          "description": "L'objectif est de cartographier le problème, sélectionner les services requis et construire uniquement ce qui est assez mûr pour le contexte."
+        },
+        "relatedItems": {
+          "identity": "Identity",
+          "mailer": "Mailer",
+          "search": "Search",
+          "status": "Status",
+          "vault": "Vault",
+          "edge": "Edge",
+          "bank": "Bank",
+          "webhooks": "Webhooks",
+          "shield": "Shield",
+          "mail": "Mail",
+          "chat": "Chat",
+          "giteria": "Giteria",
+          "schematik": "Schematik",
+          "vpn": "VPN",
+          "meet": "Meet",
+          "sheets": "Sheets"
+        }
+      },
       "platformPage": {
         "brand": "Plateforme SGE",
         "serviceProfile": "Profil du service",
@@ -2713,7 +3589,20 @@
           "eyebrow": "Disponibilité & prochaine étape",
           "title": "Disponibilité et prochaine étape",
           "continueWith": "Continuer avec {service}",
-          "description": "Commencez par le point d'entrée SGE le plus pertinent selon la maturité actuelle de ce service."
+          "description": "Commencez par le point d'entrée SGE le plus pertinent selon la maturité actuelle de ce service.",
+          "labels": {
+            "currentStatus": "Statut actuel",
+            "publicApi": "API publique",
+            "dashboardIntegration": "Intégration tableau de bord",
+            "documentation": "Documentation",
+            "workspaceIntegration": "Intégration espace de travail"
+          },
+          "values": {
+            "inProgress": "En progression",
+            "notAvailable": "Non disponible",
+            "limited": "Limité",
+            "internal": "Interne"
+          }
         },
         "recommendedNextStep": {
           "eyebrow": "Prochaine étape recommandée",
@@ -2735,6 +3624,126 @@
               "description": "Contacter SGE si vous avez besoin d'un cadrage, d'une intégration ou d'une lecture plus précise de la maturité du service.",
               "label": "Contacter SGE"
             }
+          }
+        }
+      },
+      "productPage": {
+        "brand": "Produits SGE",
+        "common": {
+          "explore": "Explorer"
+        },
+        "preview": {
+          "conceptPreview": "Aperçu conceptuel",
+          "disclaimer": "Cet aperçu représente un cadre produit conceptuel, pas une capture d'écran de production."
+        },
+        "problem": {
+          "eyebrow": "Problème & promesse",
+          "userNeed": "Besoin utilisateur",
+          "productPromise": "Promesse produit",
+          "organizationalValue": "Valeur organisationnelle"
+        },
+        "whyNow": {
+          "eyebrow": "Pourquoi ce produit compte",
+          "title": "Situer le produit avant de détailler ses fonctions.",
+          "description": "Une page produit doit expliquer le besoin, la maturité et le lien avec le socle SGE avant de présenter des capacités isolées.",
+          "items": {
+            "clarity": {
+              "title": "Rendre la maturité lisible",
+              "description": "Présenter ce qui est disponible, prévu ou encore exploratoire sans créer de confusion sur l'état réel du produit."
+            },
+            "adoption": {
+              "title": "Préparer l'adoption de {product}",
+              "description": "Relier le produit à des usages concrets pour aider les équipes à comprendre où il peut s'inscrire."
+            },
+            "foundation": {
+              "title": "Garder le lien avec le socle",
+              "description": "Montrer que l'expérience visible s'appuie sur des fondations communes d'identité, de sécurité, d'intégration et d'opérations."
+            }
+          }
+        },
+        "experience": {
+          "eyebrow": "Expérience produit",
+          "title": "Parcours produit visé",
+          "description": "Un parcours utilisateur conceptuel pour l'expérience produit, cadré sur ce que le produit est censé soutenir.",
+          "previewScope": "Périmètre de l'aperçu",
+          "previewDescription": "L'aperçu d'interface reste volontairement générique. Il décrit l'expérience cible sans impliquer une interface finale de production ni une disponibilité publique."
+        },
+        "features": {
+          "eyebrow": "Fonctionnalités clés",
+          "title": "Fonctionnalités clés",
+          "description": "L'ensemble fonctionnel est décrit au niveau produit et reste aligné avec la maturité actuelle du service."
+        },
+        "useCases": {
+          "eyebrow": "Cas d'usage",
+          "title": "Cas d'usage réalistes",
+          "description": "Des scénarios concrets qui expliquent où le produit peut s'inscrire sans suggérer des déploiements clients existants."
+        },
+        "ecosystemConnections": {
+          "eyebrow": "Intégration dans l'écosystème",
+          "title": "Relier le produit au reste du système.",
+          "description": "Le produit devient plus compréhensible lorsqu'il est situé parmi les autres surfaces, les services plateforme et les scénarios d'adoption.",
+          "items": {
+            "products": {
+              "title": "Voir l'écosystème produit",
+              "description": "{product} fait partie d'un ensemble de produits qui exposent les usages visibles de SGE."
+            },
+            "platform": {
+              "title": "Comprendre le socle",
+              "description": "Les services plateforme expliquent les fondations techniques et opérationnelles qui soutiennent les produits."
+            },
+            "solutions": {
+              "title": "Lire par scénario",
+              "description": "Les solutions replacent les produits dans des trajectoires d'adoption concrètes pour les organisations."
+            }
+          }
+        },
+        "platformIntegration": {
+          "eyebrow": "Intégration plateforme",
+          "title": "Alimenté par les services plateforme SGE",
+          "description": "L'expérience produit est reliée aux fondations plateforme comme l'identité, la recherche, le coffre, le statut et les systèmes workspace.",
+          "mapTitle": "Carte d'intégration",
+          "platformLabel": "Plateforme SGE",
+          "mapDescription": "Les intégrations indiquent une direction produit et un alignement de dépendances. La disponibilité peut varier selon la maturité du produit."
+        },
+        "recommendedNextStep": {
+          "eyebrow": "Prochaine étape recommandée",
+          "title": "Proposer un chemin clair après la lecture.",
+          "description": "La page doit permettre de poursuivre vers l'écosystème produit, un scénario d'adoption ou un échange avec l'équipe selon l'intention du visiteur.",
+          "items": {
+            "explore": {
+              "title": "Explorer les produits",
+              "description": "Comparer {product} aux autres expériences visibles pour comprendre la logique produit d'ensemble.",
+              "label": "Voir les produits"
+            },
+            "evaluate": {
+              "title": "Évaluer un scénario",
+              "description": "Relier le produit à une trajectoire workplace ou organisationnelle plus concrète.",
+              "label": "Voir les solutions"
+            },
+            "contact": {
+              "title": "Parler à l'équipe",
+              "description": "Contacter SGE si vous avez besoin d'un cadrage, d'une intégration ou d'une lecture plus précise de la maturité du produit.",
+              "label": "Contacter SGE"
+            }
+          }
+        },
+        "availability": {
+          "eyebrow": "Disponibilité & prochaine étape",
+          "title": "Disponibilité et prochaine étape",
+          "continueWith": "Continuer avec {product}",
+          "description": "Choisissez la prochaine étape qui correspond à la maturité actuelle de ce produit.",
+          "labels": {
+            "currentStatus": "Statut actuel",
+            "publicAccess": "Accès public",
+            "privatePreview": "Préversion privée",
+            "documentation": "Documentation",
+            "workspaceIntegration": "Intégration workspace",
+            "apiSdk": "API/SDK"
+          },
+          "values": {
+            "inProgress": "En progression",
+            "notOpenYet": "Pas encore ouvert",
+            "limited": "Limité"
           }
         }
       },

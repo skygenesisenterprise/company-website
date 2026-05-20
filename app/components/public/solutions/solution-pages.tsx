@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ArrowRight, Building2, CheckCircle2, Layers3, Network, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ import {
   type RelatedStackItem,
   type SolutionContent,
   type SolutionCta,
+  type SolutionSlug,
 } from "@/lib/solutions/solution-content";
 
 interface LocaleProps {
@@ -29,6 +31,11 @@ interface SolutionSectionProps {
   description?: string;
   muted?: boolean;
   children: React.ReactNode;
+}
+
+interface SolutionTextCard {
+  title: string;
+  description: string;
 }
 
 function localizeHref(locale: string, href: string) {
@@ -68,7 +75,15 @@ function SolutionSection({
   );
 }
 
-function SolutionCTA({ cta, locale }: { cta: SolutionCta; locale: string }) {
+function SolutionCTA({
+  cta,
+  label,
+  locale,
+}: {
+  cta: SolutionCta;
+  label: string;
+  locale: string;
+}) {
   const isPrimary = cta.variant !== "secondary";
 
   return (
@@ -82,7 +97,7 @@ function SolutionCTA({ cta, locale }: { cta: SolutionCta; locale: string }) {
       )}
     >
       <Link href={localizeHref(locale, cta.href)}>
-        {cta.label}
+        {label}
         {isPrimary ? <ArrowRight className="h-4 w-4" /> : null}
       </Link>
     </Button>
@@ -93,9 +108,11 @@ function HubCard({
   locale,
   slug,
 }: LocaleProps & {
-  slug: keyof typeof solutions;
+  slug: SolutionSlug;
 }) {
   const solution = solutions[slug];
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
 
   return (
     <Link
@@ -103,16 +120,16 @@ function HubCard({
       className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
     >
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-        {solution.category === "use-case" ? "Use case" : "Industry"}
+        {t(`categories.${solution.category}`)}
       </p>
       <h3 className="mt-4 text-lg font-semibold text-slate-950">
-        {solution.title}
+        {tSolutions(`${slug}.title`)}
       </h3>
       <p className="mt-3 text-sm leading-7 text-slate-600">
-        {solution.positioning}
+        {tSolutions(`${slug}.positioning`)}
       </p>
       <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
-        Open solution
+        {t("common.openSolution")}
         <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </span>
     </Link>
@@ -120,36 +137,39 @@ function HubCard({
 }
 
 function SolutionsHubHero({ locale }: LocaleProps) {
+  const t = useTranslations("Public.home.solutionPage");
+  const modelSteps = t.raw("hub.hero.model.steps") as string[];
+
   return (
     <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-indigo-700">
-            SGE Solutions
+            {t("brand")}
           </p>
           <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-            Choose a path by use case or sector.
+            {t("hub.hero.title")}
           </h1>
           <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-700">
-            SGE solutions connect platform foundations and product experiences to organizational contexts. They are designed as adoption paths, not claims of finished sector deployments.
+            {t("hub.hero.description")}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="h-12 rounded-md bg-slate-950 px-6 text-sm font-medium text-white hover:bg-indigo-950">
               <Link href={localizeHref(locale, "/company/contact")}>
-                Contact SGE
+                {t("hub.hero.primaryCta")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-12 rounded-md px-6 text-sm font-medium">
-              <Link href={localizeHref(locale, "/platform")}>Explore Platform</Link>
+              <Link href={localizeHref(locale, "/platform")}>{t("hub.hero.secondaryCta")}</Link>
             </Button>
           </div>
         </div>
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
           <div className="rounded-md border border-slate-200 bg-white p-5">
-            <p className="text-sm font-semibold text-slate-950">Solution model</p>
+            <p className="text-sm font-semibold text-slate-950">{t("hub.hero.model.title")}</p>
             <div className="mt-6 grid gap-3">
-              {["Use case", "Platform services", "Products", "Adoption path"].map((item, index) => (
+              {modelSteps.map((item, index) => (
                 <div key={item} className="flex items-center gap-3">
                   <span className="flex h-8 w-8 items-center justify-center rounded-md border border-indigo-200 bg-indigo-50 text-xs font-semibold text-indigo-800">
                     {index + 1}
@@ -161,7 +181,7 @@ function SolutionsHubHero({ locale }: LocaleProps) {
               ))}
             </div>
             <p className="mt-6 text-sm leading-7 text-slate-600">
-              A lightweight navigation model for understanding where SGE can support an organization progressively.
+              {t("hub.hero.model.description")}
             </p>
           </div>
         </div>
@@ -171,26 +191,14 @@ function SolutionsHubHero({ locale }: LocaleProps) {
 }
 
 function HowSgeBuildsSolutions() {
-  const items = [
-    {
-      title: "Start from the organization",
-      description: "Clarify the users, teams, data boundaries and operating constraints before selecting products.",
-    },
-    {
-      title: "Connect platform foundations",
-      description: "Use identity, vault, status, search, mailer and edge capabilities where they are relevant.",
-    },
-    {
-      title: "Adopt products progressively",
-      description: "Introduce product surfaces only when they support the operating model and maturity constraints.",
-    },
-  ];
+  const t = useTranslations("Public.home.solutionPage");
+  const items = t.raw("hub.how.items") as SolutionTextCard[];
 
   return (
     <SolutionSection
-      eyebrow="How SGE builds solutions"
-      title="A progressive approach, not a generic bundle."
-      description="Solutions are assembled from platform services, products and developer tools according to the context."
+      eyebrow={t("hub.how.eyebrow")}
+      title={t("hub.how.title")}
+      description={t("hub.how.description")}
     >
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => (
@@ -205,24 +213,23 @@ function HowSgeBuildsSolutions() {
 }
 
 function PlatformProductsConnection({ locale }: LocaleProps) {
+  const t = useTranslations("Public.home.solutionPage");
+  const items = t.raw("hub.platformProducts.items") as Array<SolutionTextCard & { href: string }>;
+
   return (
     <SolutionSection
-      eyebrow="Platform + Products connection"
-      title="Solutions sit between infrastructure and product experience."
-      description="Platform defines the technical foundation. Products create visible user experiences. Solutions explain how organizations can combine both."
+      eyebrow={t("hub.platformProducts.eyebrow")}
+      title={t("hub.platformProducts.title")}
+      description={t("hub.platformProducts.description")}
       muted
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {[
-          { title: "Platform", description: "Identity, Vault, Edge, Mailer, Status, Search, Maps and Bank research.", href: "/platform" },
-          { title: "Products", description: "Shield, VPN, Giteria, Schematik, Mail, Meet, Chat and Sheets.", href: "/products" },
-          { title: "Developers", description: "APIs, SDKs and documentation for technical integration paths.", href: "/developers" },
-        ].map((item) => (
+        {items.map((item) => (
           <Link key={item.title} href={localizeHref(locale, item.href)} className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200">
             <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
             <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
-              Explore
+              {t("common.explore")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </span>
           </Link>
@@ -233,15 +240,17 @@ function PlatformProductsConnection({ locale }: LocaleProps) {
 }
 
 export function SolutionsHubPage({ locale }: LocaleProps) {
+  const t = useTranslations("Public.home.solutionPage");
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header locale={locale as Locale} />
       <main className="flex-1">
         <SolutionsHubHero locale={locale} />
         <SolutionSection
-          eyebrow="Choose by use case"
-          title="Start from the work to be done."
-          description="These solutions describe operational contexts that can apply across sectors."
+          eyebrow={t("hub.useCases.eyebrow")}
+          title={t("hub.useCases.title")}
+          description={t("hub.useCases.description")}
         >
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {useCaseSolutions.map((slug) => (
@@ -250,9 +259,9 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
           </div>
         </SolutionSection>
         <SolutionSection
-          eyebrow="Choose by industry"
-          title="Explore sector-oriented planning paths."
-          description="Industry pages remain cautious: they describe fit and planning, not certifications or customer deployments."
+          eyebrow={t("hub.industries.eyebrow")}
+          title={t("hub.industries.title")}
+          description={t("hub.industries.description")}
           muted
         >
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -267,23 +276,23 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-700">
-                Final CTA
+                {t("hub.cta.eyebrow")}
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
-                Clarify where SGE can help.
+                {t("hub.cta.title")}
               </h2>
               <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-                Contact SGE to map a use case, or start by exploring the platform and product layers.
+                {t("hub.cta.description")}
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Button asChild className="rounded-md bg-slate-950 text-white hover:bg-indigo-950">
-                  <Link href={localizeHref(locale, "/company/contact")}>Contact SGE</Link>
+                  <Link href={localizeHref(locale, "/company/contact")}>{t("hub.cta.contact")}</Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-md">
-                  <Link href={localizeHref(locale, "/platform")}>Explore Platform</Link>
+                  <Link href={localizeHref(locale, "/platform")}>{t("hub.cta.platform")}</Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-md">
-                  <Link href={localizeHref(locale, "/products")}>View Products</Link>
+                  <Link href={localizeHref(locale, "/products")}>{t("hub.cta.products")}</Link>
                 </Button>
               </div>
             </div>
@@ -296,32 +305,42 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
 }
 
 function SolutionHero({ locale, solution }: SolutionPageProps) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const ctaLabels = tSolutions.raw(`${solution.slug}.ctas`) as [string, string];
+  const architectureFlow = tSolutions.raw(`${solution.slug}.architectureFlow`) as string[];
+
   return (
     <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-indigo-700">
-            SGE Solutions
+            {t("brand")}
           </p>
           <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-            {solution.title}
+            {tSolutions(`${solution.slug}.title`)}
           </h1>
           <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
-            {solution.positioning}
+            {tSolutions(`${solution.slug}.positioning`)}
           </p>
           <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
-            {solution.description}
+            {tSolutions(`${solution.slug}.description`)}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            {solution.ctas.map((cta) => (
-              <SolutionCTA key={cta.label} cta={cta} locale={locale} />
+            {solution.ctas.map((cta, index) => (
+              <SolutionCTA
+                key={cta.href}
+                cta={cta}
+                label={ctaLabels[index]}
+                locale={locale}
+              />
             ))}
           </div>
         </div>
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <p className="text-sm font-semibold text-slate-950">Solution frame</p>
+          <p className="text-sm font-semibold text-slate-950">{t("hero.solutionFrame")}</p>
           <div className="mt-6 grid gap-3">
-            {solution.architectureFlow.slice(0, 4).map((step, index) => (
+            {architectureFlow.slice(0, 4).map((step, index) => (
               <div key={step} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white px-4 py-3">
                 <span className="text-xs font-semibold text-indigo-800">{index + 1}</span>
                 <span className="text-sm font-medium text-slate-800">{step}</span>
@@ -335,17 +354,19 @@ function SolutionHero({ locale, solution }: SolutionPageProps) {
 }
 
 function SolutionChallenge({ solution }: { solution: SolutionContent }) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
   const items = [
-    { title: "Context", description: solution.challenge.context },
-    { title: "Friction", description: solution.challenge.friction },
-    { title: "Risk", description: solution.challenge.risk },
+    { title: t("challenge.items.context"), description: tSolutions(`${solution.slug}.challenge.context`) },
+    { title: t("challenge.items.friction"), description: tSolutions(`${solution.slug}.challenge.friction`) },
+    { title: t("challenge.items.risk"), description: tSolutions(`${solution.slug}.challenge.risk`) },
   ];
 
   return (
     <SolutionSection
-      eyebrow="Challenge"
-      title={solution.challenge.title}
-      description="The challenge is framed at organization level, before selecting a product or platform service."
+      eyebrow={t("challenge.eyebrow")}
+      title={tSolutions(`${solution.slug}.challenge.title`)}
+      description={t("challenge.description")}
     >
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => (
@@ -359,16 +380,66 @@ function SolutionChallenge({ solution }: { solution: SolutionContent }) {
   );
 }
 
-function SolutionApproach({ solution }: { solution: SolutionContent }) {
+function SolutionWhyNow({ solution }: { solution: SolutionContent }) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const solutionTitle = tSolutions(`${solution.slug}.title`);
+  const items = [
+    {
+      title: t("whyNow.items.clarity.title"),
+      description: t("whyNow.items.clarity.description"),
+      icon: CheckCircle2,
+    },
+    {
+      title: t("whyNow.items.context.title", { solution: solutionTitle }),
+      description: t("whyNow.items.context.description"),
+      icon: Building2,
+    },
+    {
+      title: t("whyNow.items.foundation.title"),
+      description: t("whyNow.items.foundation.description"),
+      icon: ShieldCheck,
+    },
+  ];
+
   return (
     <SolutionSection
-      eyebrow="SGE Approach"
-      title={solution.approach.title}
-      description={solution.approach.body}
+      eyebrow={t("whyNow.eyebrow")}
+      title={t("whyNow.title")}
+      description={t("whyNow.description")}
+      muted
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <div key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
+              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </SolutionSection>
+  );
+}
+
+function SolutionApproach({ solution }: { solution: SolutionContent }) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const principles = tSolutions.raw(`${solution.slug}.approach.principles`) as string[];
+
+  return (
+    <SolutionSection
+      eyebrow={t("approach.eyebrow")}
+      title={tSolutions(`${solution.slug}.approach.title`)}
+      description={tSolutions(`${solution.slug}.approach.body`)}
       muted
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {solution.approach.principles.map((principle) => (
+        {principles.map((principle) => (
           <div key={principle} className="rounded-lg border border-slate-200 bg-white p-5">
             <CheckCircle2 className="mb-4 h-4 w-4 text-indigo-700" aria-hidden="true" />
             <p className="text-sm font-medium text-slate-800">{principle}</p>
@@ -379,22 +450,83 @@ function SolutionApproach({ solution }: { solution: SolutionContent }) {
   );
 }
 
-function SolutionCapabilities({ solution }: { solution: SolutionContent }) {
+function SolutionEcosystemConnections({ locale, solution }: SolutionPageProps) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const solutionTitle = tSolutions(`${solution.slug}.title`);
+  const items = [
+    {
+      title: t("ecosystemConnections.items.solutions.title"),
+      description: t("ecosystemConnections.items.solutions.description", { solution: solutionTitle }),
+      href: "/solutions",
+      icon: Building2,
+    },
+    {
+      title: t("ecosystemConnections.items.platform.title"),
+      description: t("ecosystemConnections.items.platform.description"),
+      href: "/platform",
+      icon: Layers3,
+    },
+    {
+      title: t("ecosystemConnections.items.products.title"),
+      description: t("ecosystemConnections.items.products.description"),
+      href: "/products",
+      icon: Network,
+    },
+  ];
+
   return (
     <SolutionSection
-      eyebrow="Capabilities"
-      title="Capabilities mobilized by this solution"
-      description="These are solution-level capabilities, assembled from product, platform and operational foundations."
+      eyebrow={t("ecosystemConnections.eyebrow")}
+      title={t("ecosystemConnections.title")}
+      description={t("ecosystemConnections.description")}
     >
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {solution.capabilities.map((capability) => {
-          const Icon = capability.icon;
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => {
+          const Icon = item.icon;
 
           return (
-            <div key={capability.title} className="rounded-lg border border-slate-200 bg-white p-6">
+            <Link
+              key={item.title}
+              href={localizeHref(locale, item.href)}
+              className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+            >
+              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+                {t("common.explore")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </SolutionSection>
+  );
+}
+
+function SolutionCapabilities({ solution }: { solution: SolutionContent }) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const capabilities = tSolutions.raw(`${solution.slug}.capabilities`) as SolutionTextCard[];
+
+  return (
+    <SolutionSection
+      eyebrow={t("capabilities.eyebrow")}
+      title={t("capabilities.title")}
+      description={t("capabilities.description")}
+    >
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {solution.capabilities.map((capability, index) => {
+          const Icon = capability.icon;
+          const capabilityText = capabilities[index];
+
+          return (
+            <div key={capabilityText.title} className="rounded-lg border border-slate-200 bg-white p-6">
               {Icon ? <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" /> : null}
-              <h3 className="text-base font-semibold text-slate-950">{capability.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{capability.description}</p>
+              <h3 className="text-base font-semibold text-slate-950">{capabilityText.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{capabilityText.description}</p>
             </div>
           );
         })}
@@ -403,16 +535,72 @@ function SolutionCapabilities({ solution }: { solution: SolutionContent }) {
   );
 }
 
-function SolutionReferenceArchitecture({ solution }: { solution: SolutionContent }) {
+function SolutionRecommendedNextStep({ locale, solution }: SolutionPageProps) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const solutionTitle = tSolutions(`${solution.slug}.title`);
+  const items = [
+    {
+      title: t("recommendedNextStep.items.compare.title"),
+      description: t("recommendedNextStep.items.compare.description"),
+      href: "/solutions",
+      label: t("recommendedNextStep.items.compare.label"),
+    },
+    {
+      title: t("recommendedNextStep.items.evaluate.title"),
+      description: t("recommendedNextStep.items.evaluate.description", { solution: solutionTitle }),
+      href: "/platform",
+      label: t("recommendedNextStep.items.evaluate.label"),
+    },
+    {
+      title: t("recommendedNextStep.items.contact.title"),
+      description: t("recommendedNextStep.items.contact.description"),
+      href: "/company/contact",
+      label: t("recommendedNextStep.items.contact.label"),
+    },
+  ];
+
   return (
     <SolutionSection
-      eyebrow="Reference Architecture"
-      title="A simple conceptual flow"
-      description="This diagram shows how the main pieces can connect. It is not a production architecture or deployment guarantee."
+      eyebrow={t("recommendedNextStep.eyebrow")}
+      title={t("recommendedNextStep.title")}
+      description={t("recommendedNextStep.description")}
+      muted
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {items.map((item) => (
+          <Link
+            key={item.title}
+            href={localizeHref(locale, item.href)}
+            className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+          >
+            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+              {item.label}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </span>
+          </Link>
+        ))}
+      </div>
+    </SolutionSection>
+  );
+}
+
+function SolutionReferenceArchitecture({ solution }: { solution: SolutionContent }) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const architectureFlow = tSolutions.raw(`${solution.slug}.architectureFlow`) as string[];
+
+  return (
+    <SolutionSection
+      eyebrow={t("architecture.eyebrow")}
+      title={t("architecture.title")}
+      description={t("architecture.description")}
       muted
     >
       <div className="grid gap-3 lg:grid-cols-6">
-        {solution.architectureFlow.map((step, index) => (
+        {architectureFlow.map((step, index) => (
           <div key={step} className="rounded-lg border border-slate-200 bg-white p-4">
             <span className="text-xs font-semibold text-indigo-800">{index + 1}</span>
             <p className="mt-3 text-sm font-medium leading-6 text-slate-900">{step}</p>
@@ -431,17 +619,19 @@ function StackColumn({
   title: string;
   items: RelatedStackItem[];
 }) {
+  const t = useTranslations("Public.home.solutionPage");
+
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-6">
       <h3 className="text-base font-semibold text-slate-950">{title}</h3>
       <div className="mt-5 grid gap-3">
         {items.map((item) => (
           <Link
-            key={item.label}
+            key={item.key}
             href={localizeHref(locale, item.href)}
             className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-indigo-200 hover:bg-white"
           >
-            {item.label}
+            {t(`relatedItems.${item.key}`)}
             <ArrowRight className="h-4 w-4 text-indigo-700" aria-hidden="true" />
           </Link>
         ))}
@@ -451,30 +641,37 @@ function StackColumn({
 }
 
 function SolutionRelatedStack({ locale, solution }: SolutionPageProps) {
+  const t = useTranslations("Public.home.solutionPage");
+
   return (
     <SolutionSection
-      eyebrow="Related Products & Platform"
-      title="Connected SGE building blocks"
-      description="Each solution connects organization-level needs to platform services and product experiences."
+      eyebrow={t("relatedStack.eyebrow")}
+      title={t("relatedStack.title")}
+      description={t("relatedStack.description")}
     >
       <div className="grid gap-6 lg:grid-cols-2">
-        <StackColumn title="Platform services" items={solution.relatedPlatform} locale={locale} />
-        <StackColumn title="Products" items={solution.relatedProducts} locale={locale} />
+        <StackColumn title={t("relatedStack.platformTitle")} items={solution.relatedPlatform} locale={locale} />
+        <StackColumn title={t("relatedStack.productsTitle")} items={solution.relatedProducts} locale={locale} />
       </div>
     </SolutionSection>
   );
 }
 
 function SolutionAdoptionPath({ locale, solution }: SolutionPageProps) {
+  const t = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const adoptionPath = tSolutions.raw(`${solution.slug}.adoptionPath`) as SolutionTextCard[];
+  const ctaLabels = tSolutions.raw(`${solution.slug}.ctas`) as [string, string];
+
   return (
     <SolutionSection
-      eyebrow="Adoption Path"
-      title="Start progressively"
-      description="The goal is to map the problem, select the required services and build only what is mature enough for the context."
+      eyebrow={t("adoptionPath.eyebrow")}
+      title={t("adoptionPath.title")}
+      description={t("adoptionPath.description")}
       muted
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {solution.adoptionPath.map((step, index) => (
+        {adoptionPath.map((step, index) => (
           <div key={step.title} className="rounded-lg border border-slate-200 bg-white p-6">
             <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-indigo-200 bg-indigo-50 text-sm font-semibold text-indigo-800">
               {index + 1}
@@ -485,8 +682,13 @@ function SolutionAdoptionPath({ locale, solution }: SolutionPageProps) {
         ))}
       </div>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        {solution.ctas.map((cta) => (
-          <SolutionCTA key={cta.label} cta={cta} locale={locale} />
+        {solution.ctas.map((cta, index) => (
+          <SolutionCTA
+            key={cta.href}
+            cta={cta}
+            label={ctaLabels[index]}
+            locale={locale}
+          />
         ))}
       </div>
     </SolutionSection>
@@ -500,10 +702,13 @@ export function SolutionPage({ locale, solution }: SolutionPageProps) {
       <main className="flex-1">
         <SolutionHero locale={locale} solution={solution} />
         <SolutionChallenge solution={solution} />
+        <SolutionWhyNow solution={solution} />
         <SolutionApproach solution={solution} />
         <SolutionCapabilities solution={solution} />
+        <SolutionEcosystemConnections locale={locale} solution={solution} />
         <SolutionReferenceArchitecture solution={solution} />
         <SolutionRelatedStack locale={locale} solution={solution} />
+        <SolutionRecommendedNextStep locale={locale} solution={solution} />
         <SolutionAdoptionPath locale={locale} solution={solution} />
       </main>
       <Footer locale={locale as Locale} />
@@ -514,10 +719,13 @@ export function SolutionPage({ locale, solution }: SolutionPageProps) {
 export {
   SolutionHero,
   SolutionChallenge,
+  SolutionWhyNow,
   SolutionApproach,
   SolutionCapabilities,
+  SolutionEcosystemConnections,
   SolutionReferenceArchitecture,
   SolutionRelatedStack,
+  SolutionRecommendedNextStep,
   SolutionAdoptionPath,
   SolutionCTA,
 };

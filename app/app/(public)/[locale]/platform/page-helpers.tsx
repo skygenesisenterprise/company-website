@@ -15,12 +15,11 @@ export async function generatePlatformMetadata(
   slug: PlatformServiceSlug
 ): Promise<Metadata> {
   const { locale } = await params;
-  const service = getPlatformService(slug);
   const t = await getTranslations({ locale, namespace: "Public.home.page.platform.services" });
 
   return {
     title: `${t(`${slug}.title`)} | SGE Platform`,
-    description: t(`${slug}.promise`) || service.description,
+    description: t(`${slug}.promise`),
   };
 }
 

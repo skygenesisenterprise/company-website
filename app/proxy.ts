@@ -1,27 +1,15 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { routing } from "@/i18n/routing";
+import { getLocaleFromCountry } from "@/lib/country-language";
 
 type Locale = (typeof routing.locales)[number];
-
-const countryToLocale: Record<string, Locale> = {
-  BE: "be_fr",
-  CH: "ch_fr",
-  FR: "fr",
-};
 
 function getCountryFromRequest(request: NextRequest): string | null {
   const cloudflareCountry = request.headers.get("cf-ipcountry");
   const vercelCountry = request.headers.get("x-vercel-ip-country");
   const fastlyCountry = request.headers.get("x-fastly-geo-country");
   return cloudflareCountry || vercelCountry || fastlyCountry || null;
-}
-
-function getLocaleFromCountry(country: string | null): Locale {
-  if (country && country in countryToLocale) {
-    return countryToLocale[country];
-  }
-  return routing.defaultLocale;
 }
 
 function isValidLocale(locale: string): locale is Locale {
@@ -45,7 +33,7 @@ export default function middleware(request: NextRequest) {
 
   if (pathname === "/" || pathname === "") {
     const country = getCountryFromRequest(request);
-    const locale = getLocaleFromCountry(country);
+    const locale = getLocaleFromCountry(country, routing.locales, routing.defaultLocale);
     return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
 
@@ -89,7 +77,7 @@ export default function middleware(request: NextRequest) {
       return NextResponse.next();
     }
     const country = getCountryFromRequest(request);
-    const locale = getLocaleFromCountry(country);
+    const locale = getLocaleFromCountry(country, routing.locales, routing.defaultLocale);
     return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
   }
 
