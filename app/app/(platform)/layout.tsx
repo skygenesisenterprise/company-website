@@ -5,7 +5,7 @@ import { AdminHeader } from "@/components/platform/header";
 // import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const metadata: Metadata = {
-  title: "Sky Genesis Enterprise | Dashboard",
+  title: "Dashboard",
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

@@ -141,7 +141,14 @@
       "newsletterLegalNotice": "Sky Genesis Enterprise traite votre adresse de messagerie aux fins de vous adresser les newsletters des entités du Groupe Sky Genesis Enterprise. Vous pouvez à tout moment utiliser le lien de désabonnement intégré. En savoir plus sur la gestion de vos données et vos droits",
       "verifyKey": "Vérifiez notre clé publique PGP pour assurer l'authenticité du site",
       "salesServices": "Services Commerciaux",
-      "phoneNumber": "Non disponnible"
+      "phoneNumber": "Non disponnible",
+      "mobileAppsTitle": "Applications mobiles",
+      "mobileAppsDescription": "Disponibilité progressive sur iOS et Android selon la maturité des produits SGE.",
+      "mobileAppsSoon": "Bientôt disponible",
+      "appStore": "App Store",
+      "googlePlay": "Google Play",
+      "appStoreAlt": "Badge App Store iOS, bientôt disponible",
+      "googlePlayAlt": "Badge Google Play Android, bientôt disponible"
     },
     "contact": {
       "heroTitle": "Contactez-Nous",
@@ -5591,11 +5598,15 @@
       "programCta": "Voir le programme",
       "resourcesCta": "Consulter les ressources"
     },
+    "meta": {
+      "brand": "Sky Genesis Enterprise"
+    },
     "technology": {
       "badge": "Partenaires technologiques",
       "heroTitle": "Construisez avec l'écosystème Sky Genesis Enterprise",
       "heroDescription": "Connectez vos produits, intégrations et services techniques à une plateforme souveraine pensée pour les organisations européennes.",
       "primaryCta": "Devenir partenaire technologique",
+      "secondaryCta": "Consulter les ressources",
       "audienceTitle": "Pour les éditeurs, intégrateurs et équipes produit",
       "audienceDescription": "Le programme technologique s'adresse aux acteurs qui veulent bâtir des intégrations fiables autour de nos briques d'identité, de données, de sécurité et de collaboration.",
       "audienceItems": [
@@ -5668,6 +5679,38 @@
           "description": "Nous coordonnons la mise à disposition, les ressources commerciales et le suivi."
         }
       ],
+      "positioningTitle": "Ce que nous attendons d'un partenaire technologique",
+      "positioningDescription": "Les meilleurs partenariats techniques clarifient très tôt la valeur apportée, le niveau d'intégration et la responsabilité de chaque équipe.",
+      "positioningItems": [
+        {
+          "title": "Valeur produit explicite",
+          "description": "L'intégration doit résoudre un besoin identifiable pour les clients communs, sans créer de dépendances opaques."
+        },
+        {
+          "title": "Périmètre bien défini",
+          "description": "Les flux, rôles, données manipulées et responsabilités de support sont compris dès le départ."
+        },
+        {
+          "title": "Qualité exploitable",
+          "description": "Documentation, tests, versionnement et observabilité sont pensés pour durer dans le temps."
+        }
+      ],
+      "operatingTitle": "Comment le partenariat s'opère au quotidien",
+      "operatingDescription": "Le travail avance sur des itérations courtes avec validation produit, revues techniques et arbitrages explicites.",
+      "operatingItems": [
+        {
+          "title": "Points techniques ciblés",
+          "description": "Nous synchronisons les sujets d'architecture, de sécurité et de roadmap aux étapes utiles."
+        },
+        {
+          "title": "Validation avant exposition",
+          "description": "Les intégrations sont testées sur des environnements réalistes avant toute mise en avant commerciale."
+        },
+        {
+          "title": "Suivi des évolutions",
+          "description": "Les changements API, besoins de maintenance et retours clients restent visibles des deux côtés."
+        }
+      ],
       "resourcesTitle": "Ressources techniques",
       "resourcesDescription": "Des ressources pour accélérer le développement et garder des intégrations fiables dans le temps.",
       "resourcesItems": [
@@ -5684,6 +5727,41 @@
           "description": "Canal de suivi pour les sujets techniques et les évolutions."
         }
       ],
+      "enablementTitle": "Ce que vous débloquez dans l'écosystème SGE",
+      "enablementDescription": "Le partenariat technologique donne accès à des ressources qui accélèrent autant la construction que la diffusion d'une intégration solide.",
+      "enablementItems": [
+        {
+          "title": "Lecture produit plus fine",
+          "description": "Vous comprenez mieux le rôle des briques SGE dans les architectures visées par vos équipes."
+        },
+        {
+          "title": "Montée en confiance",
+          "description": "Les validations conjointes réduisent le risque avant ouverture aux premiers clients."
+        },
+        {
+          "title": "Mise en visibilité",
+          "description": "Une intégration claire et maintenable peut être relayée dans les supports et parcours partenaires."
+        }
+      ],
+      "nextStepsTitle": "Par où avancer ensuite",
+      "nextStepsDescription": "Choisissez l'entrée la plus utile selon que vous souhaitez cadrer une intégration, préparer vos équipes ou consolider votre environnement technique.",
+      "nextStepsItems": [
+        {
+          "title": "Explorer la plateforme Identity",
+          "description": "Comprendre la brique de contrôle d'accès la plus centrale pour un partenaire technologique.",
+          "label": "Voir la plateforme"
+        },
+        {
+          "title": "Consulter les interfaces développeur",
+          "description": "Accéder aux points d'entrée API, références et parcours utiles à l'intégration.",
+          "label": "Voir les APIs"
+        },
+        {
+          "title": "Préparer l'accès aux ressources",
+          "description": "Identifier les guides, environnements et documents à réunir avant démarrage.",
+          "label": "Voir les ressources"
+        }
+      ],
       "ctaTitle": "Prêt à créer une intégration SGE ?",
       "ctaDescription": "Présentez votre solution et construisons le bon parcours technique ensemble.",
       "ctaLabel": "Devenir partenaire"
@@ -5693,6 +5771,7 @@
       "heroTitle": "Accompagnez les organisations avec Sky Genesis Enterprise",
       "heroDescription": "Rejoignez un réseau de conseil, d'intégration et de support capable d'aider les clients à adopter nos solutions durablement.",
       "primaryCta": "Devenir partenaire service",
+      "secondaryCta": "Voir le programme",
       "audienceTitle": "Pour les cabinets, intégrateurs et experts terrain",
       "audienceDescription": "Ce programme s'adresse aux équipes qui déploient, forment et accompagnent des organisations sur des environnements numériques critiques.",
       "audienceItems": [
@@ -5765,6 +5844,38 @@
           "description": "Nous pilotons les premiers projets et ajustons le modèle de collaboration."
         }
       ],
+      "positioningTitle": "Ce qui rend une offre service crédible",
+      "positioningDescription": "Les partenaires de service créent de la valeur lorsqu'ils rendent les projets lisibles, déployables et soutenables pour les clients.",
+      "positioningItems": [
+        {
+          "title": "Lecture du contexte client",
+          "description": "Les contraintes métier, sécurité, conduite du changement et exploitation sont intégrées à la recommandation."
+        },
+        {
+          "title": "Capacité de delivery",
+          "description": "Le partenaire peut cadrer, déployer, documenter puis accompagner la phase d'adoption."
+        },
+        {
+          "title": "Support structuré",
+          "description": "Les modalités d'escalade, de suivi et de qualité de service sont explicites dès l'amont."
+        }
+      ],
+      "operatingTitle": "Comment nous opérons avec les équipes service",
+      "operatingDescription": "Le partenariat service s'appuie sur des points de passage clairs entre cadrage, réalisation, transfert et support.",
+      "operatingItems": [
+        {
+          "title": "Cadres projet partagés",
+          "description": "Les modèles de déploiement, checklists et jalons servent de socle commun."
+        },
+        {
+          "title": "Coordination terrain",
+          "description": "Les retours client remontent dans les bonnes boucles produit, sécurité et support."
+        },
+        {
+          "title": "Amélioration continue",
+          "description": "Les méthodes, formations et ressources évoluent à partir des projets réellement menés."
+        }
+      ],
       "resourcesTitle": "Ressources service",
       "resourcesDescription": "Des supports pour cadrer, vendre, déployer et maintenir les projets clients.",
       "resourcesItems": [
@@ -5781,6 +5892,41 @@
           "description": "Procédures, FAQ et canaux d'escalade dédiés aux partenaires."
         }
       ],
+      "enablementTitle": "Les leviers de montée en puissance",
+      "enablementDescription": "Nous renforçons les partenaires qui savent industrialiser leurs pratiques et rassurer les clients dans la durée.",
+      "enablementItems": [
+        {
+          "title": "Certification ciblée",
+          "description": "Les équipes peuvent formaliser leurs compétences sur les briques et usages les plus critiques."
+        },
+        {
+          "title": "Méthodes réutilisables",
+          "description": "Les projets gagnent en qualité quand les supports et scénarios de déploiement sont homogènes."
+        },
+        {
+          "title": "Références plus solides",
+          "description": "Les premiers projets créent une base d'expérience réutilisable sur de nouveaux comptes."
+        }
+      ],
+      "nextStepsTitle": "Les parcours les plus utiles maintenant",
+      "nextStepsDescription": "Selon votre profil, vous pouvez approfondir un cas d'usage, consolider vos ressources ou cadrer un premier échange opérationnel.",
+      "nextStepsItems": [
+        {
+          "title": "Voir un parcours solution",
+          "description": "Se projeter sur des besoins client concrets à structurer avec les offres SGE.",
+          "label": "Voir les solutions"
+        },
+        {
+          "title": "Préparer les supports de mission",
+          "description": "Rassembler guides, formations et éléments d'appui avant un premier déploiement.",
+          "label": "Voir les ressources"
+        },
+        {
+          "title": "Qualifier un premier besoin",
+          "description": "Ouvrir un échange pour cadrer le type d'accompagnement le plus pertinent.",
+          "label": "Contacter SGE"
+        }
+      ],
       "ctaTitle": "Construisons votre offre de services SGE",
       "ctaDescription": "Présentez votre expertise et voyons comment l'intégrer au programme partenaire.",
       "ctaLabel": "Devenir partenaire"
@@ -5790,6 +5936,7 @@
       "heroTitle": "Distribuez Sky Genesis Enterprise sur vos marchés",
       "heroDescription": "Rejoignez notre réseau de distribution pour commercialiser nos solutions auprès des organisations de votre région.",
       "primaryCta": "Devenir distributeur",
+      "secondaryCta": "Voir le programme",
       "audienceTitle": "Pour les revendeurs et réseaux commerciaux",
       "audienceDescription": "Le programme distribution s'adresse aux acteurs capables d'identifier, qualifier et accompagner les opportunités commerciales localement.",
       "audienceItems": [
@@ -5862,6 +6009,38 @@
           "description": "Nous suivons les premières opportunités et ajustons le go-to-market."
         }
       ],
+      "positioningTitle": "Le bon positionnement commercial",
+      "positioningDescription": "La distribution fonctionne quand l'offre, le territoire et les priorités sectorielles sont lisibles pour toutes les parties.",
+      "positioningItems": [
+        {
+          "title": "Ciblage de marché",
+          "description": "Le partenaire connaît les organisations, secteurs et cycles de vente sur lesquels il peut réellement agir."
+        },
+        {
+          "title": "Offre compréhensible",
+          "description": "Produits, services associés et valeur de souveraineté sont formulés sans ambiguïté."
+        },
+        {
+          "title": "Chaîne de suivi",
+          "description": "Les opportunités, responsabilités et étapes de qualification restent pilotables."
+        }
+      ],
+      "operatingTitle": "Comment le modèle distribution s'organise",
+      "operatingDescription": "Nous donnons de la lisibilité aux rôles commerciaux, aux supports et au suivi des comptes visés.",
+      "operatingItems": [
+        {
+          "title": "Pilotage des comptes",
+          "description": "Les zones de prospection et opportunités prioritaires sont cadrées de manière explicite."
+        },
+        {
+          "title": "Supports alignés",
+          "description": "Présentations, offres et réponses aux objections restent cohérentes d'un marché à l'autre."
+        },
+        {
+          "title": "Boucles terrain",
+          "description": "Les retours marché alimentent les ajustements de discours, packaging et ressources."
+        }
+      ],
       "resourcesTitle": "Ressources commerciales",
       "resourcesDescription": "Tout le nécessaire pour présenter, qualifier et convertir les opportunités.",
       "resourcesItems": [
@@ -5878,6 +6057,41 @@
           "description": "Point de contact pour les opportunités et demandes clients."
         }
       ],
+      "enablementTitle": "Ce que le programme distribution renforce",
+      "enablementDescription": "L'objectif est de rendre la vente plus crédible, plus répétable et plus adaptée aux marchés adressés.",
+      "enablementItems": [
+        {
+          "title": "Discours sectoriel",
+          "description": "Les argumentaires peuvent être contextualisés pour le public, la santé ou les organisations régulées."
+        },
+        {
+          "title": "Qualification plus rapide",
+          "description": "Les équipes savent mieux identifier les comptes qui ont un vrai besoin de souveraineté numérique."
+        },
+        {
+          "title": "Suivi d'exécution",
+          "description": "Les premiers projets bénéficient d'un cadre de coordination qui réduit les angles morts."
+        }
+      ],
+      "nextStepsTitle": "Les prochains mouvements possibles",
+      "nextStepsDescription": "Approfondissez un marché cible, préparez vos ressources commerciales ou lancez un échange pour cadrer votre modèle de distribution.",
+      "nextStepsItems": [
+        {
+          "title": "Explorer un secteur prioritaire",
+          "description": "Voir comment les solutions SGE peuvent être positionnées sur des contextes fortement réglementés.",
+          "label": "Voir les solutions"
+        },
+        {
+          "title": "Préparer le kit commercial",
+          "description": "Accéder aux contenus utiles pour qualifier et présenter les offres.",
+          "label": "Voir les ressources"
+        },
+        {
+          "title": "Discuter du cadre de distribution",
+          "description": "Partager vos marchés et votre organisation commerciale pour définir le bon point d'entrée.",
+          "label": "Contacter SGE"
+        }
+      ],
       "ctaTitle": "Prêt à distribuer SGE ?",
       "ctaDescription": "Présentez votre réseau et lançons un cadre commercial adapté.",
       "ctaLabel": "Devenir distributeur"
@@ -5887,6 +6101,7 @@
       "heroTitle": "Un programme partenaire progressif et lisible",
       "heroDescription": "Découvrez les niveaux, ressources et modes de collaboration qui structurent l'écosystème Sky Genesis Enterprise.",
       "primaryCta": "Rejoindre le programme",
+      "secondaryCta": "Consulter les ressources",
       "audienceTitle": "Un cadre pour chaque profil de partenaire",
       "audienceDescription": "Le programme rassemble les partenaires technologiques, services et distribution autour de règles communes et de parcours adaptés.",
       "audienceItems": [
@@ -5955,6 +6170,38 @@
           "description": "Le partenariat est suivi et renforcé dans la durée."
         }
       ],
+      "positioningTitle": "Comment le programme crée de la clarté",
+      "positioningDescription": "Le programme donne un cadre commun sans effacer les différences entre partenaires technologiques, service et distribution.",
+      "positioningItems": [
+        {
+          "title": "Rôles lisibles",
+          "description": "Chaque partenaire sait quel type de contribution il apporte à l'écosystème."
+        },
+        {
+          "title": "Niveaux progressifs",
+          "description": "L'engagement et les ressources évoluent avec la maturité du partenariat."
+        },
+        {
+          "title": "Attentes partagées",
+          "description": "Le programme pose des points de repère communs sur la qualité, le suivi et la collaboration."
+        }
+      ],
+      "operatingTitle": "Cadence et gouvernance du programme",
+      "operatingDescription": "Le programme avance avec un suivi régulier, des points de contact explicites et une lecture claire des trajectoires possibles.",
+      "operatingItems": [
+        {
+          "title": "Revues périodiques",
+          "description": "Les partenaires font le point sur les sujets actifs, les besoins et les opportunités."
+        },
+        {
+          "title": "Chemins d'évolution",
+          "description": "Le passage à un niveau supérieur repose sur des critères compréhensibles et observables."
+        },
+        {
+          "title": "Coordination transverse",
+          "description": "Produit, support, commerce et partenaires partagent les informations qui comptent."
+        }
+      ],
       "resourcesTitle": "Ressources du programme",
       "resourcesDescription": "Des supports communs pour comprendre le programme, les niveaux et les attentes.",
       "resourcesItems": [
@@ -5971,6 +6218,41 @@
           "description": "Parcours adaptés aux profils technologie, service et distribution."
         }
       ],
+      "enablementTitle": "Ce que le programme rend possible",
+      "enablementDescription": "Il sert à organiser la montée en compétence, la visibilité et la collaboration dans la durée.",
+      "enablementItems": [
+        {
+          "title": "Onboarding plus rapide",
+          "description": "Les nouveaux partenaires accèdent plus vite aux bons repères, contacts et supports."
+        },
+        {
+          "title": "Lecture commune des priorités",
+          "description": "Les efforts sont mieux répartis entre intégration, delivery, vente et support."
+        },
+        {
+          "title": "Trajectoires plus stables",
+          "description": "Le partenariat gagne en continuité grâce à des étapes et responsabilités mieux définies."
+        }
+      ],
+      "nextStepsTitle": "Explorer les parcours du programme",
+      "nextStepsDescription": "Choisissez le rôle partenaire qui vous ressemble le plus ou préparez les ressources qui faciliteront votre entrée dans l'écosystème.",
+      "nextStepsItems": [
+        {
+          "title": "Voir le parcours technologique",
+          "description": "Pour les équipes qui construisent des intégrations, extensions ou parcours API.",
+          "label": "Voir la filière tech"
+        },
+        {
+          "title": "Voir le parcours service",
+          "description": "Pour les cabinets, intégrateurs et équipes d'accompagnement client.",
+          "label": "Voir la filière service"
+        },
+        {
+          "title": "Voir le parcours distribution",
+          "description": "Pour les partenaires qui portent le go-to-market sur leur territoire.",
+          "label": "Voir la filière distribution"
+        }
+      ],
       "ctaTitle": "Rejoignez le programme partenaire",
       "ctaDescription": "Présentez votre activité et définissons le bon niveau de collaboration.",
       "ctaLabel": "Rejoindre le programme"
@@ -5980,6 +6262,7 @@
       "heroTitle": "Présentez votre projet de partenariat",
       "heroDescription": "Partagez votre expertise, votre marché et vos objectifs pour rejoindre l'écosystème Sky Genesis Enterprise.",
       "primaryCta": "Contacter l'équipe partenaires",
+      "secondaryCta": "Voir le programme",
       "audienceTitle": "Ce que nous évaluons",
       "audienceDescription": "Nous cherchons des partenaires capables d'apporter une valeur claire aux clients et de travailler dans un cadre durable.",
       "audienceItems": [
@@ -6052,6 +6335,38 @@
           "description": "Vous entrez dans le programme avec un plan de collaboration."
         }
       ],
+      "positioningTitle": "Comment préparer un premier échange utile",
+      "positioningDescription": "Une demande claire facilite la qualification du partenariat et réduit les zones d'ambiguïté dès le départ.",
+      "positioningItems": [
+        {
+          "title": "Présenter votre rôle",
+          "description": "Expliquez si votre angle principal est technique, service, distribution ou sectoriel."
+        },
+        {
+          "title": "Nommer votre marché",
+          "description": "Précisez les organisations, tailles d'entreprise et secteurs que vous adressez déjà."
+        },
+        {
+          "title": "Formuler l'objectif",
+          "description": "Dites ce que vous voulez réellement construire, vendre ou opérer avec SGE."
+        }
+      ],
+      "operatingTitle": "Ce qui se passe après votre prise de contact",
+      "operatingDescription": "Le but est de passer rapidement d'un intérêt général à un cadrage exploitable pour les deux parties.",
+      "operatingItems": [
+        {
+          "title": "Qualification structurée",
+          "description": "Nous clarifions le type de partenariat et les ressources nécessaires au démarrage."
+        },
+        {
+          "title": "Priorités explicites",
+          "description": "Les premiers cas d'usage et sujets de travail sont identifiés sans multiplier les pistes floues."
+        },
+        {
+          "title": "Plan d'activation",
+          "description": "Les prochaines étapes sont rendues concrètes avant toute montée en charge."
+        }
+      ],
       "resourcesTitle": "Ressources utiles",
       "resourcesDescription": "Avant de nous contacter, vous pouvez préparer les éléments qui accélèrent l'évaluation.",
       "resourcesItems": [
@@ -6068,6 +6383,41 @@
           "description": "Les résultats attendus du partenariat à court et moyen terme."
         }
       ],
+      "enablementTitle": "Ce qui accélère l'évaluation",
+      "enablementDescription": "Quelques éléments bien préparés permettent d'aller plus vite vers un partenariat réellement activable.",
+      "enablementItems": [
+        {
+          "title": "Références compréhensibles",
+          "description": "Des exemples de projets ou comptes déjà servis aident à situer votre niveau de maturité."
+        },
+        {
+          "title": "Capacités visibles",
+          "description": "L'organisation, la taille d'équipe et les compétences mobilisables doivent être facilement lisibles."
+        },
+        {
+          "title": "Questions utiles",
+          "description": "Les sujets techniques, commerciaux ou contractuels prioritaires peuvent être traités dès le premier échange."
+        }
+      ],
+      "nextStepsTitle": "Les meilleurs points d'entrée ensuite",
+      "nextStepsDescription": "Selon votre besoin, vous pouvez comprendre le programme, consulter les ressources ou prendre directement contact avec l'équipe partenaires.",
+      "nextStepsItems": [
+        {
+          "title": "Comprendre le cadre partenaire",
+          "description": "Voir comment SGE structure les niveaux, rôles et attendus du programme.",
+          "label": "Voir le programme"
+        },
+        {
+          "title": "Préparer les bons supports",
+          "description": "Rassembler les contenus qui aideront vos équipes à formuler une proposition plus concrète.",
+          "label": "Voir les ressources"
+        },
+        {
+          "title": "Envoyer votre présentation",
+          "description": "Ouvrir l'échange avec les éléments qui permettent une qualification rapide.",
+          "label": "Écrire à l'équipe"
+        }
+      ],
       "ctaTitle": "Contactez l'équipe partenaires",
       "ctaDescription": "Envoyez-nous votre présentation et nous reviendrons avec les prochaines étapes.",
       "ctaLabel": "Écrire à l'équipe"
@@ -6077,6 +6427,7 @@
       "heroTitle": "Les ressources pour réussir avec SGE",
       "heroDescription": "Accédez aux guides, supports et informations nécessaires pour construire, vendre et accompagner les solutions Sky Genesis Enterprise.",
       "primaryCta": "Voir le programme",
+      "secondaryCta": "Devenir partenaire",
       "audienceTitle": "Une bibliothèque pour chaque rôle",
       "audienceDescription": "Les ressources sont organisées pour répondre aux besoins des partenaires techniques, service et distribution.",
       "audienceItems": [
@@ -6149,6 +6500,22 @@
           "description": "Les corrections et besoins nouveaux sont intégrés au fil de l'eau."
         }
       ],
+      "positioningTitle": "Comment lire cette bibliothèque partenaire",
+      "positioningDescription": "Les ressources sont organisées pour aider les équipes à identifier rapidement ce qui sert à construire, vendre, exploiter ou supporter.",
+      "positioningItems": [
+        {
+          "title": "Entrées par métier",
+          "description": "Les contenus sont utiles selon que l'on est côté technique, service, distribution ou support."
+        },
+        {
+          "title": "Niveaux d'accès",
+          "description": "Certaines ressources sont ouvertes, d'autres liées à un niveau de partenariat ou à un besoin précis."
+        },
+        {
+          "title": "Usage opérationnel",
+          "description": "Les documents sont pensés pour servir des projets réels et non une simple consultation théorique."
+        }
+      ],
       "resourcesTitle": "Catégories principales",
       "resourcesDescription": "Un point d'entrée unique pour retrouver les contenus essentiels.",
       "resourcesItems": [
@@ -6163,6 +6530,57 @@
         {
           "title": "Support",
           "description": "FAQ, procédures et canaux d'escalade."
+        }
+      ],
+      "operatingTitle": "Comment maintenir des ressources utiles",
+      "operatingDescription": "La valeur d'une bibliothèque partenaire tient à sa mise à jour, à sa lisibilité et à son usage réel dans les projets.",
+      "operatingItems": [
+        {
+          "title": "Actualisation continue",
+          "description": "Les contenus suivent les changements produit, support et go-to-market."
+        },
+        {
+          "title": "Retour terrain intégré",
+          "description": "Les questions récurrentes et besoins remontés enrichissent les supports."
+        },
+        {
+          "title": "Accès mieux pilotés",
+          "description": "Les documents sensibles ou plus spécialisés restent distribués au bon niveau de partenariat."
+        }
+      ],
+      "enablementTitle": "Ce que ces ressources permettent concrètement",
+      "enablementDescription": "Une base bien structurée réduit les frictions entre compréhension produit, mise en oeuvre et préparation commerciale.",
+      "enablementItems": [
+        {
+          "title": "Découverte plus rapide",
+          "description": "Les nouveaux partenaires trouvent plus facilement les contenus qui correspondent à leur rôle."
+        },
+        {
+          "title": "Exécution plus homogène",
+          "description": "Les équipes partent des mêmes modèles, références et standards de qualité."
+        },
+        {
+          "title": "Transmission plus fluide",
+          "description": "Les savoirs sont plus simples à partager entre profils techniques, support et commerce."
+        }
+      ],
+      "nextStepsTitle": "Les meilleures portes d'entrée ensuite",
+      "nextStepsDescription": "Utilisez les ressources pour comprendre le programme, préparer votre profil partenaire ou approfondir un parcours spécialisé.",
+      "nextStepsItems": [
+        {
+          "title": "Voir le cadre du programme",
+          "description": "Comprendre les niveaux, rôles et attentes qui structurent l'accès aux ressources.",
+          "label": "Voir le programme"
+        },
+        {
+          "title": "Préparer votre candidature",
+          "description": "Identifier les éléments à réunir si vous souhaitez rejoindre l'écosystème partenaire.",
+          "label": "Devenir partenaire"
+        },
+        {
+          "title": "Choisir un parcours spécialisé",
+          "description": "Aller vers la piste technologique, service ou distribution selon votre rôle.",
+          "label": "Voir les parcours"
         }
       ],
       "ctaTitle": "Besoin d'un accès partenaire ?",

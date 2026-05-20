@@ -54,17 +54,17 @@ function SolutionSection({
   children,
 }: SolutionSectionProps) {
   return (
-    <section className={cn("py-20 sm:py-24", muted && "bg-slate-50/70")}>
+    <section className={cn("py-20 sm:py-24", muted && "bg-muted/35")}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
             {eyebrow}
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
               {description}
             </p>
           ) : null}
@@ -93,7 +93,7 @@ function SolutionCTA({
       variant={isPrimary ? "default" : "outline"}
       className={cn(
         "h-12 rounded-md px-6 text-sm font-medium",
-        isPrimary && "bg-slate-950 text-white hover:bg-indigo-950"
+        isPrimary && "bg-primary text-primary-foreground hover:bg-primary/90"
       )}
     >
       <Link href={localizeHref(locale, cta.href)}>
@@ -117,18 +117,18 @@ function HubCard({
   return (
     <Link
       href={localizeHref(locale, `/solutions/${solution.slug}`)}
-      className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+      className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
     >
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+      <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
         {t(`categories.${solution.category}`)}
       </p>
-      <h3 className="mt-4 text-lg font-semibold text-slate-950">
+      <h3 className="mt-4 text-lg font-semibold text-foreground">
         {tSolutions(`${slug}.title`)}
       </h3>
-      <p className="mt-3 text-sm leading-7 text-slate-600">
+      <p className="mt-3 text-sm leading-7 text-muted-foreground">
         {tSolutions(`${slug}.positioning`)}
       </p>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+      <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
         {t("common.openSolution")}
         <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </span>
@@ -141,20 +141,20 @@ function SolutionsHubHero({ locale }: LocaleProps) {
   const modelSteps = t.raw("hub.hero.model.steps") as string[];
 
   return (
-    <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
+    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-indigo-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
             {t("brand")}
           </p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
             {t("hub.hero.title")}
           </h1>
-          <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-700">
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-muted-foreground">
             {t("hub.hero.description")}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="h-12 rounded-md bg-slate-950 px-6 text-sm font-medium text-white hover:bg-indigo-950">
+            <Button asChild size="lg" className="h-12 rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90">
               <Link href={localizeHref(locale, "/company/contact")}>
                 {t("hub.hero.primaryCta")}
                 <ArrowRight className="h-4 w-4" />
@@ -165,22 +165,22 @@ function SolutionsHubHero({ locale }: LocaleProps) {
             </Button>
           </div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <div className="rounded-md border border-slate-200 bg-white p-5">
-            <p className="text-sm font-semibold text-slate-950">{t("hub.hero.model.title")}</p>
+        <div className="rounded-lg border border-border bg-muted/50 p-6">
+          <div className="rounded-md border border-border bg-card p-5">
+            <p className="text-sm font-semibold text-foreground">{t("hub.hero.model.title")}</p>
             <div className="mt-6 grid gap-3">
               {modelSteps.map((item, index) => (
                 <div key={item} className="flex items-center gap-3">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-md border border-indigo-200 bg-indigo-50 text-xs font-semibold text-indigo-800">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-xs font-semibold text-primary">
                     {index + 1}
                   </span>
-                  <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+                  <span className="rounded-md border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
                     {item}
                   </span>
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-sm leading-7 text-slate-600">
+            <p className="mt-6 text-sm leading-7 text-muted-foreground">
               {t("hub.hero.model.description")}
             </p>
           </div>
@@ -202,9 +202,9 @@ function HowSgeBuildsSolutions() {
     >
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => (
-          <div key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
-            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+          <div key={item.title} className="rounded-lg border border-border bg-card p-6">
+            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
           </div>
         ))}
       </div>
@@ -225,10 +225,10 @@ function PlatformProductsConnection({ locale }: LocaleProps) {
     >
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => (
-          <Link key={item.title} href={localizeHref(locale, item.href)} className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200">
-            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+          <Link key={item.title} href={localizeHref(locale, item.href)} className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20">
+            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
               {t("common.explore")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </span>
@@ -243,7 +243,7 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
   const t = useTranslations("Public.home.solutionPage");
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header locale={locale as Locale} />
       <main className="flex-1">
         <SolutionsHubHero locale={locale} />
@@ -272,20 +272,20 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
         </SolutionSection>
         <HowSgeBuildsSolutions />
         <PlatformProductsConnection locale={locale} />
-        <section className="border-t border-slate-200 bg-white py-20 sm:py-24">
+        <section className="border-t border-border bg-background py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-700">
+            <div className="rounded-lg border border-border bg-muted/50 p-6 sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
                 {t("hub.cta.eyebrow")}
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
                 {t("hub.cta.title")}
               </h2>
-              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+              <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
                 {t("hub.cta.description")}
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Button asChild className="rounded-md bg-slate-950 text-white hover:bg-indigo-950">
+                <Button asChild className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90">
                   <Link href={localizeHref(locale, "/company/contact")}>{t("hub.cta.contact")}</Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-md">
@@ -311,19 +311,19 @@ function SolutionHero({ locale, solution }: SolutionPageProps) {
   const architectureFlow = tSolutions.raw(`${solution.slug}.architectureFlow`) as string[];
 
   return (
-    <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
+    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-indigo-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
             {t("brand")}
           </p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
             {tSolutions(`${solution.slug}.title`)}
           </h1>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
             {tSolutions(`${solution.slug}.positioning`)}
           </p>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
+          <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
             {tSolutions(`${solution.slug}.description`)}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -337,13 +337,13 @@ function SolutionHero({ locale, solution }: SolutionPageProps) {
             ))}
           </div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <p className="text-sm font-semibold text-slate-950">{t("hero.solutionFrame")}</p>
+        <div className="rounded-lg border border-border bg-muted/50 p-6">
+          <p className="text-sm font-semibold text-foreground">{t("hero.solutionFrame")}</p>
           <div className="mt-6 grid gap-3">
             {architectureFlow.slice(0, 4).map((step, index) => (
-              <div key={step} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white px-4 py-3">
-                <span className="text-xs font-semibold text-indigo-800">{index + 1}</span>
-                <span className="text-sm font-medium text-slate-800">{step}</span>
+              <div key={step} className="flex items-center gap-3 rounded-md border border-border bg-card px-4 py-3">
+                <span className="text-xs font-semibold text-primary">{index + 1}</span>
+                <span className="text-sm font-medium text-foreground">{step}</span>
               </div>
             ))}
           </div>
@@ -370,9 +370,9 @@ function SolutionChallenge({ solution }: { solution: SolutionContent }) {
     >
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => (
-          <div key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
-            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+          <div key={item.title} className="rounded-lg border border-border bg-card p-6">
+            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
           </div>
         ))}
       </div>
@@ -414,10 +414,10 @@ function SolutionWhyNow({ solution }: { solution: SolutionContent }) {
           const Icon = item.icon;
 
           return (
-            <div key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
-              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            <div key={item.title} className="rounded-lg border border-border bg-card p-6">
+              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
             </div>
           );
         })}
@@ -440,9 +440,9 @@ function SolutionApproach({ solution }: { solution: SolutionContent }) {
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {principles.map((principle) => (
-          <div key={principle} className="rounded-lg border border-slate-200 bg-white p-5">
-            <CheckCircle2 className="mb-4 h-4 w-4 text-indigo-700" aria-hidden="true" />
-            <p className="text-sm font-medium text-slate-800">{principle}</p>
+          <div key={principle} className="rounded-lg border border-border bg-card p-5">
+            <CheckCircle2 className="mb-4 h-4 w-4 text-primary" aria-hidden="true" />
+            <p className="text-sm font-medium text-foreground">{principle}</p>
           </div>
         ))}
       </div>
@@ -489,12 +489,12 @@ function SolutionEcosystemConnections({ locale, solution }: SolutionPageProps) {
             <Link
               key={item.title}
               href={localizeHref(locale, item.href)}
-              className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+              className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
             >
-              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
                 {t("common.explore")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </span>
@@ -523,10 +523,10 @@ function SolutionCapabilities({ solution }: { solution: SolutionContent }) {
           const capabilityText = capabilities[index];
 
           return (
-            <div key={capabilityText.title} className="rounded-lg border border-slate-200 bg-white p-6">
-              {Icon ? <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" /> : null}
-              <h3 className="text-base font-semibold text-slate-950">{capabilityText.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{capabilityText.description}</p>
+            <div key={capabilityText.title} className="rounded-lg border border-border bg-card p-6">
+              {Icon ? <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" /> : null}
+              <h3 className="text-base font-semibold text-foreground">{capabilityText.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{capabilityText.description}</p>
             </div>
           );
         })}
@@ -572,11 +572,11 @@ function SolutionRecommendedNextStep({ locale, solution }: SolutionPageProps) {
           <Link
             key={item.title}
             href={localizeHref(locale, item.href)}
-            className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+            className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
           >
-            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
               {item.label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </span>
@@ -601,9 +601,9 @@ function SolutionReferenceArchitecture({ solution }: { solution: SolutionContent
     >
       <div className="grid gap-3 lg:grid-cols-6">
         {architectureFlow.map((step, index) => (
-          <div key={step} className="rounded-lg border border-slate-200 bg-white p-4">
-            <span className="text-xs font-semibold text-indigo-800">{index + 1}</span>
-            <p className="mt-3 text-sm font-medium leading-6 text-slate-900">{step}</p>
+          <div key={step} className="rounded-lg border border-border bg-card p-4">
+            <span className="text-xs font-semibold text-primary">{index + 1}</span>
+            <p className="mt-3 text-sm font-medium leading-6 text-foreground">{step}</p>
           </div>
         ))}
       </div>
@@ -622,17 +622,17 @@ function StackColumn({
   const t = useTranslations("Public.home.solutionPage");
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-6">
-      <h3 className="text-base font-semibold text-slate-950">{title}</h3>
+    <div className="rounded-lg border border-border bg-card p-6">
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       <div className="mt-5 grid gap-3">
         {items.map((item) => (
           <Link
             key={item.key}
             href={localizeHref(locale, item.href)}
-            className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-indigo-200 hover:bg-white"
+            className="flex items-center justify-between rounded-md border border-border bg-muted/50 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/20 hover:bg-background"
           >
             {t(`relatedItems.${item.key}`)}
-            <ArrowRight className="h-4 w-4 text-indigo-700" aria-hidden="true" />
+            <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />
           </Link>
         ))}
       </div>
@@ -672,12 +672,12 @@ function SolutionAdoptionPath({ locale, solution }: SolutionPageProps) {
     >
       <div className="grid gap-5 md:grid-cols-3">
         {adoptionPath.map((step, index) => (
-          <div key={step.title} className="rounded-lg border border-slate-200 bg-white p-6">
-            <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-indigo-200 bg-indigo-50 text-sm font-semibold text-indigo-800">
+          <div key={step.title} className="rounded-lg border border-border bg-card p-6">
+            <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-sm font-semibold text-primary">
               {index + 1}
             </div>
-            <h3 className="text-base font-semibold text-slate-950">{step.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+            <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.description}</p>
           </div>
         ))}
       </div>
@@ -697,7 +697,7 @@ function SolutionAdoptionPath({ locale, solution }: SolutionPageProps) {
 
 export function SolutionPage({ locale, solution }: SolutionPageProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header locale={locale as Locale} />
       <main className="flex-1">
         <SolutionHero locale={locale} solution={solution} />

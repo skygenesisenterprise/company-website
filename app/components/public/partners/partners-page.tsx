@@ -4,18 +4,24 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
+import type { Locale } from "@/lib/locale";
 
-interface PartnerCard {
+export interface PartnerCard {
   title: string;
   description: string;
 }
 
-interface ProcessStep {
+export interface ProcessStep {
   title: string;
   description: string;
 }
 
-interface PartnerPageContent {
+export interface PartnerLinkCard extends PartnerCard {
+  label: string;
+  href: string;
+}
+
+export interface PartnerPageContent {
   badge: string;
   title: string;
   description: string;
@@ -32,12 +38,24 @@ interface PartnerPageContent {
   collaborationTitle: string;
   collaborationDescription: string;
   collaborationItems: PartnerCard[];
+  positioningTitle: string;
+  positioningDescription: string;
+  positioningItems: PartnerCard[];
   processTitle: string;
   processDescription: string;
   processItems: ProcessStep[];
+  operatingTitle: string;
+  operatingDescription: string;
+  operatingItems: PartnerCard[];
   resourcesTitle: string;
   resourcesDescription: string;
   resourcesItems: PartnerCard[];
+  enablementTitle: string;
+  enablementDescription: string;
+  enablementItems: PartnerCard[];
+  nextStepsTitle: string;
+  nextStepsDescription: string;
+  nextStepsItems: PartnerLinkCard[];
   ctaTitle: string;
   ctaDescription: string;
   ctaLabel: string;
@@ -52,7 +70,11 @@ interface PartnersPageProps {
     audience: LucideIcon;
     build: LucideIcon[];
     collaboration: LucideIcon[];
+    positioning: LucideIcon[];
+    operating: LucideIcon[];
     resources: LucideIcon[];
+    enablement: LucideIcon[];
+    nextSteps: LucideIcon[];
   };
 }
 
@@ -106,13 +128,47 @@ function CardGrid({
   );
 }
 
+function LinkCardGrid({
+  items,
+  icons,
+}: {
+  items: PartnerLinkCard[];
+  icons: LucideIcon[];
+}) {
+  return (
+    <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {items.map((item, index) => {
+        const Icon = icons[index % icons.length];
+
+        return (
+          <Link
+            key={item.title}
+            href={item.href}
+            className="group rounded-2xl border border-border/50 bg-card p-6 transition-colors hover:border-primary/20"
+          >
+            <Icon className="mb-5 h-6 w-6 text-primary/80" strokeWidth={1.5} />
+            <h3 className="text-base font-medium text-foreground">{item.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {item.description}
+            </p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
+              {item.label}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
 export function PartnersPage({ locale, content, icons }: PartnersPageProps) {
   const HeroIcon = icons.hero;
   const AudienceIcon = icons.audience;
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <Header locale={locale as import("@/lib/locale").Locale} />
+      <Header locale={locale as Locale} />
 
       <main className="flex-1">
         <section className="relative py-28 lg:py-36">
@@ -185,6 +241,13 @@ export function PartnersPage({ locale, content, icons }: PartnersPageProps) {
 
         <section className="py-28 bg-muted/20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionHeading title={content.positioningTitle} description={content.positioningDescription} />
+            <CardGrid items={content.positioningItems} icons={icons.positioning} />
+          </div>
+        </section>
+
+        <section className="py-28">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading title={content.processTitle} description={content.processDescription} />
             <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-4">
               {content.processItems.map((step, index) => (
@@ -202,10 +265,31 @@ export function PartnersPage({ locale, content, icons }: PartnersPageProps) {
           </div>
         </section>
 
+        <section className="py-28 bg-muted/20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionHeading title={content.operatingTitle} description={content.operatingDescription} />
+            <CardGrid items={content.operatingItems} icons={icons.operating} />
+          </div>
+        </section>
+
         <section className="py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading title={content.resourcesTitle} description={content.resourcesDescription} />
             <CardGrid items={content.resourcesItems} icons={icons.resources} />
+          </div>
+        </section>
+
+        <section className="py-28 bg-muted/20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionHeading title={content.enablementTitle} description={content.enablementDescription} />
+            <CardGrid items={content.enablementItems} icons={icons.enablement} />
+          </div>
+        </section>
+
+        <section className="py-28">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionHeading title={content.nextStepsTitle} description={content.nextStepsDescription} />
+            <LinkCardGrid items={content.nextStepsItems} icons={icons.nextSteps} />
           </div>
         </section>
 
@@ -231,7 +315,7 @@ export function PartnersPage({ locale, content, icons }: PartnersPageProps) {
         </section>
       </main>
 
-      <Footer locale={locale as "fr" | "be_fr" | "be_nl" | "ch_fr"} />
+      <Footer locale={locale as Locale} />
     </div>
   );
 }

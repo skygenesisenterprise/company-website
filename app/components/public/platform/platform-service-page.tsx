@@ -54,17 +54,17 @@ function PlatformSection({
   children,
 }: PlatformSectionProps) {
   return (
-    <section className={cn("py-20 sm:py-24", muted && "bg-slate-50/70")}>
+    <section className={cn("py-20 sm:py-24", muted && "bg-muted/35")}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
             {eyebrow}
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
               {description}
             </p>
           ) : null}
@@ -78,12 +78,12 @@ function PlatformSection({
 function PlatformStatusBadge({ status }: { status: PlatformServiceStatus }) {
   const tStatus = useTranslations("Public.home.page.status");
   const toneByStatus: Record<PlatformServiceStatus, string> = {
-    Available: "border-emerald-200 bg-emerald-50 text-emerald-800",
-    "Private preview": "border-indigo-200 bg-indigo-50 text-indigo-800",
-    "In development": "border-amber-200 bg-amber-50 text-amber-800",
-    Experimental: "border-sky-200 bg-sky-50 text-sky-800",
-    Planned: "border-slate-200 bg-slate-50 text-slate-700",
-    Research: "border-violet-200 bg-violet-50 text-violet-800",
+    Available: "border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    "Private preview": "border-primary/25 bg-primary/10 text-primary",
+    "In development": "border-amber-500/25 bg-amber-500/10 text-amber-700 dark:text-amber-300",
+    Experimental: "border-sky-500/25 bg-sky-500/10 text-sky-700 dark:text-sky-300",
+    Planned: "border-border bg-muted text-muted-foreground",
+    Research: "border-violet-500/25 bg-violet-500/10 text-violet-700 dark:text-violet-300",
   };
 
   return (
@@ -116,7 +116,7 @@ function PlatformCTA({
       variant={isPrimary ? "default" : "outline"}
       className={cn(
         "h-12 rounded-md px-6 text-sm font-medium",
-        isPrimary && "bg-slate-950 text-white hover:bg-indigo-950"
+        isPrimary && "bg-primary text-primary-foreground hover:bg-primary/90"
       )}
     >
       <Link href={localizeHref(locale, cta.href)}>
@@ -135,22 +135,22 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
   const ctaLabels = tPlatform.raw(`${service.slug}.ctas`) as [string, string];
 
   return (
-    <section className="border-b border-slate-200 bg-white py-24 sm:py-28 lg:py-32">
+    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-indigo-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
             {t("brand")}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <h1 className="text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+            <h1 className="text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
               {serviceTitle}
             </h1>
             <PlatformStatusBadge status={service.status} />
           </div>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
             {tPlatform(`${service.slug}.promise`)}
           </p>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
+          <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
             {tPlatform(`${service.slug}.description`)}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -164,13 +164,13 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
             ))}
           </div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 lg:p-8">
-          <div className="flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
+        <div className="rounded-lg border border-border bg-muted/50 p-6 lg:p-8">
+          <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 {t("serviceProfile")}
               </p>
-              <p className="mt-2 text-lg font-semibold text-slate-950">
+              <p className="mt-2 text-lg font-semibold text-foreground">
                 {serviceTitle}
               </p>
             </div>
@@ -180,12 +180,12 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
             {service.availability.slice(0, 4).map((item) => (
               <div
                 key={item.label}
-                className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white px-4 py-3"
+                className="flex items-center justify-between gap-4 rounded-md border border-border bg-card px-4 py-3"
               >
-                <dt className="text-sm text-slate-500">
+                <dt className="text-sm text-muted-foreground">
                   {t(`availability.labels.${item.label}`)}
                 </dt>
-                <dd className="text-right text-sm font-medium text-slate-950">
+                <dd className="text-right text-sm font-medium text-foreground">
                   {item.value in customAvailabilityValues
                     ? t(`availability.values.${item.value}`)
                     : tStatus(item.value)}
@@ -210,19 +210,19 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
       description={tPlatform(`${service.slug}.purpose.problem`)}
     >
       <div className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-base font-semibold text-slate-950">
+        <div className="rounded-lg border border-border bg-card p-6">
+          <h3 className="text-base font-semibold text-foreground">
             {t("purpose.ecosystemRole")}
           </h3>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
             {tPlatform(`${service.slug}.purpose.ecosystem`)}
           </p>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-base font-semibold text-slate-950">
+        <div className="rounded-lg border border-border bg-card p-6">
+          <h3 className="text-base font-semibold text-foreground">
             {t("purpose.platformBenefit")}
           </h3>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
             {tPlatform(`${service.slug}.purpose.benefit`)}
           </p>
         </div>
@@ -266,10 +266,10 @@ function PlatformWhyNow({ service }: { service: PlatformService }) {
           const Icon = item.icon;
 
           return (
-            <div key={item.title} className="rounded-lg border border-slate-200 bg-white p-6">
-              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            <div key={item.title} className="rounded-lg border border-border bg-card p-6">
+              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
             </div>
           );
         })}
@@ -298,15 +298,15 @@ function PlatformCapabilities({ service }: { service: PlatformService }) {
           return (
             <div
               key={capabilityText.title}
-              className="rounded-lg border border-slate-200 bg-white p-6"
+              className="rounded-lg border border-border bg-card p-6"
             >
               {Icon ? (
-                <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
+                <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
               ) : null}
-              <h3 className="text-base font-semibold text-slate-950">
+              <h3 className="text-base font-semibold text-foreground">
                 {capabilityText.title}
               </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 {capabilityText.description}
               </p>
             </div>
@@ -360,12 +360,12 @@ function PlatformEcosystemConnections({
             <Link
               key={item.title}
               href={item.href}
-              className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+              className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
             >
-              <Icon className="mb-5 h-5 w-5 text-indigo-700" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
+              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
                 {t("common.explore")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </span>
@@ -392,15 +392,15 @@ function PlatformUseCases({ service }: { service: PlatformService }) {
         {useCases.map((useCase, index) => (
           <div
             key={useCase.title}
-            className="rounded-lg border border-slate-200 bg-white p-6"
+            className="rounded-lg border border-border bg-card p-6"
           >
-            <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-indigo-200 bg-indigo-50 text-sm font-semibold text-indigo-800">
+            <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-sm font-semibold text-primary">
               {index + 1}
             </div>
-            <h3 className="text-base font-semibold text-slate-950">
+            <h3 className="text-base font-semibold text-foreground">
               {useCase.title}
             </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">
               {useCase.description}
             </p>
           </div>
@@ -451,11 +451,11 @@ function PlatformRecommendedNextStep({
           <Link
             key={item.title}
             href={item.href}
-            className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-indigo-200"
+            className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
           >
-            <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-800">
+            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
               {item.label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </span>
@@ -479,18 +479,18 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
       muted
     >
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <p className="text-sm font-medium text-slate-950">{t("integration.mapTitle")}</p>
+        <div className="rounded-lg border border-border bg-card p-6">
+          <p className="text-sm font-medium text-foreground">{t("integration.mapTitle")}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="rounded-md border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-900">
+            <span className="rounded-md border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
               {tPlatform(`${service.slug}.title`)}
             </span>
-            <span className="h-px w-8 bg-slate-300" />
-            <span className="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700">
+            <span className="h-px w-8 bg-border" />
+            <span className="rounded-md border border-border bg-background px-4 py-2 text-sm text-muted-foreground">
               {t("brand")}
             </span>
           </div>
-          <p className="mt-6 text-sm leading-7 text-slate-600">
+          <p className="mt-6 text-sm leading-7 text-muted-foreground">
             {t("integration.mapDescription")}
           </p>
         </div>
@@ -498,10 +498,10 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
           {integrations.map((integration) => (
             <div
               key={integration}
-              className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-4"
+              className="flex items-center gap-3 rounded-lg border border-border bg-card p-4"
             >
-              <CheckCircle2 className="h-4 w-4 text-indigo-700" aria-hidden="true" />
-              <span className="text-sm font-medium text-slate-800">
+              <CheckCircle2 className="h-4 w-4 text-primary" aria-hidden="true" />
+              <span className="text-sm font-medium text-foreground">
                 {integration}
               </span>
             </div>
@@ -528,23 +528,23 @@ function PlatformArchitecture({ service }: { service: PlatformService }) {
         <div className="grid gap-3">
           {architectureFlow.map((step, index) => (
             <div key={step} className="flex items-center gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-semibold text-slate-950">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-border bg-card text-sm font-semibold text-foreground">
                 {index + 1}
               </div>
-              <div className="min-h-11 flex-1 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800">
+              <div className="min-h-11 flex-1 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground">
                 {step}
               </div>
             </div>
           ))}
         </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <h3 className="text-base font-semibold text-slate-950">
+        <div className="rounded-lg border border-border bg-muted/50 p-6">
+          <h3 className="text-base font-semibold text-foreground">
             {t("architecture.operationalPrinciples")}
           </h3>
           <ul className="mt-5 space-y-4">
             {operationalPrinciples.map((principle) => (
-              <li key={principle} className="flex gap-3 text-sm leading-6 text-slate-600">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-700" />
+              <li key={principle} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                 {principle}
               </li>
             ))}
@@ -590,22 +590,22 @@ function PlatformAvailability({
           {service.availability.map((item) => (
             <div
               key={item.label}
-              className="rounded-lg border border-slate-200 bg-white p-5"
+              className="rounded-lg border border-border bg-card p-5"
             >
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
                 {t(`availability.labels.${item.label}`)}
               </p>
-              <p className="mt-3 text-sm font-semibold text-slate-950">
+              <p className="mt-3 text-sm font-semibold text-foreground">
                 {toFrenchAvailabilityValue(item.value)}
               </p>
             </div>
           ))}
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-lg font-semibold text-slate-950">
+        <div className="rounded-lg border border-border bg-card p-6">
+          <h3 className="text-lg font-semibold text-foreground">
             {t("availability.continueWith", { service: serviceTitle })}
           </h3>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
             {t("availability.description")}
           </p>
           <div className="mt-6 flex flex-col gap-3">
@@ -626,7 +626,7 @@ function PlatformAvailability({
 
 export function PlatformServicePage({ locale, service }: PlatformServicePageProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header locale={locale as Locale} />
       <main className="flex-1">
         <PlatformHero locale={locale} service={service} />
