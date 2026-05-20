@@ -439,6 +439,11 @@ const mockMostReadArticles = [
   },
 ];
 
+export const metadata = {
+  title: "Blog",
+  description: "Suivez les dernières actualités, analyses et coulisses de la construction de la plateforme Sky Genesis Enterprise, l'infrastructure numérique européenne souveraine.",
+};
+
 export default async function LocaleHomePage({ params }: { params: Promise<{ locale?: string }> }) {
   const { locale: paramLocale } = await params;
   const locale: Locale = paramLocale && isValidLocale(paramLocale) ? paramLocale : defaultLocale;

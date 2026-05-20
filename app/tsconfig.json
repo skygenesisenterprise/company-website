@@ -29,7 +29,8 @@
       "@/services/*": ["./services"],
       "@/i18n/*": ["./i18n/*"],
       "@/types/*": ["./types/*"],
-      "@/config/*": ["./config/*"]
+      "@/config/*": ["./config/*"],
+      "@/content/*": ["./content/*"],
     },
     "types": ["next", "node"],
     "allowImportingTsExtensions": true
