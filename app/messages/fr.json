@@ -8962,6 +8962,280 @@
         "body": "SGE privilégie les échanges précis : contexte, organisation concernée, objectif, contrainte de calendrier et niveau de sensibilité. Les signalements de sécurité sont traités séparément des demandes commerciales ou média afin de préserver la confidentialité et la réactivité."
       }
     },
+    "pricing": {
+      "metadata": {
+        "title": "Tarification | Sky Genesis Enterprise",
+        "description": "Comprendre la logique de tarification Sky Genesis Enterprise entre open-source, services cloud managés, support professionnel et accords enterprise."
+      },
+      "hero": {
+        "eyebrow": "Tarification et modèle commercial",
+        "title": "Une tarification pensée pour l'open-source, le cloud et les infrastructures enterprise.",
+        "description": "Sky Genesis Enterprise propose un modèle flexible combinant technologies open-source, services cloud managés, support professionnel et accords enterprise sur mesure.",
+        "trust": "Commencez en open-source. Montez en charge avec des services managés. Travaillez avec SGE pour des infrastructures critiques.",
+        "primaryCta": "Explorer les offres",
+        "secondaryCta": "Contacter l'équipe commerciale",
+        "summary": {
+          "title": "Architecture commerciale",
+          "description": "Un seul écosystème, plusieurs chemins d'adoption.",
+          "badge": "Flexible",
+          "items": [
+            {
+              "label": "Community",
+              "value": "Free"
+            },
+            {
+              "label": "Cloud",
+              "value": "Usage-based"
+            },
+            {
+              "label": "Business",
+              "value": "Custom"
+            },
+            {
+              "label": "Enterprise",
+              "value": "Contact sales"
+            }
+          ],
+          "footerTitle": "Pensé pour les équipes infrastructure",
+          "footerDescription": "La tarification peut dépendre du mode de déploiement, du niveau de support attendu, du profil d'usage, des exigences de sécurité et du périmètre d'intégration."
+        }
+      },
+      "philosophy": {
+        "eyebrow": "Philosophie",
+        "title": "Un modèle commercial aligné sur la manière dont l'infrastructure est réellement adoptée.",
+        "description": "SGE n'est pas présenté comme une simple grille SaaS à trois colonnes. L'écosystème peut être consommé comme logiciel open-source, infrastructure auto-hébergée, services cloud managés ou environnements dédiés de niveau enterprise.",
+        "body": "Certaines équipes commencent avec des dépôts publics et des déploiements self-hosted. D'autres ont besoin d'exploitation managée, de facturation centralisée, d'aide à la migration ou d'un support contractuel dans la durée. Cette page explique cette structure afin de montrer pourquoi la tarification SGE est présentée comme un cadre flexible plutôt qu'une matrice SaaS rigide.",
+        "items": [
+          {
+            "title": "Open-source d'abord",
+            "description": "Utiliser librement des technologies auditables et les auto-héberger lorsque cela a du sens."
+          },
+          {
+            "title": "Managé quand nécessaire",
+            "description": "Passer à des services hébergés avec exploitation opérée et facturation basée sur l'usage."
+          },
+          {
+            "title": "Enterprise par accord",
+            "description": "Ajouter infrastructure dédiée, discussions SLA et support structuré selon le contexte."
+          }
+        ]
+      },
+      "plans": {
+        "eyebrow": "Offres",
+        "title": "Quatre façons de travailler avec SGE.",
+        "description": "De l'adoption communautaire au partenariat d'infrastructure critique, chaque offre correspond à un modèle opérationnel différent.",
+        "featuredPlan": "Business",
+        "items": [
+          {
+            "name": "Community",
+            "label": "Open source",
+            "price": "Free",
+            "audience": "Développeurs, étudiants, contributeurs et équipes self-hosted.",
+            "description": "Pour découvrir l'écosystème, construire de manière indépendante et opérer ses propres déploiements.",
+            "cta": "Commencer avec l'open-source",
+            "href": "/community",
+            "features": [
+              "Dépôts publics",
+              "Accès open-source",
+              "Documentation",
+              "Support communautaire",
+              "Déploiements auto-hébergés",
+              "Aucun SLA garanti"
+            ]
+          },
+          {
+            "name": "Cloud",
+            "label": "Managed",
+            "price": "Usage-based",
+            "audience": "Startups, petites équipes et builders produit.",
+            "description": "Pour les équipes qui veulent des opérations managées sans maintenir elles-mêmes chaque couche d'infrastructure.",
+            "cta": "Explorer les services managés",
+            "href": "/platform",
+            "features": [
+              "Hébergement managé",
+              "Mises à jour automatiques",
+              "Monitoring de base",
+              "Sauvegardes selon le service",
+              "Accès dashboard",
+              "Facturation basée sur l'usage"
+            ]
+          },
+          {
+            "name": "Business",
+            "label": "Professional",
+            "price": "Custom",
+            "audience": "PME, équipes internes et organisations en croissance.",
+            "description": "Une couche commerciale structurée pour les organisations qui ont besoin de plus de continuité opérationnelle et d'accompagnement.",
+            "cta": "Parler avec SGE",
+            "href": "/company/contact",
+            "features": [
+              "Support prioritaire",
+              "Facturation centralisée",
+              "Gestion d'équipe",
+              "Environnements multiples",
+              "Revue de configuration",
+              "Aide à la migration"
+            ]
+          },
+          {
+            "name": "Enterprise",
+            "label": "Critical organizations",
+            "price": "Contact sales",
+            "audience": "Grandes entreprises, institutions publiques, secteurs critiques et partenaires stratégiques.",
+            "description": "Des accords adaptés aux infrastructures avec contraintes opérationnelles, sécuritaires ou de souveraineté plus fortes.",
+            "cta": "Contacter l'équipe commerciale",
+            "href": "/company/contact",
+            "features": [
+              "Infrastructure dédiée",
+              "Accords SLA",
+              "Support sécurité et conformité",
+              "Options cloud privé",
+              "Intégrations sur mesure",
+              "Partenariat technique long terme"
+            ]
+          }
+        ]
+      },
+      "usageBased": {
+        "eyebrow": "Services à l'usage",
+        "title": "Une tarification qui suit l'usage réel.",
+        "description": "Certains services SGE managés peuvent être facturés selon les ressources consommées, les attentes de support, la capacité dédiée ou les besoins d'intégration.",
+        "items": [
+          { "label": "Compute" },
+          { "label": "Storage" },
+          { "label": "Bandwidth" },
+          { "label": "Users" },
+          { "label": "Projects" },
+          { "label": "Managed databases" },
+          { "label": "Domains" },
+          { "label": "Support level" },
+          { "label": "Dedicated environments" },
+          { "label": "Security requirements" }
+        ],
+        "body": "Au lieu de forcer chaque client dans le même plan, SGE aligne la facturation sur le périmètre opérationnel réel : intensité d'infrastructure, nombre de services déployés, assistance attendue, posture de sécurité et topologie des environnements."
+      },
+      "enterprise": {
+        "eyebrow": "Enterprise",
+        "title": "Des accords enterprise pour les organisations critiques.",
+        "description": "Pour les organisations qui ont besoin de plus de sécurité, de disponibilité, de gouvernance ou d'engagement dans la durée, SGE peut structurer une relation enterprise dédiée.",
+        "badge": "Accords enterprise",
+        "cardTitle": "Pensé pour des infrastructures qui ne peuvent pas être traitées comme un simple détail.",
+        "cardDescription": "SGE travaille avec des organisations qui ont besoin de continuité opérationnelle, de flexibilité de déploiement et d'un interlocuteur technique sérieux pour leur infrastructure de production.",
+        "cta": "Demander une tarification enterprise",
+        "items": [
+          "Déploiements dédiés",
+          "Cloud privé et infrastructure hybride",
+          "SLA et réponse prioritaire",
+          "Revues de sécurité",
+          "Support orienté conformité",
+          "Migration et onboarding",
+          "Intégrations API sur mesure",
+          "Partenariat stratégique"
+        ]
+      },
+      "openSource": {
+        "eyebrow": "Open-source",
+        "title": "L'open-source comme fondation.",
+        "description": "Une part importante de l'écosystème SGE est pensée pour être ouverte, auditable et exploitable hors environnement managé.",
+        "body": "Les équipes peuvent démarrer gratuitement, contribuer aux projets, exécuter des déploiements sur leur propre infrastructure puis décider plus tard si elles ont besoin d'hébergement managé, de support professionnel ou d'un accord enterprise plus large.",
+        "primaryCta": "Commencer avec l'open-source",
+        "secondaryCta": "Demander du support",
+        "items": [
+          "Accès gratuit aux projets open-source",
+          "Self-hosted par défaut lorsque disponible",
+          "Modèle de développement transparent",
+          "Contributions communautaires",
+          "Support professionnel optionnel",
+          "Hébergement managé optionnel"
+        ]
+      },
+      "support": {
+        "eyebrow": "Comparatif support",
+        "title": "Le support et la livraison évoluent avec les besoins opérationnels.",
+        "description": "Une lecture simple de la manière dont les attentes de support diffèrent selon les quatre modèles commerciaux.",
+        "capability": "Capacité",
+        "columns": ["Community", "Cloud", "Business", "Enterprise"],
+        "rows": [
+          {
+            "label": "Documentation",
+            "values": ["Inclus", "Inclus", "Inclus", "Inclus"]
+          },
+          {
+            "label": "Forum communautaire",
+            "values": ["Inclus", "Inclus", "Inclus", "Inclus"]
+          },
+          {
+            "label": "Support email",
+            "values": ["-", "Limité", "Inclus", "Prioritaire"]
+          },
+          {
+            "label": "Support prioritaire",
+            "values": ["-", "-", "Inclus", "Inclus"]
+          },
+          {
+            "label": "SLA",
+            "values": ["-", "-", "Optionnel", "Inclus"]
+          },
+          {
+            "label": "Contact dédié",
+            "values": ["-", "-", "Optionnel", "Inclus"]
+          },
+          {
+            "label": "Déploiement sur mesure",
+            "values": ["Self-hosted", "Options managées", "Optionnel", "Inclus"]
+          },
+          {
+            "label": "Aide à la migration",
+            "values": ["-", "-", "Inclus", "Inclus"]
+          },
+          {
+            "label": "Revue de sécurité",
+            "values": ["-", "-", "Optionnel", "Inclus"]
+          }
+        ]
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Questions fréquentes sur la tarification.",
+        "description": "Des réponses courtes pour les équipes qui évaluent l'open-source, les services managés ou une collaboration enterprise.",
+        "items": [
+          {
+            "question": "Puis-je utiliser les produits SGE gratuitement ?",
+            "answer": "Oui. Une partie de l'écosystème SGE est disponible via des projets open-source pouvant être utilisés et évalués librement."
+          },
+          {
+            "question": "Proposez-vous des déploiements self-hosted ?",
+            "answer": "Oui. Lorsque cela est pertinent pour le produit, le déploiement auto-hébergé reste un mode d'adoption à côté des options managées."
+          },
+          {
+            "question": "Une tarification enterprise est-elle disponible ?",
+            "answer": "Oui. La tarification enterprise passe par des accords personnalisés selon le périmètre de déploiement, les attentes de support et les contraintes techniques."
+          },
+          {
+            "question": "SGE peut-il gérer l'infrastructure pour nous ?",
+            "answer": "Oui. Des services managés peuvent être proposés aux équipes qui souhaitent déléguer une partie de l'infrastructure ou de l'hébergement à SGE."
+          },
+          {
+            "question": "Proposez-vous du support pour des déploiements open-source ?",
+            "answer": "Un support professionnel peut être discuté pour les organisations qui exploitent des déploiements open-source et ont besoin de guidage, de revue ou d'assistance à la migration."
+          },
+          {
+            "question": "La tarification peut-elle évoluer selon l'usage ?",
+            "answer": "Oui. Certains services managés peuvent être facturés selon l'usage, les ressources consommées, le niveau de support ou le besoin d'environnement dédié."
+          },
+          {
+            "question": "Accompagnez-vous aussi les startups et petites équipes ?",
+            "answer": "Oui. Les approches Cloud et Business sont conçues pour rester accessibles aux startups, aux équipes internes et aux organisations en croissance."
+          }
+        ]
+      },
+      "cta": {
+        "eyebrow": "Étape suivante",
+        "title": "Choisissez le modèle adapté à votre infrastructure.",
+        "description": "Commencez en open-source, déployez avec des services cloud managés ou construisez un partenariat enterprise dans la durée avec Sky Genesis Enterprise.",
+        "secondaryCta": "Explorer l'écosystème"
+      }
+    },
     "press": {
       "metadata": {
         "title": "Presse | Sky Genesis Enterprise",

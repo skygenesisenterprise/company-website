@@ -212,7 +212,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
 
   const companyLinks: FooterLink[] = [
     { name: t("about"), href: `${prefix}/company/about` },
-    { name: t("careers"), href: "https://jobs.skygenesisenterprise.com", external: true },
+    { name: t("careers"), href: `${prefix}/company/careers` },
     { name: t("press"), href: `${prefix}/company/press` },
     { name: t("partners"), href: `${prefix}/company/partners` },
     { name: t("contact"), href: `${prefix}/company/contact` },
