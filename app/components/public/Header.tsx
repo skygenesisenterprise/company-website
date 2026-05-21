@@ -10,12 +10,15 @@
  * Owner: SGE Web Platform
  * Contact: contact@skygenesisenterprise.com
  */
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { type Locale } from "@/lib/locale";
 import {
   Menu,
+  X,
   ChevronDown,
   ArrowRight,
   Shield,
@@ -46,6 +49,8 @@ import {
   Landmark,
   ShoppingCart,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { HeaderAuthButton } from "./HeaderAuthButton";
 
 interface HeaderProps {
@@ -82,6 +87,12 @@ type MegaMenuProps = {
   compact?: boolean;
 };
 
+interface TopLevelLink {
+  label: string;
+  href: string;
+  description?: string;
+}
+
 function MegaMenu({
   label,
   data,
@@ -89,50 +100,63 @@ function MegaMenu({
   t,
   compact = false,
 }: MegaMenuProps) {
-  const panelWidth = compact ? "w-[560px]" : "w-[820px]";
+  const panelWidth = compact ? "w-[560px]" : "w-[860px]";
   const sectionGrid = compact ? "grid-cols-1" : "grid-cols-2";
   const hasFeatured = Boolean(data.featured);
 
   return (
     <li className="relative group">
       <button
-        className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
+        className={cn(
+          "flex items-center gap-1.5 rounded-full font-medium transition-all duration-300",
+          compact ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
+          "text-foreground/70 hover:bg-background/70 hover:text-foreground",
+        )}
         aria-haspopup="true"
         aria-expanded={false}
       >
         {label}
-        <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-150" />
+        <ChevronDown className="h-3.5 w-3.5 opacity-60 transition duration-300 group-hover:translate-y-0.5 group-hover:opacity-100" />
       </button>
-      <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-3 group-hover:block group-focus-within:block">
+      <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
         <div
-          className={`${panelWidth} overflow-hidden rounded-2xl border border-border/60 bg-background shadow-lg`}
+          className={cn(
+            panelWidth,
+            "overflow-hidden rounded-[2rem] border border-border/60 bg-background/92 shadow-2xl backdrop-blur-xl",
+          )}
         >
+          <div className="h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
           <div className={hasFeatured ? "grid grid-cols-[1fr_260px]" : "grid"}>
-            <div className="p-6">
+            <div className="relative p-6">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.08),transparent_28%)]" />
               <div className={`grid ${sectionGrid} gap-6`}>
                 {data.sections.map((section) => (
-                  <div key={section.titleKey}>
-                    <h3 className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                  <div
+                    key={section.titleKey}
+                    className="relative rounded-[1.5rem] border border-border/50 bg-background/55 p-4"
+                  >
+                    <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
                       {t(section.titleKey)}
                     </h3>
-                    <ul className="space-y-1">
+                    <ul className="space-y-2">
                       {section.items.map((item) => (
                         <li key={item.titleKey}>
                           <Link
                             href={getLocaleHref(item.href)}
-                            className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-muted/50 focus:bg-muted/50 focus:outline-none"
+                            className="group/item flex items-start gap-3 rounded-[1.25rem] border border-transparent p-3 transition-all duration-200 hover:border-border/60 hover:bg-muted/60 focus:bg-muted/60 focus:outline-none"
                           >
-                            <span className="mt-0.5 shrink-0 text-muted-foreground transition-colors group-hover/item:text-foreground">
+                            <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-card text-muted-foreground transition-colors group-hover/item:border-primary/20 group-hover/item:text-primary">
                               {item.icon}
                             </span>
-                            <span>
-                              <span className="block text-sm font-medium text-foreground">
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-sm font-medium text-foreground transition-colors group-hover/item:text-foreground">
                                 {t(item.titleKey)}
                               </span>
                               <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
                                 {t(item.descKey)}
                               </span>
                             </span>
+                            <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-200 group-hover/item:translate-x-0.5 group-hover/item:opacity-100" />
                           </Link>
                         </li>
                       ))}
@@ -143,11 +167,13 @@ function MegaMenu({
             </div>
 
             {data.featured ? (
-              <aside className="border-l border-border/60 bg-muted/30 p-6">
+              <aside className="relative border-l border-border/60 bg-muted/25 p-6">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(57,76,140,0.12),transparent_45%)]" />
                 <Link
                   href={getLocaleHref(data.featured.href)}
-                  className="group/featured flex h-full flex-col justify-between rounded-xl bg-card p-5 ring-1 ring-border/50 transition-colors hover:bg-background focus:outline-none focus:ring-2 focus:ring-ring/30"
+                  className="group/featured relative flex h-full flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border/60 bg-card/95 p-5 ring-1 ring-border/40 transition-all hover:-translate-y-0.5 hover:bg-background focus:outline-none focus:ring-2 focus:ring-ring/30"
                 >
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
                   <span>
                     {data.featured.badgeKey ? (
                       <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
@@ -155,14 +181,14 @@ function MegaMenu({
                         {t(data.featured.badgeKey)}
                       </span>
                     ) : null}
-                    <span className="mt-5 block text-sm font-medium text-foreground">
+                    <span className="mt-6 block text-base font-semibold tracking-tight text-foreground">
                       {t(data.featured.titleKey)}
                     </span>
-                    <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
+                    <span className="mt-3 block text-sm leading-7 text-muted-foreground">
                       {t(data.featured.descKey)}
                     </span>
                   </span>
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
+                  <span className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
                     {t("learnMore")}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/featured:translate-x-0.5" />
                   </span>
@@ -555,9 +581,36 @@ function getPartnersMenuData(): MegaMenuData {
   };
 }
 
-export async function Header({ locale: initialLocale }: HeaderProps) {
+export function Header({ locale: initialLocale }: HeaderProps) {
   const locale = initialLocale || "fr";
-  const t = await getTranslations({ locale, namespace: "Header" });
+  const t = useTranslations("Header");
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  React.useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = originalOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isMobileMenuOpen]);
 
   const productMenuData = getProductMenuData();
   const developersMenuData = getDevelopersMenuData();
@@ -571,51 +624,112 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
     return `/${locale}${href}`;
   };
 
+  const topLevelLinks: TopLevelLink[] = [
+    {
+      label: t("plateforme"),
+      href: getLocaleHref("/platform"),
+      description: t("platformFeaturedDesc"),
+    },
+    {
+      label: t("product"),
+      href: getLocaleHref("/products"),
+      description: t("productsFeaturedDesc"),
+    },
+    {
+      label: t("solutions"),
+      href: getLocaleHref("/solutions"),
+      description: t("solutionsFeaturedDesc"),
+    },
+    {
+      label: t("developers"),
+      href: getLocaleHref("/developers"),
+      description: t("developersFeaturedDesc"),
+    },
+    {
+      label: t("partners"),
+      href: getLocaleHref("/partners/program"),
+      description: t("partnersFeaturedDesc"),
+    },
+    {
+      label: t("enterprise"),
+      href: getLocaleHref("/company/about"),
+      description: t("enterpriseFeaturedDesc"),
+    },
+    {
+      label: t("blog"),
+      href: getLocaleHref("/blog"),
+    },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/60">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex items-center justify-between h-14">
-          {/* Logo */}
-          <div className="flex items-center gap-4">
-            <Link href={getLocaleHref("/")} className="flex items-center gap-2">
-              <span className="font-medium text-sm text-foreground tracking-tight">
+    <>
+      <header
+        className={cn(
+          "fixed z-50 transition-all duration-500",
+          isScrolled || isMobileMenuOpen ? "left-4 right-4 top-[3.75rem]" : "left-0 right-0 top-11",
+        )}
+      >
+        <nav
+          className={cn(
+            "mx-auto transition-all duration-500",
+            isScrolled || isMobileMenuOpen
+              ? "max-w-[1320px] rounded-[1.75rem] border border-border/60 bg-background/82 shadow-2xl backdrop-blur-xl"
+              : "max-w-[1400px] bg-transparent",
+          )}
+        >
+          <div
+            className={cn(
+              "flex items-center justify-between gap-6 px-6 transition-all duration-500 lg:px-8",
+              isScrolled ? "h-16" : "h-20",
+            )}
+          >
+            <Link href={getLocaleHref("/")} className="group flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
+              <span
+                className={cn(
+                  "whitespace-nowrap font-semibold tracking-tight text-foreground transition-all duration-500",
+                  isScrolled ? "text-base" : "text-lg",
+                )}
+              >
                 {t("brandName")}
               </span>
             </Link>
-          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center">
-            <ul className="flex items-center gap-0">
+            <nav className="hidden min-w-0 flex-1 justify-center xl:flex">
+              <ul className={cn("flex items-center", isScrolled ? "gap-0.5" : "gap-1")}>
               <MegaMenu
                 label={t("plateforme")}
                 data={plateformeMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
+                compact={isScrolled}
               />
               <MegaMenu
                 label={t("product")}
                 data={productMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
+                compact={isScrolled}
               />
               <MegaMenu
                 label={t("solutions")}
                 data={solutionsMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
+                compact={isScrolled}
               />
               <MegaMenu
                 label={t("developers")}
                 data={developersMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
+                compact={isScrolled}
               />
               <MegaMenu
                 label={t("partners")}
                 data={partnersMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
+                compact={isScrolled}
               />
               <MegaMenu
                 label={t("enterprise")}
@@ -628,35 +742,92 @@ export async function Header({ locale: initialLocale }: HeaderProps) {
               <li>
                 <Link
                   href={getLocaleHref("/blog")}
-                  className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
+                  className={cn(
+                    "flex items-center gap-1.5 rounded-full font-medium text-foreground/70 transition-all duration-300 hover:bg-background/70 hover:text-foreground",
+                    isScrolled ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
+                  )}
                 >
                   {t("blog")}
                 </Link>
               </li>
-            </ul>
-          </nav>
+              </ul>
+            </nav>
 
-          {/* Right Side Actions */}
-          <div className="flex items-center gap-2">
-            <HeaderAuthButton
-              loginText={t("login")}
-              accountText={t("account")}
-              signUpText={t("signUp")}
-              signUpHref={getLocaleHref("/under-attack-online")}
-            />
-
-            {/* Mobile Menu Button - placeholder, needs client component */}
-            <div className="lg:hidden">
-              <Link
-                href="#"
-                className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors duration-150"
-              >
-                <Menu className="h-5 w-5" />
-              </Link>
+            <div className="hidden shrink-0 items-center gap-3 xl:flex">
+              <HeaderAuthButton
+                loginText={t("login")}
+                accountText={t("account")}
+                signUpText={t("signUp")}
+                signUpHref={getLocaleHref("/under-attack-online")}
+                compact={isScrolled}
+              />
             </div>
+
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen((current) => !current)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-background/80 text-foreground transition hover:bg-muted/60 xl:hidden"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-background transition-all duration-500 xl:hidden",
+          isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+        )}
+      >
+        <div className="mx-auto flex h-full max-w-[1400px] flex-col px-8 pb-8 pt-28">
+          <div className="flex-1 space-y-3">
+            {topLevelLinks.map((link, index) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={cn(
+                  "block rounded-[1.75rem] border border-border/60 px-6 py-5 transition-all duration-500",
+                  isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+                )}
+                style={{ transitionDelay: isMobileMenuOpen ? `${index * 60}ms` : "0ms" }}
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                    {link.label}
+                  </span>
+                  <ArrowRight className="h-5 w-5 text-muted-foreground" />
+                </div>
+                {link.description ? (
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">{link.description}</p>
+                ) : null}
+              </Link>
+            ))}
+          </div>
+
+          <div
+            className={cn(
+              "mt-8 grid gap-4 border-t border-border/60 pt-8 transition-all duration-500 sm:grid-cols-2",
+              isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+            )}
+            style={{ transitionDelay: isMobileMenuOpen ? "320ms" : "0ms" }}
+          >
+            <Button asChild variant="outline" className="h-14 rounded-full text-base">
+              <Link href="https://sso.skygenesisenterprise.com/login" onClick={() => setIsMobileMenuOpen(false)}>
+                {t("login")}
+              </Link>
+            </Button>
+            <Button asChild className="h-14 rounded-full text-base">
+              <Link href={getLocaleHref("/under-attack-online")} onClick={() => setIsMobileMenuOpen(false)}>
+                {t("signUp")}
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

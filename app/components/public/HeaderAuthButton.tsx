@@ -15,34 +15,45 @@
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface HeaderAuthButtonProps {
   loginText: string;
   accountText: string;
   signUpText: string;
   signUpHref: string;
+  compact?: boolean;
 }
 
-export function HeaderAuthButton({ loginText, accountText, signUpText, signUpHref }: HeaderAuthButtonProps) {
+export function HeaderAuthButton({
+  loginText,
+  accountText,
+  signUpText,
+  signUpHref,
+  compact = false,
+}: HeaderAuthButtonProps) {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
     return (
-      <div className="flex items-center gap-2">
-        <div className="h-9 w-20 bg-muted animate-pulse rounded" />
-        <div className="h-9 w-24 bg-muted animate-pulse rounded" />
+      <div className={cn("flex items-center", compact ? "gap-1.5" : "gap-2")}>
+        <div className={cn("animate-pulse rounded bg-muted", compact ? "h-8 w-16" : "h-9 w-20")} />
+        <div className={cn("animate-pulse rounded bg-muted", compact ? "h-8 w-20" : "h-9 w-24")} />
       </div>
     );
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={cn("flex shrink-0 items-center", compact ? "gap-1.5" : "gap-2")}>
       {isAuthenticated ? (
         <Link href="https://account.skygenesisenterprise.com">
           <Button
             variant="ghost"
             size="sm"
-            className="h-9 px-4 font-medium text-muted-foreground hover:text-foreground"
+            className={cn(
+              "font-medium text-muted-foreground hover:text-foreground",
+              compact ? "h-8 px-3 text-xs" : "h-9 px-4",
+            )}
           >
             {accountText}
           </Button>
@@ -52,15 +63,21 @@ export function HeaderAuthButton({ loginText, accountText, signUpText, signUpHre
           <Button
             variant="ghost"
             size="sm"
-            className="h-9 px-4 font-medium text-muted-foreground hover:text-foreground"
+            className={cn(
+              "font-medium text-muted-foreground hover:text-foreground",
+              compact ? "h-8 px-3 text-xs" : "h-9 px-4",
+            )}
           >
             {loginText}
           </Button>
         </Link>
       )}
       <Link href={signUpHref}>
-        <Button size="sm" className="h-9 px-4 font-medium">
-          {signUpText}
+        <Button
+          size="sm"
+          className={cn("font-medium", compact ? "h-8 px-3 text-xs" : "h-9 px-4")}
+        >
+          <span className="whitespace-nowrap">{signUpText}</span>
         </Button>
       </Link>
     </div>

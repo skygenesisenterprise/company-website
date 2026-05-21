@@ -25,11 +25,14 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <LocaleProvider initialLocale={locale as Locale}>
-        <div className="min-h-screen flex flex-col">
-          <HeaderInfo
-            locale={locale}
-          />
-          {children}
+        <div className="min-h-screen bg-background text-foreground">
+          <div className="relative isolate flex min-h-screen flex-col">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top,rgba(57,76,140,0.12),transparent_62%)]" />
+            <HeaderInfo locale={locale} />
+            <div className="relative flex min-h-screen flex-col">
+              {children}
+            </div>
+          </div>
           <ConsentBanner />
         </div>
       </LocaleProvider>
