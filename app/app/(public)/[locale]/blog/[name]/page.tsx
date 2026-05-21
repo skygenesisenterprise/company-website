@@ -1,68 +1,58 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, ArrowRight, Clock, FileText, Mail, Rss } from "lucide-react";
-
+import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Clock3 } from "lucide-react";
+import { notFound } from "next/navigation";
 import { Footer } from "@/components/public/Footer";
 import { Header } from "@/components/public/Header";
+import { ArticleCard, BlogFinalCta, SectionEyebrow, formatBlogDate } from "@/components/public/blog/editorial";
+import {
+  editorialCategories,
+  getAdjacentArticles,
+  getEditorialArticle,
+  getRelatedArticles,
+} from "@/lib/blog/data";
 import { defaultLocale, isValidLocale, type Locale } from "@/lib/locale";
 
-interface ArticleConfig {
-  key: string;
-  categoryHref: string;
-  related: string[];
+interface BlogArticlePageProps {
+  params: Promise<{ locale?: string; name: string }>;
 }
 
-const articleConfigs: Record<string, ArticleConfig> = {
-  "construire-infrastructure-numerique-europeenne": {
-    key: "infrastructure",
-    categoryHref: "/blog/category/infrastructure",
-    related: ["identity", "cloud", "security"],
-  },
-  "identite-socle-services-sge": {
-    key: "identity",
-    categoryHref: "/blog/category/identite",
-    related: ["infrastructure", "security", "developers"],
-  },
-  "aether-office-workplace-souverain": {
-    key: "aetherOffice",
-    categoryHref: "/blog/category/produits-aether",
-    related: ["identity", "sovereignty", "cloud"],
-  },
-  "open-source-ouverture-progressive": {
-    key: "openSource",
-    categoryHref: "/blog/category/open-source",
-    related: ["developers", "sovereignty", "research"],
-  },
-  "securite-par-defaut-approche-produit": {
-    key: "security",
-    categoryHref: "/blog/category/securite",
-    related: ["identity", "infrastructure", "developers"],
-  },
-  "signifie-vraiment-souverainete-numerique": {
-    key: "sovereignty",
-    categoryHref: "/blog/category/souverainete-numerique",
-    related: ["cloud", "openSource", "aetherOffice"],
-  },
-};
+function localizeHref(locale: string, href: string) {
+  return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
+}
 
-const fallbackArticle: ArticleConfig = {
-  key: "infrastructure",
-  categoryHref: "/blog/category/infrastructure",
-  related: ["identity", "cloud", "security"],
-};
-
-export default async function BlogArticlePage({
-  params,
-}: {
-  params: Promise<{ locale?: string; name: string }>;
-}) {
+export async function generateMetadata({ params }: BlogArticlePageProps): Promise<Metadata> {
   const { locale: paramLocale, name } = await params;
   const locale: Locale = paramLocale && isValidLocale(paramLocale) ? paramLocale : defaultLocale;
-  const t = await getTranslations({ locale, namespace: "BlogArticle" });
+  const article = getEditorialArticle(name);
+  const t = await getTranslations({ locale, namespace: "Blog" });
 
-  const article = articleConfigs[name] ?? fallbackArticle;
-  const paragraphs = t.raw(`articles.${article.key}.paragraphs`) as string[];
-  const takeaways = t.raw(`articles.${article.key}.takeaways`) as string[];
+  if (!article) {
+    return {
+      title: t("article.notFoundTitle"),
+    };
+  }
+
+  return {
+    title: `${article.title} | ${t("metadata.title")}`,
+    description: article.excerpt,
+  };
+}
+
+export default async function BlogArticlePage({ params }: BlogArticlePageProps) {
+  const { locale: paramLocale, name } = await params;
+  const locale: Locale = paramLocale && isValidLocale(paramLocale) ? paramLocale : defaultLocale;
+  const t = await getTranslations({ locale, namespace: "Blog" });
+  const article = getEditorialArticle(name);
+
+  if (!article) {
+    notFound();
+  }
+
+  const category = editorialCategories.find((entry) => entry.slug === article.categorySlug);
+  const relatedArticles = getRelatedArticles(article);
+  const { previous, next } = getAdjacentArticles(name);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -70,144 +60,212 @@ export default async function BlogArticlePage({
 
       <main className="flex-1">
         <article>
-          <header className="border-b border-border/50 bg-muted/20">
-            <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <header className="relative overflow-hidden border-b border-border/70">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.14),transparent_34%),radial-gradient(circle_at_85%_18%,rgba(57,76,140,0.08),transparent_24%)]" />
+            <div className="relative mx-auto max-w-[1400px] px-6 py-16 lg:px-12 lg:py-24">
               <Link
-                href={`/${locale}/blog`}
+                href={localizeHref(locale, "/blog")}
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 <ArrowLeft className="h-4 w-4" />
-                {t("backToJournal")}
+                {t("article.backToBlog")}
               </Link>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                <Link
-                  href={`/${locale}${article.categoryHref}`}
-                  className="rounded-full border border-border/50 bg-card px-3 py-1 font-medium text-foreground"
-                >
-                  {t(`articles.${article.key}.category`)}
+              <div className="mt-8 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                <Link href={localizeHref(locale, "/blog")} className="transition-colors hover:text-foreground">
+                  {t("article.breadcrumbBlog")}
                 </Link>
-                <span>{t(`articles.${article.key}.date`)}</span>
-                <span aria-hidden="true">/</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" />
-                  {t(`articles.${article.key}.readTime`)}
-                </span>
+                <ChevronRight className="h-4 w-4" />
+                {category ? (
+                  <Link
+                    href={localizeHref(locale, `/blog/category/${category.slug}`)}
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {category.label}
+                  </Link>
+                ) : null}
               </div>
 
-              <h1 className="mt-6 max-w-4xl text-4xl font-normal leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                {t(`articles.${article.key}.title`)}
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-                {t(`articles.${article.key}.excerpt`)}
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                <span>{t("byline", { author: t(`articles.${article.key}.author`) })}</span>
-                <span>{t("publishedIn", { publication: t("publicationName") })}</span>
+              <div className="mt-8 max-w-4xl">
+                <SectionEyebrow>{article.category}</SectionEyebrow>
+                <h1 className="mt-6 text-[clamp(2.8rem,4vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-foreground">
+                  {article.title}
+                </h1>
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">{article.excerpt}</p>
+                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground">{article.author.name}</span>
+                  <span>{article.author.role}</span>
+                  <span className="inline-flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4" />
+                    {formatBlogDate(article.publishedAt)}
+                  </span>
+                  <span className="inline-flex items-center gap-2">
+                    <Clock3 className="h-4 w-4" />
+                    {article.readingTime} min
+                  </span>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {article.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex rounded-full border border-border/70 bg-background/85 px-3 py-1 text-xs font-medium text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </header>
 
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,760px)_minmax(280px,1fr)] lg:px-8 lg:py-16">
+          <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 lg:grid-cols-[minmax(0,760px)_320px] lg:px-12 lg:py-20">
             <div>
-              <div className="rounded-lg border border-border/50 bg-card p-6 sm:p-8">
-                <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-                  {t("summaryTitle")}
-                </p>
+              <div className="rounded-[1.75rem] border border-border/70 bg-card/90 p-6 shadow-sm sm:p-8">
+                <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">{t("article.summary")}</p>
                 <ul className="mt-5 space-y-3">
-                  {takeaways.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                  {article.summary.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-7 text-muted-foreground">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-10 space-y-7 text-lg leading-8 text-foreground">
-                {paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
+              <div className="mt-10 space-y-12">
+                {article.sections.map((section) => (
+                  <section key={section.id} id={section.id} className="scroll-mt-28">
+                    <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{section.title}</h2>
+                    <div className="mt-5 space-y-5 text-[1.05rem] leading-8 text-foreground">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
 
-              <div className="mt-12 rounded-lg border border-border/50 bg-muted/20 p-6 sm:p-8">
-                <div className="flex items-center gap-3">
-                  <FileText className="h-5 w-5 text-muted-foreground" />
-                  <h2 className="text-xl font-medium text-foreground">{t("editorialNoteTitle")}</h2>
-                </div>
-                <p className="mt-4 leading-relaxed text-muted-foreground">{t("editorialNoteDescription")}</p>
+                    {section.bullets?.length ? (
+                      <ul className="mt-6 space-y-3 rounded-[1.5rem] border border-border/70 bg-muted/[0.25] p-6 text-sm leading-7 text-muted-foreground">
+                        {section.bullets.map((item) => (
+                          <li key={item} className="flex gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+
+                    {section.callout ? (
+                      <div className="mt-6 rounded-[1.5rem] border border-primary/20 bg-primary/8 p-6 text-sm leading-7 text-foreground">
+                        {section.callout}
+                      </div>
+                    ) : null}
+
+                    {section.codeSample ? (
+                      <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-border/70 bg-slate-950 text-slate-100">
+                        <div className="flex items-center justify-between border-b border-white/10 px-5 py-3 text-xs uppercase tracking-[0.18em] text-slate-400">
+                          <span>{section.codeSample.filename}</span>
+                          <span>{section.codeSample.language}</span>
+                        </div>
+                        <pre className="overflow-x-auto p-5 text-sm leading-7">
+                          <code>{section.codeSample.content}</code>
+                        </pre>
+                      </div>
+                    ) : null}
+                  </section>
+                ))}
               </div>
             </div>
 
-            <aside className="space-y-6">
-              <section className="rounded-lg border border-border/50 bg-card p-6">
-                <h2 className="text-lg font-medium text-foreground">{t("articleInfoTitle")}</h2>
+            <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+              <section className="rounded-[1.75rem] border border-border/70 bg-card/90 p-6 shadow-sm">
+                <h2 className="text-lg font-semibold text-foreground">{t("article.toc")}</h2>
+                <nav className="mt-5 space-y-3">
+                  {article.sections.map((section, index) => (
+                    <a
+                      key={section.id}
+                      href={`#${section.id}`}
+                      className="flex items-start gap-3 rounded-2xl border border-transparent px-3 py-2 text-sm text-muted-foreground transition hover:border-border/60 hover:bg-background/80 hover:text-foreground"
+                    >
+                      <span className="mt-0.5 text-xs font-medium text-primary">{String(index + 1).padStart(2, "0")}</span>
+                      <span>{section.title}</span>
+                    </a>
+                  ))}
+                </nav>
+              </section>
+
+              <section className="rounded-[1.75rem] border border-border/70 bg-card/90 p-6 shadow-sm">
+                <h2 className="text-lg font-semibold text-foreground">{t("article.articleInfo")}</h2>
                 <dl className="mt-5 space-y-4 text-sm">
                   <div>
-                    <dt className="text-muted-foreground">{t("authorLabel")}</dt>
-                    <dd className="mt-1 font-medium text-foreground">{t(`articles.${article.key}.author`)}</dd>
+                    <dt className="text-muted-foreground">{t("article.infoAuthor")}</dt>
+                    <dd className="mt-1 font-medium text-foreground">{article.author.name}</dd>
                   </div>
                   <div>
-                    <dt className="text-muted-foreground">{t("categoryLabel")}</dt>
-                    <dd className="mt-1 font-medium text-foreground">{t(`articles.${article.key}.category`)}</dd>
+                    <dt className="text-muted-foreground">{t("article.infoCategory")}</dt>
+                    <dd className="mt-1 font-medium text-foreground">{article.category}</dd>
                   </div>
                   <div>
-                    <dt className="text-muted-foreground">{t("readTimeLabel")}</dt>
-                    <dd className="mt-1 font-medium text-foreground">{t(`articles.${article.key}.readTime`)}</dd>
+                    <dt className="text-muted-foreground">{t("article.infoReadingTime")}</dt>
+                    <dd className="mt-1 font-medium text-foreground">{article.readingTime} min</dd>
                   </div>
                 </dl>
-              </section>
-
-              <section className="rounded-lg border border-border/50 bg-card p-6">
-                <h2 className="text-lg font-medium text-foreground">{t("relatedTitle")}</h2>
-                <div className="mt-5 space-y-4">
-                  {article.related.map((relatedKey) => (
-                    <Link
-                      key={relatedKey}
-                      href={`/${locale}${t(`related.${relatedKey}.href`)}`}
-                      className="block border-b border-border/50 pb-4 last:border-0 last:pb-0"
-                    >
-                      <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        {t(`related.${relatedKey}.category`)}
-                      </span>
-                      <span className="mt-1 block text-sm font-medium leading-relaxed text-foreground">
-                        {t(`related.${relatedKey}.title`)}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-lg border border-border/50 bg-card p-6">
-                <Mail className="mb-4 h-5 w-5 text-muted-foreground" />
-                <h2 className="text-lg font-medium text-foreground">{t("newsletterTitle")}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t("newsletterDescription")}</p>
-                <Link
-                  href={`/${locale}/blog#newsletter`}
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-foreground"
-                >
-                  {t("newsletterLink")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </section>
-
-              <section className="rounded-lg border border-border/50 bg-card p-6">
-                <h2 className="flex items-center gap-2 text-lg font-medium text-foreground">
-                  <Rss className="h-5 w-5 text-muted-foreground" />
-                  {t("rssTitle")}
-                </h2>
-                <Link
-                  href={`/${locale}/rss.xml`}
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground"
-                >
-                  {t("rssLink")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
               </section>
             </aside>
           </div>
         </article>
+
+        <section className="py-20 sm:py-24">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+            <div className="grid gap-6 lg:grid-cols-3">
+              {relatedArticles.map((relatedArticle) => (
+                <ArticleCard key={relatedArticle.slug} article={relatedArticle} locale={locale} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-20 sm:pb-24">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {previous ? (
+                <Link
+                  href={localizeHref(locale, `/blog/${previous.slug}`)}
+                  className="group rounded-[1.75rem] border border-border/70 bg-card/90 p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary/25"
+                >
+                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{t("article.previous")}</span>
+                  <p className="mt-3 text-lg font-semibold text-foreground">{previous.title}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                    <ArrowLeft className="h-4 w-4" />
+                    {t("article.read")}
+                  </span>
+                </Link>
+              ) : <div />}
+
+              {next ? (
+                <Link
+                  href={localizeHref(locale, `/blog/${next.slug}`)}
+                  className="group rounded-[1.75rem] border border-border/70 bg-card/90 p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-primary/25 sm:justify-self-end"
+                >
+                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{t("article.next")}</span>
+                  <p className="mt-3 text-lg font-semibold text-foreground">{next.title}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                    {t("article.read")}
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              ) : null}
+            </div>
+          </div>
+        </section>
+
+        <BlogFinalCta
+          locale={locale}
+          title={t("cta.eyebrow")}
+          description={t("cta.title")}
+          primaryLabel={t("cta.primary")}
+          primaryHref="/developers"
+          secondaryLabel={t("cta.secondary")}
+          secondaryHref="/platform"
+        />
       </main>
 
       <Footer locale={locale} />

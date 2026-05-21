@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import {
-  BrainCircuit,
-  BriefcaseBusiness,
+  BookOpen,
   Code2,
   Handshake,
-  NotebookText,
   Palette,
   Server,
   ShieldCheck,
@@ -18,13 +16,13 @@ import {
   CompanySection,
 } from "@/components/public/company/company-page";
 
+interface MetadataParams {
+  params: Promise<{ locale: string }>;
+}
+
 interface CompanyCardContent {
   title: string;
   description: string;
-}
-
-interface MetadataParams {
-  params: Promise<{ locale: string }>;
 }
 
 export async function generateMetadata({ params }: MetadataParams): Promise<Metadata> {
@@ -43,16 +41,9 @@ export default async function CareersPage({ params }: MetadataParams) {
   const common = await getTranslations({ locale, namespace: "CompanyPages.common" });
 
   const cultureItems = t.raw("culture.items") as CompanyCardContent[];
-  const profiles = t.raw("profiles.items") as CompanyCardContent[];
-  const workItems = t.raw("work.items") as CompanyCardContent[];
-  const profileIcons = [
-    Code2,
-    Server,
-    ShieldCheck,
-    Palette,
-    BriefcaseBusiness,
-    Handshake,
-  ];
+  const contributionItems = t.raw("contribution.items") as CompanyCardContent[];
+  const profileItems = t.raw("profiles.items") as CompanyCardContent[];
+  const profileIcons = [Code2, Server, ShieldCheck, Palette, BookOpen, Handshake];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -60,18 +51,15 @@ export default async function CareersPage({ params }: MetadataParams) {
         eyebrow={common("eyebrow")}
         title={t("hero.title")}
         description={t("hero.description")}
+        signals={t.raw("hero.signals") as string[]}
         primaryCta={common("contact")}
         primaryHref={`/${locale}/company/contact`}
-        secondaryCta={common("about")}
-        secondaryHref={`/${locale}/company/about`}
+        secondaryCta={common("values")}
+        secondaryHref={`/${locale}/company/values`}
       />
 
-      <CompanySection
-        eyebrow={t("culture.eyebrow")}
-        title={t("culture.title")}
-        description={t("culture.description")}
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+      <CompanySection eyebrow={t("culture.eyebrow")} title={t("culture.title")} description={t("culture.description")}>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {cultureItems.map((item) => (
             <CompanyCard key={item.title} title={item.title} description={item.description} />
           ))}
@@ -79,33 +67,24 @@ export default async function CareersPage({ params }: MetadataParams) {
       </CompanySection>
 
       <CompanySection
-        eyebrow={t("profiles.eyebrow")}
-        title={t("profiles.title")}
-        description={t("profiles.description")}
-        muted
+        eyebrow={t("contribution.eyebrow")}
+        title={t("contribution.title")}
+        description={t("contribution.description")}
+        tone="muted"
       >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {profiles.map((profile, index) => (
-            <CompanyCard
-              key={profile.title}
-              icon={profileIcons[index]}
-              title={profile.title}
-              description={profile.description}
-            />
+        <div className="grid gap-5 md:grid-cols-3">
+          {contributionItems.map((item) => (
+            <CompanyCard key={item.title} title={item.title} description={item.description} />
           ))}
         </div>
       </CompanySection>
 
-      <CompanySection
-        eyebrow={t("work.eyebrow")}
-        title={t("work.title")}
-        description={t("work.description")}
-      >
-        <div className="grid gap-5 lg:grid-cols-3">
-          {workItems.map((item, index) => (
+      <CompanySection eyebrow={t("profiles.eyebrow")} title={t("profiles.title")} description={t("profiles.description")}>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {profileItems.map((item, index) => (
             <CompanyCard
               key={item.title}
-              icon={index === 0 ? BriefcaseBusiness : index === 1 ? NotebookText : BrainCircuit}
+              icon={profileIcons[index]}
               title={item.title}
               description={item.description}
             />
@@ -114,15 +93,13 @@ export default async function CareersPage({ params }: MetadataParams) {
       </CompanySection>
 
       <CompanySection
-        eyebrow={t("open.eyebrow")}
-        title={t("open.title")}
-        description={t("open.description")}
-        muted
+        eyebrow={t("reality.eyebrow")}
+        title={t("reality.title")}
+        description={t("reality.description")}
+        tone="muted"
       >
-        <div className="rounded-lg border border-border/60 bg-background p-6 sm:p-8 lg:p-10">
-          <p className="max-w-4xl text-lg leading-8 text-muted-foreground">
-            {t("open.body")}
-          </p>
+        <div className="rounded-[1.75rem] border border-border/70 bg-background/90 p-8 shadow-sm lg:p-10">
+          <p className="max-w-4xl text-lg leading-8 text-muted-foreground">{t("reality.body")}</p>
         </div>
       </CompanySection>
 

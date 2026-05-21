@@ -413,13 +413,42 @@ function getEnterpriseMenuData(): MegaMenuData {
   return {
     sections: [
       {
-        titleKey: "company",
+        titleKey: "companyOverviewSection",
         items: [
+          {
+            titleKey: "companyOverview",
+            descKey: "companyOverviewDesc",
+            href: "/company",
+            icon: <Building2 className="h-5 w-5" />,
+          },
           {
             titleKey: "about",
             descKey: "aboutDesc",
             href: "/company/about",
-            icon: <Building2 className="h-5 w-5" />,
+            icon: <Globe className="h-5 w-5" />,
+          },
+          {
+            titleKey: "story",
+            descKey: "storyDesc",
+            href: "/company/story",
+            icon: <BookOpen className="h-5 w-5" />,
+          },
+          {
+            titleKey: "values",
+            descKey: "valuesDesc",
+            href: "/company/values",
+            icon: <Key className="h-5 w-5" />,
+          },
+        ],
+      },
+      {
+        titleKey: "companyConnectSection",
+        items: [
+          {
+            titleKey: "leadership",
+            descKey: "leadershipDesc",
+            href: "/company/leadership",
+            icon: <Briefcase className="h-5 w-5" />,
           },
           {
             titleKey: "careers",
@@ -446,7 +475,7 @@ function getEnterpriseMenuData(): MegaMenuData {
       badgeKey: "enterpriseFeaturedBadge",
       titleKey: "enterpriseFeaturedTitle",
       descKey: "enterpriseFeaturedDesc",
-      href: "/company/about",
+      href: "/company",
     },
   };
 }
@@ -652,7 +681,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
     },
     {
       label: t("enterprise"),
-      href: getLocaleHref("/company/about"),
+      href: getLocaleHref("/company"),
       description: t("enterpriseFeaturedDesc"),
     },
     {
@@ -736,7 +765,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 data={enterpriseMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
-                compact
+                compact={isScrolled}
               />
 
               <li>

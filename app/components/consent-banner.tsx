@@ -55,6 +55,7 @@ export function ConsentBanner() {
 
   return (
     <div
+      data-consent-banner="true"
       className={cn(
         "fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
         "animate-in slide-in-from-bottom-4 duration-300"

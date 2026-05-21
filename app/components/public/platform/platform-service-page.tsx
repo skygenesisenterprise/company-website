@@ -12,6 +12,7 @@ import type {
   PlatformServiceStatus,
 } from "@/lib/platform/platform-services";
 import type { Locale } from "@/lib/locale";
+import type { LucideIcon } from "lucide-react";
 
 interface PlatformServicePageProps {
   locale: string;
@@ -22,7 +23,8 @@ interface PlatformSectionProps {
   eyebrow: string;
   title: string;
   description?: string;
-  muted?: boolean;
+  tone?: "default" | "muted" | "inverted";
+  headerAside?: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -50,24 +52,61 @@ function PlatformSection({
   eyebrow,
   title,
   description,
-  muted = false,
+  tone = "default",
+  headerAside,
   children,
 }: PlatformSectionProps) {
+  const isInverted = tone === "inverted";
+
   return (
-    <section className={cn("py-20 sm:py-24", muted && "bg-muted/35")}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-            {eyebrow}
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {title}
-          </h2>
-          {description ? (
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-              {description}
-            </p>
-          ) : null}
+    <section
+      className={cn(
+        "relative overflow-hidden py-24 sm:py-28 lg:py-32",
+        tone === "muted" && "bg-muted/[0.38]",
+        isInverted && "bg-foreground text-background"
+      )}
+    >
+      {isInverted ? (
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(-45deg, transparent, transparent 34px, currentColor 34px, currentColor 35px)",
+          }}
+        />
+      ) : null}
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-12">
+        <div className="mb-14 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
+          <div className="max-w-4xl">
+            <span
+              className={cn(
+                "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em]",
+                isInverted ? "text-background/65" : "text-muted-foreground"
+              )}
+            >
+              <span className={cn("h-px w-9", isInverted ? "bg-background/25" : "bg-foreground/15")} />
+              {eyebrow}
+            </span>
+            <h2
+              className={cn(
+                "mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl",
+                isInverted ? "text-background" : "text-foreground"
+              )}
+            >
+              {title}
+            </h2>
+            {description ? (
+              <p
+                className={cn(
+                  "mt-6 max-w-3xl text-lg leading-8",
+                  isInverted ? "text-background/70" : "text-muted-foreground"
+                )}
+              >
+                {description}
+              </p>
+            ) : null}
+          </div>
+          {headerAside ? <div className="lg:justify-self-end">{headerAside}</div> : null}
         </div>
         {children}
       </div>
@@ -75,23 +114,178 @@ function PlatformSection({
   );
 }
 
+function PlatformCard({
+  children,
+  className,
+  interactive = false,
+  inverted = false,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  interactive?: boolean;
+  inverted?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative h-full overflow-hidden rounded-[1.75rem] border p-6 shadow-sm transition duration-300",
+        inverted ? "border-background/10 bg-background/[0.04]" : "border-border/70 bg-card/90",
+        interactive &&
+          (inverted
+            ? "hover:-translate-y-1 hover:border-background/20 hover:bg-background/[0.07]"
+            : "hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"),
+        className
+      )}
+    >
+      <div
+        className={cn(
+          "absolute inset-x-0 top-0 h-px",
+          inverted
+            ? "bg-linear-to-r from-transparent via-background/20 to-transparent"
+            : "bg-linear-to-r from-transparent via-primary/25 to-transparent"
+        )}
+      />
+      {children}
+    </div>
+  );
+}
+
+function PlatformIconChip({
+  children,
+  inverted = false,
+}: {
+  children: React.ReactNode;
+  inverted?: boolean;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
+        inverted
+          ? "border-background/10 bg-background/[0.06] text-background"
+          : "border-border/70 bg-background text-primary"
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
+function PlatformLinkArrow({ inverted = false }: { inverted?: boolean }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex h-10 w-10 items-center justify-center rounded-full border transition",
+        inverted
+          ? "border-background/10 bg-background/[0.04] text-background/70 group-hover:border-background/20 group-hover:text-background"
+          : "border-border/70 bg-background text-muted-foreground group-hover:border-primary/30 group-hover:text-primary"
+      )}
+    >
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+    </span>
+  );
+}
+
+function PlatformBodyCard({
+  title,
+  description,
+  icon,
+  className,
+  inverted = false,
+}: {
+  title: string;
+  description: string;
+  icon?: LucideIcon;
+  className?: string;
+  inverted?: boolean;
+}) {
+  const Icon = icon;
+
+  return (
+    <PlatformCard className={className} inverted={inverted}>
+      <div className="flex items-start justify-between gap-4">
+        {Icon ? (
+          <PlatformIconChip inverted={inverted}>
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </PlatformIconChip>
+        ) : (
+          <span />
+        )}
+      </div>
+      <h3 className={cn("mt-8 text-lg font-semibold", inverted ? "text-background" : "text-foreground")}>
+        {title}
+      </h3>
+      <p className={cn("mt-4 text-sm leading-7", inverted ? "text-background/68" : "text-muted-foreground")}>
+        {description}
+      </p>
+    </PlatformCard>
+  );
+}
+
+function PlatformLinkedCard({
+  href,
+  title,
+  description,
+  label,
+  icon,
+  inverted = false,
+}: {
+  href: string;
+  title: string;
+  description: string;
+  label: string;
+  icon?: LucideIcon;
+  inverted?: boolean;
+}) {
+  const Icon = icon;
+
+  return (
+    <Link href={href} className="group block h-full">
+      <PlatformCard interactive inverted={inverted}>
+        <div className="flex items-start justify-between gap-4">
+          {Icon ? (
+            <PlatformIconChip inverted={inverted}>
+              <Icon className="h-5 w-5" aria-hidden="true" />
+            </PlatformIconChip>
+          ) : (
+            <span />
+          )}
+          <PlatformLinkArrow inverted={inverted} />
+        </div>
+        <h3 className={cn("mt-8 text-lg font-semibold", inverted ? "text-background" : "text-foreground")}>
+          {title}
+        </h3>
+        <p className={cn("mt-4 text-sm leading-7", inverted ? "text-background/68" : "text-muted-foreground")}>
+          {description}
+        </p>
+        <span
+          className={cn(
+            "mt-6 inline-flex items-center gap-2 text-sm font-medium",
+            inverted ? "text-background/80" : "text-foreground"
+          )}
+        >
+          {label}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+        </span>
+      </PlatformCard>
+    </Link>
+  );
+}
+
 function PlatformStatusBadge({ status }: { status: PlatformServiceStatus }) {
   const tStatus = useTranslations("Public.home.page.status");
   const toneByStatus: Record<PlatformServiceStatus, string> = {
-    Available: "border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
-    "Private preview": "border-primary/25 bg-primary/10 text-primary",
-    "In development": "border-amber-500/25 bg-amber-500/10 text-amber-700 dark:text-amber-300",
-    Experimental: "border-sky-500/25 bg-sky-500/10 text-sky-700 dark:text-sky-300",
-    Planned: "border-border bg-muted text-muted-foreground",
-    Research: "border-violet-500/25 bg-violet-500/10 text-violet-700 dark:text-violet-300",
+    Available: "border-primary/25 bg-primary/10 text-primary",
+    "Private preview": "border-accent bg-accent text-accent-foreground",
+    "In development": "border-border/70 bg-background/80 text-foreground",
+    Experimental: "border-primary/20 bg-background/90 text-primary",
+    Planned: "border-border/70 bg-muted/70 text-muted-foreground",
+    Research: "border-border/70 bg-card/90 text-foreground",
   };
 
   return (
     <span
-      className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium",
-        toneByStatus[status]
-      )}
+      className={cn("inline-flex rounded-full border px-2.5 py-1 text-[11px] font-medium", toneByStatus[status])}
     >
       {tStatus(status)}
     </span>
@@ -115,8 +309,8 @@ function PlatformCTA({
       size="lg"
       variant={isPrimary ? "default" : "outline"}
       className={cn(
-        "h-12 rounded-md px-6 text-sm font-medium",
-        isPrimary && "bg-primary text-primary-foreground hover:bg-primary/90"
+        "h-14 rounded-full px-8 text-sm font-medium",
+        isPrimary && "bg-primary text-primary-foreground shadow-lg shadow-primary/10 hover:bg-primary/90"
       )}
     >
       <Link href={localizeHref(locale, cta.href)}>
@@ -128,26 +322,38 @@ function PlatformCTA({
 }
 
 function PlatformHero({ locale, service }: PlatformServicePageProps) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const tStatus = useTranslations("Public.home.page.status");
   const serviceTitle = tPlatform(`${service.slug}.title`);
   const ctaLabels = tPlatform.raw(`${service.slug}.ctas`) as [string, string];
 
   return (
-    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+    <section className="relative overflow-hidden border-b border-border/70">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.18),transparent_38%),radial-gradient(circle_at_85%_18%,rgba(57,76,140,0.1),transparent_28%)]" />
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, color-mix(in oklch, var(--border) 65%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklch, var(--border) 65%, transparent) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+      </div>
+      <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 py-20 sm:py-24 lg:grid-cols-[1.08fr_0.92fr] lg:px-12 lg:py-28">
         <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
+          <span className="inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+            <span className="h-px w-9 bg-foreground/15" />
             {t("brand")}
-          </p>
+          </span>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <h1 className="text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
+            <h1 className="text-[clamp(3rem,6vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.04em] text-foreground">
               {serviceTitle}
             </h1>
             <PlatformStatusBadge status={service.status} />
           </div>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
             {tPlatform(`${service.slug}.promise`)}
           </p>
           <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
@@ -155,24 +361,28 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             {service.ctas.map((cta, index) => (
-              <PlatformCTA
-                key={cta.href}
-                cta={cta}
-                label={ctaLabels[index]}
-                locale={locale}
-              />
+              <PlatformCTA key={cta.href} cta={cta} label={ctaLabels[index]} locale={locale} />
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {service.availability.slice(0, 3).map((item) => (
+              <span
+                key={item.label}
+                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur"
+              >
+                <span className="h-2 w-2 rounded-full bg-primary/80" />
+                {t(`availability.labels.${item.label}`)}
+              </span>
             ))}
           </div>
         </div>
-        <div className="rounded-lg border border-border bg-muted/50 p-6 lg:p-8">
-          <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
+        <PlatformCard className="rounded-[2rem] bg-card/85 p-6 lg:p-8">
+          <div className="flex items-center justify-between gap-4 border-b border-border/70 pb-5">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 {t("serviceProfile")}
               </p>
-              <p className="mt-2 text-lg font-semibold text-foreground">
-                {serviceTitle}
-              </p>
+              <p className="mt-2 text-lg font-semibold text-foreground">{serviceTitle}</p>
             </div>
             <PlatformStatusBadge status={service.status} />
           </div>
@@ -180,11 +390,9 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
             {service.availability.slice(0, 4).map((item) => (
               <div
                 key={item.label}
-                className="flex items-center justify-between gap-4 rounded-md border border-border bg-card px-4 py-3"
+                className="flex items-center justify-between gap-4 rounded-2xl border border-border/70 bg-background/85 px-4 py-4"
               >
-                <dt className="text-sm text-muted-foreground">
-                  {t(`availability.labels.${item.label}`)}
-                </dt>
+                <dt className="text-sm text-muted-foreground">{t(`availability.labels.${item.label}`)}</dt>
                 <dd className="text-right text-sm font-medium text-foreground">
                   {item.value in customAvailabilityValues
                     ? t(`availability.values.${item.value}`)
@@ -193,14 +401,14 @@ function PlatformHero({ locale, service }: PlatformServicePageProps) {
               </div>
             ))}
           </dl>
-        </div>
+        </PlatformCard>
       </div>
     </section>
   );
 }
 
 function PlatformPurpose({ service }: { service: PlatformService }) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
 
   return (
@@ -208,31 +416,28 @@ function PlatformPurpose({ service }: { service: PlatformService }) {
       eyebrow={t("purpose.eyebrow")}
       title={tPlatform(`${service.slug}.purpose.title`)}
       description={tPlatform(`${service.slug}.purpose.problem`)}
+      headerAside={
+        <div className="rounded-[1.5rem] border border-border/70 bg-card/80 px-5 py-4 text-sm text-muted-foreground">
+          {tPlatform(`${service.slug}.description`)}
+        </div>
+      }
     >
       <div className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-lg border border-border bg-card p-6">
-          <h3 className="text-base font-semibold text-foreground">
-            {t("purpose.ecosystemRole")}
-          </h3>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            {tPlatform(`${service.slug}.purpose.ecosystem`)}
-          </p>
-        </div>
-        <div className="rounded-lg border border-border bg-card p-6">
-          <h3 className="text-base font-semibold text-foreground">
-            {t("purpose.platformBenefit")}
-          </h3>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            {tPlatform(`${service.slug}.purpose.benefit`)}
-          </p>
-        </div>
+        <PlatformBodyCard
+          title={t("purpose.ecosystemRole")}
+          description={tPlatform(`${service.slug}.purpose.ecosystem`)}
+        />
+        <PlatformBodyCard
+          title={t("purpose.platformBenefit")}
+          description={tPlatform(`${service.slug}.purpose.benefit`)}
+        />
       </div>
     </PlatformSection>
   );
 }
 
 function PlatformWhyNow({ service }: { service: PlatformService }) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const serviceTitle = tPlatform(`${service.slug}.title`);
 
@@ -259,27 +464,25 @@ function PlatformWhyNow({ service }: { service: PlatformService }) {
       eyebrow={t("whyNow.eyebrow")}
       title={t("whyNow.title")}
       description={t("whyNow.description")}
-      muted
+      tone="inverted"
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <div key={item.title} className="rounded-lg border border-border bg-card p-6">
-              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-            </div>
-          );
-        })}
+        {items.map((item) => (
+          <PlatformBodyCard
+            key={item.title}
+            title={item.title}
+            description={item.description}
+            icon={item.icon}
+            inverted
+          />
+        ))}
       </div>
     </PlatformSection>
   );
 }
 
 function PlatformCapabilities({ service }: { service: PlatformService }) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const capabilities = tPlatform.raw(`${service.slug}.capabilities`) as PlatformTextCard[];
 
@@ -288,28 +491,19 @@ function PlatformCapabilities({ service }: { service: PlatformService }) {
       eyebrow={t("capabilities.eyebrow")}
       title={t("capabilities.title")}
       description={t("capabilities.description")}
-      muted
+      tone="muted"
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {service.capabilities.map((capability, index) => {
-          const Icon = capability.icon;
           const capabilityText = capabilities[index];
 
           return (
-            <div
+            <PlatformBodyCard
               key={capabilityText.title}
-              className="rounded-lg border border-border bg-card p-6"
-            >
-              {Icon ? (
-                <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
-              ) : null}
-              <h3 className="text-base font-semibold text-foreground">
-                {capabilityText.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                {capabilityText.description}
-              </p>
-            </div>
+              title={capabilityText.title}
+              description={capabilityText.description}
+              icon={capability.icon}
+            />
           );
         })}
       </div>
@@ -321,7 +515,7 @@ function PlatformEcosystemConnections({
   locale,
   service,
 }: PlatformServicePageProps) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const serviceTitle = tPlatform(`${service.slug}.title`);
 
@@ -353,32 +547,23 @@ function PlatformEcosystemConnections({
       description={t("ecosystemConnections.description")}
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
-            >
-              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-                {t("common.explore")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </span>
-            </Link>
-          );
-        })}
+        {items.map((item) => (
+          <PlatformLinkedCard
+            key={item.title}
+            href={item.href}
+            title={item.title}
+            description={item.description}
+            label={t("common.explore")}
+            icon={item.icon}
+          />
+        ))}
       </div>
     </PlatformSection>
   );
 }
 
 function PlatformUseCases({ service }: { service: PlatformService }) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const useCases = tPlatform.raw(`${service.slug}.useCases`) as PlatformTextCard[];
 
@@ -390,20 +575,13 @@ function PlatformUseCases({ service }: { service: PlatformService }) {
     >
       <div className="grid gap-5 md:grid-cols-3">
         {useCases.map((useCase, index) => (
-          <div
-            key={useCase.title}
-            className="rounded-lg border border-border bg-card p-6"
-          >
-            <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-sm font-semibold text-primary">
+          <PlatformCard key={useCase.title}>
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl border border-border/70 bg-background text-sm font-semibold text-foreground">
               {index + 1}
             </div>
-            <h3 className="text-base font-semibold text-foreground">
-              {useCase.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">
-              {useCase.description}
-            </p>
-          </div>
+            <h3 className="text-lg font-semibold text-foreground">{useCase.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{useCase.description}</p>
+          </PlatformCard>
         ))}
       </div>
     </PlatformSection>
@@ -414,7 +592,7 @@ function PlatformRecommendedNextStep({
   locale,
   service,
 }: PlatformServicePageProps) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const serviceTitle = tPlatform(`${service.slug}.title`);
 
@@ -444,22 +622,17 @@ function PlatformRecommendedNextStep({
       eyebrow={t("recommendedNextStep.eyebrow")}
       title={t("recommendedNextStep.title")}
       description={t("recommendedNextStep.description")}
-      muted
+      tone="muted"
     >
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((item) => (
-          <Link
+          <PlatformLinkedCard
             key={item.title}
             href={item.href}
-            className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
-          >
-            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-              {item.label}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </Link>
+            title={item.title}
+            description={item.description}
+            label={item.label}
+          />
         ))}
       </div>
     </PlatformSection>
@@ -467,7 +640,7 @@ function PlatformRecommendedNextStep({
 }
 
 function PlatformIntegration({ service }: { service: PlatformService }) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const integrations = tPlatform.raw(`${service.slug}.integrations`) as string[];
 
@@ -476,35 +649,28 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
       eyebrow={t("integration.eyebrow")}
       title={t("integration.title")}
       description={t("integration.description")}
-      muted
+      tone="muted"
     >
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-lg border border-border bg-card p-6">
+        <PlatformCard className="rounded-[2rem]">
           <p className="text-sm font-medium text-foreground">{t("integration.mapTitle")}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="rounded-md border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+            <span className="rounded-full border border-primary/15 bg-primary/8 px-4 py-2 text-sm font-medium text-primary">
               {tPlatform(`${service.slug}.title`)}
             </span>
             <span className="h-px w-8 bg-border" />
-            <span className="rounded-md border border-border bg-background px-4 py-2 text-sm text-muted-foreground">
+            <span className="rounded-full border border-border/70 bg-background px-4 py-2 text-sm text-muted-foreground">
               {t("brand")}
             </span>
           </div>
-          <p className="mt-6 text-sm leading-7 text-muted-foreground">
-            {t("integration.mapDescription")}
-          </p>
-        </div>
+          <p className="mt-6 text-sm leading-7 text-muted-foreground">{t("integration.mapDescription")}</p>
+        </PlatformCard>
         <div className="grid gap-3 sm:grid-cols-2">
           {integrations.map((integration) => (
-            <div
-              key={integration}
-              className="flex items-center gap-3 rounded-lg border border-border bg-card p-4"
-            >
+            <PlatformCard key={integration} className="flex items-center gap-3 p-4">
               <CheckCircle2 className="h-4 w-4 text-primary" aria-hidden="true" />
-              <span className="text-sm font-medium text-foreground">
-                {integration}
-              </span>
-            </div>
+              <span className="text-sm font-medium text-foreground">{integration}</span>
+            </PlatformCard>
           ))}
         </div>
       </div>
@@ -513,7 +679,7 @@ function PlatformIntegration({ service }: { service: PlatformService }) {
 }
 
 function PlatformArchitecture({ service }: { service: PlatformService }) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const architectureFlow = tPlatform.raw(`${service.slug}.architectureFlow`) as string[];
   const operationalPrinciples = tPlatform.raw(`${service.slug}.operationalPrinciples`) as string[];
@@ -528,19 +694,17 @@ function PlatformArchitecture({ service }: { service: PlatformService }) {
         <div className="grid gap-3">
           {architectureFlow.map((step, index) => (
             <div key={step} className="flex items-center gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-border bg-card text-sm font-semibold text-foreground">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-background text-sm font-semibold text-foreground">
                 {index + 1}
               </div>
-              <div className="min-h-11 flex-1 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground">
+              <div className="min-h-11 flex-1 rounded-[1.25rem] border border-border/70 bg-card/90 px-4 py-3 text-sm font-medium text-foreground">
                 {step}
               </div>
             </div>
           ))}
         </div>
-        <div className="rounded-lg border border-border bg-muted/50 p-6">
-          <h3 className="text-base font-semibold text-foreground">
-            {t("architecture.operationalPrinciples")}
-          </h3>
+        <PlatformCard className="rounded-[2rem] bg-card/85">
+          <h3 className="text-base font-semibold text-foreground">{t("architecture.operationalPrinciples")}</h3>
           <ul className="mt-5 space-y-4">
             {operationalPrinciples.map((principle) => (
               <li key={principle} className="flex gap-3 text-sm leading-6 text-muted-foreground">
@@ -549,7 +713,7 @@ function PlatformArchitecture({ service }: { service: PlatformService }) {
               </li>
             ))}
           </ul>
-        </div>
+        </PlatformCard>
       </div>
     </PlatformSection>
   );
@@ -559,7 +723,7 @@ function PlatformAvailability({
   locale,
   service,
 }: PlatformServicePageProps) {
-  const t = useTranslations("Public.home.platformPage");
+  const t = useTranslations("Public.home.page.platformPage");
   const tStatus = useTranslations("Public.home.page.status");
   const tPlatform = useTranslations("Public.home.page.platform.services");
   const ctaLabels = tPlatform.raw(`${service.slug}.ctas`) as [string, string];
@@ -583,42 +747,32 @@ function PlatformAvailability({
       eyebrow={t("availability.eyebrow")}
       title={t("availability.title")}
       description={isFrenchLocale ? t("availability.description") : tPlatform(`${service.slug}.nextStep`)}
-      muted
+      tone="muted"
     >
       <div className="grid gap-6 lg:grid-cols-[1fr_0.7fr]">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {service.availability.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-lg border border-border bg-card p-5"
-            >
+            <PlatformCard key={item.label} className="p-5">
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
                 {t(`availability.labels.${item.label}`)}
               </p>
               <p className="mt-3 text-sm font-semibold text-foreground">
                 {toFrenchAvailabilityValue(item.value)}
               </p>
-            </div>
+            </PlatformCard>
           ))}
         </div>
-        <div className="rounded-lg border border-border bg-card p-6">
+        <PlatformCard className="rounded-[2rem] bg-card/85">
           <h3 className="text-lg font-semibold text-foreground">
             {t("availability.continueWith", { service: serviceTitle })}
           </h3>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            {t("availability.description")}
-          </p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">{t("availability.description")}</p>
           <div className="mt-6 flex flex-col gap-3">
             {service.ctas.map((cta, index) => (
-              <PlatformCTA
-                key={cta.href}
-                cta={cta}
-                label={ctaLabels[index]}
-                locale={locale}
-              />
+              <PlatformCTA key={cta.href} cta={cta} label={ctaLabels[index]} locale={locale} />
             ))}
           </div>
-        </div>
+        </PlatformCard>
       </div>
     </PlatformSection>
   );
@@ -626,9 +780,9 @@ function PlatformAvailability({
 
 export function PlatformServicePage({ locale, service }: PlatformServicePageProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header locale={locale as Locale} />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         <PlatformHero locale={locale} service={service} />
         <PlatformPurpose service={service} />
         <PlatformWhyNow service={service} />

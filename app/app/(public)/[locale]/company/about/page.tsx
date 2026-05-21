@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import {
   Building2,
+  GitBranch,
   Layers3,
-  LockKeyhole,
   Network,
-  Recycle,
-  Server,
   ShieldCheck,
-  Target,
+  Sparkles,
 } from "lucide-react";
 import {
   CompanyCard,
@@ -16,15 +14,22 @@ import {
   CompanyHero,
   CompanyPageShell,
   CompanySection,
+  CompanyStat,
 } from "@/components/public/company/company-page";
+
+interface MetadataParams {
+  params: Promise<{ locale: string }>;
+}
 
 interface CompanyCardContent {
   title: string;
   description: string;
 }
 
-interface MetadataParams {
-  params: Promise<{ locale: string }>;
+interface CompanyStatContent {
+  label: string;
+  value: string;
+  description: string;
 }
 
 export async function generateMetadata({ params }: MetadataParams): Promise<Metadata> {
@@ -42,10 +47,12 @@ export default async function AboutPage({ params }: MetadataParams) {
   const t = await getTranslations({ locale, namespace: "CompanyPages.about" });
   const common = await getTranslations({ locale, namespace: "CompanyPages.common" });
 
-  const modelItems = t.raw("model.items") as CompanyCardContent[];
-  const principleItems = t.raw("principles.items") as CompanyCardContent[];
-  const nowItems = t.raw("now.items") as CompanyCardContent[];
-  const principleIcons = [ShieldCheck, LockKeyhole, Server, Network, Recycle];
+  const identityItems = t.raw("identity.items") as CompanyCardContent[];
+  const ecosystemItems = t.raw("ecosystem.items") as CompanyCardContent[];
+  const distinctionItems = t.raw("distinction.items") as CompanyCardContent[];
+  const statItems = t.raw("longTerm.stats") as CompanyStatContent[];
+  const identityIcons = [Building2, Layers3, GitBranch];
+  const ecosystemIcons = [GitBranch, ShieldCheck, Network, Sparkles];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -53,55 +60,54 @@ export default async function AboutPage({ params }: MetadataParams) {
         eyebrow={common("eyebrow")}
         title={t("hero.title")}
         description={t("hero.description")}
+        signals={t.raw("hero.signals") as string[]}
         primaryCta={common("contact")}
         primaryHref={`/${locale}/company/contact`}
-        secondaryCta={common("careers")}
-        secondaryHref={`/${locale}/company/careers`}
+        secondaryCta={common("story")}
+        secondaryHref={`/${locale}/company/story`}
       />
 
       <CompanySection
-        eyebrow={t("mission.eyebrow")}
-        title={t("mission.title")}
-        description={t("mission.description")}
+        eyebrow={t("identity.eyebrow")}
+        title={t("identity.title")}
+        description={t("identity.description")}
       >
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <CompanyCard
-            icon={Target}
-            title={t("mission.cardTitle")}
-            description={t("mission.cardDescription")}
-            className="bg-muted/30"
-          />
-          <div className="rounded-lg border border-border/60 bg-card p-6 sm:p-8">
-            <p className="text-2xl font-semibold leading-snug tracking-tight text-foreground sm:text-3xl">
-              {t("mission.statement")}
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="grid gap-5 md:grid-cols-3">
+            {identityItems.map((item, index) => (
+              <CompanyCard
+                key={item.title}
+                icon={identityIcons[index]}
+                title={item.title}
+                description={item.description}
+              />
+            ))}
+          </div>
+          <div className="rounded-[1.75rem] border border-border/70 bg-card/90 p-8 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              {t("identity.statementLabel")}
+            </p>
+            <p className="mt-5 text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl">
+              {t("identity.statement")}
+            </p>
+            <p className="mt-5 text-base leading-7 text-muted-foreground">
+              {t("identity.body")}
             </p>
           </div>
         </div>
       </CompanySection>
 
       <CompanySection
-        eyebrow={t("vision.eyebrow")}
-        title={t("vision.title")}
-        description={t("vision.description")}
-        muted
+        eyebrow={t("ecosystem.eyebrow")}
+        title={t("ecosystem.title")}
+        description={t("ecosystem.description")}
+        tone="muted"
       >
-        <div className="rounded-lg border border-border/60 bg-background p-6 sm:p-8 lg:p-10">
-          <p className="max-w-4xl text-lg leading-8 text-muted-foreground">
-            {t("vision.body")}
-          </p>
-        </div>
-      </CompanySection>
-
-      <CompanySection
-        eyebrow={t("model.eyebrow")}
-        title={t("model.title")}
-        description={t("model.description")}
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {modelItems.map((item, index) => (
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {ecosystemItems.map((item, index) => (
             <CompanyCard
               key={item.title}
-              icon={index < 2 ? Layers3 : index === 2 ? Server : Building2}
+              icon={ecosystemIcons[index]}
               title={item.title}
               description={item.description}
             />
@@ -110,31 +116,31 @@ export default async function AboutPage({ params }: MetadataParams) {
       </CompanySection>
 
       <CompanySection
-        eyebrow={t("principles.eyebrow")}
-        title={t("principles.title")}
-        description={t("principles.description")}
-        muted
+        eyebrow={t("distinction.eyebrow")}
+        title={t("distinction.title")}
+        description={t("distinction.description")}
       >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {principleItems.map((item, index) => (
-            <CompanyCard
-              key={item.title}
-              icon={principleIcons[index]}
-              title={item.title}
-              description={item.description}
-            />
+        <div className="grid gap-5 lg:grid-cols-2">
+          {distinctionItems.map((item) => (
+            <CompanyCard key={item.title} title={item.title} description={item.description} />
           ))}
         </div>
       </CompanySection>
 
       <CompanySection
-        eyebrow={t("now.eyebrow")}
-        title={t("now.title")}
-        description={t("now.description")}
+        eyebrow={t("longTerm.eyebrow")}
+        title={t("longTerm.title")}
+        description={t("longTerm.description")}
+        tone="muted"
       >
         <div className="grid gap-5 md:grid-cols-3">
-          {nowItems.map((item) => (
-            <CompanyCard key={item.title} title={item.title} description={item.description} />
+          {statItems.map((item) => (
+            <CompanyStat
+              key={item.label}
+              label={item.label}
+              value={item.value}
+              description={item.description}
+            />
           ))}
         </div>
       </CompanySection>
@@ -145,8 +151,7 @@ export default async function AboutPage({ params }: MetadataParams) {
         description={t("cta.description")}
         actions={[
           { label: common("contact"), href: `/${locale}/company/contact` },
-          { label: common("careers"), href: `/${locale}/company/careers`, variant: "outline" },
-          { label: common("platform"), href: `/${locale}/platform/edge`, variant: "outline" },
+          { label: common("platform"), href: `/${locale}/platform`, variant: "outline" },
         ]}
       />
     </CompanyPageShell>

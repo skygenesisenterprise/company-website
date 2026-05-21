@@ -1,0 +1,8 @@
+{
+  "Common": {
+    "backToTop": {
+      "label": "Back to top",
+      "ariaLabel": "Back to top of the page"
+    }
+  }
+}

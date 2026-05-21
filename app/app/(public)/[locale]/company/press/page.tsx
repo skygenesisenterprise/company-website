@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Building2, FileText, Mail, Newspaper, PackageOpen } from "lucide-react";
+import { Building2, FileText, Mail, Newspaper, PackageOpen, ScrollText } from "lucide-react";
 import {
   CompanyCard,
   CompanyCTA,
@@ -9,13 +9,13 @@ import {
   CompanySection,
 } from "@/components/public/company/company-page";
 
+interface MetadataParams {
+  params: Promise<{ locale: string }>;
+}
+
 interface CompanyCardContent {
   title: string;
   description: string;
-}
-
-interface MetadataParams {
-  params: Promise<{ locale: string }>;
 }
 
 export async function generateMetadata({ params }: MetadataParams): Promise<Metadata> {
@@ -33,8 +33,9 @@ export default async function PressPage({ params }: MetadataParams) {
   const t = await getTranslations({ locale, namespace: "CompanyPages.press" });
   const common = await getTranslations({ locale, namespace: "CompanyPages.common" });
 
-  const facts = t.raw("facts.items") as CompanyCardContent[];
-  const kit = t.raw("kit.items") as CompanyCardContent[];
+  const factItems = t.raw("facts.items") as CompanyCardContent[];
+  const kitItems = t.raw("kit.items") as CompanyCardContent[];
+  const placeholderItems = t.raw("placeholders.items") as CompanyCardContent[];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -42,6 +43,7 @@ export default async function PressPage({ params }: MetadataParams) {
         eyebrow={common("eyebrow")}
         title={t("hero.title")}
         description={t("hero.description")}
+        signals={t.raw("hero.signals") as string[]}
         primaryCta={t("hero.cta")}
         primaryHref="mailto:press@skygenesisenterprise.com"
         secondaryCta={common("contact")}
@@ -53,23 +55,19 @@ export default async function PressPage({ params }: MetadataParams) {
         title={t("boilerplate.title")}
         description={t("boilerplate.description")}
       >
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-lg border border-border/60 bg-card p-6 sm:p-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              {t("boilerplate.shortLabel")}
-            </p>
-            <p className="text-base leading-7 text-muted-foreground">
-              {t("boilerplate.short")}
-            </p>
-          </div>
-          <div className="rounded-lg border border-border/60 bg-card p-6 sm:p-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              {t("boilerplate.longLabel")}
-            </p>
-            <p className="text-base leading-7 text-muted-foreground">
-              {t("boilerplate.long")}
-            </p>
-          </div>
+        <div className="grid gap-5 lg:grid-cols-2">
+          <CompanyCard
+            icon={ScrollText}
+            meta={t("boilerplate.shortLabel")}
+            title={t("boilerplate.shortTitle")}
+            description={t("boilerplate.short")}
+          />
+          <CompanyCard
+            icon={FileText}
+            meta={t("boilerplate.longLabel")}
+            title={t("boilerplate.longTitle")}
+            description={t("boilerplate.long")}
+          />
         </div>
       </CompanySection>
 
@@ -77,51 +75,55 @@ export default async function PressPage({ params }: MetadataParams) {
         eyebrow={t("facts.eyebrow")}
         title={t("facts.title")}
         description={t("facts.description")}
-        muted
+        tone="muted"
       >
         <div className="grid gap-5 md:grid-cols-3">
-          {facts.map((fact, index) => (
+          {factItems.map((item, index) => (
             <CompanyCard
-              key={fact.title}
-              icon={index === 0 ? Building2 : index === 1 ? FileText : Newspaper}
-              title={fact.title}
-              description={fact.description}
+              key={item.title}
+              icon={index === 0 ? Building2 : index === 1 ? Newspaper : FileText}
+              title={item.title}
+              description={item.description}
             />
           ))}
         </div>
       </CompanySection>
 
-      <CompanySection
-        eyebrow={t("kit.eyebrow")}
-        title={t("kit.title")}
-        description={t("kit.description")}
-      >
+      <CompanySection eyebrow={t("kit.eyebrow")} title={t("kit.title")} description={t("kit.description")}>
         <div className="grid gap-5 md:grid-cols-3">
-          {kit.map((asset) => (
+          {kitItems.map((item) => (
             <CompanyCard
-              key={asset.title}
+              key={item.title}
               icon={PackageOpen}
-              title={asset.title}
-              description={asset.description}
               meta={t("kit.status")}
+              title={item.title}
+              description={item.description}
             />
           ))}
         </div>
       </CompanySection>
 
       <CompanySection
-        eyebrow={t("contact.eyebrow")}
-        title={t("contact.title")}
-        description={t("contact.description")}
-        muted
+        eyebrow={t("placeholders.eyebrow")}
+        title={t("placeholders.title")}
+        description={t("placeholders.description")}
+        tone="muted"
       >
+        <div className="grid gap-5 md:grid-cols-3">
+          {placeholderItems.map((item) => (
+            <CompanyCard key={item.title} title={item.title} description={item.description} />
+          ))}
+        </div>
+      </CompanySection>
+
+      <CompanySection eyebrow={t("contact.eyebrow")} title={t("contact.title")} description={t("contact.description")}>
         <CompanyCard
           icon={Mail}
           title={t("contact.cardTitle")}
           description={t("contact.cardDescription")}
           href="mailto:press@skygenesisenterprise.com"
           cta={t("contact.cta")}
-          className="max-w-2xl bg-background"
+          className="max-w-2xl"
         />
       </CompanySection>
 
@@ -131,7 +133,7 @@ export default async function PressPage({ params }: MetadataParams) {
         description={t("cta.description")}
         actions={[
           { label: common("contact"), href: `/${locale}/company/contact` },
-          { label: common("about"), href: `/${locale}/company/about`, variant: "outline" },
+          { label: common("story"), href: `/${locale}/company/story`, variant: "outline" },
         ]}
       />
     </CompanyPageShell>

@@ -24,7 +24,7 @@ export async function HeaderInfo({ locale: initialLocale }: HeaderInfoProps) {
   );
 
   return (
-    <div className="relative z-[60] border-b border-border/50 bg-background/55 backdrop-blur-xl">
+    <div className="relative z-[60] border-b border-border/50 bg-transparent">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-11 items-center justify-end gap-4 sm:gap-6">
           {/* Search */}
