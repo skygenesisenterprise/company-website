@@ -256,7 +256,7 @@ function getDevelopersMenuData(): MegaMenuData {
           {
             titleKey: "documentation",
             descKey: "documentationDesc",
-            href: "/developers/docs",
+            href: "/developers",
             icon: <BookOpen className="h-5 w-5" />,
           },
           {
@@ -300,12 +300,6 @@ function getDevelopersMenuData(): MegaMenuData {
             href: "/developers/extensions",
             icon: <Settings className="h-5 w-5" />,
           },
-          {
-            titleKey: "community",
-            descKey: "communityDesc",
-            href: "/community",
-            icon: <Users className="h-5 w-5" />,
-          },
         ],
       },
     ],
@@ -313,7 +307,7 @@ function getDevelopersMenuData(): MegaMenuData {
       badgeKey: "developersFeaturedBadge",
       titleKey: "developersFeaturedTitle",
       descKey: "developersFeaturedDesc",
-      href: "/developers/docs",
+      href: "/developers",
     },
   };
 }

@@ -396,8 +396,10 @@ function NavItem({ item, pathname }: { item: NavItem; pathname: string }) {
     return item.items.some((subItem) => isRouteMatch(pathname, subItem.href));
   }, [item.items, pathname]);
 
-  const isItemActive = isActive(pathname, item.href, item.items?.map((subItem) => subItem.href));
-  const isGroupActive = isRouteMatch(pathname, item.href);
+  const isGroupActive = pathname === item.href;
+  const isItemActive = item.items
+    ? isGroupActive || hasActiveChild
+    : isActive(pathname, item.href);
   const shouldBeOpen = isOpen || hasActiveChild || isGroupActive;
 
   if (item.items && item.items.length > 0) {

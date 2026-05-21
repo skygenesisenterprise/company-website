@@ -20,6 +20,22 @@ interface RequestOptions extends RequestInit {
   params?: Record<string, string>;
 }
 
+function getResponseMessage(data: unknown, fallback: string) {
+  if (data && typeof data === "object") {
+    const payload = data as { error?: unknown; message?: unknown };
+
+    if (typeof payload.error === "string") {
+      return payload.error;
+    }
+
+    if (typeof payload.message === "string") {
+      return payload.message;
+    }
+  }
+
+  return fallback;
+}
+
 class ApiClient {
   private baseURL: string;
 
@@ -48,13 +64,24 @@ class ApiClient {
     };
 
     const response = await fetch(url, config);
-    const data = await response.json();
+    const responseText = await response.text();
+    let data: unknown = null;
 
-    if (!response.ok) {
-      throw new Error(data.error || `Request failed with status ${response.status}`);
+    if (responseText) {
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        data = { error: responseText };
+      }
     }
 
-    return data;
+    if (!response.ok) {
+      throw new Error(
+        getResponseMessage(data, `Request failed with status ${response.status}`)
+      );
+    }
+
+    return data as T;
   }
 
   async get<T>(endpoint: string, options?: RequestOptions): Promise<T> {

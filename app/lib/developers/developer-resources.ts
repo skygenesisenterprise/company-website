@@ -190,6 +190,64 @@ export interface DeveloperPageMessages {
     explore: string;
     continue: string;
     bottomEyebrow: string;
+    supplemental: {
+      profileItemDescription: string;
+      measureDescription: string;
+      expandDescriptionFallback: string;
+      statusNarratives: Record<DeveloperPageStatus | "default", string>;
+      linkNarratives: {
+        quickstarts: string;
+        api: string;
+        postman: string;
+        sdks: string;
+        cli: string;
+        extensions: string;
+        contact: string;
+        products: string;
+        platform: string;
+        default: string;
+      };
+      sections: {
+        framing: {
+          eyebrow: string;
+          title: string;
+          description: string;
+        };
+        sequence: {
+          eyebrow: string;
+          title: string;
+          description: string;
+        };
+        productReading: {
+          eyebrow: string;
+          title: string;
+          description: string;
+          currentScopeTitle: string;
+          visibleMaturityTitle: string;
+          primarySignalTitle: string;
+        };
+        ecosystem: {
+          eyebrow: string;
+          title: string;
+          description: string;
+          developerPortalTitle: string;
+          developerPortalDescription: string;
+          platformTitle: string;
+          platformDescription: string;
+          productsTitle: string;
+          productsDescription: string;
+        };
+        adoption: {
+          eyebrow: string;
+          title: string;
+          description: string;
+          startSmallTitle: string;
+          startSmallDescription: string;
+          measureTitle: string;
+          expandTitle: string;
+        };
+      };
+    };
   };
   home: DeveloperRawPageContent;
   resources: Record<DeveloperResourceSlug, DeveloperRawPageContent & { slug: DeveloperResourceSlug }>;

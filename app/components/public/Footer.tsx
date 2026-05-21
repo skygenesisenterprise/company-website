@@ -188,7 +188,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   ];
 
   const developerLinks: FooterLink[] = [
-    { name: t("documentation"), href: "https://docs.skygenesisenterprise.com", external: true },
+    { name: t("documentation"), href: `${prefix}/developers` },
     { name: t("apiReference"), href: `${prefix}/developers/api` },
     { name: t("sdks"), href: `${prefix}/developers/sdks` },
     { name: t("quickstarts"), href: `${prefix}/developers/quickstarts` },
@@ -198,16 +198,16 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   const securityLinks: FooterLink[] = [
     { name: t("securityApproach"), href: `${prefix}/security` },
     { name: t("securityPrivacy"), href: `${prefix}/security/privacy` },
-    { name: t("trustTransparency"), href: `${prefix}/trust` },
-    { name: t("testimonials"), href: `${prefix}/customers` },
+    { name: t("trustTransparency"), href: `${prefix}/security/trust` },
+    { name: t("customerSecurity"), href: `${prefix}/security/customers` },
   ];
 
   const resourcesLinks: FooterLink[] = [
     { name: t("blog"), href: `${prefix}/blog` },
-    { name: t("caseStudies"), href: `${prefix}/case-studies` },
+    { name: t("caseStudies"), href: `${prefix}/resources/case-studies` },
     { name: t("whitepapers"), href: `${prefix}/resources/whitepapers` },
     { name: t("webinars"), href: `${prefix}/resources/webinars` },
-    { name: t("community"), href: "https://discord.gg/skygenesisenterprise", external: true },
+    { name: t("community"), href: "https://forum.skygenesisenterprise.com", external: true },
   ];
 
   const companyLinks: FooterLink[] = [

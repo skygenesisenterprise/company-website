@@ -3,12 +3,12 @@ import {
   generateResourceMetadata,
   renderResourcePage,
   type ResourcesPageParams,
-} from "../../resources/page-helpers";
+} from "../page-helpers";
 
 export async function generateMetadata({ params }: ResourcesPageParams): Promise<Metadata> {
   return generateResourceMetadata(params, "webinars");
 }
 
-export default async function LegacyWebinarsPage({ params }: ResourcesPageParams) {
+export default async function WebinarsPage({ params }: ResourcesPageParams) {
   return renderResourcePage(params, "webinars");
 }

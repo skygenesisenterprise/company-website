@@ -30,6 +30,65 @@ interface DeveloperSectionProps {
   children: React.ReactNode;
 }
 
+interface DeveloperSupplementalTranslations {
+  profileItemDescription: string;
+  measureDescription: string;
+  expandDescriptionFallback: string;
+  statusNarratives: Record<DeveloperPageStatus | "default", string>;
+  linkNarratives: {
+    quickstarts: string;
+    api: string;
+    postman: string;
+    sdks: string;
+    cli: string;
+    extensions: string;
+    contact: string;
+    products: string;
+    platform: string;
+    default: string;
+  };
+  sections: {
+    framing: {
+      eyebrow: string;
+      title: string;
+      description: string;
+    };
+    sequence: {
+      eyebrow: string;
+      title: string;
+      description: string;
+    };
+    productReading: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      currentScopeTitle: string;
+      visibleMaturityTitle: string;
+      primarySignalTitle: string;
+    };
+    ecosystem: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      developerPortalTitle: string;
+      developerPortalDescription: string;
+      platformTitle: string;
+      platformDescription: string;
+      productsTitle: string;
+      productsDescription: string;
+    };
+    adoption: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      startSmallTitle: string;
+      startSmallDescription: string;
+      measureTitle: string;
+      expandTitle: string;
+    };
+  };
+}
+
 function localizeHref(locale: string, href: string) {
   if (href.startsWith("http") || href.startsWith("mailto:")) {
     return href;
@@ -122,7 +181,7 @@ function DeveloperCTA({
 }
 
 function DeveloperHero({ locale, page }: DeveloperResourcePageProps) {
-  const t = useTranslations("Public.home.developerPage.common");
+  const t = useTranslations("Public.home.page.developerPage.common");
 
   return (
     <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
@@ -190,7 +249,7 @@ function cardGridClass(columns: 2 | 3 = 3) {
 
 function CardContent({ card, number }: { card: DeveloperCard; number?: number }) {
   const Icon = card.icon;
-  const t = useTranslations("Public.home.developerPage.common");
+  const t = useTranslations("Public.home.page.developerPage.common");
 
   return (
     <>
@@ -371,7 +430,7 @@ function DeveloperCodeSectionView({
 }
 
 function DeveloperBottomSection({ locale, page }: DeveloperResourcePageProps) {
-  const t = useTranslations("Public.home.developerPage.common");
+  const t = useTranslations("Public.home.page.developerPage.common");
 
   if (!page.bottomTitle || !page.bottomLinks?.length) {
     return null;
@@ -406,6 +465,177 @@ function DeveloperBottomSection({ locale, page }: DeveloperResourcePageProps) {
   );
 }
 
+function isDeveloperResourceDetailPage(
+  page: DeveloperPageContent
+): page is DeveloperPageContent & { slug: string } {
+  return "slug" in page;
+}
+
+function getTargetSectionCount(page: DeveloperPageContent) {
+  return isDeveloperResourceDetailPage(page) ? 9 : 5;
+}
+
+function getStatusNarrative(
+  translations: DeveloperSupplementalTranslations,
+  status: DeveloperPageStatus
+) {
+  return translations.statusNarratives[status] ?? translations.statusNarratives.default;
+}
+
+function getLinkNarrative(translations: DeveloperSupplementalTranslations, href: string) {
+  if (href.includes("/quickstarts")) {
+    return translations.linkNarratives.quickstarts;
+  }
+
+  if (href.includes("/api")) {
+    return translations.linkNarratives.api;
+  }
+
+  if (href.includes("/postman")) {
+    return translations.linkNarratives.postman;
+  }
+
+  if (href.includes("/sdks")) {
+    return translations.linkNarratives.sdks;
+  }
+
+  if (href.includes("/cli")) {
+    return translations.linkNarratives.cli;
+  }
+
+  if (href.includes("/extensions")) {
+    return translations.linkNarratives.extensions;
+  }
+
+  if (href.includes("/company/contact")) {
+    return translations.linkNarratives.contact;
+  }
+
+  if (href.includes("/products")) {
+    return translations.linkNarratives.products;
+  }
+
+  if (href.includes("/platform")) {
+    return translations.linkNarratives.platform;
+  }
+
+  return translations.linkNarratives.default;
+}
+
+function getSupplementalSections(
+  page: DeveloperPageContent,
+  translations: DeveloperSupplementalTranslations
+): DeveloperSection[] {
+  const navigationItems = [...page.ctas, ...(page.bottomLinks ?? [])].filter(
+    (item, index, items) => items.findIndex((candidate) => candidate.href === item.href) === index
+  );
+  const statusNarrative = getStatusNarrative(translations, page.status);
+  const profileSummary = page.profileItems
+    .map((item) => `${item.label}: ${item.value}`)
+    .join(" • ");
+
+  const sections: DeveloperSection[] = [
+    {
+      kind: "definitions",
+      eyebrow: translations.sections.framing.eyebrow,
+      title: translations.sections.framing.title,
+      description: translations.sections.framing.description,
+      columns: 2,
+      items: page.profileItems.map((item) => ({
+        ...item,
+        description: translations.profileItemDescription.replace("{title}", page.title.toLowerCase()),
+      })),
+    },
+    {
+      kind: "numbered",
+      eyebrow: translations.sections.sequence.eyebrow,
+      title: translations.sections.sequence.title,
+      description: translations.sections.sequence.description,
+      muted: true,
+      columns: 3,
+      items: navigationItems.slice(0, 5).map((item) => ({
+        title: item.label,
+        description: getLinkNarrative(translations, item.href),
+        href: item.href,
+      })),
+    },
+    {
+      kind: "cards",
+      eyebrow: translations.sections.productReading.eyebrow,
+      title: translations.sections.productReading.title,
+      description: translations.sections.productReading.description,
+      columns: 3,
+      cards: [
+        {
+          title: translations.sections.productReading.currentScopeTitle,
+          description: page.body ?? page.description,
+        },
+        {
+          title: translations.sections.productReading.visibleMaturityTitle,
+          description: statusNarrative,
+          status: page.status,
+        },
+        {
+          title: translations.sections.productReading.primarySignalTitle,
+          description: profileSummary,
+        },
+      ],
+    },
+    {
+      kind: "cards",
+      eyebrow: translations.sections.ecosystem.eyebrow,
+      title: translations.sections.ecosystem.title,
+      description: translations.sections.ecosystem.description,
+      muted: true,
+      columns: 3,
+      cards: [
+        {
+          title: translations.sections.ecosystem.developerPortalTitle,
+          description: translations.sections.ecosystem.developerPortalDescription,
+          href: "/developers",
+        },
+        {
+          title: translations.sections.ecosystem.platformTitle,
+          description: translations.sections.ecosystem.platformDescription,
+          href: "/platform",
+        },
+        {
+          title: translations.sections.ecosystem.productsTitle,
+          description: translations.sections.ecosystem.productsDescription,
+          href: "/products",
+        },
+      ],
+    },
+    {
+      kind: "cards",
+      eyebrow: translations.sections.adoption.eyebrow,
+      title: translations.sections.adoption.title,
+      description: translations.sections.adoption.description,
+      columns: 3,
+      cards: [
+        {
+          title: translations.sections.adoption.startSmallTitle,
+          description: translations.sections.adoption.startSmallDescription,
+        },
+        {
+          title: translations.sections.adoption.measureTitle,
+          description: translations.measureDescription.replace("{status}", page.status.toLowerCase()),
+          status: page.status,
+        },
+        {
+          title: translations.sections.adoption.expandTitle,
+          description: page.bottomDescription ?? translations.expandDescriptionFallback,
+        },
+      ],
+    },
+  ];
+
+  const currentSectionCount = page.sections.length + (page.bottomLinks?.length ? 1 : 0);
+  const missingSections = Math.max(0, getTargetSectionCount(page) - currentSectionCount);
+
+  return sections.slice(0, missingSections);
+}
+
 function renderSection(locale: string, section: DeveloperSection) {
   switch (section.kind) {
     case "cards":
@@ -422,12 +652,17 @@ function renderSection(locale: string, section: DeveloperSection) {
 }
 
 export function DeveloperResourcePage({ locale, page }: DeveloperResourcePageProps) {
+  const t = useTranslations("Public.home.page.developerPage.common");
+  const supplementalTranslations = t.raw("supplemental") as DeveloperSupplementalTranslations;
+  const supplementalSections = getSupplementalSections(page, supplementalTranslations);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header locale={locale as Locale} />
       <main className="flex-1">
         <DeveloperHero locale={locale} page={page} />
         {page.sections.map((section) => renderSection(locale, section))}
+        {supplementalSections.map((section) => renderSection(locale, section))}
         <DeveloperBottomSection locale={locale} page={page} />
       </main>
       <Footer locale={locale as Locale} />

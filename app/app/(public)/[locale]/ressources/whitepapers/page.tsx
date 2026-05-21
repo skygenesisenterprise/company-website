@@ -6,9 +6,9 @@ import {
 } from "../../resources/page-helpers";
 
 export async function generateMetadata({ params }: ResourcesPageParams): Promise<Metadata> {
-  return generateResourceMetadata(params, "caseStudies");
+  return generateResourceMetadata(params, "whitepapers");
 }
 
-export default async function LegacyCaseStudiesPage({ params }: ResourcesPageParams) {
-  return renderResourcePage(params, "caseStudies");
+export default async function LegacyWhitepapersPage({ params }: ResourcesPageParams) {
+  return renderResourcePage(params, "whitepapers");
 }

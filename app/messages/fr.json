@@ -122,6 +122,7 @@
       "securityApproach": "Notre approche de la sécurité",
       "securityPrivacy": "Sécurité et confidentialité",
       "trustTransparency": "Confiance et transparence",
+      "customerSecurity": "Sécurité client",
       "testimonials": "Témoignages",
       "other": "Autre",
       "news": "Actualités",
@@ -4433,8 +4434,7 @@
               "label": "Voir les carrières"
             }
           }
-        }
-      },
+        },
       "solutionPage": {
         "brand": "Solutions SGE",
         "metadata": {
@@ -4947,7 +4947,7 @@
       "valueUnifiedDesc": "Une expérience cohérente entre workplace, data, infrastructure et outils développeurs, plutôt qu'une juxtaposition de produits.",
       "valueEuropeanTitle": "Excellence Européenne",
       "valueEuropeanDesc": "Une trajectoire alignée avec la confidentialité, l'interopérabilité, la sobriété technique et la durabilité long terme.",
-      "platform": {
+      "platformLegacy": {
         "bankTitle": "Services Bancaires Sécurisés",
         "bankDesc": "Services bancaires sécurisés",
         "bank": "Banque",
@@ -5151,7 +5151,74 @@
           "profile": "Profil",
           "explore": "Explorer",
           "continue": "Continuer",
-          "bottomEyebrow": "CTA"
+          "bottomEyebrow": "CTA",
+          "supplemental": {
+            "profileItemDescription": "Repère de cadrage pour {title}.",
+            "measureDescription": "Le statut {status} doit être pris comme une indication de rythme d’adoption et non comme un simple badge décoratif.",
+            "expandDescriptionFallback": "Élargir le périmètre une fois le premier flux validé et l’équipe alignée sur les conventions d’usage.",
+            "statusNarratives": {
+              "Conceptuel": "Le sujet est cadré comme direction produit, mais n’est pas encore présenté comme un composant prêt à intégrer.",
+              "En préparation": "Les fondations sont en cours de préparation pour exposer une première expérience publique plus stable.",
+              "En développement": "La page documente une brique en construction active, avec un périmètre qui se précise itération après itération.",
+              "Prototype": "Le périmètre est assez tangible pour expérimenter, mais reste susceptible d’évoluer rapidement.",
+              "Alpha": "Les premiers usages guidés deviennent réalistes, avec encore un besoin de validation terrain.",
+              "Beta": "L’expérience est déjà structurée pour des tests plus sérieux avant stabilisation complète.",
+              "Stable": "La brique est présentée comme un socle plus mature pour des usages récurrents.",
+              "default": "Le niveau de maturité aide à calibrer le bon rythme d’adoption."
+            },
+            "linkNarratives": {
+              "quickstarts": "Valider le scénario d’entrée le plus court avant d’élargir le périmètre technique.",
+              "api": "Comprendre les conventions d’exposition, les domaines couverts et la mécanique d’authentification.",
+              "postman": "Tester rapidement des appels concrets avec un environnement reproductible côté équipe.",
+              "sdks": "Évaluer les bibliothèques prévues pour réduire la charge d’intégration applicative.",
+              "cli": "Préparer les usages scriptés, l’automatisation locale et les workflows d’exploitation.",
+              "extensions": "Explorer comment connecter des outils tiers ou des automatisations métier autour de SGE.",
+              "contact": "Qualifier le besoin avec l’équipe SGE lorsque le cadrage fonctionnel ou technique reste ouvert.",
+              "products": "Relier la ressource développeur aux produits qui seront réellement manipulés ou automatisés.",
+              "platform": "Replacer cette ressource dans l’architecture plateforme et le modèle opératoire global.",
+              "default": "Identifier le prochain point d’entrée utile selon votre niveau de maturité et votre cas d’usage."
+            },
+            "sections": {
+              "framing": {
+                "eyebrow": "Cadre de lecture",
+                "title": "Les repères opérationnels restent lisibles avant même l’intégration.",
+                "description": "Cette synthèse reprend les éléments de cadrage les plus utiles pour estimer le périmètre, la maturité et le mode d’adoption de la ressource."
+              },
+              "sequence": {
+                "eyebrow": "Séquence recommandée",
+                "title": "Un chemin court permet d’avancer sans ouvrir trop de fronts en parallèle.",
+                "description": "Les étapes ci-dessous réordonnent les points d’entrée déjà présents sur la page pour conserver une adoption progressive."
+              },
+              "productReading": {
+                "eyebrow": "Lecture produit",
+                "title": "Le niveau de préparation doit guider la profondeur de l’engagement technique.",
+                "description": "La page peut être lue comme un cadre d’exploration, de validation ou d’intégration selon son statut et son périmètre actuel.",
+                "currentScopeTitle": "Périmètre actuel",
+                "visibleMaturityTitle": "Maturité affichée",
+                "primarySignalTitle": "Signal principal"
+              },
+              "ecosystem": {
+                "eyebrow": "Connexions utiles",
+                "title": "Chaque ressource développeur doit rester reliée au reste de l’écosystème.",
+                "description": "L’objectif n’est pas de consommer une page isolée, mais de replacer l’intégration dans une trajectoire plateforme plus large.",
+                "developerPortalTitle": "Portail développeur",
+                "developerPortalDescription": "Revenir au hub pour comparer les autres points d’entrée publics et choisir la bonne porte d’accès.",
+                "platformTitle": "Plateforme",
+                "platformDescription": "Comprendre comment cette ressource s’inscrit dans les briques de plateforme et les flux opérationnels.",
+                "productsTitle": "Produits",
+                "productsDescription": "Relier les interfaces publiques aux produits concrets qui seront exposés, configurés ou automatisés."
+              },
+              "adoption": {
+                "eyebrow": "Décision d’adoption",
+                "title": "La bonne décision consiste souvent à réduire le premier usage plutôt qu’à généraliser trop tôt.",
+                "description": "Cette logique rejoint celle des pages solutions : cadrer le contexte, valider un premier scénario, puis élargir seulement une fois les conventions clarifiées.",
+                "startSmallTitle": "Commencer petit",
+                "startSmallDescription": "Privilégier un scénario testable de bout en bout avant d’ajouter de nouveaux domaines ou intégrations annexes.",
+                "measureTitle": "Mesurer la stabilité",
+                "expandTitle": "Étendre ensuite"
+              }
+            }
+          }
         },
         "home": {
           "title": "Développer avec Sky Genesis Enterprise",
@@ -6440,6 +6507,1349 @@
               {
                 "href": "/developers/postman",
                 "label": "Tester manuellement",
+                "variant": "secondary"
+              }
+            ]
+          }
+        }
+      },
+      "securityPage": {
+          "metadata": {
+            "title": "Security Approach | Sky Genesis Enterprise",
+            "titleTemplate": "{title} | Sky Genesis Enterprise"
+          },
+          "common": {
+            "profile": "Profil",
+            "explore": "Explorer",
+            "continue": "Continuer",
+            "bottomEyebrow": "Continuer"
+          },
+          "home": {
+            "title": "Security built into every layer",
+            "eyebrow": "Security Approach",
+            "description": "Sky Genesis Enterprise conçoit ses produits, plateformes et infrastructures avec la sécurité comme fondation, pas comme une couche ajoutée après coup.",
+            "body": "Cette page présente l'approche générale de SGE : réduire les surfaces d'exposition, séparer les environnements, contrôler les accès et améliorer les pratiques au fil de la maturité réelle des produits.",
+            "status": "En amélioration continue",
+            "ctas": [
+              {
+                "href": "/security/privacy",
+                "label": "Lire l'approche privacy",
+                "variant": "primary"
+              },
+              {
+                "href": "/security/trust",
+                "label": "Voir la transparence",
+                "variant": "secondary"
+              }
+            ],
+            "profileItems": [
+              {
+                "label": "Approche",
+                "value": "Security by design"
+              },
+              {
+                "label": "Périmètre",
+                "value": "Plateformes, APIs, produits"
+              },
+              {
+                "label": "Maturité",
+                "value": "Progressive"
+              }
+            ],
+            "sections": [
+              {
+                "kind": "cards",
+                "eyebrow": "Security by design",
+                "title": "La sécurité est traitée comme une contrainte de conception dès le départ.",
+                "description": "Les décisions produit et infrastructure doivent rester lisibles, limitées et vérifiables avant d'être généralisées.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Modèle de menace",
+                    "description": "Les nouveaux services sont cadrés en fonction des données manipulées, des acteurs impliqués et des risques d'abus plausibles.",
+                    "icon": "ShieldCheck"
+                  },
+                  {
+                    "title": "Réduction du périmètre",
+                    "description": "Les fonctionnalités exposées publiquement sont limitées au besoin utile afin d'éviter les permissions trop larges.",
+                    "icon": "LockKeyhole"
+                  },
+                  {
+                    "title": "Choix explicites",
+                    "description": "Les arbitrages de sécurité doivent être documentés pour pouvoir être relus, corrigés et améliorés dans le temps.",
+                    "icon": "FileCheck"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Produits et APIs",
+                "title": "Les plateformes SGE sont pensées pour isoler les responsabilités techniques.",
+                "description": "L'objectif est de protéger les interfaces publiques, les flux d'authentification et les services internes sans créer de dépendances opaques.",
+                "muted": true,
+                "columns": 2,
+                "cards": [
+                  {
+                    "title": "APIs versionnées",
+                    "description": "Les APIs publiques visent un versioning clair, des erreurs actionnables et des mécanismes d'authentification cohérents avec Aether Identity.",
+                    "icon": "ServerCog"
+                  },
+                  {
+                    "title": "Contrôles applicatifs",
+                    "description": "Les contrôles de validation, de permissions et de limites d'usage sont intégrés au niveau des services plutôt que reportés uniquement sur l'interface.",
+                    "icon": "KeyRound"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Infrastructure",
+                "title": "La séparation des environnements réduit les erreurs opérationnelles.",
+                "description": "Les environnements de test, de staging et de production ne doivent pas porter les mêmes secrets, accès ou niveaux d'exposition.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Sandbox et production",
+                    "description": "Les flux d'intégration sont préparés dans des environnements séparés avant tout usage opérationnel sensible.",
+                    "icon": "Globe2"
+                  },
+                  {
+                    "title": "Secrets isolés",
+                    "description": "Les secrets techniques sont traités comme des ressources à portée limitée, renouvelables et séparées par contexte.",
+                    "icon": "LockKeyhole"
+                  },
+                  {
+                    "title": "Frontières réseau",
+                    "description": "Les services exposés, internes et administratifs doivent rester séparés autant que possible selon leur rôle.",
+                    "icon": "ServerCog"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Identité et accès",
+                "title": "Les accès sont conçus autour du moindre privilège.",
+                "description": "SGE privilégie des accès nominatifs ou techniques limités, avec des permissions lisibles et une authentification adaptée au contexte.",
+                "muted": true,
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "RBAC",
+                    "description": "Les rôles doivent rester explicites pour distinguer administration, exploitation, support et usages applicatifs.",
+                    "icon": "Fingerprint"
+                  },
+                  {
+                    "title": "Authentification",
+                    "description": "Les parcours applicatifs s'orientent vers OAuth2/OIDC lorsque le contexte le justifie, avec des identifiants techniques séparés.",
+                    "icon": "KeyRound"
+                  },
+                  {
+                    "title": "Accès internes",
+                    "description": "Les accès opérateur doivent être limités au besoin, révisés régulièrement et tracés lorsqu'ils touchent des zones sensibles.",
+                    "icon": "Eye"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Supervision",
+                "title": "Détection et amélioration continue vont ensemble.",
+                "description": "La supervision ne sert pas seulement à voir les incidents, mais aussi à corriger les angles morts des produits et des opérations.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Journalisation utile",
+                    "description": "Les événements importants doivent être capturés avec assez de contexte pour enquêter sans collecter plus que nécessaire.",
+                    "icon": "Radar"
+                  },
+                  {
+                    "title": "Alertes graduées",
+                    "description": "Les signaux de sécurité sont priorisés selon leur impact potentiel et leur niveau de confiance.",
+                    "icon": "FileWarning"
+                  },
+                  {
+                    "title": "Corrections itératives",
+                    "description": "Les retours d'incident, d'audit ou de développement alimentent une amélioration progressive des contrôles.",
+                    "icon": "FileCheck"
+                  }
+                ]
+              },
+              {
+                "kind": "definitions",
+                "eyebrow": "Positionnement",
+                "title": "Une approche crédible exige de distinguer objectif, pratique et certification.",
+                "description": "Cette page décrit des principes et une trajectoire. Elle ne doit pas être lue comme une attestation de certification externe.",
+                "muted": true,
+                "columns": 3,
+                "items": [
+                  {
+                    "label": "Certifications",
+                    "value": "Non revendiquées",
+                    "description": "Aucune certification ISO 27001, SOC 2 ou PCI-DSS n'est affirmée ici sans preuve publique explicite."
+                  },
+                  {
+                    "label": "Souveraineté",
+                    "value": "Orientation européenne",
+                    "description": "Les choix techniques privilégient la maîtrise, la lisibilité et la réduction des dépendances inutiles."
+                  },
+                  {
+                    "label": "Open-source",
+                    "value": "Pertinent lorsque utile",
+                    "description": "L'ouverture du code ou des spécifications est envisagée lorsqu'elle renforce l'auditabilité et la confiance."
+                  }
+                ]
+              }
+            ],
+            "bottomTitle": "Approfondir la confidentialité et la transparence.",
+            "bottomDescription": "Les pages privacy et trust détaillent la protection des données, les contacts utiles et le cadre de communication attendu.",
+            "bottomLinks": [
+              {
+                "href": "/security/privacy",
+                "label": "Data Protection & Privacy",
+                "variant": "primary"
+              },
+              {
+                "href": "/security/trust",
+                "label": "Trust & Transparency",
+                "variant": "secondary"
+              },
+              {
+                "href": "/security/customers",
+                "label": "Customer Security",
+                "variant": "secondary"
+              }
+            ]
+          },
+          "resources": {
+            "privacy": {
+              "slug": "privacy",
+              "title": "Data Protection & Privacy",
+              "eyebrow": "Security & Privacy",
+              "description": "SGE aborde la confidentialité comme une discipline de sécurité : minimiser les données, limiter les accès et rendre les traitements compréhensibles.",
+              "body": "Cette page n'est pas une politique de confidentialité juridique complète. Elle présente la manière dont les produits et opérations SGE doivent intégrer la protection des données dans leur conception.",
+              "status": "Cadre public",
+              "ctas": [
+                {
+                  "href": "/security/trust",
+                  "label": "Voir le Trust Center",
+                  "variant": "primary"
+                },
+                {
+                  "href": "/legal/privacy",
+                  "label": "Consulter le cadre légal",
+                  "variant": "secondary"
+                }
+              ],
+              "profileItems": [
+                {
+                  "label": "Approche",
+                  "value": "Privacy by design"
+                },
+                {
+                  "label": "Données",
+                  "value": "Minimisation"
+                },
+                {
+                  "label": "Cadre",
+                  "value": "RGPD-aware"
+                }
+              ],
+              "sections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Minimisation",
+                  "title": "Collecter moins reste le contrôle le plus robuste.",
+                  "description": "Les services doivent demander uniquement les données nécessaires au cas d'usage, avec une finalité compréhensible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Données nécessaires",
+                      "description": "Les formulaires, APIs et produits doivent éviter les champs qui ne servent pas directement le flux concerné.",
+                      "icon": "Database"
+                    },
+                    {
+                      "title": "Finalités claires",
+                      "description": "Les traitements doivent rester rattachés à un objectif lisible : compte, sécurité, support, facturation ou exploitation.",
+                      "icon": "FileCheck"
+                    },
+                    {
+                      "title": "Réduction progressive",
+                      "description": "Les données historiques ou inutiles doivent pouvoir être réévaluées lorsque les produits évoluent.",
+                      "icon": "Eye"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Protection technique",
+                  "title": "Les données sensibles nécessitent des contrôles adaptés à leur contexte.",
+                  "description": "Le chiffrement, l'isolation et les secrets doivent être appliqués lorsque le type de donnée ou le risque le justifie.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "En transit",
+                      "description": "Les communications publiques et interservices doivent utiliser des protocoles sécurisés lorsque les environnements le permettent.",
+                      "icon": "LockKeyhole"
+                    },
+                    {
+                      "title": "Au repos",
+                      "description": "Les stockages contenant des données sensibles doivent être protégés par des mécanismes adaptés à leur niveau de criticité.",
+                      "icon": "Database"
+                    },
+                    {
+                      "title": "Secrets séparés",
+                      "description": "Les secrets applicatifs et opérateurs ne doivent pas être mélangés aux données métier ou au code source.",
+                      "icon": "KeyRound"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Accès internes",
+                  "title": "L'accès aux données client doit rester limité et justifiable.",
+                  "description": "Les accès opérateur, support et administration doivent être séparés du fonctionnement normal des produits.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Moindre privilège",
+                      "description": "Chaque accès interne doit correspondre à un rôle, une tâche ou une responsabilité identifiée.",
+                      "icon": "Fingerprint"
+                    },
+                    {
+                      "title": "Support encadré",
+                      "description": "Les interventions support doivent éviter l'exposition inutile de contenu client et privilégier les métadonnées techniques.",
+                      "icon": "Eye"
+                    },
+                    {
+                      "title": "Révisions",
+                      "description": "Les permissions internes doivent pouvoir être revues lorsque les responsabilités ou les produits changent.",
+                      "icon": "FileCheck"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Traçabilité",
+                  "title": "Logs et auditabilité doivent aider sans devenir une collecte excessive.",
+                  "description": "La journalisation doit soutenir la sécurité, le diagnostic et l'enquête tout en limitant les données personnelles inutiles.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Journaux de sécurité",
+                      "description": "Les événements d'authentification, de permission et d'administration doivent pouvoir être suivis dans les zones sensibles.",
+                      "icon": "Radar"
+                    },
+                    {
+                      "title": "Corrélation",
+                      "description": "Les identifiants de requête et signaux techniques aident à comprendre un incident sans exposer le contenu métier.",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cycle de vie",
+                  "title": "Sauvegarde, rétention et suppression doivent être prévues dès le modèle de données.",
+                  "description": "Les données ne doivent pas rester indéfiniment parce qu'aucun mécanisme de fin de vie n'a été prévu.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Sauvegardes",
+                      "description": "Les sauvegardes doivent protéger la continuité de service sans contourner les contraintes de confidentialité.",
+                      "icon": "Database"
+                    },
+                    {
+                      "title": "Rétention",
+                      "description": "Les durées de conservation doivent être alignées sur les besoins opérationnels, légaux et de sécurité.",
+                      "icon": "FileCheck"
+                    },
+                    {
+                      "title": "Suppression",
+                      "description": "Les processus de suppression doivent être conçus pour être compréhensibles et exécutables lorsque le contexte le permet.",
+                      "icon": "FileWarning"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Cadre européen",
+                  "title": "L'approche privacy reste alignée sur une lecture européenne de la protection des données.",
+                  "description": "SGE vise une posture RGPD-aware sans transformer cette page en avis juridique exhaustif.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "RGPD",
+                      "value": "Pris en compte",
+                      "description": "Les principes de minimisation, finalité, droits et responsabilité guident les choix produit."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Maîtrise recherchée",
+                      "description": "Les architectures doivent favoriser la compréhension des lieux, acteurs et dépendances impliqués."
+                    },
+                    {
+                      "label": "Document légal",
+                      "value": "Séparé",
+                      "description": "La politique de confidentialité juridique reste le document de référence pour les obligations formelles."
+                    }
+                  ]
+                }
+              ],
+              "bottomTitle": "Relier privacy et confiance opérationnelle.",
+              "bottomDescription": "La transparence complète l'approche privacy en expliquant les contacts, les incidents et les mécanismes de signalement.",
+              "bottomLinks": [
+                {
+                  "href": "/security/trust",
+                  "label": "Trust & Transparency",
+                  "variant": "primary"
+                },
+                {
+                  "href": "/security",
+                  "label": "Security Approach",
+                  "variant": "secondary"
+                }
+              ]
+            },
+            "trust": {
+              "slug": "trust",
+              "title": "Trust & Transparency",
+              "eyebrow": "Trust Center",
+              "description": "Trust is built through transparency, clear communication and responsible engineering.",
+              "body": "Cette page sert de centre de confiance public léger : elle regroupe les engagements, contacts et principes de communication sans prétendre à une maturité de certification non démontrée.",
+              "status": "Cadre public",
+              "ctas": [
+                {
+                  "href": "mailto:security@skygenesisenterprise.com",
+                  "label": "Contacter la sécurité",
+                  "variant": "primary"
+                },
+                {
+                  "href": "https://status.skygenesisenterprise.com",
+                  "label": "Voir le statut",
+                  "variant": "secondary"
+                }
+              ],
+              "profileItems": [
+                {
+                  "label": "Rôle",
+                  "value": "Mini Trust Center"
+                },
+                {
+                  "label": "Contacts",
+                  "value": "Sécurité, abuse, legal"
+                },
+                {
+                  "label": "Conformité",
+                  "value": "Progressive"
+                }
+              ],
+              "sections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Engagements",
+                  "title": "La confiance dépend d'engagements lisibles plutôt que de slogans.",
+                  "description": "SGE met en avant des pratiques vérifiables et une communication prudente sur le niveau réel de maturité.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Transparence",
+                      "description": "Expliquer les limites connues, les dépendances importantes et les étapes de maturité lorsqu'elles comptent pour les clients.",
+                      "icon": "Eye"
+                    },
+                    {
+                      "title": "Responsabilité",
+                      "description": "Traiter les incidents, erreurs et signalements comme des occasions de correction documentée.",
+                      "icon": "FileWarning"
+                    },
+                    {
+                      "title": "Sobriété",
+                      "description": "Ne pas revendiquer de certification, disponibilité ou niveau de contrôle sans élément public ou contractuel clair.",
+                      "icon": "FileCheck"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Incidents",
+                  "title": "La communication d'incident doit être claire, proportionnée et utile.",
+                  "description": "Lorsqu'un événement affecte les services ou les données, l'information doit prioriser l'impact, l'état connu et les actions recommandées.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Qualification",
+                      "description": "Identifier l'étendue, les composants concernés, les utilisateurs potentiellement affectés et les mesures immédiates.",
+                      "icon": "Radar"
+                    },
+                    {
+                      "title": "Mises à jour",
+                      "description": "Publier des informations utiles à mesure que les faits sont confirmés, sans spéculation prématurée.",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Retour d'expérience",
+                      "description": "Transformer les incidents significatifs en actions correctives et améliorations de surveillance.",
+                      "icon": "FileCheck"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Signalement",
+                  "title": "Les vulnérabilités doivent pouvoir être signalées sans friction inutile.",
+                  "description": "SGE encourage les signalements responsables avec assez de contexte pour reproduire, évaluer et corriger le problème.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Canal sécurité",
+                      "description": "security@skygenesisenterprise.com est le contact prévu pour les vulnérabilités, preuves de concept et questions de sécurité sensibles.",
+                      "icon": "ShieldCheck",
+                      "href": "mailto:security@skygenesisenterprise.com"
+                    },
+                    {
+                      "title": "Signalements abus",
+                      "description": "abuse@skygenesisenterprise.com est le contact recommandé pour les abus de service, usurpations ou usages malveillants observés.",
+                      "icon": "FileWarning",
+                      "href": "mailto:abuse@skygenesisenterprise.com"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Contacts utiles",
+                  "title": "Les points de contact doivent orienter les demandes vers la bonne responsabilité.",
+                  "description": "Si certains canaux évoluent, cette page doit rester prudente sur leur niveau d'opérationnalité publique.",
+                  "muted": true,
+                  "columns": 2,
+                  "items": [
+                    {
+                      "label": "Sécurité",
+                      "value": "security@skygenesisenterprise.com",
+                      "description": "Vulnérabilités, questions de sécurité produit et informations sensibles.",
+                      "monospace": true
+                    },
+                    {
+                      "label": "Abuse",
+                      "value": "abuse@skygenesisenterprise.com",
+                      "description": "Signalement d'abus, usurpation, spam ou comportement malveillant.",
+                      "monospace": true
+                    },
+                    {
+                      "label": "Legal",
+                      "value": "legal@skygenesisenterprise.com",
+                      "description": "Demandes légales, confidentialité et sujets de conformité.",
+                      "monospace": true
+                    },
+                    {
+                      "label": "Status",
+                      "value": "status.skygenesisenterprise.com",
+                      "description": "Page de statut publique prévue pour suivre les incidents et composants.",
+                      "monospace": true
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Open-source",
+                  "title": "L'auditabilité progresse mieux lorsque les éléments critiques sont compréhensibles.",
+                  "description": "Lorsque cela sert la sécurité et la maintenance, SGE privilégie la documentation ouverte, les standards connus et l'ouverture ciblée.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Standards",
+                      "description": "Les protocoles publics comme OAuth2/OIDC sont privilégiés lorsqu'ils correspondent au besoin.",
+                      "icon": "Globe2"
+                    },
+                    {
+                      "title": "Code auditable",
+                      "description": "L'open-source est pertinent lorsqu'il améliore la confiance sans exposer inutilement des éléments opérationnels sensibles.",
+                      "icon": "FileCheck"
+                    },
+                    {
+                      "title": "Documentation",
+                      "description": "Les comportements importants doivent être expliqués pour permettre une revue technique sérieuse.",
+                      "icon": "Eye"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Conformité progressive",
+                  "title": "La conformité se construit par étapes vérifiables.",
+                  "description": "La trajectoire doit avancer depuis les contrôles internes vers des preuves plus formelles lorsque le contexte business et produit le justifie.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Aujourd'hui",
+                      "value": "Principes publics",
+                      "description": "Clarifier les pratiques, les contacts et la posture de sécurité accessible publiquement."
+                    },
+                    {
+                      "label": "Ensuite",
+                      "value": "Preuves et processus",
+                      "description": "Structurer davantage les journaux, procédures, revues et cycles de correction."
+                    },
+                    {
+                      "label": "Plus tard",
+                      "value": "Évaluations externes",
+                      "description": "Envisager audits ou certifications uniquement lorsqu'ils reflètent une maturité réellement atteinte."
+                    }
+                  ]
+                }
+              ],
+              "bottomTitle": "Faire le lien avec les attentes clients.",
+              "bottomDescription": "La page Customer Security précise ce que les clients et partenaires peuvent attendre sans inventer de témoignages.",
+              "bottomLinks": [
+                {
+                  "href": "/security/customers",
+                  "label": "Customer Security",
+                  "variant": "primary"
+                },
+                {
+                  "href": "/security/privacy",
+                  "label": "Data Protection & Privacy",
+                  "variant": "secondary"
+                }
+              ]
+            },
+            "customers": {
+              "slug": "customers",
+              "title": "Customer Security",
+              "eyebrow": "Customer Trust",
+              "description": "Les clients, partenaires et futurs utilisateurs doivent comprendre ce qu'ils peuvent attendre de SGE en matière de sécurité, de support et de transparence.",
+              "body": "Cette page remplace volontairement une logique de faux témoignages par un cadre clair : engagements réalistes, collaboration technique et cas clients à publier uniquement lorsqu'ils existeront.",
+              "status": "Approche progressive",
+              "ctas": [
+                {
+                  "href": "/security/trust",
+                  "label": "Voir le Trust Center",
+                  "variant": "primary"
+                },
+                {
+                  "href": "/company/contact",
+                  "label": "Contacter SGE",
+                  "variant": "secondary"
+                }
+              ],
+              "profileItems": [
+                {
+                  "label": "Page",
+                  "value": "Customer Security"
+                },
+                {
+                  "label": "Témoignages",
+                  "value": "À venir"
+                },
+                {
+                  "label": "Public",
+                  "value": "Clients et partenaires"
+                }
+              ],
+              "sections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Engagements clients",
+                  "title": "La relation client commence par des attentes de sécurité explicites.",
+                  "description": "SGE privilégie un cadre sobre : expliquer ce qui est en place, ce qui est prévu et ce qui doit être validé ensemble.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Clarté",
+                      "description": "Présenter les responsabilités, limites et dépendances importantes avant les usages sensibles.",
+                      "icon": "Eye"
+                    },
+                    {
+                      "title": "Protection",
+                      "description": "Concevoir les environnements clients avec isolation, accès limités et contrôles adaptés au niveau de risque.",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Collaboration",
+                      "description": "Travailler avec les équipes techniques client pour qualifier les contraintes d'intégration et d'exploitation.",
+                      "icon": "FileCheck"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Environnements clients",
+                  "title": "Les environnements client doivent être protégés par séparation et moindre privilège.",
+                  "description": "Les accès, secrets et configurations doivent être pensés pour éviter qu'un test, une intégration ou une opération support devienne un risque inutile.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Séparation",
+                      "description": "Les environnements de test et de production doivent rester distincts dans leurs données, accès et secrets.",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Permissions",
+                      "description": "Les rôles client et opérateur doivent refléter les responsabilités réelles plutôt que des accès globaux par défaut.",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Intégrations",
+                      "description": "Les connexions API, webhooks ou identités fédérées doivent être revues selon leur portée et leur impact.",
+                      "icon": "Globe2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Transparence opérationnelle",
+                  "title": "Les clients doivent recevoir des informations exploitables.",
+                  "description": "La transparence utile porte sur les changements, incidents, statuts de service et actions recommandées.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Statut de service",
+                      "description": "status.skygenesisenterprise.com constitue le point de référence prévu pour la disponibilité et les incidents publics.",
+                      "icon": "Radar",
+                      "href": "https://status.skygenesisenterprise.com"
+                    },
+                    {
+                      "title": "Changements",
+                      "description": "Les évolutions ayant un impact d'intégration doivent être documentées avec suffisamment d'anticipation lorsque c'est possible.",
+                      "icon": "FileCheck"
+                    },
+                    {
+                      "title": "Limites connues",
+                      "description": "Les fonctionnalités en construction doivent rester identifiées afin d'éviter les mauvaises hypothèses d'adoption.",
+                      "icon": "FileWarning"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Support incident",
+                  "title": "Le support en cas d'incident doit se concentrer sur l'impact et la remédiation.",
+                  "description": "Lorsqu'un client est affecté, la priorité est de qualifier l'étendue, stabiliser le service et partager les actions utiles.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Qualification",
+                      "description": "Identifier le produit, l'environnement, l'heure, les identifiants de requête et les effets observés.",
+                      "icon": "Radar"
+                    },
+                    {
+                      "title": "Coordination",
+                      "description": "Partager un canal de suivi adapté selon la gravité et la nature du problème.",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Actions correctives",
+                      "description": "Documenter les corrections utiles, mesures temporaires et changements durables lorsque l'incident est compris.",
+                      "icon": "FileCheck"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "La collaboration technique repose sur une documentation honnête.",
+                  "description": "Les clients doivent pouvoir distinguer les capacités disponibles, les éléments en préparation et les choix encore conceptuels.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Les guides doivent aider à démarrer avec des scénarios simples avant d'élargir le périmètre.",
+                      "icon": "FileCheck",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "APIs",
+                      "description": "Les conventions API doivent rendre les intégrations plus prévisibles et plus simples à diagnostiquer.",
+                      "icon": "ServerCog",
+                      "href": "/developers/api"
+                    },
+                    {
+                      "title": "Revue conjointe",
+                      "description": "Les intégrations sensibles gagnent à être revues avec les équipes concernées avant généralisation.",
+                      "icon": "Eye"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Customer stories",
+                  "title": "Les cas clients seront publiés lorsqu'ils seront réels et vérifiables.",
+                  "description": "Aucun témoignage, logo ou chiffre de confiance n'est inventé sur cette page.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Témoignages",
+                      "value": "Coming soon",
+                      "description": "Les témoignages ne seront ajoutés qu'avec accord explicite et contenu réel."
+                    },
+                    {
+                      "label": "Logos clients",
+                      "value": "Non affichés",
+                      "description": "Aucun logo n'est utilisé sans autorisation et relation client confirmée."
+                    },
+                    {
+                      "label": "Études de cas",
+                      "value": "À venir",
+                      "description": "Les futures études devront expliquer le contexte, les contraintes et les résultats sans exagération."
+                    }
+                  ]
+                }
+              ],
+              "bottomTitle": "Explorer les fondations de confiance.",
+              "bottomDescription": "Les pages Security Approach, Privacy et Trust donnent le cadre général derrière les engagements client.",
+              "bottomLinks": [
+                {
+                  "href": "/security",
+                  "label": "Security Approach",
+                  "variant": "primary"
+                },
+                {
+                  "href": "/security/privacy",
+                  "label": "Data Protection & Privacy",
+                  "variant": "secondary"
+                },
+                {
+                  "href": "/security/trust",
+                  "label": "Trust & Transparency",
+                  "variant": "secondary"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "resourcesPage": {
+        "metadata": {
+          "titleTemplate": "{title} | Sky Genesis Enterprise"
+        },
+        "common": {
+          "profile": "Profil",
+          "explore": "Explorer",
+          "continue": "Continuer",
+          "bottomEyebrow": "Ressources liées"
+        },
+        "resources": {
+          "caseStudies": {
+            "metadata": {
+              "title": "Case Studies | Sky Genesis Enterprise",
+              "description": "Scénarios d'usage, architectures et workflows pour comprendre les problèmes que l'écosystème Sky Genesis Enterprise veut résoudre."
+            },
+            "title": "Case Studies & Use Cases",
+            "eyebrow": "Resources",
+            "description": "Des scénarios réalistes pour comprendre comment les plateformes SGE peuvent soutenir l'identité, l'infrastructure, la collaboration et les opérations techniques.",
+            "body": "Cette page ne présente pas de faux clients ni de faux témoignages. Elle décrit les types de problèmes que l'écosystème SGE vise à résoudre, avec des cas d'utilisation et architectures de référence appelés à devenir de vrais case studies lorsque les projets seront publiables.",
+            "status": "Scénarios publics",
+            "ctas": [
+              {
+                "href": "/developers",
+                "label": "Explorer la documentation",
+                "variant": "primary"
+              },
+              {
+                "href": "/blog",
+                "label": "Lire le blog",
+                "variant": "secondary"
+              }
+            ],
+            "profileItems": [
+              {
+                "label": "Format",
+                "value": "Use cases"
+              },
+              {
+                "label": "Contenu",
+                "value": "Sans faux clients"
+              },
+              {
+                "label": "Angle",
+                "value": "Architecture"
+              }
+            ],
+            "sections": [
+              {
+                "kind": "cards",
+                "eyebrow": "Use cases",
+                "title": "Des scénarios pour cadrer les problèmes avant de vendre une solution.",
+                "description": "Chaque carte décrit un contexte plausible, les produits concernés et le type de décision technique à éclairer.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Aether Identity multi-tenant",
+                    "description": "Déployer une couche d'identité pour une plateforme SaaS avec organisations, applications, rôles et authentification OIDC.",
+                    "icon": "Shield"
+                  },
+                  {
+                    "title": "Infrastructure souveraine auto-hébergée",
+                    "description": "Construire une base self-hosted pour équipes qui veulent garder la maîtrise de leurs données, secrets et environnements.",
+                    "icon": "Server"
+                  },
+                  {
+                    "title": "Collaboration interne avec Aether Office",
+                    "description": "Connecter messagerie, documents, réunions et accès équipe dans un environnement cohérent et gouvernable.",
+                    "icon": "Users"
+                  },
+                  {
+                    "title": "Cloud Manager distribué",
+                    "description": "Piloter projets, ressources, accès et opérations sur plusieurs environnements cloud ou edge.",
+                    "icon": "Cloud"
+                  },
+                  {
+                    "title": "Workflows développeurs",
+                    "description": "Relier API, SDKs, CLI et Git workflows pour réduire les opérations manuelles et améliorer la traçabilité.",
+                    "icon": "Workflow"
+                  },
+                  {
+                    "title": "Homelabs et PME techniques",
+                    "description": "Appliquer des pratiques d'infrastructure d'entreprise à des environnements plus petits, lisibles et maintenables.",
+                    "icon": "Boxes"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Architectures",
+                "title": "Les scénarios détaillent les frontières techniques à clarifier.",
+                "description": "Un bon use case montre où passent les responsabilités : identité, données, réseau, exploitation et support.",
+                "muted": true,
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Cloud + edge + network",
+                    "description": "Préparer des services distribués avec routage clair, supervision et séparation entre exposition publique et administration.",
+                    "icon": "Network"
+                  },
+                  {
+                    "title": "Données et gouvernance",
+                    "description": "Identifier les données critiques, les durées de conservation, les accès internes et les besoins d'audit.",
+                    "icon": "Database"
+                  },
+                  {
+                    "title": "Produits concernés",
+                    "description": "Relier chaque scénario aux briques réellement pertinentes : Identity, Cloud Manager, Office, Shield ou outils développeurs.",
+                    "icon": "Building2"
+                  }
+                ]
+              },
+              {
+                "kind": "numbered",
+                "eyebrow": "Lecture recommandée",
+                "title": "Chaque scénario suit une progression d'évaluation plutôt qu'une promesse commerciale.",
+                "description": "Le but est d'aider une équipe à décider si le problème mérite une intégration, un prototype ou une discussion plus approfondie.",
+                "columns": 3,
+                "items": [
+                  {
+                    "title": "Décrire le contexte",
+                    "description": "Clarifier les utilisateurs, systèmes existants, contraintes de sécurité et dépendances opérationnelles."
+                  },
+                  {
+                    "title": "Tracer l'architecture cible",
+                    "description": "Identifier les composants SGE potentiellement utiles et les frontières entre environnements."
+                  },
+                  {
+                    "title": "Réduire le premier test",
+                    "description": "Valider un flux court avant de généraliser une plateforme, une fédération ou une automatisation."
+                  }
+                ]
+              },
+              {
+                "kind": "definitions",
+                "eyebrow": "Transparence",
+                "title": "Les vrais case studies viendront uniquement avec des preuves publiables.",
+                "description": "La page prépare le terrain sans inventer de retours d'expérience.",
+                "muted": true,
+                "columns": 3,
+                "items": [
+                  {
+                    "label": "Clients",
+                    "value": "Non inventés",
+                    "description": "Aucun nom, logo, chiffre ou témoignage n'est attribué à un client fictif."
+                  },
+                  {
+                    "label": "Cas publics",
+                    "value": "À venir",
+                    "description": "Les futurs case studies devront être validés avec les organisations concernées."
+                  },
+                  {
+                    "label": "Utilité actuelle",
+                    "value": "Scénarios",
+                    "description": "Les contenus actuels servent à cadrer les problèmes et les architectures possibles."
+                  }
+                ]
+              }
+            ],
+            "bottomTitle": "Approfondir les fondations techniques.",
+            "bottomDescription": "Les whitepapers, le blog et le portail développeur complètent les scénarios avec davantage de contexte technique.",
+            "bottomLinks": [
+              {
+                "href": "/resources/whitepapers",
+                "label": "Whitepapers",
+                "variant": "primary"
+              },
+              {
+                "href": "/blog",
+                "label": "Blog",
+                "variant": "secondary"
+              },
+              {
+                "href": "/developers",
+                "label": "Developers",
+                "variant": "secondary"
+              }
+            ]
+          },
+          "whitepapers": {
+            "metadata": {
+              "title": "Whitepapers | Sky Genesis Enterprise",
+              "description": "Documents techniques et publications futures sur l'infrastructure souveraine, l'identité, le cloud, l'edge et les architectures open-source."
+            },
+            "title": "Whitepapers & Technical Papers",
+            "eyebrow": "Research & Architecture",
+            "description": "Un espace destiné aux notes techniques, documents d'architecture et réflexions long terme autour de l'infrastructure européenne, de l'identité et des plateformes open-source.",
+            "body": "Les whitepapers publics sont en préparation. Cette page liste les thèmes prévus sans générer de faux PDFs ni de publications inexistantes.",
+            "status": "Publications à venir",
+            "ctas": [
+              {
+                "href": "/blog",
+                "label": "Lire les articles",
+                "variant": "primary"
+              },
+              {
+                "href": "/resources/case-studies",
+                "label": "Voir les use cases",
+                "variant": "secondary"
+              }
+            ],
+            "profileItems": [
+              {
+                "label": "Format",
+                "value": "Technical papers"
+              },
+              {
+                "label": "Disponibilité",
+                "value": "Coming soon"
+              },
+              {
+                "label": "Angle",
+                "value": "Research"
+              }
+            ],
+            "sections": [
+              {
+                "kind": "cards",
+                "eyebrow": "Future publications",
+                "title": "Les premiers papers doivent clarifier des choix d'architecture, pas remplir une bibliothèque artificielle.",
+                "description": "Les sujets ci-dessous sont des axes éditoriaux prévus. Aucun téléchargement n'est affiché tant qu'un document réel n'existe pas.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Sovereign Cloud Infrastructure",
+                    "description": "Principes d'une infrastructure cloud européenne lisible, opérable et indépendante des dépendances inutiles.",
+                    "icon": "Cloud",
+                    "status": "Publications à venir"
+                  },
+                  {
+                    "title": "Identity-First Enterprise Architecture",
+                    "description": "Concevoir les plateformes autour de l'identité, des permissions, des organisations et de la traçabilité.",
+                    "icon": "ShieldCheck",
+                    "status": "Publications à venir"
+                  },
+                  {
+                    "title": "Open-source Enterprise Ecosystems",
+                    "description": "Comment combiner ouverture, maintenance, gouvernance produit et exigences d'entreprise.",
+                    "icon": "BookOpen",
+                    "status": "Publications à venir"
+                  },
+                  {
+                    "title": "API-First Infrastructure Management",
+                    "description": "Automatiser ressources, environnements et opérations avec des APIs versionnées et des contrats clairs.",
+                    "icon": "Binary",
+                    "status": "Publications à venir"
+                  },
+                  {
+                    "title": "Edge & Cloud Convergence",
+                    "description": "Analyser les frontières entre edge, réseau, compute, observabilité et distribution de services.",
+                    "icon": "Globe",
+                    "status": "Publications à venir"
+                  },
+                  {
+                    "title": "Zero-Trust Infrastructure Models",
+                    "description": "Appliquer le moindre privilège, l'authentification forte et la segmentation aux environnements modernes.",
+                    "icon": "Network",
+                    "status": "Publications à venir"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Categories",
+                "title": "Les publications seront organisées par familles de problèmes techniques.",
+                "description": "La structure privilégie une lecture d'architecture : pourquoi un choix existe, quelles limites il impose, comment l'évaluer.",
+                "muted": true,
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Infrastructure",
+                    "description": "Cloud, edge, réseau, stockage, automatisation et exploitation de plateformes.",
+                    "icon": "Server"
+                  },
+                  {
+                    "title": "Security & Identity",
+                    "description": "Authentification, autorisation, multi-tenancy, isolation et gouvernance des accès.",
+                    "icon": "Shield"
+                  },
+                  {
+                    "title": "Product Engineering",
+                    "description": "API-first, developer experience, open-source, packaging et cycles de maturité produit.",
+                    "icon": "Library"
+                  }
+                ]
+              },
+              {
+                "kind": "definitions",
+                "eyebrow": "Publication model",
+                "title": "La crédibilité vient d'une publication progressive et vérifiable.",
+                "description": "SGE évite d'afficher des ressources téléchargeables tant qu'elles ne sont pas réellement écrites, relues et maintenables.",
+                "columns": 3,
+                "items": [
+                  {
+                    "label": "PDFs",
+                    "value": "Non fictifs",
+                    "description": "Aucun bouton de téléchargement n'est proposé sans document réel."
+                  },
+                  {
+                    "label": "Statut",
+                    "value": "Coming soon",
+                    "description": "Les sujets indiquent une direction éditoriale, pas une bibliothèque déjà complète."
+                  },
+                  {
+                    "label": "Maintenance",
+                    "value": "Prévue",
+                    "description": "Les futurs papers devront rester cohérents avec l'évolution des produits."
+                  }
+                ]
+              },
+              {
+                "kind": "numbered",
+                "eyebrow": "Reading path",
+                "title": "Avant les papers complets, les contenus courts servent de base de travail.",
+                "description": "Les lecteurs peuvent déjà suivre les articles, la documentation développeur et les use cases publics.",
+                "muted": true,
+                "columns": 3,
+                "items": [
+                  {
+                    "title": "Lire le blog",
+                    "description": "Suivre les notes publiques et réflexions courtes avant les publications longues.",
+                    "href": "/blog"
+                  },
+                  {
+                    "title": "Explorer les APIs",
+                    "description": "Comprendre les conventions techniques et les ressources développeurs déjà structurées.",
+                    "href": "/developers/api"
+                  },
+                  {
+                    "title": "Comparer les use cases",
+                    "description": "Relier les concepts d'architecture aux scénarios d'usage visés.",
+                    "href": "/resources/case-studies"
+                  }
+                ]
+              }
+            ],
+            "bottomTitle": "Continuer avec les contenus publics disponibles.",
+            "bottomDescription": "Le blog, les use cases et les sessions techniques donnent le contexte en attendant les publications longues.",
+            "bottomLinks": [
+              {
+                "href": "/blog",
+                "label": "Blog",
+                "variant": "primary"
+              },
+              {
+                "href": "/resources/case-studies",
+                "label": "Case Studies",
+                "variant": "secondary"
+              },
+              {
+                "href": "/resources/webinars",
+                "label": "Webinars",
+                "variant": "secondary"
+              }
+            ]
+          },
+          "webinars": {
+            "metadata": {
+              "title": "Webinars | Sky Genesis Enterprise",
+              "description": "Sessions techniques à venir autour de l'infrastructure, du cloud, de l'identité, du réseau et des technologies open-source."
+            },
+            "title": "Webinars & Technical Sessions",
+            "eyebrow": "Technical Sessions",
+            "description": "Un espace pour les futurs webinars, workshops, live demos et sessions d'architecture autour de l'écosystème SGE.",
+            "body": "Aucune session publique n'est annoncée comme programmée si elle ne l'est pas réellement. Cette page prépare le format, les thèmes et les états vides attendus.",
+            "status": "Sessions à venir",
+            "ctas": [
+              {
+                "href": "https://forum.skygenesisenterprise.com",
+                "label": "Rejoindre la communauté",
+                "variant": "primary"
+              },
+              {
+                "href": "/blog",
+                "label": "Lire le blog",
+                "variant": "secondary"
+              }
+            ],
+            "profileItems": [
+              {
+                "label": "Format",
+                "value": "Sessions techniques"
+              },
+              {
+                "label": "Planning",
+                "value": "À venir"
+              },
+              {
+                "label": "Public",
+                "value": "Developers & teams"
+              }
+            ],
+            "sections": [
+              {
+                "kind": "definitions",
+                "eyebrow": "Upcoming sessions",
+                "title": "No webinars scheduled yet.",
+                "description": "Les prochaines sessions techniques seront annoncées lorsqu'un calendrier public sera confirmé.",
+                "columns": 3,
+                "items": [
+                  {
+                    "label": "Upcoming",
+                    "value": "Coming soon",
+                    "description": "Future sessions will cover infrastructure, cloud, identity, networking and open-source technologies."
+                  },
+                  {
+                    "label": "Registration",
+                    "value": "Not open yet",
+                    "description": "Aucun formulaire d'inscription n'est affiché sans événement réel."
+                  },
+                  {
+                    "label": "Recordings",
+                    "value": "None yet",
+                    "description": "Les replays seront listés seulement après des sessions publiques effectives."
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Future formats",
+                "title": "Les sessions seront pensées pour partager des décisions techniques concrètes.",
+                "description": "Le format doit rester utile : démonstrations courtes, architecture expliquée, questions techniques et retours d'ingénierie.",
+                "muted": true,
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Architecture sessions",
+                    "description": "Présenter un problème d'infrastructure, les choix possibles et les compromis retenus.",
+                    "icon": "Presentation"
+                  },
+                  {
+                    "title": "Product deep-dives",
+                    "description": "Explorer une brique SGE avec ses concepts, limites, APIs et scénarios d'intégration.",
+                    "icon": "MonitorPlay"
+                  },
+                  {
+                    "title": "Community workshops",
+                    "description": "Construire autour de cas concrets, questions développeurs et retours de terrain.",
+                    "icon": "UsersRound"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Topics",
+                "title": "Les premiers thèmes cibleront les fondations de l'écosystème.",
+                "description": "Les sujets seront sélectionnés selon leur utilité pour les équipes techniques et partenaires.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Identity and access",
+                    "description": "OIDC, organisations, RBAC, applications, sessions et sécurité côté intégration.",
+                    "icon": "ShieldCheck"
+                  },
+                  {
+                    "title": "Cloud and infrastructure",
+                    "description": "Provisioning, environnements, réseau, observabilité et automatisation API-first.",
+                    "icon": "Cloud"
+                  },
+                  {
+                    "title": "Open-source engineering",
+                    "description": "Maintenance, packaging, contribution, documentation et gouvernance technique.",
+                    "icon": "BookOpen"
+                  }
+                ]
+              },
+              {
+                "kind": "numbered",
+                "eyebrow": "Event lifecycle",
+                "title": "Un webinar utile doit être préparé comme un produit éditorial.",
+                "description": "Le cycle doit rester simple et vérifiable avant d'annoncer publiquement une session.",
+                "muted": true,
+                "columns": 3,
+                "items": [
+                  {
+                    "title": "Cadrer le sujet",
+                    "description": "Définir le problème, le public, les prérequis et le résultat attendu."
+                  },
+                  {
+                    "title": "Préparer la démonstration",
+                    "description": "Utiliser un scénario reproductible, sans données sensibles ni promesse commerciale excessive."
+                  },
+                  {
+                    "title": "Publier le suivi",
+                    "description": "Partager notes, liens utiles et éventuel replay après validation."
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Community",
+                "title": "La communauté reste le meilleur canal d'attente avant le calendrier public.",
+                "description": "Les discussions techniques, questions et suggestions de thèmes peuvent nourrir les futures sessions.",
+                "columns": 2,
+                "cards": [
+                  {
+                    "title": "Community forum",
+                    "description": "Espace externe prévu pour les échanges publics, questions techniques et discussions autour de l'écosystème.",
+                    "icon": "Radio",
+                    "href": "https://forum.skygenesisenterprise.com"
+                  },
+                  {
+                    "title": "Blog updates",
+                    "description": "Les annonces, résumés et contenus préparatoires pourront être publiés sur le blog.",
+                    "icon": "Video",
+                    "href": "/blog"
+                  }
+                ]
+              }
+            ],
+            "bottomTitle": "Suivre les ressources avant les premières sessions.",
+            "bottomDescription": "Le blog, les whitepapers et les use cases restent les meilleurs points d'entrée publics en attendant le calendrier.",
+            "bottomLinks": [
+              {
+                "href": "/blog",
+                "label": "Blog",
+                "variant": "primary"
+              },
+              {
+                "href": "/resources/whitepapers",
+                "label": "Whitepapers",
+                "variant": "secondary"
+              },
+              {
+                "href": "/resources/case-studies",
+                "label": "Case Studies",
                 "variant": "secondary"
               }
             ]

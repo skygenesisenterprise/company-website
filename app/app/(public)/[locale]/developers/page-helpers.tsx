@@ -21,11 +21,12 @@ function createDeveloperMetadata(title: string, description: string): Metadata {
 
 async function getDeveloperMessages(locale: string): Promise<DeveloperPageMessages> {
   const messages = await getMessages({ locale });
-  const developerPage = (messages as { Public?: { home?: { developerPage?: DeveloperPageMessages } } })
-    .Public?.home?.developerPage;
+  const developerPage = (messages as {
+    Public?: { home?: { page?: { developerPage?: DeveloperPageMessages } } };
+  }).Public?.home?.page?.developerPage;
 
   if (!developerPage) {
-    throw new Error("Missing Public.home.developerPage messages");
+    throw new Error("Missing Public.home.page.developerPage messages");
   }
 
   return developerPage;
@@ -35,7 +36,7 @@ export async function generateDeveloperHomeMetadata(
   params: DeveloperPageParams["params"]
 ): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Public.home.developerPage.metadata" });
+  const t = await getTranslations({ locale, namespace: "Public.home.page.developerPage.metadata" });
   const messages = await getDeveloperMessages(locale);
   const page = createDeveloperPortalHome(messages);
 
@@ -47,7 +48,7 @@ export async function generateDeveloperResourceMetadata(
   slug: DeveloperResourceSlug
 ): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Public.home.developerPage.metadata" });
+  const t = await getTranslations({ locale, namespace: "Public.home.page.developerPage.metadata" });
   const messages = await getDeveloperMessages(locale);
   const page = createDeveloperResource(messages, slug);
 
