@@ -19,7 +19,6 @@ import { type Locale } from "@/lib/locale";
 import {
   Menu,
   X,
-  ChevronDown,
   ArrowRight,
   Shield,
   Users,
@@ -100,52 +99,111 @@ function MegaMenu({
   t,
   compact = false,
 }: MegaMenuProps) {
-  const panelWidth = compact ? "w-[560px]" : "w-[860px]";
-  const sectionGrid = compact ? "grid-cols-1" : "grid-cols-2";
+  const [isOpen, setIsOpen] = React.useState(false);
+  const panelWidth = compact ? "w-[720px]" : "w-[860px]";
+  const sectionGrid = "grid-cols-2";
+  const panelInset = compact ? "pt-3" : "pt-4";
+  const panelChrome = compact
+    ? "rounded-[1.75rem] shadow-xl"
+    : "rounded-[2rem] shadow-2xl";
+  const bodyPadding = compact ? "p-5" : "p-6";
+  const bodyGap = compact ? "gap-5" : "gap-6";
+  const sectionCard = compact
+    ? "rounded-[1.25rem] p-3.5"
+    : "rounded-[1.5rem] p-4";
+  const itemListLayout = "space-y-2";
+  const itemPadding = compact ? "p-2.5" : "p-3";
+  const iconSize = compact ? "h-9 w-9 rounded-xl" : "h-10 w-10 rounded-2xl";
+  const featuredLayout = compact ? "grid grid-cols-[1fr_220px]" : "grid grid-cols-[1fr_260px]";
+  const featuredPadding = compact ? "p-5" : "p-6";
+  const featuredCard = compact ? "rounded-[1.5rem] p-[1.125rem]" : "rounded-[1.75rem] p-5";
+  const featuredShell = compact
+    ? "border-l border-border/60 bg-muted/20"
+    : "border-l border-border/60 bg-muted/25";
   const hasFeatured = Boolean(data.featured);
 
   return (
-    <li className="relative group">
+    <li
+      className="relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      onFocusCapture={() => setIsOpen(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setIsOpen(false);
+        }
+      }}
+      onKeyDownCapture={(event) => {
+        if (event.key === "Escape") {
+          setIsOpen(false);
+          if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+          }
+        }
+      }}
+    >
       <button
+        type="button"
         className={cn(
-          "flex items-center gap-1.5 rounded-full font-medium transition-all duration-300",
+          "flex items-center rounded-full font-medium transition-all duration-300",
           compact ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
-          "text-foreground/70 hover:bg-background/70 hover:text-foreground",
+          isOpen
+            ? "bg-background/80 text-foreground shadow-[inset_0_0_0_1px_rgba(148,163,184,0.16)]"
+            : "text-foreground/70 hover:bg-background/70 hover:text-foreground",
         )}
         aria-haspopup="true"
-        aria-expanded={false}
+        aria-expanded={isOpen}
       >
         {label}
-        <ChevronDown className="h-3.5 w-3.5 opacity-60 transition duration-300 group-hover:translate-y-0.5 group-hover:opacity-100" />
       </button>
-      <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
+      <div
+        className={cn(
+          "absolute left-1/2 top-full -translate-x-1/2 transition-all duration-200 ease-out",
+          panelInset,
+          isOpen
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-1 opacity-0 pointer-events-none",
+        )}
+      >
         <div
           className={cn(
             panelWidth,
-            "overflow-hidden rounded-[2rem] border border-border/60 bg-background/92 shadow-2xl backdrop-blur-xl",
+            panelChrome,
+            "overflow-hidden border border-border/60 bg-background/92 backdrop-blur-xl",
           )}
         >
           <div className="h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
-          <div className={hasFeatured ? "grid grid-cols-[1fr_260px]" : "grid"}>
-            <div className="relative p-6">
+          <div className={hasFeatured ? featuredLayout : "grid"}>
+            <div className={cn("relative", bodyPadding)}>
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.08),transparent_28%)]" />
-              <div className={`grid ${sectionGrid} gap-6`}>
+              <div className={cn("grid", sectionGrid, bodyGap)}>
                 {data.sections.map((section) => (
                   <div
                     key={section.titleKey}
-                    className="relative rounded-[1.5rem] border border-border/50 bg-background/55 p-4"
+                    className={cn(
+                      "relative border border-border/50 bg-background/55",
+                      sectionCard,
+                    )}
                   >
                     <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
                       {t(section.titleKey)}
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className={itemListLayout}>
                       {section.items.map((item) => (
                         <li key={item.titleKey}>
                           <Link
                             href={getLocaleHref(item.href)}
-                            className="group/item flex items-start gap-3 rounded-[1.25rem] border border-transparent p-3 transition-all duration-200 hover:border-border/60 hover:bg-muted/60 focus:bg-muted/60 focus:outline-none"
+                            className={cn(
+                              "group/item flex items-start gap-3 rounded-[1.25rem] border border-transparent transition-all duration-200 hover:border-border/60 hover:bg-muted/60 focus:bg-muted/60 focus:outline-none",
+                              itemPadding,
+                            )}
                           >
-                            <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-card text-muted-foreground transition-colors group-hover/item:border-primary/20 group-hover/item:text-primary">
+                            <span
+                              className={cn(
+                                "mt-0.5 inline-flex shrink-0 items-center justify-center border border-border/70 bg-card text-muted-foreground transition-colors group-hover/item:border-primary/20 group-hover/item:text-primary",
+                                iconSize,
+                              )}
+                            >
                               {item.icon}
                             </span>
                             <span className="min-w-0 flex-1">
@@ -167,11 +225,14 @@ function MegaMenu({
             </div>
 
             {data.featured ? (
-              <aside className="relative border-l border-border/60 bg-muted/25 p-6">
+              <aside className={cn("relative", featuredShell, featuredPadding)}>
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(57,76,140,0.12),transparent_45%)]" />
                 <Link
                   href={getLocaleHref(data.featured.href)}
-                  className="group/featured relative flex h-full flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border/60 bg-card/95 p-5 ring-1 ring-border/40 transition-all hover:-translate-y-0.5 hover:bg-background focus:outline-none focus:ring-2 focus:ring-ring/30"
+                  className={cn(
+                    "group/featured relative flex h-full flex-col justify-between overflow-hidden border border-border/60 bg-card/95 ring-1 ring-border/40 transition-all hover:-translate-y-0.5 hover:bg-background focus:outline-none focus:ring-2 focus:ring-ring/30",
+                    featuredCard,
+                  )}
                 >
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
                   <span>

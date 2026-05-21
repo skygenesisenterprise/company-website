@@ -5,16 +5,23 @@ import {
   Blocks,
   Compass,
   Flag,
+  Globe2,
   Layers3,
+  Network,
+  ShieldCheck,
   Sparkles,
   Users,
 } from "lucide-react";
 import {
-  CompanyCard,
+  CompanyBulletGrid,
   CompanyCTA,
+  CompanyCard,
   CompanyHero,
   CompanyPageShell,
+  CompanyRelatedPages,
   CompanySection,
+  CompanyStatement,
+  CompanyTimelineItem,
 } from "@/components/public/company/company-page";
 
 interface MetadataParams {
@@ -47,6 +54,10 @@ export default async function CompanyPage({ params }: MetadataParams) {
   const buildingItems = t.raw("building.items") as CompanyCardContent[];
   const principlesItems = t.raw("principles.items") as CompanyCardContent[];
   const navItems = t.raw("navigation.items") as CompanyCardContent[];
+  const overview = t.raw("overview") as { label: string; title: string; aside: string };
+  const journeyItems = t.raw("journey.items") as Array<{ label: string; title: string; description: string }>;
+  const globalFutureItems = t.raw("globalFuture.items") as Array<{ title: string; description: string }>;
+  const latestLinkItems = t.raw("latestLinks.items") as Array<{ title: string; description: string; href: string }>;
   const whoIcons = [Flag, Users, Compass];
   const buildingIcons = [Layers3, Blocks, Sparkles];
 
@@ -68,22 +79,27 @@ export default async function CompanyPage({ params }: MetadataParams) {
         title={t("intro.title")}
         description={t("intro.description")}
       >
-        <div className="rounded-[1.75rem] border border-border/70 bg-card/90 p-8 shadow-sm lg:p-10">
-          <p className="max-w-4xl text-lg leading-8 text-muted-foreground">
-            {t("intro.body")}
-          </p>
-        </div>
+        <CompanyStatement
+          label={overview.label}
+          title={overview.title}
+          body={t("intro.body")}
+          aside={
+            <div className="rounded-[1.5rem] border border-border/70 bg-background/90 p-5 text-sm leading-7 text-muted-foreground">
+              {overview.aside}
+            </div>
+          }
+        />
       </CompanySection>
 
-      <CompanySection eyebrow={t("who.eyebrow")} title={t("who.title")} description={t("who.description")}>
+      <CompanySection
+        eyebrow={t("whyExists.eyebrow")}
+        title={t("whyExists.title")}
+        description={t("whyExists.description")}
+        tone="muted"
+      >
         <div className="grid gap-5 md:grid-cols-3">
           {whoItems.map((item, index) => (
-            <CompanyCard
-              key={item.title}
-              icon={whoIcons[index]}
-              title={item.title}
-              description={item.description}
-            />
+            <CompanyCard key={item.title} icon={whoIcons[index]} title={item.title} description={item.description} />
           ))}
         </div>
       </CompanySection>
@@ -92,16 +108,10 @@ export default async function CompanyPage({ params }: MetadataParams) {
         eyebrow={t("building.eyebrow")}
         title={t("building.title")}
         description={t("building.description")}
-        tone="muted"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {buildingItems.map((item, index) => (
-            <CompanyCard
-              key={item.title}
-              icon={buildingIcons[index]}
-              title={item.title}
-              description={item.description}
-            />
+            <CompanyCard key={item.title} icon={buildingIcons[index]} title={item.title} description={item.description} />
           ))}
         </div>
       </CompanySection>
@@ -110,12 +120,34 @@ export default async function CompanyPage({ params }: MetadataParams) {
         eyebrow={t("principles.eyebrow")}
         title={t("principles.title")}
         description={t("principles.description")}
+        tone="muted"
       >
-        <div className="grid gap-5 md:grid-cols-3">
-          {principlesItems.map((item) => (
-            <CompanyCard key={item.title} title={item.title} description={item.description} />
+        <CompanyBulletGrid items={principlesItems} />
+      </CompanySection>
+
+      <CompanySection
+        eyebrow={t("journey.eyebrow")}
+        title={t("journey.title")}
+        description={t("journey.description")}
+      >
+        <div className="space-y-5">
+          {journeyItems.map((item) => (
+            <CompanyTimelineItem
+              key={item.label}
+              label={item.label}
+              title={item.title}
+              description={item.description}
+            />
           ))}
         </div>
+      </CompanySection>
+
+      <CompanySection
+        eyebrow={t("globalFuture.eyebrow")}
+        title={t("globalFuture.title")}
+        description={t("globalFuture.description")}
+      >
+        <CompanyBulletGrid items={globalFutureItems} />
       </CompanySection>
 
       <CompanySection
@@ -124,15 +156,31 @@ export default async function CompanyPage({ params }: MetadataParams) {
         description={t("navigation.description")}
         tone="muted"
       >
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {navItems.map((item) => (
+        <CompanyRelatedPages
+          items={navItems.map((item) => ({
+            title: item.title,
+            description: item.description,
+            href: `/${locale}${item.href}`,
+            cta: item.cta ?? "Voir la page",
+            icon: ArrowUpRight,
+          }))}
+        />
+      </CompanySection>
+
+      <CompanySection
+        eyebrow={t("latestLinks.eyebrow")}
+        title={t("latestLinks.title")}
+        description={t("latestLinks.description")}
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {latestLinkItems.map((item) => (
             <CompanyCard
               key={item.title}
-              icon={ArrowUpRight}
+              icon={item.title === "Story" ? Compass : item.title === "Platform" ? Network : Globe2}
               title={item.title}
               description={item.description}
               href={`/${locale}${item.href}`}
-              cta={item.cta}
+              cta={common("explore")}
             />
           ))}
         </div>
@@ -143,8 +191,8 @@ export default async function CompanyPage({ params }: MetadataParams) {
         title={t("cta.title")}
         description={t("cta.description")}
         actions={[
-          { label: common("contact"), href: `/${locale}/company/contact` },
-          { label: common("careers"), href: `/${locale}/company/careers`, variant: "outline" },
+          { label: common("story"), href: `/${locale}/company/story` },
+          { label: common("platform"), href: `/${locale}/platform`, variant: "outline" },
         ]}
       />
     </CompanyPageShell>

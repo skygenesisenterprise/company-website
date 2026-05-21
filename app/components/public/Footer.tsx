@@ -14,6 +14,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
+import {
+  HeaderInfoLanguageSelector,
+  HeaderInfoSecurityInfo,
+} from "@/components/public/headerinfo/HeaderInfo";
+import { HeaderInfoThemeToggle } from "@/components/public/headerinfo/HeaderInfoThemeToggle";
 import { type Locale } from "@/lib/locale";
 
 interface FooterProps {
@@ -176,8 +181,12 @@ function SocialIcon({ name }: { name: string }) {
 export async function Footer({ locale: initialLocale }: FooterProps) {
   const locale = initialLocale || "fr";
   const t = await getTranslations({ locale, namespace: "Public.footer" });
+  const tHeaderInfo = await getTranslations({ locale, namespace: "HeaderInfo" });
 
   const prefix = `/${locale}`;
+  const languageList = Object.entries(tHeaderInfo.raw("languages") as Record<string, string>).map(
+    ([code, label]) => ({ code, label })
+  );
 
   const platformApiLinks: FooterLink[] = [
     { name: t("platformOverview"), href: `${prefix}/platform` },
@@ -267,25 +276,6 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
     { name: "Mastodon", href: "https://mastodon.social/@skygenesisenterprise" },
   ];
 
-  const mobileApps = [
-    {
-      name: t("appStore"),
-      badgeSrc: "/badges/app-store-fr.svg",
-      alt: t("appStoreAlt"),
-      href: "",
-      width: 132,
-      height: 40,
-    },
-    {
-      name: t("googlePlay"),
-      badgeSrc: "/badges/google-play-fr.svg",
-      alt: t("googlePlayAlt"),
-      href: "",
-      width: 135,
-      height: 40,
-    },
-  ];
-
   return (
     <footer className="bg-background text-muted-foreground border-t border-border">
       {/* Main link columns */}
@@ -331,51 +321,10 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
               <p className="mt-4 text-sm text-muted-foreground">
                 {t("salesServices")}: {t("phoneNumber")}
               </p>
-              <div className="mt-6 border-t border-border/50 pt-6">
-                <h3 className="text-[11px] font-semibold uppercase tracking-widest text-foreground">
-                  {t("mobileAppsTitle")}
-                </h3>
-                <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted-foreground">
-                  {t("mobileAppsDescription")}
-                </p>
-                <div className="mt-4 flex flex-col gap-2 sm:flex-row lg:flex-col xl:flex-row">
-                  {mobileApps.map((app) => {
-                    const badge = (
-                      <Image
-                        src={app.badgeSrc}
-                        alt={app.alt}
-                        width={app.width}
-                        height={app.height}
-                        className="h-10 w-auto opacity-70 grayscale"
-                      />
-                    );
-
-                    if (!app.href) {
-                      return (
-                        <div
-                          key={app.name}
-                          className="inline-flex w-fit rounded-md"
-                          aria-label={`${app.name} ${t("mobileAppsSoon")}`}
-                        >
-                          {badge}
-                        </div>
-                      );
-                    }
-
-                    return (
-                      <Link
-                        key={app.name}
-                        href={app.href}
-                        className="inline-flex w-fit rounded-md transition-opacity hover:opacity-90"
-                      >
-                        {badge}
-                      </Link>
-                    );
-                  })}
-                </div>
-                <p className="mt-2 text-[11px] text-muted-foreground">
-                  {t("mobileAppsSoon")}
-                </p>
+              <div className="mt-4 flex flex-wrap items-center gap-4 sm:gap-5">
+                <HeaderInfoLanguageSelector locale={locale} languageList={languageList} />
+                <HeaderInfoThemeToggle />
+                <HeaderInfoSecurityInfo securityLabel={tHeaderInfo("officialSitesInfo")} />
               </div>
             </div>
 
@@ -409,16 +358,18 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
       {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-muted-foreground">{t("copyright")}</p>
-            <p className="text-xs text-muted-foreground">
-              <Link
-                href={`${prefix}/pgp`}
-                className="hover:text-foreground transition-colors duration-150"
-              >
-                {t("verifyKey")}
-              </Link>
-            </p>
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs text-muted-foreground">{t("copyright")}</p>
+              <p className="text-xs text-muted-foreground">
+                <Link
+                  href={`${prefix}/pgp`}
+                  className="hover:text-foreground transition-colors duration-150"
+                >
+                  {t("verifyKey")}
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>

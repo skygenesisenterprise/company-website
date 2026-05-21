@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import {
+  getPlatformPageData,
   generatePlatformMetadata,
   type PlatformPageParams,
-  renderPlatformPage,
-} from "../page-helpers";
+} from "../page-data";
+import { PlatformServicePage } from "@/components/public/platform/platform-service-page";
 
 export async function generateMetadata({ params }: PlatformPageParams): Promise<Metadata> {
   return generatePlatformMetadata(params, "vault");
 }
 
 export default async function PlatformVaultPage({ params }: PlatformPageParams) {
-  return renderPlatformPage(params, "vault");
+  const pageData = await getPlatformPageData(params, "vault");
+
+  return <PlatformServicePage {...pageData} />;
 }

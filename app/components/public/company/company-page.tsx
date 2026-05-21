@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
@@ -68,12 +68,37 @@ interface CompanyStatProps {
   description?: string;
 }
 
+interface CompanyStatementProps {
+  label?: string;
+  title: string;
+  body: string;
+  aside?: React.ReactNode;
+}
+
+interface CompanyBulletGridProps {
+  items: Array<{
+    title: string;
+    description: string;
+  }>;
+  columns?: "two" | "three";
+}
+
+interface CompanyRelatedPagesProps {
+  items: Array<{
+    title: string;
+    description: string;
+    href: string;
+    cta: string;
+    icon?: LucideIcon;
+  }>;
+}
+
 export function CompanyPageShell({ locale, children }: CompanyPageShellProps) {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header locale={locale as Locale} />
       <main className="flex-1">{children}</main>
-      <Footer locale={locale as "fr" | "be_fr" | "be_nl" | "ch_fr"} />
+      <Footer locale={locale as Locale} />
     </div>
   );
 }
@@ -91,7 +116,7 @@ export function CompanyHero({
   return (
     <section className="relative overflow-hidden border-b border-border/70">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.14),transparent_38%),radial-gradient(circle_at_86%_18%,rgba(57,76,140,0.08),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.18),transparent_38%),radial-gradient(circle_at_86%_18%,rgba(57,76,140,0.1),transparent_28%)]" />
         <div
           className="absolute inset-0 opacity-40"
           style={{
@@ -101,15 +126,18 @@ export function CompanyHero({
           }}
         />
       </div>
-      <div className="relative mx-auto max-w-[1400px] px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
+      <div className="relative mx-auto max-w-350 px-6 py-24 sm:py-28 lg:px-12 lg:py-36">
         <div className="relative max-w-3xl xl:max-w-4xl">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
-          <h1 className="mt-6 max-w-4xl text-[clamp(3rem,6vw,5.2rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-foreground">
+          <h1 className="mt-6 max-w-4xl text-[clamp(3rem,6vw,5.4rem)] font-semibold leading-[0.96] tracking-[-0.04em] text-foreground">
             {title}
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
             {description}
           </p>
+          <div className="mt-6 inline-flex rounded-full border border-primary/15 bg-primary/8 px-4 py-2 text-sm font-medium text-primary">
+            {eyebrow}
+          </div>
           {primaryCta && primaryHref ? (
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="h-14 rounded-full px-8 text-sm font-medium shadow-lg shadow-primary/10">
@@ -343,6 +371,58 @@ export function CompanyStat({ label, value, description }: CompanyStatProps) {
       {description ? (
         <p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p>
       ) : null}
+    </div>
+  );
+}
+
+export function CompanyStatement({ label, title, body, aside }: CompanyStatementProps) {
+  return (
+    <div className="grid gap-6 rounded-[1.75rem] border border-border/70 bg-card/90 p-8 shadow-sm lg:grid-cols-[minmax(0,1fr)_240px] lg:p-10">
+      <div className="max-w-3xl">
+        {label ? (
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            {label}
+          </p>
+        ) : null}
+        <h3 className="mt-5 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          {title}
+        </h3>
+        <p className="mt-5 text-base leading-7 text-muted-foreground">{body}</p>
+      </div>
+      <div className="lg:justify-self-end">{aside}</div>
+    </div>
+  );
+}
+
+export function CompanyBulletGrid({ items, columns = "three" }: CompanyBulletGridProps) {
+  return (
+    <div className={cn("grid gap-5", columns === "two" ? "md:grid-cols-2" : "md:grid-cols-3")}>
+      {items.map((item) => (
+        <div key={item.title} className="rounded-[1.5rem] border border-border/70 bg-card/90 p-6 shadow-sm">
+          <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/70 bg-background text-primary">
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
+          </div>
+          <h3 className="mt-5 text-lg font-semibold text-foreground">{item.title}</h3>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function CompanyRelatedPages({ items }: CompanyRelatedPagesProps) {
+  return (
+    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {items.map((item) => (
+        <CompanyCard
+          key={item.href}
+          icon={item.icon}
+          title={item.title}
+          description={item.description}
+          href={item.href}
+          cta={item.cta}
+        />
+      ))}
     </div>
   );
 }

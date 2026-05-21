@@ -3,8 +3,6 @@ import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { LocaleProvider } from "@/context/locale-context";
 import { Locale } from "@/lib/locale";
-import { HeaderInfo } from "@/components/public/headerinfo/HeaderInfo";
-import { ConsentBanner } from "@/components/consent-banner";
 import { BackToTopButton } from "@/components/common/back-to-top-button";
 
 export default async function LocaleLayout({
@@ -26,14 +24,12 @@ export default async function LocaleLayout({
       <LocaleProvider initialLocale={locale as Locale}>
         <div className="min-h-screen bg-transparent text-foreground">
           <div className="relative isolate flex min-h-screen flex-col">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top,rgba(57,76,140,0.12),transparent_62%)]" />
-            <HeaderInfo locale={locale} />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top,rgba(57,76,140,0.12),transparent_62%)]" />
             <div className="relative flex min-h-screen flex-col">
               {children}
             </div>
             <BackToTopButton />
           </div>
-          <ConsentBanner />
         </div>
       </LocaleProvider>
     </NextIntlClientProvider>

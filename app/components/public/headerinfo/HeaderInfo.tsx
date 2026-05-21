@@ -8,6 +8,60 @@ interface HeaderInfoProps {
   locale?: string;
 }
 
+interface HeaderInfoSecurityInfoProps {
+  securityLabel: string;
+}
+
+interface HeaderInfoLanguageSelectorProps {
+  locale: string;
+  languageList: Array<{ code: string; label: string }>;
+}
+
+export function HeaderInfoSecurityInfo({ securityLabel }: HeaderInfoSecurityInfoProps) {
+  return (
+    <div className="relative group flex items-center">
+      <button className="text-muted-foreground transition-colors hover:text-foreground">
+        <CircleHelp className="h-4 w-4" />
+      </button>
+      <div className="absolute bottom-full right-0 z-60 hidden w-72 pb-2 group-hover:block">
+        <div className="rounded-2xl border border-border bg-popover/95 p-3 text-sm leading-relaxed text-popover-foreground shadow-xl backdrop-blur">
+          {securityLabel}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function HeaderInfoLanguageSelector({
+  locale,
+  languageList,
+}: HeaderInfoLanguageSelectorProps) {
+  return (
+    <div className="relative group">
+      <button className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground">
+        <Globe className="h-4 w-4" />
+        <span className="uppercase">{locale}</span>
+        <ChevronDown className="h-3 w-3" />
+      </button>
+      <div className="absolute bottom-full right-0 z-60 hidden pb-2 group-hover:block">
+        <div className="min-w-40 overflow-hidden rounded-2xl border border-border bg-background/95 shadow-xl backdrop-blur">
+          <div className="p-2">
+            {languageList.map((lang) => (
+              <Link
+                key={lang.code}
+                href={`/${lang.code}`}
+                className="block rounded-xl px-3 py-2 text-sm transition-colors hover:bg-muted"
+              >
+                {lang.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export async function HeaderInfo({ locale: initialLocale }: HeaderInfoProps) {
   const locale = initialLocale || "fr";
   const t = await getTranslations({ locale, namespace: "HeaderInfo" });
@@ -46,43 +100,13 @@ export async function HeaderInfo({ locale: initialLocale }: HeaderInfoProps) {
           </div>
 
           {/* Security Info */}
-          <div className="relative group flex items-center">
-            <button className="text-muted-foreground transition-colors hover:text-foreground">
-              <CircleHelp className="h-4 w-4" />
-            </button>
-            <div className="absolute right-0 top-full pt-2 hidden group-hover:block z-60 w-72">
-              <div className="rounded-2xl border border-border bg-popover/95 p-3 text-sm leading-relaxed text-popover-foreground shadow-xl backdrop-blur">
-                {securityLabel}
-              </div>
-            </div>
-          </div>
+          <HeaderInfoSecurityInfo securityLabel={securityLabel} />
 
           {/* Theme Toggle */}
           <HeaderInfoThemeToggle />
 
           {/* Language Selector */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground">
-              <Globe className="h-4 w-4" />
-              <span className="uppercase">{locale}</span>
-              <ChevronDown className="h-3 w-3" />
-            </button>
-            <div className="absolute right-0 top-full pt-2 hidden group-hover:block z-60">
-              <div className="min-w-40 overflow-hidden rounded-2xl border border-border bg-background/95 shadow-xl backdrop-blur">
-                <div className="p-2">
-                  {languageList.map((lang) => (
-                    <Link
-                      key={lang.code}
-                      href={`/${lang.code}`}
-                      className="block rounded-xl px-3 py-2 text-sm transition-colors hover:bg-muted"
-                    >
-                      {lang.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <HeaderInfoLanguageSelector locale={locale} languageList={languageList} />
         </div>
       </div>
     </div>

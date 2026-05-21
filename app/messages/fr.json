@@ -140,20 +140,19 @@
       "reportIssue": "Signaler un problème",
       "developerSupport": "Support développeurs",
       "brandDescription": "Nous concevons et opérons les infrastructures numériques de demain, en développant des technologies souveraines au service d'un écosystème européen durable.",
+      "missionStatement": "Sky Genesis Enterprise construit une infrastructure numérique ouverte, souveraine et interopérable pour les développeurs, les organisations et les communautés.",
+      "story": "Notre histoire",
+      "utilityTitle": "Accès et confiance",
+      "utilityDescription": "Retrouvez les points d'entrée utiles, l'assistance et les repères de confiance de l'écosystème Sky Genesis Enterprise.",
+      "trustTitle": "Vérification officielle",
+      "languageLabel": "Langues",
       "newsletterTitle": "Restez connecté",
       "newsletterDescription": "Accédez à notre actualité cloud pour ne rien manquer de nos nouveautés",
       "newsletterEmail": "Votre adresse e-mail",
       "newsletterLegalNotice": "Sky Genesis Enterprise traite votre adresse de messagerie aux fins de vous adresser les newsletters des entités du Groupe Sky Genesis Enterprise. Vous pouvez à tout moment utiliser le lien de désabonnement intégré. En savoir plus sur la gestion de vos données et vos droits",
       "verifyKey": "Vérifiez notre clé publique PGP pour assurer l'authenticité du site",
       "salesServices": "Services Commerciaux",
-      "phoneNumber": "Non disponnible",
-      "mobileAppsTitle": "Applications mobiles",
-      "mobileAppsDescription": "Disponibilité progressive sur iOS et Android selon la maturité des produits SGE.",
-      "mobileAppsSoon": "Bientôt disponible",
-      "appStore": "App Store",
-      "googlePlay": "Google Play",
-      "appStoreAlt": "Badge App Store iOS, bientôt disponible",
-      "googlePlayAlt": "Badge Google Play Android, bientôt disponible"
+      "phoneNumber": "Non disponnible"
     },
     "contact": {
       "heroTitle": "Contactez-Nous",
@@ -2366,7 +2365,7 @@
           "Research": "Recherche"
         },
         "hero": {
-          "eyebrow": "Sky Genesis Enterprise",
+          "eyebrow": "Le future du numérique européen",
           "title": "Construire les fondations d'un écosystème technologique européen.",
           "description": "Nous concevons des plateformes, produits et infrastructures numériques pensés pour la souveraineté, la sécurité et l'exécution long terme.",
           "badge": "Écosystème en construction structurée, avec des statuts de maturité explicites.",
@@ -8672,7 +8671,8 @@
       "partners": "Partenaires",
       "press": "Presse",
       "contact": "Contacter l'équipe",
-      "platform": "Découvrir la plateforme"
+      "platform": "Découvrir la plateforme",
+      "explore": "Explorer"
     },
     "page": {
       "metadata": {
@@ -8695,6 +8695,16 @@
         "title": "Sky Genesis Enterprise existe pour bâtir des fondations, pas seulement des interfaces.",
         "description": "Le rôle de cette page est de donner une vue d’ensemble claire avant d’entrer dans les détails.",
         "body": "SGE développe une entreprise technologique centrée sur les briques essentielles du numérique moderne : identité, infrastructure, sécurité, outils développeurs, collaboration et services interopérables. L’objectif n’est pas de promettre un remplacement immédiat de tout l’existant, mais de construire méthodiquement une alternative sérieuse, utile et durable."
+      },
+      "overview": {
+        "label": "Vue d’ensemble",
+        "title": "La section Company sert de porte d’entrée vers le récit complet de Sky Genesis Enterprise.",
+        "aside": "Comprendre SGE, c’est comprendre une entreprise, une plateforme, une trajectoire et une méthode de construction."
+      },
+      "whyExists": {
+        "eyebrow": "Pourquoi SGE existe",
+        "title": "Pourquoi Sky Genesis Enterprise existe.",
+        "description": "Avant de parler d’écosystème, il faut expliquer la raison d’être de l’entreprise."
       },
       "who": {
         "eyebrow": "Who we are",
@@ -8753,6 +8763,47 @@
           }
         ]
       },
+      "journey": {
+        "eyebrow": "De l’idée à l’écosystème",
+        "title": "D’une idée de maîtrise à un écosystème en construction.",
+        "description": "La progression de SGE repose sur une montée en cohérence plus que sur une accumulation de fonctionnalités.",
+        "items": [
+          {
+            "label": "Point de départ",
+            "title": "Une lecture lucide du paysage numérique.",
+            "description": "SGE commence par un constat simple : trop de briques critiques restent opaques, dépendantes ou difficiles à faire évoluer selon ses propres contraintes."
+          },
+          {
+            "label": "Premières fondations",
+            "title": "Des outils et des services avant le récit corporate.",
+            "description": "L’entreprise se structure autour de briques utiles : identité, plateforme, documentation, sécurité, intégration et expérience développeur."
+          },
+          {
+            "label": "Trajectoire",
+            "title": "D’une idée à un écosystème cohérent.",
+            "description": "La logique n’est pas de juxtaposer des produits, mais de faire converger plusieurs fondations techniques vers une architecture durable et exploitable."
+          }
+        ]
+      },
+      "globalFuture": {
+        "eyebrow": "Europe et ouverture",
+        "title": "Construit depuis l’Europe pour un futur numérique plus ouvert.",
+        "description": "Le point de départ géographique nourrit la vision, mais ne la limite pas.",
+        "items": [
+          {
+            "title": "Ancrage européen",
+            "description": "L’exigence de souveraineté vient d’une réalité de terrain : garder de la maîtrise sur les briques qui comptent vraiment."
+          },
+          {
+            "title": "Portée globale",
+            "description": "La vision reste ouverte : construire depuis l’Europe n’empêche pas de viser des standards utiles pour des développeurs et organisations partout."
+          },
+          {
+            "title": "Interopérabilité",
+            "description": "La crédibilité passe par la capacité à s’intégrer au réel, pas à prétendre remplacer tout l’existant du jour au lendemain."
+          }
+        ]
+      },
       "navigation": {
         "eyebrow": "Explorer la section",
         "title": "Chaque page a un rôle distinct dans le récit corporate.",
@@ -8805,6 +8856,28 @@
             "description": "Identifier le bon canal pour une demande générale, presse, partenariat, carrière ou sécurité.",
             "href": "/company/contact",
             "cta": "Voir la page"
+          }
+        ]
+      },
+      "latestLinks": {
+        "eyebrow": "Pour aller plus loin",
+        "title": "Continuer depuis les pages et ressources les plus structurantes.",
+        "description": "Cette section relie l’histoire de l’entreprise à la plateforme, à la documentation et aux autres points d’entrée du site.",
+        "items": [
+          {
+            "title": "Story",
+            "description": "Lire le récit fondateur et la progression des premières idées vers un écosystème plus large.",
+            "href": "/company/story"
+          },
+          {
+            "title": "Platform",
+            "description": "Voir comment la plateforme Aether relie identité, services, intégrations et infrastructures.",
+            "href": "/platform"
+          },
+          {
+            "title": "Developers",
+            "description": "Explorer la documentation, les APIs et l’approche developer-first qui soutient tout l’écosystème.",
+            "href": "/developers"
           }
         ]
       },
