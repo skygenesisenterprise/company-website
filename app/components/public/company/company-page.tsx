@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { HeroWorldMap } from "@/components/public/home/hero-world-map";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
@@ -115,8 +116,12 @@ export function CompanyHero({
 }: CompanyHeroProps) {
   return (
     <section className="relative overflow-hidden border-b border-border/70">
+      <div className="pointer-events-none absolute right-[-5rem] top-[2rem] hidden h-[760px] w-[760px] opacity-60 lg:block xl:right-[-6rem] xl:top-0 xl:h-[920px] xl:w-[920px]">
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(57,76,140,0.12),transparent_62%)]" />
+        <HeroWorldMap className="relative z-10 h-full w-full" />
+      </div>
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.18),transparent_38%),radial-gradient(circle_at_86%_18%,rgba(57,76,140,0.1),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.18),transparent_38%),radial-gradient(circle_at_85%_18%,rgba(57,76,140,0.1),transparent_28%)]" />
         <div
           className="absolute inset-0 opacity-40"
           style={{
@@ -126,7 +131,7 @@ export function CompanyHero({
           }}
         />
       </div>
-      <div className="relative mx-auto max-w-350 px-6 py-24 sm:py-28 lg:px-12 lg:py-36">
+      <div className="relative mx-auto max-w-[1400px] px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
         <div className="relative max-w-3xl xl:max-w-4xl">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
           <h1 className="mt-6 max-w-4xl text-[clamp(3rem,6vw,5.4rem)] font-semibold leading-[0.96] tracking-[-0.04em] text-foreground">

@@ -11693,5 +11693,129 @@
         "href": "/blog/ia-europeenne-construire-utile"
       }
     }
+  },
+  "PlatformHub": {
+    "metadata": {
+      "title": "Platform | Sky Genesis Enterprise",
+      "description": "Découvrir les services plateforme SGE : infrastructure, identité, sécurité, communication et outils développeurs."
+    },
+    "common": {
+      "explore": "Explorer",
+      "viewService": "Voir le service"
+    },
+    "hero": {
+      "eyebrow": "Plateforme SGE",
+      "title": "Le socle technique commun de l'écosystème SGE.",
+      "description": "Les services plateforme structurent les produits et les expériences. Chaque brique affiche sa maturité pour éviter toute surpromesse.",
+      "primaryCta": "Explorer les services",
+      "secondaryCta": "Voir l'écosystème",
+      "signals": [
+        "8 services plateforme",
+        "Maturité affichée",
+        "Architecture souveraine"
+      ]
+    },
+    "ecosystem": {
+      "eyebrow": "Écosystème",
+      "title": "Une plateforme intégrée, pas une collection isolée de services.",
+      "description": "Chaque service est conçu pour renforcer les autres. Identity sécurise Vault. Edge distribue Status. Mailer relie les événements produit.",
+      "statementTitle": "La cohérence du socle compte autant que chaque brique.",
+      "body": "L'objectif n'est pas de proposer huit outils indépendants, mais de construire un socle où identité, infrastructure, communication et sécurité partagent des conventions, des APIs et une logique opérationnelle commune."
+    },
+    "whyIntegrated": {
+      "eyebrow": "Pourquoi une plateforme intégrée",
+      "title": "Moins de fragmentation, plus de maîtrise.",
+      "description": "Une plateforme unifiée réduit les interfaces fragiles, les redondances de sécurité et les silos de données.",
+      "items": {
+        "control": {
+          "title": "Maîtrise opérationnelle",
+          "description": "Un seul modèle d'identité, de sécurité et de gouvernance appliqué à tous les services."
+        },
+        "clarity": {
+          "title": "Lisibilité de la maturité",
+          "description": "Chaque service affiche son statut réel : disponible, en développement, en recherche ou en préversion privée."
+        },
+        "evolution": {
+          "title": "Progression commune",
+          "description": "Les services mûrissent ensemble et renforcent le socle au lieu de diverger."
+        }
+      }
+    },
+    "infrastructure": {
+      "eyebrow": "Infrastructure",
+      "title": "Fondations réseau, compute et géographique.",
+      "description": "Edge, Status, Search et Maps forment la couche technique visible de l'infrastructure SGE.",
+      "items": {
+        "edge": {
+          "title": "Aether Edge",
+          "description": "Routage, distribution et protection aux points d'entrée publics."
+        },
+        "status": {
+          "title": "Status",
+          "description": "Transparence de santé des services, incidents et maintenance."
+        },
+        "search": {
+          "title": "Search",
+          "description": "Découverte unifiée dans la documentation, les pages et les ressources."
+        },
+        "maps": {
+          "title": "Maps",
+          "description": "Contexte géographique pour les régions et les services."
+        }
+      }
+    },
+    "identitySecurity": {
+      "eyebrow": "Identité & sécurité",
+      "title": "Contrôle d'accès et gestion des secrets.",
+      "description": "Identity et Vault sécurisent l'écosystème depuis la couche de connexion jusqu'aux secrets d'intégration.",
+      "items": {
+        "identity": {
+          "title": "Aether Identity",
+          "description": "Authentification, sessions, MFA et cycle de vie des comptes pour les applications SGE."
+        },
+        "vault": {
+          "title": "Vault",
+          "description": "Stockage centralisé des secrets, clés API, jetons et audit d'accès."
+        }
+      }
+    },
+    "communication": {
+      "eyebrow": "Communication",
+      "title": "Messagerie transactionnelle et événements produit.",
+      "description": "Mailer coordonne les flux email déclenchés par les applications avec modèles, routage et visibilité.",
+      "item": {
+        "title": "Aether Mailer",
+        "description": "Vérification de compte, alertes de sécurité et notifications système via un pipeline partagé."
+      }
+    },
+    "developer": {
+      "eyebrow": "Développeurs",
+      "title": "Construire avec les APIs et SDKs SGE.",
+      "description": "Le portail développeur expose les conventions d'intégration, les quickstarts et les interfaces publiques.",
+      "item": {
+        "title": "Portail développeurs",
+        "description": "APIs versionnées, SDKs, CLI, collections Postman et documentation progressive."
+      }
+    },
+    "sovereignty": {
+      "eyebrow": "Souveraineté",
+      "title": "Une architecture pensée pour la maîtrise européenne.",
+      "description": "Résidence des données, conformité réglementaire, auditabilité et réduction des dépendances critiques.",
+      "statementTitle": "La souveraineté n'est pas un slogan, c'est une architecture.",
+      "body": "SGE conçoit chaque service avec une attention à la transparence, à l'auditabilité et à la résidence des données. Les choix techniques privilégient les standards ouverts, la maîtrise opérationnelle et la sobriété."
+    },
+    "navigation": {
+      "eyebrow": "Services plateforme",
+      "title": "Parcourir les briques du socle.",
+      "description": "Chaque service dispose de sa propre page avec contexte, capacités, architecture et maturité affichée."
+    },
+    "cta": {
+      "eyebrow": "Prochaine étape",
+      "title": "Choisir le point d'entrée selon votre profil.",
+      "description": "Explorer les services en détail, évaluer un scénario solution ou contacter l'équipe SGE.",
+      "explore": "Explorer la plateforme",
+      "solutions": "Voir les solutions",
+      "contact": "Contacter SGE"
+    }
   }
 }
