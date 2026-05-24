@@ -20,10 +20,8 @@ import {
   Menu,
   X,
   ArrowRight,
-  Shield,
   Users,
   Key,
-  Lock,
   Layers,
   Code,
   BookOpen,
@@ -36,14 +34,8 @@ import {
   Database,
   Settings,
   LifeBuoy,
-  Mail,
-  Inbox,
-  Table2,
   Network,
   DatabaseSearch,
-  GlobeLock,
-  FolderGit2,
-  MessageCircle,
   Briefcase,
   Landmark,
   ShoppingCart,
@@ -263,73 +255,61 @@ function MegaMenu({
   );
 }
 
-function getProductMenuData(): MegaMenuData {
+function getPlatformMenuData(): MegaMenuData {
   return {
     sections: [
       {
-        titleKey: "identitySecurity",
+        titleKey: "platformCoreSection",
         items: [
           {
-            titleKey: "shield",
-            descKey: "shieldDesc",
-            href: "/products/shield",
-            icon: <Shield className="h-5 w-5" />,
+            titleKey: "developerPlatform",
+            descKey: "developerPlatformDesc",
+            href: "/platform/developer",
+            icon: <Code className="h-5 w-5" />,
           },
           {
-            titleKey: "vpn",
-            descKey: "vpnDesc",
-            href: "/products/vpn",
-            icon: <GlobeLock className="h-5 w-5" />,
+            titleKey: "cloudPlatform",
+            descKey: "cloudPlatformDesc",
+            href: "/platform/cloud",
+            icon: <Building2 className="h-5 w-5" />,
           },
           {
-            titleKey: "giteria",
-            descKey: "giteriaDesc",
-            href: "/products/giteria",
-            icon: <FolderGit2 className="h-5 w-5" />,
-          },
-          {
-            titleKey: "schematik",
-            descKey: "schematikDesc",
-            href: "/products/schematik",
+            titleKey: "telecomPlatform",
+            descKey: "telecomPlatformDesc",
+            href: "/platform/telecom",
             icon: <Network className="h-5 w-5" />,
           },
         ],
       },
       {
-        titleKey: "collaboration",
+        titleKey: "platformBusinessSection",
         items: [
           {
-            titleKey: "mail",
-            descKey: "mailDesc",
-            href: "/products/mail",
-            icon: <Mail className="h-5 w-5" />,
+            titleKey: "financePlatform",
+            descKey: "financePlatformDesc",
+            href: "/platform/finance",
+            icon: <Landmark className="h-5 w-5" />,
           },
           {
-            titleKey: "meet",
-            descKey: "meetDesc",
-            href: "/products/meet",
-            icon: <Users className="h-5 w-5" />,
+            titleKey: "intelligencePlatform",
+            descKey: "intelligencePlatformDesc",
+            href: "/platform/intelligence",
+            icon: <DatabaseSearch className="h-5 w-5" />,
           },
           {
-            titleKey: "chat",
-            descKey: "chatDesc",
-            href: "/products/chat",
-            icon: <MessageCircle className="h-5 w-5" />,
-          },
-          {
-            titleKey: "sheets",
-            descKey: "sheetsDesc",
-            href: "/products/sheets",
-            icon: <Table2 className="h-5 w-5" />,
+            titleKey: "mediaPlatform",
+            descKey: "mediaPlatformDesc",
+            href: "/platform/media",
+            icon: <Globe className="h-5 w-5" />,
           },
         ],
       },
     ],
     featured: {
-      badgeKey: "productsFeaturedBadge",
-      titleKey: "productsFeaturedTitle",
-      descKey: "productsFeaturedDesc",
-      href: "/products",
+      badgeKey: "platformFeaturedBadge",
+      titleKey: "platformFeaturedTitle",
+      descKey: "platformFeaturedDesc",
+      href: "/platform",
     },
   };
 }
@@ -541,77 +521,6 @@ function getEnterpriseMenuData(): MegaMenuData {
   };
 }
 
-function getPlateformeMenuData(): MegaMenuData {
-  return {
-    sections: [
-      {
-        titleKey: "infrastructureCloud",
-        items: [
-          {
-            titleKey: "edge",
-            descKey: "edgeDesc",
-            href: "/platform/edge",
-            icon: <Server className="h-5 w-5" />,
-          },
-          {
-            titleKey: "bank",
-            descKey: "bankDesc",
-            href: "/platform/bank",
-            icon: <Building2 className="h-5 w-5" />,
-          },
-          {
-            titleKey: "status",
-            descKey: "statusDesc",
-            href: "/platform/status",
-            icon: <Zap className="h-5 w-5" />,
-          },
-          {
-            titleKey: "search",
-            descKey: "searchDesc",
-            href: "/platform/search",
-            icon: <DatabaseSearch className="h-5 w-5" />,
-          },
-        ],
-      },
-      {
-        titleKey: "userServices",
-        items: [
-          {
-            titleKey: "identity",
-            descKey: "identityDesc",
-            href: "/platform/identity",
-            icon: <Lock className="h-5 w-5" />,
-          },
-          {
-            titleKey: "maps",
-            descKey: "mapsDesc",
-            href: "/platform/maps",
-            icon: <Globe className="h-5 w-5" />,
-          },
-          {
-            titleKey: "vault",
-            descKey: "vaultDesc",
-            href: "/platform/vault",
-            icon: <Key className="h-5 w-5" />,
-          },
-          {
-            titleKey: "mailer",
-            descKey: "mailerDesc",
-            href: "/platform/mailer",
-            icon: <Inbox className="h-5 w-5" />,
-          },
-        ],
-      },
-    ],
-    featured: {
-      badgeKey: "platformFeaturedBadge",
-      titleKey: "platformFeaturedTitle",
-      descKey: "platformFeaturedDesc",
-      href: "/platform",
-    },
-  };
-}
-
 function getPartnersMenuData(): MegaMenuData {
   return {
     sections: [
@@ -702,10 +611,9 @@ export function Header({ locale: initialLocale }: HeaderProps) {
     };
   }, [isMobileMenuOpen]);
 
-  const productMenuData = getProductMenuData();
+  const platformMenuData = getPlatformMenuData();
   const developersMenuData = getDevelopersMenuData();
   const solutionsMenuData = getSolutionsMenuData();
-  const plateformeMenuData = getPlateformeMenuData();
   const enterpriseMenuData = getEnterpriseMenuData();
   const partnersMenuData = getPartnersMenuData();
 
@@ -717,13 +625,12 @@ export function Header({ locale: initialLocale }: HeaderProps) {
   const topLevelLinks: TopLevelLink[] = [
     {
       label: t("plateforme"),
-      href: getLocaleHref("/platform"),
-      description: t("platformFeaturedDesc"),
+      href: getLocaleHref("/office"),
     },
     {
       label: t("product"),
-      href: getLocaleHref("/products"),
-      description: t("productsFeaturedDesc"),
+      href: getLocaleHref("/platform"),
+      description: t("platformFeaturedDesc"),
     },
     {
       label: t("solutions"),
@@ -786,16 +693,20 @@ export function Header({ locale: initialLocale }: HeaderProps) {
 
             <nav className="hidden min-w-0 flex-1 justify-center xl:flex">
               <ul className={cn("flex items-center", isScrolled ? "gap-0.5" : "gap-1")}>
-              <MegaMenu
-                label={t("plateforme")}
-                data={plateformeMenuData}
-                getLocaleHref={getLocaleHref}
-                t={t}
-                compact={isScrolled}
-              />
+              <li>
+                <Link
+                  href={getLocaleHref("/office")}
+                  className={cn(
+                    "flex items-center gap-1.5 rounded-full font-medium text-foreground/70 transition-all duration-300 hover:bg-background/70 hover:text-foreground",
+                    isScrolled ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
+                  )}
+                >
+                  {t("plateforme")}
+                </Link>
+              </li>
               <MegaMenu
                 label={t("product")}
-                data={productMenuData}
+                data={platformMenuData}
                 getLocaleHref={getLocaleHref}
                 t={t}
                 compact={isScrolled}

@@ -298,17 +298,6 @@ function HomeHero({ locale, t }: HomePageContentProps) {
               <Link href={localizeHref(locale, "/platform")}>{t("hero.secondaryCta")}</Link>
             </Button>
           </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {["workspace", "platforms", "foundations"].map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/88 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500 backdrop-blur"
-              >
-                <span className="h-2 w-2 rounded-full bg-zinc-400" />
-                {t(`hero.signals.${item}`)}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>
