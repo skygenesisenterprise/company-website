@@ -15,6 +15,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface HeaderAuthButtonProps {
@@ -75,9 +76,13 @@ export function HeaderAuthButton({
       <Link href={signUpHref}>
         <Button
           size="sm"
-          className={cn("font-medium", compact ? "h-8 px-3 text-xs" : "h-9 px-4")}
+          className={cn(
+            "rounded-full bg-slate-950 font-semibold text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.9)] hover:bg-slate-800",
+            compact ? "h-8 px-3 text-xs" : "h-10 px-5",
+          )}
         >
           <span className="whitespace-nowrap">{signUpText}</span>
+          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden={true} />
         </Button>
       </Link>
     </div>

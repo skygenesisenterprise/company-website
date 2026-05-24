@@ -31,6 +31,18 @@ export default function middleware(request: NextRequest) {
   const segments = pathname.split("/").filter(Boolean);
   const firstSegment = segments[0];
 
+  if (process.env.DOCS_DEV === "true") {
+    const isDocsAsset =
+      pathname.startsWith("/docs") ||
+      pathname.startsWith("/api/search") ||
+      pathname.startsWith("/og/docs") ||
+      pathname === "/favicon.ico";
+
+    if (!isDocsAsset) {
+      return NextResponse.redirect(new URL("/docs", request.url));
+    }
+  }
+
   if (pathname === "/" || pathname === "") {
     const country = getCountryFromRequest(request);
     const locale = getLocaleFromCountry(country, routing.locales, routing.defaultLocale);

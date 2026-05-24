@@ -1,4 +1,3 @@
-import { APIPage } from "@/lib/source";
 import { Callout } from "fumadocs-ui/components/callout";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
@@ -12,7 +11,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		Callout,
 		Tab,
 		Tabs,
-		APIPage,
 		...components,
 		p: ({ children }) => (
 			<p className="text-[#3E4342] dark:text-muted-foreground">{children}</p>

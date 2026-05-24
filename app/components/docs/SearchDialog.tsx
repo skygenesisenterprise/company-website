@@ -43,10 +43,9 @@ export default function CustomSearchDialog(props: SharedProps) {
 				<SearchDialogFooter>
 					<TagsList tag={tag} onTagChange={setTag}>
 						<TagsListItem value="all">All</TagsListItem>
-						<TagsListItem value="core">Core</TagsListItem>
-						<TagsListItem value="cli">CLI</TagsListItem>
+						<TagsListItem value="guides">Guides</TagsListItem>
 						<TagsListItem value="api">API</TagsListItem>
-						<TagsListItem value="templates">Templates</TagsListItem>
+						<TagsListItem value="support">Support</TagsListItem>
 					</TagsList>
 				</SearchDialogFooter>
 			</SearchDialogContent>

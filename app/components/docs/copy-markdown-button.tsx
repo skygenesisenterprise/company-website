@@ -11,7 +11,7 @@ export function CopyMarkdownButton({ markdown }: { markdown: string }) {
 	return (
 		<button
 			type="button"
-			className="inline-flex items-center gap-1.5 rounded-md border bg-fd-secondary px-3 py-1.5 text-xs font-medium text-fd-secondary-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground"
+			className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-xs transition-colors hover:bg-muted hover:text-foreground"
 			onClick={onClick}
 		>
 			{checked ? (

@@ -18,7 +18,8 @@
     "monitoring"
   ],
   "scripts": {
-    "dev": "concurrently \"pnpm --filter app dev\" \"pnpm --filter server dev\"",
+    "dev": "pnpm --filter @company-website/app dev",
+    "dev:full": "node scripts/dev.mjs",
     "dev:frontend": "pnpm --filter app dev",
     "dev:backend": "pnpm --filter server dev",
     "dev:cli": "pnpm --filter cli dev",

@@ -1,12 +1,17 @@
 import type { NextConfig } from "next";
+import { createMDX } from "fumadocs-mdx/next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+const isDocsDev = process.env.DOCS_DEV === "true";
 
 const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["skygenesisenterprise.com", "192.168.1.3"],
+  outputFileTracingExcludes: {
+    "*": ["test/**"],
+  },
 
   reactStrictMode: true,
   poweredByHeader: false,
@@ -52,4 +57,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+let configWithPlugins: NextConfig = nextConfig;
+if (isDocsDev) {
+  configWithPlugins = createMDX()(nextConfig);
+}
+
+export default withNextIntl(configWithPlugins);

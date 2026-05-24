@@ -43,3 +43,7 @@ messages/backup/
 # Capacitor build output
 android/
 ios/
+
+# Storybook build output
+storybook-static/
+.source
