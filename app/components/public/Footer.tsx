@@ -326,6 +326,21 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                 <HeaderInfoThemeToggle />
                 <HeaderInfoSecurityInfo securityLabel={tHeaderInfo("officialSitesInfo")} />
               </div>
+              <Link
+                href="https://l0ck7.com/"
+                className="mt-6 block w-full max-w-md"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Lock7 Cloud"
+              >
+                <Image
+                  src="/l0ck7.png"
+                  alt="Powered by Lock7 Cloud"
+                  width={1774}
+                  height={887}
+                  className="h-auto w-full"
+                />
+              </Link>
             </div>
 
             <div className="max-w-2xl lg:justify-self-end">
