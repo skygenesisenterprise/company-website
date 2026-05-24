@@ -9023,6 +9023,457 @@
       "ctaFinalPrimary": "Contacter les Ventes",
       "ctaFinalSecondary": "Documentation",
       "ctaFinalContact": "Contacter les Ventes"
+    },
+    "office": {
+      "page": {
+        "metadata": {
+          "title": "Aether Office | Sky Genesis Enterprise",
+          "description": "Aether Office présente l’environnement de travail modulaire de Sky Genesis Enterprise : communication, documents, coordination, identité et gouvernance dans une expérience commune."
+        },
+        "hero": {
+          "eyebrow": "Aether Office",
+          "title": "L’espace de travail souverain",
+          "description": "Communiquez, créez et coordonnez votre organisation dans un environnement de travail modulaire conçu pour garder équipes, données et accès dans une expérience cohérente.",
+          "primaryCta": "Explorer les capacités",
+          "secondaryCta": "Découvrir notre approche",
+          "signals": {
+            "mail": "Mail connecté",
+            "meet": "Réunions coordonnées",
+            "writer": "Documents partagés",
+            "identity": "Identity active"
+          },
+          "visual": {
+            "workspaceLabel": "Workspace shell",
+            "workspaceTitle": "Aether Office Workspace",
+            "workspaceState": "Protected workspace",
+            "centerLabel": "Team activity",
+            "centerTitle": "Revenue planning workspace",
+            "search": "Rechercher dans les espaces, documents et réunions",
+            "sidebar": {
+              "mail": "Mail",
+              "chat": "Chat",
+              "meet": "Meet",
+              "files": "Files",
+              "writer": "Writer",
+              "sheets": "Sheets",
+              "calendar": "Calendar"
+            },
+            "messages": {
+              "1": {
+                "title": "Validation du plan trimestriel",
+                "meta": "Mail · Direction des opérations",
+                "state": "En cours",
+                "description": "Une demande arrive dans l’espace de travail avec les derniers éléments budgétaires et le contexte partagé du dossier."
+              },
+              "2": {
+                "title": "Contexte produit et fichiers liés",
+                "meta": "Files · Writer · Sheets",
+                "state": "Partagé",
+                "description": "Les documents, tableaux et pièces utiles restent reliés à la conversation sans changer d’environnement."
+              },
+              "3": {
+                "title": "Décision à confirmer en réunion",
+                "meta": "Meet · Calendar · Flow",
+                "state": "Prévu",
+                "description": "La réunion, les participants autorisés et les prochaines actions sont visibles dans le même workspace."
+              }
+            },
+            "meeting": {
+              "title": "Réunion planifiée",
+              "state": "Identity active",
+              "time": "09:30",
+              "meta": "Strategy room · 4 participants"
+            },
+            "filesLabel": "Fichiers récents",
+            "files": {
+              "1": {
+                "title": "Quarterly-forecast.sheet",
+                "meta": "Shared with Finance Core"
+              },
+              "2": {
+                "title": "Board-review.writer",
+                "meta": "Updated 12 minutes ago"
+              }
+            },
+            "calendarLabel": "Prochaine échéance",
+            "calendarTitle": "Décision comité produit",
+            "calendarMeta": "Aujourd’hui · 10:00 · Workspace governance flow"
+          }
+        },
+        "manifesto": {
+          "statement": "Le travail ne se limite pas à une application. Il circule entre une conversation, un document, une réunion et une décision.",
+          "description": "Aether Office réunit ces usages dans un environnement cohérent, gouvernable et conçu pour évoluer avec les organisations."
+        },
+        "capabilities": {
+          "eyebrow": "Workspace capabilities",
+          "title": "Tout ce dont une équipe a besoin pour avancer ensemble.",
+          "description": "Aether Office organise les usages essentiels du travail autour de quatre capacités complémentaires.",
+          "items": {
+            "communicate": {
+              "title": "Communiquer",
+              "description": "Mail, conversations et réunions réunis dans un environnement où les échanges restent liés au travail réel.",
+              "modules": {
+                "1": "Mail",
+                "2": "Chat",
+                "3": "Meet"
+              }
+            },
+            "create": {
+              "title": "Créer",
+              "description": "Produisez, partagez et révisez des documents et des données depuis des espaces de travail communs.",
+              "modules": {
+                "1": "Writer",
+                "2": "Sheets",
+                "3": "Files"
+              }
+            },
+            "organize": {
+              "title": "Organiser",
+              "description": "Planifiez les réunions, structurez les actions et gardez les équipes alignées sur les prochaines décisions.",
+              "modules": {
+                "1": "Calendar",
+                "2": "Tasks",
+                "3": "Flow"
+              }
+            },
+            "secure": {
+              "title": "Sécuriser",
+              "description": "Gérez identités, accès, secrets et espaces protégés comme des fondations natives de votre environnement.",
+              "modules": {
+                "1": "Identity",
+                "2": "Vault",
+                "3": "Policies"
+              }
+            }
+          }
+        },
+        "workflow": {
+          "eyebrow": "Connected work",
+          "title": "Du premier message à la décision finale.",
+          "description": "Les modules Aether Office sont conçus pour accompagner un même flux de travail sans fragmenter l’information entre plusieurs outils isolés.",
+          "steps": {
+            "mail": {
+              "time": "09:00 — Mail",
+              "title": "Une demande entre dans le workspace.",
+              "description": "Le sujet apparaît dans l’espace de travail de l’équipe avec le bon contexte, les bons participants et le bon niveau de visibilité.",
+              "mockup": {
+                "label": "Inbound message",
+                "subject": "Budget review requested for regional rollout",
+                "meta": "From Operations Council · Workspace routing enabled"
+              }
+            },
+            "files": {
+              "time": "09:15 — Files & Sheets",
+              "title": "Les pièces utiles sont reliées à la décision.",
+              "description": "Les fichiers, notes et données nécessaires sont préparés dans le même dossier de travail, sans changer de surface à chaque étape.",
+              "mockup": {
+                "fileLabel": "Files",
+                "fileTitle": "Operating assumptions.writer",
+                "sheetLabel": "Sheets",
+                "sheetTitle": "Scenario comparison and tracked values"
+              }
+            },
+            "meet": {
+              "time": "09:30 — Meet",
+              "title": "La réunion se tient dans le contexte du dossier.",
+              "description": "L’équipe échange avec les bons accès, les bons documents et une visibilité claire sur le sujet traité.",
+              "mockup": {
+                "room": "Decision sync room",
+                "state": "Context linked",
+                "note": "Documents and prior decisions remain attached to the session."
+              }
+            },
+            "flow": {
+              "time": "10:00 — Calendar & Flow",
+              "title": "La décision devient une action gouvernée.",
+              "description": "La suite du travail est planifiée, assignée et suivie dans un environnement qui garde les permissions et les responsabilités lisibles.",
+              "mockup": {
+                "tasks": {
+                  "1": {
+                    "title": "Publier le compte rendu dans le workspace",
+                    "meta": "Flow · Visible to approved stakeholders"
+                  },
+                  "2": {
+                    "title": "Planifier le suivi produit et finance",
+                    "meta": "Calendar · Next checkpoint tomorrow"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "applications": {
+          "eyebrow": "Applications",
+          "title": "Des modules spécialisés. Une expérience commune.",
+          "description": "Chaque application peut évoluer indépendamment, tout en rejoignant l’environnement Aether Office lorsqu’une organisation souhaite un espace de travail unifié.",
+          "categories": {
+            "communication": {
+              "eyebrow": "Communication",
+              "title": "Coordonner les échanges quotidiens."
+            },
+            "creation": {
+              "eyebrow": "Creation & knowledge",
+              "title": "Rédiger, structurer et partager."
+            },
+            "planning": {
+              "eyebrow": "Planning & coordination",
+              "title": "Donner un rythme au travail collectif."
+            },
+            "foundations": {
+              "eyebrow": "Foundations",
+              "title": "Garder l’environnement gouvernable."
+            }
+          },
+          "modules": {
+            "mail": {
+              "label": "Aether Mail",
+              "title": "Messagerie professionnelle conçue pour organiser les échanges d’une équipe.",
+              "description": "Une boîte de travail pensée pour relier les messages aux espaces, personnes et décisions concernées."
+            },
+            "chat": {
+              "label": "Aether Chat",
+              "title": "Conversations rapides, canaux de coordination et échanges sécurisés.",
+              "description": "Des échanges plus directs pour garder les équipes alignées sans perdre le contexte opérationnel."
+            },
+            "meet": {
+              "label": "Aether Meet",
+              "title": "Réunions en ligne et collaboration synchrone pour les équipes distribuées.",
+              "description": "Les sessions synchrones restent connectées aux fichiers, aux rôles et aux dossiers de travail utiles."
+            },
+            "writer": {
+              "label": "Aether Writer",
+              "title": "Documents collaboratifs pour rédiger, relire et partager.",
+              "description": "Un espace de rédaction commun pour les notes, analyses, comptes rendus et contenus structurants."
+            },
+            "sheets": {
+              "label": "Aether Sheets",
+              "title": "Tableaux, données structurées et suivi opérationnel partagé.",
+              "description": "Des vues tabulaires pour suivre hypothèses, opérations et informations collectives."
+            },
+            "files": {
+              "label": "Aether Files",
+              "title": "Fichiers et espaces documentaires accessibles selon les permissions.",
+              "description": "Une couche documentaire commune pour organiser les ressources utiles à une équipe ou à un projet."
+            },
+            "calendar": {
+              "label": "Aether Calendar",
+              "title": "Agendas partagés, réunions et organisation des disponibilités.",
+              "description": "Le temps collectif reste visible, synchronisé et relié aux espaces de travail concernés."
+            },
+            "flow": {
+              "label": "Aether Flow",
+              "title": "Actions, validations et workflows liés au travail d’équipe.",
+              "description": "Des étapes de coordination pour transformer une décision en exécution lisible et suivie."
+            },
+            "identity": {
+              "label": "Aether Identity",
+              "title": "Authentification, organisations, rôles et contrôle d’accès.",
+              "description": "Une base commune pour connecter les utilisateurs, les équipes, les rôles et les applications autorisées."
+            },
+            "vault": {
+              "label": "Aether Vault",
+              "title": "Gestion sécurisée des secrets et informations sensibles.",
+              "description": "Une couche dédiée aux éléments sensibles qui ne doivent pas être dispersés entre plusieurs outils."
+            }
+          }
+        },
+        "modular": {
+          "eyebrow": "Modular by design",
+          "title": "Indépendants par conception. Unifiés dans Office.",
+          "description": "Aether Office n’impose pas un monolithe. Les organisations activent les modules dont elles ont besoin, tandis que chaque application peut également exister comme service autonome.",
+          "visual": {
+            "standaloneLabel": "Standalone applications",
+            "standaloneTitle": "Des services ciblés peuvent vivre seuls.",
+            "workspaceLabel": "Aether Office Workspace",
+            "workspaceTitle": "Un shell commun pour les équipes.",
+            "foundationLabel": "Fondations communes",
+            "unifiedLabel": "Unified workspace",
+            "unifiedTitle": "Une expérience commune lorsque cela a du sens.",
+            "modules": {
+              "mail": "Mail",
+              "chat": "Chat",
+              "meet": "Meet",
+              "writer": "Writer",
+              "sheets": "Sheets",
+              "files": "Files",
+              "calendar": "Calendar",
+              "flow": "Flow"
+            },
+            "foundations": {
+              "identity": "Identity",
+              "access": "Access",
+              "storage": "Storage",
+              "security": "Security",
+              "apis": "APIs"
+            },
+            "unifiedPoints": {
+              "1": "Espaces, rôles et fichiers reliés au même environnement.",
+              "2": "Activation progressive selon la trajectoire de l’organisation.",
+              "3": "Accès et gouvernance cohérents entre les modules activés."
+            }
+          },
+          "points": {
+            "1": {
+              "title": "Chaque module garde sa logique propre.",
+              "description": "Aether Mail, Aether Meet ou Aether Files peuvent être exploités pour un besoin précis sans imposer toute la suite."
+            },
+            "2": {
+              "title": "Office fournit une expérience transversale.",
+              "description": "Quand une organisation souhaite un environnement unifié, Aether Office aligne les espaces, les accès, les fichiers et les flux de travail."
+            },
+            "3": {
+              "title": "Les fondations restent communes.",
+              "description": "Identité, sécurité, stockage et APIs servent de base de cohérence sans transformer l’ensemble en conteneur monolithique."
+            }
+          }
+        },
+        "governance": {
+          "eyebrow": "Identity and governance",
+          "title": "Le contrôle commence avec l’identité.",
+          "description": "Dans Aether Office, les utilisateurs, les rôles, les espaces et les données sont pensés comme une même architecture de confiance.",
+          "items": {
+            "identity": {
+              "title": "Identité unifiée",
+              "description": "Une base commune pour connecter utilisateurs, équipes et applications autorisées."
+            },
+            "access": {
+              "title": "Accès gouvernés",
+              "description": "Des rôles et permissions adaptés aux organisations, aux projets et aux responsabilités."
+            },
+            "spaces": {
+              "title": "Espaces protégés",
+              "description": "Des ressources partagées uniquement avec les personnes et équipes concernées."
+            },
+            "traceability": {
+              "title": "Traçabilité",
+              "description": "Une conception pensée pour suivre les actions administratives et les évolutions critiques."
+            }
+          }
+        },
+        "deployment": {
+          "eyebrow": "Deployment",
+          "title": "Adoptez Office selon votre propre trajectoire.",
+          "description": "Aether Office est pensé pour accompagner des organisations qui recherchent une expérience gérée comme celles qui souhaitent conserver davantage de contrôle sur leur infrastructure.",
+          "cards": {
+            "managed": {
+              "eyebrow": "Managed by SGE",
+              "title": "Une adoption progressive opérée par Sky Genesis Enterprise.",
+              "description": "Une expérience opérée par Sky Genesis Enterprise pour les organisations souhaitant adopter progressivement les modules Aether Office sans gérer l’ensemble de l’infrastructure.",
+              "points": {
+                "1": "Environnement administré",
+                "2": "Activation progressive des modules",
+                "3": "Expérience unifiée",
+                "4": "Opérations simplifiées"
+              }
+            },
+            "controlled": {
+              "eyebrow": "Controlled deployment",
+              "title": "Un environnement piloté selon vos contraintes.",
+              "description": "Une approche destinée aux organisations souhaitant piloter leur environnement, leur déploiement et la localisation de leurs données.",
+              "points": {
+                "1": "Modules activables selon les besoins",
+                "2": "Déploiement orchestré, non monolithique",
+                "3": "Intégration à une infrastructure interne",
+                "4": "Contrôle accru de l’environnement"
+              }
+            }
+          }
+        },
+        "openTechnology": {
+          "eyebrow": "Open technology",
+          "title": "Une suite conçue pour rester ouverte et contrôlable.",
+          "description": "Aether Office s’inscrit dans la mission de Sky Genesis Enterprise : développer des technologies ouvertes, modulaires et interopérables au service des organisations européennes.",
+          "items": {
+            "openSource": {
+              "title": "Open source",
+              "description": "Des composants pensés pour être compris, adaptés et améliorés par une communauté de bâtisseurs."
+            },
+            "control": {
+              "title": "Operational control",
+              "description": "Des choix de déploiement et de gouvernance qui évitent d’enfermer une organisation dans une seule trajectoire."
+            },
+            "interoperability": {
+              "title": "Interoperability",
+              "description": "Des fondations communes et des APIs conçues pour connecter Office aux systèmes existants et à l’écosystème SGE."
+            }
+          }
+        },
+        "designedFor": {
+          "eyebrow": "Designed for organizations",
+          "title": "Un environnement de travail pour les équipes qui veulent davantage de maîtrise.",
+          "items": {
+            "distributed": {
+              "title": "Entreprises et équipes distribuées",
+              "description": "Réunissez communication, documents et coordination dans un même environnement quotidien."
+            },
+            "institutions": {
+              "title": "Institutions et organisations publiques",
+              "description": "Structurez les accès, les espaces et les pratiques collaboratives avec une approche centrée sur le contrôle."
+            },
+            "community": {
+              "title": "Communautés et projets open source",
+              "description": "Collaborez autour d’outils ouverts, accessibles et adaptables à différents modes de contribution."
+            },
+            "internal": {
+              "title": "Équipes Sky Genesis Enterprise",
+              "description": "Construire les outils que nous voulons nous-mêmes utiliser pour organiser, communiquer et développer notre écosystème."
+            }
+          }
+        },
+        "ecosystem": {
+          "eyebrow": "SGE ecosystem",
+          "title": "Un workspace soutenu par des fondations plus larges.",
+          "description": "Aether Office est l’expérience visible des équipes. Les plateformes et fondations de Sky Genesis Enterprise fournissent les capacités nécessaires pour l’intégrer, le sécuriser et le faire évoluer.",
+          "layers": {
+            "organizations": {
+              "eyebrow": "Organizations",
+              "title": "Teams and everyday work",
+              "description": "Les équipes utilisent un environnement lisible pour communiquer, produire et décider."
+            },
+            "office": {
+              "eyebrow": "Aether Office",
+              "title": "Communication, creation and coordination",
+              "description": "Le workspace réunit les usages visibles du travail quotidien dans une expérience commune."
+            },
+            "platforms": {
+              "eyebrow": "Platforms",
+              "title": "Developer, Cloud and operational capabilities",
+              "description": "Les plateformes soutiennent l’intégration, l’exploitation et l’extension des environnements de travail."
+            },
+            "foundations": {
+              "eyebrow": "Foundations",
+              "title": "Identity, security, infrastructure and APIs",
+              "description": "Les couches communes donnent à Office une base plus large que l’interface visible par les équipes."
+            }
+          },
+          "cta": "Explorer les plateformes SGE"
+        },
+        "finalCta": {
+          "eyebrow": "Aether Office",
+          "title": "Construire un nouvel environnement de travail.",
+          "description": "Aether Office est conçu pour réunir collaboration, contrôle et technologie ouverte dans une même expérience.",
+          "items": {
+            "organizations": {
+              "eyebrow": "Pour les organisations",
+              "title": "Découvrir une suite de travail conçue pour évoluer selon vos besoins.",
+              "description": "Comprendre comment Aether Office peut être adopté progressivement selon le niveau d’intégration et de contrôle recherché.",
+              "cta": "Explorer le déploiement"
+            },
+            "developers": {
+              "eyebrow": "Pour les développeurs",
+              "title": "Préparer les intégrations et fondations qui relient Office à votre environnement.",
+              "description": "Accéder aux ressources utiles pour connecter vos systèmes, vos workflows et vos points d’entrée techniques.",
+              "cta": "Voir les ressources développeurs"
+            },
+            "community": {
+              "eyebrow": "Pour la communauté",
+              "title": "Suivre la construction de technologies ouvertes portées par Sky Genesis Enterprise.",
+              "description": "Retrouver les points d’entrée publics autour des contributions, de la documentation et des projets ouverts de l’écosystème.",
+              "cta": "Découvrir l’open source"
+            }
+          }
+        }
+      }
     }
   },
   "CompanyPages": {

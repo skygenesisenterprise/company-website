@@ -1,11 +1,9 @@
 import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 import fr from "../messages/fr.json";
-import en from "../messages/en.json";
 
 const messages = {
   fr,
-  en: deepMerge(fr, en),
 };
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {

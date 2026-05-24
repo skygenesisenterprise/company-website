@@ -92,7 +92,7 @@ function Section({ id, eyebrow, title, description, tone = "default", centered =
           }}
         />
       ) : null}
-      <div className="relative mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="relative mx-auto max-w-360 px-6 lg:px-12">
         <div className={cn("max-w-4xl", centered && "mx-auto text-center")}>
           {eyebrow ? <SectionEyebrow inverted={dark}>{eyebrow}</SectionEyebrow> : null}
           <h2
@@ -117,7 +117,7 @@ function CardLink({ title, description, href, cta, icon: Icon, accent, className
   const content = (
     <div
       className={cn(
-        "group relative h-full overflow-hidden rounded-[2rem] border border-zinc-200/80 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.28)] transition duration-300",
+        "group relative h-full overflow-hidden rounded-4xl border border-zinc-200/80 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.28)] transition duration-300",
         "hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.22)]",
         className,
       )}
@@ -280,7 +280,7 @@ function HomeHero({ locale, t }: HomePageContentProps) {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(255,255,255,0.34)_30%,rgba(255,255,255,0.82)_100%)]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[88vh] max-w-[1440px] items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
+      <div className="relative mx-auto flex min-h-[88vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
         <div className="max-w-4xl">
           <SectionEyebrow>{t("hero.eyebrow")}</SectionEyebrow>
           <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
@@ -308,7 +308,7 @@ function ManifestoSection({ t }: { t: (key: string) => string }) {
   return (
     <Section title={t("manifesto.title")} description={t("manifesto.description")} centered>
       <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-zinc-200 bg-white px-8 py-12 text-center shadow-[0_24px_80px_-52px_rgba(15,23,42,0.25)] sm:px-12">
-        <p className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.05em] text-zinc-950">
+        <p className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-tighter text-zinc-950">
           {t("manifesto.statement")}
         </p>
       </div>
@@ -366,7 +366,7 @@ function OfficeCapabilitiesSection({ t }: { t: (key: string) => string }) {
             description={t(`officeCapabilities.items.${item.key}.description`)}
             icon={item.icon}
             accent={item.accent}
-            className="min-h-[240px]"
+            className="min-h-60"
           />
         ))}
       </div>
@@ -384,7 +384,7 @@ function ModularDeploymentSection({ t }: { t: (key: string) => string }) {
     >
       <div className="grid gap-5 lg:grid-cols-2">
         {["managed", "controlled"].map((item) => (
-          <div key={item} className="rounded-[2rem] border border-zinc-200 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.24)]">
+          <div key={item} className="rounded-4xl border border-zinc-200 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.24)]">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`modularDeployment.options.${item}.eyebrow`)}</div>
             <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{t(`modularDeployment.options.${item}.title`)}</div>
             <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-600">{t(`modularDeployment.options.${item}.description`)}</p>
@@ -407,7 +407,7 @@ function PlatformsTransitionSection({ t }: { t: (key: string) => string }) {
         <p className="max-w-2xl text-2xl font-medium leading-10 tracking-[-0.04em] text-white/86">
           {t("platformsTransition.statement")}
         </p>
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 text-sm leading-7 text-white/64">
+        <div className="rounded-4xl border border-white/10 bg-white/4 p-6 text-sm leading-7 text-white/64">
           {t("platformsTransition.aside")}
         </div>
       </div>
@@ -437,7 +437,7 @@ function PlatformsSection({ locale, t }: HomePageContentProps) {
             cta={t("platforms.cta")}
             icon={platform.icon}
             accent={platform.accent}
-            className="min-h-[258px]"
+            className="min-h-64.5"
           />
         ))}
       </div>
@@ -495,7 +495,7 @@ function OpenTechnologySection({ t }: { t: (key: string) => string }) {
             title={t(`openTechnology.items.${item.key}.title`)}
             description={t(`openTechnology.items.${item.key}.description`)}
             icon={item.icon}
-            className="min-h-[230px]"
+            className="min-h-57.5"
           />
         ))}
       </div>
@@ -518,7 +518,7 @@ function SolutionsSection({ locale, t }: HomePageContentProps) {
             title={t(`solutionsShowcase.items.${item.key}.title`)}
             description={t(`solutionsShowcase.items.${item.key}.description`)}
             icon={item.icon}
-            className="min-h-[220px]"
+            className="min-h-55"
           />
         ))}
       </div>
@@ -535,13 +535,13 @@ function DevelopersSection({ locale, t }: HomePageContentProps) {
   return (
     <Section eyebrow={t("developersShowcase.eyebrow")} title={t("developersShowcase.title")} description={t("developersShowcase.description")} tone="dark">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-        <div className="rounded-[2.25rem] border border-white/10 bg-white/[0.04] p-7">
+        <div className="rounded-[2.25rem] border border-white/10 bg-white/4 p-7">
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/46">{t("developersShowcase.panel.eyebrow")}</div>
           <div className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white">{t("developersShowcase.panel.title")}</div>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/66">{t("developersShowcase.panel.description")}</p>
           <div className="mt-8 grid gap-3 font-mono text-sm text-white/72">
             {["documentation", "apis", "sdks", "giteria"].map((item) => (
-              <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+              <div key={item} className="rounded-2xl border border-white/10 bg-white/3 px-4 py-4">
                 {t(`developersShowcase.panel.entries.${item}`)}
               </div>
             ))}
@@ -566,7 +566,7 @@ function DevelopersSection({ locale, t }: HomePageContentProps) {
               title={t(`developersShowcase.items.${item.key}.title`)}
               description={t(`developersShowcase.items.${item.key}.description`)}
               icon={item.icon}
-              className="border-white/10 bg-white/[0.04] shadow-none [&_h3]:text-white [&_p]:text-white/64"
+              className="border-white/10 bg-white/4 shadow-none [&_h3]:text-white [&_p]:text-white/64"
             />
           ))}
         </div>
@@ -603,7 +603,7 @@ function TransparencySection({ t }: { t: (key: string) => string }) {
     <Section eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")} tone="muted">
       <div className="grid gap-5 lg:grid-cols-3">
         {["development", "exploring", "vision"].map((item) => (
-          <div key={item} className="rounded-[2rem] border border-zinc-200 bg-white p-7">
+          <div key={item} className="rounded-4xl border border-zinc-200 bg-white p-7">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`transparency.items.${item}.eyebrow`)}</div>
             <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{t(`transparency.items.${item}.title`)}</div>
             <p className="mt-4 text-sm leading-7 text-zinc-600">{t(`transparency.items.${item}.description`)}</p>
@@ -624,13 +624,13 @@ function CompanySection({ locale, t }: HomePageContentProps) {
           href={localizeHref(locale, "/company/about")}
           cta={t("company.items.company.cta")}
           icon={Building2}
-          className="min-h-[250px]"
+          className="min-h-62.5"
         />
         <CardLink
           title={t("company.items.partners.title")}
           description={t("company.items.partners.description")}
           icon={Users}
-          className="min-h-[250px]"
+          className="min-h-62.5"
         />
         <CardLink
           title={t("company.items.careers.title")}
@@ -638,7 +638,7 @@ function CompanySection({ locale, t }: HomePageContentProps) {
           href={localizeHref(locale, "/company/careers")}
           cta={t("company.items.careers.cta")}
           icon={Code2}
-          className="min-h-[250px]"
+          className="min-h-62.5"
         />
       </div>
     </Section>
@@ -658,10 +658,10 @@ function FinalCtaSection({ locale, t }: HomePageContentProps) {
           backgroundSize: "80px 80px",
         }}
       />
-      <div className="relative mx-auto max-w-[1440px] px-6 lg:px-12">
-        <div className="rounded-[2.6rem] border border-white/10 bg-white/[0.03] px-8 py-10 shadow-[0_40px_120px_-80px_rgba(0,0,0,0.6)] sm:px-10 lg:px-14 lg:py-14">
+      <div className="relative mx-auto max-w-360 px-6 lg:px-12">
+        <div className="rounded-[2.6rem] border border-white/10 bg-white/3 px-8 py-10 shadow-[0_40px_120px_-80px_rgba(0,0,0,0.6)] sm:px-10 lg:px-14 lg:py-14">
           <SectionEyebrow inverted>{t("finalCta.eyebrow")}</SectionEyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tighter text-white sm:text-5xl lg:text-6xl">
             {t("finalCta.title")}
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/68">{t("finalCta.description")}</p>
@@ -674,9 +674,9 @@ function FinalCtaSection({ locale, t }: HomePageContentProps) {
               <Link
                 key={item.key}
                 href={localizeHref(locale, item.href)}
-                className="group rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06]"
+                className="group rounded-4xl border border-white/10 bg-white/4 p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/6"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/88">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/4 text-white/88">
                   <item.icon className="h-5 w-5" />
                 </span>
                 <div className="mt-8 text-sm font-medium uppercase tracking-[0.18em] text-white/46">
