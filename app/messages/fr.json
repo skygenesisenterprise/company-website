@@ -9474,6 +9474,844 @@
           }
         }
       }
+    },
+    "company": {
+      "shared": {
+        "eyebrow": "Sky Genesis Enterprise",
+        "ctaExplorePlatform": "Explorer les plateformes",
+        "ctaDiscoverOffice": "Decouvrir Aether Office",
+        "ctaContact": "Nous contacter",
+        "ctaAbout": "A propos de SGE",
+        "ctaStory": "Notre trajectoire",
+        "ctaValues": "Nos principes",
+        "ctaCareers": "Carrieres",
+        "ctaPress": "Espace presse",
+        "ctaDevelopers": "Espace developpeurs",
+        "ctaPlatform": "Plateforme",
+        "ctaCompany": "Vue d'ensemble",
+        "ctaPartners": "Relation partenaires",
+        "ctaLeadership": "Direction et gouvernance",
+        "ctaGitHub": "Explorer les projets publics"
+      },
+      "overview": {
+        "metadata": {
+          "title": "Company | Sky Genesis Enterprise",
+          "description": "Vue d'ensemble corporate de Sky Genesis Enterprise, de sa mission, de son ecosysteme et de sa trajectoire long terme."
+        },
+        "hero": {
+          "eyebrow": "Sky Genesis Enterprise",
+          "title": "Construire des technologies qui redonnent le controle.",
+          "description": "Sky Genesis Enterprise developpe un ecosysteme ouvert de plateformes, d'outils de travail et d'infrastructures concu pour accompagner les organisations dans un monde numerique plus maitrisable.",
+          "primaryCta": "Decouvrir notre mission",
+          "secondaryCta": "Explorer nos plateformes"
+        },
+        "layerDiagram": {
+          "layers": [
+            {
+              "label": "Organizations",
+              "title": "Organisations",
+              "description": "Des equipes, institutions et operateurs qui cherchent des environnements numeriques plus gouvernables."
+            },
+            {
+              "label": "Aether Office",
+              "title": "Workspaces",
+              "description": "Des experiences de travail destinees a communiquer, produire et coordonner dans un cadre plus coherent."
+            },
+            {
+              "label": "Platforms",
+              "title": "Plateformes",
+              "description": "Des domaines technologiques relies au cloud, au developpement, aux operations et aux services numeriques."
+            },
+            {
+              "label": "Foundations",
+              "title": "Fondations",
+              "description": "Des briques communes d'identite, de securite, d'API et d'infrastructure pour relier l'ensemble."
+            }
+          ]
+        },
+        "statement": {
+          "title": "Nous construisons pour celles et ceux qui souhaitent maitriser leur avenir numerique.",
+          "description": "Notre ambition est de creer des outils utiles, interoperables et ouverts, capables d'accompagner aussi bien le travail quotidien que les infrastructures qui le rendent possible."
+        },
+        "ecosystem": {
+          "eyebrow": "What we build",
+          "title": "Un ecosysteme pense comme un ensemble coherent.",
+          "description": "Du workspace utilise par les equipes aux plateformes et fondations qui soutiennent les organisations, Sky Genesis Enterprise construit chaque couche avec une meme exigence de controle, d'ouverture et d'integration.",
+          "items": [
+            {
+              "title": "Workspaces",
+              "description": "Des environnements de travail comme Aether Office pour communiquer, creer et coordonner.",
+              "href": "/office",
+              "cta": "Decouvrir Aether Office",
+              "meta": "Aether Office"
+            },
+            {
+              "title": "Platforms",
+              "description": "Des domaines technologiques destines au developpement, au cloud, aux operations et aux services numeriques.",
+              "href": "/platform",
+              "cta": "Explorer la plateforme",
+              "meta": "Platform"
+            },
+            {
+              "title": "Foundations",
+              "description": "Des capacites communes d'identite, de securite, d'infrastructure et d'API qui relient les produits entre eux.",
+              "meta": "Shared foundations"
+            }
+          ]
+        },
+        "mission": {
+          "eyebrow": "Our mission",
+          "title": "Rendre la technologie plus ouverte, plus durable et plus gouvernable.",
+          "description": "Nous cherchons a construire des couches techniques compréhensibles, integrables et utiles avant de multiplier les annonces.",
+          "items": [
+            {
+              "title": "Ouverture",
+              "description": "Construire des technologies comprehensibles, extensibles et concues pour favoriser l'interoperabilite."
+            },
+            {
+              "title": "Souverainete",
+              "description": "Permettre aux organisations de choisir leur trajectoire de deploiement, de gouvernance et de controle."
+            },
+            {
+              "title": "Excellence produit",
+              "description": "Concevoir des experiences claires, coherentes et utiles avant de multiplier les promesses."
+            }
+          ]
+        },
+        "trajectory": {
+          "eyebrow": "Long-term vision",
+          "title": "Une trajectoire construite etape par etape.",
+          "description": "Sky Genesis Enterprise developpe progressivement les produits, les fondations et les relations necessaires a son ecosysteme. Chaque etape vise a produire des outils reellement utilisables avant d'etendre la portee de l'ensemble.",
+          "items": [
+            {
+              "label": "Today",
+              "title": "Corporate site, produits coeur et developpement ouvert.",
+              "description": "La base actuelle consiste a clarifier la vision, durcir les fondations et rendre visibles les premiers points d'entree publics."
+            },
+            {
+              "label": "Next",
+              "title": "Workspace integre, capacites plateforme et fondations operationnelles.",
+              "description": "L'etape suivante consiste a relier davantage les experiences de travail, les services et les briques communes de l'ecosysteme."
+            },
+            {
+              "label": "Long term",
+              "title": "Un ecosysteme independant, europeen et ouvert sur la collaboration globale.",
+              "description": "La direction long terme repose sur des infrastructures plus autonomes, des fondations gouvernables et une capacite a cooperer a plus grande echelle."
+            }
+          ]
+        },
+        "openTechnology": {
+          "eyebrow": "Open technology",
+          "title": "L'ouverture comme fondation, pas comme simple argument.",
+          "description": "Notre approche repose sur des technologies capables d'etre examinees, adaptees, deployees et ameliorees au-dela d'un usage ferme ou impose.",
+          "pills": [
+            "Open source development",
+            "Interoperable foundations",
+            "Controlled deployment"
+          ],
+          "cta": "Explorer les projets publics"
+        },
+        "culture": {
+          "eyebrow": "People and culture",
+          "title": "Une entreprise construite par des batisseurs.",
+          "description": "Nous croyons aux equipes autonomes, aux responsabilites claires et a une culture ou chacun peut contribuer a batir des technologies utiles sur le long terme.",
+          "items": [
+            {
+              "title": "Autonomie avec responsabilite",
+              "description": "Les sujets avancent mieux lorsqu'un cadre clair permet de decider, documenter et assumer les arbitrages."
+            },
+            {
+              "title": "Collaboration ouverte",
+              "description": "La qualite vient du dialogue entre produit, engineering, securite, design, documentation et operations."
+            },
+            {
+              "title": "Vision long terme",
+              "description": "Nous privilegions une progression cohérente plutot qu'une accumulation artificielle de signaux de maturite."
+            }
+          ],
+          "cta": "Decouvrir les opportunites"
+        },
+        "finalCta": {
+          "eyebrow": "Sky Genesis Enterprise",
+          "title": "Batir un ecosysteme technologique ouvert.",
+          "description": "Decouvrez les plateformes, suivez notre developpement ou rejoignez les personnes qui construisent la prochaine etape de Sky Genesis Enterprise.",
+          "actions": [
+            {
+              "label": "Explorer les plateformes",
+              "href": "/platform"
+            },
+            {
+              "label": "Decouvrir Aether Office",
+              "href": "/office",
+              "variant": "outline"
+            },
+            {
+              "label": "Rejoindre l'aventure",
+              "href": "/company/careers",
+              "variant": "outline"
+            }
+          ]
+        }
+      },
+      "about": {
+        "metadata": {
+          "title": "A propos | Sky Genesis Enterprise",
+          "description": "Identite, architecture et methode de construction de Sky Genesis Enterprise."
+        },
+        "hero": {
+          "eyebrow": "About SGE",
+          "title": "Une entreprise technologique pensee comme un ecosysteme.",
+          "description": "Sky Genesis Enterprise reunit des produits, plateformes et fondations developpes autour d'une meme ambition: creer des technologies ouvertes, coherentes et controlables."
+        },
+        "statement": {
+          "title": "Nous ne construisons pas une accumulation de services. Nous construisons des couches capables de fonctionner ensemble.",
+          "description": "Cette lecture d'ensemble permet de maintenir une coherence produit, technique et institutionnelle a mesure que l'ecosysteme se precise."
+        },
+        "architecture": {
+          "eyebrow": "Architecture",
+          "title": "Quatre couches relient les differents projets de SGE.",
+          "description": "Chaque couche remplit un role distinct tout en restant connectee a une vision commune.",
+          "items": [
+            {
+              "title": "Aether Office",
+              "description": "L'environnement de travail des equipes pour communiquer, produire et coordonner."
+            },
+            {
+              "title": "Platforms",
+              "description": "Les domaines technologiques specialises relies au developpement, au cloud et aux operations."
+            },
+            {
+              "title": "Foundations",
+              "description": "Les briques communes d'identite, de securite, d'API et d'infrastructure."
+            },
+            {
+              "title": "Sky Genesis Enterprise",
+              "description": "La structure qui porte la vision, les produits, la gouvernance et leur developpement."
+            }
+          ]
+        },
+        "method": {
+          "eyebrow": "How we build",
+          "title": "Une methode de construction volontairement sobre.",
+          "description": "La qualite de l'ecosysteme depend autant des arbitrages pris maintenant que des produits a venir.",
+          "items": [
+            {
+              "title": "Produit avant promesse",
+              "description": "Nous cherchons d'abord a rendre les briques utiles, lisibles et utilisables."
+            },
+            {
+              "title": "Modularite avant dependance",
+              "description": "Les composants doivent rester reliables sans enfermer les organisations dans un usage unique."
+            },
+            {
+              "title": "Vision long terme avant expansion artificielle",
+              "description": "Nous preferons consolider une trajectoire coherente plutot que multiplier les signaux de surface."
+            }
+          ]
+        },
+        "transparency": {
+          "eyebrow": "Development transparency",
+          "title": "Un ecosysteme en construction, presente avec franchise.",
+          "description": "Certains produits sont en phase de conception, d'autres en developpement ou en structuration. Nous preferons montrer une trajectoire credible plutot que pretendre a une disponibilite irreelle."
+        },
+        "pages": {
+          "eyebrow": "Related pages",
+          "title": "Poursuivre vers la mission, les principes et la trajectoire.",
+          "description": "La page About pose le cadre general; les autres pages approfondissent la raison d'etre, la culture et la progression.",
+          "items": [
+            {
+              "title": "Mission et trajectoire",
+              "description": "Comprendre pourquoi SGE existe et comment l'entreprise construit dans le temps.",
+              "href": "/company/story",
+              "cta": "Lire la trajectoire"
+            },
+            {
+              "title": "Principes",
+              "description": "Voir les principes qui guident l'ouverture, le controle et la qualite produit.",
+              "href": "/company/values",
+              "cta": "Voir les principes"
+            }
+          ]
+        },
+        "finalCta": {
+          "eyebrow": "About SGE",
+          "title": "Comprendre la structure avant de juger l'ambition.",
+          "description": "L'ecosysteme SGE repose sur une architecture lisible, des fondations communes et une progression volontairement maitrisee."
+        }
+      },
+      "story": {
+        "metadata": {
+          "title": "Trajectoire | Sky Genesis Enterprise",
+          "description": "La trajectoire de construction de Sky Genesis Enterprise, entre intuition initiale, mission et progression long terme."
+        },
+        "hero": {
+          "eyebrow": "Trajectory",
+          "title": "Une trajectoire nee d'un besoin de maitrise.",
+          "description": "Sky Genesis Enterprise se construit a partir d'une conviction simple: les organisations ont besoin d'outils ouverts, gouvernables et capables de rester lisibles dans le temps."
+        },
+        "origin": {
+          "eyebrow": "Origin",
+          "title": "L'intuition initiale vient d'un constat sur la complexite moderne.",
+          "description": "Le numerique donne plus de puissance aux organisations, mais il peut aussi diluer la maitrise lorsque les couches techniques, les dependances et les integrations deviennent opaques."
+        },
+        "problem": {
+          "eyebrow": "The problem",
+          "title": "La technologie moderne est puissante. Elle ne devrait pas devenir opaque.",
+          "description": "Fragmentation des outils, dependance a des ecosystemes fermes et perte de controle sur les donnees ou les trajectoires de deploiement forment un meme probleme de gouvernance.",
+          "items": [
+            {
+              "title": "Fragmentation",
+              "description": "Les organisations accumulent des outils qui fonctionnent cote a cote sans produire une architecture claire."
+            },
+            {
+              "title": "Dependance",
+              "description": "Les choix techniques se transforment facilement en verrouillage lorsque le deploiement et l'integration deviennent imposes."
+            },
+            {
+              "title": "Opacite",
+              "description": "Sans lisibilite sur les couches critiques, gouverner durablement son environnement devient plus difficile."
+            }
+          ]
+        },
+        "response": {
+          "eyebrow": "SGE's response",
+          "title": "La reponse consiste a reconstruire des couches plus coherentes.",
+          "description": "Cette trajectoire relie experience de travail, plateformes specialisees et fondations communes autour d'une meme logique de maitrise.",
+          "items": [
+            {
+              "title": "Des outils ouverts",
+              "description": "Concevoir des briques qui peuvent etre comprises, etendues et reliees proprement."
+            },
+            {
+              "title": "Des environnements coherents",
+              "description": "Eviter l'empilement arbitraire en reliant produits, plateformes et services dans une meme architecture."
+            },
+            {
+              "title": "Des deploiements controles",
+              "description": "Laisser aux organisations des choix plus larges sur la maniere d'operer leurs outils."
+            },
+            {
+              "title": "Des fondations evolutives",
+              "description": "Construire des couches communes capables d'accompagner des besoins croissants dans le temps."
+            }
+          ]
+        },
+        "timeline": {
+          "eyebrow": "Timeline",
+          "title": "Une progression institutionnelle et technique.",
+          "description": "La trajectoire ne promet pas des jalons dates a l'avance; elle rend visible une direction de construction.",
+          "items": [
+            {
+              "label": "Phase 01",
+              "title": "Clarifier la vision, l'architecture et les premiers points d'entree publics.",
+              "description": "Cette etape donne une base editoriale et produit plus lisible a l'ensemble du projet."
+            },
+            {
+              "label": "Phase 02",
+              "title": "Relier davantage les experiences de travail, les plateformes et les fondations communes.",
+              "description": "L'objectif est de rendre l'ecosysteme plus integre sans perdre en modularite."
+            },
+            {
+              "label": "Phase 03",
+              "title": "Faire emerger un ecosysteme plus independant, europeen et interoperable.",
+              "description": "La valeur long terme repose sur des fondations solides, une gouvernance lisible et des collaborations durables."
+            }
+          ]
+        },
+        "finalCta": {
+          "eyebrow": "Trajectory",
+          "title": "La trajectoire de SGE reste ambitieuse, mais elle se construit sans fiction.",
+          "description": "Notre priorite est de transformer cette direction en briques reelles, utiles et durables avant d'elargir l'ensemble."
+        }
+      },
+      "values": {
+        "metadata": {
+          "title": "Principes | Sky Genesis Enterprise",
+          "description": "Les principes d'entreprise et de construction qui guident Sky Genesis Enterprise."
+        },
+        "hero": {
+          "eyebrow": "Our principles",
+          "title": "Des principes concus pour durer.",
+          "description": "La maniere dont nous construisons compte autant que ce que nous construisons."
+        },
+        "principles": {
+          "eyebrow": "Principles",
+          "title": "Des principes destines a orienter des choix concrets.",
+          "description": "Ils servent de cadre a la qualite produit, a l'ouverture, a la gouvernance et a la culture d'equipe.",
+          "items": [
+            {
+              "title": "Build with purpose",
+              "description": "Nous construisons des technologies pour repondre a des besoins reels, pas simplement pour multiplier les produits."
+            },
+            {
+              "title": "Stay open",
+              "description": "Nous privilegions l'ouverture, l'interoperabilite et la capacite d'adaptation."
+            },
+            {
+              "title": "Design for control",
+              "description": "Les organisations doivent pouvoir comprendre et gouverner leur environnement."
+            },
+            {
+              "title": "Work with responsibility",
+              "description": "L'autonomie a du sens lorsqu'elle s'accompagne de responsabilite et d'exigence."
+            },
+            {
+              "title": "Think long term",
+              "description": "Nous preferons une progression coherente a une croissance artificielle."
+            },
+            {
+              "title": "Share knowledge",
+              "description": "La technologie progresse lorsque les savoirs, les idees et les retours peuvent circuler."
+            }
+          ]
+        },
+        "culture": {
+          "eyebrow": "Culture",
+          "title": "Une culture de construction plus que d'affichage.",
+          "description": "La collaboration, l'ecriture technique, la responsabilite individuelle, l'apprentissage continu et la contribution ouverte sont des pratiques structurantes.",
+          "items": [
+            {
+              "title": "Collaboration",
+              "description": "La qualite emerge mieux lorsque les disciplines dialoguent tot et clairement."
+            },
+            {
+              "title": "Documentation",
+              "description": "Ecrire aide a decider, transmettre et maintenir un niveau d'exigence stable."
+            },
+            {
+              "title": "Responsabilite individuelle",
+              "description": "Chaque contribution doit etre intelligible, assumee et inscrite dans une trajectoire lisible."
+            },
+            {
+              "title": "Apprentissage continu",
+              "description": "L'ambition durable exige de revoir ses hypotheses, ses outils et ses pratiques."
+            },
+            {
+              "title": "Contribution open source",
+              "description": "Partager des briques, des analyses ou des ameliorations fait partie de la culture technique visee."
+            },
+            {
+              "title": "Exigence produit",
+              "description": "Une experience claire et bien cadree vaut mieux qu'une promesse extensive mais fragile."
+            }
+          ]
+        },
+        "finalCta": {
+          "eyebrow": "Our principles",
+          "title": "Des principes utiles seulement s'ils orientent l'execution.",
+          "description": "Les valeurs de SGE ne sont pas une vitrine RH; elles servent a juger la qualite des choix de produit, d'architecture et de collaboration."
+        }
+      },
+      "careers": {
+        "metadata": {
+          "title": "Carrieres | Sky Genesis Enterprise",
+          "description": "Culture de travail, domaines de contribution et opportunites futures chez Sky Genesis Enterprise."
+        },
+        "hero": {
+          "eyebrow": "Careers",
+          "title": "Construire avec celles et ceux qui voient plus loin.",
+          "description": "Sky Genesis Enterprise recherche des batisseurs capables de contribuer a des technologies ouvertes, exigeantes et concues pour le long terme."
+        },
+        "culture": {
+          "eyebrow": "Work culture",
+          "title": "Une culture de travail fondee sur l'autonomie, la responsabilite et la clarte.",
+          "description": "Nous cherchons des personnes capables de structurer, documenter et faire avancer des sujets qui comptent.",
+          "items": [
+            {
+              "title": "Autonomie",
+              "description": "Prendre en charge un sujet suppose de pouvoir decider, expliquer et faire aboutir."
+            },
+            {
+              "title": "Responsabilite",
+              "description": "Les arbitrages doivent rester compatibles avec la qualite du produit et des fondations."
+            },
+            {
+              "title": "Collaboration",
+              "description": "Engineering, design, securite, documentation et operations doivent pouvoir cooperer simplement."
+            },
+            {
+              "title": "Documentation",
+              "description": "La clarte ecrite fait partie du travail, pas d'une tache secondaire."
+            },
+            {
+              "title": "Construction open source",
+              "description": "Contribuer ouvertement fait partie de la maniere dont nous envisageons certains composants."
+            },
+            {
+              "title": "Curiosite technique",
+              "description": "Comprendre les couches profondes compte autant que savoir produire vite."
+            }
+          ]
+        },
+        "domains": {
+          "eyebrow": "Contribution domains",
+          "title": "Des domaines de contribution avant des intitulés de poste.",
+          "description": "Le perimetre exact peut evoluer, mais les grands champs de travail sont deja lisibles.",
+          "items": [
+            {
+              "title": "Software engineering",
+              "description": "Applications, services, integrations et experiences de travail."
+            },
+            {
+              "title": "Infrastructure and cloud",
+              "description": "Deploiement, observabilite, reseau, exploitation et souverainete operationnelle."
+            },
+            {
+              "title": "Cybersecurity",
+              "description": "Identite, controle d'acces, architecture de confiance et defense des fondations."
+            },
+            {
+              "title": "Product design",
+              "description": "Interfaces, systemes editoriaux, clarté d'usage et coherence visuelle."
+            },
+            {
+              "title": "Editorial and documentation",
+              "description": "Explication produit, architecture, ressources publiques et transmission du savoir."
+            },
+            {
+              "title": "Operations and partnerships",
+              "description": "Structuration des relations, des process et des capacites de croissance utiles."
+            }
+          ]
+        },
+        "transparency": {
+          "eyebrow": "Transparency",
+          "title": "Aucune offre n'est inventee ici.",
+          "description": "Les opportunites publiees apparaitront sur notre espace officiel lorsqu'elles seront ouvertes. En attendant, cette page decrit le cadre, pas un volume artificiel de recrutements."
+        },
+        "finalCta": {
+          "eyebrow": "Careers",
+          "title": "Suivre la trajectoire avant l'ouverture des futurs roles.",
+          "description": "Les personnes alignees avec cette vision peuvent deja comprendre le projet, ses exigences et ses domaines de contribution."
+        }
+      },
+      "contact": {
+        "metadata": {
+          "title": "Contact | Sky Genesis Enterprise",
+          "description": "Canaux de contact institutionnels et orientation des demandes vers Sky Genesis Enterprise."
+        },
+        "hero": {
+          "eyebrow": "Contact",
+          "title": "Des points de contact sobres, clairs et officiels.",
+          "description": "La relation avec SGE doit commencer par un routage simple: corporate, partenariats, presse, carrieres ou sujets sensibles."
+        },
+        "routes": {
+          "eyebrow": "Routing",
+          "title": "Orienter les demandes sans multiplier les points d'entree artificiels.",
+          "description": "Un nombre limite de canaux bien qualifies reste plus utile qu'une constellation d'adresses difficiles a lire.",
+          "items": [
+            {
+              "title": "Demandes generales",
+              "description": "Le point d'entree pour les sujets institutionnels, business ou transverses.",
+              "href": "mailto:contact@skygenesisenterprise.com",
+              "cta": "Ecrire a l'equipe"
+            },
+            {
+              "title": "Partenariats et collaborations",
+              "description": "Pour les propositions de partenariat, d'integration, de recherche ou de cooperation.",
+              "href": "mailto:partners@skygenesisenterprise.com",
+              "cta": "Proposer une collaboration"
+            },
+            {
+              "title": "Presse",
+              "description": "Pour les demandes media, clarifications institutionnelles et besoins editoriaux.",
+              "href": "mailto:press@skygenesisenterprise.com",
+              "cta": "Contacter la presse"
+            },
+            {
+              "title": "Carrieres",
+              "description": "Pour les prises de contact autour des futurs roles, contributions ou premiers echanges.",
+              "href": "mailto:careers@skygenesisenterprise.com",
+              "cta": "Contacter l'equipe"
+            }
+          ]
+        },
+        "expectations": {
+          "eyebrow": "Expectations",
+          "title": "Aider l'echange a demarrer sur des bases concretes.",
+          "description": "Un bon premier message precise le contexte, l'objet de la demande, les contraintes eventuelles et les liens utiles.",
+          "items": [
+            {
+              "title": "Contexte clair",
+              "description": "Preciser qui vous etes, ce que vous construisez et pourquoi vous contactez SGE."
+            },
+            {
+              "title": "Objet explicite",
+              "description": "Indiquer si la demande est institutionnelle, technique, editoriale, partenariale ou liee aux carrieres."
+            },
+            {
+              "title": "Perimetre utile",
+              "description": "Ajouter les informations necessaires sans surcharger le message de details non actionnables."
+            }
+          ]
+        },
+        "official": {
+          "eyebrow": "Official channels",
+          "title": "Des canaux publics limites mais identifiables.",
+          "description": "Les adresses officielles doivent rester simples a verifier et compatibles avec un stade de developpement encore progressif.",
+          "items": [
+            {
+              "title": "contact@skygenesisenterprise.com",
+              "description": "Point d'entree corporate general.",
+              "href": "mailto:contact@skygenesisenterprise.com"
+            },
+            {
+              "title": "press@skygenesisenterprise.com",
+              "description": "Demandes media et cadre institutionnel public.",
+              "href": "mailto:press@skygenesisenterprise.com"
+            },
+            {
+              "title": "careers@skygenesisenterprise.com",
+              "description": "Echanges autour des futurs roles et domaines de contribution.",
+              "href": "mailto:careers@skygenesisenterprise.com"
+            },
+            {
+              "title": "security@skygenesisenterprise.com",
+              "description": "Signalement responsable des sujets lies a la securite.",
+              "href": "mailto:security@skygenesisenterprise.com"
+            }
+          ]
+        },
+        "finalCta": {
+          "eyebrow": "Contact",
+          "title": "Commencer la conversation par la bonne entree.",
+          "description": "Lorsque le sujet est bien oriente, les echanges gagnent en clarte et l'entreprise peut repondre sans entretenir de complexite inutile."
+        }
+      },
+      "leadership": {
+        "metadata": {
+          "title": "Direction | Sky Genesis Enterprise",
+          "description": "Direction, gouvernance et structuration progressive des responsabilites chez Sky Genesis Enterprise."
+        },
+        "hero": {
+          "eyebrow": "Leadership",
+          "title": "Une direction qui cherche la coherence avant l'apparat.",
+          "description": "Le leadership de SGE se mesure moins a un organigramme etendu qu'a la capacite a relier vision, execution et gouvernance technique."
+        },
+        "founder": {
+          "eyebrow": "Founder-led",
+          "title": "Une direction encore tres proche des fondations du projet.",
+          "description": "Dans une entreprise en construction, la qualite des premiers arbitrages compte davantage que la taille de la structure de management."
+        },
+        "areas": {
+          "eyebrow": "Leadership areas",
+          "title": "Trois zones de responsabilite rendent la direction lisible.",
+          "description": "Ces zones aident a comprendre comment SGE relie vision institutionnelle, exigence technique et progression d'equipe.",
+          "items": [
+            {
+              "title": "Vision d'ensemble",
+              "description": "Maintenir une lecture commune entre produits, plateforme, fondations et trajectoire corporate."
+            },
+            {
+              "title": "Direction technique",
+              "description": "Arbitrer avec exigence sur l'identite, la securite, l'infrastructure et l'interoperabilite."
+            },
+            {
+              "title": "Structuration progressive",
+              "description": "Faire emerger des responsabilites reelles a mesure que les perimetres se stabilisent."
+            }
+          ]
+        },
+        "governance": {
+          "eyebrow": "Governance",
+          "title": "Une gouvernance simple, lisible et responsable.",
+          "description": "La gouvernance doit proteger la qualite du projet, la clarte des roles et la continuite du travail.",
+          "items": [
+            {
+              "title": "Responsabilites explicites",
+              "description": "Chaque sujet important doit avoir un cadre de decision identifiable."
+            },
+            {
+              "title": "Arbitrages documentes",
+              "description": "Les choix structurants gagnent a etre explicités plutot qu'implicites."
+            },
+            {
+              "title": "Exigence durable",
+              "description": "La vitesse ne doit pas detruire la cohesion technique ou editoriale du projet."
+            }
+          ]
+        },
+        "future": {
+          "eyebrow": "Future structure",
+          "title": "La structure future doit correspondre a des besoins reels, pas a une mise en scene.",
+          "description": "De nouvelles zones de leadership pourront emerger avec la croissance du projet, mais seulement lorsque les responsabilites deviennent concretes."
+        },
+        "finalCta": {
+          "eyebrow": "Leadership",
+          "title": "La gouvernance doit rester au service du projet, pas l'inverse.",
+          "description": "SGE cherche a construire une direction compatible avec son stade reel de developpement et avec son ambition long terme."
+        }
+      },
+      "partners": {
+        "metadata": {
+          "title": "Partenariats | Sky Genesis Enterprise",
+          "description": "La maniere dont Sky Genesis Enterprise envisage les partenariats, les collaborations et les relations ecosystemiques."
+        },
+        "hero": {
+          "eyebrow": "Partnerships",
+          "title": "Des partenariats utiles avant des partenariats visibles.",
+          "description": "Sky Genesis Enterprise envisage les collaborations comme des moyens d'augmenter la qualite technique, l'utilite operationnelle ou la portee de son ecosysteme."
+        },
+        "statement": {
+          "title": "Le bon partenariat renforce les capacites du projet au lieu de fabriquer une illusion de maturite.",
+          "description": "Infrastructure, integrations, recherche, open source, diffusion ou premiers usages peuvent prendre des formes differentes, mais la logique reste la meme: ajouter une valeur reelle et durable."
+        },
+        "types": {
+          "eyebrow": "Partnership types",
+          "title": "Des formes de collaboration distinctes selon les besoins.",
+          "description": "Toutes les collaborations ne relèvent ni du commerce ni du marketing. Certaines sont techniques, editoriales, communautaires ou operationnelles.",
+          "items": [
+            {
+              "title": "Infrastructure",
+              "description": "Hebergement, reseau, observabilite, deploiement et capacites operationnelles."
+            },
+            {
+              "title": "Integration",
+              "description": "Connexions produit, interoperabilite et usages croises entre briques complementaires."
+            },
+            {
+              "title": "Recherche et education",
+              "description": "Travail avec des structures de recherche, de formation ou de transmission technique."
+            },
+            {
+              "title": "Open source",
+              "description": "Relations avec des mainteneurs, projets publics et communaute technique."
+            },
+            {
+              "title": "Adoption organisationnelle",
+              "description": "Dialogues avec des organisations qui peuvent aider a eprouver les besoins et les priorites."
+            },
+            {
+              "title": "Relations long terme",
+              "description": "Collaborations amenees a grandir progressivement si le cadre reste credible pour chacun."
+            }
+          ]
+        },
+        "principles": {
+          "eyebrow": "Principles",
+          "title": "Des principes de collaboration lisibles des le premier echange.",
+          "description": "Un partenariat n'a de sens que si son perimetre, sa valeur mutuelle et sa progression sont compréhensibles.",
+          "items": [
+            {
+              "title": "Clarite du perimetre",
+              "description": "Mieux vaut une collaboration precise qu'un rapprochement trop large et mal defini."
+            },
+            {
+              "title": "Valeur mutuelle",
+              "description": "La collaboration doit augmenter soit le produit, soit l'infrastructure, soit la qualite de l'ecosysteme."
+            },
+            {
+              "title": "Progression credible",
+              "description": "Les collaborations fortes commencent souvent par un perimetre restreint mais utile."
+            }
+          ]
+        },
+        "audiences": {
+          "eyebrow": "Who this page is for",
+          "title": "Des partenaires potentiels de nature tres differente.",
+          "description": "Cette page s'adresse autant a des acteurs techniques qu'a des structures institutionnelles ou communautaires.",
+          "items": [
+            {
+              "title": "Operateurs techniques",
+              "description": "Cloud, securite, reseau, outillage et services d'exploitation."
+            },
+            {
+              "title": "Mainteneurs et projets publics",
+              "description": "Projets open source et contributeurs utiles aux fondations de l'ecosysteme."
+            },
+            {
+              "title": "Organisations et institutions",
+              "description": "Acteurs souhaitant eprouver, comprendre ou accompagner des technologies plus souveraines."
+            }
+          ]
+        },
+        "finalCta": {
+          "eyebrow": "Partnerships",
+          "title": "Construire des relations qui augmentent la solidite du projet.",
+          "description": "Les partenariats les plus utiles sont ceux qui clarifient, renforcent et ouvrent de nouvelles capacites sans deformer la trajectoire."
+        }
+      },
+      "press": {
+        "metadata": {
+          "title": "Presse | Sky Genesis Enterprise",
+          "description": "Presentation presse institutionnelle et credibile de Sky Genesis Enterprise."
+        },
+        "hero": {
+          "eyebrow": "Press",
+          "title": "Un cadre presse sobre, verifiable et institutionnel.",
+          "description": "Cette page aide a presenter Sky Genesis Enterprise sans extrapoler sa taille, ses annonces ou son stade de maturite."
+        },
+        "boilerplate": {
+          "eyebrow": "Boilerplate",
+          "title": "Une presentation publique concise vaut mieux qu'un recit surjoue.",
+          "description": "La discipline editoriale est une condition de credibilite pour une entreprise encore en construction.",
+          "items": [
+            {
+              "title": "Version courte",
+              "description": "Sky Genesis Enterprise est une entreprise technologique qui construit des plateformes, des outils de travail et des fondations ouvertes afin d'offrir davantage de maitrise aux organisations."
+            },
+            {
+              "title": "Version longue",
+              "description": "Sky Genesis Enterprise developpe progressivement un ecosysteme compose de workspaces, de plateformes et de briques communes d'infrastructure. L'entreprise met l'accent sur l'ouverture, l'interoperabilite, la gouvernance technique et une trajectoire long terme credible."
+            }
+          ]
+        },
+        "facts": {
+          "eyebrow": "Editorial facts",
+          "title": "Des repères institutionnels utilisables publiquement.",
+          "description": "Cette page ne fabrique ni chiffres, ni logos, ni annonces qui ne seraient pas verifiables dans le depot ou sur les canaux publics de SGE.",
+          "items": [
+            {
+              "title": "Statut",
+              "description": "Entreprise technologique en construction, oriente produit, plateforme et fondations ouvertes."
+            },
+            {
+              "title": "Champ",
+              "description": "Workspaces, plateformes, identite, securite, infrastructure et developpement ouvert."
+            },
+            {
+              "title": "Ton",
+              "description": "Institutionnel, technique et progressif plutot que declaratif ou spectaculaire."
+            }
+          ]
+        },
+        "resources": {
+          "eyebrow": "Resources",
+          "title": "Des ressources simples pour prolonger la lecture.",
+          "description": "Le blog, la section Company et les projets publics constituent les sources les plus utiles pour comprendre l'entreprise.",
+          "items": [
+            {
+              "title": "Section Company",
+              "description": "Vue institutionnelle d'ensemble sur l'entreprise, sa mission et sa culture.",
+              "href": "/company",
+              "cta": "Voir la section"
+            },
+            {
+              "title": "Blog",
+              "description": "Prises de parole, ressources editoriales et publications publiques.",
+              "href": "/blog",
+              "cta": "Lire le blog"
+            },
+            {
+              "title": "GitHub",
+              "description": "Projets publics, traces de developpement et capacite de contribution ouverte.",
+              "href": "https://github.com/skygenesisenterprise/company-website",
+              "cta": "Explorer GitHub"
+            }
+          ]
+        },
+        "contact": {
+          "eyebrow": "Press contact",
+          "title": "Un contact presse explicite lorsque l'echange doit sortir du site.",
+          "description": "Les demandes media, citations, clarifications ou entretiens peuvent passer par une adresse dediee.",
+          "email": "press@skygenesisenterprise.com"
+        },
+        "finalCta": {
+          "eyebrow": "Press",
+          "title": "Preserver la credibilite du recit public.",
+          "description": "Une presentation presse utile ne cherche pas a embellir artificiellement la maturite du projet; elle aide a le comprendre avec justesse."
+        }
+      }
     }
   },
   "CompanyPages": {
@@ -10832,22 +11670,22 @@
     "companyOverviewSection": "Vue d'ensemble",
     "companyConnectSection": "Gouvernance et relation",
     "companyOverview": "Company",
-    "companyOverviewDesc": "Hub principal pour comprendre SGE, sa structure et ses points d'entrée.",
+    "companyOverviewDesc": "Vue d'ensemble institutionnelle de Sky Genesis Enterprise, de sa structure et de sa trajectoire.",
     "about": "À propos",
-    "aboutDesc": "Comprendre ce qu'est SGE, l'écosystème Aether et la vision long terme.",
+    "aboutDesc": "Comprendre ce qui relie les produits, les plateformes et les fondations de l'entreprise.",
     "story": "Histoire",
-    "storyDesc": "Lire le récit fondateur et la progression de l'idée vers l'entreprise.",
+    "storyDesc": "Lire la trajectoire de construction de SGE, de l'intuition initiale a l'ecosysteme en cours de formation.",
     "values": "Valeurs",
-    "valuesDesc": "Découvrir les principes concrets qui guident produit, sécurité et culture.",
+    "valuesDesc": "Decouvrir les principes qui guident la qualite produit, l'ouverture et la responsabilite.",
     "leadership": "Leadership",
-    "leadershipDesc": "Voir la direction founder-led, la gouvernance actuelle et la structure à venir.",
+    "leadershipDesc": "Voir comment la direction, la gouvernance et les responsabilites se structurent de maniere progressive.",
     "careers": "Carrières",
-    "careersDesc": "Rejoindre, contribuer ou se positionner pour de futures opportunités.",
+    "careersDesc": "Explorer la culture de travail, les domaines de contribution et les futures opportunites.",
     "contact": "Contact",
     "contactDesc": "Choisir le bon canal pour une demande générale, presse, carrière ou sécurité.",
     "partnersDesc": "Explorer les collaborations recherchées autour de l'infrastructure, de la sécurité et de l'écosystème.",
     "press": "Presse",
-    "pressDesc": "Accéder au boilerplate, aux repères institutionnels et au contact média.",
+    "pressDesc": "Acceder a une presentation presse sobre, verifiable et institutionnelle de l'entreprise.",
     "company": "Entreprise",
     "blog": "Blog",
     "identitySecurity": "Plateforme & Sécurité",
@@ -10996,7 +11834,7 @@
     "partnersFeaturedDesc": "Programmes technologiques, services, distribution et ressources partenaires.",
     "enterpriseFeaturedBadge": "Entreprise",
     "enterpriseFeaturedTitle": "Découvrir Sky Genesis Enterprise",
-    "enterpriseFeaturedDesc": "Hub corporate, histoire, principes, gouvernance, partenariats, presse et contact.",
+    "enterpriseFeaturedDesc": "Une section corporate premium pour comprendre la mission, les principes et la vision long terme de SGE.",
     "brandName": "Sky Genesis Enterprise",
     "resources": "Ressources",
     "documentation": "Documentation",
