@@ -31,6 +31,8 @@
       "@/types/*": ["./types/*"],
       "@/config/*": ["./config/*"],
       "@/content/*": ["./content/*"],
+      "@/data/*": ["./data/*"],
+      "@/utils/*": ["./utils/*"],
     },
     "types": ["next", "node"],
     "allowImportingTsExtensions": true

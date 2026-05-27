@@ -10335,6 +10335,1256 @@
           "description": "Une presentation presse utile ne cherche pas a embellir artificiellement la maturite du projet; elle aide a le comprendre avec justesse."
         }
       }
+    },
+    "platform": {
+      "overview": {
+        "metadata": {
+          "title": "Écosystème plateforme SGE",
+          "description": "Explorez l'écosystème Sky Genesis Enterprise à travers les plateformes cloud, développeur, finance, intelligence, média et télécom."
+        },
+        "hero": {
+          "eyebrow": "Écosystème plateforme",
+          "title": "Un écosystème technologique conçu comme une infrastructure.",
+          "description": "Explorez les domaines plateforme SGE qui relient cloud, systèmes développeurs, finance, intelligence, média et télécom dans une fondation opérationnelle globale."
+        },
+        "domains": {
+          "eyebrow": "Domaines",
+          "title": "Des plateformes spécialisées reliées par une même architecture.",
+          "description": "Chaque domaine possède sa propre identité opérationnelle tout en partageant l'infrastructure, la sécurité, le design et la direction écosystème de SGE."
+        },
+        "pages": {
+          "developer": {
+            "title": "Developer",
+            "description": "Écosystème développeur unifié pour APIs, SDKs, CLI, workflows IA et déploiement."
+          },
+          "cloud": {
+            "title": "Cloud",
+            "description": "Infrastructure cloud souveraine pour compute, edge, stockage, réseau et orchestration."
+          },
+          "telecom": {
+            "title": "Telecom",
+            "description": "Infrastructure de connectivité globale pour télécom, MVNO, edge networking, VPN, routage et observabilité."
+          },
+          "finance": {
+            "title": "Finance",
+            "description": "Infrastructure financière programmable pour ledgers, orchestration de paiement, trésorerie et conformité."
+          },
+          "intelligence": {
+            "title": "Intelligence",
+            "description": "Infrastructure IA intégrée pour inférence, agents, orchestration, IA d'entreprise et souveraineté."
+          },
+          "media": {
+            "title": "Media",
+            "description": "Systèmes mondiaux de communication et média pour publication, live, collaboration et diffusion."
+          }
+        }
+      },
+      "pages": {
+        "cloud": {
+          "metadata": {
+            "title": "Plateforme Cloud SGE",
+            "description": "Infrastructure cloud souveraine globale pour compute, edge, stockage, réseau et orchestration."
+          },
+          "hero": {
+            "eyebrow": "Plateforme cloud",
+            "title": "Infrastructure souveraine globale pour la prochaine ère du calcul.",
+            "statement": "Un tissu cloud distribué pour les systèmes edge, les charges réglementées et la maîtrise opérationnelle de long terme.",
+            "description": "SGE Cloud relie compute, stockage, identité, réseau et APIs d'infrastructure dans une fondation résiliente pour les organisations qui construisent à l'échelle mondiale.",
+            "primaryCta": "Explorer l'infrastructure",
+            "secondaryCta": "Contacter l'entreprise"
+          },
+          "mission": {
+            "eyebrow": "Mission",
+            "statement": "Rendre l'infrastructure cloud critique composable, observable et souveraine par conception.",
+            "description": "La plateforme s'organise autour de zones de déploiement contrôlées, de réseaux programmables, d'un stockage piloté par politiques et d'APIs qui gardent l'infrastructure portable entre régions et organisations."
+          },
+          "labels": {
+            "platformEcosystem": "Écosystème plateforme",
+            "integrationSurface": "Surface d'intégration",
+            "sovereigntyStatement": "La souveraineté s'exprime par l'identité, la politique, la région et la preuve."
+          },
+          "products": [
+            {
+              "name": "Aether Edge",
+              "description": "Zones d'exécution edge pour le calcul basse latence et les charges régionales."
+            },
+            {
+              "name": "Cloud Manager",
+              "description": "Plan de contrôle pour flottes compute, services, régions et politiques de déploiement."
+            },
+            {
+              "name": "Network Manager",
+              "description": "Routage programmable, réseaux privés, politiques de trafic et observabilité."
+            },
+            {
+              "name": "Vault",
+              "description": "Secrets, clés, certificats et configuration sensible sous accès gouverné."
+            },
+            {
+              "name": "Object Storage",
+              "description": "Primitives de stockage durable pour applications, média, sauvegardes et pipelines de données."
+            }
+          ],
+          "metrics": [
+            {
+              "value": "6",
+              "label": "domaines d'infrastructure"
+            },
+            {
+              "value": "24/7",
+              "label": "posture opérationnelle"
+            },
+            {
+              "value": "API",
+              "label": "plan de contrôle prioritaire"
+            }
+          ],
+          "sections": {
+            "ecosystem": {
+              "eyebrow": "Écosystème plateforme",
+              "title": "Une couche cloud connectée à chaque domaine SGE.",
+              "description": "Le compute n'est pas isolé de l'identité, de la finance, de l'intelligence, du média ou du télécom. La plateforme cloud est le substrat commun qui permet aux produits de partager politique, télémétrie et primitives de déploiement.",
+              "items": [
+                {
+                  "title": "Tissu compute",
+                  "description": "Exécuter les services au plus près des utilisateurs, des données et des zones réglementées."
+                },
+                {
+                  "title": "Plan de stockage",
+                  "description": "Unifier object storage, secrets et données applicatives sous politique plateforme."
+                },
+                {
+                  "title": "Contrôle réseau",
+                  "description": "Piloter connectivité privée et trafic public depuis une couche gouvernée."
+                }
+              ]
+            },
+            "architecture": {
+              "eyebrow": "Architecture",
+              "title": "Des noeuds edge régionaux à l'orchestration centralisée.",
+              "description": "L'architecture cloud se présente comme un système en couches : routage global, exécution régionale, orchestration de services, protection des données et télémétrie continue.",
+              "items": [
+                {
+                  "title": "Zones edge",
+                  "description": "Environnements d'exécution régionaux pour charges sensibles à la latence et à la souveraineté."
+                },
+                {
+                  "title": "Plan de contrôle",
+                  "description": "État déclaratif de l'infrastructure, historique de déploiement, audit et politiques."
+                },
+                {
+                  "title": "Maillage télémétrique",
+                  "description": "Signaux opérationnels sur compute, stockage, trafic et frontières de sécurité."
+                }
+              ],
+              "flow": [
+                {
+                  "title": "Router",
+                  "description": "Le trafic entre par un routage global conscient des politiques."
+                },
+                {
+                  "title": "Placer",
+                  "description": "Les charges sont placées selon latence, conformité et capacité."
+                },
+                {
+                  "title": "Opérer",
+                  "description": "Les services sont observés, renouvelés, scalés et sécurisés en continu."
+                },
+                {
+                  "title": "Gouverner",
+                  "description": "Clés, accès, mouvement des données et événements d'audit restent maîtrisés."
+                }
+              ]
+            },
+            "workflow": {
+              "eyebrow": "Workflow entreprise",
+              "title": "Les équipes infrastructure partagent un modèle d'exploitation.",
+              "description": "Cloud Manager donne aux opérateurs un chemin cohérent de la planification d'environnement au déploiement, à la réponse incident et à la preuve de conformité.",
+              "items": [
+                {
+                  "title": "Provisionner",
+                  "description": "Créer projets, réseaux, stockage et environnements avec des modèles répétables."
+                },
+                {
+                  "title": "Déployer",
+                  "description": "Faire progresser les charges par étapes gouvernées avec ownership et rollback clairs."
+                },
+                {
+                  "title": "Observer",
+                  "description": "Suivre santé des services, trafic, capacité et signaux sécurité en contexte."
+                }
+              ]
+            },
+            "security": {
+              "eyebrow": "Sécurité et souveraineté",
+              "title": "Le contrôle reste proche de l'organisation.",
+              "description": "La plateforme privilégie les frontières de confiance explicites, le contrôle régional, l'accès centré identité et les changements d'infrastructure auditables.",
+              "items": [
+                {
+                  "title": "Politique régionale",
+                  "description": "Lier charges et données aux régions et limites opérationnelles autorisées."
+                },
+                {
+                  "title": "Gouvernance des clés",
+                  "description": "Protéger secrets et certificats via des cycles de vie adossés à Vault."
+                },
+                {
+                  "title": "Continuité d'audit",
+                  "description": "Conserver les preuves de changements, accès et événements opérationnels."
+                }
+              ]
+            },
+            "api": {
+              "eyebrow": "APIs",
+              "title": "L'infrastructure comme surface programmable.",
+              "description": "Chaque couche majeure est pensée pour être exposée via APIs, SDKs et CLI afin d'automatiser le cloud sans contourner la gouvernance.",
+              "items": [
+                {
+                  "title": "Ressources déclaratives",
+                  "description": "Représenter réseaux, zones, stockage et services comme objets gérés."
+                },
+                {
+                  "title": "Flux d'événements",
+                  "description": "S'abonner aux événements de déploiement, santé, capacité et sécurité."
+                }
+              ],
+              "endpoints": [
+                "POST /v1/cloud/projects",
+                "POST /v1/cloud/deployments",
+                "GET /v1/cloud/events"
+              ]
+            },
+            "global": {
+              "eyebrow": "Échelle globale",
+              "title": "Une vue infrastructure mondiale, pas un produit mono-région.",
+              "description": "SGE Cloud est conçu pour exprimer une carte opérationnelle globale tout en préservant l'autonomie régionale des clients, partenaires et industries régulées.",
+              "items": [
+                {
+                  "title": "Topologie globale",
+                  "description": "Visualiser les services en régions, zones et chemins de routage connectés."
+                },
+                {
+                  "title": "Contrôle local",
+                  "description": "Préserver les contraintes de pays, secteur et organisation."
+                },
+                {
+                  "title": "Backbone écosystème",
+                  "description": "Fournir l'infrastructure commune aux systèmes finance, média, IA et télécom."
+                }
+              ]
+            }
+          },
+          "cta": {
+            "eyebrow": "Construire sur SGE Cloud",
+            "title": "Planifier une infrastructure qui s'étend sans perdre le contrôle.",
+            "description": "Échangez avec SGE sur l'architecture cloud, edge, stockage et réseau de votre organisation.",
+            "primaryCta": "Commencer côté développeurs",
+            "secondaryCta": "Parler à SGE"
+          }
+        },
+        "developer": {
+          "metadata": {
+            "title": "Plateforme Developer SGE",
+            "description": "Écosystème développeur unifié pour APIs, SDKs, CLI, développement assisté par IA et déploiement."
+          },
+          "hero": {
+            "eyebrow": "Plateforme développeur",
+            "title": "Un écosystème unifié et AI-native pour construire sur SGE.",
+            "statement": "Une seule surface développeur pour APIs, identité, source control, automatisation et déploiement.",
+            "description": "SGE Developer donne aux builders un chemin cohérent de l'idée à la production à travers cloud, identité, finance, intelligence, média et télécom.",
+            "primaryCta": "Ouvrir le hub développeur",
+            "secondaryCta": "Voir les APIs"
+          },
+          "mission": {
+            "eyebrow": "Mission",
+            "statement": "Rendre chaque capacité SGE accessible par des APIs précises, des outils fiables et des workflows intelligents.",
+            "description": "La plateforme développeur réunit documentation, SDKs, CLI, workflows Giteria et automatisation assistée par IA sans fragmenter l'écosystème."
+          },
+          "labels": {
+            "platformEcosystem": "Écosystème plateforme",
+            "integrationSurface": "Surface d'intégration",
+            "sovereigntyStatement": "La souveraineté s'exprime par l'identité, la politique, la région et la preuve."
+          },
+          "products": [
+            {
+              "name": "Giteria",
+              "description": "Collaboration source et workflows de livraison pour équipes logicielles SGE-native."
+            },
+            {
+              "name": "API Studios",
+              "description": "Concevoir, tester, publier et monitorer les APIs de l'écosystème."
+            },
+            {
+              "name": "Aether Developer",
+              "description": "CLI, SDKs, templates et workflows de déploiement pour builders plateforme."
+            },
+            {
+              "name": "Identity",
+              "description": "Authentification, autorisation, accès organisationnel et cycle de vie des comptes."
+            },
+            {
+              "name": "Aeon",
+              "description": "Développement assisté par IA, intelligence code et orchestration de workflows."
+            }
+          ],
+          "metrics": [
+            {
+              "value": "SDK",
+              "label": "intégration prioritaire"
+            },
+            {
+              "value": "CLI",
+              "label": "workflows natifs"
+            },
+            {
+              "value": "AI",
+              "label": "livraison assistée"
+            }
+          ],
+          "sections": {
+            "ecosystem": {
+              "eyebrow": "Écosystème plateforme",
+              "title": "Un seul point d'entrée développeur vers tout l'écosystème.",
+              "description": "Les développeurs ne devraient pas apprendre un modèle différent pour chaque domaine. SGE Developer standardise auth, conventions API, événements et déploiements.",
+              "items": [
+                {
+                  "title": "APIs unifiées",
+                  "description": "Modèles communs pour identité, ressources, événements, erreurs et auditabilité."
+                },
+                {
+                  "title": "Continuité d'outillage",
+                  "description": "Passer des docs aux SDKs, CLI, source control et déploiement sans rupture."
+                },
+                {
+                  "title": "Assistance IA",
+                  "description": "Utiliser Aeon pour accélérer intégration, recherche code, tests et revue opérationnelle."
+                }
+              ]
+            },
+            "architecture": {
+              "eyebrow": "Architecture",
+              "title": "Un plan de contrôle développeur connecté à la production.",
+              "description": "La plateforme s'organise autour de catalogues API, scopes d'identité, environnements projet, événements d'automatisation et workflows de déploiement.",
+              "items": [
+                {
+                  "title": "Catalogue API",
+                  "description": "Découvrir services, contrats, exemples, changelogs et statut au même endroit."
+                },
+                {
+                  "title": "Graphe projet",
+                  "description": "Relier dépôts, credentials, services, environnements et ownership."
+                },
+                {
+                  "title": "Couche d'automatisation",
+                  "description": "Déclencher builds, déploiements, tests et tâches IA depuis les événements plateforme."
+                }
+              ],
+              "flow": [
+                {
+                  "title": "Découvrir",
+                  "description": "Trouver APIs, SDKs, exemples et capacités plateforme."
+                },
+                {
+                  "title": "Prototyper",
+                  "description": "Utiliser templates, sandboxes et credentials locaux."
+                },
+                {
+                  "title": "Intégrer",
+                  "description": "Connecter code, environnements, scopes identité et événements."
+                },
+                {
+                  "title": "Livrer",
+                  "description": "Déployer via workflows gouvernés avec monitoring et support."
+                }
+              ]
+            },
+            "workflow": {
+              "eyebrow": "Workflow entreprise",
+              "title": "Les builders avancent vite dans des limites opérationnelles claires.",
+              "description": "SGE Developer est conçu pour les équipes qui veulent de la vitesse sans perdre traçabilité, contrôle credentials et discipline production.",
+              "items": [
+                {
+                  "title": "Projets d'équipe",
+                  "description": "Organiser applications, APIs, environnements, owners et secrets ensemble."
+                },
+                {
+                  "title": "Chemins de release",
+                  "description": "Standardiser la promotion du sandbox à la production."
+                },
+                {
+                  "title": "Feedback opérationnel",
+                  "description": "Ramener signaux de build, santé runtime et télémétrie API aux développeurs."
+                }
+              ]
+            },
+            "security": {
+              "eyebrow": "Sécurité et souveraineté",
+              "title": "L'accès développeur fait partie du modèle de confiance.",
+              "description": "Identité, credentials scopés, événements d'audit, gestion des secrets et validations sont intégrés à l'expérience développeur.",
+              "items": [
+                {
+                  "title": "Accès scopé",
+                  "description": "Émettre credentials et permissions API par projet, environnement et rôle."
+                },
+                {
+                  "title": "Hygiène des secrets",
+                  "description": "Séparer credentials locaux et production via des workflows adossés à Vault."
+                },
+                {
+                  "title": "Trails de revue",
+                  "description": "Enregistrer l'activité API, déploiement et automatisation pertinente."
+                }
+              ]
+            },
+            "api": {
+              "eyebrow": "APIs",
+              "title": "La couche API est un produit, pas une annexe.",
+              "description": "SGE Developer traite la clarté API, la couverture SDK, les exemples et la communication de cycle de vie comme une infrastructure cœur.",
+              "items": [
+                {
+                  "title": "Génération SDK",
+                  "description": "Produire clients typés et exemples depuis des contrats API stables."
+                },
+                {
+                  "title": "Visibilité des changements",
+                  "description": "Suivre versions, dépréciations, incidents et guidage migration."
+                }
+              ],
+              "endpoints": [
+                "GET /v1/developer/apis",
+                "POST /v1/developer/projects",
+                "GET /v1/developer/events"
+              ]
+            },
+            "global": {
+              "eyebrow": "Échelle globale",
+              "title": "Un réseau développeur mondial autour d'une infrastructure souveraine.",
+              "description": "La plateforme soutient développeurs publics, équipes entreprise, partenaires et ingénierie interne SGE par la même fondation cohérente.",
+              "items": [
+                {
+                  "title": "Extensibilité partenaire",
+                  "description": "Exposer les capacités écosystème aux builders et partenaires de confiance."
+                },
+                {
+                  "title": "Fondations ouvertes",
+                  "description": "Soutenir l'open source et les primitives techniques réutilisables."
+                },
+                {
+                  "title": "Chemins production",
+                  "description": "Aider les builders à passer des tests API au déploiement réel."
+                }
+              ]
+            }
+          },
+          "cta": {
+            "eyebrow": "Construire avec SGE",
+            "title": "Créer des logiciels connectés à tout l'écosystème SGE.",
+            "description": "Explorez le hub développeur, commencez par les APIs ou échangez avec SGE sur vos intégrations entreprise.",
+            "primaryCta": "Ouvrir le hub développeur",
+            "secondaryCta": "Parler à SGE"
+          }
+        },
+        "finance": {
+          "metadata": {
+            "title": "Plateforme Finance SGE",
+            "description": "Infrastructure financière programmable pour ledgers, orchestration de paiement, APIs trésorerie et conformité."
+          },
+          "hero": {
+            "eyebrow": "Plateforme finance",
+            "title": "Infrastructure financière programmable pour institutions modernes.",
+            "statement": "Ledgers, automatisation trésorerie, orchestration de paiement et contrôles conformité dans une même couche opératoire.",
+            "description": "SGE Finance relie produits financiers, APIs infrastructure, identité, auditabilité et automatisation contrôlée.",
+            "primaryCta": "Explorer les APIs finance",
+            "secondaryCta": "Contacter l'entreprise"
+          },
+          "mission": {
+            "eyebrow": "Mission",
+            "statement": "Transformer les opérations financières en infrastructure programmable et gouvernée.",
+            "description": "La plateforme s'adresse aux organisations qui exigent ledgers précis, flux de paiement résilients, visibilité trésorerie et posture réglementaire."
+          },
+          "labels": {
+            "platformEcosystem": "Écosystème plateforme",
+            "integrationSurface": "Surface d'intégration",
+            "sovereigntyStatement": "La souveraineté s'exprime par l'identité, la politique, la région et la preuve."
+          },
+          "products": [
+            {
+              "name": "Aether Bank",
+              "description": "Primitives bancaires pour comptes, mouvements et produits financiers."
+            },
+            {
+              "name": "Vaelix Bank",
+              "description": "Architecture financière institutionnelle pour opérations régulées."
+            },
+            {
+              "name": "Wallet",
+              "description": "Valeur stockée, soldes, accès lié à l'identité et expériences transactionnelles."
+            },
+            {
+              "name": "Treasury APIs",
+              "description": "Visibilité cash, liquidité, réconciliation et workflows d'automatisation."
+            }
+          ],
+          "metrics": [
+            {
+              "value": "Ledger",
+              "label": "design centré"
+            },
+            {
+              "value": "Policy",
+              "label": "flux pilotés"
+            },
+            {
+              "value": "Audit",
+              "label": "événements prêts"
+            }
+          ],
+          "sections": {
+            "ecosystem": {
+              "eyebrow": "Écosystème plateforme",
+              "title": "Systèmes financiers connectés à l'identité, au cloud et à l'intelligence.",
+              "description": "La finance n'opère pas seule. SGE Finance relie comptes, identité client, cloud sécurisé, revue IA et workflows entreprise.",
+              "items": [
+                {
+                  "title": "Fondation ledger",
+                  "description": "Représenter soldes, mouvements, réserves, reversals et réconciliation."
+                },
+                {
+                  "title": "Orchestration paiement",
+                  "description": "Coordonner rails, validations, contrôles risque et settlement par politique."
+                },
+                {
+                  "title": "Visibilité trésorerie",
+                  "description": "Unifier soldes, positions de liquidité et données finance opérationnelles."
+                }
+              ]
+            },
+            "architecture": {
+              "eyebrow": "Architecture",
+              "title": "Un réseau financier construit autour de la justesse et du contrôle.",
+              "description": "L'architecture place le ledger au centre, entouré d'identité, conformité, automatisation, reporting et accès API.",
+              "items": [
+                {
+                  "title": "Ledger canonique",
+                  "description": "Maintenir une source de vérité stable pour produits et opérations."
+                },
+                {
+                  "title": "Contrôles risque",
+                  "description": "Appliquer validations, limites, screening et revue d'anomalies."
+                },
+                {
+                  "title": "Réconciliation",
+                  "description": "Comparer état interne, rails externes, relevés et mouvements trésorerie."
+                }
+              ],
+              "flow": [
+                {
+                  "title": "Identifier",
+                  "description": "Relier clients, entités, comptes et permissions."
+                },
+                {
+                  "title": "Autoriser",
+                  "description": "Appliquer politiques, contrôles risque, limites et validations."
+                },
+                {
+                  "title": "Mouvoir",
+                  "description": "Exécuter écritures ledger, paiements ou actions trésorerie."
+                },
+                {
+                  "title": "Réconcilier",
+                  "description": "Créer preuves, reporting, exceptions et trails d'audit."
+                }
+              ]
+            },
+            "workflow": {
+              "eyebrow": "Workflow entreprise",
+              "title": "Les opérations finance deviennent visibles et automatisables.",
+              "description": "Les équipes coordonnent validations, exceptions, actions client, reporting et décisions trésorerie depuis un modèle partagé.",
+              "items": [
+                {
+                  "title": "Files opérationnelles",
+                  "description": "Router exceptions, validations, investigations et tâches de réconciliation."
+                },
+                {
+                  "title": "Automatisation politique",
+                  "description": "Définir limites et contrôles appliqués de façon cohérente."
+                },
+                {
+                  "title": "Visibilité exécutive",
+                  "description": "Afficher positions, flux, risques et santé opérationnelle sans assemblage manuel."
+                }
+              ]
+            },
+            "security": {
+              "eyebrow": "Sécurité et souveraineté",
+              "title": "La confiance financière exige des frontières explicites.",
+              "description": "SGE Finance met l'accent sur contrôle par rôle, preuve, identité forte, contraintes régionales et automatisation gouvernée.",
+              "items": [
+                {
+                  "title": "Séparation des tâches",
+                  "description": "Séparer création, validation, exécution et revue des actions critiques."
+                },
+                {
+                  "title": "Preuve immuable",
+                  "description": "Préserver événements ledger, validations, exceptions et actions API."
+                },
+                {
+                  "title": "Résidence des données",
+                  "description": "Concevoir les flux financiers selon juridictions et exigences clients."
+                }
+              ]
+            },
+            "api": {
+              "eyebrow": "APIs",
+              "title": "Primitives financières exposées via APIs stables.",
+              "description": "Les produits composent comptes, soldes, transactions, trésorerie et conformité sans dupliquer la logique finance cœur.",
+              "items": [
+                {
+                  "title": "Opérations idempotentes",
+                  "description": "Concevoir les APIs de mouvement d'argent pour retry, cohérence et traçabilité."
+                },
+                {
+                  "title": "Finance événementielle",
+                  "description": "Publier événements ledger, paiement, conformité et réconciliation."
+                }
+              ],
+              "endpoints": [
+                "POST /v1/finance/accounts",
+                "POST /v1/finance/transfers",
+                "GET /v1/finance/ledger/events"
+              ]
+            },
+            "global": {
+              "eyebrow": "Échelle globale",
+              "title": "Un réseau financier adaptable par région.",
+              "description": "La plateforme reflète un monde où rails, régulation, identité, devise et attentes client varient par marché.",
+              "items": [
+                {
+                  "title": "Rails régionaux",
+                  "description": "Représenter intégrations paiement et bancaires derrière des contrats communs."
+                },
+                {
+                  "title": "Workflows institutionnels",
+                  "description": "Soutenir équipes internes, partenaires, marchands et expériences client."
+                },
+                {
+                  "title": "Finance écosystème",
+                  "description": "Alimenter wallets, abonnements, trésorerie, monétisation et facturation."
+                }
+              ]
+            }
+          },
+          "cta": {
+            "eyebrow": "Programmer la finance",
+            "title": "Construire des systèmes financiers avec discipline infrastructure.",
+            "description": "Échangez avec SGE sur ledger, trésorerie, paiement et architecture conformité.",
+            "primaryCta": "Explorer les APIs",
+            "secondaryCta": "Parler à SGE"
+          }
+        },
+        "intelligence": {
+          "metadata": {
+            "title": "Plateforme Intelligence SGE",
+            "description": "Infrastructure IA intégrée pour inférence, agents, orchestration, IA d'entreprise et systèmes souverains."
+          },
+          "hero": {
+            "eyebrow": "Plateforme intelligence",
+            "title": "Infrastructure IA intégrée au tissu opérationnel.",
+            "statement": "Inférence, agents, orchestration et systèmes de connaissance entreprise conçus comme infrastructure.",
+            "description": "SGE Intelligence introduit l'IA dans le cloud, les développeurs, la finance, les médias, le télécom et le workplace avec la gouvernance au centre.",
+            "primaryCta": "Explorer les APIs IA",
+            "secondaryCta": "Contacter l'entreprise"
+          },
+          "mission": {
+            "eyebrow": "Mission",
+            "statement": "Faire de l'intelligence une capacité plateforme gouvernée, pas un outil déconnecté.",
+            "description": "La plateforme traite modèles, agents, prompts, accès données, évaluation et contrôles opérationnels comme une infrastructure gérée."
+          },
+          "labels": {
+            "platformEcosystem": "Écosystème plateforme",
+            "integrationSurface": "Surface d'intégration",
+            "sovereigntyStatement": "La souveraineté s'exprime par l'identité, la politique, la région et la preuve."
+          },
+          "products": [
+            {
+              "name": "Aeon",
+              "description": "Assistant IA et couche agentique pour workflows SGE et développement."
+            },
+            {
+              "name": "Aether AI",
+              "description": "Infrastructure IA pour inférence, orchestration, évaluation et déploiement."
+            },
+            {
+              "name": "AI APIs",
+              "description": "Endpoints d'intelligence programmables pour texte, recherche, agents et automatisation."
+            },
+            {
+              "name": "AI Studio",
+              "description": "Concevoir, tester, évaluer et gouverner les workflows IA entreprise."
+            }
+          ],
+          "metrics": [
+            {
+              "value": "Agents",
+              "label": "orchestrés prudemment"
+            },
+            {
+              "value": "Eval",
+              "label": "cycle de vie prioritaire"
+            },
+            {
+              "value": "Data",
+              "label": "accès gouverné"
+            }
+          ],
+          "sections": {
+            "ecosystem": {
+              "eyebrow": "Écosystème plateforme",
+              "title": "Intelligence connectée au modèle opératoire SGE.",
+              "description": "L'IA devient plus utile lorsqu'elle comprend identité, systèmes, frontières de données, état infrastructure et contexte métier.",
+              "items": [
+                {
+                  "title": "Agents entreprise",
+                  "description": "Coordonner les tâches entre outils tout en préservant validations, scopes et audit."
+                },
+                {
+                  "title": "Couche d'inférence",
+                  "description": "Fournir un accès modèle contrôlé aux produits internes et builders API."
+                },
+                {
+                  "title": "Systèmes de connaissance",
+                  "description": "Relier retrieval, documents, événements opérationnels et données structurées."
+                }
+              ]
+            },
+            "architecture": {
+              "eyebrow": "Architecture",
+              "title": "Une pile IA gouvernée, de l'accès données à l'action.",
+              "description": "L'architecture sépare connecteurs de données, retrieval, routage modèle, politique agent, évaluation et exécution workflow.",
+              "items": [
+                {
+                  "title": "Routage modèle",
+                  "description": "Choisir les chemins d'inférence selon tâche, coût, latence, sécurité et politique."
+                },
+                {
+                  "title": "Politique agent",
+                  "description": "Contraindre accès outils, validations, mémoire et périmètre opérationnel."
+                },
+                {
+                  "title": "Boucle d'évaluation",
+                  "description": "Mesurer qualité, sécurité, régression et adéquation métier avant déploiement."
+                }
+              ],
+              "flow": [
+                {
+                  "title": "Contexte",
+                  "description": "Récupérer données approuvées et état opérationnel."
+                },
+                {
+                  "title": "Raisonner",
+                  "description": "Router le travail via modèles, outils et plans agents."
+                },
+                {
+                  "title": "Agir",
+                  "description": "Exécuter uniquement les étapes workflow et appels API permis."
+                },
+                {
+                  "title": "Évaluer",
+                  "description": "Capturer sorties, retours, traces et signaux qualité."
+                }
+              ]
+            },
+            "workflow": {
+              "eyebrow": "Workflow entreprise",
+              "title": "Une IA qui participe aux opérations réelles.",
+              "description": "Les équipes appliquent l'intelligence au support, à la revue finance, au développement, à la production média et aux opérations infrastructure.",
+              "items": [
+                {
+                  "title": "Travail assisté",
+                  "description": "Faire rédiger, rechercher, résumer, classifier et recommander dans les processus."
+                },
+                {
+                  "title": "Validation humaine",
+                  "description": "Exiger une revue avant actions sensibles, changements financiers ou communications."
+                },
+                {
+                  "title": "Mémoire opérationnelle",
+                  "description": "Conserver un contexte utile en respectant rétention, confidentialité et frontières client."
+                }
+              ]
+            },
+            "security": {
+              "eyebrow": "Sécurité et souveraineté",
+              "title": "L'IA souveraine dépend d'un contexte contrôlé.",
+              "description": "SGE Intelligence s'organise autour de minimisation des données, contrôle d'accès, évaluation, audit et choix de déploiement.",
+              "items": [
+                {
+                  "title": "Frontières de données",
+                  "description": "Aligner l'accès IA avec identité, rôle, projet et contraintes régionales."
+                },
+                {
+                  "title": "Permissions outils",
+                  "description": "Limiter ce que les agents peuvent lire, écrire, appeler ou exécuter."
+                },
+                {
+                  "title": "Traçabilité",
+                  "description": "Enregistrer prompts, appels outils, sorties, validations et évaluations si requis."
+                }
+              ]
+            },
+            "api": {
+              "eyebrow": "APIs",
+              "title": "Primitives d'intelligence pour applications et workflows.",
+              "description": "Les développeurs intègrent des capacités IA via APIs pendant que les équipes gardent politique et observabilité.",
+              "items": [
+                {
+                  "title": "Runs agents",
+                  "description": "Démarrer, inspecter, approuver et reprendre des workflows IA multi-étapes."
+                },
+                {
+                  "title": "Retrieval connaissance",
+                  "description": "Connecter contenu entreprise et données opérationnelles approuvés aux expériences IA."
+                }
+              ],
+              "endpoints": [
+                "POST /v1/ai/responses",
+                "POST /v1/ai/agents/runs",
+                "GET /v1/ai/evaluations"
+              ]
+            },
+            "global": {
+              "eyebrow": "Échelle globale",
+              "title": "Infrastructure IA pour organisations distribuées.",
+              "description": "La plateforme soutient équipes, produits et marchés qui exigent contrôles localisés, qualité cohérente et gouvernance modèle.",
+              "items": [
+                {
+                  "title": "Déploiement régional",
+                  "description": "Soutenir les workloads IA avec données et conformité en tête."
+                },
+                {
+                  "title": "Intelligence partagée",
+                  "description": "Réutiliser agents, évaluations et patterns connaissance entre produits."
+                },
+                {
+                  "title": "Gouvernance long terme",
+                  "description": "Gérer cycle de vie modèle, qualité, accès et responsabilité opérationnelle."
+                }
+              ]
+            }
+          },
+          "cta": {
+            "eyebrow": "Déployer l'intelligence",
+            "title": "Amener l'IA dans l'infrastructure, les workflows et les produits.",
+            "description": "Travaillez avec SGE sur une architecture IA qui connecte contexte, action et gouvernance.",
+            "primaryCta": "Explorer les APIs IA",
+            "secondaryCta": "Parler à SGE"
+          }
+        },
+        "media": {
+          "metadata": {
+            "title": "Plateforme Media SGE",
+            "description": "Systèmes mondiaux de communication et média pour publication, live streaming, collaboration et diffusion."
+          },
+          "hero": {
+            "eyebrow": "Plateforme média",
+            "title": "Infrastructure mondiale de communication et média en temps réel.",
+            "statement": "Publication, collaboration, opérations live et diffusion de contenu connectées dans une même couche écosystème.",
+            "description": "SGE Media soutient communication de confiance, systèmes éditoriaux, canaux live, réunions, chat et workflows de contenu globaux.",
+            "primaryCta": "Explorer les systèmes média",
+            "secondaryCta": "Contacter l'entreprise"
+          },
+          "mission": {
+            "eyebrow": "Mission",
+            "statement": "Construire des systèmes de communication temps réel, fiables et distribués mondialement.",
+            "description": "La plateforme connecte création de contenu, gouvernance éditoriale, opérations live, collaboration et infrastructure de diffusion."
+          },
+          "labels": {
+            "platformEcosystem": "Écosystème plateforme",
+            "integrationSurface": "Surface d'intégration",
+            "sovereigntyStatement": "La souveraineté s'exprime par l'identité, la politique, la région et la preuve."
+          },
+          "products": [
+            {
+              "name": "Etheria Times",
+              "description": "Infrastructure éditoriale et publication pour média technologique de confiance."
+            },
+            {
+              "name": "Meet",
+              "description": "Réunions vidéo sécurisées et espaces de collaboration pour organisations."
+            },
+            {
+              "name": "Chat",
+              "description": "Messagerie temps réel, salons, notifications et communication workflow."
+            },
+            {
+              "name": "Guilderia",
+              "description": "Systèmes communautaires et créateurs pour audiences connectées."
+            },
+            {
+              "name": "Live Manager",
+              "description": "Orchestration d'événements live, opérations stream et workflows de distribution."
+            }
+          ],
+          "metrics": [
+            {
+              "value": "Live",
+              "label": "communication prioritaire"
+            },
+            {
+              "value": "Global",
+              "label": "modèle de diffusion"
+            },
+            {
+              "value": "Trust",
+              "label": "posture éditoriale"
+            }
+          ],
+          "sections": {
+            "ecosystem": {
+              "eyebrow": "Écosystème plateforme",
+              "title": "Média connecté à collaboration, identité et diffusion.",
+              "description": "SGE Media relie les produits de communication aux mêmes fondations identité, cloud, intelligence et réseau que le reste de l'écosystème.",
+              "items": [
+                {
+                  "title": "Systèmes de publication",
+                  "description": "Soutenir workflows éditoriaux, diffusion, archives et confiance publication."
+                },
+                {
+                  "title": "Communication temps réel",
+                  "description": "Relier chat, réunions, live events et flux de notification."
+                },
+                {
+                  "title": "Infrastructure audience",
+                  "description": "Servir communautés, abonnés, créateurs, partenaires et audiences entreprise."
+                }
+              ]
+            },
+            "architecture": {
+              "eyebrow": "Architecture",
+              "title": "Un réseau de communication, de la création à la diffusion.",
+              "description": "L'architecture média organise contenu, collaboration, identité, modération, contrôle live et diffusion globale.",
+              "items": [
+                {
+                  "title": "Graphe contenu",
+                  "description": "Représenter articles, streams, salons, assets, événements et audiences."
+                },
+                {
+                  "title": "Noyau temps réel",
+                  "description": "Coordonner présence, notifications, réunions, chat et signaux live."
+                },
+                {
+                  "title": "Couche diffusion",
+                  "description": "Distribuer les médias via infrastructure edge et canaux contrôlés."
+                }
+              ],
+              "flow": [
+                {
+                  "title": "Créer",
+                  "description": "Rédiger, capturer, planifier ou démarrer un média temps réel."
+                },
+                {
+                  "title": "Revoir",
+                  "description": "Appliquer contrôles éditoriaux, modération, identité et droits."
+                },
+                {
+                  "title": "Publier",
+                  "description": "Distribuer contenus, streams, conversations et mises à jour."
+                },
+                {
+                  "title": "Mesurer",
+                  "description": "Observer audience, fiabilité, engagement et signaux opérationnels."
+                }
+              ]
+            },
+            "workflow": {
+              "eyebrow": "Workflow entreprise",
+              "title": "Les équipes communiquent sans fragmenter les opérations.",
+              "description": "Les workflows média couvrent équipes éditoriales, direction, créateurs, communautés, support et delivery technique.",
+              "items": [
+                {
+                  "title": "Opérations éditoriales",
+                  "description": "Coordonner planning, revue, publication, corrections et distribution."
+                },
+                {
+                  "title": "Commande live",
+                  "description": "Gérer événements, intervenants, canaux, streams et escalades."
+                },
+                {
+                  "title": "Contexte collaboration",
+                  "description": "Relier chat, réunions, fichiers et décisions au travail concerné."
+                }
+              ]
+            },
+            "security": {
+              "eyebrow": "Sécurité et souveraineté",
+              "title": "Les systèmes de communication exigent la confiance à chaque couche.",
+              "description": "Identité, modération, politique d'accès, intégrité contenu et visibilité opérationnelle sont intégrées à la direction plateforme.",
+              "items": [
+                {
+                  "title": "Accès vérifié",
+                  "description": "Contrôler qui peut publier, rejoindre, parler, modérer ou distribuer."
+                },
+                {
+                  "title": "Intégrité contenu",
+                  "description": "Suivre éditions, provenance, état publication et décisions de modération."
+                },
+                {
+                  "title": "Collaboration privée",
+                  "description": "Protéger les communications internes et workflows média sensibles."
+                }
+              ]
+            },
+            "api": {
+              "eyebrow": "APIs",
+              "title": "Capacités de communication pour builders produit.",
+              "description": "Les développeurs connectent publication, messagerie, événements, contrôles live et données audience à des workflows sur mesure.",
+              "items": [
+                {
+                  "title": "Événements temps réel",
+                  "description": "S'abonner aux cycles message, stream, publication et audience."
+                },
+                {
+                  "title": "APIs contenu",
+                  "description": "Gérer assets, articles, plannings, canaux et règles d'accès."
+                }
+              ],
+              "endpoints": [
+                "POST /v1/media/publications",
+                "POST /v1/media/live/events",
+                "GET /v1/media/realtime/events"
+              ]
+            },
+            "global": {
+              "eyebrow": "Échelle globale",
+              "title": "Une couche média globale pour un écosystème connecté.",
+              "description": "SGE Media soutient la communication mondiale tout en gardant visibles standards éditoriaux, confidentialité et diffusion régionale.",
+              "items": [
+                {
+                  "title": "Diffusion mondiale",
+                  "description": "Distribuer média et communication temps réel via une infrastructure résiliente."
+                },
+                {
+                  "title": "Pertinence locale",
+                  "description": "Soutenir audiences, langues, politiques et contextes éditoriaux régionaux."
+                },
+                {
+                  "title": "Présence écosystème",
+                  "description": "Connecter média avec office, développeurs, finance et communautés."
+                }
+              ]
+            }
+          },
+          "cta": {
+            "eyebrow": "Connecter les audiences",
+            "title": "Construire des systèmes de communication fiables comme une infrastructure.",
+            "description": "Échangez avec SGE sur publication, live, collaboration et workflows média globaux.",
+            "primaryCta": "Explorer le média",
+            "secondaryCta": "Parler à SGE"
+          }
+        },
+        "telecom": {
+          "metadata": {
+            "title": "Plateforme Telecom SGE",
+            "description": "Infrastructure de connectivité globale pour télécom, MVNO, edge networking, VPN, routage et observabilité."
+          },
+          "hero": {
+            "eyebrow": "Plateforme télécom",
+            "title": "Infrastructure de connectivité mondiale pour réseaux souverains.",
+            "statement": "Télécom, routage edge, VPN, observabilité et opérations réseau connectés au backbone SGE.",
+            "description": "SGE Telecom est la couche de connectivité pour les organisations qui exigent réseaux programmables, contrôle régional et visibilité opérationnelle globale.",
+            "primaryCta": "Explorer la connectivité",
+            "secondaryCta": "Contacter l'entreprise"
+          },
+          "mission": {
+            "eyebrow": "Mission",
+            "statement": "Rendre la connectivité programmable, observable et alignée avec les besoins d'infrastructure souveraine.",
+            "description": "La plateforme relie services télécom, réseaux privés, infrastructure edge, politiques de routage et intelligence opérationnelle."
+          },
+          "labels": {
+            "platformEcosystem": "Écosystème plateforme",
+            "integrationSurface": "Surface d'intégration",
+            "sovereigntyStatement": "La souveraineté s'exprime par l'identité, la politique, la région et la preuve."
+          },
+          "products": [
+            {
+              "name": "Aether Telecom",
+              "description": "Services télécom programmables pour produits de connectivité et opérations entreprise."
+            },
+            {
+              "name": "Arkana Telecom",
+              "description": "Architecture télécom régionale pour services réseau contrôlés et partenariats."
+            },
+            {
+              "name": "Edge",
+              "description": "Edges basse latence pour routage, politique trafic et placement de services."
+            },
+            {
+              "name": "Network Manager",
+              "description": "Routage, réseaux privés, observabilité et politique de connectivité."
+            },
+            {
+              "name": "VPN",
+              "description": "Connectivité privée sécurisée pour organisations, équipes et systèmes infrastructure."
+            }
+          ],
+          "metrics": [
+            {
+              "value": "Edge",
+              "label": "posture réseau"
+            },
+            {
+              "value": "VPN",
+              "label": "accès sécurisé"
+            },
+            {
+              "value": "Route",
+              "label": "contrôle politique"
+            }
+          ],
+          "sections": {
+            "ecosystem": {
+              "eyebrow": "Écosystème plateforme",
+              "title": "La connectivité comme backbone de l'écosystème SGE.",
+              "description": "Le télécom soutient cloud, média, finance, intelligence et workflows entreprise en rendant le réseau programmable et visible.",
+              "items": [
+                {
+                  "title": "Services télécom",
+                  "description": "Représenter produits de connectivité, abonnements, accès et événements réseau."
+                },
+                {
+                  "title": "Réseaux privés",
+                  "description": "Connecter organisations, utilisateurs, environnements et zones edge en sécurité."
+                },
+                {
+                  "title": "Politique de routage",
+                  "description": "Piloter le trafic par région, service, risque, performance et besoin opérationnel."
+                }
+              ]
+            },
+            "architecture": {
+              "eyebrow": "Architecture",
+              "title": "Un plan réseau global avec contrôle opérationnel régional.",
+              "description": "L'architecture télécom combine noeuds edge, politique de routage, observabilité, identité et intégrations opérateurs.",
+              "items": [
+                {
+                  "title": "Backbone edge",
+                  "description": "Placer fonctions réseau et contrôles trafic près des utilisateurs et infrastructures."
+                },
+                {
+                  "title": "Moteur politique",
+                  "description": "Appliquer règles de connectivité sur VPN, routage, services télécom et accès."
+                },
+                {
+                  "title": "Télémétrie réseau",
+                  "description": "Observer latence, disponibilité, routes, incidents et impact client."
+                }
+              ],
+              "flow": [
+                {
+                  "title": "Connecter",
+                  "description": "Établir connectivité utilisateur, appareil, région ou infrastructure."
+                },
+                {
+                  "title": "Router",
+                  "description": "Appliquer des chemins conscients des politiques sur edge et réseaux partenaires."
+                },
+                {
+                  "title": "Protéger",
+                  "description": "Imposer identité, VPN, segmentation et contrôles menace."
+                },
+                {
+                  "title": "Observer",
+                  "description": "Monitorer santé réseau, performance, événements et incidents."
+                }
+              ]
+            },
+            "workflow": {
+              "eyebrow": "Workflow entreprise",
+              "title": "Les opérations réseau passent des tickets à l'orchestration.",
+              "description": "Les équipes planifient, provisionnent, observent et ajustent les services de connectivité via workflows cohérents et contrôles API.",
+              "items": [
+                {
+                  "title": "Provisioning service",
+                  "description": "Créer services réseau, accès privés et produits télécom via workflows contrôlés."
+                },
+                {
+                  "title": "Réponse incident",
+                  "description": "Corréler routage, edge, VPN et santé service pendant les événements réseau."
+                },
+                {
+                  "title": "Opérations partenaires",
+                  "description": "Coordonner fournisseurs régionaux, clients entreprise et systèmes internes SGE."
+                }
+              ]
+            },
+            "security": {
+              "eyebrow": "Sécurité et souveraineté",
+              "title": "La souveraineté réseau commence par un contrôle observable.",
+              "description": "La connectivité est gouvernée par identité, politique régionale, chiffrement, segmentation et événements réseau auditables.",
+              "items": [
+                {
+                  "title": "Accès privé",
+                  "description": "Utiliser VPN et identité pour protéger infrastructure et connectivité des équipes."
+                },
+                {
+                  "title": "Segmentation",
+                  "description": "Séparer services, environnements, organisations et réseaux partenaires par politique."
+                },
+                {
+                  "title": "Preuve réseau",
+                  "description": "Tracer changements de routes, accès, incidents et actions service."
+                }
+              ]
+            },
+            "api": {
+              "eyebrow": "APIs",
+              "title": "Infrastructure réseau exposée comme primitives programmables.",
+              "description": "Développeurs et opérateurs automatisent connectivité, routage, accès VPN, services edge et monitoring via APIs.",
+              "items": [
+                {
+                  "title": "Objets connectivité",
+                  "description": "Gérer réseaux, routes, peers, sessions VPN et politiques service."
+                },
+                {
+                  "title": "Flux observabilité",
+                  "description": "S'abonner aux événements route, santé, incident et performance."
+                }
+              ],
+              "endpoints": [
+                "POST /v1/telecom/networks",
+                "POST /v1/telecom/routes",
+                "GET /v1/telecom/events"
+              ]
+            },
+            "global": {
+              "eyebrow": "Échelle globale",
+              "title": "Connectivité mondiale avec conscience opérationnelle locale.",
+              "description": "La plateforme reflète une réalité réseau façonnée par régions, fournisseurs, régulations, latence et résilience.",
+              "items": [
+                {
+                  "title": "Partenaires régionaux",
+                  "description": "Intégrer les capacités locales derrière des contrats plateforme partagés."
+                },
+                {
+                  "title": "Opérations globales",
+                  "description": "Observer le réseau comme un système unique entre régions et services."
+                },
+                {
+                  "title": "Backbone infrastructure",
+                  "description": "Soutenir les produits cloud, média, finance, développeur et intelligence."
+                }
+              ]
+            }
+          },
+          "cta": {
+            "eyebrow": "Connecter globalement",
+            "title": "Concevoir des systèmes réseau au-delà d'un fournisseur unique.",
+            "description": "Parlez à SGE de télécom, VPN, routage edge et architecture réseau globale.",
+            "primaryCta": "Explorer les APIs",
+            "secondaryCta": "Parler à SGE"
+          }
+        }
+      }
     }
   },
   "CompanyPages": {
