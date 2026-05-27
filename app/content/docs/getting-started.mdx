@@ -1,13 +1,24 @@
 ---
 title: Bien démarrer
-description: Première page de contenu pour valider la structure documentaire.
+description: Comprendre l'organisation de la documentation SGE et choisir le bon parcours.
 ---
 
-## Organisation
+Cette page explique comment utiliser cette documentation comme point d'entree pour les produits Sky Genesis Enterprise.
 
-Les pages de documentation vivent dans `content/docs`.
+## Parcours recommandes
 
-Chaque fichier MDX peut définir un titre et une description dans son frontmatter :
+<Steps>
+  <h3>Choisir un domaine produit</h3>
+  <p>Commence par la famille qui correspond a ton besoin : Identity, Bank, Edge, Cloud, Developer Platform ou Giteria.</p>
+  <h3>Lire l'overview</h3>
+  <p>Chaque produit expose une page d'overview qui resume les concepts, les responsabilites et les liens principaux.</p>
+  <h3>Suivre le quickstart</h3>
+  <p>Les quickstarts donnent un chemin court pour valider une integration ou une configuration minimale.</p>
+</Steps>
+
+## Organisation des fichiers
+
+Les pages de documentation vivent dans `content/docs`. Chaque fichier MDX peut definir un titre et une description dans son frontmatter :
 
 ```mdx
 ---
@@ -18,8 +29,8 @@ description: Résumé court de la page.
 
 ## Navigation
 
-Le fichier `content/docs/meta.json` contrôle l'ordre des pages dans la sidebar.
+Le fichier `content/docs/meta.json` controle l'ordre des pages dans la sidebar. Chaque sous-dossier peut ajouter son propre `meta.json`.
 
 ## Prochaine étape
 
-Crée des sous-dossiers par produit, API ou guide, puis ajoute un `meta.json` dans chaque dossier pour garder une navigation claire.
+Lis le quickstart general, puis ouvre la section du produit que tu veux integrer.

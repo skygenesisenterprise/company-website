@@ -1,0 +1,4 @@
+{
+  "title": "Aether Identity",
+  "pages": ["overview", "quickstart", "oauth2", "oidc", "sessions", "mfa"]
+}

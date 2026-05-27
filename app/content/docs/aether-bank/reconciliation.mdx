@@ -1,0 +1,17 @@
+---
+title: Reconciliation
+description: Comparer les transactions internes et les etats provider.
+---
+
+La reconciliation detecte les ecarts entre le ledger interne et les exports provider.
+
+## Signaux
+
+- transaction absente
+- montant different
+- devise incorrecte
+- statut provider non synchronise
+
+## Sorties
+
+Chaque job produit un rapport, une liste d'ecarts et des actions proposees.

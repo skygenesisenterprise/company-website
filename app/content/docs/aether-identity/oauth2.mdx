@@ -1,0 +1,31 @@
+---
+title: OAuth2
+description: Grants, scopes et flux recommandes pour Aether Identity.
+---
+
+OAuth2 est utilise pour deleguer l'acces aux APIs SGE. Les applications publiques utilisent PKCE. Les services internes utilisent Client Credentials.
+
+## Grants supportes
+
+| Grant | Usage | Client |
+| --- | --- | --- |
+| Authorization Code + PKCE | Web, mobile, SPA | Public |
+| Client Credentials | Machine-to-machine | Confidential |
+| Refresh Token | Renouvellement de session | Both |
+
+## Authorization Code Flow
+
+<APIEndpoint method="GET" path="/oauth/authorize" description="Initie le flow d'autorisation." />
+
+Parametres courants :
+
+- `client_id`
+- `redirect_uri`
+- `response_type=code`
+- `scope`
+- `code_challenge`
+- `code_challenge_method=S256`
+
+## Token exchange
+
+<APIEndpoint method="POST" path="/oauth/token" description="Echange un code contre un access token et un refresh token." />

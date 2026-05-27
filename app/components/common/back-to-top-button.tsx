@@ -70,7 +70,7 @@ export function BackToTopButton() {
       onClick={handleClick}
       className={cn(
         "fixed right-4 z-40 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/92 px-3 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur transition-all duration-200 hover:bg-muted/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:right-6 sm:px-4",
-        "supports-[backdrop-filter]:bg-background/86",
+        "supports-backdrop-filter:bg-background/86",
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-3 opacity-0",

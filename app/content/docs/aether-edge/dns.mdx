@@ -1,0 +1,23 @@
+---
+title: DNS
+description: Declarer des zones et enregistrements DNS.
+---
+
+Les zones DNS sont gerees comme de la configuration versionnee.
+
+## Exemple de zone
+
+```yaml
+zone: example.com
+records:
+  - type: A
+    name: "@"
+    value: "203.0.113.10"
+  - type: CNAME
+    name: "docs"
+    value: "edge.skygenesisenterprise.com"
+```
+
+## Propagation
+
+Les changements sont valides avant publication afin d'eviter les zones incoherentes.

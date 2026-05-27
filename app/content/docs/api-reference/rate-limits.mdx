@@ -1,0 +1,16 @@
+---
+title: Rate Limits
+description: Limites de debit et retries.
+---
+
+Les limites protegent les APIs contre les abus et les integrations mal configurees.
+
+## Headers
+
+```http
+x-ratelimit-limit: 120
+x-ratelimit-remaining: 97
+x-ratelimit-reset: 1710000000
+```
+
+Utilise un backoff exponentiel pour les retries.

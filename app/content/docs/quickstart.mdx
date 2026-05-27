@@ -1,0 +1,49 @@
+---
+title: Quickstart
+description: Creer une premiere integration locale avec les conventions SGE.
+---
+
+Ce quickstart montre le parcours minimum pour connecter une application a l'ecosysteme SGE.
+
+<Callout title="MVP">
+Cette page utilise des endpoints et variables d'exemple. Les valeurs finales doivent etre remplacees par les URLs de l'environnement cible.
+</Callout>
+
+## Prerequis
+
+- Node.js 20 ou superieur
+- un client OAuth2 cree dans Aether Identity
+- une cle API de developpement
+- un environnement `.env.local`
+
+## Variables
+
+```bash
+SGE_API_URL=https://api.skygenesisenterprise.com
+SGE_CLIENT_ID=example-client
+SGE_CLIENT_SECRET=example-secret
+SGE_REDIRECT_URI=http://localhost:3000/callback
+```
+
+## Installer un client HTTP
+
+```bash
+pnpm add zod
+```
+
+## Tester l'API
+
+<APIEndpoint method="GET" path="/v1/health" description="Verifie que l'API publique repond pour l'environnement cible." />
+
+```ts
+const response = await fetch(`${process.env.SGE_API_URL}/v1/health`);
+const status = await response.json();
+
+console.log(status);
+```
+
+## Etapes suivantes
+
+- configurer OAuth2 avec Aether Identity
+- connecter un provider de paiement avec Aether Bank
+- exposer un service via Aether Edge

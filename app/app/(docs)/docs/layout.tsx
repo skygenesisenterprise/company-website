@@ -1,24 +1,13 @@
 import * as React from "react";
-import { DocsHeader } from "@/components/docs/docs-header";
+import { DocsLayout } from "@/components/docs/docs-layout";
 import type { DocsTreeNode } from "@/components/docs/docs-nav";
-import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { source } from "@/lib/source";
 import type { Root } from "fumadocs-core/page-tree";
 
 const tree = normalizeDocsTree(source.pageTree);
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <DocsHeader tree={tree} />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-8">
-        <aside className="hidden lg:block lg:sticky lg:top-20 lg:h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-4">
-          <DocsSidebar tree={tree} />
-        </aside>
-        <main className="min-w-0">{children}</main>
-      </div>
-    </div>
-  );
+  return <DocsLayout tree={tree}>{children}</DocsLayout>;
 }
 
 function normalizeDocsTree(root: Root): DocsTreeNode[] {

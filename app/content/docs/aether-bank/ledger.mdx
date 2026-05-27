@@ -1,0 +1,23 @@
+---
+title: Ledger
+description: Modeliser les mouvements financiers avec un ledger append-only.
+---
+
+Le ledger conserve les mouvements financiers sous forme d'entrees immuables.
+
+## Regles
+
+- aucune mutation silencieuse
+- correction via entree inverse
+- horodatage serveur
+- reference externe obligatoire pour les providers
+
+```ts
+interface LedgerEntry {
+  id: string;
+  accountId: string;
+  amount: number;
+  currency: string;
+  direction: "debit" | "credit";
+}
+```

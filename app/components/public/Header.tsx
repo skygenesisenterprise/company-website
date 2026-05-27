@@ -76,6 +76,7 @@ type MegaMenuProps = {
   getLocaleHref: (href: string) => string;
   t: (key: string) => string;
   compact?: boolean;
+  panelInsetClass?: string;
 };
 
 interface TopLevelLink {
@@ -90,11 +91,12 @@ function MegaMenu({
   getLocaleHref,
   t,
   compact = false,
+  panelInsetClass,
 }: MegaMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const panelWidth = compact ? "w-[720px]" : "w-[860px]";
   const sectionGrid = "grid-cols-2";
-  const panelInset = compact ? "pt-3" : "pt-4";
+  const panelInset = panelInsetClass ?? (compact ? "pt-3" : "pt-4");
   const panelChrome = compact
     ? "rounded-[1.75rem] shadow-xl"
     : "rounded-[2rem] shadow-2xl";
@@ -164,7 +166,7 @@ function MegaMenu({
             "overflow-hidden border border-border/60 bg-background/92 backdrop-blur-xl",
           )}
         >
-          <div className="h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+          <div className="h-px bg-linear-to-r from-transparent via-primary/35 to-transparent" />
           <div className={hasFeatured ? featuredLayout : "grid"}>
             <div className={cn("relative", bodyPadding)}>
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(57,76,140,0.08),transparent_28%)]" />
@@ -186,7 +188,7 @@ function MegaMenu({
                           <Link
                             href={getLocaleHref(item.href)}
                             className={cn(
-                              "group/item flex items-start gap-3 rounded-[1.25rem] border border-transparent transition-all duration-200 hover:border-border/60 hover:bg-muted/60 focus:bg-muted/60 focus:outline-none",
+                              "group/item flex items-start gap-3 rounded-3xl border border-transparent transition-all duration-200 hover:border-border/60 hover:bg-muted/60 focus:bg-muted/60 focus:outline-none",
                               itemPadding,
                             )}
                           >
@@ -226,7 +228,7 @@ function MegaMenu({
                     featuredCard,
                   )}
                 >
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/35 to-transparent" />
                   <span>
                     {data.featured.badgeKey ? (
                       <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
@@ -616,6 +618,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
   const solutionsMenuData = getSolutionsMenuData();
   const enterpriseMenuData = getEnterpriseMenuData();
   const partnersMenuData = getPartnersMenuData();
+  const sharedCompanyDevelopersInset = isScrolled ? "pt-3" : "pt-4";
 
   const getLocaleHref = (href: string) => {
     if (href === "/") return `/${locale}`;
@@ -663,15 +666,15 @@ export function Header({ locale: initialLocale }: HeaderProps) {
       <header
         className={cn(
           "fixed z-50 transition-all duration-500",
-          isScrolled || isMobileMenuOpen ? "left-4 right-4 top-[3.75rem]" : "left-0 right-0 top-11",
+          isScrolled || isMobileMenuOpen ? "left-4 right-4 top-15" : "left-0 right-0 top-11",
         )}
       >
         <nav
           className={cn(
             "mx-auto transition-all duration-500",
             isScrolled || isMobileMenuOpen
-              ? "max-w-[1320px] rounded-[1.75rem] border border-border/60 bg-background/82 shadow-2xl backdrop-blur-xl"
-              : "max-w-[1400px] bg-transparent",
+              ? "max-w-330 rounded-[1.75rem] border border-border/60 bg-background/82 shadow-2xl backdrop-blur-xl"
+              : "max-w-350 bg-transparent",
           )}
         >
           <div
@@ -724,6 +727,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 getLocaleHref={getLocaleHref}
                 t={t}
                 compact={isScrolled}
+                panelInsetClass={sharedCompanyDevelopersInset}
               />
               <MegaMenu
                 label={t("partners")}
@@ -738,6 +742,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 getLocaleHref={getLocaleHref}
                 t={t}
                 compact={isScrolled}
+                panelInsetClass={sharedCompanyDevelopersInset}
               />
 
               <li>
@@ -783,7 +788,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
           isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
         )}
       >
-        <div className="mx-auto flex h-full max-w-[1400px] flex-col px-8 pb-8 pt-28">
+        <div className="mx-auto flex h-full max-w-350 flex-col px-8 pb-8 pt-28">
           <div className="flex-1 space-y-3">
             {topLevelLinks.map((link, index) => (
               <Link

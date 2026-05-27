@@ -1,0 +1,18 @@
+---
+title: API Conventions
+description: Formats communs des APIs SGE.
+---
+
+Les APIs SGE utilisent JSON, des erreurs structurees et des URLs versionnees.
+
+## Format d'erreur
+
+```json
+{
+  "error": {
+    "code": "invalid_request",
+    "message": "Missing required field",
+    "request_id": "req_123"
+  }
+}
+```

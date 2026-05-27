@@ -1,0 +1,26 @@
+---
+title: Quickstart
+description: Configurer un client OAuth2 pour une application web.
+---
+
+## Creer un client
+
+Dans le tableau de bord Identity, cree un client `web` avec une redirect URI locale.
+
+```txt
+http://localhost:3000/auth/callback
+```
+
+## Configurer l'application
+
+```bash
+AUTH_ISSUER=https://identity.skygenesisenterprise.com
+AUTH_CLIENT_ID=web-local
+AUTH_REDIRECT_URI=http://localhost:3000/auth/callback
+```
+
+## Tester le login
+
+<APIEndpoint method="GET" path="/oauth/authorize" description="Demarre le flux Authorization Code + PKCE." />
+
+Le navigateur redirige l'utilisateur vers Aether Identity. Apres validation, l'application recoit un `code` a echanger contre des tokens.

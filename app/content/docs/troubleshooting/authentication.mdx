@@ -1,0 +1,15 @@
+---
+title: Authentication
+description: Corriger les erreurs de login et de token.
+---
+
+## Symptomes
+
+- redirect URI invalide
+- token expire
+- scope manquant
+- audience incorrecte
+
+## Verification
+
+Compare les valeurs `issuer`, `client_id`, `redirect_uri` et `scope` avec la configuration du client.

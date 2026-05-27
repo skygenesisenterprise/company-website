@@ -1,0 +1,37 @@
+---
+title: Architecture
+description: Vue d'ensemble des couches techniques de la plateforme SGE.
+---
+
+La plateforme SGE est organisee en familles de produits autonomes mais coherentes. Chaque service expose des APIs stables, des evenements et des guides d'exploitation.
+
+## Couches principales
+
+| Couche | Role | Produits |
+| --- | --- | --- |
+| Identity | Authentification, federation, sessions | Aether Identity |
+| Finance | Ledger, paiement, reconciliation | Aether Bank |
+| Edge | DNS, proxy, routage, protection | Aether Edge |
+| Cloud | Runtime, deployments, observabilite | Aether Cloud |
+| Developer | APIs, SDKs, webhooks, CLI | Developer Platform |
+
+## Principes
+
+- des limites produit explicites
+- des APIs versionnees
+- des operations auditees
+- des configurations declaratives
+- une documentation maintenue avec le code
+
+## Flux type
+
+<Steps>
+  <h3>Authentifier</h3>
+  <p>L'application obtient une session ou un token via Aether Identity.</p>
+  <h3>Autoriser</h3>
+  <p>Les scopes definissent les actions autorisees sur les APIs SGE.</p>
+  <h3>Executer</h3>
+  <p>Le produit cible traite l'action et produit un audit event.</p>
+  <h3>Observer</h3>
+  <p>Les logs, traces et metriques permettent de suivre l'etat de la plateforme.</p>
+</Steps>

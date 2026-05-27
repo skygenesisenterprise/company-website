@@ -1,0 +1,15 @@
+---
+title: Proxy
+description: Publier un service HTTP derriere Aether Edge.
+---
+
+Le proxy edge termine TLS, applique les politiques et transmet la requete au service d'origine.
+
+<APIEndpoint method="POST" path="/v1/edge/proxies" description="Cree une configuration proxy pour un domaine." />
+
+## Headers transmis
+
+- `x-forwarded-for`
+- `x-forwarded-host`
+- `x-forwarded-proto`
+- `x-request-id`

@@ -1,0 +1,22 @@
+---
+title: OpenID Connect
+description: Ajouter une couche d'identite standard au-dessus d'OAuth2.
+---
+
+OpenID Connect ajoute un `id_token` signe qui decrit l'utilisateur authentifie. Il est recommande pour les applications qui doivent connaitre l'identite courante.
+
+## Claims principaux
+
+- `sub`
+- `email`
+- `name`
+- `tenant_id`
+- `roles`
+
+## Discovery
+
+<APIEndpoint method="GET" path="/.well-known/openid-configuration" description="Publie les endpoints OIDC et les cles de signature." />
+
+## Validation
+
+Une application doit valider la signature, l'issuer, l'audience et l'expiration avant de faire confiance a un `id_token`.

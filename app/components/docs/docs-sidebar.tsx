@@ -3,7 +3,7 @@
 import * as React from "react";
 import type { DocsTreeFolder, DocsTreeNode } from "@/components/docs/docs-nav";
 import { cn } from "@/lib/utils";
-import { ChevronRight, FileText } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -43,13 +43,13 @@ function DocsSidebarNode({
 }) {
   if (node.type === "separator") {
     return (
-      <div className={depth === 0 ? "pt-4 first:pt-0" : "pt-3"}>
+      <div className={depth === 0 ? "pt-5 first:pt-0" : "pt-3"}>
         {node.title ? (
-          <p className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <p className="mb-5 px-2 text-sm font-normal text-[#777777] dark:text-muted-foreground">
             {node.title}
           </p>
         ) : (
-          <div className="my-3 h-px bg-border" />
+          <div className="my-3 h-px bg-[#e8e8e3] dark:bg-border" />
         )}
       </div>
     );
@@ -66,14 +66,13 @@ function DocsSidebarNode({
         onClick={onNavigate}
         aria-current={active ? "page" : undefined}
         className={cn(
-          "group flex min-h-8 items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
+          "group flex min-h-8 items-center rounded-md px-2 py-1.5 text-sm transition-colors",
           active
-            ? "bg-card text-foreground shadow-xs"
-            : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
+            ? "bg-[#d8d8d8] font-normal text-[#171717] dark:bg-accent dark:text-accent-foreground"
+            : "font-normal text-[#777777] hover:bg-[#e7e7e7] hover:text-[#171717] dark:text-muted-foreground dark:hover:bg-muted/70 dark:hover:text-foreground",
         )}
         style={{ paddingLeft: `${8 + depth * 14}px` }}
       >
-        <FileText className="size-3.5 shrink-0 opacity-60" />
         <span className="truncate">{node.title}</span>
       </Link>
     );
@@ -115,13 +114,13 @@ function DocsSidebarFolder({
   return (
     <div>
       <div
-        className="flex min-h-8 items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-foreground"
+        className="flex min-h-8 items-center gap-1 rounded-md px-2 py-1.5 text-sm font-normal text-[#171717] dark:text-foreground"
         style={{ paddingLeft: `${8 + depth * 14}px` }}
       >
         {isCollapsible ? (
           <button
             type="button"
-            className="mr-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="mr-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded text-[#777777] transition-colors hover:bg-[#e7e7e7] hover:text-[#171717] dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-foreground"
             aria-label={open ? "Close section" : "Open section"}
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
@@ -138,8 +137,8 @@ function DocsSidebarFolder({
             href={folder.url}
             onClick={onNavigate}
             className={cn(
-              "truncate transition-colors hover:text-primary",
-              pathname === folder.url && "text-primary",
+              "truncate transition-colors hover:text-[#171717]",
+              pathname === folder.url && "text-[#171717]",
             )}
           >
             {folder.title}

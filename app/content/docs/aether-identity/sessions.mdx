@@ -1,0 +1,18 @@
+---
+title: Sessions
+description: Gerer les sessions utilisateur, refresh tokens et expiration.
+---
+
+Les sessions Aether Identity sont concues pour separer l'experience utilisateur de la duree de vie des access tokens.
+
+## Durees recommandees
+
+| Element | Duree indicative |
+| --- | --- |
+| Access token | 5 a 15 minutes |
+| Refresh token | 7 a 30 jours |
+| Session web | selon politique tenant |
+
+## Revocation
+
+<APIEndpoint method="POST" path="/oauth/revoke" description="Revoque un refresh token ou une session active." />
