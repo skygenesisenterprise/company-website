@@ -51,7 +51,8 @@
     "clean:build": "pnpm -r exec rm -rf dist && rm -rf packages/*/dist",
     "install:all": "pnpm install && pnpm -r install",
     "update:all": "pnpm update && pnpm -r update",
-    "clean:deps": "pnpm -r exec rm -rf node_modules && rm -rf node_modules pnpm-lock.yaml"
+    "clean:deps": "pnpm -r exec rm -rf node_modules && rm -rf node_modules pnpm-lock.yaml",
+    "i18n:translate": "tsx app/scripts/translate.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
@@ -63,6 +64,7 @@
     "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
     "prisma": "7.2.0",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   },
   "engines": {
@@ -112,6 +114,8 @@
     "@prisma/client": "^7.3.0",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
+    "deepl-node": "^1.27.0",
+    "dotenv": "^17.2.3",
     "loglayer": "^8.4.0",
     "pino": "^10.3.0"
   }

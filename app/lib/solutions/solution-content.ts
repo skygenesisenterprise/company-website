@@ -1,24 +1,26 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
+  Banknote,
   Bell,
   BookOpen,
+  Brain,
   Building2,
   Code2,
   Database,
-  FileKey2,
-  FileSearch,
   Fingerprint,
   GitBranch,
   Globe2,
+  GraduationCap,
   HeartPulse,
   KeyRound,
   Layers3,
   LockKeyhole,
   Mail,
+  Megaphone,
   MessageSquare,
   Network,
-  Route,
+  RadioTower,
   Search,
   ShieldCheck,
   ShoppingCart,
@@ -35,19 +37,22 @@ export interface SolutionCta {
   variant?: "primary" | "secondary";
 }
 
-export interface SolutionCard {
+export interface SolutionIconItem {
   icon?: LucideIcon;
 }
 
 export interface RelatedStackItem {
   key: string;
   href: string;
+  icon?: LucideIcon;
 }
 
 export interface SolutionContent {
   slug: SolutionSlug;
   category: SolutionCategory;
-  capabilities: SolutionCard[];
+  heroNodeKeys: string[];
+  challengeIcons: SolutionIconItem[];
+  workflowIcons: SolutionIconItem[];
   relatedPlatform: RelatedStackItem[];
   relatedProducts: RelatedStackItem[];
   ctas: [SolutionCta, SolutionCta];
@@ -66,29 +71,36 @@ export const solutionSlugs = [
 
 export type SolutionSlug = (typeof solutionSlugs)[number];
 
+const corePlatform = {
+  identity: { key: "identity", href: "/platform/identity", icon: Fingerprint },
+  vault: { key: "vault", href: "/platform/vault", icon: KeyRound },
+  edge: { key: "edge", href: "/platform/edge", icon: RadioTower },
+  status: { key: "status", href: "/platform/status", icon: Activity },
+  search: { key: "search", href: "/platform/search", icon: Search },
+  mailer: { key: "mailer", href: "/platform/mailer", icon: Mail },
+  bank: { key: "bank", href: "/platform/bank", icon: Banknote },
+};
+
+const coreProducts = {
+  shield: { key: "shield", href: "/products/shield", icon: ShieldCheck },
+  vpn: { key: "vpn", href: "/products/vpn", icon: Network },
+  giteria: { key: "giteria", href: "/products/giteria", icon: GitBranch },
+  schematik: { key: "schematik", href: "/products/schematik", icon: Workflow },
+  mail: { key: "mail", href: "/products/mail", icon: Mail },
+  chat: { key: "chat", href: "/products/chat", icon: MessageSquare },
+  meet: { key: "meet", href: "/products/meet", icon: Video },
+  sheets: { key: "sheets", href: "/products/sheets", icon: Table2 },
+};
+
 export const solutions: Record<SolutionSlug, SolutionContent> = {
   b2c: {
     slug: "b2c",
     category: "useCase",
-    capabilities: [
-      { icon: Fingerprint },
-      { icon: Users },
-      { icon: Bell },
-      { icon: Route },
-      { icon: ShieldCheck },
-      { icon: Activity },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "mailer", href: "/platform/mailer" },
-      { key: "search", href: "/platform/search" },
-      { key: "status", href: "/platform/status" },
-    ],
-    relatedProducts: [
-      { key: "shield", href: "/products/shield" },
-      { key: "mail", href: "/products/mail" },
-      { key: "chat", href: "/products/chat" },
-    ],
+    heroNodeKeys: ["users", "identity", "mailer", "search", "status", "shield"],
+    challengeIcons: [{ icon: Users }, { icon: Activity }, { icon: ShieldCheck }],
+    workflowIcons: [{ icon: Fingerprint }, { icon: Bell }, { icon: Search }],
+    relatedPlatform: [corePlatform.identity, corePlatform.mailer, corePlatform.search, corePlatform.status],
+    relatedProducts: [coreProducts.shield, coreProducts.mail, coreProducts.chat],
     ctas: [
       { href: "/company/contact", variant: "primary" },
       { href: "/products", variant: "secondary" },
@@ -97,25 +109,11 @@ export const solutions: Record<SolutionSlug, SolutionContent> = {
   b2b: {
     slug: "b2b",
     category: "useCase",
-    capabilities: [
-      { icon: Building2 },
-      { icon: Users },
-      { icon: LockKeyhole },
-      { icon: Code2 },
-      { icon: FileSearch },
-      { icon: Layers3 },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "vault", href: "/platform/vault" },
-      { key: "webhooks", href: "/developers/api" },
-      { key: "status", href: "/platform/status" },
-    ],
-    relatedProducts: [
-      { key: "giteria", href: "/products/giteria" },
-      { key: "schematik", href: "/products/schematik" },
-      { key: "shield", href: "/products/shield" },
-    ],
+    heroNodeKeys: ["partners", "identity", "apis", "vault", "status", "giteria"],
+    challengeIcons: [{ icon: Building2 }, { icon: Code2 }, { icon: Search }],
+    workflowIcons: [{ icon: Building2 }, { icon: Code2 }, { icon: Activity }],
+    relatedPlatform: [corePlatform.identity, corePlatform.vault, corePlatform.status, corePlatform.search],
+    relatedProducts: [coreProducts.giteria, coreProducts.schematik, coreProducts.shield],
     ctas: [
       { href: "/company/contact", variant: "primary" },
       { href: "/developers", variant: "secondary" },
@@ -124,25 +122,11 @@ export const solutions: Record<SolutionSlug, SolutionContent> = {
   infrastructure: {
     slug: "infrastructure",
     category: "useCase",
-    capabilities: [
-      { icon: Network },
-      { icon: Activity },
-      { icon: FileKey2 },
-      { icon: KeyRound },
-      { icon: GitBranch },
-      { icon: FileSearch },
-    ],
-    relatedPlatform: [
-      { key: "edge", href: "/platform/edge" },
-      { key: "vault", href: "/platform/vault" },
-      { key: "status", href: "/platform/status" },
-      { key: "search", href: "/platform/search" },
-    ],
-    relatedProducts: [
-      { key: "shield", href: "/products/shield" },
-      { key: "vpn", href: "/products/vpn" },
-      { key: "schematik", href: "/products/schematik" },
-    ],
+    heroNodeKeys: ["cloud", "edge", "vault", "status", "giteria", "shield"],
+    challengeIcons: [{ icon: Layers3 }, { icon: Activity }, { icon: Network }],
+    workflowIcons: [{ icon: GitBranch }, { icon: Activity }, { icon: KeyRound }],
+    relatedPlatform: [corePlatform.edge, corePlatform.vault, corePlatform.status, corePlatform.search, corePlatform.identity],
+    relatedProducts: [coreProducts.shield, coreProducts.vpn, coreProducts.giteria, coreProducts.schematik],
     ctas: [
       { href: "/platform", variant: "primary" },
       { href: "/company/contact", variant: "secondary" },
@@ -151,82 +135,37 @@ export const solutions: Record<SolutionSlug, SolutionContent> = {
   workplace: {
     slug: "workplace",
     category: "useCase",
-    capabilities: [
-      { icon: Fingerprint },
-      { icon: Mail },
-      { icon: MessageSquare },
-      { icon: Video },
-      { icon: Table2 },
-      { icon: Layers3 },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "vault", href: "/platform/vault" },
-      { key: "mailer", href: "/platform/mailer" },
-      { key: "search", href: "/platform/search" },
-      { key: "status", href: "/platform/status" },
-    ],
-    relatedProducts: [
-      { key: "mail", href: "/products/mail" },
-      { key: "chat", href: "/products/chat" },
-      { key: "meet", href: "/products/meet" },
-      { key: "sheets", href: "/products/sheets" },
-    ],
+    heroNodeKeys: ["identity", "mail", "chat", "meet", "sheets", "vault"],
+    challengeIcons: [{ icon: MessageSquare }, { icon: Fingerprint }, { icon: Users }],
+    workflowIcons: [{ icon: Users }, { icon: ShieldCheck }, { icon: Search }],
+    relatedPlatform: [corePlatform.identity, corePlatform.vault, corePlatform.mailer, corePlatform.search, corePlatform.status],
+    relatedProducts: [coreProducts.mail, coreProducts.chat, coreProducts.meet, coreProducts.sheets],
     ctas: [
-      { href: "/products", variant: "primary" },
+      { href: "/office", variant: "primary" },
       { href: "/company/contact", variant: "secondary" },
     ],
   },
   financial: {
     slug: "financial",
     category: "industry",
-    capabilities: [
-      { icon: Fingerprint },
-      { icon: FileSearch },
-      { icon: LockKeyhole },
-      { icon: Database },
-      { icon: Workflow },
-      { icon: Activity },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "vault", href: "/platform/vault" },
-      { key: "status", href: "/platform/status" },
-      { key: "bank", href: "/platform/bank" },
-    ],
-    relatedProducts: [
-      { key: "shield", href: "/products/shield" },
-      { key: "vpn", href: "/products/vpn" },
-      { key: "sheets", href: "/products/sheets" },
-    ],
+    heroNodeKeys: ["bank", "identity", "vault", "status", "shield", "sheets"],
+    challengeIcons: [{ icon: Banknote }, { icon: Search }, { icon: LockKeyhole }],
+    workflowIcons: [{ icon: Banknote }, { icon: Users }, { icon: Table2 }],
+    relatedPlatform: [corePlatform.bank, corePlatform.identity, corePlatform.vault, corePlatform.status],
+    relatedProducts: [coreProducts.shield, coreProducts.vpn, coreProducts.sheets],
     ctas: [
       { href: "/company/contact", variant: "primary" },
-      { href: "/platform", variant: "secondary" },
+      { href: "/platform/finance", variant: "secondary" },
     ],
   },
   healthcare: {
     slug: "healthcare",
     category: "industry",
-    capabilities: [
-      { icon: HeartPulse },
-      { icon: Mail },
-      { icon: LockKeyhole },
-      { icon: FileSearch },
-      { icon: Activity },
-      { icon: Users },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "vault", href: "/platform/vault" },
-      { key: "status", href: "/platform/status" },
-      { key: "mailer", href: "/platform/mailer" },
-    ],
-    relatedProducts: [
-      { key: "shield", href: "/products/shield" },
-      { key: "mail", href: "/products/mail" },
-      { key: "meet", href: "/products/meet" },
-      { key: "sheets", href: "/products/sheets" },
-    ],
+    heroNodeKeys: ["identity", "vault", "meet", "mail", "status", "shield"],
+    challengeIcons: [{ icon: HeartPulse }, { icon: Users }, { icon: Activity }],
+    workflowIcons: [{ icon: HeartPulse }, { icon: LockKeyhole }, { icon: Bell }],
+    relatedPlatform: [corePlatform.identity, corePlatform.vault, corePlatform.status, corePlatform.mailer],
+    relatedProducts: [coreProducts.shield, coreProducts.mail, coreProducts.meet, coreProducts.sheets],
     ctas: [
       { href: "/company/contact", variant: "primary" },
       { href: "/products", variant: "secondary" },
@@ -235,25 +174,11 @@ export const solutions: Record<SolutionSlug, SolutionContent> = {
   retail: {
     slug: "retail",
     category: "industry",
-    capabilities: [
-      { icon: Users },
-      { icon: Route },
-      { icon: Bell },
-      { icon: Search },
-      { icon: MessageSquare },
-      { icon: ShoppingCart },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "search", href: "/platform/search" },
-      { key: "mailer", href: "/platform/mailer" },
-      { key: "status", href: "/platform/status" },
-    ],
-    relatedProducts: [
-      { key: "mail", href: "/products/mail" },
-      { key: "chat", href: "/products/chat" },
-      { key: "sheets", href: "/products/sheets" },
-    ],
+    heroNodeKeys: ["stores", "users", "mailer", "search", "chat", "status"],
+    challengeIcons: [{ icon: ShoppingCart }, { icon: Megaphone }, { icon: Users }],
+    workflowIcons: [{ icon: Building2 }, { icon: Bell }, { icon: Activity }],
+    relatedPlatform: [corePlatform.identity, corePlatform.search, corePlatform.mailer, corePlatform.status],
+    relatedProducts: [coreProducts.mail, coreProducts.chat, coreProducts.sheets],
     ctas: [
       { href: "/company/contact", variant: "primary" },
       { href: "/products", variant: "secondary" },
@@ -262,26 +187,11 @@ export const solutions: Record<SolutionSlug, SolutionContent> = {
   government: {
     slug: "government",
     category: "industry",
-    capabilities: [
-      { icon: Globe2 },
-      { icon: Fingerprint },
-      { icon: Activity },
-      { icon: ShieldCheck },
-      { icon: BookOpen },
-      { icon: Layers3 },
-    ],
-    relatedPlatform: [
-      { key: "identity", href: "/platform/identity" },
-      { key: "vault", href: "/platform/vault" },
-      { key: "edge", href: "/platform/edge" },
-      { key: "status", href: "/platform/status" },
-      { key: "search", href: "/platform/search" },
-    ],
-    relatedProducts: [
-      { key: "shield", href: "/products/shield" },
-      { key: "vpn", href: "/products/vpn" },
-      { key: "schematik", href: "/products/schematik" },
-    ],
+    heroNodeKeys: ["identity", "edge", "status", "vault", "search", "shield"],
+    challengeIcons: [{ icon: Building2 }, { icon: Globe2 }, { icon: ShieldCheck }],
+    workflowIcons: [{ icon: Building2 }, { icon: Bell }, { icon: Users }],
+    relatedPlatform: [corePlatform.identity, corePlatform.vault, corePlatform.edge, corePlatform.status, corePlatform.search],
+    relatedProducts: [coreProducts.shield, coreProducts.vpn, coreProducts.schematik],
     ctas: [
       { href: "/company/contact", variant: "primary" },
       { href: "/platform", variant: "secondary" },
@@ -296,6 +206,17 @@ export const useCaseSolutions = solutionSlugs.filter(
 export const industrySolutions = solutionSlugs.filter(
   (slug) => solutions[slug].category === "industry"
 );
+
+export const adjacentSolutionThemes = [
+  { key: "development", icon: Code2 },
+  { key: "communications", icon: MessageSquare },
+  { key: "media", icon: Megaphone },
+  { key: "education", icon: GraduationCap },
+  { key: "intelligence", icon: Brain },
+  { key: "operations", icon: Workflow },
+  { key: "dataGovernance", icon: Database },
+  { key: "knowledge", icon: BookOpen },
+];
 
 export function getSolution(slug: SolutionSlug) {
   return solutions[slug];

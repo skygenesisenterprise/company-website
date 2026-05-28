@@ -1,19 +1,35 @@
 import * as React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { ArrowRight, Building2, CheckCircle2, Layers3, Network, ShieldCheck } from "lucide-react";
+import {
+  Activity,
+  ArrowRight,
+  Code2,
+  Database,
+  Fingerprint,
+  Globe2,
+  Layers3,
+  Route,
+  Search,
+  ShieldCheck,
+  Users,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/locale";
 import {
+  adjacentSolutionThemes,
   industrySolutions,
   solutions,
   useCaseSolutions,
   type RelatedStackItem,
   type SolutionContent,
   type SolutionCta,
+  type SolutionIconItem,
   type SolutionSlug,
 } from "@/lib/solutions/solution-content";
 
@@ -29,13 +45,18 @@ interface SolutionSectionProps {
   eyebrow: string;
   title: string;
   description?: string;
-  muted?: boolean;
+  tone?: "default" | "muted" | "dark";
+  centered?: boolean;
   children: React.ReactNode;
 }
 
-interface SolutionTextCard {
+interface TextCard {
   title: string;
   description: string;
+}
+
+interface TextCardWithIcon extends TextCard {
+  icon?: LucideIcon;
 }
 
 function localizeHref(locale: string, href: string) {
@@ -46,32 +67,104 @@ function localizeHref(locale: string, href: string) {
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
 }
 
+function SectionEyebrow({ children, inverted = false }: { children: React.ReactNode; inverted?: boolean }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em]",
+        inverted ? "text-white/60" : "text-zinc-500",
+      )}
+    >
+      <span className={cn("h-px w-10", inverted ? "bg-white/20" : "bg-zinc-300")} />
+      {children}
+    </span>
+  );
+}
+
+function DarkGrid() {
+  return (
+    <div
+      aria-hidden={true}
+      className="pointer-events-none absolute inset-0 opacity-[0.06]"
+      style={{
+        backgroundImage:
+          "linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)",
+        backgroundSize: "72px 72px",
+      }}
+    />
+  );
+}
+
 function SolutionSection({
   eyebrow,
   title,
   description,
-  muted = false,
+  tone = "default",
+  centered = false,
   children,
 }: SolutionSectionProps) {
+  const dark = tone === "dark";
+
   return (
-    <section className={cn("py-20 sm:py-24", muted && "bg-muted/35")}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-            {eyebrow}
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+    <section
+      className={cn(
+        "relative overflow-hidden py-24 sm:py-28 lg:py-32",
+        tone === "muted" && "bg-zinc-50/80",
+        dark && "bg-zinc-950 text-white",
+      )}
+    >
+      {dark ? <DarkGrid /> : null}
+      <div className="relative mx-auto max-w-360 px-6 lg:px-12">
+        <div className={cn("max-w-4xl", centered && "mx-auto text-center")}>
+          <SectionEyebrow inverted={dark}>{eyebrow}</SectionEyebrow>
+          <h2
+            className={cn(
+              "mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl lg:text-6xl",
+              dark ? "text-white" : "text-zinc-950",
+            )}
+          >
             {title}
           </h2>
           {description ? (
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-              {description}
-            </p>
+            <p className={cn("mt-6 text-lg leading-8", dark ? "text-white/68" : "text-zinc-600")}>{description}</p>
           ) : null}
         </div>
-        {children}
+        <div className="mt-14">{children}</div>
       </div>
     </section>
+  );
+}
+
+function WorldMap({ inverted = false }: { inverted?: boolean }) {
+  const stroke = inverted ? "rgba(255,255,255,0.2)" : "rgba(24,24,27,0.2)";
+  const fill = inverted ? "rgba(255,255,255,0.18)" : "rgba(24,24,27,0.16)";
+  const node = inverted ? "rgba(255,255,255,0.55)" : "rgba(24,24,27,0.48)";
+  const glow = inverted ? "rgba(99,102,241,0.18)" : "rgba(59,130,246,0.12)";
+
+  return (
+    <svg viewBox="0 0 1600 620" className="h-full w-full" fill="none" aria-hidden={true}>
+      <rect width="1600" height="620" fill={glow} opacity="0.22" />
+      <path
+        d="M95 203C140 173 204 154 285 155C335 156 384 165 432 187C452 196 476 193 498 184C549 164 608 155 683 157C727 158 764 170 798 190C816 201 841 202 864 196C914 183 956 187 991 212C1020 233 1048 238 1086 231C1148 220 1212 223 1281 244C1328 258 1370 280 1415 312C1448 335 1487 354 1528 366L1528 432C1483 433 1445 425 1408 409C1361 390 1313 378 1258 376C1199 373 1146 388 1093 413C1060 428 1024 432 988 425C950 418 916 421 880 435C842 450 803 456 748 455C692 454 647 442 605 417C557 388 507 378 448 384C382 391 323 382 267 353C226 331 181 314 128 304L95 302V203Z"
+        fill={fill}
+      />
+      <path d="M240 284C376 231 517 230 640 271C731 301 821 307 930 274C1061 235 1188 255 1340 337" stroke={stroke} strokeWidth="1.25" />
+      <path d="M264 348C403 403 516 415 646 390C772 365 885 328 1008 347C1113 363 1221 394 1317 432" stroke={stroke} strokeWidth="1.25" />
+      {[
+        [252, 286],
+        [388, 244],
+        [612, 285],
+        [796, 302],
+        [1008, 272],
+        [1218, 320],
+        [1324, 374],
+      ].map(([cx, cy]) => (
+        <g key={`${cx}-${cy}`}>
+          <circle cx={cx} cy={cy} r="5.5" fill={node} />
+          <circle cx={cx} cy={cy} r="20" fill={glow} />
+        </g>
+      ))}
+    </svg>
   );
 }
 
@@ -79,110 +172,137 @@ function SolutionCTA({
   cta,
   label,
   locale,
+  inverted = false,
 }: {
   cta: SolutionCta;
   label: string;
   locale: string;
+  inverted?: boolean;
 }) {
-  const isPrimary = cta.variant !== "secondary";
+  const primary = cta.variant !== "secondary";
 
   return (
     <Button
       asChild
       size="lg"
-      variant={isPrimary ? "default" : "outline"}
+      variant={primary ? "default" : "outline"}
       className={cn(
-        "h-12 rounded-md px-6 text-sm font-medium",
-        isPrimary && "bg-primary text-primary-foreground hover:bg-primary/90"
+        "h-14 rounded-full px-8 text-sm font-medium",
+        primary && !inverted && "bg-zinc-950 text-white hover:bg-zinc-800",
+        !primary && !inverted && "border-zinc-300 bg-white/85 text-zinc-950",
+        primary && inverted && "bg-white text-zinc-950 hover:bg-zinc-100",
+        !primary && inverted && "border-white/15 bg-white/4 text-white hover:bg-white/8",
       )}
     >
       <Link href={localizeHref(locale, cta.href)}>
         {label}
-        {isPrimary ? <ArrowRight className="h-4 w-4" /> : null}
+        {primary ? <ArrowRight className="h-4 w-4" /> : null}
       </Link>
     </Button>
   );
 }
 
-function HubCard({
-  locale,
-  slug,
-}: LocaleProps & {
-  slug: SolutionSlug;
+function withIcons(items: TextCard[], iconItems: SolutionIconItem[]): TextCardWithIcon[] {
+  return items.map((item, index) => ({ ...item, icon: iconItems[index]?.icon }));
+}
+
+function IconCard({
+  item,
+  dark = false,
+  className,
+}: {
+  item: TextCardWithIcon;
+  dark?: boolean;
+  className?: string;
 }) {
+  const Icon = item.icon;
+
+  return (
+    <div
+      className={cn(
+        "relative h-full overflow-hidden rounded-4xl border p-6 transition duration-300",
+        dark
+          ? "border-white/10 bg-white/4 hover:-translate-y-1 hover:border-white/20 hover:bg-white/6"
+          : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.26)] hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-40px_rgba(15,23,42,0.22)]",
+        className,
+      )}
+    >
+      {Icon ? (
+        <span
+          className={cn(
+            "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
+            dark ? "border-white/10 bg-white/4 text-white/88" : "border-zinc-200 bg-zinc-50 text-zinc-700",
+          )}
+        >
+          <Icon className="h-5 w-5" />
+        </span>
+      ) : null}
+      <h3 className={cn("mt-8 text-xl font-semibold tracking-[-0.03em]", dark ? "text-white" : "text-zinc-950")}>
+        {item.title}
+      </h3>
+      <p className={cn("mt-4 text-sm leading-7", dark ? "text-white/64" : "text-zinc-600")}>{item.description}</p>
+    </div>
+  );
+}
+
+function HubCard({ locale, slug }: LocaleProps & { slug: SolutionSlug }) {
   const solution = solutions[slug];
-  const t = useTranslations("Public.home.solutionPage");
+  const tPage = useTranslations("Public.home.solutionPage");
   const tSolutions = useTranslations("Public.home.page.solutions.services");
 
   return (
     <Link
       href={localizeHref(locale, `/solutions/${solution.slug}`)}
-      className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
+      className="group relative min-h-72 overflow-hidden rounded-4xl border border-zinc-200/80 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.26)] transition duration-300 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-40px_rgba(15,23,42,0.22)]"
     >
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-        {t(`categories.${solution.category}`)}
-      </p>
-      <h3 className="mt-4 text-lg font-semibold text-foreground">
-        {tSolutions(`${slug}.title`)}
+      <div aria-hidden={true} className="absolute inset-x-0 top-0 h-1 bg-zinc-950" />
+      <div className="flex items-start justify-between gap-4">
+        <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-50 text-zinc-700">
+          <Layers3 className="h-5 w-5" />
+        </span>
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-zinc-500 transition group-hover:border-zinc-300 group-hover:text-zinc-900">
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden={true} />
+        </span>
+      </div>
+      <div className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+        {tPage(`categories.${solution.category}`)}
+      </div>
+      <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">
+        {tSolutions(`${slug}.shortTitle`)}
       </h3>
-      <p className="mt-3 text-sm leading-7 text-muted-foreground">
-        {tSolutions(`${slug}.positioning`)}
-      </p>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-        {t("common.openSolution")}
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </span>
+      <p className="mt-4 text-sm leading-7 text-zinc-600">{tSolutions(`${slug}.statement`)}</p>
     </Link>
   );
 }
 
 function SolutionsHubHero({ locale }: LocaleProps) {
   const t = useTranslations("Public.home.solutionPage");
-  const modelSteps = t.raw("hub.hero.model.steps") as string[];
 
   return (
-    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
-            {t("brand")}
-          </p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
+    <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
+      <div aria-hidden={true} className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
+        <div className="absolute inset-x-[-14%] top-[13%] h-[58%] opacity-95 sm:top-[17%] lg:inset-x-[-4%] lg:top-[17%] lg:h-[64%]">
+          <WorldMap />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,255,255,0.38)_32%,rgba(255,255,255,0.86)_100%)]" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-[84vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
+        <div className="max-w-5xl">
+          <SectionEyebrow>{t("brand")}</SectionEyebrow>
+          <h1 className="mt-7 max-w-6xl text-[clamp(3.35rem,6.8vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
             {t("hub.hero.title")}
           </h1>
-          <p className="mt-6 max-w-3xl text-xl leading-8 text-muted-foreground">
+          <p className="mt-7 max-w-3xl text-2xl font-medium leading-10 tracking-[-0.04em] text-zinc-800">
+            {t("hub.hero.statement")}
+          </p>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl">
             {t("hub.hero.description")}
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="h-12 rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90">
-              <Link href={localizeHref(locale, "/company/contact")}>
-                {t("hub.hero.primaryCta")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 rounded-md px-6 text-sm font-medium">
-              <Link href={localizeHref(locale, "/platform")}>{t("hub.hero.secondaryCta")}</Link>
-            </Button>
-          </div>
-        </div>
-        <div className="rounded-lg border border-border bg-muted/50 p-6">
-          <div className="rounded-md border border-border bg-card p-5">
-            <p className="text-sm font-semibold text-foreground">{t("hub.hero.model.title")}</p>
-            <div className="mt-6 grid gap-3">
-              {modelSteps.map((item, index) => (
-                <div key={item} className="flex items-center gap-3">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-xs font-semibold text-primary">
-                    {index + 1}
-                  </span>
-                  <span className="rounded-md border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-sm leading-7 text-muted-foreground">
-              {t("hub.hero.model.description")}
-            </p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <SolutionCTA cta={{ href: "/company/contact", variant: "primary" }} label={t("hub.hero.primaryCta")} locale={locale} />
+            <SolutionCTA cta={{ href: "/platform", variant: "secondary" }} label={t("hub.hero.secondaryCta")} locale={locale} />
           </div>
         </div>
       </div>
@@ -190,50 +310,38 @@ function SolutionsHubHero({ locale }: LocaleProps) {
   );
 }
 
-function HowSgeBuildsSolutions() {
+function SolutionsHubModel() {
   const t = useTranslations("Public.home.solutionPage");
-  const items = t.raw("hub.how.items") as SolutionTextCard[];
+  const steps = t.raw("hub.model.steps") as TextCard[];
 
   return (
     <SolutionSection
-      eyebrow={t("hub.how.eyebrow")}
-      title={t("hub.how.title")}
-      description={t("hub.how.description")}
+      eyebrow={t("hub.model.eyebrow")}
+      title={t("hub.model.title")}
+      description={t("hub.model.description")}
+      tone="muted"
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => (
-          <div key={item.title} className="rounded-lg border border-border bg-card p-6">
-            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </SolutionSection>
-  );
-}
-
-function PlatformProductsConnection({ locale }: LocaleProps) {
-  const t = useTranslations("Public.home.solutionPage");
-  const items = t.raw("hub.platformProducts.items") as Array<SolutionTextCard & { href: string }>;
-
-  return (
-    <SolutionSection
-      eyebrow={t("hub.platformProducts.eyebrow")}
-      title={t("hub.platformProducts.title")}
-      description={t("hub.platformProducts.description")}
-      muted
-    >
-      <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => (
-          <Link key={item.title} href={localizeHref(locale, item.href)} className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20">
-            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-              {t("common.explore")}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </Link>
-        ))}
+      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-zinc-200 bg-white p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
+        <div className="grid gap-5">
+          {steps.map((step, index) => (
+            <React.Fragment key={step.title}>
+              <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50/75 p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                  {t("hub.model.stepLabel", { index: index + 1 })}
+                </div>
+                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{step.title}</div>
+                <p className="mt-3 text-sm leading-7 text-zinc-600">{step.description}</p>
+              </div>
+              {index < steps.length - 1 ? (
+                <div className="flex justify-center" aria-hidden={true}>
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-400">
+                    <ArrowRight className="h-4 w-4 rotate-90" />
+                  </div>
+                </div>
+              ) : null}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </SolutionSection>
   );
@@ -243,16 +351,16 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
   const t = useTranslations("Public.home.solutionPage");
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
       <Header locale={locale as Locale} />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         <SolutionsHubHero locale={locale} />
         <SolutionSection
           eyebrow={t("hub.useCases.eyebrow")}
           title={t("hub.useCases.title")}
           description={t("hub.useCases.description")}
         >
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {useCaseSolutions.map((slug) => (
               <HubCard key={slug} locale={locale} slug={slug} />
             ))}
@@ -262,42 +370,41 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
           eyebrow={t("hub.industries.eyebrow")}
           title={t("hub.industries.title")}
           description={t("hub.industries.description")}
-          muted
+          tone="muted"
         >
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {industrySolutions.map((slug) => (
               <HubCard key={slug} locale={locale} slug={slug} />
             ))}
           </div>
         </SolutionSection>
-        <HowSgeBuildsSolutions />
-        <PlatformProductsConnection locale={locale} />
-        <section className="border-t border-border bg-background py-20 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="rounded-lg border border-border bg-muted/50 p-6 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-                {t("hub.cta.eyebrow")}
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
-                {t("hub.cta.title")}
-              </h2>
-              <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
-                {t("hub.cta.description")}
-              </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Button asChild className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Link href={localizeHref(locale, "/company/contact")}>{t("hub.cta.contact")}</Link>
-                </Button>
-                <Button asChild variant="outline" className="rounded-md">
-                  <Link href={localizeHref(locale, "/platform")}>{t("hub.cta.platform")}</Link>
-                </Button>
-                <Button asChild variant="outline" className="rounded-md">
-                  <Link href={localizeHref(locale, "/products")}>{t("hub.cta.products")}</Link>
-                </Button>
-              </div>
-            </div>
+        <SolutionsHubModel />
+        <SolutionSection
+          eyebrow={t("hub.adjacent.eyebrow")}
+          title={t("hub.adjacent.title")}
+          description={t("hub.adjacent.description")}
+        >
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {adjacentSolutionThemes.map((item) => (
+              <IconCard
+                key={item.key}
+                item={{
+                  title: t(`hub.adjacent.items.${item.key}.title`),
+                  description: t(`hub.adjacent.items.${item.key}.description`),
+                  icon: item.icon,
+                }}
+              />
+            ))}
           </div>
-        </section>
+        </SolutionSection>
+        <FinalCta
+          locale={locale}
+          ctas={[
+            { href: "/company/contact", variant: "primary" },
+            { href: "/platform", variant: "secondary" },
+          ]}
+          labels={[t("hub.cta.primaryCta"), t("hub.cta.secondaryCta")]}
+        />
       </main>
       <Footer locale={locale as Locale} />
     </div>
@@ -305,47 +412,54 @@ export function SolutionsHubPage({ locale }: LocaleProps) {
 }
 
 function SolutionHero({ locale, solution }: SolutionPageProps) {
-  const t = useTranslations("Public.home.solutionPage");
+  const tPage = useTranslations("Public.home.solutionPage");
   const tSolutions = useTranslations("Public.home.page.solutions.services");
   const ctaLabels = tSolutions.raw(`${solution.slug}.ctas`) as [string, string];
-  const architectureFlow = tSolutions.raw(`${solution.slug}.architectureFlow`) as string[];
 
   return (
-    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
-            {t("brand")}
-          </p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
+    <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
+      <div aria-hidden={true} className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
+        <div className="absolute inset-x-[-14%] top-[13%] h-[58%] opacity-95 sm:top-[17%] lg:inset-x-[-4%] lg:top-[17%] lg:h-[64%]">
+          <WorldMap />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,255,255,0.38)_32%,rgba(255,255,255,0.86)_100%)]" />
+      </div>
+
+      <div className="relative mx-auto grid min-h-[88vh] max-w-360 items-center gap-10 px-6 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_420px] lg:px-12 lg:py-28">
+        <div className="max-w-5xl">
+          <SectionEyebrow>{tSolutions(`${solution.slug}.eyebrow`)}</SectionEyebrow>
+          <h1 className="mt-7 max-w-6xl text-[clamp(3.35rem,6.8vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
             {tSolutions(`${solution.slug}.title`)}
           </h1>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
-            {tSolutions(`${solution.slug}.positioning`)}
+          <p className="mt-7 max-w-3xl text-2xl font-medium leading-10 tracking-[-0.04em] text-zinc-800">
+            {tSolutions(`${solution.slug}.statement`)}
           </p>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl">
             {tSolutions(`${solution.slug}.description`)}
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             {solution.ctas.map((cta, index) => (
-              <SolutionCTA
-                key={cta.href}
-                cta={cta}
-                label={ctaLabels[index]}
-                locale={locale}
-              />
+              <SolutionCTA key={cta.href} cta={cta} label={ctaLabels[index]} locale={locale} />
             ))}
           </div>
         </div>
-        <div className="rounded-lg border border-border bg-muted/50 p-6">
-          <p className="text-sm font-semibold text-foreground">{t("hero.solutionFrame")}</p>
-          <div className="mt-6 grid gap-3">
-            {architectureFlow.slice(0, 4).map((step, index) => (
-              <div key={step} className="flex items-center gap-3 rounded-md border border-border bg-card px-4 py-3">
-                <span className="text-xs font-semibold text-primary">{index + 1}</span>
-                <span className="text-sm font-medium text-foreground">{step}</span>
-              </div>
-            ))}
+        <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-zinc-200 bg-white/88 p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.34)] backdrop-blur lg:block">
+          <div aria-hidden={true} className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.24),transparent_52%)]" />
+          <div className="relative">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              {tPage("hero.solutionFrame")}
+            </div>
+            <div className="mt-6 grid gap-3">
+              {solution.heroNodeKeys.map((node, index) => (
+                <div key={node} className="flex items-center gap-3 rounded-[1.35rem] border border-zinc-200 bg-zinc-50/80 px-4 py-4">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-2xl border border-zinc-200 bg-white text-sm font-semibold text-zinc-950">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm font-medium text-zinc-800">{tPage(`nodeLabels.${node}`)}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -353,261 +467,227 @@ function SolutionHero({ locale, solution }: SolutionPageProps) {
   );
 }
 
-function SolutionChallenge({ solution }: { solution: SolutionContent }) {
-  const t = useTranslations("Public.home.solutionPage");
+function OperationalChallenges({ solution }: { solution: SolutionContent }) {
+  const tPage = useTranslations("Public.home.solutionPage");
   const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const items = [
-    { title: t("challenge.items.context"), description: tSolutions(`${solution.slug}.challenge.context`) },
-    { title: t("challenge.items.friction"), description: tSolutions(`${solution.slug}.challenge.friction`) },
-    { title: t("challenge.items.risk"), description: tSolutions(`${solution.slug}.challenge.risk`) },
-  ];
+  const challenges = tSolutions.raw(`${solution.slug}.challenges`) as TextCard[];
 
   return (
     <SolutionSection
-      eyebrow={t("challenge.eyebrow")}
-      title={tSolutions(`${solution.slug}.challenge.title`)}
-      description={t("challenge.description")}
+      eyebrow={tPage("challenge.eyebrow")}
+      title={tPage("challenge.title")}
+      description={tPage("challenge.description")}
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => (
-          <div key={item.title} className="rounded-lg border border-border bg-card p-6">
-            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-          </div>
+        {withIcons(challenges, solution.challengeIcons).map((item) => (
+          <IconCard key={item.title} item={item} className="min-h-72" />
         ))}
       </div>
     </SolutionSection>
   );
 }
 
-function SolutionWhyNow({ solution }: { solution: SolutionContent }) {
-  const t = useTranslations("Public.home.solutionPage");
+function EcosystemSection({ solution }: { solution: SolutionContent }) {
   const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const solutionTitle = tSolutions(`${solution.slug}.title`);
-  const items = [
-    {
-      title: t("whyNow.items.clarity.title"),
-      description: t("whyNow.items.clarity.description"),
-      icon: CheckCircle2,
-    },
-    {
-      title: t("whyNow.items.context.title", { solution: solutionTitle }),
-      description: t("whyNow.items.context.description"),
-      icon: Building2,
-    },
-    {
-      title: t("whyNow.items.foundation.title"),
-      description: t("whyNow.items.foundation.description"),
-      icon: ShieldCheck,
-    },
-  ];
+  const layers = tSolutions.raw(`${solution.slug}.ecosystem.layers`) as TextCard[];
 
   return (
     <SolutionSection
-      eyebrow={t("whyNow.eyebrow")}
-      title={t("whyNow.title")}
-      description={t("whyNow.description")}
-      muted
+      eyebrow={tSolutions(`${solution.slug}.ecosystem.eyebrow`)}
+      title={tSolutions(`${solution.slug}.ecosystem.title`)}
+      description={tSolutions(`${solution.slug}.ecosystem.description`)}
+      tone="muted"
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <div key={item.title} className="rounded-lg border border-border bg-card p-6">
-              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] xl:items-center">
+        <FlowPanel items={layers} />
+        <div className="grid gap-5">
+          {layers.map((item) => (
+            <div key={item.title} className="rounded-[1.85rem] border border-zinc-200 bg-white p-6 shadow-[0_18px_60px_-48px_rgba(15,23,42,0.2)]">
+              <h3 className="text-lg font-semibold tracking-[-0.03em] text-zinc-950">{item.title}</h3>
+              <p className="mt-4 text-sm leading-7 text-zinc-600">{item.description}</p>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </SolutionSection>
   );
 }
 
-function SolutionApproach({ solution }: { solution: SolutionContent }) {
-  const t = useTranslations("Public.home.solutionPage");
+function TextCardGridSection({
+  solution,
+  sectionKey,
+  tone = "default",
+  icons,
+}: {
+  solution: SolutionContent;
+  sectionKey: string;
+  tone?: "default" | "muted" | "dark";
+  icons: SolutionIconItem[];
+}) {
   const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const principles = tSolutions.raw(`${solution.slug}.approach.principles`) as string[];
+  const items = tSolutions.raw(`${solution.slug}.${sectionKey}.items`) as TextCard[];
 
   return (
     <SolutionSection
-      eyebrow={t("approach.eyebrow")}
-      title={tSolutions(`${solution.slug}.approach.title`)}
-      description={tSolutions(`${solution.slug}.approach.body`)}
-      muted
+      eyebrow={tSolutions(`${solution.slug}.${sectionKey}.eyebrow`)}
+      title={tSolutions(`${solution.slug}.${sectionKey}.title`)}
+      description={tSolutions(`${solution.slug}.${sectionKey}.description`)}
+      tone={tone}
     >
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {principles.map((principle) => (
-          <div key={principle} className="rounded-lg border border-border bg-card p-5">
-            <CheckCircle2 className="mb-4 h-4 w-4 text-primary" aria-hidden="true" />
-            <p className="text-sm font-medium text-foreground">{principle}</p>
-          </div>
+      <div className="grid gap-5 md:grid-cols-3">
+        {withIcons(items, icons).map((item) => (
+          <IconCard key={item.title} item={item} dark={tone === "dark"} className="min-h-72" />
         ))}
       </div>
     </SolutionSection>
   );
 }
 
-function SolutionEcosystemConnections({ locale, solution }: SolutionPageProps) {
-  const t = useTranslations("Public.home.solutionPage");
-  const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const solutionTitle = tSolutions(`${solution.slug}.title`);
-  const items = [
-    {
-      title: t("ecosystemConnections.items.solutions.title"),
-      description: t("ecosystemConnections.items.solutions.description", { solution: solutionTitle }),
-      href: "/solutions",
-      icon: Building2,
-    },
-    {
-      title: t("ecosystemConnections.items.platform.title"),
-      description: t("ecosystemConnections.items.platform.description"),
-      href: "/platform",
-      icon: Layers3,
-    },
-    {
-      title: t("ecosystemConnections.items.products.title"),
-      description: t("ecosystemConnections.items.products.description"),
-      href: "/products",
-      icon: Network,
-    },
-  ];
-
+function OperatingModelSection({ solution }: { solution: SolutionContent }) {
   return (
-    <SolutionSection
-      eyebrow={t("ecosystemConnections.eyebrow")}
-      title={t("ecosystemConnections.title")}
-      description={t("ecosystemConnections.description")}
-    >
-      <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => {
-          const Icon = item.icon;
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="operatingModel"
+      icons={[{ icon: Workflow }, { icon: Users }, { icon: Layers3 }]}
+    />
+  );
+}
 
-          return (
-            <Link
-              key={item.title}
-              href={localizeHref(locale, item.href)}
-              className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
-            >
-              <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" />
-              <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-                {t("common.explore")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+function OrganizationMapSection({ solution }: { solution: SolutionContent }) {
+  return (
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="organizationMap"
+      tone="muted"
+      icons={[{ icon: Users }, { icon: ShieldCheck }, { icon: Activity }]}
+    />
+  );
+}
+
+function DataGovernanceSection({ solution }: { solution: SolutionContent }) {
+  return (
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="dataGovernance"
+      icons={[{ icon: Database }, { icon: Search }, { icon: ShieldCheck }]}
+    />
+  );
+}
+
+function IdentityAccessSection({ solution }: { solution: SolutionContent }) {
+  return (
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="identityAccess"
+      tone="dark"
+      icons={[{ icon: Fingerprint }, { icon: ShieldCheck }, { icon: Users }]}
+    />
+  );
+}
+
+function IntegrationApiSection({ solution }: { solution: SolutionContent }) {
+  return (
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="integrationApi"
+      icons={[{ icon: Code2 }, { icon: Workflow }, { icon: Layers3 }]}
+    />
+  );
+}
+
+function FlowPanel({ items }: { items: TextCard[] }) {
+  return (
+    <div className="relative overflow-hidden rounded-[2.5rem] border border-zinc-200 bg-white p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
+      <div aria-hidden={true} className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.22),transparent_48%)]" />
+      <div className="relative space-y-4">
+        {items.map((step, index) => (
+          <div key={step.title} className="grid gap-3 sm:grid-cols-[8rem_minmax(0,1fr)] sm:items-center">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-50 text-sm font-semibold text-zinc-950">
+                {index + 1}
               </span>
-            </Link>
-          );
-        })}
-      </div>
-    </SolutionSection>
-  );
-}
-
-function SolutionCapabilities({ solution }: { solution: SolutionContent }) {
-  const t = useTranslations("Public.home.solutionPage");
-  const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const capabilities = tSolutions.raw(`${solution.slug}.capabilities`) as SolutionTextCard[];
-
-  return (
-    <SolutionSection
-      eyebrow={t("capabilities.eyebrow")}
-      title={t("capabilities.title")}
-      description={t("capabilities.description")}
-    >
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {solution.capabilities.map((capability, index) => {
-          const Icon = capability.icon;
-          const capabilityText = capabilities[index];
-
-          return (
-            <div key={capabilityText.title} className="rounded-lg border border-border bg-card p-6">
-              {Icon ? <Icon className="mb-5 h-5 w-5 text-primary" aria-hidden="true" /> : null}
-              <h3 className="text-base font-semibold text-foreground">{capabilityText.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{capabilityText.description}</p>
+              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">{step.title}</span>
             </div>
-          );
-        })}
-      </div>
-    </SolutionSection>
-  );
-}
-
-function SolutionRecommendedNextStep({ locale, solution }: SolutionPageProps) {
-  const t = useTranslations("Public.home.solutionPage");
-  const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const solutionTitle = tSolutions(`${solution.slug}.title`);
-  const items = [
-    {
-      title: t("recommendedNextStep.items.compare.title"),
-      description: t("recommendedNextStep.items.compare.description"),
-      href: "/solutions",
-      label: t("recommendedNextStep.items.compare.label"),
-    },
-    {
-      title: t("recommendedNextStep.items.evaluate.title"),
-      description: t("recommendedNextStep.items.evaluate.description", { solution: solutionTitle }),
-      href: "/platform",
-      label: t("recommendedNextStep.items.evaluate.label"),
-    },
-    {
-      title: t("recommendedNextStep.items.contact.title"),
-      description: t("recommendedNextStep.items.contact.description"),
-      href: "/company/contact",
-      label: t("recommendedNextStep.items.contact.label"),
-    },
-  ];
-
-  return (
-    <SolutionSection
-      eyebrow={t("recommendedNextStep.eyebrow")}
-      title={t("recommendedNextStep.title")}
-      description={t("recommendedNextStep.description")}
-      muted
-    >
-      <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item) => (
-          <Link
-            key={item.title}
-            href={localizeHref(locale, item.href)}
-            className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
-          >
-            <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-              {item.label}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </Link>
-        ))}
-      </div>
-    </SolutionSection>
-  );
-}
-
-function SolutionReferenceArchitecture({ solution }: { solution: SolutionContent }) {
-  const t = useTranslations("Public.home.solutionPage");
-  const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const architectureFlow = tSolutions.raw(`${solution.slug}.architectureFlow`) as string[];
-
-  return (
-    <SolutionSection
-      eyebrow={t("architecture.eyebrow")}
-      title={t("architecture.title")}
-      description={t("architecture.description")}
-      muted
-    >
-      <div className="grid gap-3 lg:grid-cols-6">
-        {architectureFlow.map((step, index) => (
-          <div key={step} className="rounded-lg border border-border bg-card p-4">
-            <span className="text-xs font-semibold text-primary">{index + 1}</span>
-            <p className="mt-3 text-sm font-medium leading-6 text-foreground">{step}</p>
+            <div className="rounded-[1.5rem] border border-zinc-200 bg-zinc-50/75 px-5 py-4 text-sm leading-7 text-zinc-600">
+              {step.description}
+            </div>
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function WorkflowSection({ solution }: { solution: SolutionContent }) {
+  const tPage = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const workflows = tSolutions.raw(`${solution.slug}.workflows`) as TextCard[];
+
+  return (
+    <SolutionSection
+      eyebrow={tPage("workflows.eyebrow")}
+      title={tPage("workflows.title")}
+      description={tPage("workflows.description")}
+      tone="dark"
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {withIcons(workflows, solution.workflowIcons).map((item) => (
+          <IconCard key={item.title} item={item} dark className="min-h-76" />
+        ))}
+      </div>
     </SolutionSection>
+  );
+}
+
+function StackLink({
+  item,
+  locale,
+}: LocaleProps & {
+  item: RelatedStackItem;
+}) {
+  const Icon = item.icon;
+  const tPage = useTranslations("Public.home.solutionPage");
+
+  return (
+    <Link
+      href={localizeHref(locale, item.href)}
+      className="group flex items-center justify-between rounded-[1.35rem] border border-zinc-200 bg-zinc-50/80 px-4 py-4 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-white"
+    >
+      <span className="flex items-center gap-3">
+        {Icon ? <Icon className="h-4 w-4 text-zinc-500" /> : null}
+        {tPage(`relatedItems.${item.key}`)}
+      </span>
+      <ArrowRight className="h-4 w-4 text-zinc-500 transition-transform group-hover:translate-x-0.5" />
+    </Link>
+  );
+}
+
+function InfrastructureLayer({ locale, solution }: SolutionPageProps) {
+  const tPage = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+
+  return (
+    <SolutionSection
+      eyebrow={tPage("infrastructure.eyebrow")}
+      title={tSolutions(`${solution.slug}.infrastructure.title`)}
+      description={tSolutions(`${solution.slug}.infrastructure.description`)}
+    >
+      <div className="grid gap-6 lg:grid-cols-2">
+        <StackColumn title={tPage("infrastructure.platformTitle")} items={solution.relatedPlatform} locale={locale} />
+        <StackColumn title={tPage("infrastructure.productsTitle")} items={solution.relatedProducts} locale={locale} />
+      </div>
+    </SolutionSection>
+  );
+}
+
+function ObservabilitySection({ solution }: { solution: SolutionContent }) {
+  return (
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="observability"
+      tone="muted"
+      icons={[{ icon: Activity }, { icon: Route }, { icon: ShieldCheck }]}
+    />
   );
 }
 
@@ -619,97 +699,144 @@ function StackColumn({
   title: string;
   items: RelatedStackItem[];
 }) {
-  const t = useTranslations("Public.home.solutionPage");
-
   return (
-    <div className="rounded-lg border border-border bg-card p-6">
-      <h3 className="text-base font-semibold text-foreground">{title}</h3>
-      <div className="mt-5 grid gap-3">
+    <div className="rounded-[2.25rem] border border-zinc-200 bg-white p-7 shadow-[0_24px_80px_-52px_rgba(15,23,42,0.25)]">
+      <h3 className="text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{title}</h3>
+      <div className="mt-6 grid gap-3">
         {items.map((item) => (
-          <Link
-            key={item.key}
-            href={localizeHref(locale, item.href)}
-            className="flex items-center justify-between rounded-md border border-border bg-muted/50 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/20 hover:bg-background"
-          >
-            {t(`relatedItems.${item.key}`)}
-            <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />
-          </Link>
+          <StackLink key={item.key} item={item} locale={locale} />
         ))}
       </div>
     </div>
   );
 }
 
-function SolutionRelatedStack({ locale, solution }: SolutionPageProps) {
-  const t = useTranslations("Public.home.solutionPage");
+function SovereigntySection({ solution }: { solution: SolutionContent }) {
+  const tPage = useTranslations("Public.home.solutionPage");
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const controls = tPage.raw("sovereignty.controls") as TextCard[];
 
   return (
     <SolutionSection
-      eyebrow={t("relatedStack.eyebrow")}
-      title={t("relatedStack.title")}
-      description={t("relatedStack.description")}
+      eyebrow={tPage("sovereignty.eyebrow")}
+      title={tPage("sovereignty.title")}
+      description={tPage("sovereignty.description")}
+      tone="dark"
     >
-      <div className="grid gap-6 lg:grid-cols-2">
-        <StackColumn title={t("relatedStack.platformTitle")} items={solution.relatedPlatform} locale={locale} />
-        <StackColumn title={t("relatedStack.productsTitle")} items={solution.relatedProducts} locale={locale} />
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
+        <div className="relative min-h-90 overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/4 p-8 text-white shadow-[0_30px_100px_-60px_rgba(0,0,0,0.65)]">
+          <DarkGrid />
+          <div className="absolute inset-x-[-30%] bottom-[-5%] h-72 opacity-80">
+            <WorldMap inverted />
+          </div>
+          <div className="relative">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/4 text-white">
+              <ShieldCheck className="h-6 w-6" />
+            </span>
+            <p className="mt-16 max-w-sm text-3xl font-semibold leading-tight tracking-tighter">
+              {tSolutions(`${solution.slug}.sovereignty.statement`)}
+            </p>
+          </div>
+        </div>
+        <div className="grid gap-5">
+          {withIcons(controls, [{ icon: ShieldCheck }, { icon: ShieldCheck }, { icon: ShieldCheck }]).map((item) => (
+            <IconCard key={item.title} item={item} dark />
+          ))}
+        </div>
       </div>
     </SolutionSection>
   );
 }
 
-function SolutionAdoptionPath({ locale, solution }: SolutionPageProps) {
-  const t = useTranslations("Public.home.solutionPage");
+function GlobalScale({ solution }: { solution: SolutionContent }) {
   const tSolutions = useTranslations("Public.home.page.solutions.services");
-  const adoptionPath = tSolutions.raw(`${solution.slug}.adoptionPath`) as SolutionTextCard[];
-  const ctaLabels = tSolutions.raw(`${solution.slug}.ctas`) as [string, string];
+  const nodes = tSolutions.raw(`${solution.slug}.global.nodes`) as TextCard[];
 
   return (
     <SolutionSection
-      eyebrow={t("adoptionPath.eyebrow")}
-      title={t("adoptionPath.title")}
-      description={t("adoptionPath.description")}
-      muted
+      eyebrow={tSolutions(`${solution.slug}.global.eyebrow`)}
+      title={tSolutions(`${solution.slug}.global.title`)}
+      description={tSolutions(`${solution.slug}.global.description`)}
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {adoptionPath.map((step, index) => (
-          <div key={step.title} className="rounded-lg border border-border bg-card p-6">
-            <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-sm font-semibold text-primary">
-              {index + 1}
-            </div>
-            <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.description}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        {solution.ctas.map((cta, index) => (
-          <SolutionCTA
-            key={cta.href}
-            cta={cta}
-            label={ctaLabels[index]}
-            locale={locale}
-          />
-        ))}
+      <div className="relative overflow-hidden rounded-[2.6rem] border border-zinc-200 bg-white p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
+        <div className="h-72 sm:h-90">
+          <WorldMap />
+        </div>
+        <div className="grid gap-5 lg:grid-cols-3">
+          {withIcons(nodes, [{ icon: Globe2 }, { icon: Route }, { icon: Activity }]).map((item) => (
+            <IconCard key={item.title} item={item} className="shadow-none" />
+          ))}
+        </div>
       </div>
     </SolutionSection>
+  );
+}
+
+function RolloutSection({ solution }: { solution: SolutionContent }) {
+  return (
+    <TextCardGridSection
+      solution={solution}
+      sectionKey="rollout"
+      icons={[{ icon: Layers3 }, { icon: Workflow }, { icon: Globe2 }]}
+    />
+  );
+}
+
+function FinalCta({
+  locale,
+  ctas,
+  labels,
+}: LocaleProps & {
+  ctas: [SolutionCta, SolutionCta];
+  labels: [string, string];
+}) {
+  const t = useTranslations("Public.home.solutionPage");
+
+  return (
+    <section className="relative overflow-hidden border-t border-zinc-200 py-24 sm:py-28">
+      <div aria-hidden={true} className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(9,9,11,1)_0%,rgba(24,24,27,0.98)_100%)]" />
+      <DarkGrid />
+      <div className="relative mx-auto max-w-360 px-6 lg:px-12">
+        <div className="rounded-[2.6rem] border border-white/10 bg-white/3 px-8 py-10 shadow-[0_40px_120px_-80px_rgba(0,0,0,0.6)] sm:px-10 lg:px-14 lg:py-14">
+          <SectionEyebrow inverted>{t("finalCta.eyebrow")}</SectionEyebrow>
+          <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tighter text-white sm:text-5xl lg:text-6xl">
+            {t("finalCta.title")}
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/68">{t("finalCta.description")}</p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            {ctas.map((cta, index) => (
+              <SolutionCTA key={cta.href} cta={cta} label={labels[index]} locale={locale} inverted />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export function SolutionPage({ locale, solution }: SolutionPageProps) {
+  const tSolutions = useTranslations("Public.home.page.solutions.services");
+  const ctaLabels = tSolutions.raw(`${solution.slug}.ctas`) as [string, string];
+
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
       <Header locale={locale as Locale} />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         <SolutionHero locale={locale} solution={solution} />
-        <SolutionChallenge solution={solution} />
-        <SolutionWhyNow solution={solution} />
-        <SolutionApproach solution={solution} />
-        <SolutionCapabilities solution={solution} />
-        <SolutionEcosystemConnections locale={locale} solution={solution} />
-        <SolutionReferenceArchitecture solution={solution} />
-        <SolutionRelatedStack locale={locale} solution={solution} />
-        <SolutionRecommendedNextStep locale={locale} solution={solution} />
-        <SolutionAdoptionPath locale={locale} solution={solution} />
+        <OperationalChallenges solution={solution} />
+        <OperatingModelSection solution={solution} />
+        <EcosystemSection solution={solution} />
+        <OrganizationMapSection solution={solution} />
+        <WorkflowSection solution={solution} />
+        <DataGovernanceSection solution={solution} />
+        <IdentityAccessSection solution={solution} />
+        <IntegrationApiSection solution={solution} />
+        <InfrastructureLayer locale={locale} solution={solution} />
+        <ObservabilitySection solution={solution} />
+        <SovereigntySection solution={solution} />
+        <RolloutSection solution={solution} />
+        <GlobalScale solution={solution} />
+        <FinalCta locale={locale} ctas={solution.ctas} labels={ctaLabels} />
       </main>
       <Footer locale={locale as Locale} />
     </div>
@@ -718,14 +845,18 @@ export function SolutionPage({ locale, solution }: SolutionPageProps) {
 
 export {
   SolutionHero,
-  SolutionChallenge,
-  SolutionWhyNow,
-  SolutionApproach,
-  SolutionCapabilities,
-  SolutionEcosystemConnections,
-  SolutionReferenceArchitecture,
-  SolutionRelatedStack,
-  SolutionRecommendedNextStep,
-  SolutionAdoptionPath,
-  SolutionCTA,
+  OperationalChallenges as SolutionChallenge,
+  OperatingModelSection,
+  EcosystemSection as SolutionEcosystemConnections,
+  OrganizationMapSection,
+  WorkflowSection as SolutionCapabilities,
+  DataGovernanceSection,
+  IdentityAccessSection,
+  IntegrationApiSection,
+  InfrastructureLayer as SolutionRelatedStack,
+  ObservabilitySection,
+  SovereigntySection as SolutionRecommendedNextStep,
+  RolloutSection,
+  GlobalScale as SolutionReferenceArchitecture,
+  FinalCta as SolutionAdoptionPath,
 };

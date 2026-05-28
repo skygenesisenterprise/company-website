@@ -9,7 +9,7 @@ interface CompanySectionProps {
   description?: string;
   tone?: "default" | "muted" | "dark";
   centered?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export function CompanySection({
@@ -58,7 +58,7 @@ export function CompanySection({
             <p className={cn("mt-6 text-lg leading-8", dark ? "text-white/68" : "text-zinc-600")}>{description}</p>
           ) : null}
         </div>
-        <div className="mt-14">{children}</div>
+        {children ? <div className="mt-14">{children}</div> : null}
       </div>
     </section>
   );

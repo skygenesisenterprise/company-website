@@ -30,7 +30,6 @@ import {
   CompanyPillList,
   CompanySection,
   CompanySplitList,
-  CompanyStatement,
   CompanyTimeline,
 } from "@/components/public/company/company-page";
 
@@ -86,12 +85,44 @@ function localizeActions(locale: string, actions: CompanyAction[]) {
   }));
 }
 
+function CompanyExpansionSections({
+  sections,
+  count,
+}: {
+  sections: CompanySectionContent[];
+  count: number;
+}) {
+  const icons = [Layers3, ShieldCheck, Network, Users, FileText, Globe2];
+
+  return (
+    <>
+      {sections.slice(0, count).map((section, index) => (
+        <CompanySection
+          key={section.title}
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
+          tone={index % 2 === 1 ? "muted" : "default"}
+        >
+          <CompanyCardGrid
+            items={withIcons(
+              section.items ?? [],
+              [icons[index % icons.length], icons[(index + 1) % icons.length], icons[(index + 2) % icons.length]],
+            )}
+          />
+        </CompanySection>
+      ))}
+    </>
+  );
+}
+
 export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.overview" });
   const ecosystemItems = t.raw("ecosystem.items") as CompanyGridItem[];
   const missionItems = t.raw("mission.items") as CompanyGridItem[];
   const trajectoryItems = t.raw("trajectory.items") as Array<{ label: string; title: string; description: string }>;
   const cultureItems = t.raw("culture.items") as CompanyGridItem[];
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
   const finalActions = t.raw("finalCta.actions") as CompanyAction[];
 
   return (
@@ -107,9 +138,7 @@ export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
         visual={<CompanyLayerDiagram layers={t.raw("layerDiagram.layers")} />}
       />
 
-      <CompanySection centered title={t("statement.title")} description={t("statement.description")}>
-        <CompanyStatement title={t("statement.title")} description={t("statement.description")} />
-      </CompanySection>
+      <CompanySection centered title={t("statement.title")} description={t("statement.description")} />
 
       <CompanySection eyebrow={t("ecosystem.eyebrow")} title={t("ecosystem.title")} description={t("ecosystem.description")} tone="muted">
         <CompanyCardGrid items={localizeItems(locale, ecosystemItems, [Layers3, Blocks, Network])} />
@@ -131,6 +160,8 @@ export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
         <CompanySplitList items={cultureItems} />
       </CompanySection>
 
+      <CompanyExpansionSections sections={expansionSections} count={7} />
+
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
         title={t("finalCta.title")}
@@ -146,14 +177,13 @@ export async function CompanyAboutPage({ locale }: CompanyPageProps) {
   const architecture = t.raw("architecture") as CompanySectionContent;
   const method = t.raw("method") as CompanySectionContent;
   const pages = t.raw("pages") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
       <CompanyHero eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} centered />
 
-      <CompanySection centered title={t("statement.title")} description={t("statement.description")}>
-        <CompanyStatement title={t("statement.title")} description={t("statement.description")} />
-      </CompanySection>
+      <CompanySection centered title={t("statement.title")} description={t("statement.description")} />
 
       <CompanySection eyebrow={architecture.eyebrow} title={architecture.title} description={architecture.description} tone="muted">
         <CompanyCardGrid items={withIcons(architecture.items ?? [], [Layers3, Network, ShieldCheck, Building2])} />
@@ -163,13 +193,13 @@ export async function CompanyAboutPage({ locale }: CompanyPageProps) {
         <CompanySplitList items={method.items ?? []} />
       </CompanySection>
 
-      <CompanySection eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")} tone="muted">
-        <CompanyStatement title={t("transparency.title")} description={t("transparency.description")} />
-      </CompanySection>
+      <CompanySection eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")} tone="muted" />
 
       <CompanySection eyebrow={pages.eyebrow} title={pages.title} description={pages.description}>
         <CompanyCardGrid items={localizeItems(locale, pages.items ?? [], [GitBranch, ShieldCheck])} columns="two" />
       </CompanySection>
+
+      <CompanyExpansionSections sections={expansionSections} count={8} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -189,14 +219,13 @@ export async function CompanyStoryPage({ locale }: CompanyPageProps) {
   const problem = t.raw("problem") as CompanySectionContent;
   const response = t.raw("response") as CompanySectionContent;
   const timelineItems = t.raw("timeline.items") as Array<{ label: string; title: string; description: string }>;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
       <CompanyHero eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} centered />
 
-      <CompanySection eyebrow={t("origin.eyebrow")} title={t("origin.title")} description={t("origin.description")}>
-        <CompanyStatement title={t("origin.title")} description={t("origin.description")} align="left" />
-      </CompanySection>
+      <CompanySection eyebrow={t("origin.eyebrow")} title={t("origin.title")} description={t("origin.description")} />
 
       <CompanySection eyebrow={problem.eyebrow} title={problem.title} description={problem.description} tone="muted">
         <CompanyCardGrid items={withIcons(problem.items ?? [], [Compass, GitBranch, ShieldCheck])} />
@@ -209,6 +238,8 @@ export async function CompanyStoryPage({ locale }: CompanyPageProps) {
       <CompanySection eyebrow={t("timeline.eyebrow")} title={t("timeline.title")} description={t("timeline.description")} tone="muted">
         <CompanyTimeline items={timelineItems} />
       </CompanySection>
+
+      <CompanyExpansionSections sections={expansionSections} count={9} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -227,6 +258,7 @@ export async function CompanyValuesPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.values" });
   const principles = t.raw("principles") as CompanySectionContent;
   const culture = t.raw("culture") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -239,6 +271,8 @@ export async function CompanyValuesPage({ locale }: CompanyPageProps) {
       <CompanySection eyebrow={culture.eyebrow} title={culture.title} description={culture.description} tone="muted">
         <CompanyCardGrid items={withIcons(culture.items ?? [], [Users, FileText, BriefcaseBusiness, Sparkles, Handshake])} />
       </CompanySection>
+
+      <CompanyExpansionSections sections={expansionSections} count={11} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -257,6 +291,7 @@ export async function CompanyCareersPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.careers" });
   const culture = t.raw("culture") as CompanySectionContent;
   const domains = t.raw("domains") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -270,9 +305,9 @@ export async function CompanyCareersPage({ locale }: CompanyPageProps) {
         <CompanyCardGrid items={withIcons(domains.items ?? [], [Code2, Network, ShieldCheck, Sparkles, BookOpen, Handshake])} />
       </CompanySection>
 
-      <CompanySection eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")}>
-        <CompanyStatement title={t("transparency.title")} description={t("transparency.description")} />
-      </CompanySection>
+      <CompanySection eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")} />
+
+      <CompanyExpansionSections sections={expansionSections} count={10} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -292,6 +327,7 @@ export async function CompanyContactPage({ locale }: CompanyPageProps) {
   const routes = t.raw("routes") as CompanySectionContent;
   const expectations = t.raw("expectations") as CompanySectionContent;
   const official = t.raw("official") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -308,6 +344,8 @@ export async function CompanyContactPage({ locale }: CompanyPageProps) {
       <CompanySection eyebrow={official.eyebrow} title={official.title} description={official.description}>
         <CompanyCardGrid items={localizeItems(locale, official.items ?? [], [Mail, Newspaper, BriefcaseBusiness, ShieldCheck])} columns="two" />
       </CompanySection>
+
+      <CompanyExpansionSections sections={expansionSections} count={10} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -326,14 +364,13 @@ export async function CompanyLeadershipPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.leadership" });
   const areas = t.raw("areas") as CompanySectionContent;
   const governance = t.raw("governance") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
       <CompanyHero eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} centered />
 
-      <CompanySection eyebrow={t("founder.eyebrow")} title={t("founder.title")} description={t("founder.description")}>
-        <CompanyStatement title={t("founder.title")} description={t("founder.description")} align="left" />
-      </CompanySection>
+      <CompanySection eyebrow={t("founder.eyebrow")} title={t("founder.title")} description={t("founder.description")} />
 
       <CompanySection eyebrow={areas.eyebrow} title={areas.title} description={areas.description} tone="muted">
         <CompanyCardGrid items={withIcons(areas.items ?? [], [Compass, ShieldCheck, Users])} />
@@ -343,9 +380,9 @@ export async function CompanyLeadershipPage({ locale }: CompanyPageProps) {
         <CompanySplitList items={governance.items ?? []} />
       </CompanySection>
 
-      <CompanySection eyebrow={t("future.eyebrow")} title={t("future.title")} description={t("future.description")} tone="muted">
-        <CompanyStatement title={t("future.title")} description={t("future.description")} />
-      </CompanySection>
+      <CompanySection eyebrow={t("future.eyebrow")} title={t("future.title")} description={t("future.description")} tone="muted" />
+
+      <CompanyExpansionSections sections={expansionSections} count={9} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -365,14 +402,13 @@ export async function CompanyPartnersPage({ locale }: CompanyPageProps) {
   const types = t.raw("types") as CompanySectionContent;
   const principles = t.raw("principles") as CompanySectionContent;
   const audiences = t.raw("audiences") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
       <CompanyHero eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} centered />
 
-      <CompanySection centered title={t("statement.title")} description={t("statement.description")}>
-        <CompanyStatement title={t("statement.title")} description={t("statement.description")} />
-      </CompanySection>
+      <CompanySection centered title={t("statement.title")} description={t("statement.description")} />
 
       <CompanySection eyebrow={types.eyebrow} title={types.title} description={types.description} tone="muted">
         <CompanyCardGrid items={withIcons(types.items ?? [], [Network, Layers3, BookOpen, GitBranch, Building2, Handshake])} />
@@ -385,6 +421,8 @@ export async function CompanyPartnersPage({ locale }: CompanyPageProps) {
       <CompanySection eyebrow={audiences.eyebrow} title={audiences.title} description={audiences.description} tone="muted">
         <CompanyCardGrid items={withIcons(audiences.items ?? [], [Network, GitBranch, Globe2])} />
       </CompanySection>
+
+      <CompanyExpansionSections sections={expansionSections} count={9} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}
@@ -404,6 +442,7 @@ export async function CompanyPressPage({ locale }: CompanyPageProps) {
   const boilerplate = t.raw("boilerplate") as CompanySectionContent;
   const facts = t.raw("facts") as CompanySectionContent;
   const resources = t.raw("resources") as CompanySectionContent;
+  const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
 
   return (
     <CompanyPageShell locale={locale}>
@@ -435,6 +474,8 @@ export async function CompanyPressPage({ locale }: CompanyPageProps) {
           columns="two"
         />
       </CompanySection>
+
+      <CompanyExpansionSections sections={expansionSections} count={9} />
 
       <CompanyFinalCta
         eyebrow={t("finalCta.eyebrow")}

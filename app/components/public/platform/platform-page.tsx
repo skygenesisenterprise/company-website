@@ -8,9 +8,11 @@ import {
   Braces,
   Cloud,
   Code2,
+  Activity,
   Database,
   Fingerprint,
   Globe2,
+  Layers3,
   LockKeyhole,
   Megaphone,
   Network,
@@ -20,6 +22,7 @@ import {
   Server,
   ShieldCheck,
   Terminal,
+  Users,
   Vault,
   Workflow,
   type LucideIcon,
@@ -80,10 +83,16 @@ export interface PlatformPageCopy {
   metrics: PlatformMetric[];
   sections: {
     ecosystem: PlatformSectionCopy;
+    operatingModel: PlatformSectionCopy;
     architecture: PlatformSectionCopy & { flow: PlatformSectionItem[] };
+    controlPlane: PlatformSectionCopy;
     workflow: PlatformSectionCopy;
+    dataGovernance: PlatformSectionCopy;
+    identityAccess: PlatformSectionCopy;
     security: PlatformSectionCopy;
     api: PlatformSectionCopy & { endpoints: string[] };
+    observability: PlatformSectionCopy;
+    rollout: PlatformSectionCopy;
     global: PlatformSectionCopy;
   };
   cta: {
@@ -366,6 +375,67 @@ function ProductShowcase({ config, copy }: { config: PlatformConfig; copy: Platf
   );
 }
 
+function PlatformCardGridSection({
+  section,
+  tone = "default",
+  icons,
+}: {
+  section: PlatformSectionCopy;
+  tone?: "default" | "muted" | "dark";
+  icons: LucideIcon[];
+}) {
+  const dark = tone === "dark";
+
+  return (
+    <PlatformSectionShell
+      eyebrow={section.eyebrow}
+      title={section.title}
+      description={section.description}
+      tone={tone}
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {section.items.map((item, index) => {
+          const Icon = icons[index] ?? Blocks;
+
+          return (
+            <div
+              key={item.title}
+              className={cn(
+                "relative min-h-72 overflow-hidden rounded-4xl border p-6 transition duration-300",
+                dark
+                  ? "border-white/10 bg-white/4 hover:-translate-y-1 hover:border-white/20 hover:bg-white/6"
+                  : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.26)] hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-40px_rgba(15,23,42,0.22)]",
+              )}
+            >
+              <span
+                className={cn(
+                  "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
+                  dark ? "border-white/10 bg-white/4 text-white/88" : "border-zinc-200 bg-zinc-50 text-zinc-700",
+                )}
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              <h3 className={cn("mt-8 text-xl font-semibold tracking-[-0.03em]", dark ? "text-white" : "text-zinc-950")}>
+                {item.title}
+              </h3>
+              <p className={cn("mt-4 text-sm leading-7", dark ? "text-white/64" : "text-zinc-600")}>{item.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </PlatformSectionShell>
+  );
+}
+
+function OperatingModelSection({ copy }: { copy: PlatformPageCopy }) {
+  return (
+    <PlatformCardGridSection
+      section={copy.sections.operatingModel}
+      icons={[Workflow, Users, Layers3]}
+    />
+  );
+}
+
 function ArchitectureSection({ copy }: { copy: PlatformPageCopy }) {
   return (
     <PlatformSectionShell
@@ -405,6 +475,16 @@ function ArchitectureSection({ copy }: { copy: PlatformPageCopy }) {
   );
 }
 
+function ControlPlaneSection({ copy }: { copy: PlatformPageCopy }) {
+  return (
+    <PlatformCardGridSection
+      section={copy.sections.controlPlane}
+      tone="muted"
+      icons={[Server, Route, ShieldCheck]}
+    />
+  );
+}
+
 function WorkflowSection({ copy }: { copy: PlatformPageCopy }) {
   return (
     <PlatformSectionShell
@@ -422,6 +502,25 @@ function WorkflowSection({ copy }: { copy: PlatformPageCopy }) {
         ))}
       </div>
     </PlatformSectionShell>
+  );
+}
+
+function DataGovernanceSection({ copy }: { copy: PlatformPageCopy }) {
+  return (
+    <PlatformCardGridSection
+      section={copy.sections.dataGovernance}
+      icons={[Database, Vault, Fingerprint]}
+    />
+  );
+}
+
+function IdentityAccessSection({ copy }: { copy: PlatformPageCopy }) {
+  return (
+    <PlatformCardGridSection
+      section={copy.sections.identityAccess}
+      tone="dark"
+      icons={[Fingerprint, LockKeyhole, ShieldCheck]}
+    />
   );
 }
 
@@ -492,6 +591,16 @@ function ApiSection({ copy }: { copy: PlatformPageCopy }) {
   );
 }
 
+function ObservabilitySection({ copy }: { copy: PlatformPageCopy }) {
+  return (
+    <PlatformCardGridSection
+      section={copy.sections.observability}
+      tone="muted"
+      icons={[Activity, Network, RadioTower]}
+    />
+  );
+}
+
 function GlobalScaleSection({ copy }: { copy: PlatformPageCopy }) {
   return (
     <PlatformSectionShell
@@ -513,6 +622,15 @@ function GlobalScaleSection({ copy }: { copy: PlatformPageCopy }) {
         </div>
       </div>
     </PlatformSectionShell>
+  );
+}
+
+function RolloutSection({ copy }: { copy: PlatformPageCopy }) {
+  return (
+    <PlatformCardGridSection
+      section={copy.sections.rollout}
+      icons={[Blocks, Workflow, Globe2]}
+    />
   );
 }
 
@@ -553,10 +671,16 @@ export function PlatformPage({ locale, config, copy }: PlatformPageProps) {
         <PlatformHero locale={locale} config={config} copy={copy} />
         <MissionStatement copy={copy} />
         <ProductShowcase config={config} copy={copy} />
+        <OperatingModelSection copy={copy} />
         <ArchitectureSection copy={copy} />
+        <ControlPlaneSection copy={copy} />
         <WorkflowSection copy={copy} />
+        <DataGovernanceSection copy={copy} />
+        <IdentityAccessSection copy={copy} />
         <SecuritySection copy={copy} />
         <ApiSection copy={copy} />
+        <ObservabilitySection copy={copy} />
+        <RolloutSection copy={copy} />
         <GlobalScaleSection copy={copy} />
         <FinalCta locale={locale} config={config} copy={copy} />
       </main>

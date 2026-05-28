@@ -22,7 +22,8 @@
     "android": "pnpm build:capacitor && npx cap sync android && npx cap open android",
     "ios": "pnpm build:capacitor && npx cap sync ios && npx cap open ios",
     "build:ios": "pnpm build:capacitor && npx cap sync ios && npx cap build ios",
-    "build:android": "pnpm build:capacitor && npx cap sync android && npx cap build android"
+    "build:android": "pnpm build:capacitor && npx cap sync android && npx cap build android",
+    "i18n:unused": "node --experimental-strip-types scripts/find-unused-i18n.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

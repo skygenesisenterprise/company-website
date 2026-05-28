@@ -12,6 +12,7 @@ export const countryLanguageCodes = [
   "ja",
   "ko",
   "ar",
+  "cn",
 ] as const;
 
 export type CountryLanguageCode = (typeof countryLanguageCodes)[number];
