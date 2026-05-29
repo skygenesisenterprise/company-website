@@ -166,7 +166,7 @@ function CompanyExpansionSections({
 
 function LeadershipMetricsPanel({ metrics }: { metrics: LeadershipMetric[] }) {
   return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-zinc-200 bg-white p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.28)]">
+    <div className="relative overflow-hidden rounded-4xl border border-zinc-200 bg-white p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.28)]">
       <div
         aria-hidden={true}
         className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.18),transparent_58%),linear-gradient(180deg,rgba(244,244,245,0.96),rgba(255,255,255,0))]"
@@ -174,7 +174,7 @@ function LeadershipMetricsPanel({ metrics }: { metrics: LeadershipMetric[] }) {
       <div className="relative grid gap-4 sm:grid-cols-2">
         {metrics.map((metric) => (
           <div key={metric.label} className="rounded-[1.5rem] border border-zinc-200 bg-zinc-50/80 p-5">
-            <div className="text-4xl font-semibold tracking-[-0.05em] text-zinc-950">{metric.value}</div>
+            <div className="text-4xl font-semibold tracking-tighter text-zinc-950">{metric.value}</div>
             <div className="mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{metric.label}</div>
           </div>
         ))}
@@ -196,7 +196,7 @@ function LeadershipMemberCard({ member, socialLabels }: { member: LeadershipMemb
         "hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.2)]",
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-zinc-200 bg-zinc-100">
+      <div className="relative aspect-4/3 overflow-hidden rounded-[1.5rem] border border-zinc-200 bg-zinc-100">
         <img src={member.image} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-linear-to-t from-zinc-950/34 via-transparent to-transparent opacity-70" />
         {links.length ? (

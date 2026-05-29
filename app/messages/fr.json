@@ -18306,6 +18306,450 @@
           }
         }
       }
+    },
+    "underAttackOnline": {
+      "metadata": {
+        "title": "Under Attack Online | Sky Genesis Enterprise",
+        "description": "Réponse immédiate aux attaques DDoS, bots, abus API et trafic malveillant avec Aether Edge pour maintenir sites, APIs et infrastructures en ligne."
+      },
+      "hero": {
+        "eyebrow": "Réponse d'urgence infrastructure",
+        "title": "Your business is under attack. Stay online.",
+        "description": "Aether Edge protège vos sites, vos APIs et votre infrastructure contre les attaques DDoS, les bots malveillants, l'abus API et le trafic hostile sans sacrifier la disponibilité.",
+        "primaryCta": "Enable protection",
+        "secondaryCta": "Contact security team",
+        "visual": {
+          "title": "Signal de crise",
+          "badge": "Aether Edge",
+          "status": "Mitigation active",
+          "statusMeta": "Le trafic est inspecté à l'edge avant d'atteindre l'origine.",
+          "liveLabel": "Live",
+          "trafficLabel": "Trafic absorbé",
+          "trafficValue": "2.8 Tbps",
+          "requestsLabel": "Requêtes inspectées",
+          "requestsValue": "148M/min",
+          "mitigationLabel": "Disponibilité maintenue",
+          "mitigationValue": "99.99%",
+          "mitigationPathLabel": "Chaîne de mitigation",
+          "pathLabels": {
+            "0": "Ingress",
+            "1": "Inspection",
+            "2": "Origin"
+          },
+          "footer": "Le réseau edge absorbe, filtre et redirige le trafic légitime en temps réel."
+        }
+      },
+      "attackSignals": {
+        "eyebrow": "Signaux d'attaque",
+        "title": "Les symptômes d'une attaque sont rarement ambigus.",
+        "description": "Quand ces signaux apparaissent ensemble, il faut réduire la surface d'impact et reprendre le contrôle du trafic immédiatement.",
+        "items": {
+          "0": "Site inaccessible",
+          "1": "API ralentie",
+          "2": "Pic de trafic",
+          "3": "Bots inconnus",
+          "4": "CPU saturé",
+          "5": "Connexions suspectes"
+        }
+      },
+      "attackTypes": {
+        "eyebrow": "Couverture d'attaque",
+        "title": "Une même couche de défense doit traiter plusieurs formes d'abus.",
+        "description": "Aether Edge combine analyse réseau, contrôle applicatif et décisions temps réel pour couvrir les schémas d'attaque les plus fréquents.",
+        "items": {
+          "ddos": {
+            "title": "DDoS",
+            "description": "Absorber les campagnes de volumétrie et les rafales réseau avant qu'elles n'atteignent vos systèmes."
+          },
+          "layer7": {
+            "title": "Layer 7 attacks",
+            "description": "Détecter les vagues HTTP ciblées qui épuisent les routes applicatives et les services d'origine."
+          },
+          "bots": {
+            "title": "Bot attacks",
+            "description": "Différencier les crawlers utiles des automatisations hostiles et des fermes de requêtes."
+          },
+          "credentialStuffing": {
+            "title": "Credential stuffing",
+            "description": "Bloquer les tentatives de connexion massives avant qu'elles n'épuisent vos parcours d'authentification."
+          },
+          "apiAbuse": {
+            "title": "API abuse",
+            "description": "Contrôler les usages agressifs, hors quota ou anormaux sur les endpoints sensibles."
+          },
+          "scraping": {
+            "title": "Scraping",
+            "description": "Limiter l'extraction non autorisée de contenus, de prix, de données ou de catalogues."
+          },
+          "dnsFloods": {
+            "title": "DNS floods",
+            "description": "Maintenir la résolution et la redondance DNS sous charge ou sous attaque dédiée."
+          },
+          "bruteForce": {
+            "title": "Brute force",
+            "description": "Freiner les séquences d'essais répétées sur les accès, consoles, VPN et interfaces critiques."
+          }
+        }
+      },
+      "attackTimeline": {
+        "eyebrow": "Chronologie d'incident",
+        "title": "Une attaque suit souvent une montée en puissance prévisible.",
+        "description": "Aether Edge intervient dès la phase active pour réduire la saturation, protéger l'origine et accélérer la restauration.",
+        "activeLabel": "Aether Edge",
+        "items": {
+          "reconnaissance": {
+            "title": "Reconnaissance",
+            "description": "L'attaquant cartographie vos points d'entrée, profils de trafic et endpoints les plus exposés."
+          },
+          "preparation": {
+            "title": "Préparation",
+            "description": "Les vecteurs, IP sources, bots et scripts sont alignés pour maximiser l'impact."
+          },
+          "attack": {
+            "title": "Attaque",
+            "description": "Le trafic malveillant arrive à l'edge, où il peut être inspecté et filtré avant propagation."
+          },
+          "saturation": {
+            "title": "Saturation",
+            "description": "Sans couche de protection, l'origine sature en bande passante, sessions, CPU ou connexions."
+          },
+          "interruption": {
+            "title": "Interruption",
+            "description": "Les utilisateurs légitimes subissent latence, erreurs, indisponibilités ou dégradation partielle."
+          },
+          "restoration": {
+            "title": "Restauration",
+            "description": "Une fois le trafic stabilisé, l'équipe peut revenir à un état de service normal avec visibilité."
+          }
+        }
+      },
+      "edgeProtection": {
+        "eyebrow": "Protection edge",
+        "title": "Aether Edge agit comme une couche de décision avant votre infrastructure.",
+        "description": "Le contrôle du trafic commence à l'edge, là où le réseau peut absorber, classer et distribuer les requêtes avant qu'elles ne deviennent un incident interne.",
+        "items": {
+          "globalFiltering": {
+            "title": "Filtrage global",
+            "description": "Appliquer des décisions cohérentes sur plusieurs régions et points de présence."
+          },
+          "edgeNetwork": {
+            "title": "Edge network",
+            "description": "Distribuer l'inspection sur un réseau de proximité conçu pour absorber les pointes."
+          },
+          "rateLimiting": {
+            "title": "Rate limiting",
+            "description": "Limiter les comportements anormaux par IP, session, token, route ou profil de requête."
+          },
+          "waf": {
+            "title": "WAF",
+            "description": "Bloquer les motifs applicatifs hostiles avant qu'ils ne ciblent vos applications."
+          },
+          "cdn": {
+            "title": "CDN",
+            "description": "Conserver la distribution de contenu rapide pendant que l'origine reste protégée."
+          },
+          "realTimeMitigation": {
+            "title": "Mitigation temps réel",
+            "description": "Ajuster les règles au fil de l'incident sans devoir interrompre le service."
+          }
+        },
+        "pills": {
+          "0": "Inspection globale",
+          "1": "Origines masquées",
+          "2": "Décisions adaptatives",
+          "3": "Règles instantanées",
+          "4": "Routage résilient"
+        }
+      },
+      "ddosProtection": {
+        "eyebrow": "Protection DDoS",
+        "title": "La mitigation DDoS doit préserver la disponibilité, pas seulement bloquer du trafic.",
+        "description": "Aether Edge combine capacité d'absorption, filtres multi-couches et maintien de service pour contenir les attaques volumétriques.",
+        "items": {
+          "networkMitigation": {
+            "title": "Mitigation réseau",
+            "description": "Dévier et neutraliser les rafales réseau avant que les liens et équipements critiques ne cèdent."
+          },
+          "trafficAbsorption": {
+            "title": "Absorption du trafic",
+            "description": "Encaisser les pointes sans exposer directement les origines ni les services internes."
+          },
+          "multiLayerFiltering": {
+            "title": "Filtrage L3/L4/L7",
+            "description": "Corréler les signaux réseau et applicatifs pour éviter les blocages trop grossiers."
+          },
+          "availability": {
+            "title": "Maintien de la disponibilité",
+            "description": "Laisser passer le trafic légitime pendant que les campagnes hostiles sont contenues."
+          }
+        },
+        "pills": {
+          "0": "Network scrubbing",
+          "1": "Anycast edge",
+          "2": "Adaptive thresholds",
+          "3": "Origin continuity"
+        }
+      },
+      "apiProtection": {
+        "eyebrow": "Protection des APIs",
+        "title": "Les APIs doivent rester gouvernables même sous pression.",
+        "description": "Avec API Studios, Aether Edge s'étend au contrôle des routes, des quotas et de la qualité des requêtes pour réduire l'abus applicatif.",
+        "items": {
+          "gateway": {
+            "title": "API Gateway",
+            "description": "Centraliser l'entrée des APIs derrière des règles communes d'accès et d'inspection."
+          },
+          "rateLimits": {
+            "title": "Rate limits",
+            "description": "Encadrer les volumes par client, route, clé, région ou usage observé."
+          },
+          "jwtValidation": {
+            "title": "Validation JWT",
+            "description": "Vérifier les jetons en amont pour réduire les parcours inutiles côté services."
+          },
+          "abuseProtection": {
+            "title": "Protection contre l'abus",
+            "description": "Identifier les schémas de burst, de scraping et d'usage automatisé hors contrat."
+          },
+          "observability": {
+            "title": "Observabilité des requêtes",
+            "description": "Suivre latence, erreurs, quotas et anomalies sur les routes qui comptent."
+          }
+        },
+        "platformLabel": "API Studios",
+        "platformTitle": "API Studios et Aether Edge partagent le même plan de contrôle de trafic.",
+        "platformDescription": "Les routes API critiques conservent quotas, authentification, journalisation et sécurité edge dans un modèle cohérent.",
+        "platformTag": "API-first security"
+      },
+      "identityProtection": {
+        "eyebrow": "Protection des identités",
+        "title": "L'attaque ne s'arrête pas au réseau quand les accès deviennent la cible.",
+        "description": "Aether Identity complète la défense edge avec des contrôles de connexion, de session et de confiance utilisateur.",
+        "items": {
+          "mfa": {
+            "title": "MFA",
+            "description": "Renforcer l'accès aux parcours les plus sensibles avec des facteurs supplémentaires."
+          },
+          "loginProtection": {
+            "title": "Protection login",
+            "description": "Limiter les séquences d'authentification hostiles avant qu'elles n'épuisent l'expérience utilisateur."
+          },
+          "sessionSecurity": {
+            "title": "Session security",
+            "description": "Contrôler la durée, la cohérence et les changements de contexte des sessions actives."
+          },
+          "suspiciousAttempts": {
+            "title": "Détection de tentatives suspectes",
+            "description": "Repérer les origines douteuses, les comportements inhabituels et les patterns de compromission."
+          }
+        },
+        "sideLabel": "Aether Identity",
+        "sideTitle": "Les parcours d'identité restent protégés pendant l'incident.",
+        "sideDescription": "Les mécanismes MFA, les politiques de session et la détection de tentatives anormales réduisent l'impact des attaques ciblant les comptes."
+      },
+      "dnsProtection": {
+        "eyebrow": "Protection DNS",
+        "title": "Le DNS doit rester stable quand le reste de l'infrastructure est sous tension.",
+        "description": "Aether Edge maintient la visibilité, la redondance et les contrôles nécessaires pour éviter qu'une attaque DNS n'amplifie la crise.",
+        "items": {
+          "monitoring": {
+            "title": "DNS monitoring",
+            "description": "Suivre résolution, latence, disponibilité et anomalies sur les zones critiques."
+          },
+          "firewall": {
+            "title": "DNS firewall",
+            "description": "Filtrer les requêtes suspectes et protéger les surfaces d'exposition DNS."
+          },
+          "redundancy": {
+            "title": "DNS redundancy",
+            "description": "Répartir les points de réponse pour maintenir le service sous incident."
+          },
+          "floodDefense": {
+            "title": "Protection contre les floods DNS",
+            "description": "Contenir les rafales dédiées à la résolution et à la saturation des serveurs DNS."
+          }
+        }
+      },
+      "botProtection": {
+        "eyebrow": "Protection contre les bots",
+        "title": "Tous les bots ne se valent pas, et les traiter pareil crée de la friction inutile.",
+        "description": "Aether Edge classe les automatisations selon leur rôle, leur profil de risque et leur impact sur vos parcours business.",
+        "items": {
+          "legitimateBots": {
+            "title": "Bots légitimes",
+            "description": "Autoriser les crawlers attendus et partenaires utiles sans ouvrir trop largement la surface."
+          },
+          "maliciousBots": {
+            "title": "Bots malveillants",
+            "description": "Bloquer les agents conçus pour contourner quotas, protections et règles d'accès."
+          },
+          "scraping": {
+            "title": "Scraping",
+            "description": "Réduire l'extraction industrielle de catalogues, d'APIs ou de contenus premium."
+          },
+          "fakeUsers": {
+            "title": "Faux utilisateurs",
+            "description": "Détecter les comportements simulés qui imitent des parcours humains pour contourner les contrôles."
+          },
+          "abusiveAutomation": {
+            "title": "Automatisation abusive",
+            "description": "Freiner les scripts de création de comptes, de reservation, de checkout ou de collecte massive."
+          }
+        },
+        "pills": {
+          "0": "Fingerprinting",
+          "1": "Scoring comportemental",
+          "2": "Challenges ciblés",
+          "3": "Décisions par contexte",
+          "4": "Exceptions contrôlées"
+        }
+      },
+      "securityOperations": {
+        "eyebrow": "Centre opérationnel de sécurité",
+        "title": "Les équipes ont besoin d'une lecture opérationnelle, pas d'un angle mort.",
+        "description": "Le SOC garde une vision temps réel de l'incident, des actions prises et des signaux qui doivent remonter aux équipes sécurité et infrastructure.",
+        "board": {
+          "title": "Security operations center",
+          "subtitle": "Visibilité temps réel sur les flux, les alertes et la mitigation",
+          "liveLabel": "Live",
+          "trafficProfileLabel": "Traffic profile",
+          "adaptiveLabel": "Adaptive",
+          "events": {
+            "0": {
+              "label": "Monitoring temps réel",
+              "value": "24/7"
+            },
+            "1": {
+              "label": "Threat intelligence",
+              "value": "Corrélée"
+            },
+            "2": {
+              "label": "Alerting",
+              "value": "< 30 sec"
+            },
+            "3": {
+              "label": "Logs & analytics",
+              "value": "Exploitables"
+            }
+          },
+          "metrics": {
+            "0": {
+              "label": "Incidents visibles",
+              "value": "126"
+            },
+            "1": {
+              "label": "IPs bloquées",
+              "value": "41k"
+            },
+            "2": {
+              "label": "Règles actives",
+              "value": "218"
+            },
+            "3": {
+              "label": "Origines préservées",
+              "value": "12"
+            }
+          }
+        }
+      },
+      "useCases": {
+        "eyebrow": "Cas d'usage",
+        "title": "Le niveau d'exigence change selon le secteur, pas la nécessité de rester en ligne.",
+        "description": "Aether Edge s'adapte aux environnements où l'indisponibilité, l'abus ou la dégradation ont un coût opérationnel immédiat.",
+        "items": {
+          "saas": {
+            "title": "SaaS",
+            "description": "Préserver les parcours clients, les consoles et les APIs multi-tenant sous charge hostile."
+          },
+          "banking": {
+            "title": "Banque",
+            "description": "Réduire les attaques sur l'authentification, les services transactionnels et les accès réglementés."
+          },
+          "ecommerce": {
+            "title": "E-commerce",
+            "description": "Protéger le catalogue, le checkout, les prix et les stocks contre le scraping et les bots."
+          },
+          "government": {
+            "title": "Gouvernement",
+            "description": "Maintenir des services publics accessibles pendant les campagnes de saturation et d'abus."
+          },
+          "criticalInfrastructure": {
+            "title": "Infrastructure critique",
+            "description": "Sécuriser les plans de contrôle, portails opérateurs et interfaces d'administration exposées."
+          },
+          "media": {
+            "title": "Média",
+            "description": "Éviter les interruptions de diffusion, les pointes d'audience hostiles et l'extraction massive de contenus."
+          }
+        }
+      },
+      "activation": {
+        "eyebrow": "Activation rapide",
+        "title": "La mise sous protection doit être lisible, courte et rassurante.",
+        "description": "Le workflow d'activation concentre l'effort sur le domaine, le DNS, l'activation des politiques et la sécurisation du trafic.",
+        "items": {
+          "addDomain": {
+            "title": "Add domain",
+            "description": "Déclarer le domaine, les origines et les routes critiques à protéger."
+          },
+          "configureDns": {
+            "title": "Configure DNS",
+            "description": "Pointer la résolution vers la couche edge tout en conservant la redondance requise."
+          },
+          "enableProtection": {
+            "title": "Enable protection",
+            "description": "Activer les politiques de mitigation, de filtrage et de rate limiting adaptées."
+          },
+          "trafficSecured": {
+            "title": "Traffic secured",
+            "description": "Le trafic légitime est servi, l'abus est filtré et l'origine reste disponible."
+          }
+        },
+        "note": "Le parcours d'activation est conçu pour réduire le temps d'exposition et remettre rapidement l'infrastructure derrière une couche de contrôle stable."
+      },
+      "ecosystem": {
+        "eyebrow": "Écosystème de sécurité SGE",
+        "title": "La réponse à incident gagne en force quand les produits travaillent ensemble.",
+        "description": "Aether Edge s'intègre au reste de l'écosystème Sky Genesis Enterprise pour étendre la protection du trafic jusqu'aux identités, secrets, clouds et environnements de travail.",
+        "items": {
+          "aetherEdge": {
+            "title": "Aether Edge",
+            "description": "Couche de protection edge pour la disponibilité, la mitigation et le contrôle du trafic."
+          },
+          "aetherIdentity": {
+            "title": "Aether Identity",
+            "description": "Contrôles d'authentification, MFA et sécurité de session pour les parcours exposés."
+          },
+          "aetherVault": {
+            "title": "Aether Vault",
+            "description": "Gestion des secrets et des accès sensibles pendant les opérations et les rotations d'urgence."
+          },
+          "aetherVpn": {
+            "title": "Aether VPN",
+            "description": "Canal sécurisé pour les accès opérateurs, équipes incident et environnements critiques."
+          },
+          "aetherCloud": {
+            "title": "Aether Cloud",
+            "description": "Base d'infrastructure pour absorber, distribuer et observer les charges protégées."
+          },
+          "apiStudios": {
+            "title": "API Studios",
+            "description": "Gouvernance des APIs, quotas, politiques d'accès et observabilité applicative."
+          },
+          "aetherOffice": {
+            "title": "Aether Office",
+            "description": "Coordination des équipes, communication opérationnelle et continuité du travail en situation de crise."
+          }
+        }
+      },
+      "finalCta": {
+        "eyebrow": "Décision rapide",
+        "title": "Don't wait until the next attack.",
+        "description": "Préparez une couche de protection capable d'absorber les incidents, de maintenir la disponibilité et de redonner de la visibilité aux équipes.",
+        "primaryCta": "Protect your infrastructure",
+        "secondaryCta": "Talk to an expert",
+        "tertiaryCta": "Start with Aether Edge"
+      }
     }
   },
   "CompanyPages": {
