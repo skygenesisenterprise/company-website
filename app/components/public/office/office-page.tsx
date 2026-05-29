@@ -2,20 +2,30 @@ import * as React from "react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import {
+  Archive,
   ArrowRight,
+  Bot,
   CalendarDays,
   CheckCircle2,
+  Cloud,
   FileSpreadsheet,
-  Files,
   FileText,
+  Files,
   FolderKanban,
+  GlobeLock,
+  KeyRound,
+  ListTodo,
   LockKeyhole,
   Mail,
   MessageSquare,
   Network,
+  Presentation,
   ShieldCheck,
+  Sparkles,
+  StickyNote,
   Users,
   Video,
+  Waypoints,
 } from "lucide-react";
 import { Footer } from "@/components/public/Footer";
 import { Header } from "@/components/public/Header";
@@ -25,10 +35,6 @@ import { cn } from "@/lib/utils";
 
 interface OfficePageProps {
   locale: string;
-}
-
-interface OfficePageContentProps extends OfficePageProps {
-  t: (key: string) => string;
 }
 
 interface SectionProps {
@@ -41,15 +47,18 @@ interface SectionProps {
   children: React.ReactNode;
 }
 
-interface CardLinkProps {
+interface FeatureCardProps {
   title: string;
   description: string;
-  href?: string;
-  cta?: string;
-  icon?: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string }>;
   accent?: string;
-  className?: string;
   dark?: boolean;
+  compact?: boolean;
+}
+
+interface ComparisonCellProps {
+  label: string;
+  highlighted?: boolean;
 }
 
 function localizeHref(locale: string, href: string) {
@@ -118,63 +127,36 @@ function Section({ id, eyebrow, title, description, tone = "default", centered =
   );
 }
 
-function CardLink({ title, description, href, cta, icon: Icon, accent, className, dark = false }: CardLinkProps) {
-  const content = (
+function FeatureCard({ title, description, icon: Icon, accent, dark = false, compact = false }: FeatureCardProps) {
+  return (
     <div
       className={cn(
-        "group relative h-full overflow-hidden rounded-4xl border p-6 transition duration-300",
-        dark
-          ? "border-white/10 bg-white/4 shadow-none hover:-translate-y-1 hover:border-white/20 hover:bg-white/6"
-          : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.28)] hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.22)]",
-        className,
+        "relative h-full overflow-hidden rounded-4xl border p-6",
+        dark ? "border-white/10 bg-white/4" : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]",
+        compact ? "p-5" : "p-6",
       )}
     >
       {accent ? <div aria-hidden={true} className={cn("absolute inset-x-0 top-0 h-1", accent)} /> : null}
-      <div className="flex items-start justify-between gap-4">
-        {Icon ? (
-          <span
-            className={cn(
-              "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
-              dark ? "border-white/10 bg-white/4 text-white/88" : "border-zinc-200 bg-zinc-50 text-zinc-700",
-            )}
-          >
-            <Icon className="h-5 w-5" />
-          </span>
-        ) : (
-          <span />
+      <span
+        className={cn(
+          "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
+          dark ? "border-white/10 bg-white/6 text-white" : "border-zinc-200 bg-zinc-50 text-zinc-700",
         )}
-        {href ? (
-          <span
-            className={cn(
-              "inline-flex h-10 w-10 items-center justify-center rounded-full border transition",
-              dark
-                ? "border-white/10 text-white/60 group-hover:border-white/20 group-hover:text-white"
-                : "border-zinc-200 text-zinc-500 group-hover:border-zinc-300 group-hover:text-zinc-900",
-            )}
-          >
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden={true} />
-          </span>
-        ) : null}
-      </div>
-      <h3 className={cn("mt-8 text-xl font-semibold tracking-[-0.03em]", dark ? "text-white" : "text-zinc-950")}>{title}</h3>
-      <p className={cn("mt-4 text-sm leading-7", dark ? "text-white/64" : "text-zinc-600")}>{description}</p>
-      {cta ? <span className={cn("mt-7 inline-flex text-sm font-medium", dark ? "text-white" : "text-zinc-950")}>{cta}</span> : null}
+      >
+        <Icon className="h-5 w-5" />
+      </span>
+      <h3 className={cn("mt-6 text-xl font-semibold tracking-[-0.03em]", dark ? "text-white" : "text-zinc-950")}>{title}</h3>
+      <p className={cn("mt-3 text-sm leading-7", dark ? "text-white/64" : "text-zinc-600")}>{description}</p>
     </div>
   );
-
-  if (!href) {
-    return content;
-  }
-
-  return <Link href={href}>{content}</Link>;
 }
 
-function ModulePill({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+function MetricPill({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em]",
-        dark ? "border-white/10 bg-white/4 text-white/68" : "border-zinc-200 bg-zinc-50 text-zinc-600",
+        "inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em]",
+        dark ? "border-white/10 bg-white/5 text-white/72" : "border-zinc-200 bg-zinc-50 text-zinc-600",
       )}
     >
       {children}
@@ -182,637 +164,593 @@ function ModulePill({ children, dark = false }: { children: React.ReactNode; dar
   );
 }
 
-function HeroWorkspacePreview({ t }: { t: (key: string) => string }) {
-  const sidebar = [
-    { key: "mail", icon: Mail },
-    { key: "chat", icon: MessageSquare },
-    { key: "meet", icon: Video },
-    { key: "files", icon: Files },
-    { key: "writer", icon: FileText },
-    { key: "sheets", icon: FileSpreadsheet },
-    { key: "calendar", icon: CalendarDays },
-  ] as const;
-
+function ComparisonCell({ label, highlighted = false }: ComparisonCellProps) {
   return (
-    <div className="relative w-full max-w-full overflow-hidden rounded-4xl border border-zinc-200 bg-white p-3 shadow-[0_32px_100px_-56px_rgba(15,23,42,0.34)] lg:max-w-155">
-      <div
-        aria-hidden={true}
-        className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.18),transparent_56%),linear-gradient(180deg,rgba(244,244,245,0.94),rgba(255,255,255,0))]"
+    <div
+      className={cn(
+        "rounded-2xl border px-4 py-3 text-sm leading-6",
+        highlighted
+          ? "border-zinc-950 bg-zinc-950 text-white"
+          : "border-zinc-200 bg-zinc-50/80 text-zinc-600",
+      )}
+    >
+      {label}
+    </div>
+  );
+}
+
+function HeroVisual() {
+  return (
+    <svg viewBox="0 0 1600 620" className="h-full w-full" fill="none" aria-hidden={true}>
+      <defs>
+        <linearGradient id="office-hero-fill" x1="0%" x2="100%" y1="0%" y2="0%">
+          <stop offset="0%" stopColor="rgba(24,24,27,0.12)" />
+          <stop offset="100%" stopColor="rgba(24,24,27,0.04)" />
+        </linearGradient>
+        <radialGradient id="office-hero-node" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(59,130,246,0.16)" />
+          <stop offset="100%" stopColor="rgba(59,130,246,0)" />
+        </radialGradient>
+      </defs>
+
+      <path
+        d="M76 238C176 178 291 174 414 219C512 255 593 251 690 209C808 158 918 177 1016 263C1089 328 1160 331 1257 294C1352 258 1445 282 1532 357V446C1432 438 1341 407 1253 375C1153 338 1084 346 1002 396C904 456 787 452 678 383C587 326 506 318 398 348C286 379 177 357 76 291V238Z"
+        fill="url(#office-hero-fill)"
       />
-      <div className="relative grid gap-2.5">
-        <div className="flex flex-col gap-2.5 rounded-[1.35rem] border border-zinc-200 bg-zinc-50/80 p-2.5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0 rounded-[1rem] border border-zinc-200 bg-white px-3 py-2">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("hero.visual.workspaceLabel")}</div>
-            <div className="mt-1 truncate text-sm font-semibold leading-5 tracking-[-0.03em] text-zinc-950">{t("hero.visual.workspaceTitle")}</div>
-          </div>
-          <div className="flex flex-wrap gap-1.5 sm:justify-end">
-            {sidebar.map((item) => (
-              <span
-                key={item.key}
-                className={cn(
-                  "inline-flex h-8 w-8 items-center justify-center rounded-xl border bg-white text-zinc-700",
-                  item.key === "mail" ? "border-zinc-300" : "border-zinc-200",
-                )}
-                title={t(`hero.visual.sidebar.${item.key}`)}
-              >
-                <item.icon className="h-4 w-4" />
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-[1.35rem] border border-zinc-200 bg-white p-3">
-          <div className="flex flex-col gap-2 border-b border-zinc-200 pb-2.5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="min-w-0">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("hero.visual.centerLabel")}</div>
-              <div className="mt-1 truncate text-lg font-semibold leading-6 tracking-[-0.03em] text-zinc-950">{t("hero.visual.centerTitle")}</div>
-            </div>
-            <div className="max-w-55 truncate rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-500">
-              {t("hero.visual.search")}
-            </div>
-          </div>
-          <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
-            {[1, 2].map((item) => (
-              <div key={item} className="rounded-[1rem] border border-zinc-200 bg-zinc-50/65 p-2.5">
-                <div className="flex items-start justify-between gap-2.5">
-                  <div className="min-w-0">
-                    <div className="truncate text-sm font-semibold text-zinc-950">{t(`hero.visual.messages.${item}.title`)}</div>
-                    <div className="mt-1 truncate text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                      {t(`hero.visual.messages.${item}.meta`)}
-                    </div>
-                  </div>
-                  <span className="shrink-0 rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[10px] text-zinc-500">
-                    {t(`hero.visual.messages.${item}.state`)}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid gap-2.5 sm:grid-cols-[minmax(0,1fr)_150px_150px]">
-          <div className="rounded-[1.35rem] border border-zinc-200 bg-zinc-950 p-3 text-white">
-            <div className="flex items-center justify-between gap-3">
-              <div className="text-sm font-medium">{t("hero.visual.meeting.title")}</div>
-              <span className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/55">
-                {t("hero.visual.meeting.state")}
-              </span>
-            </div>
-            <div className="mt-4 flex items-end justify-between gap-4">
-              <div className="min-w-0">
-                <div className="text-2xl font-semibold tracking-[-0.04em]">{t("hero.visual.meeting.time")}</div>
-                <div className="mt-1 truncate text-xs text-white/55">{t("hero.visual.meeting.meta")}</div>
-              </div>
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((item) => (
-                  <span key={item} className="h-7 w-7 rounded-full border border-white/10 bg-white/8" />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-[1.2rem] border border-zinc-200 bg-white p-3">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("hero.visual.filesLabel")}</div>
-            <div className="mt-2 truncate text-xs font-medium text-zinc-950">{t("hero.visual.files.1.title")}</div>
-            <div className="mt-1 truncate text-[11px] text-zinc-500">{t("hero.visual.files.1.meta")}</div>
-          </div>
-
-          <div className="rounded-[1.2rem] border border-zinc-200 bg-white p-3">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("hero.visual.calendarLabel")}</div>
-            <div className="mt-2 truncate text-xs font-semibold text-zinc-950">{t("hero.visual.calendarTitle")}</div>
-            <div className="mt-1 truncate text-[11px] text-zinc-500">{t("hero.visual.calendarMeta")}</div>
-          </div>
-        </div>
-
-        <div className="hidden rounded-[1rem] border border-zinc-200 bg-zinc-50/70 px-3 py-2 sm:flex sm:items-center sm:justify-between sm:gap-3">
-          <div className="min-w-0">
-            <div className="truncate text-sm font-semibold text-zinc-950">{t("hero.visual.messages.3.title")}</div>
-            <div className="mt-0.5 truncate text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-              {t("hero.visual.messages.3.meta")}
-            </div>
-          </div>
-          <span className="shrink-0 rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[10px] text-zinc-500">
-            {t("hero.visual.messages.3.state")}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function WorkflowPreview({ step, t }: { step: "mail" | "files" | "meet" | "flow"; t: (key: string) => string }) {
-  if (step === "mail") {
-    return (
-      <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-50/70 p-4">
-        <div className="text-xs uppercase tracking-[0.18em] text-zinc-500">{t("workflow.steps.mail.mockup.label")}</div>
-        <div className="mt-3 rounded-2xl border border-zinc-200 bg-white p-4">
-          <div className="text-sm font-semibold text-zinc-950">{t("workflow.steps.mail.mockup.subject")}</div>
-          <div className="mt-2 text-xs text-zinc-500">{t("workflow.steps.mail.mockup.meta")}</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (step === "files") {
-    return (
-      <div className="grid gap-3">
-        <div className="rounded-2xl border border-zinc-200 bg-white p-4">
-          <div className="text-xs uppercase tracking-[0.18em] text-zinc-500">{t("workflow.steps.files.mockup.fileLabel")}</div>
-          <div className="mt-2 text-sm font-semibold text-zinc-950">{t("workflow.steps.files.mockup.fileTitle")}</div>
-        </div>
-        <div className="rounded-2xl border border-zinc-200 bg-zinc-950 p-4 text-white">
-          <div className="text-xs uppercase tracking-[0.18em] text-white/50">{t("workflow.steps.files.mockup.sheetLabel")}</div>
-          <div className="mt-2 text-sm font-semibold">{t("workflow.steps.files.mockup.sheetTitle")}</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (step === "meet") {
-    return (
-      <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-950 p-5 text-white">
-        <div className="flex items-center justify-between">
-          <div className="text-sm font-medium">{t("workflow.steps.meet.mockup.room")}</div>
-          <span className="rounded-full border border-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-white/55">
-            {t("workflow.steps.meet.mockup.state")}
-          </span>
-        </div>
-        <div className="mt-6 flex -space-x-2">
-          {[1, 2, 3].map((item) => (
-            <span key={item} className="h-10 w-10 rounded-full border border-white/10 bg-white/10" />
-          ))}
-        </div>
-        <div className="mt-5 text-sm text-white/60">{t("workflow.steps.meet.mockup.note")}</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-3">
-      {[1, 2].map((item) => (
-        <div key={item} className="flex items-start gap-3 rounded-2xl border border-zinc-200 bg-zinc-50/70 p-4">
-          <CheckCircle2 className="mt-0.5 h-4 w-4 text-zinc-500" />
-          <div>
-            <div className="text-sm font-semibold text-zinc-950">{t(`workflow.steps.flow.mockup.tasks.${item}.title`)}</div>
-            <div className="mt-1 text-xs text-zinc-500">{t(`workflow.steps.flow.mockup.tasks.${item}.meta`)}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ArchitecturePreview({ t }: { t: (key: string) => string }) {
-  return (
-    <div className="rounded-[2.5rem] border border-zinc-200 bg-white p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.24)] sm:p-8">
-      <div className="grid gap-6 xl:grid-cols-[240px_minmax(0,1fr)_240px] xl:items-center">
-        <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50/75 p-5">
-          <div className="text-xs uppercase tracking-[0.18em] text-zinc-500">{t("modular.visual.standaloneLabel")}</div>
-          <div className="mt-3 text-lg font-semibold tracking-[-0.03em] text-zinc-950">{t("modular.visual.standaloneTitle")}</div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {["mail", "meet", "writer"].map((item) => (
-              <ModulePill key={item}>{t(`modular.visual.modules.${item}`)}</ModulePill>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-4xl border border-zinc-200 bg-zinc-950 p-6 text-white">
-          <div className="text-xs uppercase tracking-[0.18em] text-white/46">{t("modular.visual.workspaceLabel")}</div>
-          <div className="mt-3 text-3xl font-semibold tracking-tighter">{t("modular.visual.workspaceTitle")}</div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {["mail", "chat", "meet", "writer", "sheets", "files", "calendar", "flow"].map((item) => (
-              <ModulePill key={item} dark>
-                {t(`modular.visual.modules.${item}`)}
-              </ModulePill>
-            ))}
-          </div>
-          <div className="mt-8 rounded-[1.6rem] border border-white/10 bg-white/4 p-5">
-            <div className="text-xs uppercase tracking-[0.18em] text-white/46">{t("modular.visual.foundationLabel")}</div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {["identity", "access", "storage", "security", "apis"].map((item) => (
-                <div key={item} className="rounded-2xl border border-white/10 bg-white/4 px-4 py-3 text-sm text-white/72">
-                  {t(`modular.visual.foundations.${item}`)}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50/75 p-5">
-          <div className="text-xs uppercase tracking-[0.18em] text-zinc-500">{t("modular.visual.unifiedLabel")}</div>
-          <div className="mt-3 text-lg font-semibold tracking-[-0.03em] text-zinc-950">{t("modular.visual.unifiedTitle")}</div>
-          <div className="mt-4 space-y-2">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-600">
-                {t(`modular.visual.unifiedPoints.${item}`)}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function OfficeHero({ t }: { t: (key: string) => string }) {
-  return (
-    <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
-      <div aria-hidden={true} className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
-        <div
-          className="absolute right-[-8%] top-[16%] hidden h-[58%] w-[56%] rounded-full bg-[radial-gradient(circle,rgba(148,163,184,0.16),rgba(148,163,184,0)_68%)] xl:block"
-        />
-        <div
-          className="absolute inset-x-[42%] top-[22%] hidden h-[44%] opacity-[0.08] xl:block"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(24,24,27,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,24,27,0.5) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.42)_30%,rgba(255,255,255,0.94)_100%)]" />
-      </div>
-
-      <div className="relative mx-auto flex min-h-[88vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
-        <div className="grid w-full min-w-0 gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,620px)] lg:items-center">
-          <div className="min-w-0 max-w-2xl lg:pt-2">
-            <SectionEyebrow>{t("hero.eyebrow")}</SectionEyebrow>
-            <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
-              {t("hero.title")}
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl">{t("hero.description")}</p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="h-14 rounded-full bg-zinc-950 px-8 text-sm font-medium text-white hover:bg-zinc-800">
-                <Link href="#capabilities">
-                  {t("hero.primaryCta")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-zinc-300 bg-white/85 px-8 text-sm font-medium text-zinc-950">
-                <Link href="#open-technology">{t("hero.secondaryCta")}</Link>
-              </Button>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {["mail", "meet", "writer", "identity"].map((item) => (
-                <ModulePill key={item}>{t(`hero.signals.${item}`)}</ModulePill>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex min-w-0 items-center justify-center self-center lg:justify-end">
-            <HeroWorkspacePreview t={t} />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function OfficeManifestoSection({ t }: { t: (key: string) => string }) {
-  return (
-    <section className="py-24 sm:py-28 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 text-center lg:px-12">
-        <p className="mx-auto max-w-5xl text-[clamp(2rem,4vw,4rem)] font-semibold leading-[1.04] tracking-tighter text-zinc-950">
-          {t("manifesto.statement")}
-        </p>
-        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-600">{t("manifesto.description")}</p>
-      </div>
-    </section>
-  );
-}
-
-function OfficeCapabilitiesSection({ t }: { t: (key: string) => string }) {
-  const items = [
-    { key: "communicate", icon: MessageSquare, accent: "bg-zinc-950" },
-    { key: "create", icon: FileText, accent: "bg-zinc-700" },
-    { key: "organize", icon: CalendarDays, accent: "bg-slate-500" },
-    { key: "secure", icon: ShieldCheck, accent: "bg-slate-700" },
-  ] as const;
-
-  return (
-    <Section id="capabilities" eyebrow={t("capabilities.eyebrow")} title={t("capabilities.title")} description={t("capabilities.description")}>
-      <div className="grid gap-5 md:grid-cols-2">
-        {items.map((item) => (
-          <div
-            key={item.key}
-            className="relative overflow-hidden rounded-4xl border border-zinc-200/80 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]"
-          >
-            <div aria-hidden={true} className={cn("absolute inset-x-0 top-0 h-1", item.accent)} />
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-50 text-zinc-700">
-              <item.icon className="h-5 w-5" />
-            </span>
-            <h3 className="mt-8 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{t(`capabilities.items.${item.key}.title`)}</h3>
-            <p className="mt-4 text-sm leading-7 text-zinc-600">{t(`capabilities.items.${item.key}.description`)}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {[1, 2, 3].map((module) => (
-                <ModulePill key={module}>{t(`capabilities.items.${item.key}.modules.${module}`)}</ModulePill>
-              ))}
-            </div>
-          </div>
+      <path
+        d="M158 312C320 246 473 244 615 304C760 365 880 370 1012 315C1171 249 1304 278 1443 365"
+        stroke="rgba(24,24,27,0.14)"
+        strokeWidth="1.25"
+      />
+      <path
+        d="M218 400C360 438 504 435 650 391C795 347 909 337 1048 377C1168 412 1285 424 1408 390"
+        stroke="rgba(24,24,27,0.1)"
+        strokeWidth="1.25"
+      />
+      <g fill="rgba(24,24,27,0.38)">
+        {[
+          [258, 322],
+          [456, 286],
+          [646, 326],
+          [828, 276],
+          [1018, 318],
+          [1194, 348],
+          [1392, 382],
+        ].map(([cx, cy]) => (
+          <g key={`${cx}-${cy}`}>
+            <circle cx={cx} cy={cy} r="5.5" />
+            <circle cx={cx} cy={cy} r="22" fill="url(#office-hero-node)" />
+          </g>
         ))}
-      </div>
-    </Section>
-  );
-}
-
-function ConnectedWorkflowSection({ t }: { t: (key: string) => string }) {
-  const steps = ["mail", "files", "meet", "flow"] as const;
-
-  return (
-    <Section id="workflow" eyebrow={t("workflow.eyebrow")} title={t("workflow.title")} description={t("workflow.description")} tone="muted">
-      <div className="grid gap-5 xl:grid-cols-4">
-        {steps.map((step) => (
-          <div key={step} className="rounded-4xl border border-zinc-200 bg-white p-5 shadow-[0_18px_60px_-48px_rgba(15,23,42,0.22)]">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`workflow.steps.${step}.time`)}</div>
-            <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{t(`workflow.steps.${step}.title`)}</div>
-            <p className="mt-3 text-sm leading-7 text-zinc-600">{t(`workflow.steps.${step}.description`)}</p>
-            <div className="mt-6">
-              <WorkflowPreview step={step} t={t} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function OfficeApplicationsSection({ t }: { t: (key: string) => string }) {
-  const categories = [
-    {
-      key: "communication",
-      items: [
-        { key: "mail", icon: Mail },
-        { key: "chat", icon: MessageSquare },
-        { key: "meet", icon: Video },
-      ],
-    },
-    {
-      key: "creation",
-      items: [
-        { key: "writer", icon: FileText },
-        { key: "sheets", icon: FileSpreadsheet },
-        { key: "files", icon: Files },
-      ],
-    },
-    {
-      key: "planning",
-      items: [
-        { key: "calendar", icon: CalendarDays },
-        { key: "flow", icon: FolderKanban },
-      ],
-    },
-    {
-      key: "foundations",
-      items: [
-        { key: "identity", icon: ShieldCheck },
-        { key: "vault", icon: LockKeyhole },
-      ],
-    },
-  ] as const;
-
-  return (
-    <Section id="applications" eyebrow={t("applications.eyebrow")} title={t("applications.title")} description={t("applications.description")}>
-      <div className="grid gap-8 xl:grid-cols-2">
-        {categories.map((category) => (
-          <div key={category.key} className="rounded-4xl border border-zinc-200 bg-white p-6 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.18)]">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-              {t(`applications.categories.${category.key}.eyebrow`)}
-            </div>
-            <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">
-              {t(`applications.categories.${category.key}.title`)}
-            </div>
-            <div className="mt-6 grid gap-4">
-              {category.items.map((item) => (
-                <div key={item.key} className="rounded-[1.5rem] border border-zinc-200 bg-zinc-50/75 p-5">
-                  <div className="flex items-start gap-4">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-zinc-200 bg-white text-zinc-700">
-                      <item.icon className="h-4 w-4" />
-                    </span>
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                        {t(`applications.modules.${item.key}.label`)}
-                      </div>
-                      <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-zinc-950">
-                        {t(`applications.modules.${item.key}.title`)}
-                      </div>
-                      <p className="mt-3 text-sm leading-7 text-zinc-600">{t(`applications.modules.${item.key}.description`)}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function ModularWorkspaceSection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section eyebrow={t("modular.eyebrow")} title={t("modular.title")} description={t("modular.description")} tone="muted">
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] xl:items-center">
-        <ArchitecturePreview t={t} />
-        <div className="space-y-4">
-          {[1, 2, 3].map((item) => (
-            <CardLink
-              key={item}
-              title={t(`modular.points.${item}.title`)}
-              description={t(`modular.points.${item}.description`)}
-              className="min-h-52.5 shadow-[0_18px_60px_-48px_rgba(15,23,42,0.18)]"
-            />
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-function IdentityGovernanceSection({ t }: { t: (key: string) => string }) {
-  const items = [
-    { key: "identity", icon: Users },
-    { key: "access", icon: ShieldCheck },
-    { key: "spaces", icon: LockKeyhole },
-    { key: "traceability", icon: Network },
-  ] as const;
-
-  return (
-    <Section eyebrow={t("governance.eyebrow")} title={t("governance.title")} description={t("governance.description")} tone="dark">
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {items.map((item) => (
-          <CardLink
-            key={item.key}
-            title={t(`governance.items.${item.key}.title`)}
-            description={t(`governance.items.${item.key}.description`)}
-            icon={item.icon}
-            dark
-            className="min-h-62.5"
-          />
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function DeploymentSection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section id="deployment" eyebrow={t("deployment.eyebrow")} title={t("deployment.title")} description={t("deployment.description")}>
-      <div className="grid gap-5 lg:grid-cols-2">
-        {["managed", "controlled"].map((item) => (
-          <div key={item} className="rounded-4xl border border-zinc-200 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.2)]">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-              {t(`deployment.cards.${item}.eyebrow`)}
-            </div>
-            <div className="mt-4 text-3xl font-semibold tracking-tighter text-zinc-950">
-              {t(`deployment.cards.${item}.title`)}
-            </div>
-            <p className="mt-4 text-sm leading-7 text-zinc-600">{t(`deployment.cards.${item}.description`)}</p>
-            <div className="mt-6 space-y-3">
-              {[1, 2, 3, 4].map((point) => (
-                <div key={point} className="flex items-start gap-3 rounded-2xl border border-zinc-200 bg-zinc-50/70 px-4 py-3">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 text-zinc-500" />
-                  <span className="text-sm text-zinc-600">{t(`deployment.cards.${item}.points.${point}`)}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function OpenTechnologySection({ t }: { t: (key: string) => string }) {
-  const items = [
-    { key: "openSource", icon: FileText },
-    { key: "control", icon: ShieldCheck },
-    { key: "interoperability", icon: Network },
-  ] as const;
-
-  return (
-    <Section id="open-technology" eyebrow={t("openTechnology.eyebrow")} title={t("openTechnology.title")} description={t("openTechnology.description")} tone="muted">
-      <div className="grid gap-5 lg:grid-cols-3">
-        {items.map((item) => (
-          <CardLink
-            key={item.key}
-            title={t(`openTechnology.items.${item.key}.title`)}
-            description={t(`openTechnology.items.${item.key}.description`)}
-            icon={item.icon}
-            className="min-h-57.5"
-          />
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function DesignedForSection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section eyebrow={t("designedFor.eyebrow")} title={t("designedFor.title")}>
-      <div className="grid gap-5 md:grid-cols-2">
-        {["distributed", "institutions", "community", "internal"].map((item) => (
-          <CardLink
-            key={item}
-            title={t(`designedFor.items.${item}.title`)}
-            description={t(`designedFor.items.${item}.description`)}
-            className="min-h-55"
-          />
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function EcosystemRelationSection({ locale, t }: OfficePageContentProps) {
-  return (
-    <Section eyebrow={t("ecosystem.eyebrow")} title={t("ecosystem.title")} description={t("ecosystem.description")} tone="muted">
-      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-zinc-200 bg-white p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
-        <div className="grid gap-5">
-          {["organizations", "office", "platforms", "foundations"].map((item, index) => (
-            <React.Fragment key={item}>
-              <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50/75 p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                  {t(`ecosystem.layers.${item}.eyebrow`)}
-                </div>
-                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">
-                  {t(`ecosystem.layers.${item}.title`)}
-                </div>
-                <p className="mt-3 text-sm leading-7 text-zinc-600">{t(`ecosystem.layers.${item}.description`)}</p>
-              </div>
-              {index < 3 ? (
-                <div className="flex justify-center" aria-hidden={true}>
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-400">
-                    <ArrowRight className="h-4 w-4 rotate-90" />
-                  </div>
-                </div>
-              ) : null}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-      <div className="mt-10">
-        <Button asChild variant="outline" className="rounded-full border-zinc-300 bg-white px-6 text-zinc-950">
-          <Link href={localizeHref(locale, "/platform")}>{t("ecosystem.cta")}</Link>
-        </Button>
-      </div>
-    </Section>
-  );
-}
-
-function OfficeFinalCtaSection({ locale, t }: OfficePageContentProps) {
-  const items = [
-    { key: "organizations", href: "#deployment", icon: FolderKanban },
-    { key: "developers", href: localizeHref(locale, "/developers"), icon: Network },
-    { key: "community", href: localizeHref(locale, "/community"), icon: Users },
-  ] as const;
-
-  return (
-    <section className="border-t border-zinc-200 py-24 sm:py-28">
-      <div className="mx-auto max-w-360 px-6 lg:px-12">
-        <SectionEyebrow>{t("finalCta.eyebrow")}</SectionEyebrow>
-        <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tighter text-zinc-950 sm:text-5xl lg:text-6xl">
-          {t("finalCta.title")}
-        </h2>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600">{t("finalCta.description")}</p>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {items.map((item) => (
-            <CardLink
-              key={item.key}
-              title={t(`finalCta.items.${item.key}.title`)}
-              description={t(`finalCta.items.${item.key}.description`)}
-              href={item.href}
-              cta={t(`finalCta.items.${item.key}.cta`)}
-              icon={item.icon}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+      </g>
+    </svg>
   );
 }
 
 export async function OfficePage({ locale }: OfficePageProps) {
-  const translate = await getTranslations({ locale, namespace: "Public.office.page" });
-  const t = (key: string) => translate(key);
+  const t = await getTranslations({ locale, namespace: "Public.office.page" });
+
+  const trustItems = [
+    { key: "openSource", icon: Sparkles },
+    { key: "privacy", icon: LockKeyhole },
+    { key: "deployment", icon: Cloud },
+    { key: "security", icon: ShieldCheck },
+    { key: "ecosystem", icon: Waypoints },
+  ] as const;
+
+  const overviewGroups = [
+    { key: "communication", icon: MessageSquare },
+    { key: "productivity", icon: FileText },
+    { key: "storage", icon: Files },
+    { key: "governance", icon: ShieldCheck },
+  ] as const;
+
+  const appItems = [
+    { key: "mail", icon: Mail, accent: "bg-sky-500/80" },
+    { key: "calendar", icon: CalendarDays, accent: "bg-indigo-500/80" },
+    { key: "drive", icon: Files, accent: "bg-cyan-500/80" },
+    { key: "docs", icon: FileText, accent: "bg-blue-500/80" },
+    { key: "sheets", icon: FileSpreadsheet, accent: "bg-emerald-500/80" },
+    { key: "slides", icon: Presentation, accent: "bg-amber-500/80" },
+    { key: "meet", icon: Video, accent: "bg-violet-500/80" },
+    { key: "chat", icon: MessageSquare, accent: "bg-fuchsia-500/80" },
+    { key: "tasks", icon: ListTodo, accent: "bg-zinc-500/80" },
+    { key: "notes", icon: StickyNote, accent: "bg-orange-500/80" },
+    { key: "forms", icon: CheckCircle2, accent: "bg-lime-500/80" },
+    { key: "vault", icon: Archive, accent: "bg-rose-500/80" },
+    { key: "identity", icon: Users, accent: "bg-slate-500/80" },
+    { key: "vpn", icon: Network, accent: "bg-teal-500/80" },
+    { key: "aiAssistant", icon: Bot, accent: "bg-purple-500/80" },
+  ] as const;
+
+  const comparisonRows = ["openness", "sovereignty", "integration", "control", "ai"] as const;
+  const faqItems = ["what", "deployment", "migration", "security", "ai", "ecosystem"] as const;
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
+    <>
       <Header locale={locale as Locale} />
-      <main className="flex-1 overflow-x-hidden">
-        <OfficeHero t={t} />
-        <OfficeManifestoSection t={t} />
-        <OfficeCapabilitiesSection t={t} />
-        <ConnectedWorkflowSection t={t} />
-        <OfficeApplicationsSection t={t} />
-        <ModularWorkspaceSection t={t} />
-        <IdentityGovernanceSection t={t} />
-        <DeploymentSection t={t} />
-        <OpenTechnologySection t={t} />
-        <DesignedForSection t={t} />
-        <EcosystemRelationSection locale={locale} t={t} />
-        <OfficeFinalCtaSection locale={locale} t={t} />
+
+      <main className="bg-white text-zinc-950">
+        <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
+          <div aria-hidden={true} className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
+            <div className="absolute inset-x-[-10%] top-[16%] h-[56%] opacity-95 sm:top-[18%] lg:inset-x-[-4%] lg:top-[19%] lg:h-[62%]">
+              <HeroVisual />
+            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(255,255,255,0.34)_30%,rgba(255,255,255,0.82)_100%)]" />
+          </div>
+
+          <div className="relative mx-auto flex min-h-[88vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
+            <div className="max-w-4xl">
+              <SectionEyebrow>{t("hero.eyebrow")}</SectionEyebrow>
+              <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
+                {t("hero.title")}
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl">{t("hero.description")}</p>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <Button asChild size="lg" className="h-14 rounded-full bg-zinc-950 px-8 text-sm font-medium text-white hover:bg-zinc-800">
+                  <Link href="#apps">
+                    {t("hero.primaryCta")}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-zinc-300 bg-white/85 px-8 text-sm font-medium text-zinc-950">
+                  <Link href={localizeHref(locale, "/pricing")}>{t("hero.secondaryCta")}</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-zinc-300 bg-white/85 px-8 text-sm font-medium text-zinc-950">
+                  <Link href={localizeHref(locale, "/solutions/workplace")}>{t("hero.tertiaryCta")}</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Section
+          eyebrow={t("trust.eyebrow")}
+          title={t("trust.title")}
+          description={t("trust.description")}
+          centered
+        >
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {trustItems.map(({ key, icon }) => (
+              <FeatureCard
+                key={key}
+                title={t(`trust.items.${key}.title`)}
+                description={t(`trust.items.${key}.description`)}
+                icon={icon}
+                compact
+              />
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          eyebrow={t("overview.eyebrow")}
+          title={t("overview.title")}
+          description={t("overview.description")}
+          tone="muted"
+        >
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] xl:items-start">
+            <div className="space-y-6">
+              <div className="rounded-[2rem] border border-zinc-200 bg-white p-6 shadow-[0_20px_60px_-44px_rgba(15,23,42,0.22)]">
+                <p className="text-base leading-8 text-zinc-600">{t("overview.body")}</p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {["teams", "it", "developers", "leaders"].map((key) => (
+                    <div key={key} className="rounded-2xl border border-zinc-200 bg-zinc-50/75 px-4 py-3">
+                      <div className="text-sm font-semibold text-zinc-950">{t(`overview.audiences.${key}.title`)}</div>
+                      <div className="mt-1 text-xs leading-6 text-zinc-500">{t(`overview.audiences.${key}.description`)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2.5">
+                {["mail", "calendar", "drive", "docs", "meet", "chat", "identity", "ai"].map((key) => (
+                  <MetricPill key={key}>{t(`overview.apps.${key}`)}</MetricPill>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-5">
+              <div className="grid gap-4 md:grid-cols-2">
+                {overviewGroups.map(({ key, icon }) => (
+                  <FeatureCard
+                    key={key}
+                    title={t(`overview.groups.${key}.title`)}
+                    description={t(`overview.groups.${key}.description`)}
+                    icon={icon}
+                    compact
+                  />
+                ))}
+              </div>
+
+              <div className="overflow-hidden rounded-[2.25rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-60px_rgba(15,23,42,0.28)]">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">{t("overview.visual.eyebrow")}</div>
+                    <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t("overview.visual.title")}</div>
+                  </div>
+                  <MetricPill>{t("overview.visual.badge")}</MetricPill>
+                </div>
+
+                <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {["inbox", "document", "meeting", "drive"].map((key) => (
+                      <div key={key} className="rounded-[1.35rem] border border-zinc-200 bg-zinc-50/75 p-4">
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{t(`overview.visual.cards.${key}.label`)}</div>
+                        <div className="mt-2 text-sm font-semibold text-zinc-950">{t(`overview.visual.cards.${key}.title`)}</div>
+                        <div className="mt-2 text-xs leading-6 text-zinc-500">{t(`overview.visual.cards.${key}.description`)}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-950 p-5 text-white">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/46">{t("overview.visual.foundationLabel")}</div>
+                    <div className="mt-4 space-y-2">
+                      {["identity", "security", "ai"].map((key) => (
+                        <div key={key} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/72">
+                          {t(`overview.visual.foundations.${key}`)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("apps.eyebrow")} title={t("apps.title")} description={t("apps.description")} id="apps">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
+            {appItems.map(({ key, icon, accent }) => (
+              <FeatureCard
+                key={key}
+                title={t(`apps.items.${key}.title`)}
+                description={t(`apps.items.${key}.description`)}
+                icon={icon}
+                accent={accent}
+                compact
+              />
+            ))}
+          </div>
+        </Section>
+
+        <Section eyebrow={t("collaboration.eyebrow")} title={t("collaboration.title")} description={t("collaboration.description")}>
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:items-center">
+            <div className="space-y-5">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="rounded-[1.8rem] border border-zinc-200 bg-zinc-50/70 p-6">
+                  <div className="text-sm font-semibold tracking-[-0.02em] text-zinc-950">{t(`collaboration.points.${item}.title`)}</div>
+                  <div className="mt-3 text-sm leading-7 text-zinc-600">{t(`collaboration.points.${item}.description`)}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[2.4rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-56px_rgba(15,23,42,0.3)]">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("collaboration.visual.label")}</div>
+                  <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t("collaboration.visual.title")}</div>
+                </div>
+                <MetricPill>{t("collaboration.visual.status")}</MetricPill>
+              </div>
+              <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+                <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-950 p-5 text-white">
+                  <div className="text-sm font-medium">{t("collaboration.visual.roomTitle")}</div>
+                  <div className="mt-6 flex -space-x-2">
+                    {[1, 2, 3, 4].map((item) => (
+                      <span key={item} className="h-10 w-10 rounded-full border border-white/10 bg-white/10" />
+                    ))}
+                  </div>
+                  <div className="mt-5 text-sm leading-7 text-white/60">{t("collaboration.visual.roomDescription")}</div>
+                </div>
+                <div className="space-y-3">
+                  {[1, 2, 3].map((item) => (
+                    <div key={item} className="rounded-[1.4rem] border border-zinc-200 bg-zinc-50/75 p-4">
+                      <div className="text-sm font-semibold text-zinc-950">{t(`collaboration.visual.events.${item}.title`)}</div>
+                      <div className="mt-2 text-xs leading-6 text-zinc-500">{t(`collaboration.visual.events.${item}.meta`)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("communication.eyebrow")} title={t("communication.title")} description={t("communication.description")} tone="muted">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:items-center">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {["mail", "chat", "meet", "calendar"].map((key) => (
+                <div key={key} className="rounded-[1.8rem] border border-zinc-200 bg-white p-6">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`communication.apps.${key}.label`)}</div>
+                  <div className="mt-3 text-lg font-semibold tracking-[-0.03em] text-zinc-950">{t(`communication.apps.${key}.title`)}</div>
+                  <div className="mt-3 text-sm leading-7 text-zinc-600">{t(`communication.apps.${key}.description`)}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[2.4rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-56px_rgba(15,23,42,0.26)]">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("communication.visual.label")}</div>
+              <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t("communication.visual.title")}</div>
+              <div className="mt-6 grid gap-3">
+                {[1, 2, 3].map((item) => (
+                  <div key={item} className="rounded-[1.4rem] border border-zinc-200 bg-zinc-50/75 p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="text-sm font-semibold text-zinc-950">{t(`communication.visual.timeline.${item}.title`)}</div>
+                        <div className="mt-2 text-xs leading-6 text-zinc-500">{t(`communication.visual.timeline.${item}.description`)}</div>
+                      </div>
+                      <span className="rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">
+                        {t(`communication.visual.timeline.${item}.tag`)}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("productivity.eyebrow")} title={t("productivity.title")} description={t("productivity.description")}>
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] xl:items-center">
+            <div className="rounded-[2.4rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-56px_rgba(15,23,42,0.26)]">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {["docs", "sheets", "slides", "notes", "forms", "tasks"].map((key) => (
+                  <div key={key} className="rounded-[1.5rem] border border-zinc-200 bg-zinc-50/70 p-5">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{t(`productivity.apps.${key}.label`)}</div>
+                    <div className="mt-2 text-base font-semibold tracking-[-0.02em] text-zinc-950">{t(`productivity.apps.${key}.title`)}</div>
+                    <div className="mt-2 text-sm leading-7 text-zinc-600">{t(`productivity.apps.${key}.description`)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-5">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="rounded-[1.8rem] border border-zinc-200 bg-zinc-50/70 p-6">
+                  <div className="text-sm font-semibold tracking-[-0.02em] text-zinc-950">{t(`productivity.points.${item}.title`)}</div>
+                  <div className="mt-3 text-sm leading-7 text-zinc-600">{t(`productivity.points.${item}.description`)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("storage.eyebrow")} title={t("storage.title")} description={t("storage.description")} tone="muted">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] xl:items-center">
+            <div className="space-y-5">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="rounded-[1.8rem] border border-zinc-200 bg-white p-6">
+                  <div className="text-sm font-semibold tracking-[-0.02em] text-zinc-950">{t(`storage.points.${item}.title`)}</div>
+                  <div className="mt-3 text-sm leading-7 text-zinc-600">{t(`storage.points.${item}.description`)}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[2.4rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-56px_rgba(15,23,42,0.26)]">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("storage.visual.label")}</div>
+              <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t("storage.visual.title")}</div>
+              <div className="mt-6 grid gap-3 lg:grid-cols-[minmax(0,1fr)_220px]">
+                <div className="space-y-3">
+                  {[1, 2, 3].map((item) => (
+                    <div key={item} className="rounded-[1.4rem] border border-zinc-200 bg-zinc-50/75 p-4">
+                      <div className="text-sm font-semibold text-zinc-950">{t(`storage.visual.folders.${item}.title`)}</div>
+                      <div className="mt-2 text-xs leading-6 text-zinc-500">{t(`storage.visual.folders.${item}.meta`)}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-950 p-5 text-white">
+                  <div className="text-sm font-medium">{t("storage.visual.permissionsTitle")}</div>
+                  <div className="mt-4 space-y-2">
+                    {[1, 2, 3].map((item) => (
+                      <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/72">
+                        {t(`storage.visual.permissions.${item}`)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("security.eyebrow")} title={t("security.title")} description={t("security.description")} tone="dark">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {["identity", "vault", "vpn", "compliance"].map((key) => (
+              <FeatureCard
+                key={key}
+                title={t(`security.items.${key}.title`)}
+                description={t(`security.items.${key}.description`)}
+                icon={
+                  key === "identity"
+                    ? Users
+                    : key === "vault"
+                      ? Archive
+                      : key === "vpn"
+                        ? Network
+                        : GlobeLock
+                }
+                dark
+              />
+            ))}
+          </div>
+        </Section>
+
+        <Section eyebrow={t("ai.eyebrow")} title={t("ai.title")} description={t("ai.description")}>
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] xl:items-center">
+            <div className="rounded-[2.4rem] border border-zinc-200 bg-zinc-950 p-6 text-white shadow-[0_32px_100px_-56px_rgba(15,23,42,0.4)]">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/46">{t("ai.visual.label")}</div>
+                  <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-white">{t("ai.visual.title")}</div>
+                </div>
+                <Sparkles className="h-5 w-5 text-white/70" />
+              </div>
+              <div className="mt-6 rounded-[1.6rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-sm font-medium text-white">{t("ai.visual.prompt")}</div>
+                <div className="mt-4 text-sm leading-7 text-white/68">{t("ai.visual.answer")}</div>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {["write", "summarize", "organize", "automate"].map((key) => (
+                <FeatureCard
+                  key={key}
+                  title={t(`ai.items.${key}.title`)}
+                  description={t(`ai.items.${key}.description`)}
+                  icon={key === "write" ? FileText : key === "summarize" ? MessageSquare : key === "organize" ? FolderKanban : Bot}
+                />
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("enterprise.eyebrow")} title={t("enterprise.title")} description={t("enterprise.description")} tone="muted">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] xl:items-center">
+            <div className="space-y-5">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="rounded-[1.8rem] border border-zinc-200 bg-white p-6">
+                  <div className="text-sm font-semibold tracking-[-0.02em] text-zinc-950">{t(`enterprise.points.${item}.title`)}</div>
+                  <div className="mt-3 text-sm leading-7 text-zinc-600">{t(`enterprise.points.${item}.description`)}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[2.4rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-56px_rgba(15,23,42,0.26)]">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t("enterprise.visual.label")}</div>
+              <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t("enterprise.visual.title")}</div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {["users", "domains", "groups", "logs"].map((key) => (
+                  <div key={key} className="rounded-[1.4rem] border border-zinc-200 bg-zinc-50/75 p-4">
+                    <div className="text-sm font-semibold text-zinc-950">{t(`enterprise.visual.cards.${key}.title`)}</div>
+                    <div className="mt-2 text-xs leading-6 text-zinc-500">{t(`enterprise.visual.cards.${key}.description`)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("developers.eyebrow")} title={t("developers.title")} description={t("developers.description")} tone="dark">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:items-center">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {["developer", "apis", "sdks", "automation"].map((key) => (
+                <FeatureCard
+                  key={key}
+                  title={t(`developers.items.${key}.title`)}
+                  description={t(`developers.items.${key}.description`)}
+                  icon={key === "developer" ? Waypoints : key === "apis" ? ArrowRight : key === "sdks" ? Files : FolderKanban}
+                  dark
+                />
+              ))}
+            </div>
+
+            <div className="rounded-[2.4rem] border border-white/10 bg-white/4 p-6">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/46">{t("developers.visual.label")}</div>
+              <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-white">{t("developers.visual.title")}</div>
+              <div className="mt-6 space-y-3">
+                {[1, 2, 3].map((item) => (
+                  <div key={item} className="rounded-[1.4rem] border border-white/10 bg-white/4 p-4">
+                    <div className="text-sm font-semibold text-white">{t(`developers.visual.flow.${item}.title`)}</div>
+                    <div className="mt-2 text-xs leading-6 text-white/62">{t(`developers.visual.flow.${item}.description`)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("deployment.eyebrow")} title={t("deployment.title")} description={t("deployment.description")}>
+          <div className="grid gap-4 xl:grid-cols-3">
+            {["cloud", "selfHosted", "hybrid"].map((key) => (
+              <div key={key} className="rounded-4xl border border-zinc-200 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`deployment.cards.${key}.label`)}</div>
+                <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t(`deployment.cards.${key}.title`)}</div>
+                <div className="mt-3 text-sm leading-7 text-zinc-600">{t(`deployment.cards.${key}.description`)}</div>
+                <div className="mt-5 space-y-2">
+                  {[1, 2, 3].map((item) => (
+                    <div key={item} className="rounded-2xl border border-zinc-200 bg-zinc-50/80 px-4 py-3 text-sm text-zinc-600">
+                      {t(`deployment.cards.${key}.points.${item}`)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section eyebrow={t("comparison.eyebrow")} title={t("comparison.title")} description={t("comparison.description")} tone="muted">
+          <div className="overflow-hidden rounded-[2.4rem] border border-zinc-200 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]">
+            <div className="grid gap-px bg-zinc-200 lg:grid-cols-[minmax(220px,0.95fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <div className="bg-zinc-50 px-6 py-5 text-sm font-semibold text-zinc-500">{t("comparison.headers.dimension")}</div>
+              <div className="bg-white px-6 py-5 text-sm font-semibold text-zinc-950">{t("comparison.headers.aether")}</div>
+              <div className="bg-zinc-50 px-6 py-5 text-sm font-semibold text-zinc-600">{t("comparison.headers.closed")}</div>
+
+              {comparisonRows.map((row) => (
+                <React.Fragment key={row}>
+                  <div className="bg-zinc-50 px-6 py-5 text-sm font-medium text-zinc-700">{t(`comparison.rows.${row}.label`)}</div>
+                  <div className="bg-white px-6 py-4">
+                    <ComparisonCell label={t(`comparison.rows.${row}.aether`)} highlighted />
+                  </div>
+                  <div className="bg-zinc-50 px-6 py-4">
+                    <ComparisonCell label={t(`comparison.rows.${row}.closed`)} />
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section eyebrow={t("faq.eyebrow")} title={t("faq.title")} description={t("faq.description")}>
+          <div className="grid gap-4 lg:grid-cols-2">
+            {faqItems.map((item) => (
+              <div key={item} className="rounded-[1.75rem] border border-zinc-200 bg-white p-6 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.2)]">
+                <div className="flex items-start gap-4">
+                  <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 text-xs font-semibold text-zinc-500">
+                    {t(`faq.items.${item}.index`)}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-zinc-950">{t(`faq.items.${item}.question`)}</h3>
+                    <p className="mt-3 text-sm leading-7 text-zinc-600">{t(`faq.items.${item}.answer`)}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section eyebrow={t("finalCta.eyebrow")} title={t("finalCta.title")} description={t("finalCta.description")}>
+          <div className="rounded-[2.6rem] border border-zinc-200 bg-zinc-950 p-8 text-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.5)] sm:p-10">
+            <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-end">
+              <div>
+                <div className="flex flex-wrap gap-2.5">
+                  {[1, 2, 3].map((item) => (
+                    <MetricPill key={item} dark>
+                      {t(`finalCta.signals.${item}`)}
+                    </MetricPill>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg" className="h-12 rounded-full bg-white px-6 text-sm text-zinc-950 hover:bg-zinc-100">
+                  <Link href={localizeHref(locale, "/pricing")}>{t("finalCta.primaryCta")}</Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-12 rounded-full border-white/16 bg-transparent px-6 text-sm text-white hover:bg-white/8 hover:text-white"
+                >
+                  <Link href={localizeHref(locale, "/company/contact")}>{t("finalCta.secondaryCta")}</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Section>
       </main>
+
       <Footer locale={locale as Locale} />
-    </div>
+    </>
   );
 }
