@@ -59,7 +59,14 @@ import {
   Workflow,
   Wrench,
 } from "lucide-react";
-import { PartnersPage, type PartnerCard, type PartnerLinkCard, type PartnerPageContent, type ProcessStep } from "@/components/public/partners/partners-page";
+import {
+  PartnersPage,
+  type PartnerCard,
+  type PartnerLinkCard,
+  type PartnerPageContent,
+  type PartnerSupplementalSection,
+  type ProcessStep,
+} from "@/components/public/partners/partners-page";
 
 export interface PartnersPageParams {
   params: Promise<{ locale: string }>;
@@ -264,6 +271,7 @@ function buildPartnerContent(
     enablementTitle: tPartners(`${slug}.enablementTitle`),
     enablementDescription: tPartners(`${slug}.enablementDescription`),
     enablementItems: cards(`${slug}.enablementItems`),
+    supplementalSections: tPartners.raw(`${slug}.supplementalSections`) as PartnerSupplementalSection[],
     nextStepsTitle: tPartners(`${slug}.nextStepsTitle`),
     nextStepsDescription: tPartners(`${slug}.nextStepsDescription`),
     nextStepsItems: nextSteps(`${slug}.nextStepsItems`).map((item, index) => ({

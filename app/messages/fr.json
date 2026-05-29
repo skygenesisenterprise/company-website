@@ -2697,7 +2697,8 @@
             },
             "partners": {
               "title": "Partners",
-              "description": "Collaborer autour d'une technologie ouverte et indépendante."
+              "description": "Collaborer autour d'une technologie ouverte et indépendante.",
+              "cta": "Voir les partenaires"
             },
             "careers": {
               "title": "Careers",
@@ -6690,8 +6691,8 @@
         "viewAllPositions": "Voir Tous les Postes",
         "developerPage": {
           "metadata": {
-            "title": "Développeurs | Sky Genesis Enterprise",
-            "titleTemplate": "{title} | Developers | Sky Genesis Enterprise"
+            "title": "Developers | Sky Genesis Enterprise",
+            "titleTemplate": "{title} | Sky Genesis Enterprise"
           },
           "common": {
             "profile": "Profil",
@@ -6958,6 +6959,359 @@
                 "label": "Explorer les SDKs",
                 "variant": "secondary"
               }
+            ],
+            "bottomEyebrow": "Prochaine étape",
+            "supplementalSections": [
+              {
+                "kind": "cards",
+                "eyebrow": "Cartographie développeur",
+                "title": "Situer le portail développeur dans le portail développeur officiel.",
+                "description": "Cette section clarifie le rôle de le portail SGE Developers dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Apprendre",
+                    "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                    "href": "/developers/quickstarts",
+                    "icon": "BookOpen"
+                  },
+                  {
+                    "title": "Intégrer",
+                    "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                    "href": "/developers/api",
+                    "icon": "Braces"
+                  },
+                  {
+                    "title": "Déployer",
+                    "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                    "href": "/platform/developer",
+                    "icon": "Cloud"
+                  }
+                ]
+              },
+              {
+                "kind": "numbered",
+                "eyebrow": "Chemin développeur",
+                "title": "Un parcours clair pour utiliser le portail développeur sans surdimensionner le premier chantier.",
+                "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                "muted": true,
+                "columns": 3,
+                "items": [
+                  {
+                    "title": "Lire le scénario",
+                    "description": "Identifier ce que le portail SGE Developers permet réellement aujourd’hui et ce qui reste en préparation.",
+                    "href": "/developers/quickstarts"
+                  },
+                  {
+                    "title": "Tester en sandbox",
+                    "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                    "href": "/developers/quickstarts"
+                  },
+                  {
+                    "title": "Industrialiser",
+                    "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                    "href": "/developers/sdks"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Documentation",
+                "title": "Documentation, guides et références doivent rester alignés.",
+                "description": "Pour le portail SGE Developers, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Guides",
+                    "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                    "href": "/developers/quickstarts",
+                    "icon": "BookOpen"
+                  },
+                  {
+                    "title": "Références",
+                    "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                    "href": "/developers/api",
+                    "icon": "FileJson2"
+                  },
+                  {
+                    "title": "Exemples",
+                    "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                    "href": "/developers/quickstarts",
+                    "icon": "Terminal"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "API et événements",
+                "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                "description": "Même lorsque le portail développeur n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                "columns": 2,
+                "cards": [
+                  {
+                    "title": "Authentification",
+                    "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                    "href": "/developers/api",
+                    "icon": "KeyRound"
+                  },
+                  {
+                    "title": "Webhooks",
+                    "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                    "href": "/developers/api",
+                    "icon": "Waypoints"
+                  },
+                  {
+                    "title": "Erreurs actionnables",
+                    "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                    "href": "/developers/api",
+                    "icon": "ServerCog"
+                  },
+                  {
+                    "title": "Versioning",
+                    "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                    "href": "/developers/api",
+                    "icon": "Layers3"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Outillage officiel",
+                "title": "Aether Developer doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                "muted": true,
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "SDKs",
+                    "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                    "href": "/developers/sdks",
+                    "icon": "Package"
+                  },
+                  {
+                    "title": "CLI",
+                    "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                    "href": "/developers/cli",
+                    "icon": "Terminal"
+                  },
+                  {
+                    "title": "Postman",
+                    "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                    "href": "/developers/postman",
+                    "icon": "FileJson2"
+                  },
+                  {
+                    "title": "Extensions",
+                    "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                    "href": "/developers/extensions",
+                    "icon": "PlugZap"
+                  },
+                  {
+                    "title": "Changelog",
+                    "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                    "href": "/developers",
+                    "icon": "GitBranch"
+                  },
+                  {
+                    "title": "Status",
+                    "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                    "href": "/developers/api",
+                    "icon": "CheckCircle2"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Aether Developer",
+                "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                "description": "La page prépare le portail SGE Developers pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Projets",
+                    "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                    "href": "/platform/developer",
+                    "icon": "Code2"
+                  },
+                  {
+                    "title": "Environnements",
+                    "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                    "href": "/platform/developer",
+                    "icon": "Cloud"
+                  },
+                  {
+                    "title": "Observabilité",
+                    "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                    "href": "/developers/api",
+                    "icon": "ServerCog"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "API Studios",
+                "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                "muted": true,
+                "columns": 2,
+                "cards": [
+                  {
+                    "title": "Design de contrat",
+                    "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                    "href": "/developers/api",
+                    "icon": "Braces"
+                  },
+                  {
+                    "title": "Validation",
+                    "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                    "href": "/developers/postman",
+                    "icon": "CheckCircle2"
+                  },
+                  {
+                    "title": "Publication",
+                    "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                    "href": "/developers",
+                    "icon": "GitBranch"
+                  },
+                  {
+                    "title": "Expérience développeur",
+                    "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                    "href": "/developers/quickstarts",
+                    "icon": "Rocket"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Produits intégrés",
+                "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                "description": "Le rôle de le portail développeur est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Aether Identity",
+                    "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                    "href": "/platform",
+                    "icon": "ShieldCheck"
+                  },
+                  {
+                    "title": "Aether Edge",
+                    "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                    "href": "/platform",
+                    "icon": "Globe"
+                  },
+                  {
+                    "title": "Aether Cloud",
+                    "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                    "href": "/platform/cloud",
+                    "icon": "Cloud"
+                  },
+                  {
+                    "title": "Aether Bank",
+                    "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                    "href": "/platform/finance",
+                    "icon": "Workflow"
+                  },
+                  {
+                    "title": "SGE Office",
+                    "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                    "href": "/office",
+                    "icon": "BookOpen"
+                  },
+                  {
+                    "title": "Giteria",
+                    "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                    "href": "/developers/api",
+                    "icon": "GitBranch"
+                  }
+                ]
+              },
+              {
+                "kind": "definitions",
+                "eyebrow": "Souveraineté",
+                "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                "muted": true,
+                "columns": 3,
+                "items": [
+                  {
+                    "label": "Standards",
+                    "value": "HTTP, OAuth2, OIDC",
+                    "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                  },
+                  {
+                    "label": "Souveraineté",
+                    "value": "Europe-first",
+                    "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                  },
+                  {
+                    "label": "Ouverture",
+                    "value": "Open-source ready",
+                    "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Production readiness",
+                "title": "Passer de le portail développeur à la production impose des contrôles explicites.",
+                "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                "columns": 2,
+                "cards": [
+                  {
+                    "title": "Secrets",
+                    "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                    "href": "/developers/api",
+                    "icon": "KeyRound"
+                  },
+                  {
+                    "title": "Quotas",
+                    "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                    "href": "/developers/api",
+                    "icon": "ShieldCheck"
+                  },
+                  {
+                    "title": "Status",
+                    "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                    "href": "/developers",
+                    "icon": "CheckCircle2"
+                  },
+                  {
+                    "title": "Changelog",
+                    "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                    "href": "/developers",
+                    "icon": "GitBranch"
+                  }
+                ]
+              },
+              {
+                "kind": "cards",
+                "eyebrow": "Plateforme dédiée",
+                "title": "La structure prépare developer.skygenesisenterprise.com sans casser le site officiel.",
+                "description": "Le contenu de le portail SGE Developers reste compatible avec le site public actuel tout en anticipant une plateforme développeur séparée.",
+                "muted": true,
+                "columns": 3,
+                "cards": [
+                  {
+                    "title": "Navigation stable",
+                    "description": "Conserver des URL publiques lisibles pour les ressources principales et les futurs renvois.",
+                    "href": "/developers",
+                    "icon": "Globe"
+                  },
+                  {
+                    "title": "Contenus migrables",
+                    "description": "Séparer les blocs de documentation, outils, status et références pour faciliter une extraction future.",
+                    "href": "/developers/api",
+                    "icon": "Layers3"
+                  },
+                  {
+                    "title": "Design cohérent",
+                    "description": "Aligner le rendu avec Home et Office tout en gardant une densité technique adaptée aux développeurs.",
+                    "href": "/developers",
+                    "icon": "Code2"
+                  }
+                ]
+              }
             ]
           },
           "resources": {
@@ -7161,6 +7515,331 @@
                   "label": "Évaluer les SDKs",
                   "variant": "secondary"
                 }
+              ],
+              "bottomEyebrow": "Prochaine étape",
+              "supplementalSections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cartographie développeur",
+                  "title": "Situer la référence API dans le portail développeur officiel.",
+                  "description": "Cette section clarifie le rôle de les APIs SGE dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Apprendre",
+                      "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Intégrer",
+                      "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Déployer",
+                      "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    }
+                  ]
+                },
+                {
+                  "kind": "numbered",
+                  "eyebrow": "Chemin développeur",
+                  "title": "Un parcours clair pour utiliser la référence API sans surdimensionner le premier chantier.",
+                  "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "title": "Lire le scénario",
+                      "description": "Identifier ce que les APIs SGE permet réellement aujourd’hui et ce qui reste en préparation.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Tester en sandbox",
+                      "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                      "href": "/developers/postman"
+                    },
+                    {
+                      "title": "Industrialiser",
+                      "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                      "href": "/developers/sdks"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "Documentation, guides et références doivent rester alignés.",
+                  "description": "Pour les APIs SGE, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Références",
+                      "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                      "href": "/developers/api",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Exemples",
+                      "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "Terminal"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API et événements",
+                  "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                  "description": "Même lorsque la référence API n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Authentification",
+                      "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Webhooks",
+                      "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                      "href": "/developers/api",
+                      "icon": "Waypoints"
+                    },
+                    {
+                      "title": "Erreurs actionnables",
+                      "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Versioning",
+                      "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Outillage officiel",
+                  "title": "API Studios doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                  "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "SDKs",
+                      "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                      "href": "/developers/sdks",
+                      "icon": "Package"
+                    },
+                    {
+                      "title": "CLI",
+                      "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    },
+                    {
+                      "title": "Postman",
+                      "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Extensions",
+                      "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                      "href": "/developers/extensions",
+                      "icon": "PlugZap"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                      "href": "/developers/api",
+                      "icon": "CheckCircle2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Aether Developer",
+                  "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                  "description": "La page prépare les APIs SGE pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Projets",
+                      "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                      "href": "/platform/developer",
+                      "icon": "Code2"
+                    },
+                    {
+                      "title": "Environnements",
+                      "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Observabilité",
+                      "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API Studios",
+                  "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                  "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Design de contrat",
+                      "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Validation",
+                      "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                      "href": "/developers/postman",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Publication",
+                      "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Expérience développeur",
+                      "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Rocket"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Produits intégrés",
+                  "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                  "description": "Le rôle de la référence API est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Aether Identity",
+                      "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                      "href": "/platform",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Aether Edge",
+                      "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                      "href": "/platform",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Aether Cloud",
+                      "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                      "href": "/platform/cloud",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Aether Bank",
+                      "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                      "href": "/platform/finance",
+                      "icon": "Workflow"
+                    },
+                    {
+                      "title": "SGE Office",
+                      "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                      "href": "/office",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Giteria",
+                      "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                      "href": "/developers/api",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Souveraineté",
+                  "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                  "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Standards",
+                      "value": "HTTP, OAuth2, OIDC",
+                      "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Europe-first",
+                      "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                    },
+                    {
+                      "label": "Ouverture",
+                      "value": "Open-source ready",
+                      "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Production readiness",
+                  "title": "Passer de la référence API à la production impose des contrôles explicites.",
+                  "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Secrets",
+                      "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Quotas",
+                      "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                      "href": "/developers/api",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                      "href": "/developers",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                }
               ]
             },
             "cli": {
@@ -7313,6 +7992,359 @@
                   "href": "/developers/quickstarts",
                   "label": "Suivre un quickstart",
                   "variant": "secondary"
+                }
+              ],
+              "bottomEyebrow": "Prochaine étape",
+              "supplementalSections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cartographie développeur",
+                  "title": "Situer la ligne de commande dans le portail développeur officiel.",
+                  "description": "Cette section clarifie le rôle de la CLI SGE dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Apprendre",
+                      "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Intégrer",
+                      "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Déployer",
+                      "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    }
+                  ]
+                },
+                {
+                  "kind": "numbered",
+                  "eyebrow": "Chemin développeur",
+                  "title": "Un parcours clair pour utiliser la ligne de commande sans surdimensionner le premier chantier.",
+                  "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "title": "Lire le scénario",
+                      "description": "Identifier ce que la CLI SGE permet réellement aujourd’hui et ce qui reste en préparation.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Tester en sandbox",
+                      "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                      "href": "/developers/cli"
+                    },
+                    {
+                      "title": "Industrialiser",
+                      "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                      "href": "/developers/sdks"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "Documentation, guides et références doivent rester alignés.",
+                  "description": "Pour la CLI SGE, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Références",
+                      "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                      "href": "/developers/api",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Exemples",
+                      "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API et événements",
+                  "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                  "description": "Même lorsque la ligne de commande n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Authentification",
+                      "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Webhooks",
+                      "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                      "href": "/developers/api",
+                      "icon": "Waypoints"
+                    },
+                    {
+                      "title": "Erreurs actionnables",
+                      "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Versioning",
+                      "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Outillage officiel",
+                  "title": "Aether Developer CLI doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                  "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "SDKs",
+                      "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                      "href": "/developers/sdks",
+                      "icon": "Package"
+                    },
+                    {
+                      "title": "CLI",
+                      "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    },
+                    {
+                      "title": "Postman",
+                      "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Extensions",
+                      "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                      "href": "/developers/extensions",
+                      "icon": "PlugZap"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                      "href": "/developers/api",
+                      "icon": "CheckCircle2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Aether Developer",
+                  "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                  "description": "La page prépare la CLI SGE pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Projets",
+                      "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                      "href": "/platform/developer",
+                      "icon": "Code2"
+                    },
+                    {
+                      "title": "Environnements",
+                      "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Observabilité",
+                      "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API Studios",
+                  "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                  "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Design de contrat",
+                      "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Validation",
+                      "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                      "href": "/developers/postman",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Publication",
+                      "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Expérience développeur",
+                      "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Rocket"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Produits intégrés",
+                  "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                  "description": "Le rôle de la ligne de commande est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Aether Identity",
+                      "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                      "href": "/platform",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Aether Edge",
+                      "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                      "href": "/platform",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Aether Cloud",
+                      "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                      "href": "/platform/cloud",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Aether Bank",
+                      "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                      "href": "/platform/finance",
+                      "icon": "Workflow"
+                    },
+                    {
+                      "title": "SGE Office",
+                      "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                      "href": "/office",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Giteria",
+                      "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                      "href": "/developers/api",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Souveraineté",
+                  "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                  "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Standards",
+                      "value": "HTTP, OAuth2, OIDC",
+                      "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Europe-first",
+                      "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                    },
+                    {
+                      "label": "Ouverture",
+                      "value": "Open-source ready",
+                      "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Production readiness",
+                  "title": "Passer de la ligne de commande à la production impose des contrôles explicites.",
+                  "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Secrets",
+                      "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Quotas",
+                      "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                      "href": "/developers/api",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                      "href": "/developers",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Plateforme dédiée",
+                  "title": "La structure prépare developer.skygenesisenterprise.com sans casser le site officiel.",
+                  "description": "Le contenu de la CLI SGE reste compatible avec le site public actuel tout en anticipant une plateforme développeur séparée.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Navigation stable",
+                      "description": "Conserver des URL publiques lisibles pour les ressources principales et les futurs renvois.",
+                      "href": "/developers",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Contenus migrables",
+                      "description": "Séparer les blocs de documentation, outils, status et références pour faciliter une extraction future.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    },
+                    {
+                      "title": "Design cohérent",
+                      "description": "Aligner le rendu avec Home et Office tout en gardant une densité technique adaptée aux développeurs.",
+                      "href": "/developers",
+                      "icon": "Code2"
+                    }
+                  ]
                 }
               ]
             },
@@ -7502,6 +8534,331 @@
                   "label": "Évaluer la CLI",
                   "variant": "secondary"
                 }
+              ],
+              "bottomEyebrow": "Prochaine étape",
+              "supplementalSections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cartographie développeur",
+                  "title": "Situer le modèle d’extension dans le portail développeur officiel.",
+                  "description": "Cette section clarifie le rôle de les extensions SGE dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Apprendre",
+                      "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Intégrer",
+                      "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Déployer",
+                      "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    }
+                  ]
+                },
+                {
+                  "kind": "numbered",
+                  "eyebrow": "Chemin développeur",
+                  "title": "Un parcours clair pour utiliser le modèle d’extension sans surdimensionner le premier chantier.",
+                  "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "title": "Lire le scénario",
+                      "description": "Identifier ce que les extensions SGE permet réellement aujourd’hui et ce qui reste en préparation.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Tester en sandbox",
+                      "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                      "href": "/developers/extensions"
+                    },
+                    {
+                      "title": "Industrialiser",
+                      "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                      "href": "/developers/sdks"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "Documentation, guides et références doivent rester alignés.",
+                  "description": "Pour les extensions SGE, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Références",
+                      "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                      "href": "/developers/api",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Exemples",
+                      "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                      "href": "/developers/extensions",
+                      "icon": "Terminal"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API et événements",
+                  "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                  "description": "Même lorsque le modèle d’extension n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Authentification",
+                      "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Webhooks",
+                      "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                      "href": "/developers/api",
+                      "icon": "Waypoints"
+                    },
+                    {
+                      "title": "Erreurs actionnables",
+                      "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Versioning",
+                      "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Outillage officiel",
+                  "title": "Extension runtime doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                  "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "SDKs",
+                      "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                      "href": "/developers/sdks",
+                      "icon": "Package"
+                    },
+                    {
+                      "title": "CLI",
+                      "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    },
+                    {
+                      "title": "Postman",
+                      "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Extensions",
+                      "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                      "href": "/developers/extensions",
+                      "icon": "PlugZap"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                      "href": "/developers/api",
+                      "icon": "CheckCircle2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Aether Developer",
+                  "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                  "description": "La page prépare les extensions SGE pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Projets",
+                      "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                      "href": "/platform/developer",
+                      "icon": "Code2"
+                    },
+                    {
+                      "title": "Environnements",
+                      "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Observabilité",
+                      "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API Studios",
+                  "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                  "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Design de contrat",
+                      "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Validation",
+                      "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                      "href": "/developers/postman",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Publication",
+                      "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Expérience développeur",
+                      "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Rocket"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Produits intégrés",
+                  "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                  "description": "Le rôle de le modèle d’extension est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Aether Identity",
+                      "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                      "href": "/platform",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Aether Edge",
+                      "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                      "href": "/platform",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Aether Cloud",
+                      "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                      "href": "/platform/cloud",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Aether Bank",
+                      "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                      "href": "/platform/finance",
+                      "icon": "Workflow"
+                    },
+                    {
+                      "title": "SGE Office",
+                      "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                      "href": "/office",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Giteria",
+                      "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                      "href": "/developers/api",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Souveraineté",
+                  "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                  "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Standards",
+                      "value": "HTTP, OAuth2, OIDC",
+                      "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Europe-first",
+                      "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                    },
+                    {
+                      "label": "Ouverture",
+                      "value": "Open-source ready",
+                      "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Production readiness",
+                  "title": "Passer de le modèle d’extension à la production impose des contrôles explicites.",
+                  "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Secrets",
+                      "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Quotas",
+                      "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                      "href": "/developers/api",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                      "href": "/developers",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                }
               ]
             },
             "postman": {
@@ -7587,7 +8944,7 @@
                   "items": [
                     {
                       "label": "base_url",
-                      "value": "https://api.sge.example",
+                      "value": "https://api.skygenesisenterprise.com/",
                       "description": "URL racine de l’environnement ciblé.",
                       "monospace": true
                     },
@@ -7674,6 +9031,359 @@
                   "href": "/developers/quickstarts",
                   "label": "Choisir un scénario court",
                   "variant": "secondary"
+                }
+              ],
+              "bottomEyebrow": "Prochaine étape",
+              "supplementalSections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cartographie développeur",
+                  "title": "Situer les tests API dans le portail développeur officiel.",
+                  "description": "Cette section clarifie le rôle de la collection Postman SGE dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Apprendre",
+                      "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Intégrer",
+                      "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Déployer",
+                      "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    }
+                  ]
+                },
+                {
+                  "kind": "numbered",
+                  "eyebrow": "Chemin développeur",
+                  "title": "Un parcours clair pour utiliser les tests API sans surdimensionner le premier chantier.",
+                  "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "title": "Lire le scénario",
+                      "description": "Identifier ce que la collection Postman SGE permet réellement aujourd’hui et ce qui reste en préparation.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Tester en sandbox",
+                      "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                      "href": "/developers/postman"
+                    },
+                    {
+                      "title": "Industrialiser",
+                      "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                      "href": "/developers/sdks"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "Documentation, guides et références doivent rester alignés.",
+                  "description": "Pour la collection Postman SGE, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Références",
+                      "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                      "href": "/developers/api",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Exemples",
+                      "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "Terminal"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API et événements",
+                  "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                  "description": "Même lorsque les tests API n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Authentification",
+                      "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Webhooks",
+                      "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                      "href": "/developers/api",
+                      "icon": "Waypoints"
+                    },
+                    {
+                      "title": "Erreurs actionnables",
+                      "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Versioning",
+                      "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Outillage officiel",
+                  "title": "API Studios doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                  "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "SDKs",
+                      "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                      "href": "/developers/sdks",
+                      "icon": "Package"
+                    },
+                    {
+                      "title": "CLI",
+                      "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    },
+                    {
+                      "title": "Postman",
+                      "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Extensions",
+                      "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                      "href": "/developers/extensions",
+                      "icon": "PlugZap"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                      "href": "/developers/api",
+                      "icon": "CheckCircle2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Aether Developer",
+                  "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                  "description": "La page prépare la collection Postman SGE pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Projets",
+                      "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                      "href": "/platform/developer",
+                      "icon": "Code2"
+                    },
+                    {
+                      "title": "Environnements",
+                      "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Observabilité",
+                      "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API Studios",
+                  "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                  "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Design de contrat",
+                      "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Validation",
+                      "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                      "href": "/developers/postman",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Publication",
+                      "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Expérience développeur",
+                      "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Rocket"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Produits intégrés",
+                  "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                  "description": "Le rôle de les tests API est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Aether Identity",
+                      "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                      "href": "/platform",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Aether Edge",
+                      "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                      "href": "/platform",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Aether Cloud",
+                      "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                      "href": "/platform/cloud",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Aether Bank",
+                      "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                      "href": "/platform/finance",
+                      "icon": "Workflow"
+                    },
+                    {
+                      "title": "SGE Office",
+                      "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                      "href": "/office",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Giteria",
+                      "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                      "href": "/developers/api",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Souveraineté",
+                  "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                  "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Standards",
+                      "value": "HTTP, OAuth2, OIDC",
+                      "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Europe-first",
+                      "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                    },
+                    {
+                      "label": "Ouverture",
+                      "value": "Open-source ready",
+                      "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Production readiness",
+                  "title": "Passer de les tests API à la production impose des contrôles explicites.",
+                  "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Secrets",
+                      "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Quotas",
+                      "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                      "href": "/developers/api",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                      "href": "/developers",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Plateforme dédiée",
+                  "title": "La structure prépare developer.skygenesisenterprise.com sans casser le site officiel.",
+                  "description": "Le contenu de la collection Postman SGE reste compatible avec le site public actuel tout en anticipant une plateforme développeur séparée.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Navigation stable",
+                      "description": "Conserver des URL publiques lisibles pour les ressources principales et les futurs renvois.",
+                      "href": "/developers",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Contenus migrables",
+                      "description": "Séparer les blocs de documentation, outils, status et références pour faciliter une extraction future.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    },
+                    {
+                      "title": "Design cohérent",
+                      "description": "Aligner le rendu avec Home et Office tout en gardant une densité technique adaptée aux développeurs.",
+                      "href": "/developers",
+                      "icon": "Code2"
+                    }
+                  ]
                 }
               ]
             },
@@ -7872,6 +9582,359 @@
                   "label": "Préparer un SDK",
                   "variant": "secondary"
                 }
+              ],
+              "bottomEyebrow": "Prochaine étape",
+              "supplementalSections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cartographie développeur",
+                  "title": "Situer les parcours de démarrage dans le portail développeur officiel.",
+                  "description": "Cette section clarifie le rôle de les quickstarts SGE dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Apprendre",
+                      "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Intégrer",
+                      "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Déployer",
+                      "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    }
+                  ]
+                },
+                {
+                  "kind": "numbered",
+                  "eyebrow": "Chemin développeur",
+                  "title": "Un parcours clair pour utiliser les parcours de démarrage sans surdimensionner le premier chantier.",
+                  "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "title": "Lire le scénario",
+                      "description": "Identifier ce que les quickstarts SGE permet réellement aujourd’hui et ce qui reste en préparation.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Tester en sandbox",
+                      "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Industrialiser",
+                      "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                      "href": "/developers/sdks"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "Documentation, guides et références doivent rester alignés.",
+                  "description": "Pour les quickstarts SGE, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Références",
+                      "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                      "href": "/developers/api",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Exemples",
+                      "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Terminal"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API et événements",
+                  "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                  "description": "Même lorsque les parcours de démarrage n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Authentification",
+                      "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Webhooks",
+                      "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                      "href": "/developers/api",
+                      "icon": "Waypoints"
+                    },
+                    {
+                      "title": "Erreurs actionnables",
+                      "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Versioning",
+                      "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Outillage officiel",
+                  "title": "Aether Developer doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                  "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "SDKs",
+                      "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                      "href": "/developers/sdks",
+                      "icon": "Package"
+                    },
+                    {
+                      "title": "CLI",
+                      "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    },
+                    {
+                      "title": "Postman",
+                      "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Extensions",
+                      "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                      "href": "/developers/extensions",
+                      "icon": "PlugZap"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                      "href": "/developers/api",
+                      "icon": "CheckCircle2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Aether Developer",
+                  "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                  "description": "La page prépare les quickstarts SGE pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Projets",
+                      "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                      "href": "/platform/developer",
+                      "icon": "Code2"
+                    },
+                    {
+                      "title": "Environnements",
+                      "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Observabilité",
+                      "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API Studios",
+                  "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                  "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Design de contrat",
+                      "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Validation",
+                      "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                      "href": "/developers/postman",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Publication",
+                      "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Expérience développeur",
+                      "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Rocket"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Produits intégrés",
+                  "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                  "description": "Le rôle de les parcours de démarrage est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Aether Identity",
+                      "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                      "href": "/platform",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Aether Edge",
+                      "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                      "href": "/platform",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Aether Cloud",
+                      "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                      "href": "/platform/cloud",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Aether Bank",
+                      "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                      "href": "/platform/finance",
+                      "icon": "Workflow"
+                    },
+                    {
+                      "title": "SGE Office",
+                      "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                      "href": "/office",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Giteria",
+                      "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                      "href": "/developers/api",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Souveraineté",
+                  "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                  "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Standards",
+                      "value": "HTTP, OAuth2, OIDC",
+                      "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Europe-first",
+                      "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                    },
+                    {
+                      "label": "Ouverture",
+                      "value": "Open-source ready",
+                      "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Production readiness",
+                  "title": "Passer de les parcours de démarrage à la production impose des contrôles explicites.",
+                  "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Secrets",
+                      "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Quotas",
+                      "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                      "href": "/developers/api",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                      "href": "/developers",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Plateforme dédiée",
+                  "title": "La structure prépare developer.skygenesisenterprise.com sans casser le site officiel.",
+                  "description": "Le contenu de les quickstarts SGE reste compatible avec le site public actuel tout en anticipant une plateforme développeur séparée.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Navigation stable",
+                      "description": "Conserver des URL publiques lisibles pour les ressources principales et les futurs renvois.",
+                      "href": "/developers",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Contenus migrables",
+                      "description": "Séparer les blocs de documentation, outils, status et références pour faciliter une extraction future.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    },
+                    {
+                      "title": "Design cohérent",
+                      "description": "Aligner le rendu avec Home et Office tout en gardant une densité technique adaptée aux développeurs.",
+                      "href": "/developers",
+                      "icon": "Code2"
+                    }
+                  ]
+                }
               ]
             },
             "sdks": {
@@ -7960,7 +10023,7 @@
                 {
                   "kind": "cards",
                   "eyebrow": "Focal point",
-                  "title": "aether-identity constitue la brique la plus naturelle à faire émerger en premier.",
+                  "title": "Aether Identity constitue la brique la plus naturelle à faire émerger en premier.",
                   "description": "L’intégration OAuth2/OIDC et les applications web rendent un SDK TypeScript centré sur Identity particulièrement pertinent pour amorcer le portail.",
                   "muted": true,
                   "columns": 2,
@@ -8054,6 +10117,331 @@
                   "href": "/developers/postman",
                   "label": "Tester manuellement",
                   "variant": "secondary"
+                }
+              ],
+              "bottomEyebrow": "Prochaine étape",
+              "supplementalSections": [
+                {
+                  "kind": "cards",
+                  "eyebrow": "Cartographie développeur",
+                  "title": "Situer les bibliothèques officielles dans le portail développeur officiel.",
+                  "description": "Cette section clarifie le rôle de les SDKs officiels SGE dans un espace Developers pensé pour apprendre, intégrer, construire et déployer sans perdre le contexte produit.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Apprendre",
+                      "description": "Comprendre les concepts, les limites publiques et la maturité de la brique avant de manipuler des identifiants ou des environnements.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Intégrer",
+                      "description": "Relier les concepts aux APIs, aux SDKs et aux conventions d’authentification déjà documentées dans l’écosystème SGE.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Déployer",
+                      "description": "Préparer la transition vers des environnements sandbox, production et status avec une logique reproductible.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    }
+                  ]
+                },
+                {
+                  "kind": "numbered",
+                  "eyebrow": "Chemin développeur",
+                  "title": "Un parcours clair pour utiliser les bibliothèques officielles sans surdimensionner le premier chantier.",
+                  "description": "La progression reste volontairement courte afin de réduire le bruit : lire, tester, intégrer, automatiser, puis surveiller.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "title": "Lire le scénario",
+                      "description": "Identifier ce que les SDKs officiels SGE permet réellement aujourd’hui et ce qui reste en préparation.",
+                      "href": "/developers/quickstarts"
+                    },
+                    {
+                      "title": "Tester en sandbox",
+                      "description": "Valider les appels, les variables et les réponses attendues avant tout usage opérationnel.",
+                      "href": "/developers/sdks"
+                    },
+                    {
+                      "title": "Industrialiser",
+                      "description": "Passer vers SDKs, CLI, webhooks et observabilité lorsque le premier flux est validé.",
+                      "href": "/developers/sdks"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Documentation",
+                  "title": "Documentation, guides et références doivent rester alignés.",
+                  "description": "Pour les SDKs officiels SGE, la valeur vient de la cohérence entre guides narratifs, références techniques et exemples directement testables.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Guides",
+                      "description": "Des pages orientées scénario pour comprendre le bon ordre d’intégration et éviter les décisions prématurées.",
+                      "href": "/developers/quickstarts",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Références",
+                      "description": "Des contrats techniques stables, versionnés et séparés par domaine fonctionnel.",
+                      "href": "/developers/api",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Exemples",
+                      "description": "Des commandes, payloads et structures de projet qui rendent les usages vérifiables par l’équipe.",
+                      "href": "/developers/sdks",
+                      "icon": "Terminal"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API et événements",
+                  "title": "Les APIs, webhooks et erreurs forment le socle d’intégration.",
+                  "description": "Même lorsque les bibliothèques officielles n’expose pas directement un endpoint, elle doit respecter les mêmes conventions API-first que le reste de SGE Developers.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Authentification",
+                      "description": "Les accès techniques se rattachent aux modèles API keys, OAuth2 et OIDC portés par Aether Identity.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Webhooks",
+                      "description": "Les événements sortants préparent les intégrations sans polling permanent ni logique fragile côté client.",
+                      "href": "/developers/api",
+                      "icon": "Waypoints"
+                    },
+                    {
+                      "title": "Erreurs actionnables",
+                      "description": "Les réponses doivent aider à diagnostiquer permissions, quotas, validation et état de service.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    },
+                    {
+                      "title": "Versioning",
+                      "description": "Les changements majeurs restent isolés par version afin de protéger les intégrations existantes.",
+                      "href": "/developers/api",
+                      "icon": "Layers3"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Outillage officiel",
+                  "title": "Aether SDKs doit fonctionner avec les outils que les développeurs utilisent déjà.",
+                  "description": "La plateforme prépare une surface cohérente entre SDKs, CLI, collections de test, extensions et documentation publique.",
+                  "muted": true,
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "SDKs",
+                      "description": "Réduire le coût d’intégration applicative lorsque les concepts API sont déjà compris.",
+                      "href": "/developers/sdks",
+                      "icon": "Package"
+                    },
+                    {
+                      "title": "CLI",
+                      "description": "Automatiser les opérations locales, les environnements et certains contrôles de déploiement.",
+                      "href": "/developers/cli",
+                      "icon": "Terminal"
+                    },
+                    {
+                      "title": "Postman",
+                      "description": "Tester rapidement les flux HTTP avec des variables partagées par l’équipe.",
+                      "href": "/developers/postman",
+                      "icon": "FileJson2"
+                    },
+                    {
+                      "title": "Extensions",
+                      "description": "Préparer les intégrations plus riches autour de permissions, manifeste et validation.",
+                      "href": "/developers/extensions",
+                      "icon": "PlugZap"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Rendre les changements publics lisibles avant de généraliser leur adoption.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Relier les tests et déploiements aux signaux de disponibilité de la plateforme.",
+                      "href": "/developers/api",
+                      "icon": "CheckCircle2"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Aether Developer",
+                  "title": "Le futur cockpit développeur doit centraliser les projets, clés et environnements.",
+                  "description": "La page prépare les SDKs officiels SGE pour developer.skygenesisenterprise.com sans prétendre que tout le portail dédié est déjà disponible.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Projets",
+                      "description": "Regrouper clés, clients, environnements, journaux et permissions autour de projets lisibles.",
+                      "href": "/platform/developer",
+                      "icon": "Code2"
+                    },
+                    {
+                      "title": "Environnements",
+                      "description": "Séparer clairement sandbox, staging et production afin de tester sans brouiller les usages réels.",
+                      "href": "/platform/developer",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Observabilité",
+                      "description": "Donner aux équipes des signaux sur erreurs, latence, quotas et disponibilité.",
+                      "href": "/developers/api",
+                      "icon": "ServerCog"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "API Studios",
+                  "title": "Les contrats publics doivent pouvoir être conçus, testés puis publiés avec rigueur.",
+                  "description": "API Studios représente la trajectoire de gouvernance des interfaces : design, validation, exemples, collections et documentation.",
+                  "muted": true,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Design de contrat",
+                      "description": "Structurer les endpoints, permissions, schémas et erreurs avant d’exposer une promesse publique.",
+                      "href": "/developers/api",
+                      "icon": "Braces"
+                    },
+                    {
+                      "title": "Validation",
+                      "description": "Aligner collections Postman, snippets SDK et cas limites pour éviter les divergences entre documentation et comportement.",
+                      "href": "/developers/postman",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Publication",
+                      "description": "Préparer un cycle clair entre préversion, changelog, version stable et dépréciation.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    },
+                    {
+                      "title": "Expérience développeur",
+                      "description": "Conserver une lecture premium, sobre et technique pour les intégrations sérieuses.",
+                      "href": "/developers/quickstarts",
+                      "icon": "Rocket"
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Produits intégrés",
+                  "title": "Identity, Edge, Cloud, Bank, Office et Giteria doivent être lisibles comme surfaces d’intégration.",
+                  "description": "Le rôle de les bibliothèques officielles est de connecter ces produits sans mélanger les responsabilités métier, réseau, identité et collaboration.",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "title": "Aether Identity",
+                      "description": "OAuth2, OIDC, sessions, MFA et gestion des accès applicatifs.",
+                      "href": "/platform",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Aether Edge",
+                      "description": "Routage, DNS, certificats et primitives réseau exposées progressivement.",
+                      "href": "/platform",
+                      "icon": "Globe"
+                    },
+                    {
+                      "title": "Aether Cloud",
+                      "description": "Déploiements, environnements, observabilité et automatisation cloud.",
+                      "href": "/platform/cloud",
+                      "icon": "Cloud"
+                    },
+                    {
+                      "title": "Aether Bank",
+                      "description": "Paiements, ledger, providers et rapprochement avec une exigence de contrôle.",
+                      "href": "/platform/finance",
+                      "icon": "Workflow"
+                    },
+                    {
+                      "title": "SGE Office",
+                      "description": "Collaboration, documents, fichiers, messagerie et automatisations de productivité.",
+                      "href": "/office",
+                      "icon": "BookOpen"
+                    },
+                    {
+                      "title": "Giteria",
+                      "description": "Dépôts, permissions, CI et workflows de livraison souverains.",
+                      "href": "/developers/api",
+                      "icon": "GitBranch"
+                    }
+                  ]
+                },
+                {
+                  "kind": "definitions",
+                  "eyebrow": "Souveraineté",
+                  "title": "L’open-source et la souveraineté européenne restent des contraintes de conception.",
+                  "description": "Les intégrations SGE doivent être compréhensibles, auditables et portables, avec des choix techniques explicites plutôt que des boîtes noires.",
+                  "muted": true,
+                  "columns": 3,
+                  "items": [
+                    {
+                      "label": "Standards",
+                      "value": "HTTP, OAuth2, OIDC",
+                      "description": "S’appuyer sur des standards connus pour limiter le verrouillage et faciliter les audits."
+                    },
+                    {
+                      "label": "Souveraineté",
+                      "value": "Europe-first",
+                      "description": "Préparer des déploiements et intégrations compatibles avec les exigences européennes de contrôle."
+                    },
+                    {
+                      "label": "Ouverture",
+                      "value": "Open-source ready",
+                      "description": "Prévoir des exemples, SDKs et conventions qui pourront être publiés ou audités progressivement."
+                    }
+                  ]
+                },
+                {
+                  "kind": "cards",
+                  "eyebrow": "Production readiness",
+                  "title": "Passer de les bibliothèques officielles à la production impose des contrôles explicites.",
+                  "description": "Les pages Developers doivent préparer les équipes aux quotas, incidents, secrets, journaux et politiques de changement.",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "title": "Secrets",
+                      "description": "Isoler les jetons, clés API et clients OAuth avec rotation et séparation d’environnement.",
+                      "href": "/developers/api",
+                      "icon": "KeyRound"
+                    },
+                    {
+                      "title": "Quotas",
+                      "description": "Comprendre les limites, les erreurs de dépassement et les stratégies de retry avant la montée en charge.",
+                      "href": "/developers/api",
+                      "icon": "ShieldCheck"
+                    },
+                    {
+                      "title": "Status",
+                      "description": "Surveiller disponibilité, incidents et dégradations pour éviter les diagnostics locaux inutiles.",
+                      "href": "/developers",
+                      "icon": "CheckCircle2"
+                    },
+                    {
+                      "title": "Changelog",
+                      "description": "Suivre les changements de comportement, de version et de disponibilité des briques publiques.",
+                      "href": "/developers",
+                      "icon": "GitBranch"
+                    }
+                  ]
                 }
               ]
             }
@@ -12950,13 +15338,31 @@
       },
       "leadership": {
         "metadata": {
-          "title": "Direction | Sky Genesis Enterprise",
-          "description": "Direction, gouvernance et structuration progressive des responsabilites chez Sky Genesis Enterprise."
+          "title": "Leadership | Sky Genesis Enterprise",
+          "description": "Meet the people leading Sky Genesis Enterprise across technology, operations, infrastructure, products and global expansion."
         },
         "hero": {
           "eyebrow": "Leadership",
-          "title": "Une direction qui cherche la coherence avant l'apparat.",
-          "description": "Le leadership de SGE se mesure moins a un organigramme etendu qu'a la capacite a relier vision, execution et gouvernance technique."
+          "title": "The people leading Sky Genesis Enterprise.",
+          "description": "Meet the people leading Sky Genesis Enterprise across technology, operations, infrastructure, products and global expansion.",
+          "metrics": [
+            {
+              "value": "16",
+              "label": "Leadership Members"
+            },
+            {
+              "value": "4",
+              "label": "Countries"
+            },
+            {
+              "value": "8",
+              "label": "Business Units"
+            },
+            {
+              "value": "4",
+              "label": "Product Divisions"
+            }
+          ]
         },
         "founder": {
           "eyebrow": "Founder-led",
@@ -13219,6 +15625,181 @@
                 {
                   "title": "Échanger",
                   "description": "Utiliser les routes de contact lorsque la demande nécessite un interlocuteur humain."
+                }
+              ]
+            }
+          ]
+        },
+        "structure": {
+          "eyebrow": "Leadership Structure",
+          "title": "Leadership Structure",
+          "description": "Meet the people leading Sky Genesis Enterprise across technology, operations, infrastructure, products and global expansion.",
+          "groups": [
+            {
+              "title": "Executive Leadership",
+              "description": "Group-level leadership responsible for strategy, operations, finance, legal structure and long-term institutional continuity.",
+              "members": [
+                {
+                  "name": "Elias Moreau",
+                  "role": "Chief Executive Officer",
+                  "department": "Executive Office",
+                  "bio": "Leads the group vision, corporate strategy and operating cadence across the SGE ecosystem. Focuses on long-term coherence between platform, products and international expansion.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Elias%20Moreau&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Maya Calderon",
+                  "role": "Chief Operating Officer",
+                  "department": "Operations",
+                  "bio": "Oversees execution, delivery systems and cross-functional operating discipline. Works across business units to turn strategy into measurable operational progress.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Maya%20Calderon&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Adrien Keller",
+                  "role": "Chief Financial Officer",
+                  "department": "Finance",
+                  "bio": "Leads financial planning, capital allocation and business controls for the group. Structures the finance function around resilience, transparency and sustainable growth.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Adrien%20Keller&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Nadia Benali",
+                  "role": "Chief Legal Officer",
+                  "department": "Legal & Governance",
+                  "bio": "Guides legal architecture, compliance posture and governance processes across SGE. Ensures that growth remains aligned with regulatory, contractual and institutional requirements.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Nadia%20Benali&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                }
+              ]
+            },
+            {
+              "title": "Technology Leadership",
+              "description": "Technical leadership responsible for architecture, cybersecurity, infrastructure reliability and engineering quality.",
+              "members": [
+                {
+                  "name": "Noah Vasseur",
+                  "role": "Chief Technology Officer",
+                  "department": "Technology",
+                  "bio": "Sets the technical direction for SGE platforms and shared engineering standards. Aligns architecture decisions with sovereignty, security and developer experience.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Noah%20Vasseur&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Sofia Lindholm",
+                  "role": "Chief Information Security Officer",
+                  "department": "Security",
+                  "bio": "Leads security strategy, risk management and trust controls across products and infrastructure. Focuses on measurable protection for customers, teams and partners.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Sofia%20Lindholm&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Kenji Watanabe",
+                  "role": "VP Infrastructure",
+                  "department": "Infrastructure",
+                  "bio": "Owns infrastructure strategy, cloud foundations, edge operations and reliability practices. Builds the operating model needed for global-scale services.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Kenji%20Watanabe&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Camille Arnaud",
+                  "role": "VP Engineering",
+                  "department": "Engineering",
+                  "bio": "Leads engineering execution, quality systems and technical delivery rituals. Works with product and infrastructure teams to maintain a high bar for shipped software.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Camille%20Arnaud&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                }
+              ]
+            },
+            {
+              "title": "Product Leadership",
+              "description": "Product leadership responsible for the core Aether divisions and the evolution of SGE product surfaces.",
+              "members": [
+                {
+                  "name": "Lina Okafor",
+                  "role": "VP Aether Cloud",
+                  "department": "Aether Cloud",
+                  "bio": "Leads the cloud product division, including environments, deployment workflows and observability. Focuses on making sovereign infrastructure usable by real teams.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Lina%20Okafor&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Thomas Iversen",
+                  "role": "VP Aether Identity",
+                  "department": "Aether Identity",
+                  "bio": "Owns identity strategy, authentication flows and access governance across the ecosystem. Connects security requirements with product simplicity.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Thomas%20Iversen&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Elena Rossi",
+                  "role": "VP Aether Office",
+                  "department": "Aether Office",
+                  "bio": "Leads the workplace and collaboration product line. Shapes productivity experiences around privacy, interoperability and enterprise-grade control.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Elena%20Rossi&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Hugo Nakamura",
+                  "role": "VP Aether Bank",
+                  "department": "Aether Bank",
+                  "bio": "Guides financial infrastructure products, ledger capabilities and programmable finance workflows. Focuses on trust, traceability and operational readiness.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Hugo%20Nakamura&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                }
+              ]
+            },
+            {
+              "title": "International Leadership",
+              "description": "Regional leadership responsible for market development, institutional relationships and local execution across strategic geographies.",
+              "members": [
+                {
+                  "name": "Claire Dubois",
+                  "role": "CEO SGE Europe",
+                  "department": "Europe",
+                  "bio": "Leads European market development, institutional alignment and regional partnerships. Ensures SGE remains grounded in European sovereignty and compliance expectations.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Claire%20Dubois&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Haruto Sato",
+                  "role": "CEO SGE Japan",
+                  "department": "Japan",
+                  "bio": "Leads SGE Japan with focus on enterprise relationships, product localization and operational trust. Bridges regional expectations with group-level platform strategy.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Haruto%20Sato&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Olivia Bennett",
+                  "role": "CEO SGE North America",
+                  "department": "North America",
+                  "bio": "Leads North American expansion across customers, partners and strategic opportunities. Focuses on positioning SGE for complex enterprise and developer ecosystems.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Olivia%20Bennett&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                },
+                {
+                  "name": "Anika Rao",
+                  "role": "CEO SGE Asia Pacific",
+                  "department": "Asia Pacific",
+                  "bio": "Leads Asia Pacific development, ecosystem partnerships and regional growth. Coordinates market needs with global product and infrastructure priorities.",
+                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Anika%20Rao&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
+                  "github": "https://github.com/skygenesisenterprise",
+                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 }
               ]
             }
@@ -14508,8 +17089,7 @@
             "title": "Infrastructure financière programmable pour institutions modernes.",
             "statement": "Ledgers, automatisation trésorerie, orchestration de paiement et contrôles conformité dans une même couche opératoire.",
             "primaryCta": "Explorer les APIs finance",
-            "secondaryCta": "Contacter l'entreprise",
-            "description": "Infrastructure financière programmable pour ledgers, orchestration de paiement, APIs trésorerie et conformité."
+            "secondaryCta": "Contacter l'entreprise"
           },
           "mission": {
             "eyebrow": "Mission",
@@ -16670,7 +19250,168 @@
       ],
       "ctaTitle": "Prêt à créer une intégration SGE ?",
       "ctaDescription": "Présentez votre solution et construisons le bon parcours technique ensemble.",
-      "ctaLabel": "Devenir partenaire"
+      "ctaLabel": "Devenir partenaire",
+      "supplementalSections": [
+        {
+          "eyebrow": "Écosystème partenaire",
+          "title": "Situer le partenariat technologique SGE dans l’écosystème Sky Genesis Enterprise.",
+          "description": "Cette section relie le partenariat technologique SGE aux produits, plateformes et parcours go-to-market qui structurent une collaboration sérieuse avec les éditeurs, intégrateurs API et équipes produit.",
+          "tone": "dark",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Aether Identity",
+              "description": "Base d’identité, de contrôle d’accès et de confiance pour les intégrations partenaires.",
+              "href": "/platform",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Aether Cloud et Edge",
+              "description": "Fondations d’hébergement, réseau et déploiement pour les scénarios souverains.",
+              "href": "/platform/cloud",
+              "icon": "CloudCog"
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Point d’entrée pour APIs, SDKs, environnements et futures intégrations partenaires.",
+              "href": "/developers",
+              "icon": "Code2"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Modèle opératoire",
+          "title": "Partenaires technologiques doit être cadré comme une relation de delivery, pas seulement comme une page commerciale.",
+          "description": "Le partenariat devient utile lorsque responsabilités, support, documentation, validation et mise en marché sont visibles dès le départ.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Responsabilités",
+              "description": "Clarifier qui conçoit, livre, maintient, supporte et documente chaque partie de l’offre.",
+              "icon": "BriefcaseBusiness"
+            },
+            {
+              "title": "Validation",
+              "description": "Contrôler qualité, sécurité, promesse client et conditions d’exploitation avant exposition.",
+              "icon": "FileCheck2"
+            },
+            {
+              "title": "Suivi",
+              "description": "Mettre en place un rythme de revue pour roadmap, incidents, opportunités et retours terrain.",
+              "icon": "Workflow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Activation commerciale",
+          "title": "Les partenaires doivent disposer d’un récit clair pour vendre, déployer et supporter SGE.",
+          "description": "Pour les éditeurs, intégrateurs API et équipes produit, la clarté du positionnement compte autant que l’accès aux ressources techniques ou marketing.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Positionnement",
+              "description": "Décrire précisément les cas d’usage, le public visé et la valeur client commune.",
+              "href": "/partners/technology",
+              "icon": "Compass"
+            },
+            {
+              "title": "Enablement",
+              "description": "Mettre à disposition supports, formations, argumentaires et parcours de montée en compétence.",
+              "href": "/partners/resources",
+              "icon": "GraduationCap"
+            },
+            {
+              "title": "Co-marketing",
+              "description": "Préparer les prises de parole, cas clients, pages partenaires et campagnes conjointes.",
+              "href": "/partners/resources",
+              "icon": "Megaphone"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Souveraineté et confiance",
+          "title": "Le réseau partenaire doit renforcer la promesse européenne de SGE.",
+          "description": "Chaque relation partenaire doit préserver les exigences de contrôle, transparence, sécurité et indépendance opérationnelle attendues par les clients.",
+          "tone": "dark",
+          "columns": 2,
+          "items": [
+            {
+              "title": "Europe-first",
+              "description": "Privilégier des modèles de déploiement, support et gouvernance adaptés aux organisations européennes.",
+              "icon": "Globe2"
+            },
+            {
+              "title": "Sécurité vérifiable",
+              "description": "Documenter les accès, responsabilités, journaux, certifications et procédures d’escalade.",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Favoriser standards, APIs, documentation claire et intégrations maintenables.",
+              "icon": "Network"
+            },
+            {
+              "title": "Open-source ready",
+              "description": "Préparer les ressources et exemples qui pourront être audités, partagés ou publiés progressivement.",
+              "icon": "GitBranch"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Portail partenaire",
+          "title": "La structure prépare une future plateforme partenaire plus autonome.",
+          "description": "Les contenus de le partenariat technologique SGE restent compatibles avec le site officiel tout en anticipant un espace dédié aux partenaires, ressources, certifications et opportunités.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Ressources centralisées",
+              "description": "Réunir guides, supports commerciaux, checklists techniques et modèles de déploiement.",
+              "href": "/partners/resources",
+              "icon": "BookOpen"
+            },
+            {
+              "title": "Suivi des statuts",
+              "description": "Rendre visibles les étapes de qualification, activation, certification et mise en marché.",
+              "href": "/partners/program",
+              "icon": "BadgeCheck"
+            },
+            {
+              "title": "Opportunités",
+              "description": "Structurer les demandes entrantes, leads, projets communs et escalades prioritaires.",
+              "href": "/partners/become",
+              "icon": "Rocket"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Parcours recommandé",
+          "title": "Un chemin court permet d’avancer avec les éditeurs, intégrateurs API et équipes produit sans disperser l’effort.",
+          "description": "La page doit guider vers une prochaine action claire : comprendre le programme, consulter les ressources, puis qualifier une collaboration concrète.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Comprendre",
+              "description": "Lire les critères, le modèle de collaboration et les responsabilités attendues.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Préparer",
+              "description": "Rassembler ressources, documents, preuves de capacité et questions techniques.",
+              "href": "/partners/resources",
+              "icon": "Boxes"
+            },
+            {
+              "title": "Engager",
+              "description": "Présenter le contexte, le marché visé et le type de partenariat recherché.",
+              "href": "/partners/become",
+              "icon": "Handshake"
+            }
+          ]
+        }
+      ]
     },
     "service": {
       "badge": "Partenaires de service",
@@ -16835,7 +19576,168 @@
       ],
       "ctaTitle": "Construisons votre offre de services SGE",
       "ctaDescription": "Présentez votre expertise et voyons comment l'intégrer au programme partenaire.",
-      "ctaLabel": "Devenir partenaire"
+      "ctaLabel": "Devenir partenaire",
+      "supplementalSections": [
+        {
+          "eyebrow": "Écosystème partenaire",
+          "title": "Situer le partenariat de service SGE dans l’écosystème Sky Genesis Enterprise.",
+          "description": "Cette section relie le partenariat de service SGE aux produits, plateformes et parcours go-to-market qui structurent une collaboration sérieuse avec les cabinets, intégrateurs et équipes terrain.",
+          "tone": "dark",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Aether Identity",
+              "description": "Base d’identité, de contrôle d’accès et de confiance pour les intégrations partenaires.",
+              "href": "/platform",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Aether Cloud et Edge",
+              "description": "Fondations d’hébergement, réseau et déploiement pour les scénarios souverains.",
+              "href": "/platform/cloud",
+              "icon": "CloudCog"
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Point d’entrée pour APIs, SDKs, environnements et futures intégrations partenaires.",
+              "href": "/developers",
+              "icon": "Code2"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Modèle opératoire",
+          "title": "Partenaires de service doit être cadré comme une relation de delivery, pas seulement comme une page commerciale.",
+          "description": "Le partenariat devient utile lorsque responsabilités, support, documentation, validation et mise en marché sont visibles dès le départ.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Responsabilités",
+              "description": "Clarifier qui conçoit, livre, maintient, supporte et documente chaque partie de l’offre.",
+              "icon": "BriefcaseBusiness"
+            },
+            {
+              "title": "Validation",
+              "description": "Contrôler qualité, sécurité, promesse client et conditions d’exploitation avant exposition.",
+              "icon": "FileCheck2"
+            },
+            {
+              "title": "Suivi",
+              "description": "Mettre en place un rythme de revue pour roadmap, incidents, opportunités et retours terrain.",
+              "icon": "Workflow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Activation commerciale",
+          "title": "Les partenaires doivent disposer d’un récit clair pour vendre, déployer et supporter SGE.",
+          "description": "Pour les cabinets, intégrateurs et équipes terrain, la clarté du positionnement compte autant que l’accès aux ressources techniques ou marketing.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Positionnement",
+              "description": "Décrire précisément les cas d’usage, le public visé et la valeur client commune.",
+              "href": "/partners/service",
+              "icon": "Compass"
+            },
+            {
+              "title": "Enablement",
+              "description": "Mettre à disposition supports, formations, argumentaires et parcours de montée en compétence.",
+              "href": "/partners/resources",
+              "icon": "GraduationCap"
+            },
+            {
+              "title": "Co-marketing",
+              "description": "Préparer les prises de parole, cas clients, pages partenaires et campagnes conjointes.",
+              "href": "/partners/resources",
+              "icon": "Megaphone"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Souveraineté et confiance",
+          "title": "Le réseau partenaire doit renforcer la promesse européenne de SGE.",
+          "description": "Chaque relation partenaire doit préserver les exigences de contrôle, transparence, sécurité et indépendance opérationnelle attendues par les clients.",
+          "tone": "dark",
+          "columns": 2,
+          "items": [
+            {
+              "title": "Europe-first",
+              "description": "Privilégier des modèles de déploiement, support et gouvernance adaptés aux organisations européennes.",
+              "icon": "Globe2"
+            },
+            {
+              "title": "Sécurité vérifiable",
+              "description": "Documenter les accès, responsabilités, journaux, certifications et procédures d’escalade.",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Favoriser standards, APIs, documentation claire et intégrations maintenables.",
+              "icon": "Network"
+            },
+            {
+              "title": "Open-source ready",
+              "description": "Préparer les ressources et exemples qui pourront être audités, partagés ou publiés progressivement.",
+              "icon": "GitBranch"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Portail partenaire",
+          "title": "La structure prépare une future plateforme partenaire plus autonome.",
+          "description": "Les contenus de le partenariat de service SGE restent compatibles avec le site officiel tout en anticipant un espace dédié aux partenaires, ressources, certifications et opportunités.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Ressources centralisées",
+              "description": "Réunir guides, supports commerciaux, checklists techniques et modèles de déploiement.",
+              "href": "/partners/resources",
+              "icon": "BookOpen"
+            },
+            {
+              "title": "Suivi des statuts",
+              "description": "Rendre visibles les étapes de qualification, activation, certification et mise en marché.",
+              "href": "/partners/program",
+              "icon": "BadgeCheck"
+            },
+            {
+              "title": "Opportunités",
+              "description": "Structurer les demandes entrantes, leads, projets communs et escalades prioritaires.",
+              "href": "/partners/become",
+              "icon": "Rocket"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Parcours recommandé",
+          "title": "Un chemin court permet d’avancer avec les cabinets, intégrateurs et équipes terrain sans disperser l’effort.",
+          "description": "La page doit guider vers une prochaine action claire : comprendre le programme, consulter les ressources, puis qualifier une collaboration concrète.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Comprendre",
+              "description": "Lire les critères, le modèle de collaboration et les responsabilités attendues.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Préparer",
+              "description": "Rassembler ressources, documents, preuves de capacité et questions techniques.",
+              "href": "/partners/resources",
+              "icon": "Boxes"
+            },
+            {
+              "title": "Engager",
+              "description": "Présenter le contexte, le marché visé et le type de partenariat recherché.",
+              "href": "/partners/become",
+              "icon": "Handshake"
+            }
+          ]
+        }
+      ]
     },
     "distribution": {
       "badge": "Partenaires de distribution",
@@ -17000,7 +19902,168 @@
       ],
       "ctaTitle": "Prêt à distribuer SGE ?",
       "ctaDescription": "Présentez votre réseau et lançons un cadre commercial adapté.",
-      "ctaLabel": "Devenir distributeur"
+      "ctaLabel": "Devenir distributeur",
+      "supplementalSections": [
+        {
+          "eyebrow": "Écosystème partenaire",
+          "title": "Situer le partenariat de distribution SGE dans l’écosystème Sky Genesis Enterprise.",
+          "description": "Cette section relie le partenariat de distribution SGE aux produits, plateformes et parcours go-to-market qui structurent une collaboration sérieuse avec les distributeurs, revendeurs et relais régionaux.",
+          "tone": "dark",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Aether Identity",
+              "description": "Base d’identité, de contrôle d’accès et de confiance pour les intégrations partenaires.",
+              "href": "/platform",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Aether Cloud et Edge",
+              "description": "Fondations d’hébergement, réseau et déploiement pour les scénarios souverains.",
+              "href": "/platform/cloud",
+              "icon": "CloudCog"
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Point d’entrée pour APIs, SDKs, environnements et futures intégrations partenaires.",
+              "href": "/developers",
+              "icon": "Code2"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Modèle opératoire",
+          "title": "Partenaires de distribution doit être cadré comme une relation de delivery, pas seulement comme une page commerciale.",
+          "description": "Le partenariat devient utile lorsque responsabilités, support, documentation, validation et mise en marché sont visibles dès le départ.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Responsabilités",
+              "description": "Clarifier qui conçoit, livre, maintient, supporte et documente chaque partie de l’offre.",
+              "icon": "BriefcaseBusiness"
+            },
+            {
+              "title": "Validation",
+              "description": "Contrôler qualité, sécurité, promesse client et conditions d’exploitation avant exposition.",
+              "icon": "FileCheck2"
+            },
+            {
+              "title": "Suivi",
+              "description": "Mettre en place un rythme de revue pour roadmap, incidents, opportunités et retours terrain.",
+              "icon": "Workflow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Activation commerciale",
+          "title": "Les partenaires doivent disposer d’un récit clair pour vendre, déployer et supporter SGE.",
+          "description": "Pour les distributeurs, revendeurs et relais régionaux, la clarté du positionnement compte autant que l’accès aux ressources techniques ou marketing.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Positionnement",
+              "description": "Décrire précisément les cas d’usage, le public visé et la valeur client commune.",
+              "href": "/partners/distribution",
+              "icon": "Compass"
+            },
+            {
+              "title": "Enablement",
+              "description": "Mettre à disposition supports, formations, argumentaires et parcours de montée en compétence.",
+              "href": "/partners/resources",
+              "icon": "GraduationCap"
+            },
+            {
+              "title": "Co-marketing",
+              "description": "Préparer les prises de parole, cas clients, pages partenaires et campagnes conjointes.",
+              "href": "/partners/resources",
+              "icon": "Megaphone"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Souveraineté et confiance",
+          "title": "Le réseau partenaire doit renforcer la promesse européenne de SGE.",
+          "description": "Chaque relation partenaire doit préserver les exigences de contrôle, transparence, sécurité et indépendance opérationnelle attendues par les clients.",
+          "tone": "dark",
+          "columns": 2,
+          "items": [
+            {
+              "title": "Europe-first",
+              "description": "Privilégier des modèles de déploiement, support et gouvernance adaptés aux organisations européennes.",
+              "icon": "Globe2"
+            },
+            {
+              "title": "Sécurité vérifiable",
+              "description": "Documenter les accès, responsabilités, journaux, certifications et procédures d’escalade.",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Favoriser standards, APIs, documentation claire et intégrations maintenables.",
+              "icon": "Network"
+            },
+            {
+              "title": "Open-source ready",
+              "description": "Préparer les ressources et exemples qui pourront être audités, partagés ou publiés progressivement.",
+              "icon": "GitBranch"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Portail partenaire",
+          "title": "La structure prépare une future plateforme partenaire plus autonome.",
+          "description": "Les contenus de le partenariat de distribution SGE restent compatibles avec le site officiel tout en anticipant un espace dédié aux partenaires, ressources, certifications et opportunités.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Ressources centralisées",
+              "description": "Réunir guides, supports commerciaux, checklists techniques et modèles de déploiement.",
+              "href": "/partners/resources",
+              "icon": "BookOpen"
+            },
+            {
+              "title": "Suivi des statuts",
+              "description": "Rendre visibles les étapes de qualification, activation, certification et mise en marché.",
+              "href": "/partners/program",
+              "icon": "BadgeCheck"
+            },
+            {
+              "title": "Opportunités",
+              "description": "Structurer les demandes entrantes, leads, projets communs et escalades prioritaires.",
+              "href": "/partners/become",
+              "icon": "Rocket"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Parcours recommandé",
+          "title": "Un chemin court permet d’avancer avec les distributeurs, revendeurs et relais régionaux sans disperser l’effort.",
+          "description": "La page doit guider vers une prochaine action claire : comprendre le programme, consulter les ressources, puis qualifier une collaboration concrète.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Comprendre",
+              "description": "Lire les critères, le modèle de collaboration et les responsabilités attendues.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Préparer",
+              "description": "Rassembler ressources, documents, preuves de capacité et questions techniques.",
+              "href": "/partners/resources",
+              "icon": "Boxes"
+            },
+            {
+              "title": "Engager",
+              "description": "Présenter le contexte, le marché visé et le type de partenariat recherché.",
+              "href": "/partners/become",
+              "icon": "Handshake"
+            }
+          ]
+        }
+      ]
     },
     "program": {
       "badge": "Programme partenaire",
@@ -17161,7 +20224,168 @@
       ],
       "ctaTitle": "Rejoignez le programme partenaire",
       "ctaDescription": "Présentez votre activité et définissons le bon niveau de collaboration.",
-      "ctaLabel": "Rejoindre le programme"
+      "ctaLabel": "Rejoindre le programme",
+      "supplementalSections": [
+        {
+          "eyebrow": "Écosystème partenaire",
+          "title": "Situer le programme partenaire SGE dans l’écosystème Sky Genesis Enterprise.",
+          "description": "Cette section relie le programme partenaire SGE aux produits, plateformes et parcours go-to-market qui structurent une collaboration sérieuse avec les partenaires technologiques, service et distribution.",
+          "tone": "dark",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Aether Identity",
+              "description": "Base d’identité, de contrôle d’accès et de confiance pour les intégrations partenaires.",
+              "href": "/platform",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Aether Cloud et Edge",
+              "description": "Fondations d’hébergement, réseau et déploiement pour les scénarios souverains.",
+              "href": "/platform/cloud",
+              "icon": "CloudCog"
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Point d’entrée pour APIs, SDKs, environnements et futures intégrations partenaires.",
+              "href": "/developers",
+              "icon": "Code2"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Modèle opératoire",
+          "title": "Programme partenaire doit être cadré comme une relation de delivery, pas seulement comme une page commerciale.",
+          "description": "Le partenariat devient utile lorsque responsabilités, support, documentation, validation et mise en marché sont visibles dès le départ.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Responsabilités",
+              "description": "Clarifier qui conçoit, livre, maintient, supporte et documente chaque partie de l’offre.",
+              "icon": "BriefcaseBusiness"
+            },
+            {
+              "title": "Validation",
+              "description": "Contrôler qualité, sécurité, promesse client et conditions d’exploitation avant exposition.",
+              "icon": "FileCheck2"
+            },
+            {
+              "title": "Suivi",
+              "description": "Mettre en place un rythme de revue pour roadmap, incidents, opportunités et retours terrain.",
+              "icon": "Workflow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Activation commerciale",
+          "title": "Les partenaires doivent disposer d’un récit clair pour vendre, déployer et supporter SGE.",
+          "description": "Pour les partenaires technologiques, service et distribution, la clarté du positionnement compte autant que l’accès aux ressources techniques ou marketing.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Positionnement",
+              "description": "Décrire précisément les cas d’usage, le public visé et la valeur client commune.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Enablement",
+              "description": "Mettre à disposition supports, formations, argumentaires et parcours de montée en compétence.",
+              "href": "/partners/resources",
+              "icon": "GraduationCap"
+            },
+            {
+              "title": "Co-marketing",
+              "description": "Préparer les prises de parole, cas clients, pages partenaires et campagnes conjointes.",
+              "href": "/partners/resources",
+              "icon": "Megaphone"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Souveraineté et confiance",
+          "title": "Le réseau partenaire doit renforcer la promesse européenne de SGE.",
+          "description": "Chaque relation partenaire doit préserver les exigences de contrôle, transparence, sécurité et indépendance opérationnelle attendues par les clients.",
+          "tone": "dark",
+          "columns": 2,
+          "items": [
+            {
+              "title": "Europe-first",
+              "description": "Privilégier des modèles de déploiement, support et gouvernance adaptés aux organisations européennes.",
+              "icon": "Globe2"
+            },
+            {
+              "title": "Sécurité vérifiable",
+              "description": "Documenter les accès, responsabilités, journaux, certifications et procédures d’escalade.",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Favoriser standards, APIs, documentation claire et intégrations maintenables.",
+              "icon": "Network"
+            },
+            {
+              "title": "Open-source ready",
+              "description": "Préparer les ressources et exemples qui pourront être audités, partagés ou publiés progressivement.",
+              "icon": "GitBranch"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Portail partenaire",
+          "title": "La structure prépare une future plateforme partenaire plus autonome.",
+          "description": "Les contenus de le programme partenaire SGE restent compatibles avec le site officiel tout en anticipant un espace dédié aux partenaires, ressources, certifications et opportunités.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Ressources centralisées",
+              "description": "Réunir guides, supports commerciaux, checklists techniques et modèles de déploiement.",
+              "href": "/partners/resources",
+              "icon": "BookOpen"
+            },
+            {
+              "title": "Suivi des statuts",
+              "description": "Rendre visibles les étapes de qualification, activation, certification et mise en marché.",
+              "href": "/partners/program",
+              "icon": "BadgeCheck"
+            },
+            {
+              "title": "Opportunités",
+              "description": "Structurer les demandes entrantes, leads, projets communs et escalades prioritaires.",
+              "href": "/partners/become",
+              "icon": "Rocket"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Parcours recommandé",
+          "title": "Un chemin court permet d’avancer avec les partenaires technologiques, service et distribution sans disperser l’effort.",
+          "description": "La page doit guider vers une prochaine action claire : comprendre le programme, consulter les ressources, puis qualifier une collaboration concrète.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Comprendre",
+              "description": "Lire les critères, le modèle de collaboration et les responsabilités attendues.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Préparer",
+              "description": "Rassembler ressources, documents, preuves de capacité et questions techniques.",
+              "href": "/partners/resources",
+              "icon": "Boxes"
+            },
+            {
+              "title": "Engager",
+              "description": "Présenter le contexte, le marché visé et le type de partenariat recherché.",
+              "href": "/partners/become",
+              "icon": "Handshake"
+            }
+          ]
+        }
+      ]
     },
     "become": {
       "badge": "Devenir partenaire",
@@ -17326,7 +20550,168 @@
       ],
       "ctaTitle": "Contactez l'équipe partenaires",
       "ctaDescription": "Envoyez-nous votre présentation et nous reviendrons avec les prochaines étapes.",
-      "ctaLabel": "Écrire à l'équipe"
+      "ctaLabel": "Écrire à l'équipe",
+      "supplementalSections": [
+        {
+          "eyebrow": "Écosystème partenaire",
+          "title": "Situer le parcours de candidature partenaire dans l’écosystème Sky Genesis Enterprise.",
+          "description": "Cette section relie le parcours de candidature partenaire aux produits, plateformes et parcours go-to-market qui structurent une collaboration sérieuse avec les organisations qui veulent rejoindre l’écosystème.",
+          "tone": "dark",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Aether Identity",
+              "description": "Base d’identité, de contrôle d’accès et de confiance pour les intégrations partenaires.",
+              "href": "/platform",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Aether Cloud et Edge",
+              "description": "Fondations d’hébergement, réseau et déploiement pour les scénarios souverains.",
+              "href": "/platform/cloud",
+              "icon": "CloudCog"
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Point d’entrée pour APIs, SDKs, environnements et futures intégrations partenaires.",
+              "href": "/developers",
+              "icon": "Code2"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Modèle opératoire",
+          "title": "Candidature partenaire doit être cadré comme une relation de delivery, pas seulement comme une page commerciale.",
+          "description": "Le partenariat devient utile lorsque responsabilités, support, documentation, validation et mise en marché sont visibles dès le départ.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Responsabilités",
+              "description": "Clarifier qui conçoit, livre, maintient, supporte et documente chaque partie de l’offre.",
+              "icon": "BriefcaseBusiness"
+            },
+            {
+              "title": "Validation",
+              "description": "Contrôler qualité, sécurité, promesse client et conditions d’exploitation avant exposition.",
+              "icon": "FileCheck2"
+            },
+            {
+              "title": "Suivi",
+              "description": "Mettre en place un rythme de revue pour roadmap, incidents, opportunités et retours terrain.",
+              "icon": "Workflow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Activation commerciale",
+          "title": "Les partenaires doivent disposer d’un récit clair pour vendre, déployer et supporter SGE.",
+          "description": "Pour les organisations qui veulent rejoindre l’écosystème, la clarté du positionnement compte autant que l’accès aux ressources techniques ou marketing.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Positionnement",
+              "description": "Décrire précisément les cas d’usage, le public visé et la valeur client commune.",
+              "href": "/partners/become",
+              "icon": "Compass"
+            },
+            {
+              "title": "Enablement",
+              "description": "Mettre à disposition supports, formations, argumentaires et parcours de montée en compétence.",
+              "href": "/partners/resources",
+              "icon": "GraduationCap"
+            },
+            {
+              "title": "Co-marketing",
+              "description": "Préparer les prises de parole, cas clients, pages partenaires et campagnes conjointes.",
+              "href": "/partners/resources",
+              "icon": "Megaphone"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Souveraineté et confiance",
+          "title": "Le réseau partenaire doit renforcer la promesse européenne de SGE.",
+          "description": "Chaque relation partenaire doit préserver les exigences de contrôle, transparence, sécurité et indépendance opérationnelle attendues par les clients.",
+          "tone": "dark",
+          "columns": 2,
+          "items": [
+            {
+              "title": "Europe-first",
+              "description": "Privilégier des modèles de déploiement, support et gouvernance adaptés aux organisations européennes.",
+              "icon": "Globe2"
+            },
+            {
+              "title": "Sécurité vérifiable",
+              "description": "Documenter les accès, responsabilités, journaux, certifications et procédures d’escalade.",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Favoriser standards, APIs, documentation claire et intégrations maintenables.",
+              "icon": "Network"
+            },
+            {
+              "title": "Open-source ready",
+              "description": "Préparer les ressources et exemples qui pourront être audités, partagés ou publiés progressivement.",
+              "icon": "GitBranch"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Portail partenaire",
+          "title": "La structure prépare une future plateforme partenaire plus autonome.",
+          "description": "Les contenus de le parcours de candidature partenaire restent compatibles avec le site officiel tout en anticipant un espace dédié aux partenaires, ressources, certifications et opportunités.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Ressources centralisées",
+              "description": "Réunir guides, supports commerciaux, checklists techniques et modèles de déploiement.",
+              "href": "/partners/resources",
+              "icon": "BookOpen"
+            },
+            {
+              "title": "Suivi des statuts",
+              "description": "Rendre visibles les étapes de qualification, activation, certification et mise en marché.",
+              "href": "/partners/program",
+              "icon": "BadgeCheck"
+            },
+            {
+              "title": "Opportunités",
+              "description": "Structurer les demandes entrantes, leads, projets communs et escalades prioritaires.",
+              "href": "/partners/become",
+              "icon": "Rocket"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Parcours recommandé",
+          "title": "Un chemin court permet d’avancer avec les organisations qui veulent rejoindre l’écosystème sans disperser l’effort.",
+          "description": "La page doit guider vers une prochaine action claire : comprendre le programme, consulter les ressources, puis qualifier une collaboration concrète.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Comprendre",
+              "description": "Lire les critères, le modèle de collaboration et les responsabilités attendues.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Préparer",
+              "description": "Rassembler ressources, documents, preuves de capacité et questions techniques.",
+              "href": "/partners/resources",
+              "icon": "Boxes"
+            },
+            {
+              "title": "Engager",
+              "description": "Présenter le contexte, le marché visé et le type de partenariat recherché.",
+              "href": "/partners/become",
+              "icon": "Handshake"
+            }
+          ]
+        }
+      ]
     },
     "resources": {
       "badge": "Ressources partenaires",
@@ -17491,7 +20876,168 @@
       ],
       "ctaTitle": "Besoin d'un accès partenaire ?",
       "ctaDescription": "Rejoignez le programme pour accéder aux ressources adaptées à votre rôle.",
-      "ctaLabel": "Voir le programme"
+      "ctaLabel": "Voir le programme",
+      "supplementalSections": [
+        {
+          "eyebrow": "Écosystème partenaire",
+          "title": "Situer les ressources partenaires SGE dans l’écosystème Sky Genesis Enterprise.",
+          "description": "Cette section relie les ressources partenaires SGE aux produits, plateformes et parcours go-to-market qui structurent une collaboration sérieuse avec les équipes déjà engagées dans un partenariat.",
+          "tone": "dark",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Aether Identity",
+              "description": "Base d’identité, de contrôle d’accès et de confiance pour les intégrations partenaires.",
+              "href": "/platform",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Aether Cloud et Edge",
+              "description": "Fondations d’hébergement, réseau et déploiement pour les scénarios souverains.",
+              "href": "/platform/cloud",
+              "icon": "CloudCog"
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Point d’entrée pour APIs, SDKs, environnements et futures intégrations partenaires.",
+              "href": "/developers",
+              "icon": "Code2"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Modèle opératoire",
+          "title": "Ressources partenaires doit être cadré comme une relation de delivery, pas seulement comme une page commerciale.",
+          "description": "Le partenariat devient utile lorsque responsabilités, support, documentation, validation et mise en marché sont visibles dès le départ.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Responsabilités",
+              "description": "Clarifier qui conçoit, livre, maintient, supporte et documente chaque partie de l’offre.",
+              "icon": "BriefcaseBusiness"
+            },
+            {
+              "title": "Validation",
+              "description": "Contrôler qualité, sécurité, promesse client et conditions d’exploitation avant exposition.",
+              "icon": "FileCheck2"
+            },
+            {
+              "title": "Suivi",
+              "description": "Mettre en place un rythme de revue pour roadmap, incidents, opportunités et retours terrain.",
+              "icon": "Workflow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Activation commerciale",
+          "title": "Les partenaires doivent disposer d’un récit clair pour vendre, déployer et supporter SGE.",
+          "description": "Pour les équipes déjà engagées dans un partenariat, la clarté du positionnement compte autant que l’accès aux ressources techniques ou marketing.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Positionnement",
+              "description": "Décrire précisément les cas d’usage, le public visé et la valeur client commune.",
+              "href": "/partners/resources",
+              "icon": "Compass"
+            },
+            {
+              "title": "Enablement",
+              "description": "Mettre à disposition supports, formations, argumentaires et parcours de montée en compétence.",
+              "href": "/partners/resources",
+              "icon": "GraduationCap"
+            },
+            {
+              "title": "Co-marketing",
+              "description": "Préparer les prises de parole, cas clients, pages partenaires et campagnes conjointes.",
+              "href": "/partners/resources",
+              "icon": "Megaphone"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Souveraineté et confiance",
+          "title": "Le réseau partenaire doit renforcer la promesse européenne de SGE.",
+          "description": "Chaque relation partenaire doit préserver les exigences de contrôle, transparence, sécurité et indépendance opérationnelle attendues par les clients.",
+          "tone": "dark",
+          "columns": 2,
+          "items": [
+            {
+              "title": "Europe-first",
+              "description": "Privilégier des modèles de déploiement, support et gouvernance adaptés aux organisations européennes.",
+              "icon": "Globe2"
+            },
+            {
+              "title": "Sécurité vérifiable",
+              "description": "Documenter les accès, responsabilités, journaux, certifications et procédures d’escalade.",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Favoriser standards, APIs, documentation claire et intégrations maintenables.",
+              "icon": "Network"
+            },
+            {
+              "title": "Open-source ready",
+              "description": "Préparer les ressources et exemples qui pourront être audités, partagés ou publiés progressivement.",
+              "icon": "GitBranch"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Portail partenaire",
+          "title": "La structure prépare une future plateforme partenaire plus autonome.",
+          "description": "Les contenus de les ressources partenaires SGE restent compatibles avec le site officiel tout en anticipant un espace dédié aux partenaires, ressources, certifications et opportunités.",
+          "tone": "muted",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Ressources centralisées",
+              "description": "Réunir guides, supports commerciaux, checklists techniques et modèles de déploiement.",
+              "href": "/partners/resources",
+              "icon": "BookOpen"
+            },
+            {
+              "title": "Suivi des statuts",
+              "description": "Rendre visibles les étapes de qualification, activation, certification et mise en marché.",
+              "href": "/partners/program",
+              "icon": "BadgeCheck"
+            },
+            {
+              "title": "Opportunités",
+              "description": "Structurer les demandes entrantes, leads, projets communs et escalades prioritaires.",
+              "href": "/partners/become",
+              "icon": "Rocket"
+            }
+          ]
+        },
+        {
+          "eyebrow": "Parcours recommandé",
+          "title": "Un chemin court permet d’avancer avec les équipes déjà engagées dans un partenariat sans disperser l’effort.",
+          "description": "La page doit guider vers une prochaine action claire : comprendre le programme, consulter les ressources, puis qualifier une collaboration concrète.",
+          "columns": 3,
+          "items": [
+            {
+              "title": "Comprendre",
+              "description": "Lire les critères, le modèle de collaboration et les responsabilités attendues.",
+              "href": "/partners/program",
+              "icon": "Compass"
+            },
+            {
+              "title": "Préparer",
+              "description": "Rassembler ressources, documents, preuves de capacité et questions techniques.",
+              "href": "/partners/resources",
+              "icon": "Boxes"
+            },
+            {
+              "title": "Engager",
+              "description": "Présenter le contexte, le marché visé et le type de partenariat recherché.",
+              "href": "/partners/become",
+              "icon": "Handshake"
+            }
+          ]
+        }
+      ]
     }
   },
   "Blog": {

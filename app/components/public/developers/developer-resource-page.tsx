@@ -1,669 +1,547 @@
 import * as React from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { ArrowRight } from "lucide-react";
-import { Header } from "@/components/public/Header";
+import {
+  ArrowRight,
+  BookOpen,
+  Braces,
+  Cable,
+  CheckCircle2,
+  Cloud,
+  Code2,
+  FileJson2,
+  GitBranch,
+  Globe,
+  KeyRound,
+  Layers3,
+  Package,
+  PlugZap,
+  Rocket,
+  ServerCog,
+  ShieldCheck,
+  Terminal,
+  Waypoints,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 import { Footer } from "@/components/public/Footer";
+import { Header } from "@/components/public/Header";
 import { Button } from "@/components/ui/button";
 import type { Locale } from "@/lib/locale";
-import {
-  type DeveloperCard,
-  type DeveloperCodeSection,
-  type DeveloperDefinitionSection,
-  type DeveloperNumberedSection,
-  type DeveloperPageContent,
-  type DeveloperPageStatus,
-  type DeveloperSection,
-} from "@/lib/developers/developer-resources";
 import { cn } from "@/lib/utils";
+
+export type DeveloperPageStatus =
+  | "Conceptuel"
+  | "En préparation"
+  | "En développement"
+  | "Prototype"
+  | "Alpha"
+  | "Beta"
+  | "Stable";
+
+export interface DeveloperLink {
+  href: string;
+  label: string;
+  variant?: "primary" | "secondary";
+}
+
+export interface DeveloperProfileItem {
+  label: string;
+  value: string;
+  description?: string;
+  status?: DeveloperPageStatus;
+  monospace?: boolean;
+}
+
+export interface DeveloperCard {
+  title: string;
+  description: string;
+  href?: string;
+  icon?: string;
+  meta?: string[];
+  status?: DeveloperPageStatus;
+}
+
+export interface DeveloperNumberedItem {
+  title: string;
+  description: string;
+  href?: string;
+}
+
+export interface DeveloperCardsSection {
+  kind: "cards";
+  eyebrow: string;
+  title: string;
+  description?: string;
+  muted?: boolean;
+  columns?: 2 | 3;
+  cards: DeveloperCard[];
+}
+
+export interface DeveloperNumberedSection {
+  kind: "numbered";
+  eyebrow: string;
+  title: string;
+  description?: string;
+  muted?: boolean;
+  columns?: 2 | 3;
+  items: DeveloperNumberedItem[];
+}
+
+export interface DeveloperDefinitionSection {
+  kind: "definitions";
+  eyebrow: string;
+  title: string;
+  description?: string;
+  muted?: boolean;
+  columns?: 2 | 3;
+  items: DeveloperProfileItem[];
+}
+
+export interface DeveloperCodeSection {
+  kind: "code";
+  eyebrow: string;
+  title: string;
+  description?: string;
+  muted?: boolean;
+  caption?: string;
+  code: string;
+  notes?: DeveloperCard[];
+}
+
+export type DeveloperSection =
+  | DeveloperCardsSection
+  | DeveloperNumberedSection
+  | DeveloperDefinitionSection
+  | DeveloperCodeSection;
+
+export interface DeveloperPageContent {
+  slug?: string;
+  title: string;
+  eyebrow: string;
+  description: string;
+  body?: string;
+  status: DeveloperPageStatus;
+  ctas: DeveloperLink[];
+  profileItems: DeveloperProfileItem[];
+  sections: DeveloperSection[];
+  supplementalSections?: DeveloperSection[];
+  bottomEyebrow?: string;
+  bottomTitle?: string;
+  bottomDescription?: string;
+  bottomLinks?: DeveloperLink[];
+}
 
 interface DeveloperResourcePageProps {
   locale: string;
   page: DeveloperPageContent;
 }
 
-interface DeveloperSectionProps {
+interface SectionProps {
+  id?: string;
   eyebrow: string;
   title: string;
   description?: string;
-  muted?: boolean;
+  tone?: "default" | "muted" | "dark";
+  centered?: boolean;
   children: React.ReactNode;
 }
 
-interface DeveloperSupplementalTranslations {
-  profileItemDescription: string;
-  measureDescription: string;
-  expandDescriptionFallback: string;
-  statusNarratives: Record<DeveloperPageStatus | "default", string>;
-  linkNarratives: {
-    quickstarts: string;
-    api: string;
-    postman: string;
-    sdks: string;
-    cli: string;
-    extensions: string;
-    contact: string;
-    products: string;
-    platform: string;
-    default: string;
-  };
-  sections: {
-    framing: {
-      eyebrow: string;
-      title: string;
-      description: string;
-    };
-    sequence: {
-      eyebrow: string;
-      title: string;
-      description: string;
-    };
-    productReading: {
-      eyebrow: string;
-      title: string;
-      description: string;
-      currentScopeTitle: string;
-      visibleMaturityTitle: string;
-      primarySignalTitle: string;
-    };
-    ecosystem: {
-      eyebrow: string;
-      title: string;
-      description: string;
-      developerPortalTitle: string;
-      developerPortalDescription: string;
-      platformTitle: string;
-      platformDescription: string;
-      productsTitle: string;
-      productsDescription: string;
-    };
-    adoption: {
-      eyebrow: string;
-      title: string;
-      description: string;
-      startSmallTitle: string;
-      startSmallDescription: string;
-      measureTitle: string;
-      expandTitle: string;
-    };
-  };
-}
+const iconMap: Record<string, LucideIcon> = {
+  BookOpen,
+  Braces,
+  Cable,
+  CheckCircle2,
+  Cloud,
+  Code2,
+  FileJson2,
+  GitBranch,
+  Globe,
+  KeyRound,
+  Layers3,
+  Package,
+  PlugZap,
+  Rocket,
+  ServerCog,
+  ShieldCheck,
+  Terminal,
+  Waypoints,
+  Workflow,
+};
 
 function localizeHref(locale: string, href: string) {
-  if (href.startsWith("http") || href.startsWith("mailto:")) {
+  if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("#")) {
     return href;
   }
 
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
 }
 
-function DeveloperSection({
-  eyebrow,
-  title,
-  description,
-  muted = false,
-  children,
-}: DeveloperSectionProps) {
+function SectionEyebrow({ children, inverted = false }: { children: React.ReactNode; inverted?: boolean }) {
   return (
-    <section className={cn("py-20 sm:py-24", muted && "bg-muted/35")}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-            {eyebrow}
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+    <span
+      className={cn(
+        "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em]",
+        inverted ? "text-white/60" : "text-zinc-500",
+      )}
+    >
+      <span className={cn("h-px w-10", inverted ? "bg-white/20" : "bg-zinc-300")} />
+      {children}
+    </span>
+  );
+}
+
+function DarkGrid() {
+  return (
+    <div
+      aria-hidden={true}
+      className="pointer-events-none absolute inset-0 opacity-[0.06]"
+      style={{
+        backgroundImage:
+          "linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)",
+        backgroundSize: "72px 72px",
+      }}
+    />
+  );
+}
+
+function Section({ id, eyebrow, title, description, tone = "default", centered = false, children }: SectionProps) {
+  const dark = tone === "dark";
+
+  return (
+    <section
+      id={id}
+      className={cn(
+        "relative overflow-hidden py-24 sm:py-28 lg:py-32",
+        tone === "muted" && "bg-zinc-50/80",
+        dark && "bg-zinc-950 text-white",
+      )}
+    >
+      {dark ? <DarkGrid /> : null}
+      <div className="relative mx-auto max-w-360 px-6 lg:px-12">
+        <div className={cn("max-w-4xl", centered && "mx-auto text-center")}>
+          <SectionEyebrow inverted={dark}>{eyebrow}</SectionEyebrow>
+          <h2
+            className={cn(
+              "mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl lg:text-6xl",
+              dark ? "text-white" : "text-zinc-950",
+            )}
+          >
             {title}
           </h2>
           {description ? (
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-              {description}
-            </p>
+            <p className={cn("mt-6 text-lg leading-8", dark ? "text-white/68" : "text-zinc-600")}>{description}</p>
           ) : null}
         </div>
-        {children}
+        <div className="mt-14">{children}</div>
       </div>
     </section>
   );
 }
 
-function DeveloperStatusBadge({ status }: { status: DeveloperPageStatus }) {
+function DeveloperStatusBadge({ status, dark = false }: { status: DeveloperPageStatus; dark?: boolean }) {
   const toneByStatus: Record<DeveloperPageStatus, string> = {
-    Conceptuel: "border-border bg-muted text-muted-foreground",
-    "En préparation": "border-primary/20 bg-primary/10 text-primary",
-    "En développement": "border-amber-500/25 bg-amber-500/10 text-amber-700 dark:text-amber-300",
-    Prototype: "border-sky-500/25 bg-sky-500/10 text-sky-700 dark:text-sky-300",
-    Alpha: "border-fuchsia-500/25 bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300",
-    Beta: "border-violet-500/25 bg-violet-500/10 text-violet-700 dark:text-violet-300",
-    Stable: "border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    Conceptuel: dark ? "border-white/10 bg-white/5 text-white/62" : "border-zinc-200 bg-zinc-50 text-zinc-600",
+    "En préparation": "border-sky-500/25 bg-sky-500/10 text-sky-700",
+    "En développement": "border-amber-500/25 bg-amber-500/10 text-amber-700",
+    Prototype: "border-cyan-500/25 bg-cyan-500/10 text-cyan-700",
+    Alpha: "border-fuchsia-500/25 bg-fuchsia-500/10 text-fuchsia-700",
+    Beta: "border-violet-500/25 bg-violet-500/10 text-violet-700",
+    Stable: "border-emerald-500/25 bg-emerald-500/10 text-emerald-700",
   };
 
   return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium",
-        toneByStatus[status]
-      )}
-    >
+    <span className={cn("inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium", toneByStatus[status])}>
       {status}
     </span>
   );
 }
 
-function DeveloperCTA({
-  locale,
-  href,
-  label,
-  variant = "primary",
-}: {
-  locale: string;
-  href: string;
-  label: string;
-  variant?: "primary" | "secondary";
-}) {
-  const isPrimary = variant !== "secondary";
-
+function HeroVisual({ page }: { page: DeveloperPageContent }) {
   return (
-    <Button
-      asChild
-      size="lg"
-      variant={isPrimary ? "default" : "outline"}
-      className={cn(
-        "h-12 rounded-md px-6 text-sm font-medium",
-        isPrimary && "bg-primary text-primary-foreground hover:bg-primary/90"
-      )}
-    >
-      <Link href={localizeHref(locale, href)}>
-        {label}
-        {isPrimary ? <ArrowRight className="h-4 w-4" /> : null}
-      </Link>
-    </Button>
+    <div className="relative overflow-hidden rounded-4xl border border-zinc-200 bg-white p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.3)]">
+      <div
+        aria-hidden={true}
+        className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.16),transparent_54%),linear-gradient(180deg,rgba(244,244,245,0.98),rgba(255,255,255,0))]"
+      />
+      <div className="relative rounded-[1.5rem] border border-zinc-200 bg-zinc-950 p-5 text-white">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/46">developer.skygenesisenterprise.com</div>
+            <div className="mt-2 text-xl font-semibold tracking-[-0.03em]">{page.title}</div>
+          </div>
+          <DeveloperStatusBadge status={page.status} dark />
+        </div>
+        <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-black/35">
+          <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+            <span className="ml-3 text-[11px] text-white/42">sge developers</span>
+          </div>
+          <pre className="overflow-x-auto p-4 text-xs leading-6 text-white/76">
+            <code>{`curl https://api.skygenesisenterprise.com/v1/status \\
+  -H "Authorization: Bearer $SGE_TOKEN" \\
+  -H "SGE-Environment: sandbox"`}</code>
+          </pre>
+        </div>
+      </div>
+      <div className="relative mt-4 grid gap-3 sm:grid-cols-2">
+        {page.profileItems.slice(0, 4).map((item) => (
+          <div key={item.label} className="rounded-2xl border border-zinc-200 bg-zinc-50/80 px-4 py-3">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{item.label}</div>
+            <div className="mt-2 text-sm font-semibold text-zinc-950">{item.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
 function DeveloperHero({ locale, page }: DeveloperResourcePageProps) {
-  const t = useTranslations("Public.home.page.developerPage.common");
-
   return (
-    <section className="border-b border-border bg-background py-24 sm:py-28 lg:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+    <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
+      <div aria-hidden={true} className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.92),rgba(255,255,255,0.58)_46%,rgba(255,255,255,0.92)_100%)]" />
+      </div>
+
+      <div className="relative mx-auto grid min-h-[88vh] max-w-360 items-center gap-12 px-6 py-20 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:py-28">
         <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-primary">
-            {page.eyebrow}
-          </p>
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <h1 className="text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
+          <SectionEyebrow>{page.eyebrow}</SectionEyebrow>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <h1 className="max-w-5xl text-[clamp(3.2rem,6.8vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
               {page.title}
             </h1>
             <DeveloperStatusBadge status={page.status} />
           </div>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
-            {page.description}
-          </p>
-          {page.body ? (
-            <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
-              {page.body}
-            </p>
-          ) : null}
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl">{page.description}</p>
+          {page.body ? <p className="mt-5 max-w-3xl text-base leading-7 text-zinc-600">{page.body}</p> : null}
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             {page.ctas.map((cta) => (
-              <DeveloperCTA
+              <Button
                 key={cta.href}
-                locale={locale}
-                href={cta.href}
-                label={cta.label}
-                variant={cta.variant}
-              />
+                asChild
+                size="lg"
+                variant={cta.variant === "secondary" ? "outline" : "default"}
+                className={cn(
+                  "h-14 rounded-full px-8 text-sm font-medium",
+                  cta.variant === "secondary"
+                    ? "border-zinc-300 bg-white/85 text-zinc-950"
+                    : "bg-zinc-950 text-white hover:bg-zinc-800",
+                )}
+              >
+                <Link href={localizeHref(locale, cta.href)}>
+                  {cta.label}
+                  {cta.variant === "secondary" ? null : <ArrowRight className="h-4 w-4" />}
+                </Link>
+              </Button>
             ))}
           </div>
         </div>
-        <div className="rounded-lg border border-border bg-muted/50 p-6 lg:p-8">
-          <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                {t("profile")}
-              </p>
-              <p className="mt-2 text-lg font-semibold text-foreground">{page.title}</p>
-            </div>
-            <DeveloperStatusBadge status={page.status} />
+        <HeroVisual page={page} />
+      </div>
+    </section>
+  );
+}
+
+function gridClass(columns: 2 | 3 = 3) {
+  return columns === 2 ? "grid gap-5 md:grid-cols-2" : "grid gap-5 md:grid-cols-2 lg:grid-cols-3";
+}
+
+function DeveloperCardView({ card, locale, number, dark = false }: { card: DeveloperCard; locale: string; number?: number; dark?: boolean }) {
+  const Icon = card.icon ? iconMap[card.icon] : undefined;
+  const content = (
+    <div
+      className={cn(
+        "group relative h-full overflow-hidden rounded-4xl border p-6 transition duration-300",
+        dark
+          ? "border-white/10 bg-white/4 hover:border-white/20"
+          : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)] hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.22)]",
+      )}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          {typeof number === "number" ? (
+            <span
+              className={cn(
+                "inline-flex h-11 w-11 items-center justify-center rounded-2xl border text-sm font-semibold",
+                dark ? "border-white/10 bg-white/6 text-white" : "border-zinc-200 bg-zinc-50 text-zinc-700",
+              )}
+            >
+              {number + 1}
+            </span>
+          ) : Icon ? (
+            <span
+              className={cn(
+                "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
+                dark ? "border-white/10 bg-white/6 text-white" : "border-zinc-200 bg-zinc-50 text-zinc-700",
+              )}
+            >
+              <Icon className="h-5 w-5" />
+            </span>
+          ) : null}
+        </div>
+        <div className="flex items-center gap-2">
+          {card.status ? <DeveloperStatusBadge status={card.status} dark={dark} /> : null}
+          {card.href ? (
+            <span
+              className={cn(
+                "inline-flex h-10 w-10 items-center justify-center rounded-full border transition",
+                dark
+                  ? "border-white/10 text-white/54 group-hover:border-white/20 group-hover:text-white"
+                  : "border-zinc-200 text-zinc-500 group-hover:border-zinc-300 group-hover:text-zinc-900",
+              )}
+            >
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden={true} />
+            </span>
+          ) : null}
+        </div>
+      </div>
+      <h3 className={cn("mt-7 text-xl font-semibold tracking-[-0.03em]", dark ? "text-white" : "text-zinc-950")}>{card.title}</h3>
+      <p className={cn("mt-4 text-sm leading-7", dark ? "text-white/64" : "text-zinc-600")}>{card.description}</p>
+      {card.meta?.length ? (
+        <ul className={cn("mt-5 space-y-2 text-sm leading-6", dark ? "text-white/58" : "text-zinc-500")}>
+          {card.meta.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+
+  if (!card.href) {
+    return content;
+  }
+
+  return <Link href={localizeHref(locale, card.href)}>{content}</Link>;
+}
+
+function DefinitionsGrid({ section, dark = false }: { section: DeveloperDefinitionSection; dark?: boolean }) {
+  return (
+    <div className={gridClass(section.columns)}>
+      {section.items.map((item) => (
+        <div
+          key={`${item.label}-${item.value}`}
+          className={cn(
+            "rounded-4xl border p-6",
+            dark ? "border-white/10 bg-white/4" : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.2)]",
+          )}
+        >
+          <div className="flex items-start justify-between gap-4">
+            <p className={cn("text-[11px] font-semibold uppercase tracking-[0.2em]", dark ? "text-white/48" : "text-zinc-500")}>
+              {item.label}
+            </p>
+            {item.status ? <DeveloperStatusBadge status={item.status} dark={dark} /> : null}
           </div>
-          <dl className="mt-6 grid gap-4">
-            {page.profileItems.map((item) => (
-              <div
-                key={item.label}
-                className="flex items-center justify-between gap-4 rounded-md border border-border bg-card px-4 py-3"
-              >
-                <dt className="text-sm text-muted-foreground">{item.label}</dt>
-                <dd className="text-right text-sm font-medium text-foreground">{item.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <p className={cn("mt-4 text-lg font-semibold", item.monospace && "font-mono text-sm", dark ? "text-white" : "text-zinc-950")}>
+            {item.value}
+          </p>
+          {item.description ? <p className={cn("mt-3 text-sm leading-7", dark ? "text-white/62" : "text-zinc-600")}>{item.description}</p> : null}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CodeSectionView({ locale, section, dark = false }: { locale: string; section: DeveloperCodeSection; dark?: boolean }) {
+  const hasNotes = Boolean(section.notes?.length);
+
+  return (
+    <div className={cn("grid gap-6", hasNotes && "lg:grid-cols-[1.1fr_0.9fr]")}>
+      <div className={cn("overflow-hidden rounded-4xl border", dark ? "border-white/10 bg-black/30" : "border-zinc-200 bg-zinc-950 text-white")}>
+        {section.caption ? (
+          <div className={cn("border-b px-5 py-4 text-sm font-medium", dark ? "border-white/10 text-white" : "border-white/10 text-white")}>
+            {section.caption}
+          </div>
+        ) : null}
+        <pre className="overflow-x-auto p-5 text-sm leading-7 text-white/78">
+          <code>{section.code}</code>
+        </pre>
+      </div>
+      {hasNotes ? (
+        <div className="grid gap-5">
+          {section.notes?.map((card) => <DeveloperCardView key={card.title} card={card} locale={locale} dark={dark} />)}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function renderSection(locale: string, section: DeveloperSection) {
+  const tone = section.kind === "code" ? "dark" : section.muted ? "muted" : "default";
+  const dark = tone === "dark";
+
+  return (
+    <Section key={`${section.kind}-${section.title}`} eyebrow={section.eyebrow} title={section.title} description={section.description} tone={tone}>
+      {section.kind === "cards" ? (
+        <div className={gridClass(section.columns)}>
+          {section.cards.map((card) => (
+            <DeveloperCardView key={card.title} card={card} locale={locale} dark={dark} />
+          ))}
+        </div>
+      ) : null}
+      {section.kind === "numbered" ? (
+        <div className={gridClass(section.columns)}>
+          {section.items.map((item, index) => (
+            <DeveloperCardView key={item.title} card={item} locale={locale} number={index} dark={dark} />
+          ))}
+        </div>
+      ) : null}
+      {section.kind === "definitions" ? <DefinitionsGrid section={section} dark={dark} /> : null}
+      {section.kind === "code" ? <CodeSectionView locale={locale} section={section} dark={dark} /> : null}
+    </Section>
+  );
+}
+
+function BottomSection({ locale, page }: DeveloperResourcePageProps) {
+  if (!page.bottomTitle || !page.bottomLinks?.length) {
+    return null;
+  }
+
+  return (
+    <section className="bg-zinc-50/80 py-20 sm:py-24">
+      <div className="mx-auto max-w-360 px-6 lg:px-12">
+        <div className="rounded-4xl border border-zinc-200 bg-white p-8 shadow-[0_24px_80px_-48px_rgba(15,23,42,0.3)] lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div className="max-w-3xl">
+              <SectionEyebrow>{page.bottomEyebrow ?? "Next step"}</SectionEyebrow>
+              <h2 className="mt-6 text-3xl font-semibold tracking-[-0.04em] text-zinc-950 sm:text-4xl">{page.bottomTitle}</h2>
+              {page.bottomDescription ? <p className="mt-5 text-base leading-7 text-zinc-600">{page.bottomDescription}</p> : null}
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              {page.bottomLinks.map((link) => (
+                <Button
+                  key={link.href}
+                  asChild
+                  variant={link.variant === "secondary" ? "outline" : "default"}
+                  className={cn(
+                    "h-12 rounded-full px-6 text-sm font-medium",
+                    link.variant === "secondary" ? "border-zinc-300 bg-white text-zinc-950" : "bg-zinc-950 text-white hover:bg-zinc-800",
+                  )}
+                >
+                  <Link href={localizeHref(locale, link.href)}>
+                    {link.label}
+                    {link.variant === "secondary" ? null : <ArrowRight className="h-4 w-4" />}
+                  </Link>
+                </Button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function cardGridClass(columns: 2 | 3 = 3) {
-  return columns === 2 ? "grid gap-5 md:grid-cols-2" : "grid gap-5 md:grid-cols-2 lg:grid-cols-3";
-}
-
-function CardContent({ card, number }: { card: DeveloperCard; number?: number }) {
-  const Icon = card.icon;
-  const t = useTranslations("Public.home.page.developerPage.common");
-
-  return (
-    <>
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          {typeof number === "number" ? (
-            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-sm font-semibold text-primary">
-              {number + 1}
-            </div>
-          ) : Icon ? (
-            <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-          ) : null}
-          <h3 className="text-base font-semibold text-foreground">{card.title}</h3>
-        </div>
-        {card.status ? <DeveloperStatusBadge status={card.status} /> : null}
-      </div>
-      <p className="mt-4 text-sm leading-7 text-muted-foreground">{card.description}</p>
-      {card.meta?.length ? (
-        <ul className="mt-5 space-y-2">
-          {card.meta.map((item) => (
-            <li key={item} className="text-sm text-muted-foreground">
-              {item}
-            </li>
-          ))}
-        </ul>
-      ) : null}
-      {card.href ? (
-        <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-          {t("explore")}
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </span>
-      ) : null}
-    </>
-  );
-}
-
-function renderCardItem(locale: string, card: DeveloperCard, number?: number) {
-  const className =
-    "rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20";
-
-  if (card.href) {
-    return (
-      <Link key={card.title} href={localizeHref(locale, card.href)} className={className}>
-        <CardContent card={card} number={number} />
-      </Link>
-    );
-  }
-
-  return (
-    <div key={card.title} className={className}>
-      <CardContent card={card} number={number} />
-    </div>
-  );
-}
-
-function DeveloperCardsSection({
-  locale,
-  section,
-}: {
-  locale: string;
-  section: Extract<DeveloperSection, { kind: "cards" }>;
-}) {
-  return (
-    <DeveloperSection
-      eyebrow={section.eyebrow}
-      title={section.title}
-      description={section.description}
-      muted={section.muted}
-    >
-      <div className={cardGridClass(section.columns)}>
-        {section.cards.map((card) => renderCardItem(locale, card))}
-      </div>
-    </DeveloperSection>
-  );
-}
-
-function DeveloperNumberedGridSection({
-  locale,
-  section,
-}: {
-  locale: string;
-  section: DeveloperNumberedSection;
-}) {
-  return (
-    <DeveloperSection
-      eyebrow={section.eyebrow}
-      title={section.title}
-      description={section.description}
-      muted={section.muted}
-    >
-      <div className={cardGridClass(section.columns)}>
-        {section.items.map((item, index) =>
-          renderCardItem(
-            locale,
-            { title: item.title, description: item.description, href: item.href },
-            index
-          )
-        )}
-      </div>
-    </DeveloperSection>
-  );
-}
-
-function DeveloperDefinitionsSection({
-  section,
-}: {
-  section: DeveloperDefinitionSection;
-}) {
-  return (
-    <DeveloperSection
-      eyebrow={section.eyebrow}
-      title={section.title}
-      description={section.description}
-      muted={section.muted}
-    >
-      <div className={cardGridClass(section.columns)}>
-        {section.items.map((item) => (
-          <div key={item.label} className="rounded-lg border border-border bg-card p-6">
-            <div className="flex items-start justify-between gap-4">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                {item.label}
-              </p>
-              {item.status ? <DeveloperStatusBadge status={item.status} /> : null}
-            </div>
-            <p
-              className={cn(
-                "mt-4 text-base font-semibold text-foreground",
-                item.monospace && "font-mono text-sm"
-              )}
-            >
-              {item.value}
-            </p>
-            {item.description ? (
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-            ) : null}
-          </div>
-        ))}
-      </div>
-    </DeveloperSection>
-  );
-}
-
-function DeveloperCodeSectionView({
-  locale,
-  section,
-}: {
-  locale: string;
-  section: DeveloperCodeSection;
-}) {
-  const hasNotes = Boolean(section.notes?.length);
-
-  return (
-    <DeveloperSection
-      eyebrow={section.eyebrow}
-      title={section.title}
-      description={section.description}
-      muted={section.muted}
-    >
-      <div className={cn("grid gap-6", hasNotes && "lg:grid-cols-[1.1fr_0.9fr]")}>
-        <div className="overflow-hidden rounded-lg border border-border bg-card">
-          {section.caption ? (
-            <div className="border-b border-border px-5 py-4 text-sm font-medium text-foreground">
-              {section.caption}
-            </div>
-          ) : null}
-          <pre className="overflow-x-auto p-5 text-sm leading-7 text-foreground">
-            <code>{section.code}</code>
-          </pre>
-        </div>
-        {hasNotes ? (
-          <div className="grid gap-5">
-            {section.notes?.map((card) => renderCardItem(locale, card))}
-          </div>
-        ) : null}
-      </div>
-    </DeveloperSection>
-  );
-}
-
-function DeveloperBottomSection({ locale, page }: DeveloperResourcePageProps) {
-  const t = useTranslations("Public.home.page.developerPage.common");
-
-  if (!page.bottomTitle || !page.bottomLinks?.length) {
-    return null;
-  }
-
-  return (
-    <DeveloperSection
-      eyebrow={t("bottomEyebrow")}
-      title={page.bottomTitle}
-      description={page.bottomDescription}
-      muted
-    >
-      <div className="grid gap-5 md:grid-cols-3">
-        {page.bottomLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={localizeHref(locale, link.href)}
-            className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/20"
-          >
-            <h3 className="text-base font-semibold text-foreground">{link.label}</h3>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">
-              {page.bottomDescription}
-            </p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-              {t("continue")}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </Link>
-        ))}
-      </div>
-    </DeveloperSection>
-  );
-}
-
-function isDeveloperResourceDetailPage(
-  page: DeveloperPageContent
-): page is DeveloperPageContent & { slug: string } {
-  return "slug" in page;
-}
-
-function getTargetSectionCount(page: DeveloperPageContent) {
-  return isDeveloperResourceDetailPage(page) ? 9 : 5;
-}
-
-function getStatusNarrative(
-  translations: DeveloperSupplementalTranslations,
-  status: DeveloperPageStatus
-) {
-  return translations.statusNarratives[status] ?? translations.statusNarratives.default;
-}
-
-function getLinkNarrative(translations: DeveloperSupplementalTranslations, href: string) {
-  if (href.includes("/quickstarts")) {
-    return translations.linkNarratives.quickstarts;
-  }
-
-  if (href.includes("/api")) {
-    return translations.linkNarratives.api;
-  }
-
-  if (href.includes("/postman")) {
-    return translations.linkNarratives.postman;
-  }
-
-  if (href.includes("/sdks")) {
-    return translations.linkNarratives.sdks;
-  }
-
-  if (href.includes("/cli")) {
-    return translations.linkNarratives.cli;
-  }
-
-  if (href.includes("/extensions")) {
-    return translations.linkNarratives.extensions;
-  }
-
-  if (href.includes("/company/contact")) {
-    return translations.linkNarratives.contact;
-  }
-
-  if (href.includes("/products")) {
-    return translations.linkNarratives.products;
-  }
-
-  if (href.includes("/platform")) {
-    return translations.linkNarratives.platform;
-  }
-
-  return translations.linkNarratives.default;
-}
-
-function getSupplementalSections(
-  page: DeveloperPageContent,
-  translations: DeveloperSupplementalTranslations
-): DeveloperSection[] {
-  const navigationItems = [...page.ctas, ...(page.bottomLinks ?? [])].filter(
-    (item, index, items) => items.findIndex((candidate) => candidate.href === item.href) === index
-  );
-  const statusNarrative = getStatusNarrative(translations, page.status);
-  const profileSummary = page.profileItems
-    .map((item) => `${item.label}: ${item.value}`)
-    .join(" • ");
-
-  const sections: DeveloperSection[] = [
-    {
-      kind: "definitions",
-      eyebrow: translations.sections.framing.eyebrow,
-      title: translations.sections.framing.title,
-      description: translations.sections.framing.description,
-      columns: 2,
-      items: page.profileItems.map((item) => ({
-        ...item,
-        description: translations.profileItemDescription.replace("{title}", page.title.toLowerCase()),
-      })),
-    },
-    {
-      kind: "numbered",
-      eyebrow: translations.sections.sequence.eyebrow,
-      title: translations.sections.sequence.title,
-      description: translations.sections.sequence.description,
-      muted: true,
-      columns: 3,
-      items: navigationItems.slice(0, 5).map((item) => ({
-        title: item.label,
-        description: getLinkNarrative(translations, item.href),
-        href: item.href,
-      })),
-    },
-    {
-      kind: "cards",
-      eyebrow: translations.sections.productReading.eyebrow,
-      title: translations.sections.productReading.title,
-      description: translations.sections.productReading.description,
-      columns: 3,
-      cards: [
-        {
-          title: translations.sections.productReading.currentScopeTitle,
-          description: page.body ?? page.description,
-        },
-        {
-          title: translations.sections.productReading.visibleMaturityTitle,
-          description: statusNarrative,
-          status: page.status,
-        },
-        {
-          title: translations.sections.productReading.primarySignalTitle,
-          description: profileSummary,
-        },
-      ],
-    },
-    {
-      kind: "cards",
-      eyebrow: translations.sections.ecosystem.eyebrow,
-      title: translations.sections.ecosystem.title,
-      description: translations.sections.ecosystem.description,
-      muted: true,
-      columns: 3,
-      cards: [
-        {
-          title: translations.sections.ecosystem.developerPortalTitle,
-          description: translations.sections.ecosystem.developerPortalDescription,
-          href: "/developers",
-        },
-        {
-          title: translations.sections.ecosystem.platformTitle,
-          description: translations.sections.ecosystem.platformDescription,
-          href: "/platform",
-        },
-        {
-          title: translations.sections.ecosystem.productsTitle,
-          description: translations.sections.ecosystem.productsDescription,
-          href: "/products",
-        },
-      ],
-    },
-    {
-      kind: "cards",
-      eyebrow: translations.sections.adoption.eyebrow,
-      title: translations.sections.adoption.title,
-      description: translations.sections.adoption.description,
-      columns: 3,
-      cards: [
-        {
-          title: translations.sections.adoption.startSmallTitle,
-          description: translations.sections.adoption.startSmallDescription,
-        },
-        {
-          title: translations.sections.adoption.measureTitle,
-          description: translations.measureDescription.replace("{status}", page.status.toLowerCase()),
-          status: page.status,
-        },
-        {
-          title: translations.sections.adoption.expandTitle,
-          description: page.bottomDescription ?? translations.expandDescriptionFallback,
-        },
-      ],
-    },
-  ];
-
-  const currentSectionCount = page.sections.length + (page.bottomLinks?.length ? 1 : 0);
-  const missingSections = Math.max(0, getTargetSectionCount(page) - currentSectionCount);
-
-  return sections.slice(0, missingSections);
-}
-
-function renderSection(locale: string, section: DeveloperSection) {
-  switch (section.kind) {
-    case "cards":
-      return <DeveloperCardsSection key={section.title} locale={locale} section={section} />;
-    case "numbered":
-      return <DeveloperNumberedGridSection key={section.title} locale={locale} section={section} />;
-    case "definitions":
-      return <DeveloperDefinitionsSection key={section.title} section={section} />;
-    case "code":
-      return <DeveloperCodeSectionView key={section.title} locale={locale} section={section} />;
-    default:
-      return null;
-  }
-}
-
 export function DeveloperResourcePage({ locale, page }: DeveloperResourcePageProps) {
-  const t = useTranslations("Public.home.page.developerPage.common");
-  const supplementalTranslations = t.raw("supplemental") as DeveloperSupplementalTranslations;
-  const supplementalSections = getSupplementalSections(page, supplementalTranslations);
-
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
       <Header locale={locale as Locale} />
       <main className="flex-1">
         <DeveloperHero locale={locale} page={page} />
         {page.sections.map((section) => renderSection(locale, section))}
-        {supplementalSections.map((section) => renderSection(locale, section))}
-        <DeveloperBottomSection locale={locale} page={page} />
+        {page.supplementalSections?.map((section) => renderSection(locale, section))}
+        <BottomSection locale={locale} page={page} />
       </main>
       <Footer locale={locale as Locale} />
     </div>

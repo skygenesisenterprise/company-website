@@ -13,6 +13,11 @@ export async function generateMetadata({ params }: CompanyPageParams): Promise<M
   return {
     title: t("title"),
     description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      type: "website",
+    },
   };
 }
 

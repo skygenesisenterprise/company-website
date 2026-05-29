@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -21,6 +22,8 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { GitHubIcon } from "@/components/ui/icons/GitHubIcon";
+import { LinkedinIcon } from "@/components/ui/icons/LinkedinIcon";
 import {
   CompanyCardGrid,
   CompanyFinalCta,
@@ -32,6 +35,7 @@ import {
   CompanySplitList,
   CompanyTimeline,
 } from "@/components/public/company/company-page";
+import { cn } from "@/lib/utils";
 
 interface CompanyPageProps {
   locale: string;
@@ -59,12 +63,56 @@ interface CompanySectionContent {
   items?: CompanyGridItem[];
 }
 
+interface LeadershipMetric {
+  value: string;
+  label: string;
+}
+
+interface LeadershipMember {
+  name: string;
+  role: string;
+  department: string;
+  bio: string;
+  image: string;
+  github?: string;
+  linkedin?: string;
+}
+
+interface LeadershipGroup {
+  title: string;
+  description: string;
+  members: LeadershipMember[];
+}
+
+const companyRoutes = {
+  overview: "/company",
+  about: "/company/about",
+  story: "/company/story",
+  values: "/company/values",
+  careers: "/company/careers",
+  contact: "/company/contact",
+  leadership: "/company/leadership",
+  partners: "/company/partners",
+  press: "/company/press",
+  office: "/office",
+  platform: "/platform",
+  developers: "/developers",
+} as const;
+
+async function getCompanySharedTranslations(locale: string) {
+  return getTranslations({ locale, namespace: "Public.company.shared" });
+}
+
 function localizeHref(locale: string, href: string) {
   if (href.startsWith("http") || href.startsWith("mailto:")) {
     return href;
   }
 
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
+}
+
+function companyHref(locale: string, route: keyof typeof companyRoutes) {
+  return localizeHref(locale, companyRoutes[route]);
 }
 
 function withIcons(items: CompanyGridItem[], icons: LucideIcon[]) {
@@ -116,8 +164,101 @@ function CompanyExpansionSections({
   );
 }
 
+function LeadershipMetricsPanel({ metrics }: { metrics: LeadershipMetric[] }) {
+  return (
+    <div className="relative overflow-hidden rounded-[2rem] border border-zinc-200 bg-white p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.28)]">
+      <div
+        aria-hidden={true}
+        className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.18),transparent_58%),linear-gradient(180deg,rgba(244,244,245,0.96),rgba(255,255,255,0))]"
+      />
+      <div className="relative grid gap-4 sm:grid-cols-2">
+        {metrics.map((metric) => (
+          <div key={metric.label} className="rounded-[1.5rem] border border-zinc-200 bg-zinc-50/80 p-5">
+            <div className="text-4xl font-semibold tracking-[-0.05em] text-zinc-950">{metric.value}</div>
+            <div className="mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{metric.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LeadershipMemberCard({ member }: { member: LeadershipMember }) {
+  const links = [
+    member.github ? { label: "GitHub", href: member.github, icon: GitHubIcon } : null,
+    member.linkedin ? { label: "LinkedIn", href: member.linkedin, icon: LinkedinIcon } : null,
+  ].filter(Boolean) as Array<{ label: string; href: string; icon: React.ComponentType<{ className?: string }> }>;
+
+  return (
+    <article
+      className={cn(
+        "group relative h-full overflow-hidden rounded-4xl border border-zinc-200/80 bg-white p-5 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.24)] transition duration-300",
+        "hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.2)]",
+      )}
+    >
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-zinc-200 bg-zinc-100">
+        <img src={member.image} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/34 via-transparent to-transparent opacity-70" />
+        {links.length ? (
+          <div className="absolute bottom-4 right-4 flex translate-y-2 gap-2 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            {links.map(({ label, href, icon: Icon }) => (
+              <Link
+                key={label}
+                href={href}
+                aria-label={`${member.name} ${label}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/92 text-zinc-950 shadow-[0_12px_30px_-18px_rgba(15,23,42,0.55)] transition hover:bg-white"
+              >
+                <Icon className="h-4 w-4" />
+              </Link>
+            ))}
+          </div>
+        ) : null}
+      </div>
+      <div className="px-1 pb-1 pt-6">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{member.department}</div>
+        <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{member.name}</h3>
+        <p className="mt-2 text-sm font-medium text-zinc-700">{member.role}</p>
+        <p className="mt-5 text-sm leading-7 text-zinc-600">{member.bio}</p>
+      </div>
+    </article>
+  );
+}
+
+function LeadershipStructureSection({
+  eyebrow,
+  title,
+  description,
+  groups,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  groups: LeadershipGroup[];
+}) {
+  return (
+    <CompanySection eyebrow={eyebrow} title={title} description={description}>
+      <div className="space-y-16">
+        {groups.map((group) => (
+          <div key={group.title}>
+            <div className="max-w-3xl">
+              <h3 className="text-3xl font-semibold tracking-[-0.04em] text-zinc-950 sm:text-4xl">{group.title}</h3>
+              <p className="mt-4 text-base leading-7 text-zinc-600">{group.description}</p>
+            </div>
+            <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {group.members.map((member) => (
+                <LeadershipMemberCard key={`${group.title}-${member.name}`} member={member} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </CompanySection>
+  );
+}
+
 export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.overview" });
+  const shared = await getCompanySharedTranslations(locale);
   const ecosystemItems = t.raw("ecosystem.items") as CompanyGridItem[];
   const missionItems = t.raw("mission.items") as CompanyGridItem[];
   const trajectoryItems = t.raw("trajectory.items") as Array<{ label: string; title: string; description: string }>;
@@ -132,8 +273,8 @@ export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
         title={t("hero.title")}
         description={t("hero.description")}
         actions={[
-          { label: t("hero.primaryCta"), href: `/${locale}/company/about` },
-          { label: t("hero.secondaryCta"), href: `/${locale}/platform`, variant: "outline" },
+          { label: t("hero.primaryCta"), href: companyHref(locale, "about") },
+          { label: t("hero.secondaryCta"), href: companyHref(locale, "platform"), variant: "outline" },
         ]}
         visual={<CompanyLayerDiagram layers={t.raw("layerDiagram.layers")} />}
       />
@@ -166,7 +307,10 @@ export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
         eyebrow={t("finalCta.eyebrow")}
         title={t("finalCta.title")}
         description={t("finalCta.description")}
-        actions={localizeActions(locale, finalActions)}
+        actions={localizeActions(locale, finalActions.length ? finalActions : [
+          { label: shared("ctaAbout"), href: companyRoutes.about },
+          { label: shared("ctaDiscoverOffice"), href: companyRoutes.office, variant: "outline" },
+        ])}
       />
     </CompanyPageShell>
   );
@@ -174,6 +318,7 @@ export async function CompanyOverviewPage({ locale }: CompanyPageProps) {
 
 export async function CompanyAboutPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.about" });
+  const shared = await getCompanySharedTranslations(locale);
   const architecture = t.raw("architecture") as CompanySectionContent;
   const method = t.raw("method") as CompanySectionContent;
   const pages = t.raw("pages") as CompanySectionContent;
@@ -206,8 +351,8 @@ export async function CompanyAboutPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "Notre trajectoire", href: `/${locale}/company/story` },
-          { label: "Nos principes", href: `/${locale}/company/values`, variant: "outline" },
+          { label: shared("ctaStory"), href: companyHref(locale, "story") },
+          { label: shared("ctaValues"), href: companyHref(locale, "values"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -216,6 +361,7 @@ export async function CompanyAboutPage({ locale }: CompanyPageProps) {
 
 export async function CompanyStoryPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.story" });
+  const shared = await getCompanySharedTranslations(locale);
   const problem = t.raw("problem") as CompanySectionContent;
   const response = t.raw("response") as CompanySectionContent;
   const timelineItems = t.raw("timeline.items") as Array<{ label: string; title: string; description: string }>;
@@ -246,8 +392,8 @@ export async function CompanyStoryPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "À propos de SGE", href: `/${locale}/company/about` },
-          { label: "Nous contacter", href: `/${locale}/company/contact`, variant: "outline" },
+          { label: shared("ctaAbout"), href: companyHref(locale, "about") },
+          { label: shared("ctaContact"), href: companyHref(locale, "contact"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -256,6 +402,7 @@ export async function CompanyStoryPage({ locale }: CompanyPageProps) {
 
 export async function CompanyValuesPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.values" });
+  const shared = await getCompanySharedTranslations(locale);
   const principles = t.raw("principles") as CompanySectionContent;
   const culture = t.raw("culture") as CompanySectionContent;
   const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
@@ -279,8 +426,8 @@ export async function CompanyValuesPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "Lire la trajectoire", href: `/${locale}/company/story` },
-          { label: "Carrières", href: `/${locale}/company/careers`, variant: "outline" },
+          { label: shared("ctaStory"), href: companyHref(locale, "story") },
+          { label: shared("ctaCareers"), href: companyHref(locale, "careers"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -289,6 +436,7 @@ export async function CompanyValuesPage({ locale }: CompanyPageProps) {
 
 export async function CompanyCareersPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.careers" });
+  const shared = await getCompanySharedTranslations(locale);
   const culture = t.raw("culture") as CompanySectionContent;
   const domains = t.raw("domains") as CompanySectionContent;
   const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
@@ -314,8 +462,8 @@ export async function CompanyCareersPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "Nous contacter", href: `/${locale}/company/contact` },
-          { label: "Nos principes", href: `/${locale}/company/values`, variant: "outline" },
+          { label: shared("ctaContact"), href: companyHref(locale, "contact") },
+          { label: shared("ctaValues"), href: companyHref(locale, "values"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -324,6 +472,7 @@ export async function CompanyCareersPage({ locale }: CompanyPageProps) {
 
 export async function CompanyContactPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.contact" });
+  const shared = await getCompanySharedTranslations(locale);
   const routes = t.raw("routes") as CompanySectionContent;
   const expectations = t.raw("expectations") as CompanySectionContent;
   const official = t.raw("official") as CompanySectionContent;
@@ -352,8 +501,8 @@ export async function CompanyContactPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "À propos", href: `/${locale}/company/about` },
-          { label: "Presse", href: `/${locale}/company/press`, variant: "outline" },
+          { label: shared("ctaAbout"), href: companyHref(locale, "about") },
+          { label: shared("ctaPress"), href: companyHref(locale, "press"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -362,15 +511,28 @@ export async function CompanyContactPage({ locale }: CompanyPageProps) {
 
 export async function CompanyLeadershipPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.leadership" });
+  const shared = await getCompanySharedTranslations(locale);
   const areas = t.raw("areas") as CompanySectionContent;
   const governance = t.raw("governance") as CompanySectionContent;
   const expansionSections = t.raw("expansion.sections") as CompanySectionContent[];
+  const metrics = t.raw("hero.metrics") as LeadershipMetric[];
+  const leadershipGroups = t.raw("structure.groups") as LeadershipGroup[];
 
   return (
     <CompanyPageShell locale={locale}>
-      <CompanyHero eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} centered />
+      <CompanyHero
+        eyebrow={t("hero.eyebrow")}
+        title={t("hero.title")}
+        description={t("hero.description")}
+        visual={<LeadershipMetricsPanel metrics={metrics} />}
+      />
 
-      <CompanySection eyebrow={t("founder.eyebrow")} title={t("founder.title")} description={t("founder.description")} />
+      <LeadershipStructureSection
+        eyebrow={t("structure.eyebrow")}
+        title={t("structure.title")}
+        description={t("structure.description")}
+        groups={leadershipGroups}
+      />
 
       <CompanySection eyebrow={areas.eyebrow} title={areas.title} description={areas.description} tone="muted">
         <CompanyCardGrid items={withIcons(areas.items ?? [], [Compass, ShieldCheck, Users])} />
@@ -389,8 +551,8 @@ export async function CompanyLeadershipPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "Notre histoire", href: `/${locale}/company/story` },
-          { label: "Nous contacter", href: `/${locale}/company/contact`, variant: "outline" },
+          { label: shared("ctaStory"), href: companyHref(locale, "story") },
+          { label: shared("ctaContact"), href: companyHref(locale, "contact"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -399,6 +561,7 @@ export async function CompanyLeadershipPage({ locale }: CompanyPageProps) {
 
 export async function CompanyPartnersPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.partners" });
+  const shared = await getCompanySharedTranslations(locale);
   const types = t.raw("types") as CompanySectionContent;
   const principles = t.raw("principles") as CompanySectionContent;
   const audiences = t.raw("audiences") as CompanySectionContent;
@@ -429,8 +592,8 @@ export async function CompanyPartnersPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "Nous contacter", href: `/${locale}/company/contact` },
-          { label: "À propos", href: `/${locale}/company/about`, variant: "outline" },
+          { label: shared("ctaContact"), href: companyHref(locale, "contact") },
+          { label: shared("ctaAbout"), href: companyHref(locale, "about"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>
@@ -439,6 +602,7 @@ export async function CompanyPartnersPage({ locale }: CompanyPageProps) {
 
 export async function CompanyPressPage({ locale }: CompanyPageProps) {
   const t = await getTranslations({ locale, namespace: "Public.company.press" });
+  const shared = await getCompanySharedTranslations(locale);
   const boilerplate = t.raw("boilerplate") as CompanySectionContent;
   const facts = t.raw("facts") as CompanySectionContent;
   const resources = t.raw("resources") as CompanySectionContent;
@@ -467,7 +631,7 @@ export async function CompanyPressPage({ locale }: CompanyPageProps) {
               title: t("contact.email"),
               description: t("contact.description"),
               href: `mailto:${t("contact.email")}`,
-              cta: "Contacter la presse",
+              cta: shared("ctaPress"),
               icon: Mail,
             },
           ]}
@@ -482,8 +646,8 @@ export async function CompanyPressPage({ locale }: CompanyPageProps) {
         title={t("finalCta.title")}
         description={t("finalCta.description")}
         actions={[
-          { label: "Contact", href: `/${locale}/company/contact` },
-          { label: "Company", href: `/${locale}/company`, variant: "outline" },
+          { label: shared("ctaContact"), href: companyHref(locale, "contact") },
+          { label: shared("ctaCompany"), href: companyHref(locale, "overview"), variant: "outline" },
         ]}
       />
     </CompanyPageShell>

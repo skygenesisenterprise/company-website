@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
-import {
-  generateDeveloperResourceMetadata,
-  type DeveloperPageParams,
-  renderDeveloperResourcePage,
-} from "../page-helpers";
+import { getTranslations } from "next-intl/server";
+import { DeveloperResourcePage, type DeveloperPageContent } from "@/components/public/developers/developer-resource-page";
 
-export async function generateMetadata({ params }: DeveloperPageParams): Promise<Metadata> {
-  return generateDeveloperResourceMetadata(params, "postman");
+interface DevelopersRouteParams {
+  params: Promise<{ locale: string }>;
 }
 
-export default async function DevelopersPostmanPage({ params }: DeveloperPageParams) {
-  return renderDeveloperResourcePage(params, "postman");
+export async function generateMetadata({ params }: DevelopersRouteParams): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Public.home.page.developerPage" });
+  const title = t("resources.postman.title");
+
+  return {
+    title: t("metadata.titleTemplate", { title }),
+    description: t("resources.postman.description"),
+  };
+}
+
+export default async function DevelopersPostmanPage({ params }: DevelopersRouteParams) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Public.home.page.developerPage" });
+  const page = t.raw("resources.postman") as DeveloperPageContent;
+
+  return <DeveloperResourcePage locale={locale} page={page} />;
 }

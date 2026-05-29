@@ -629,6 +629,8 @@ function CompanySection({ locale, t }: HomePageContentProps) {
         <CardLink
           title={t("company.items.partners.title")}
           description={t("company.items.partners.description")}
+          href={localizeHref(locale, "/company/partners")}
+          cta={t("company.items.partners.cta")}
           icon={Users}
           className="min-h-62.5"
         />
