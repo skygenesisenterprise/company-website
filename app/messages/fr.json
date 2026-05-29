@@ -3487,7 +3487,7 @@
                 "Notifications"
               ],
               "ctas": [
-                "Contacter SGE",
+                "Contacter Sky Genesis Enterprise",
                 "Voir la plateforme"
               ],
               "nextStep": "Contactez SGE pour cadrer le contexte sécurité pendant que Shield reste en développement."
@@ -3652,7 +3652,7 @@
               ],
               "ctas": [
                 "Explorer la documentation",
-                "Contacter SGE"
+                "Contacter Sky Genesis Enterprise"
               ],
               "nextStep": "Utilisez les ressources développeurs pour le contexte plateforme actuel pendant que Giteria mûrit."
             },
@@ -3733,7 +3733,7 @@
                 "Outils d'export"
               ],
               "ctas": [
-                "Contacter SGE",
+                "Contacter Sky Genesis Enterprise",
                 "Voir la plateforme"
               ],
               "nextStep": "Contactez SGE avant de vous appuyer sur Schematik pour des registres d'architecture formels."
@@ -3816,7 +3816,7 @@
               ],
               "ctas": [
                 "Explorer la documentation",
-                "Contacter SGE"
+                "Contacter Sky Genesis Enterprise"
               ],
               "nextStep": "Suivez les ressources développeurs et les mises à jour produit pendant que Mail reste en développement."
             },
@@ -3897,7 +3897,7 @@
                 "Workspace"
               ],
               "ctas": [
-                "Contacter SGE",
+                "Contacter Sky Genesis Enterprise",
                 "Voir la plateforme"
               ],
               "nextStep": "Contactez SGE pour le contexte roadmap avant de planifier une dépendance opérationnelle à Meet."
@@ -3980,7 +3980,7 @@
               ],
               "ctas": [
                 "Explorer la documentation",
-                "Contacter SGE"
+                "Contacter Sky Genesis Enterprise"
               ],
               "nextStep": "Utilisez les ressources développeurs SGE pour le contexte d'intégration pendant que Chat se construit."
             },
@@ -4061,7 +4061,7 @@
                 "Outils d'export"
               ],
               "ctas": [
-                "Contacter SGE",
+                "Contacter Sky Genesis Enterprise",
                 "Voir la plateforme"
               ],
               "nextStep": "Contactez SGE pour le contexte roadmap avant d'utiliser Sheets pour des registres opérationnels critiques."
@@ -5957,7 +5957,7 @@
             "engage": {
               "title": "Parler à l'équipe",
               "description": "Ouvrir un échange si vous cherchez un cadrage, une trajectoire d'adoption ou un point de contact concret.",
-              "label": "Contacter SGE"
+              "label": "Contacter Sky Genesis Enterprise"
             }
           }
         },
@@ -5968,7 +5968,7 @@
             "organizations": {
               "title": "Pour les organisations",
               "description": "Discuter d'un besoin, d'une trajectoire d'adoption ou d'une solution.",
-              "label": "Contacter SGE"
+              "label": "Contacter Sky Genesis Enterprise"
             },
             "developers": {
               "title": "Pour les développeurs",
@@ -6001,7 +6001,7 @@
             "hero": {
               "title": "Choisir un chemin par usage ou par secteur.",
               "description": "Les solutions SGE relient les fondations plateforme et les expériences produit à des contextes d'organisation. Elles décrivent des chemins d'adoption, pas des déploiements sectoriels finalisés.",
-              "primaryCta": "Contacter SGE",
+              "primaryCta": "Contacter Sky Genesis Enterprise",
               "secondaryCta": "Explorer la plateforme",
               "model": {
                 "title": "Modèle de solution",
@@ -6069,7 +6069,7 @@
               "eyebrow": "Prochaine étape",
               "title": "Clarifier où SGE peut aider.",
               "description": "Contactez SGE pour cartographier un cas d'usage, ou commencez par explorer les couches plateforme et produit.",
-              "contact": "Contacter SGE",
+              "contact": "Contacter Sky Genesis Enterprise",
               "platform": "Explorer la plateforme",
               "products": "Voir les produits"
             }
@@ -6162,7 +6162,7 @@
               "contact": {
                 "title": "Parler à l'équipe",
                 "description": "Contacter SGE si vous avez besoin d'aide pour cadrer maturité, périmètre d'intégration ou adéquation organisationnelle.",
-                "label": "Contacter SGE"
+                "label": "Contacter Sky Genesis Enterprise"
               }
             }
           },
@@ -6299,7 +6299,7 @@
               "contact": {
                 "title": "Parler à l'équipe",
                 "description": "Contacter SGE si vous avez besoin d'un cadrage, d'une intégration ou d'une lecture plus précise de la maturité du service.",
-                "label": "Contacter SGE"
+                "label": "Contacter Sky Genesis Enterprise"
               }
             }
           }
@@ -6400,7 +6400,7 @@
               "contact": {
                 "title": "Parler à l'équipe",
                 "description": "Contacter SGE si vous avez besoin d'un cadrage, d'une intégration ou d'une lecture plus précise de la maturité du produit.",
-                "label": "Contacter SGE"
+                "label": "Contacter Sky Genesis Enterprise"
               }
             }
           },
@@ -11065,7 +11065,7 @@
                 },
                 {
                   "href": "/company/contact",
-                  "label": "Contacter SGE",
+                  "label": "Contacter Sky Genesis Enterprise",
                   "variant": "secondary"
                 }
               ],
@@ -13381,7 +13381,7 @@
             "3": "Intégration profonde à Aether"
           },
           "primaryCta": "Commencer gratuitement",
-          "secondaryCta": "Contacter SGE"
+          "secondaryCta": "Contacter Sky Genesis Enterprise"
         },
         "faq": {
           "eyebrow": "Questions fréquentes",
@@ -13737,7 +13737,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -14036,7 +14036,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -14334,7 +14334,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -14625,7 +14625,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -14921,7 +14921,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -15227,7 +15227,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -15305,39 +15305,43 @@
       },
       "leadership": {
         "metadata": {
-          "title": "Leadership | Sky Genesis Enterprise",
-          "description": "Meet the people leading Sky Genesis Enterprise across technology, operations, infrastructure, products and global expansion."
+          "title": "Direction | Sky Genesis Enterprise",
+          "description": "Découvrez les personnes qui dirigent Sky Genesis Enterprise à travers la technologie, les opérations, l'infrastructure, les produits et l'expansion mondiale."
         },
         "hero": {
-          "eyebrow": "Leadership",
-          "title": "The people leading Sky Genesis Enterprise.",
-          "description": "Meet the people leading Sky Genesis Enterprise across technology, operations, infrastructure, products and global expansion.",
+          "eyebrow": "Direction",
+          "title": "Les personnes qui dirigent Sky Genesis Enterprise.",
+          "description": "Découvrez les personnes qui dirigent Sky Genesis Enterprise à travers la technologie, les opérations, l'infrastructure, les produits et l'expansion mondiale.",
           "metrics": [
             {
               "value": "16",
-              "label": "Leadership Members"
+              "label": "Membres de la direction"
             },
             {
               "value": "4",
-              "label": "Countries"
+              "label": "Pays"
             },
             {
               "value": "8",
-              "label": "Business Units"
+              "label": "Unités opérationnelles"
             },
             {
               "value": "4",
-              "label": "Product Divisions"
+              "label": "Divisions produits"
             }
           ]
         },
+        "social": {
+          "github": "GitHub",
+          "linkedin": "LinkedIn"
+        },
         "founder": {
-          "eyebrow": "Founder-led",
+          "eyebrow": "Porté par le fondateur",
           "title": "Une direction encore tres proche des fondations du projet.",
           "description": "Dans une entreprise en construction, la qualite des premiers arbitrages compte davantage que la taille de la structure de management."
         },
         "areas": {
-          "eyebrow": "Leadership areas",
+          "eyebrow": "Domaines de direction",
           "title": "Trois zones de responsabilite rendent la direction lisible.",
           "description": "Ces zones aident a comprendre comment SGE relie vision institutionnelle, exigence technique et progression d'equipe.",
           "items": [
@@ -15356,7 +15360,7 @@
           ]
         },
         "governance": {
-          "eyebrow": "Governance",
+          "eyebrow": "Gouvernance",
           "title": "Une gouvernance simple, lisible et responsable.",
           "description": "La gouvernance doit proteger la qualite du projet, la clarte des roles et la continuite du travail.",
           "items": [
@@ -15375,12 +15379,12 @@
           ]
         },
         "future": {
-          "eyebrow": "Future structure",
+          "eyebrow": "Structure future",
           "title": "La structure future doit correspondre a des besoins reels, pas a une mise en scene.",
           "description": "De nouvelles zones de leadership pourront emerger avec la croissance du projet, mais seulement lorsque les responsabilites deviennent concretes."
         },
         "finalCta": {
-          "eyebrow": "Leadership",
+          "eyebrow": "Direction",
           "title": "La gouvernance doit rester au service du projet, pas l'inverse.",
           "description": "SGE cherche a construire une direction compatible avec son stade reel de developpement et avec son ambition long terme."
         },
@@ -15522,7 +15526,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -15598,46 +15602,46 @@
           ]
         },
         "structure": {
-          "eyebrow": "Leadership Structure",
-          "title": "Leadership Structure",
-          "description": "Meet the people leading Sky Genesis Enterprise across technology, operations, infrastructure, products and global expansion.",
+          "eyebrow": "Structure de direction",
+          "title": "Structure de direction",
+          "description": "Découvrez les personnes qui dirigent Sky Genesis Enterprise à travers la technologie, les opérations, l'infrastructure, les produits et l'expansion mondiale.",
           "groups": [
             {
-              "title": "Executive Leadership",
-              "description": "Group-level leadership responsible for strategy, operations, finance, legal structure and long-term institutional continuity.",
+              "title": "Direction exécutive",
+              "description": "Direction générale responsable de la stratégie, des opérations, de la finance, de la structure juridique et de la continuité institutionnelle à long terme.",
               "members": [
                 {
                   "name": "Elias Moreau",
-                  "role": "Chief Executive Officer",
-                  "department": "Executive Office",
-                  "bio": "Leads the group vision, corporate strategy and operating cadence across the SGE ecosystem. Focuses on long-term coherence between platform, products and international expansion.",
+                  "role": "Directeur Général",
+                  "department": "Direction générale",
+                  "bio": "Dirige la vision du groupe, la stratégie d'entreprise et le rythme opérationnel à travers l'écosystème SGE. Se concentre sur la cohérence à long terme entre la plateforme, les produits et l'expansion internationale.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Elias%20Moreau&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Maya Calderon",
-                  "role": "Chief Operating Officer",
-                  "department": "Operations",
-                  "bio": "Oversees execution, delivery systems and cross-functional operating discipline. Works across business units to turn strategy into measurable operational progress.",
+                  "role": "Directrice des Opérations",
+                  "department": "Opérations",
+                  "bio": "Supervise l'exécution, les systèmes de livraison et la discipline opérationnelle transversale. Travaille avec les unités opérationnelles pour transformer la stratégie en progrès opérationnel mesurable.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Maya%20Calderon&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Adrien Keller",
-                  "role": "Chief Financial Officer",
+                  "role": "Directeur Financier",
                   "department": "Finance",
-                  "bio": "Leads financial planning, capital allocation and business controls for the group. Structures the finance function around resilience, transparency and sustainable growth.",
+                  "bio": "Dirige la planification financière, l'allocation du capital et les contrôles de gestion du groupe. Structure la fonction financière autour de la résilience, de la transparence et de la croissance durable.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Adrien%20Keller&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Nadia Benali",
-                  "role": "Chief Legal Officer",
-                  "department": "Legal & Governance",
-                  "bio": "Guides legal architecture, compliance posture and governance processes across SGE. Ensures that growth remains aligned with regulatory, contractual and institutional requirements.",
+                  "role": "Directrice Juridique",
+                  "department": "Juridique & Gouvernance",
+                  "bio": "Guide l'architecture juridique, la posture de conformité et les processus de gouvernance à travers SGE. Veille à ce que la croissance reste alignée sur les exigences réglementaires, contractuelles et institutionnelles.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Nadia%20Benali&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15645,23 +15649,23 @@
               ]
             },
             {
-              "title": "Technology Leadership",
-              "description": "Technical leadership responsible for architecture, cybersecurity, infrastructure reliability and engineering quality.",
+              "title": "Direction technologique",
+              "description": "Direction technique responsable de l'architecture, de la cybersécurité, de la fiabilité de l'infrastructure et de la qualité d'ingénierie.",
               "members": [
                 {
                   "name": "Noah Vasseur",
-                  "role": "Chief Technology Officer",
-                  "department": "Technology",
-                  "bio": "Sets the technical direction for SGE platforms and shared engineering standards. Aligns architecture decisions with sovereignty, security and developer experience.",
+                  "role": "Directeur Technique",
+                  "department": "Technologie",
+                  "bio": "Définit la direction technique des plateformes SGE et des normes d'ingénierie partagées. Aligne les décisions d'architecture avec la souveraineté, la sécurité et l'expérience développeur.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Noah%20Vasseur&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Sofia Lindholm",
-                  "role": "Chief Information Security Officer",
-                  "department": "Security",
-                  "bio": "Leads security strategy, risk management and trust controls across products and infrastructure. Focuses on measurable protection for customers, teams and partners.",
+                  "role": "Directrice de la Sécurité des Systèmes d'Information",
+                  "department": "Sécurité",
+                  "bio": "Dirige la stratégie de sécurité, la gestion des risques et les contrôles de confiance à travers les produits et l'infrastructure. Se concentre sur une protection mesurable pour les clients, les équipes et les partenaires.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Sofia%20Lindholm&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15670,16 +15674,16 @@
                   "name": "Kenji Watanabe",
                   "role": "VP Infrastructure",
                   "department": "Infrastructure",
-                  "bio": "Owns infrastructure strategy, cloud foundations, edge operations and reliability practices. Builds the operating model needed for global-scale services.",
+                  "bio": "Possède la stratégie d'infrastructure, les fondations cloud, les opérations edge et les pratiques de fiabilité. Construit le modèle opérationnel nécessaire pour des services à l'échelle mondiale.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Kenji%20Watanabe&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Camille Arnaud",
-                  "role": "VP Engineering",
-                  "department": "Engineering",
-                  "bio": "Leads engineering execution, quality systems and technical delivery rituals. Works with product and infrastructure teams to maintain a high bar for shipped software.",
+                  "role": "VP Ingénierie",
+                  "department": "Ingénierie",
+                  "bio": "Dirige l'exécution d'ingénierie, les systèmes de qualité et les rituels de livraison technique. Travaille avec les équipes produit et infrastructure pour maintenir un niveau d'exigence élevé pour les logiciels livrés.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Camille%20Arnaud&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15687,14 +15691,14 @@
               ]
             },
             {
-              "title": "Product Leadership",
-              "description": "Product leadership responsible for the core Aether divisions and the evolution of SGE product surfaces.",
+              "title": "Direction produit",
+              "description": "Direction produit responsable des divisions Aether principales et de l'évolution des surfaces produits SGE.",
               "members": [
                 {
                   "name": "Lina Okafor",
                   "role": "VP Aether Cloud",
                   "department": "Aether Cloud",
-                  "bio": "Leads the cloud product division, including environments, deployment workflows and observability. Focuses on making sovereign infrastructure usable by real teams.",
+                  "bio": "Dirige la division cloud, incluant les environnements, les workflows de déploiement et l'observabilité. Se concentre sur la mise à disposition d'une infrastructure souveraine utilisable par les équipes.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Lina%20Okafor&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15703,7 +15707,7 @@
                   "name": "Thomas Iversen",
                   "role": "VP Aether Identity",
                   "department": "Aether Identity",
-                  "bio": "Owns identity strategy, authentication flows and access governance across the ecosystem. Connects security requirements with product simplicity.",
+                  "bio": "Possède la stratégie d'identité, les flux d'authentification et la gouvernance d'accès à travers l'écosystème. Connecte les exigences de sécurité avec la simplicité produit.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Thomas%20Iversen&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15712,7 +15716,7 @@
                   "name": "Elena Rossi",
                   "role": "VP Aether Office",
                   "department": "Aether Office",
-                  "bio": "Leads the workplace and collaboration product line. Shapes productivity experiences around privacy, interoperability and enterprise-grade control.",
+                  "bio": "Dirige la ligne de produits d'espace de travail et de collaboration. Façonne les expériences de productivité autour de la confidentialité, de l'interopérabilité et du contrôle de qualité entreprise.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Elena%20Rossi&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15721,7 +15725,7 @@
                   "name": "Hugo Nakamura",
                   "role": "VP Aether Bank",
                   "department": "Aether Bank",
-                  "bio": "Guides financial infrastructure products, ledger capabilities and programmable finance workflows. Focuses on trust, traceability and operational readiness.",
+                  "bio": "Guide les produits d'infrastructure financière, les capacités de registre et les workflows financiers programmables. Se concentre sur la confiance, la traçabilité et la préparation opérationnelle.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Hugo%20Nakamura&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15729,41 +15733,41 @@
               ]
             },
             {
-              "title": "International Leadership",
-              "description": "Regional leadership responsible for market development, institutional relationships and local execution across strategic geographies.",
+              "title": "Direction internationale",
+              "description": "Direction régionale responsable du développement du marché, des relations institutionnelles et de l'exécution locale à travers les zones géographiques stratégiques.",
               "members": [
                 {
                   "name": "Claire Dubois",
                   "role": "CEO SGE Europe",
                   "department": "Europe",
-                  "bio": "Leads European market development, institutional alignment and regional partnerships. Ensures SGE remains grounded in European sovereignty and compliance expectations.",
+                  "bio": "Dirige le développement du marché européen, l'alignement institutionnel et les partenariats régionaux. Veille à ce que SGE reste ancré dans les attentes de souveraineté et de conformité européennes.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Claire%20Dubois&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Haruto Sato",
-                  "role": "CEO SGE Japan",
-                  "department": "Japan",
-                  "bio": "Leads SGE Japan with focus on enterprise relationships, product localization and operational trust. Bridges regional expectations with group-level platform strategy.",
+                  "role": "CEO SGE Japon",
+                  "department": "Japon",
+                  "bio": "Dirige SGE Japon avec un accent sur les relations entreprises, la localisation des produits et la confiance opérationnelle. Fait le pont entre les attentes régionales et la stratégie de plateforme du groupe.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Haruto%20Sato&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Olivia Bennett",
-                  "role": "CEO SGE North America",
-                  "department": "North America",
-                  "bio": "Leads North American expansion across customers, partners and strategic opportunities. Focuses on positioning SGE for complex enterprise and developer ecosystems.",
+                  "role": "CEO SGE Amérique du Nord",
+                  "department": "Amérique du Nord",
+                  "bio": "Dirige l'expansion nord-américaine à travers les clients, les partenaires et les opportunités stratégiques. Se concentre sur le positionnement de SGE pour les écosystèmes complexes d'entreprise et de développeurs.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Olivia%20Bennett&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
                 },
                 {
                   "name": "Anika Rao",
-                  "role": "CEO SGE Asia Pacific",
-                  "department": "Asia Pacific",
-                  "bio": "Leads Asia Pacific development, ecosystem partnerships and regional growth. Coordinates market needs with global product and infrastructure priorities.",
+                  "role": "CEO SGE Asie-Pacifique",
+                  "department": "Asie-Pacifique",
+                  "bio": "Dirige le développement de l'Asie-Pacifique, les partenariats écosystémiques et la croissance régionale. Coordonne les besoins du marché avec les priorités mondiales des produits et de l'infrastructure.",
                   "image": "https://api.dicebear.com/9.x/initials/svg?seed=Anika%20Rao&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
                   "github": "https://github.com/skygenesisenterprise",
                   "linkedin": "https://linkedin.com/company/skygenesisenterprise"
@@ -15999,7 +16003,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -16293,7 +16297,7 @@
             {
               "eyebrow": "Transparence",
               "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "SGE doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
+              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
               "items": [
                 {
                   "title": "Statut",
@@ -19538,7 +19542,7 @@
         {
           "title": "Qualifier un premier besoin",
           "description": "Ouvrir un échange pour cadrer le type d'accompagnement le plus pertinent.",
-          "label": "Contacter SGE"
+          "label": "Contacter Sky Genesis Enterprise"
         }
       ],
       "ctaTitle": "Construisons votre offre de services SGE",
@@ -19864,7 +19868,7 @@
         {
           "title": "Discuter du cadre de distribution",
           "description": "Partager vos marchés et votre organisation commerciale pour définir le bon point d'entrée.",
-          "label": "Contacter SGE"
+          "label": "Contacter Sky Genesis Enterprise"
         }
       ],
       "ctaTitle": "Prêt à distribuer SGE ?",

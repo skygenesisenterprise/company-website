@@ -183,10 +183,10 @@ function LeadershipMetricsPanel({ metrics }: { metrics: LeadershipMetric[] }) {
   );
 }
 
-function LeadershipMemberCard({ member }: { member: LeadershipMember }) {
+function LeadershipMemberCard({ member, socialLabels }: { member: LeadershipMember; socialLabels?: { github: string; linkedin: string } }) {
   const links = [
-    member.github ? { label: "GitHub", href: member.github, icon: GitHubIcon } : null,
-    member.linkedin ? { label: "LinkedIn", href: member.linkedin, icon: LinkedinIcon } : null,
+    member.github ? { label: socialLabels?.github ?? "GitHub", href: member.github, icon: GitHubIcon } : null,
+    member.linkedin ? { label: socialLabels?.linkedin ?? "LinkedIn", href: member.linkedin, icon: LinkedinIcon } : null,
   ].filter(Boolean) as Array<{ label: string; href: string; icon: React.ComponentType<{ className?: string }> }>;
 
   return (
@@ -229,11 +229,13 @@ function LeadershipStructureSection({
   title,
   description,
   groups,
+  socialLabels,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   groups: LeadershipGroup[];
+  socialLabels?: { github: string; linkedin: string };
 }) {
   return (
     <CompanySection eyebrow={eyebrow} title={title} description={description}>
@@ -246,7 +248,7 @@ function LeadershipStructureSection({
             </div>
             <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {group.members.map((member) => (
-                <LeadershipMemberCard key={`${group.title}-${member.name}`} member={member} />
+                <LeadershipMemberCard key={`${group.title}-${member.name}`} member={member} socialLabels={socialLabels} />
               ))}
             </div>
           </div>
@@ -532,6 +534,7 @@ export async function CompanyLeadershipPage({ locale }: CompanyPageProps) {
         title={t("structure.title")}
         description={t("structure.description")}
         groups={leadershipGroups}
+        socialLabels={{ github: t("social.github"), linkedin: t("social.linkedin") }}
       />
 
       <CompanySection eyebrow={areas.eyebrow} title={areas.title} description={areas.description} tone="muted">
