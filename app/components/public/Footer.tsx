@@ -334,7 +334,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                 aria-label="Lock7 Cloud"
               >
                 <Image
-                  src="/l0ck7.png"
+                  src="/l0ck7-new.png"
                   alt="Powered by Lock7 Cloud"
                   width={1774}
                   height={887}

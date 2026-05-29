@@ -33,7 +33,6 @@ interface SectionProps {
   title: string;
   description?: string;
   tone?: "default" | "muted" | "dark";
-  centered?: boolean;
   children: React.ReactNode;
 }
 
@@ -60,16 +59,16 @@ function SectionEyebrow({ children, inverted = false }: { children: React.ReactN
     <span
       className={cn(
         "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em]",
-        inverted ? "text-white/60" : "text-zinc-500",
+        inverted ? "text-background/60" : "text-muted-foreground",
       )}
     >
-      <span className={cn("h-px w-10", inverted ? "bg-white/20" : "bg-zinc-300")} />
+      <span className={cn("h-px w-10", inverted ? "bg-background/20" : "bg-border")} />
       {children}
     </span>
   );
 }
 
-function Section({ id, eyebrow, title, description, tone = "default", centered = false, children }: SectionProps) {
+function Section({ id, eyebrow, title, description, tone = "default", children }: SectionProps) {
   const dark = tone === "dark";
 
   return (
@@ -77,8 +76,8 @@ function Section({ id, eyebrow, title, description, tone = "default", centered =
       id={id}
       className={cn(
         "relative overflow-hidden py-24 sm:py-28 lg:py-32",
-        tone === "muted" && "bg-zinc-50/80",
-        dark && "bg-zinc-950 text-white",
+        tone === "muted" && "bg-muted",
+        dark && "bg-foreground text-background",
       )}
     >
       {dark ? (
@@ -93,19 +92,21 @@ function Section({ id, eyebrow, title, description, tone = "default", centered =
         />
       ) : null}
       <div className="relative mx-auto max-w-360 px-6 lg:px-12">
-        <div className={cn("max-w-4xl", centered && "mx-auto text-center")}>
+        <div className="mx-auto max-w-4xl">
           {eyebrow ? <SectionEyebrow inverted={dark}>{eyebrow}</SectionEyebrow> : null}
-          <h2
+          <div>
+            <h2
             className={cn(
               "mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl lg:text-6xl",
-              dark ? "text-white" : "text-zinc-950",
+              dark ? "text-background" : "text-foreground",
             )}
           >
             {title}
           </h2>
           {description ? (
-            <p className={cn("mt-6 text-lg leading-8", dark ? "text-white/68" : "text-zinc-600")}>{description}</p>
+            <p className={cn("mt-6 text-lg leading-8", dark ? "text-background/68" : "text-muted-foreground")}>{description}</p>
           ) : null}
+          </div>
         </div>
         <div className="mt-14">{children}</div>
       </div>
@@ -117,29 +118,29 @@ function CardLink({ title, description, href, cta, icon: Icon, accent, className
   const content = (
     <div
       className={cn(
-        "group relative h-full overflow-hidden rounded-4xl border border-zinc-200/80 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.28)] transition duration-300",
-        "hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.22)]",
+        "group relative h-full overflow-hidden rounded-4xl border border-border/80 bg-card p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.28)] transition duration-300",
+        "hover:-translate-y-1 hover:border-foreground/15 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.22)]",
         className,
       )}
     >
       {accent ? <div aria-hidden={true} className={cn("absolute inset-x-0 top-0 h-1", accent)} /> : null}
       <div className="flex items-start justify-between gap-4">
         {Icon ? (
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-50 text-zinc-700">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-muted text-muted-foreground">
             <Icon className="h-5 w-5" />
           </span>
         ) : (
           <span />
         )}
         {href ? (
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-zinc-500 transition group-hover:border-zinc-300 group-hover:text-zinc-900">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition group-hover:border-foreground/15 group-hover:text-foreground">
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden={true} />
           </span>
         ) : null}
       </div>
-      <h3 className="mt-8 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{title}</h3>
-      <p className="mt-4 text-sm leading-7 text-zinc-600">{description}</p>
-      {cta ? <span className="mt-7 inline-flex text-sm font-medium text-zinc-950">{cta}</span> : null}
+      <h3 className="mt-8 text-xl font-semibold tracking-[-0.03em] text-foreground">{title}</h3>
+      <p className="mt-4 text-sm leading-7 text-muted-foreground">{description}</p>
+      {cta ? <span className="mt-7 inline-flex text-sm font-medium text-foreground">{cta}</span> : null}
     </div>
   );
 
@@ -206,61 +207,61 @@ function OfficePreview({ t }: { t: (key: string) => string }) {
   const labels = ["mail", "meet", "chat", "sheets", "files", "calendar"] as const;
 
   return (
-    <div className="relative overflow-hidden rounded-[2.25rem] border border-zinc-200 bg-white p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.3)]">
+    <div className="relative overflow-hidden rounded-[2.25rem] border border-border bg-card p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.3)]">
       <div
         aria-hidden={true}
-        className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.22),transparent_58%),linear-gradient(180deg,rgba(244,244,245,0.96),rgba(255,255,255,0))]"
+        className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,color-mix(in oklch,var(--muted-foreground) 22%,transparent),transparent_58%),linear-gradient(180deg,color-mix(in oklch,var(--muted) 96%,transparent),transparent)]"
       />
       <div className="relative grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50/80 p-5">
+        <div className="rounded-[1.75rem] border border-border bg-muted p-5">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">{t("officeFeatured.visual.mailLabel")}</div>
-              <div className="mt-2 text-lg font-semibold text-zinc-950">{t("officeFeatured.visual.mailTitle")}</div>
+              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{t("officeFeatured.visual.mailLabel")}</div>
+              <div className="mt-2 text-lg font-semibold text-foreground">{t("officeFeatured.visual.mailTitle")}</div>
             </div>
-            <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-500">
+            <span className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
               {t("officeFeatured.visual.mailState")}
             </span>
           </div>
           <div className="mt-5 space-y-3">
             {[1, 2, 3].map((item) => (
-              <div key={item} className="rounded-2xl border border-zinc-200 bg-white px-4 py-3">
+              <div key={item} className="rounded-2xl border border-border bg-card px-4 py-3">
                 <div className="flex items-center justify-between gap-3">
-                  <div className="text-sm font-medium text-zinc-950">{t(`officeFeatured.visual.mailItems.${item}.title`)}</div>
-                  <div className="h-2 w-2 rounded-full bg-zinc-300" />
+                  <div className="text-sm font-medium text-foreground">{t(`officeFeatured.visual.mailItems.${item}.title`)}</div>
+                  <div className="h-2 w-2 rounded-full bg-border" />
                 </div>
-                <div className="mt-1 text-xs text-zinc-500">{t(`officeFeatured.visual.mailItems.${item}.meta`)}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{t(`officeFeatured.visual.mailItems.${item}.meta`)}</div>
               </div>
             ))}
           </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-950 p-5 text-white sm:col-span-2">
+          <div className="rounded-[1.75rem] border border-border bg-foreground p-5 text-background sm:col-span-2">
             <div className="flex items-center justify-between">
               <div className="text-sm font-medium">{t("officeFeatured.visual.meetTitle")}</div>
-              <div className="rounded-full border border-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/55">
+              <div className="rounded-full border border-background/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-background/55">
                 {t("officeFeatured.visual.meetState")}
               </div>
             </div>
             <div className="mt-10 flex items-end justify-between gap-6">
               <div>
                 <div className="text-3xl font-semibold tracking-[-0.04em]">{t("officeFeatured.visual.meetTime")}</div>
-                <div className="mt-2 text-sm text-white/55">{t("officeFeatured.visual.meetMeta")}</div>
+                <div className="mt-2 text-sm text-background/55">{t("officeFeatured.visual.meetMeta")}</div>
               </div>
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((item) => (
-                  <span key={item} className="h-9 w-9 rounded-full border border-white/10 bg-white/8" />
+                  <span key={item} className="h-9 w-9 rounded-full border border-background/10 bg-background/8" />
                 ))}
               </div>
             </div>
           </div>
 
           {labels.map((label) => (
-            <div key={label} className="rounded-[1.5rem] border border-zinc-200 bg-white px-4 py-4">
-              <div className="text-xs uppercase tracking-[0.18em] text-zinc-400">{t(`officeFeatured.visual.apps.${label}.label`)}</div>
-              <div className="mt-2 text-base font-semibold text-zinc-950">{t(`officeFeatured.visual.apps.${label}.title`)}</div>
-              <div className="mt-2 text-sm leading-6 text-zinc-500">{t(`officeFeatured.visual.apps.${label}.description`)}</div>
+            <div key={label} className="rounded-[1.5rem] border border-border bg-card px-4 py-4">
+              <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{t(`officeFeatured.visual.apps.${label}.label`)}</div>
+              <div className="mt-2 text-base font-semibold text-foreground">{t(`officeFeatured.visual.apps.${label}.title`)}</div>
+              <div className="mt-2 text-sm leading-6 text-muted-foreground">{t(`officeFeatured.visual.apps.${label}.description`)}</div>
             </div>
           ))}
         </div>
@@ -271,30 +272,30 @@ function OfficePreview({ t }: { t: (key: string) => string }) {
 
 function HomeHero({ locale, t }: HomePageContentProps) {
   return (
-    <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
+    <section className="relative overflow-hidden border-b border-border/80 bg-linear-to-b from-background to-muted">
       <div aria-hidden={true} className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
         <div className="absolute inset-x-[-10%] top-[16%] h-[56%] opacity-95 sm:top-[18%] lg:inset-x-[-4%] lg:top-[19%] lg:h-[62%]">
           <WorldMapBackdrop />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(255,255,255,0.34)_30%,rgba(255,255,255,0.82)_100%)]" />
+        <div className="absolute inset-0 bg-linear-to-b from-background/76 via-background/34 to-background/82" />
       </div>
 
       <div className="relative mx-auto flex min-h-[88vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
         <div className="max-w-4xl">
           <SectionEyebrow>{t("hero.eyebrow")}</SectionEyebrow>
-          <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
+          <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-foreground">
             {t("hero.title")}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl">{t("hero.description")}</p>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground sm:text-xl">{t("hero.description")}</p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Button asChild size="lg" className="h-14 rounded-full bg-zinc-950 px-8 text-sm font-medium text-white hover:bg-zinc-800">
+            <Button asChild size="lg" className="h-14 rounded-full bg-foreground px-8 text-sm font-medium text-background hover:bg-foreground/90">
               <Link href={localizeHref(locale, "/office")}>
                 {t("hero.primaryCta")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-zinc-300 bg-white/85 px-8 text-sm font-medium text-zinc-950">
+            <Button asChild size="lg" variant="outline" className="h-14 rounded-full px-8 text-sm font-medium">
               <Link href={localizeHref(locale, "/platform")}>{t("hero.secondaryCta")}</Link>
             </Button>
           </div>
@@ -306,9 +307,9 @@ function HomeHero({ locale, t }: HomePageContentProps) {
 
 function ManifestoSection({ t }: { t: (key: string) => string }) {
   return (
-    <Section title={t("manifesto.title")} description={t("manifesto.description")} centered>
-      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-zinc-200 bg-white px-8 py-12 text-center shadow-[0_24px_80px_-52px_rgba(15,23,42,0.25)] sm:px-12">
-        <p className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-tighter text-zinc-950">
+    <Section title={t("manifesto.title")} description={t("manifesto.description")}>
+      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-border bg-card px-8 py-12 text-center shadow-[0_24px_80px_-52px_rgba(15,23,42,0.25)] sm:px-12">
+        <p className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-tighter text-foreground">
           {t("manifesto.statement")}
         </p>
       </div>
@@ -328,14 +329,14 @@ function OfficeFeaturedSection({ locale, t }: HomePageContentProps) {
         <div className="max-w-xl">
           <div className="space-y-6">
             {["summary", "modular", "governed"].map((item) => (
-              <div key={item} className="rounded-[1.75rem] border border-zinc-200 bg-white px-6 py-5">
-                <div className="text-sm font-semibold text-zinc-950">{t(`officeFeatured.points.${item}.title`)}</div>
-                <p className="mt-3 text-sm leading-7 text-zinc-600">{t(`officeFeatured.points.${item}.description`)}</p>
+              <div key={item} className="rounded-[1.75rem] border border-border bg-card px-6 py-5">
+                <div className="text-sm font-semibold text-foreground">{t(`officeFeatured.points.${item}.title`)}</div>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{t(`officeFeatured.points.${item}.description`)}</p>
               </div>
             ))}
           </div>
           <div className="mt-8">
-            <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-zinc-300 bg-white px-8 text-sm font-medium text-zinc-950">
+            <Button asChild size="lg" variant="outline" className="h-14 rounded-full px-8 text-sm font-medium">
               <Link href={localizeHref(locale, "/office")}>{t("officeFeatured.cta")}</Link>
             </Button>
           </div>
@@ -355,10 +356,10 @@ function OfficeCapabilitiesSection({ t }: { t: (key: string) => string }) {
     >
       <div className="grid gap-5 md:grid-cols-2">
         {[
-          { key: "communicate", icon: Globe2, accent: "bg-zinc-950" },
-          { key: "create", icon: Blocks, accent: "bg-zinc-700" },
-          { key: "organize", icon: Network, accent: "bg-slate-500" },
-          { key: "secure", icon: ShieldCheck, accent: "bg-slate-700" },
+          { key: "communicate", icon: Globe2, accent: "bg-foreground" },
+          { key: "create", icon: Blocks, accent: "bg-muted-foreground" },
+          { key: "organize", icon: Network, accent: "bg-muted-foreground" },
+          { key: "secure", icon: ShieldCheck, accent: "bg-muted-foreground" },
         ].map((item) => (
           <CardLink
             key={item.key}
@@ -384,10 +385,10 @@ function ModularDeploymentSection({ t }: { t: (key: string) => string }) {
     >
       <div className="grid gap-5 lg:grid-cols-2">
         {["managed", "controlled"].map((item) => (
-          <div key={item} className="rounded-4xl border border-zinc-200 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.24)]">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`modularDeployment.options.${item}.eyebrow`)}</div>
-            <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{t(`modularDeployment.options.${item}.title`)}</div>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-600">{t(`modularDeployment.options.${item}.description`)}</p>
+          <div key={item} className="rounded-4xl border border-border bg-card p-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.24)]">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t(`modularDeployment.options.${item}.eyebrow`)}</div>
+            <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-foreground">{t(`modularDeployment.options.${item}.title`)}</div>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">{t(`modularDeployment.options.${item}.description`)}</p>
           </div>
         ))}
       </div>
@@ -404,10 +405,10 @@ function PlatformsTransitionSection({ t }: { t: (key: string) => string }) {
       tone="dark"
     >
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-end">
-        <p className="max-w-2xl text-2xl font-medium leading-10 tracking-[-0.04em] text-white/86">
+        <p className="max-w-2xl text-2xl font-medium leading-10 tracking-[-0.04em] text-background/86">
           {t("platformsTransition.statement")}
         </p>
-        <div className="rounded-4xl border border-white/10 bg-white/4 p-6 text-sm leading-7 text-white/64">
+        <div className="rounded-4xl border border-background/10 bg-background/4 p-6 text-sm leading-7 text-background/64">
           {t("platformsTransition.aside")}
         </div>
       </div>
@@ -417,12 +418,12 @@ function PlatformsTransitionSection({ t }: { t: (key: string) => string }) {
 
 function PlatformsSection({ locale, t }: HomePageContentProps) {
   const platforms = [
-    { key: "developer", icon: Code2, href: "/platform/developer", accent: "bg-zinc-950" },
-    { key: "cloud", icon: Building2, href: "/platform/cloud", accent: "bg-zinc-700" },
-    { key: "telecom", icon: Network, href: "/platform/telecom", accent: "bg-slate-600" },
-    { key: "finance", icon: LockKeyhole, href: "/platform/finance", accent: "bg-slate-800" },
-    { key: "intelligence", icon: Blocks, href: "/platform/intelligence", accent: "bg-zinc-500" },
-    { key: "media", icon: Globe2, href: "/platform/media", accent: "bg-slate-500" },
+    { key: "developer", icon: Code2, href: "/platform/developer", accent: "bg-foreground" },
+    { key: "cloud", icon: Building2, href: "/platform/cloud", accent: "bg-muted-foreground" },
+    { key: "telecom", icon: Network, href: "/platform/telecom", accent: "bg-muted-foreground" },
+    { key: "finance", icon: LockKeyhole, href: "/platform/finance", accent: "bg-muted-foreground" },
+    { key: "intelligence", icon: Blocks, href: "/platform/intelligence", accent: "bg-foreground" },
+    { key: "media", icon: Globe2, href: "/platform/media", accent: "bg-muted-foreground" },
   ];
 
   return (
@@ -453,22 +454,22 @@ function EcosystemArchitectureSection({ t }: { t: (key: string) => string }) {
       description={t("ecosystemArchitecture.description")}
       tone="muted"
     >
-      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-zinc-200 bg-white p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
+      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-border bg-card p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
         <div className="grid gap-5">
           {["organizations", "office", "platforms", "foundations"].map((item, index) => (
             <React.Fragment key={item}>
-              <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50/75 p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              <div className="rounded-[1.75rem] border border-border bg-muted p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   {t(`ecosystemArchitecture.layers.${item}.eyebrow`)}
                 </div>
-                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">
+                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-foreground">
                   {t(`ecosystemArchitecture.layers.${item}.title`)}
                 </div>
-                <p className="mt-3 text-sm leading-7 text-zinc-600">{t(`ecosystemArchitecture.layers.${item}.description`)}</p>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{t(`ecosystemArchitecture.layers.${item}.description`)}</p>
               </div>
               {index < 3 ? (
                 <div className="flex justify-center" aria-hidden={true}>
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-400">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
                     <ArrowRight className="h-4 w-4 rotate-90" />
                   </div>
                 </div>
@@ -523,7 +524,7 @@ function SolutionsSection({ locale, t }: HomePageContentProps) {
         ))}
       </div>
       <div className="mt-10">
-        <Button asChild variant="outline" className="rounded-full border-zinc-300 bg-white px-6 text-zinc-950">
+        <Button asChild variant="outline" className="rounded-full px-6">
           <Link href={localizeHref(locale, "/solutions")}>{t("solutionsShowcase.cta")}</Link>
         </Button>
       </div>
@@ -535,19 +536,19 @@ function DevelopersSection({ locale, t }: HomePageContentProps) {
   return (
     <Section eyebrow={t("developersShowcase.eyebrow")} title={t("developersShowcase.title")} description={t("developersShowcase.description")} tone="dark">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-        <div className="rounded-[2.25rem] border border-white/10 bg-white/4 p-7">
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/46">{t("developersShowcase.panel.eyebrow")}</div>
-          <div className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white">{t("developersShowcase.panel.title")}</div>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/66">{t("developersShowcase.panel.description")}</p>
-          <div className="mt-8 grid gap-3 font-mono text-sm text-white/72">
+        <div className="rounded-[2.25rem] border border-background/10 bg-background/4 p-7">
+          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-background/46">{t("developersShowcase.panel.eyebrow")}</div>
+          <div className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-background">{t("developersShowcase.panel.title")}</div>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-background/66">{t("developersShowcase.panel.description")}</p>
+          <div className="mt-8 grid gap-3 font-mono text-sm text-background/72">
             {["documentation", "apis", "sdks", "giteria"].map((item) => (
-              <div key={item} className="rounded-2xl border border-white/10 bg-white/3 px-4 py-4">
+              <div key={item} className="rounded-2xl border border-background/10 bg-background/3 px-4 py-4">
                 {t(`developersShowcase.panel.entries.${item}`)}
               </div>
             ))}
           </div>
           <div className="mt-8">
-            <Button asChild variant="secondary" className="rounded-full bg-white px-6 text-zinc-950 hover:bg-zinc-100">
+            <Button asChild variant="secondary" className="rounded-full px-6">
               <Link href={localizeHref(locale, "/developers")}>{t("developersShowcase.cta")}</Link>
             </Button>
           </div>
@@ -566,7 +567,7 @@ function DevelopersSection({ locale, t }: HomePageContentProps) {
               title={t(`developersShowcase.items.${item.key}.title`)}
               description={t(`developersShowcase.items.${item.key}.description`)}
               icon={item.icon}
-              className="border-white/10 bg-white/4 shadow-none [&_h3]:text-white [&_p]:text-white/64"
+              className="border-background/10 bg-background/4 shadow-none [&_h3]:text-background [&_p]:text-background/64"
             />
           ))}
         </div>
@@ -580,17 +581,17 @@ function TrustSection({ locale, t }: HomePageContentProps) {
     <Section eyebrow={t("trustSecurity.eyebrow")} title={t("trustSecurity.title")} description={t("trustSecurity.description")}>
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {["identity", "design", "transparency", "disclosure"].map((item) => (
-          <div key={item} className="rounded-[1.85rem] border border-zinc-200 bg-white p-6 shadow-[0_18px_60px_-48px_rgba(15,23,42,0.22)]">
-            <div className="text-base font-semibold text-zinc-950">{t(`trustSecurity.items.${item}.title`)}</div>
-            <p className="mt-4 text-sm leading-7 text-zinc-600">{t(`trustSecurity.items.${item}.description`)}</p>
+          <div key={item} className="rounded-[1.85rem] border border-border bg-card p-6 shadow-[0_18px_60px_-48px_rgba(15,23,42,0.22)]">
+            <div className="text-base font-semibold text-foreground">{t(`trustSecurity.items.${item}.title`)}</div>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">{t(`trustSecurity.items.${item}.description`)}</p>
           </div>
         ))}
       </div>
       <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-        <Button asChild variant="outline" className="rounded-full border-zinc-300 bg-white px-6 text-zinc-950">
+        <Button asChild variant="outline" className="rounded-full px-6">
           <Link href={localizeHref(locale, "/security")}>{t("trustSecurity.securityCta")}</Link>
         </Button>
-        <Button asChild variant="outline" className="rounded-full border-zinc-300 bg-white px-6 text-zinc-950">
+        <Button asChild variant="outline" className="rounded-full px-6">
           <Link href={localizeHref(locale, "/security/trust")}>{t("trustSecurity.trustCta")}</Link>
         </Button>
       </div>
@@ -603,10 +604,10 @@ function TransparencySection({ t }: { t: (key: string) => string }) {
     <Section eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")} tone="muted">
       <div className="grid gap-5 lg:grid-cols-3">
         {["development", "exploring", "vision"].map((item) => (
-          <div key={item} className="rounded-4xl border border-zinc-200 bg-white p-7">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t(`transparency.items.${item}.eyebrow`)}</div>
-            <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{t(`transparency.items.${item}.title`)}</div>
-            <p className="mt-4 text-sm leading-7 text-zinc-600">{t(`transparency.items.${item}.description`)}</p>
+          <div key={item} className="rounded-4xl border border-border bg-card p-7">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t(`transparency.items.${item}.eyebrow`)}</div>
+            <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-foreground">{t(`transparency.items.${item}.title`)}</div>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">{t(`transparency.items.${item}.description`)}</p>
           </div>
         ))}
       </div>
@@ -649,7 +650,7 @@ function CompanySection({ locale, t }: HomePageContentProps) {
 
 function FinalCtaSection({ locale, t }: HomePageContentProps) {
   return (
-    <section className="relative overflow-hidden border-t border-zinc-200 py-24 sm:py-28">
+    <section className="relative overflow-hidden border-t border-border py-24 sm:py-28">
       <div aria-hidden={true} className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(9,9,11,1)_0%,rgba(24,24,27,0.98)_100%)]" />
       <div
         aria-hidden={true}
@@ -661,12 +662,12 @@ function FinalCtaSection({ locale, t }: HomePageContentProps) {
         }}
       />
       <div className="relative mx-auto max-w-360 px-6 lg:px-12">
-        <div className="rounded-[2.6rem] border border-white/10 bg-white/3 px-8 py-10 shadow-[0_40px_120px_-80px_rgba(0,0,0,0.6)] sm:px-10 lg:px-14 lg:py-14">
+        <div className="rounded-[2.6rem] border border-background/10 bg-background/3 px-8 py-10 shadow-[0_40px_120px_-80px_rgba(0,0,0,0.6)] sm:px-10 lg:px-14 lg:py-14">
           <SectionEyebrow inverted>{t("finalCta.eyebrow")}</SectionEyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tighter text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tighter text-background sm:text-5xl lg:text-6xl">
             {t("finalCta.title")}
           </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/68">{t("finalCta.description")}</p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-background/68">{t("finalCta.description")}</p>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {[
               { key: "organizations", href: "/office", icon: Building2 },
@@ -676,19 +677,19 @@ function FinalCtaSection({ locale, t }: HomePageContentProps) {
               <Link
                 key={item.key}
                 href={localizeHref(locale, item.href)}
-                className="group rounded-4xl border border-white/10 bg-white/4 p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/6"
+                className="group rounded-4xl border border-background/10 bg-background/4 p-6 transition duration-300 hover:-translate-y-1 hover:border-background/20 hover:bg-background/6"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/4 text-white/88">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-background/10 bg-background/4 text-background/88">
                   <item.icon className="h-5 w-5" />
                 </span>
-                <div className="mt-8 text-sm font-medium uppercase tracking-[0.18em] text-white/46">
+                <div className="mt-8 text-sm font-medium uppercase tracking-[0.18em] text-background/46">
                   {t(`finalCta.items.${item.key}.eyebrow`)}
                 </div>
-                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">
+                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-background">
                   {t(`finalCta.items.${item.key}.title`)}
                 </div>
-                <p className="mt-4 text-sm leading-7 text-white/64">{t(`finalCta.items.${item.key}.description`)}</p>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-white">
+                <p className="mt-4 text-sm leading-7 text-background/64">{t(`finalCta.items.${item.key}.description`)}</p>
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-background">
                   {t(`finalCta.items.${item.key}.cta`)}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </span>
@@ -706,7 +707,7 @@ export async function HomePage({ locale }: HomePageProps) {
   const t = (key: string) => translate(key);
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header locale={locale as Locale} />
       <main className="flex-1 overflow-x-hidden">
         <HomeHero locale={locale} t={t} />
