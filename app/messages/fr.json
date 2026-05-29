@@ -12912,39 +12912,6 @@
               "title": "Gouverner et sécuriser",
               "description": "Identity, Vault, VPN, audit logs et politiques d’accès donnent à la suite une base enterprise maîtrisable."
             }
-          },
-          "visual": {
-            "eyebrow": "Suite intégrée",
-            "title": "Les applications partagent le même contexte de travail",
-            "badge": "Aether-native",
-            "cards": {
-              "inbox": {
-                "label": "Mail + Calendar",
-                "title": "Un message devient une réunion structurée",
-                "description": "Le fil, les participants, l’agenda et les pièces utiles restent connectés."
-              },
-              "document": {
-                "label": "Docs + Sheets",
-                "title": "Les documents et données avancent ensemble",
-                "description": "Les équipes rédigent, analysent et commentent dans un même espace gouverné."
-              },
-              "meeting": {
-                "label": "Meet + Chat",
-                "title": "Les échanges temps réel gardent leur trace",
-                "description": "Les décisions, notes et suivis restent attachés au contexte de la session."
-              },
-              "drive": {
-                "label": "Drive + Tasks",
-                "title": "Le partage mène directement à l’exécution",
-                "description": "Les fichiers, permissions et prochaines actions restent visibles par les bons groupes."
-              }
-            },
-            "foundationLabel": "Fondations communes",
-            "foundations": {
-              "identity": "Identity et accès",
-              "security": "Sécurité, Vault et VPN",
-              "ai": "IA intégrée et automatisation"
-            }
           }
         },
         "apps": {

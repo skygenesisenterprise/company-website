@@ -54,6 +54,15 @@ interface FeatureCardProps {
   accent?: string;
   dark?: boolean;
   compact?: boolean;
+  githubHref?: string;
+}
+
+function GitHubIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+    </svg>
+  );
 }
 
 interface ComparisonCellProps {
@@ -127,16 +136,27 @@ function Section({ id, eyebrow, title, description, tone = "default", centered =
   );
 }
 
-function FeatureCard({ title, description, icon: Icon, accent, dark = false, compact = false }: FeatureCardProps) {
+function FeatureCard({ title, description, icon: Icon, accent, dark = false, compact = false, githubHref }: FeatureCardProps) {
   return (
     <div
       className={cn(
-        "relative h-full overflow-hidden rounded-4xl border p-6",
+        "group relative h-full overflow-hidden rounded-4xl border p-6",
         dark ? "border-white/10 bg-white/4" : "border-zinc-200/80 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]",
         compact ? "p-5" : "p-6",
       )}
     >
       {accent ? <div aria-hidden={true} className={cn("absolute inset-x-0 top-0 h-1", accent)} /> : null}
+      {githubHref ? (
+        <a
+          href={githubHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-xl border border-zinc-200 bg-white/90 text-zinc-400 opacity-0 transition-all duration-200 hover:border-zinc-300 hover:text-zinc-700 group-hover:opacity-100"
+          aria-label="GitHub repository"
+        >
+          <GitHubIcon className="h-4 w-4" />
+        </a>
+      ) : null}
       <span
         className={cn(
           "inline-flex h-12 w-12 items-center justify-center rounded-2xl border",
@@ -246,21 +266,21 @@ export async function OfficePage({ locale }: OfficePageProps) {
   ] as const;
 
   const appItems = [
-    { key: "mail", icon: Mail, accent: "bg-sky-500/80" },
-    { key: "calendar", icon: CalendarDays, accent: "bg-indigo-500/80" },
-    { key: "drive", icon: Files, accent: "bg-cyan-500/80" },
-    { key: "docs", icon: FileText, accent: "bg-blue-500/80" },
-    { key: "sheets", icon: FileSpreadsheet, accent: "bg-emerald-500/80" },
-    { key: "slides", icon: Presentation, accent: "bg-amber-500/80" },
-    { key: "meet", icon: Video, accent: "bg-violet-500/80" },
-    { key: "chat", icon: MessageSquare, accent: "bg-fuchsia-500/80" },
-    { key: "tasks", icon: ListTodo, accent: "bg-zinc-500/80" },
-    { key: "notes", icon: StickyNote, accent: "bg-orange-500/80" },
-    { key: "forms", icon: CheckCircle2, accent: "bg-lime-500/80" },
-    { key: "vault", icon: Archive, accent: "bg-rose-500/80" },
-    { key: "identity", icon: Users, accent: "bg-slate-500/80" },
-    { key: "vpn", icon: Network, accent: "bg-teal-500/80" },
-    { key: "aiAssistant", icon: Bot, accent: "bg-purple-500/80" },
+    { key: "mail", icon: Mail, accent: "bg-sky-500/80", repo: "aether-mail" },
+    { key: "calendar", icon: CalendarDays, accent: "bg-indigo-500/80", repo: "aether-calendar" },
+    { key: "drive", icon: Files, accent: "bg-cyan-500/80", repo: "aether-drive" },
+    { key: "docs", icon: FileText, accent: "bg-blue-500/80", repo: "aether-docs" },
+    { key: "sheets", icon: FileSpreadsheet, accent: "bg-emerald-500/80", repo: "aether-sheets" },
+    { key: "slides", icon: Presentation, accent: "bg-amber-500/80", repo: "aether-slides" },
+    { key: "meet", icon: Video, accent: "bg-violet-500/80", repo: "aether-meet" },
+    { key: "chat", icon: MessageSquare, accent: "bg-fuchsia-500/80", repo: "aether-chat" },
+    { key: "tasks", icon: ListTodo, accent: "bg-zinc-500/80", repo: "aether-tasks" },
+    { key: "notes", icon: StickyNote, accent: "bg-orange-500/80", repo: "aether-notes" },
+    { key: "forms", icon: CheckCircle2, accent: "bg-lime-500/80", repo: "aether-forms" },
+    { key: "vault", icon: Archive, accent: "bg-rose-500/80", repo: "aether-vault" },
+    { key: "identity", icon: Users, accent: "bg-slate-500/80", repo: "aether-identity" },
+    { key: "vpn", icon: Network, accent: "bg-teal-500/80", repo: "aether-vpn" },
+    { key: "aiAssistant", icon: Bot, accent: "bg-purple-500/80", repo: "aether-ai" },
   ] as const;
 
   const comparisonRows = ["openness", "sovereignty", "integration", "control", "ai"] as const;
@@ -363,46 +383,13 @@ export async function OfficePage({ locale }: OfficePageProps) {
                   />
                 ))}
               </div>
-
-              <div className="overflow-hidden rounded-[2.25rem] border border-zinc-200 bg-white p-6 shadow-[0_32px_100px_-60px_rgba(15,23,42,0.28)]">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">{t("overview.visual.eyebrow")}</div>
-                    <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-zinc-950">{t("overview.visual.title")}</div>
-                  </div>
-                  <MetricPill>{t("overview.visual.badge")}</MetricPill>
-                </div>
-
-                <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {["inbox", "document", "meeting", "drive"].map((key) => (
-                      <div key={key} className="rounded-[1.35rem] border border-zinc-200 bg-zinc-50/75 p-4">
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{t(`overview.visual.cards.${key}.label`)}</div>
-                        <div className="mt-2 text-sm font-semibold text-zinc-950">{t(`overview.visual.cards.${key}.title`)}</div>
-                        <div className="mt-2 text-xs leading-6 text-zinc-500">{t(`overview.visual.cards.${key}.description`)}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-950 p-5 text-white">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/46">{t("overview.visual.foundationLabel")}</div>
-                    <div className="mt-4 space-y-2">
-                      {["identity", "security", "ai"].map((key) => (
-                        <div key={key} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/72">
-                          {t(`overview.visual.foundations.${key}`)}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </Section>
 
         <Section eyebrow={t("apps.eyebrow")} title={t("apps.title")} description={t("apps.description")} id="apps">
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
-            {appItems.map(({ key, icon, accent }) => (
+            {appItems.map(({ key, icon, accent, repo }) => (
               <FeatureCard
                 key={key}
                 title={t(`apps.items.${key}.title`)}
@@ -410,6 +397,7 @@ export async function OfficePage({ locale }: OfficePageProps) {
                 icon={icon}
                 accent={accent}
                 compact
+                githubHref={`https://github.com/skygenesisenterprise/${repo}`}
               />
             ))}
           </div>

@@ -50,7 +50,7 @@ interface HeaderProps {
 
 interface MenuItem {
   titleKey: string;
-  descKey: string;
+  descKey?: string;
   href: string;
   icon: React.ReactNode;
 }
@@ -77,6 +77,7 @@ type MegaMenuProps = {
   t: (key: string) => string;
   compact?: boolean;
   panelInsetClass?: string;
+  descCompact?: boolean;
 };
 
 interface TopLevelLink {
@@ -92,6 +93,7 @@ function MegaMenu({
   t,
   compact = false,
   panelInsetClass,
+  descCompact = false,
 }: MegaMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const panelWidth = compact ? "w-[720px]" : "w-[860px]";
@@ -204,9 +206,11 @@ function MegaMenu({
                               <span className="block text-sm font-medium text-foreground transition-colors group-hover/item:text-foreground">
                                 {t(item.titleKey)}
                               </span>
-                              <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
-                                {t(item.descKey)}
-                              </span>
+                              {item.descKey ? (
+                                <span className={cn("block text-xs text-muted-foreground", descCompact ? "mt-0.5 leading-tight" : "mt-1 leading-relaxed")}>
+                                  {t(item.descKey)}
+                                </span>
+                              ) : null}
                             </span>
                             <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-200 group-hover/item:translate-x-0.5 group-hover/item:opacity-100" />
                           </Link>
@@ -239,7 +243,7 @@ function MegaMenu({
                     <span className="mt-6 block text-base font-semibold tracking-tight text-foreground">
                       {t(data.featured.titleKey)}
                     </span>
-                    <span className="mt-3 block text-sm leading-7 text-muted-foreground">
+                    <span className={cn("block text-sm text-muted-foreground", descCompact ? "mt-1.5 leading-tight" : "mt-3 leading-7")}>
                       {t(data.featured.descKey)}
                     </span>
                   </span>
@@ -743,6 +747,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 t={t}
                 compact={isScrolled}
                 panelInsetClass={sharedCompanyDevelopersInset}
+                descCompact
               />
 
               <li>
