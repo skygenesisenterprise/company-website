@@ -123,7 +123,8 @@
       "newsletterLegalNotice": "Sky Genesis Enterprise traite votre adresse de messagerie aux fins de vous adresser les newsletters des entités du Groupe Sky Genesis Enterprise. Vous pouvez à tout moment utiliser le lien de désabonnement intégré. En savoir plus sur la gestion de vos données et vos droits",
       "verifyKey": "Vérifiez notre clé publique PGP pour assurer l'authenticité du site",
       "salesServices": "Services Commerciaux",
-      "phoneNumber": "Non disponnible"
+      "phoneNumber": "Non disponnible",
+      "emailAddress": "contact@skygenesisenterprise.com"
     },
     "contact": {
       "heroTitle": "Contactez-Nous",
@@ -11973,62 +11974,351 @@
       }
     },
     "pgp": {
-      "badge": "Clé publique officielle",
-      "heroTitle": "Vérifier l'authenticité de Sky Genesis Enterprise",
-      "heroDescription": "Cette page centralise les informations de vérification cryptographique et les usages de la clé publique PGP officielle de Sky Genesis Enterprise.",
-      "viewSecurity": "Voir la Sécurité",
-      "contactUs": "Contactez-Nous",
-      "whyTitle": "Pourquoi Vérifier?",
-      "whyDescription": "À une époque où la désinformation et les sites frauduleux sont de plus en plus courants, vérifier notre clé PGP vous aide à accéder à nos plateformes officielles.",
-      "whyAuthTitle": "Authenticité",
-      "whyAuthDesc": "Confirmez que vous êtes sur notre site officiel et non sur une copie malveillante.",
-      "whyTrustTitle": "Confiance",
-      "whyTrustDesc": "Vérifiez que les communications proviennent réellement de Sky Genesis Enterprise.",
-      "whySecureTitle": "Communication Sécurisée",
-      "whySecureDesc": "Envoyez des messages chiffrés à notre équipe de sécurité.",
-      "publicKeyTitle": "Notre Clé Publique PGP",
-      "publicKeyDescription": "Téléchargez et importez notre clé publique pour vérifier les signatures et chiffrer les communications.",
-      "keyBlockTitle": "Bloc de Clé Publique",
-      "keyBlock": "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: GnuPG v2\n\nmQINBFxkN1sBEACrKY/9E6y+Zk8R2L4rN9jK8pQ3V5mW7nX4fH8gT2Y3kL9\nmR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\nYmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2\nY3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5m\nR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\nYmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2\nY3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR\n8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7Y\nmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BE\nAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y\n3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8\nT6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7Ym\nQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BE\nAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y\n3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR\n8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\nYmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF\n2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5\nmR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3\nH7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjb\nW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW\n8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9\nkN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1\njF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINB\nVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H\n4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7\npT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6\nwL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7Ym\nQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8x\nF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9k\nN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1\njF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINB\nVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9\nH4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3\nL7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5m\nR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3\nH7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVj\nbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4\nqW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7\npT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T\n6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\n=XXXX\n-----END PGP PUBLIC KEY BLOCK-----",
-      "downloadKey": "Télécharger la Clé",
-      "fingerprintTitle": "Empreinte",
-      "fingerprint": "4A5B 6C7D 8E9F 0ABC 1DEF 2345 6789 ABCD EF01 2345",
-      "fingerprintDesc": "Vérifiez que cette empreinte correspond à celle affichée sur nos canaux officiels.",
-      "howVerifyTitle": "Comment Vérifier",
-      "howVerifyDescription": "Suivez ces étapes pour vérifier notre clé PGP et vous assurer que vous êtes sur notre site authentique.",
-      "step1": "Téléchargez notre clé publique PGP depuis cette page",
-      "step2": "Importez la clé dans votre logiciel GPG (GnuPG, Kleopatra, etc.)",
-      "step3": "Vérifiez que l'empreinte correspond à celle affichée ci-dessus",
-      "step4": "Comparez avec les informations sur nos canaux de réseaux sociaux officiels",
-      "step5": "Si les empreintes correspondent, vous êtes sur le site officiel",
-      "usageTitle": "Comment Utiliser Notre Clé ?",
-      "usageDescription": "Notre clé publique PGP peut être utilisée pour les purposes suivantes.",
-      "useVerifyTitle": "Vérifier les Communiqués de Presse",
-      "useVerifyDesc": "Authentifier que les communiqués de presse proviennent réellement de Sky Genesis Enterprise.",
-      "useEncryptTitle": "Chiffrer les Communications",
-      "useEncryptDesc": "Envoyer des messages chiffrés à notre équipe de sécurité",
-      "useSignTitle": "Signer des Documents",
-      "useSignDesc": "Signer numériquement des documents officiels",
-      "useConfirmTitle": "Confirmer les Publications",
-      "useConfirmDesc": "Vérifier l'origine de nos publications",
-      "warningTitle": "Avertissement de Sécurité",
-      "warningContent": "Nous ne demanderons jamais vos clés privées ou vos mots de passe. Ne partagez jamais ces informations avec quiconque, même si quelqu'un prétend faire partie de notre équipe.",
-      "questionsTitle": "Questions Sur PGP?",
-      "questionsDescription": "Si vous avez des questions sur notre clé PGP ou voulez envoyer un message chiffré, contactez notre équipe de sécurité.",
-      "emailSecurity": "Contacter security@skygenesisenterprise.com",
-      "showPublicKey": "Afficher la clé publique",
-      "contactSecurityTeam": "Contacter l'équipe sécurité",
-      "officialKeyStatus": "Clé officielle",
-      "officialKeyDesc": "Publiée et vérifiée par Sky Genesis Enterprise",
-      "securityContact": "Contact sécurité",
-      "keyUsage": "Usages recommandés",
-      "recommendedUsage": "Vérification, chiffrement, signatures",
-      "keyDetails": "Détails de la clé",
-      "keyDetailUsageValue": "Vérification d'authenticité, chiffrement de bout en bout et signatures numériques.",
-      "publishedAt": "Date de publication",
-      "publishedAtValue": "15 mars 2026",
-      "verifyCommunicationTitle": "Besoin de confirmer une communication ?",
-      "verifyCommunicationDesc": "Notre équipe sécurité peut vous aider à vérifier une clé, une signature ou une communication sensible."
+      "metadata": {
+        "title": "Trust & Verification | Sky Genesis Enterprise",
+        "description": "Téléchargez la clé OpenPGP officielle de Sky Genesis Enterprise, vérifiez son fingerprint et consultez les mécanismes de confiance utilisés pour authentifier les communications officielles."
+      },
+      "common": {
+        "copy": "Copier",
+        "copied": "Copié"
+      },
+      "hero": {
+        "eyebrow": "Trust & Verification",
+        "title": "Verify you're communicating with Sky Genesis Enterprise.",
+        "description": "Cette page rassemble les éléments de confiance numérique utilisés pour authentifier Sky Genesis Enterprise, vérifier les signatures officielles et sécuriser les échanges sensibles avec notre équipe.",
+        "primaryCta": "Download Public Key",
+        "secondaryCta": "View Fingerprint",
+        "signals": [
+          "OpenPGP pour les signatures et le chiffrement",
+          "Canaux officiels recoupés avec security.txt, DNS et TLS",
+          "Processus de divulgation responsable et contacts sécurité dédiés"
+        ],
+        "metrics": [
+          {
+            "label": "Fingerprint",
+            "value": "4A5B 6C7D 8E9F 0ABC 1DEF 2345 6789 ABCD EF01 2345"
+          },
+          {
+            "label": "Publication",
+            "value": "15 mars 2026"
+          },
+          {
+            "label": "Contact sécurité",
+            "value": "security@skygenesisenterprise.com"
+          }
+        ],
+        "identityCard": {
+          "eyebrow": "Identity Profile",
+          "title": "Official verification surface",
+          "description": "Notre clé publique, nos canaux de contact, nos ressources open source et nos méthodes de vérification supplémentaires forment une chaîne de confiance cohérente pour partenaires, clients, médias et chercheurs en sécurité."
+        }
+      },
+      "purpose": {
+        "eyebrow": "Pourquoi cette clé existe",
+        "title": "Une clé OpenPGP officielle sert à relier identité, intégrité et confidentialité.",
+        "description": "Elle permet de vérifier l’origine de contenus signés par Sky Genesis Enterprise et d’établir un canal de communication chiffré pour les sujets sensibles.",
+        "items": [
+          "Communications officielles",
+          "Partenaires et clients",
+          "Signalements de sécurité",
+          "Divulgation responsable",
+          "Documents à forte sensibilité"
+        ]
+      },
+      "fingerprint": {
+        "eyebrow": "Fingerprint officiel",
+        "title": "Le fingerprint est la référence prioritaire à comparer avant toute confiance.",
+        "description": "Si une clé, un message signé ou un fichier ne correspond pas à cette empreinte, il ne doit pas être considéré comme authentique.",
+        "badge": "Fingerprint vérifié",
+        "value": "4A5B 6C7D 8E9F 0ABC 1DEF 2345 6789 ABCD EF01 2345",
+        "downloadLabel": "Téléchargement recommandé",
+        "downloadValue": "Clé publique ASCII Armored (.asc)",
+        "wkdLabel": "Découverte automatique",
+        "wkdValue": "Web Key Directory pour le domaine officiel",
+        "cta": "Télécharger la clé publique",
+        "qrEyebrow": "QR Reference",
+        "qrDescription": "Cette représentation visuelle permet une vérification rapide du fingerprint lors d’échanges directs, d’audits ou de contrôles croisés avec d’autres canaux officiels."
+      },
+      "downloads": {
+        "eyebrow": "Téléchargement",
+        "title": "Choisissez le format adapté à votre outil, à votre workflow ou à votre niveau d’automatisation.",
+        "description": "La version ASCII reste la référence la plus simple à auditer visuellement. Les autres modes de distribution complètent ce point d’entrée selon les environnements.",
+        "keyBlockLabel": "Bloc de clé publique",
+        "keyBlock": "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: GnuPG v2\n\nmQINBFxkN1sBEACrKY/9E6y+Zk8R2L4rN9jK8pQ3V5mW7nX4fH8gT2Y3kL9\nmR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\nYmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2\nY3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5m\nR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\nYmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2\nY3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR\n8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7Y\nmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BE\nAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y\n3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8\nT6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7Ym\nQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BE\nAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y\n3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR\n8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\nYmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF\n2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5\nmR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3\nH7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjb\nW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW\n8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9\nkN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1\njF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINB\nVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H\n4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7\npT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6\nwL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7Ym\nQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0B\nEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8x\nF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9k\nN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1\njF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINB\nVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9\nH4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3\nL7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5m\nR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3\nH7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVj\nbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4\nqW8xF2Y3L7pT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7\npT9kN5mR8T6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T\n6wL1jF3H7YmQINBVjbW0BEAC9H4qW8xF2Y3L7pT9kN5mR8T6wL1jF3H7\n=XXXX\n-----END PGP PUBLIC KEY BLOCK-----",
+        "items": [
+          {
+            "format": "ASCII Armored (.asc)",
+            "title": "Format lisible et directement importable",
+            "description": "Recommandé pour le téléchargement manuel, l’audit visuel du contenu et l’import dans GnuPG, Kleopatra ou tout autre outil OpenPGP compatible.",
+            "cta": "Télécharger le fichier .asc",
+            "href": "/pgp/sky-genesis-enterprise.asc"
+          },
+          {
+            "format": "Binary (.gpg)",
+            "title": "Format binaire pour workflows spécialisés",
+            "description": "Utilisé dans certains environnements automatisés ou outillages existants. Si votre workflow exige un export binaire, contactez l’équipe sécurité pour validation du canal de remise.",
+            "cta": "Contacter l’équipe sécurité",
+            "href": "mailto:security@skygenesisenterprise.com"
+          },
+          {
+            "format": "Web Key Directory",
+            "title": "Découverte par le domaine officiel",
+            "description": "Les clients compatibles WKD peuvent résoudre la clé publique à partir du domaine Sky Genesis Enterprise, ce qui renforce la cohérence de la chaîne de confiance.",
+            "cta": "Vérifier le domaine",
+            "href": "/.well-known/security.txt"
+          }
+        ]
+      },
+      "verification": {
+        "eyebrow": "Vérification des signatures",
+        "title": "Le processus doit rester simple, explicite et reproductible.",
+        "description": "L’objectif est de confirmer qu’un contenu a bien été signé avec la clé officielle avant de lui accorder une confiance opérationnelle.",
+        "steps": [
+          "Download",
+          "Import Key",
+          "Verify Signature",
+          "Trusted Content"
+        ]
+      },
+      "encryption": {
+        "eyebrow": "Chiffrement des communications",
+        "title": "Les informations sensibles doivent être envoyées sur un canal chiffré et vérifiable.",
+        "description": "Pour les signalements de vulnérabilités, éléments légaux, documents confidentiels ou preuves techniques, utilisez la clé publique officielle avant transmission.",
+        "panel": {
+          "eyebrow": "Secure Exchange",
+          "title": "Envoyer un message sensible à Sky Genesis Enterprise",
+          "description": "Importez la clé publique, chiffrez votre message à destination de security@skygenesisenterprise.com puis vérifiez le fingerprint avant l’envoi final.",
+          "primaryCta": "Contacter security@skygenesisenterprise.com",
+          "secondaryCta": "Télécharger la clé"
+        },
+        "steps": [
+          {
+            "icon": "key",
+            "title": "Importer",
+            "description": "Ajoutez la clé publique SGE à votre trousseau OpenPGP local."
+          },
+          {
+            "icon": "encrypt",
+            "title": "Chiffrer",
+            "description": "Chiffrez les éléments sensibles pour le destinataire officiel avant transmission."
+          },
+          {
+            "icon": "send",
+            "title": "Transmettre",
+            "description": "Envoyez le message chiffré via le canal officiel approprié."
+          }
+        ]
+      },
+      "useCases": {
+        "eyebrow": "Cas d’utilisation",
+        "title": "La clé intervient là où l’authenticité et la confidentialité ont une conséquence réelle.",
+        "description": "Elle ne se limite pas à un artefact technique: elle soutient les échanges à haute criticité dans plusieurs contextes métier.",
+        "items": [
+          {
+            "title": "Security Reports",
+            "description": "Transmission de rapports de sécurité, preuves de concept et détails techniques sensibles."
+          },
+          {
+            "title": "Vulnerability Disclosure",
+            "description": "Communication structurée pour signaler une vulnérabilité avant divulgation publique."
+          },
+          {
+            "title": "Press Communications",
+            "description": "Vérification de contenus officiels transmis à la presse ou à des tiers externes."
+          },
+          {
+            "title": "Legal Documents",
+            "description": "Échanges de documents juridiques nécessitant intégrité, traçabilité ou confidentialité."
+          },
+          {
+            "title": "Partnerships",
+            "description": "Validation d’informations stratégiques échangées avec partenaires et fournisseurs."
+          },
+          {
+            "title": "Enterprise Security",
+            "description": "Protection des échanges liés aux audits, incidents, intégrations et demandes client sensibles."
+          }
+        ]
+      },
+      "contacts": {
+        "eyebrow": "Security Contacts",
+        "title": "Chaque type de sujet doit aboutir au bon canal officiel.",
+        "description": "Ces adresses constituent les points d’entrée privilégiés selon la nature de la demande. En cas de doute, privilégiez security@.",
+        "items": [
+          {
+            "email": "security@skygenesisenterprise.com",
+            "title": "Security",
+            "description": "Signalements de vulnérabilités, questions sensibles, vérifications de signatures et échanges chiffrés."
+          },
+          {
+            "email": "abuse@skygenesisenterprise.com",
+            "title": "Abuse",
+            "description": "Usages malveillants, abus de service, tentatives d’usurpation ou comportements suspects observés."
+          },
+          {
+            "email": "legal@skygenesisenterprise.com",
+            "title": "Legal",
+            "description": "Sujets contractuels, notifications formelles, échanges juridiques et documentation à portée réglementaire."
+          },
+          {
+            "email": "press@skygenesisenterprise.com",
+            "title": "Press",
+            "description": "Demandes média, vérification de prises de parole officielles et coordination presse."
+          }
+        ]
+      },
+      "keyManagement": {
+        "eyebrow": "Gestion des clés",
+        "title": "La confiance exige un cycle de vie explicite pour la clé publique officielle.",
+        "description": "Expiration, renouvellement, révocation et rotation font partie du dispositif attendu pour maintenir une confiance opérationnelle crédible.",
+        "items": [
+          {
+            "title": "Expiration",
+            "description": "La durée de validité de la clé doit être surveillée et communiquée afin d’éviter toute ambiguïté sur son statut opérationnel."
+          },
+          {
+            "title": "Renouvellement",
+            "description": "Les renouvellements doivent être publiés sur les mêmes surfaces de confiance pour conserver une continuité de vérification."
+          },
+          {
+            "title": "Révocation",
+            "description": "En cas de compromission ou de doute sérieux, un mécanisme de révocation explicite doit remplacer immédiatement l’ancienne référence."
+          },
+          {
+            "title": "Rotation",
+            "description": "La rotation périodique permet de maintenir une hygiène cryptographique cohérente avec une politique de sécurité mature."
+          }
+        ]
+      },
+      "trustChain": {
+        "eyebrow": "Trust Chain",
+        "title": "La clé PGP n’est qu’un maillon d’une chaîne de confiance plus large.",
+        "description": "La vérification sérieuse d’une identité numérique repose sur plusieurs couches cohérentes, chacune renforçant la crédibilité des autres.",
+        "items": [
+          "PGP",
+          "DNSSEC",
+          "TLS",
+          "Identity",
+          "Security Policies"
+        ]
+      },
+      "transparency": {
+        "eyebrow": "Open Source & Transparency",
+        "title": "La confiance est renforcée quand les surfaces techniques et institutionnelles restent auditables.",
+        "description": "GitHub, projets open source, documentation publique et références de sécurité contribuent à une relation de confiance plus vérifiable.",
+        "items": [
+          {
+            "title": "GitHub officiel",
+            "description": "Les dépôts publics et le site officiel permettent de recouper identité, activités et ressources publiées par Sky Genesis Enterprise."
+          },
+          {
+            "title": "Auditabilité",
+            "description": "Les contenus techniques publics facilitent les contrôles indépendants, les revues de cohérence et la vérification des signaux de confiance."
+          },
+          {
+            "title": "Transparence produit",
+            "description": "Une posture transparente réduit l’ambiguïté entre communication institutionnelle, surfaces techniques et engagements sécurité."
+          },
+          {
+            "title": "Communication responsable",
+            "description": "Les prises de parole liées à la sécurité doivent rester alignées avec les canaux, contacts et politiques publiquement documentés."
+          }
+        ]
+      },
+      "securityProgram": {
+        "eyebrow": "Security Program",
+        "title": "Le programme sécurité doit être identifiable, accessible et opérationnel.",
+        "description": "Cette page s’inscrit dans un ensemble plus large comprenant signalement de vulnérabilités, traitement responsable et sécurité produit.",
+        "items": [
+          {
+            "title": "Signalement de vulnérabilités",
+            "description": "Un canal clair permet aux chercheurs, clients et partenaires de transmettre rapidement un problème de sécurité."
+          },
+          {
+            "title": "Divulgation responsable",
+            "description": "Les échanges avant publication doivent protéger les parties prenantes et laisser le temps de l’analyse et de la correction."
+          },
+          {
+            "title": "Sécurité produit",
+            "description": "La clé OpenPGP complète les autres mécanismes de confiance utilisés pour l’infrastructure, les canaux officiels et les ressources publiées."
+          }
+        ]
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Les vérifications les plus courantes doivent être expliquées sans ambiguïté.",
+        "description": "Ces réponses synthétiques donnent le cadre minimal pour importer la clé, vérifier une signature et envoyer un message chiffré.",
+        "items": [
+          {
+            "title": "Comment importer la clé ?",
+            "description": "Téléchargez le fichier .asc puis importez-le dans votre client OpenPGP ou via votre chaîne GnuPG locale avant toute vérification."
+          },
+          {
+            "title": "Comment vérifier une signature ?",
+            "description": "Vérifiez d’abord le fingerprint de la clé, puis exécutez la procédure standard de vérification fournie par votre outil pour le fichier ou message signé."
+          },
+          {
+            "title": "Comment envoyer un message chiffré ?",
+            "description": "Chiffrez le contenu avec la clé publique officielle puis envoyez le message via le canal de contact officiel correspondant au sujet."
+          },
+          {
+            "title": "Comment vérifier le fingerprint ?",
+            "description": "Comparez-le avec cette page, avec les canaux officiels et avec toute surface publique de confiance complémentaire avant de valider la clé."
+          }
+        ]
+      },
+      "additionalVerification": {
+        "eyebrow": "Additional Verification Methods",
+        "title": "La vérification ne doit jamais dépendre d’un seul signal.",
+        "description": "Croisez la clé OpenPGP avec d’autres surfaces publiques afin de confirmer que l’identité numérique affichée est cohérente dans l’ensemble de l’écosystème SGE.",
+        "items": [
+          {
+            "label": "github",
+            "title": "GitHub",
+            "description": "Recoupez l’identité de l’organisation et les ressources publiées depuis le compte GitHub officiel.",
+            "href": "https://github.com/skygenesisenterprise"
+          },
+          {
+            "label": "linkedin",
+            "title": "LinkedIn",
+            "description": "Vérifiez la présence institutionnelle de Sky Genesis Enterprise via sa page LinkedIn officielle.",
+            "href": "https://linkedin.com/company/skygenesisenterprise"
+          },
+          {
+            "label": "securitytxt",
+            "title": "security.txt",
+            "description": "Le fichier security.txt documente les contacts et références de sécurité publiés sur le domaine officiel.",
+            "href": "/.well-known/security.txt"
+          },
+          {
+            "label": "dns",
+            "title": "DNS records",
+            "description": "Les enregistrements DNS, la résolution du domaine et les signaux d’infrastructure doivent rester cohérents avec l’identité déclarée."
+          },
+          {
+            "label": "ownership",
+            "title": "Domain ownership",
+            "description": "La possession et la sécurisation du domaine officiel restent un signal critique dans toute vérification d’identité numérique."
+          }
+        ]
+      },
+      "finalCta": {
+        "eyebrow": "Final CTA",
+        "title": "Security starts with trust.",
+        "description": "Si vous devez confirmer une communication, transmettre un rapport sensible ou signaler une vulnérabilité, utilisez les canaux officiels ci-dessous.",
+        "primary": {
+          "eyebrow": "Security Team",
+          "title": "Contact Security Team",
+          "description": "Obtenez une confirmation de canal, une aide de vérification ou un point de contact pour un échange chiffré.",
+          "cta": "Contacter l’équipe sécurité"
+        },
+        "secondary": {
+          "eyebrow": "Responsible Disclosure",
+          "title": "Report a Vulnerability",
+          "description": "Envoyez un signalement responsable via le canal sécurité officiel avec les éléments techniques nécessaires.",
+          "cta": "Signaler une vulnérabilité"
+        }
+      }
     },
     "gdpr": {
       "badge": "Conformité RGPD",

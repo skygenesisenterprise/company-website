@@ -321,6 +321,20 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
               <p className="mt-4 text-sm text-muted-foreground">
                 {t("salesServices")}: {t("phoneNumber")}
               </p>
+              {locale === "ja" ? (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Fax: {t("faxNumber")}
+                </p>
+              ) : null}
+              <p className="mt-2 text-sm text-muted-foreground">
+                Email:{" "}
+                <Link
+                  href={`mailto:${t("emailAddress")}`}
+                  className="hover:text-foreground transition-colors duration-150"
+                >
+                  {t("emailAddress")}
+                </Link>
+              </p>
               <div className="mt-4 flex flex-wrap items-center gap-4 sm:gap-5">
                 <HeaderInfoLanguageSelector locale={locale} languageList={languageList} />
                 <HeaderInfoThemeToggle />

@@ -205,7 +205,9 @@
       "newsletterLegalNotice": "Sky Genesis Enterprise は、Sky Genesis Enterprise Group 各社のニュースレター配信を目的としてメールアドレスを処理します。いつでも配信停止リンクから解除できます。データ管理と権利についての詳細をご確認ください。",
       "verifyKey": "サイトの真正性を確認するため、公開 PGP 鍵を検証してください。",
       "salesServices": "営業窓口",
-      "phoneNumber": "現在利用できません"
+      "phoneNumber": "現在利用できません",
+      "faxNumber": "現在利用できません",
+      "emailAddress": "japan@skygenesisenterprise.com"
     },
     "home": {
       "page": {
