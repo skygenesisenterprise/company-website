@@ -26,6 +26,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 
 import {
+  editorialArticles,
   articleCategories,
   articleTeams,
   articleTypes,
@@ -36,6 +37,10 @@ import {
   type ArticleTeam,
   type ArticleType,
 } from "../../_data";
+
+export function generateStaticParams() {
+  return editorialArticles.map((article) => ({ id: article.id }));
+}
 
 export default function EditArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = React.use(params);

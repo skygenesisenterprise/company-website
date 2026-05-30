@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/public/Footer";
 import { Header } from "@/components/public/Header";
 import { ArticleCard, BlogFinalCta, BlogSection, SectionEyebrow } from "@/components/public/blog/editorial";
-import { getArticlesByCategory, getEditorialCategory } from "@/lib/blog/data";
+import { editorialCategories, getArticlesByCategory, getEditorialCategory } from "@/lib/blog/data";
 import { defaultLocale, isValidLocale, type Locale } from "@/lib/locale";
 
 interface BlogCategoryPageProps {
@@ -15,6 +15,10 @@ interface BlogCategoryPageProps {
 
 function localizeHref(locale: string, href: string) {
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
+}
+
+export function generateStaticParams() {
+  return editorialCategories.map((category) => ({ name: category.slug }));
 }
 
 export async function generateMetadata({ params }: BlogCategoryPageProps): Promise<Metadata> {

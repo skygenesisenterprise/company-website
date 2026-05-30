@@ -110,6 +110,10 @@ const mockDossiers: Record<string, Dossier> = {
   },
 };
 
+export function generateStaticParams() {
+  return Object.keys(mockDossiers).map((name) => ({ name }));
+}
+
 export default function DossierEditPage() {
   const params = useParams();
   const router = useRouter();

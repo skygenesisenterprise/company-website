@@ -139,7 +139,7 @@ export default function WebhooksPage() {
       <DashboardToolbar>
         <DashboardSearch value={searchQuery} onChange={setSearchQuery} placeholder="Rechercher par nom ou URL" />
         <Select value={selectedStatus} onValueChange={(value) => setSelectedStatus(value as WebhookStatus | "all")}>
-          <SelectTrigger className="w-full md:w-[180px]"><SelectValue placeholder="Statut" /></SelectTrigger>
+          <SelectTrigger className="w-full md:w-45"><SelectValue placeholder="Statut" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Tous les statuts</SelectItem>
             <SelectItem value="active">Actifs</SelectItem>

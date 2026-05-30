@@ -19,6 +19,7 @@ const localeNames: Record<(typeof routing.locales)[number], string> = {
   en: "English",
   es: "Español",
   de: "Deutsch",
+  ja: "日本語",
 };
 
 export function LanguageSwitcher() {

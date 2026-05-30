@@ -19,7 +19,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { formatDate, formatDateTime, getArticleById, statusLabels } from "../_data";
+import { editorialArticles, formatDate, formatDateTime, getArticleById, statusLabels } from "../_data";
+
+export function generateStaticParams() {
+  return editorialArticles.map((article) => ({ id: article.id }));
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

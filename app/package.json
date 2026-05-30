@@ -8,7 +8,7 @@
     "dev": "DOCS_DEV=false pnpm next dev -p 3000 -H 0.0.0.0",
     "dev:docs": "DOCS_DEV=true pnpm next dev --webpack -p 3000 -H 0.0.0.0",
     "build": "next build",
-    "build:web": "NODE_ENV=production next build",
+    "build:web": "node ./scripts/build-web.mjs",
     "build:capacitor": "CAPACITOR=true next build",
     "start": "next start",
     "lint": "eslint",

@@ -7,6 +7,7 @@ import { Footer } from "@/components/public/Footer";
 import { Header } from "@/components/public/Header";
 import { ArticleCard, BlogFinalCta, SectionEyebrow, formatBlogDate } from "@/components/public/blog/editorial";
 import {
+  getAllEditorialArticles,
   editorialCategories,
   getAdjacentArticles,
   getEditorialArticle,
@@ -20,6 +21,10 @@ interface BlogArticlePageProps {
 
 function localizeHref(locale: string, href: string) {
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
+}
+
+export function generateStaticParams() {
+  return getAllEditorialArticles().map((article) => ({ name: article.slug }));
 }
 
 export async function generateMetadata({ params }: BlogArticlePageProps): Promise<Metadata> {

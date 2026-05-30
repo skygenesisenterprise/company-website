@@ -5,6 +5,10 @@ import { LocaleProvider } from "@/context/locale-context";
 import { Locale } from "@/lib/locale";
 import { BackToTopButton } from "@/components/common/back-to-top-button";
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -18,7 +22,7 @@ export default async function LocaleLayout({
     return null;
   }
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <LocaleProvider initialLocale={locale as Locale}>

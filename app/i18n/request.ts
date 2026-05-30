@@ -1,9 +1,11 @@
 import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 import fr from "../messages/fr.json";
+import ja from "../messages/ja.json";
 
 const messages = {
   fr,
+  ja,
 };
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {

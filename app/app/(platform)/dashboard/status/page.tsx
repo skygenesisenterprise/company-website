@@ -103,7 +103,7 @@ export default function StatusPage() {
       <DashboardToolbar>
         <DashboardSearch value={searchQuery} onChange={setSearchQuery} placeholder="Rechercher un service ou une zone" />
         <Select value={selectedStatus} onValueChange={(value) => setSelectedStatus(value as OperationalStatus | "all")}>
-          <SelectTrigger className="w-full md:w-[210px]"><SelectValue placeholder="Statut" /></SelectTrigger>
+          <SelectTrigger className="w-full md:w-52.5"><SelectValue placeholder="Statut" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Tous les statuts</SelectItem>
             <SelectItem value="operational">Opérationnels</SelectItem>

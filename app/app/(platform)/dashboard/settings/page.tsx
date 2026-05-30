@@ -23,7 +23,6 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { settingsApi } from "@/lib/api";
 import { dockerApi } from "@/lib/api/docker";
-import type { SystemSettings } from "@/lib/api/types";
 
 export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(true);
