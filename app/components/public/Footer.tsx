@@ -250,6 +250,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
     { name: t("liveStreams"), href: "https://live.skygenesisenterprise.com", external: true },
     { name: t("podcast"), href: `${prefix}/podcast` },
     { name: t("rss"), href: `${prefix}/rss.xml` },
+    { name: t("constitution"), href: `${prefix}/constitution` },
   ];
 
   const footerSections = [

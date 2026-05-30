@@ -105,6 +105,7 @@
       "liveStreams": "Diffusions en direct",
       "podcast": "Podcast",
       "rss": "RSS",
+      "constitution": "Constitution",
       "support": "Assistance",
       "helpCenter": "Centre d'aide",
       "serviceStatus": "Statut des services",
@@ -164,6 +165,268 @@
       "emergencyTitle": "Support d'Urgence 24/7",
       "emergencyDescription": "Pour les problèmes critiques en production, nos clients entreprise ont accès au support d'urgence 24/7.",
       "emergencyButton": "Contacter le Support d'Urgence"
+    },
+    "constitution": {
+      "page": {
+        "metadata": {
+          "title": "Constitution of Sky Genesis Enterprise | Sky Genesis Enterprise",
+          "description": "Foundational charter of Sky Genesis Enterprise, establishing the federal governance framework for its international, regional and national entities."
+        },
+        "hero": {
+          "eyebrow": "Federal Charter",
+          "title": "Constitution of Sky Genesis Enterprise",
+          "description": "The foundational charter governing the federation of Sky Genesis Enterprise entities worldwide.",
+          "signals": {
+            "federation": {
+              "label": "Federation",
+              "value": "A common constitutional framework for coordinated entities operating across regions and nations."
+            },
+            "governance": {
+              "label": "Governance",
+              "value": "Institutional rules designed to guide authority, accountability and continuity at every level."
+            },
+            "continuity": {
+              "label": "Continuity",
+              "value": "A long-horizon structure prepared for amendments, succession and durable strategic alignment."
+            },
+            "autonomy": {
+              "label": "Autonomy",
+              "value": "Regional and national organizations retain delegated powers while remaining aligned with SGE International."
+            }
+          }
+        },
+        "preamble": {
+          "eyebrow": "Preamble",
+          "title": "Purpose of the constitutional order",
+          "description": "This section establishes why the Constitution exists and what institutional role it is intended to serve.",
+          "panel": {
+            "label": "Foundational status",
+            "value": "Primary charter"
+          },
+          "body": "This preamble section is reserved for the formal statement that will articulate the mission, constitutional philosophy and governing rationale of Sky Genesis Enterprise. It is intended to frame the federation as a coordinated international structure built for sovereignty, responsible innovation, continuity of leadership and disciplined expansion across jurisdictions."
+        },
+        "principles": {
+          "eyebrow": "Foundational Principles",
+          "title": "The enduring principles that shape the federation",
+          "description": "These principles define the institutional posture of Sky Genesis Enterprise and provide a stable basis for future constitutional articles, governance decisions and operational coordination.",
+          "items": {
+            "innovation": {
+              "title": "Innovation",
+              "description": "Progress in products, systems and institutions is treated as a permanent obligation, not a temporary initiative."
+            },
+            "sovereignty": {
+              "title": "Sovereignty",
+              "description": "Strategic control over infrastructure, governance and core capabilities remains central to the federation."
+            },
+            "openness": {
+              "title": "Openness",
+              "description": "Interoperability, accountable decision-making and transparent institutional design guide long-term legitimacy."
+            },
+            "sustainability": {
+              "title": "Sustainability",
+              "description": "Growth is expected to remain disciplined, durable and compatible with responsible stewardship of resources."
+            },
+            "regionalAutonomy": {
+              "title": "Regional Autonomy",
+              "description": "Regional entities are designed to govern local execution with delegated authority adapted to their realities."
+            },
+            "longTermVision": {
+              "title": "Long-Term Vision",
+              "description": "The constitutional architecture is intended to support continuity over decades rather than short operational cycles."
+            }
+          }
+        },
+        "organization": {
+          "eyebrow": "Federal Organization",
+          "title": "A federated structure anchored by international coordination",
+          "description": "The group is organized as a constitutional federation in which international, regional and national entities operate through structured delegation rather than informal dependence.",
+          "root": {
+            "eyebrow": "International level",
+            "title": "SGE International",
+            "description": "Constitutional center of the federation, responsible for strategic coherence, federal oversight and institutional continuity."
+          },
+          "regions": {
+            "europe": {
+              "eyebrow": "Regional division",
+              "title": "SGE Europe",
+              "description": "Coordinates continental execution, regional policy adaptation and shared operating standards across Europe."
+            },
+            "asiaPacific": {
+              "eyebrow": "Regional division",
+              "title": "SGE Asia-Pacific",
+              "description": "Supports strategic expansion, regional governance and institutional alignment across Asia-Pacific markets."
+            },
+            "northAmerica": {
+              "eyebrow": "Regional division",
+              "title": "SGE North America",
+              "description": "Leads market coordination, regional execution and governance deployment for North American entities."
+            }
+          },
+          "nationals": {
+            "eyebrow": "National entities",
+            "title": "National corporations and operating bodies",
+            "badge": "Extensible constitutional layer",
+            "items": {
+              "france": {
+                "title": "SGE France",
+                "description": "National implementation, market execution and local institutional representation."
+              },
+              "belgium": {
+                "title": "SGE Belgium",
+                "description": "Regional market coordination with national compliance and governance responsibilities."
+              },
+              "germany": {
+                "title": "SGE Germany",
+                "description": "National operational leadership aligned with regional and federal constitutional priorities."
+              },
+              "japan": {
+                "title": "SGE Japan",
+                "description": "Local strategic adaptation within the constitutional framework of the Asia-Pacific federation."
+              },
+              "singapore": {
+                "title": "SGE Singapore",
+                "description": "National and cross-border coordination for strategic programs and institutional expansion."
+              },
+              "canada": {
+                "title": "SGE Canada",
+                "description": "Domestic execution, stakeholder governance and federal alignment within North America."
+              }
+            }
+          }
+        },
+        "powers": {
+          "eyebrow": "Distribution of Powers",
+          "title": "Authority is distributed by level rather than concentrated by habit",
+          "description": "The Constitution is intended to distinguish federal, regional and national responsibilities so governance can scale without ambiguity.",
+          "columns": {
+            "international": {
+              "eyebrow": "Level I",
+              "title": "International Authority",
+              "description": "Reserved powers held by the federal level for strategy, constitutional integrity and common institutional standards.",
+              "items": {
+                "1": "Define federal doctrine, constitutional principles and cross-entity governance standards.",
+                "2": "Approve strategic structures, transnational initiatives and major institutional transformations.",
+                "3": "Safeguard constitutional continuity, dispute resolution and federation-wide legitimacy."
+              }
+            },
+            "regional": {
+              "eyebrow": "Level II",
+              "title": "Regional Authority",
+              "description": "Delegated powers enabling regions to govern execution across multiple national entities while preserving alignment.",
+              "items": {
+                "1": "Translate federal strategy into regional operating priorities, programs and oversight mechanisms.",
+                "2": "Coordinate shared services, regional leadership decisions and inter-country execution models.",
+                "3": "Arbitrate regional matters before escalation to the international constitutional level."
+              }
+            },
+            "national": {
+              "eyebrow": "Level III",
+              "title": "National Authority",
+              "description": "Operational powers assigned to national entities for local implementation, legal adaptation and executive accountability.",
+              "items": {
+                "1": "Execute national strategy, legal compliance and market-specific institutional implementation.",
+                "2": "Lead local partnerships, national teams and country-level governance administration.",
+                "3": "Report performance, risks and constitutional matters upward through regional structures."
+              }
+            }
+          }
+        },
+        "governance": {
+          "eyebrow": "Governance",
+          "title": "The constitutional organs of the federation",
+          "description": "Governance is structured around a small set of durable institutions intended to preserve strategic clarity and accountability as the group expands.",
+          "items": {
+            "federalCouncil": {
+              "title": "Federal Council",
+              "description": "Supreme deliberative body intended to interpret the charter, validate constitutional direction and maintain institutional balance."
+            },
+            "internationalCeo": {
+              "title": "International CEO",
+              "description": "Executive authority at the federal level, responsible for global coordination, implementation and strategic continuity."
+            },
+            "regionalCeos": {
+              "title": "Regional CEOs",
+              "description": "Regional executive leaders entrusted with translating federal priorities into coherent multi-country execution."
+            },
+            "nationalCeos": {
+              "title": "National CEOs",
+              "description": "Country-level executives accountable for lawful execution, local governance and market-specific institutional delivery."
+            }
+          }
+        },
+        "history": {
+          "eyebrow": "Constitutional History",
+          "title": "A framework designed to evolve through versioned constitutional development",
+          "description": "The constitutional record is intended to preserve draft states, future amendments, revisions and formal adoptions over time.",
+          "timeline": {
+            "current": {
+              "date": "Version 0.1",
+              "badge": "Status: In Development",
+              "title": "Draft Version",
+              "description": "The initial constitutional draft establishes the structural foundations of the federation and prepares the legal and governance layers for future expansion."
+            }
+          }
+        },
+        "articles": {
+          "eyebrow": "Future Constitution Articles",
+          "title": "A scalable framework for the future corpus of constitutional articles",
+          "description": "This architecture is designed to expand from initial article placeholders to a large constitutional corpus without requiring structural redesign.",
+          "framework": {
+            "eyebrow": "Article framework",
+            "title": "Prepared for a full constitutional index",
+            "description": "Articles may later be grouped by constitutional domain such as federal institutions, delegated powers, executive authority, transparency, amendment procedures and legal interpretation."
+          },
+          "items": {
+            "1": {
+              "eyebrow": "Article I",
+              "title": "Foundations of the Federation",
+              "status": "Reserved",
+              "description": "Placeholder for the future article defining identity, mission, constitutional scope and founding doctrine."
+            },
+            "2": {
+              "eyebrow": "Article II",
+              "title": "Federal Institutions",
+              "status": "Reserved",
+              "description": "Placeholder for the future article specifying the composition and authority of the core institutions."
+            },
+            "3": {
+              "eyebrow": "Article III",
+              "title": "Distribution of Powers",
+              "status": "Reserved",
+              "description": "Placeholder for the future article codifying the allocation of authority across all constitutional levels."
+            },
+            "4": {
+              "eyebrow": "Article IV",
+              "title": "Executive Authority",
+              "status": "Reserved",
+              "description": "Placeholder for the future article covering executive mandates, limits, succession and implementation duties."
+            },
+            "5": {
+              "eyebrow": "Article V",
+              "title": "Transparency and Accountability",
+              "status": "Reserved",
+              "description": "Placeholder for the future article defining reporting obligations, oversight mechanisms and institutional review."
+            },
+            "6": {
+              "eyebrow": "Article VI",
+              "title": "Revision and Amendment",
+              "status": "Reserved",
+              "description": "Placeholder for the future article describing constitutional revision procedures and version governance."
+            }
+          }
+        },
+        "institutionalFooter": {
+          "eyebrow": "Institutional navigation",
+          "title": "Navigate the governance framework",
+          "links": {
+            "constitution": "Constitution",
+            "governance": "Governance",
+            "leadership": "Leadership",
+            "transparency": "Transparency",
+            "legalFramework": "Legal Framework"
+          }
+        }
+      }
     },
     "press": {
       "heroTitle": "Salle de Presse",
@@ -2322,7 +2585,7 @@
     "home": {
       "page": {
         "metadata": {
-          "title": "Sky Genesis Enterprise | Écosystème technologique européen",
+          "title": "Sky Genesis Enterprise | Home",
           "description": "Sky Genesis Enterprise construit les fondations d'un écosystème technologique européen : plateformes, produits, outils développeurs et infrastructures numériques."
         },
         "common": {
@@ -21848,6 +22111,752 @@
       "sectionEyebrow": "Explorer",
       "sectionTitle": "Choisir une perspective editoriale",
       "sectionDescription": "Chaque categorie correspond a un angle editorial coherent avec la plateforme et ses usages."
+    },
+    "academy": {
+      "metadata": {
+        "title": "Sky Genesis Enterprise Academy",
+        "description": "Learn the technologies, products and infrastructure powering Sky Genesis Enterprise."
+      },
+      "hero": {
+        "eyebrow": "Centre d'apprentissage officiel",
+        "title": "Learn. Build. Deploy.",
+        "description": "Maîtrisez les produits, les infrastructures et les standards techniques qui structurent l'écosystème Sky Genesis Enterprise, depuis les fondations développeur jusqu'aux parcours cloud, sécurité et gouvernance.",
+        "actions": [
+          {
+            "label": "Explorer les parcours",
+            "href": "/academy#product-paths"
+          },
+          {
+            "label": "Voir la documentation",
+            "href": "/developers"
+          }
+        ],
+        "stats": [
+          {
+            "value": "6",
+            "label": "Parcours produit",
+            "description": "Aether Cloud, Identity, Edge, Office, Bank et Developer dans une logique cohérente."
+          },
+          {
+            "value": "4",
+            "label": "Niveaux",
+            "description": "Une progression conçue pour accompagner la montée en compétence de débutant à enterprise."
+          },
+          {
+            "value": "12+",
+            "label": "Formats",
+            "description": "Guides, labs, workshops, vidéos, playbooks et ressources de référence."
+          },
+          {
+            "value": "SGE",
+            "label": "Méthode",
+            "description": "Un apprentissage relié aux produits réels, aux APIs, à l'open source et aux usages organisationnels."
+          }
+        ]
+      },
+      "benefits": {
+        "eyebrow": "Bénéfices",
+        "title": "Apprendre avec un cadre qui va au-delà de la simple documentation.",
+        "description": "Academy organise l'apprentissage autour d'usages réels, de composants concrets et d'une progression lisible pour les équipes techniques, produit, sécurité et gouvernance.",
+        "items": [
+          "Learn",
+          "Build",
+          "Deploy",
+          "Certify",
+          "Contribute"
+        ]
+      },
+      "productPaths": {
+        "eyebrow": "Parcours produit",
+        "title": "Comprendre les briques Aether comme un système cohérent.",
+        "description": "Chaque parcours relie vision produit, architecture, usages métiers, concepts d'intégration et ressources techniques.",
+        "cards": [
+          {
+            "title": "Aether Cloud",
+            "description": "Déploiement, observabilité, gouvernance, régions, workloads et pratiques d'exploitation pour bâtir un cloud contrôlable.",
+            "meta": "Cloud",
+            "href": "/platform/cloud",
+            "cta": "Voir la plateforme",
+            "icon": "Cloud"
+          },
+          {
+            "title": "Aether Identity",
+            "description": "OIDC, OAuth2, IAM, MFA, provisioning et parcours d'identité pour les organisations, produits et services.",
+            "meta": "Identity",
+            "href": "/developers/api",
+            "cta": "Explorer les APIs",
+            "icon": "ShieldCheck"
+          },
+          {
+            "title": "Aether Edge",
+            "description": "DNS, reverse proxy, réseau, certificats, edge workloads et topologies d'entrée pour l'infrastructure SGE.",
+            "meta": "Edge",
+            "href": "/platform/telecom",
+            "cta": "Voir Edge",
+            "icon": "Network"
+          },
+          {
+            "title": "Aether Office",
+            "description": "Collaboration, sécurité, administration, IA et logique workspace pour les organisations souveraines.",
+            "meta": "Workspace",
+            "href": "/office",
+            "cta": "Découvrir Office",
+            "icon": "Building2"
+          },
+          {
+            "title": "Aether Bank",
+            "description": "Notions de services financiers programmables, contrôle, conformité, identité et flux transactionnels.",
+            "meta": "Finance",
+            "href": "/platform/finance",
+            "cta": "Découvrir Finance",
+            "icon": "LockKeyhole"
+          },
+          {
+            "title": "Aether Developer",
+            "description": "Studios, APIs, SDKs, CLI, environnements et outils pour construire sur l'écosystème SGE.",
+            "meta": "Developer",
+            "href": "/platform/developer",
+            "cta": "Voir Developer",
+            "icon": "Code2"
+          }
+        ]
+      },
+      "developerPaths": {
+        "eyebrow": "Parcours développeurs",
+        "title": "Les surfaces techniques pour construire, intégrer et automatiser.",
+        "description": "Un parcours conçu pour articuler références API, guides d'implémentation, outils de développement et patterns d'intégration.",
+        "cards": [
+          {
+            "title": "APIs et contrats",
+            "description": "Lire les endpoints, comprendre les ressources, modéliser les flux et cadrer les intégrations applicatives.",
+            "meta": "REST · GraphQL",
+            "href": "/developers/api",
+            "cta": "Ouvrir la référence",
+            "icon": "Waypoints"
+          },
+          {
+            "title": "SDKs et starters",
+            "description": "Utiliser les bibliothèques officielles, démarrer vite et garder un cadre stable entre environnements.",
+            "meta": "SDK",
+            "href": "/developers/sdks",
+            "cta": "Voir les SDKs",
+            "icon": "Blocks"
+          },
+          {
+            "title": "CLI et workflows",
+            "description": "Automatiser les environnements, les opérations locales, les déploiements et certaines tâches de validation.",
+            "meta": "CLI",
+            "href": "/developers/cli",
+            "cta": "Voir la CLI",
+            "icon": "Terminal"
+          },
+          {
+            "title": "OAuth2 et OpenID Connect",
+            "description": "Comprendre les flux, les scopes, les clients, les tokens et les politiques d'autorisation de l'écosystème.",
+            "meta": "Identity",
+            "href": "/developers/quickstarts",
+            "cta": "Lire les quickstarts",
+            "icon": "ShieldCheck"
+          },
+          {
+            "title": "Webhooks et automatisation",
+            "description": "Brancher les produits SGE à des événements temps réel, des orchestrations métier et des pipelines internes.",
+            "meta": "Automation",
+            "href": "/developers/extensions",
+            "cta": "Voir les extensions",
+            "icon": "Workflow"
+          },
+          {
+            "title": "API Studios et environnements",
+            "description": "Préparer, tester et gouverner les intégrations depuis un cadre de développement structuré.",
+            "meta": "Studios",
+            "href": "/developers/postman",
+            "cta": "Explorer les outils",
+            "icon": "Cpu"
+          }
+        ]
+      },
+      "infrastructurePaths": {
+        "eyebrow": "Parcours infrastructure",
+        "title": "Déployer les briques SGE dans des environnements réels.",
+        "description": "Les modules infrastructure relient packaging, orchestration, réseau, observabilité et points d'entrée edge.",
+        "cards": [
+          {
+            "title": "Docker et images",
+            "description": "Construire, sécuriser et opérer des images cohérentes avec les composants SGE.",
+            "meta": "Containers",
+            "icon": "Layers3"
+          },
+          {
+            "title": "Kubernetes et opérateurs",
+            "description": "Comprendre les patterns de déploiement, les chartes d'exploitation et la séparation des responsabilités.",
+            "meta": "Orchestration",
+            "icon": "Cloud"
+          },
+          {
+            "title": "Networking et DNS",
+            "description": "Nommer, exposer, router et gouverner les services entre edge, zones internes et organisations.",
+            "meta": "Network",
+            "icon": "Network"
+          },
+          {
+            "title": "Monitoring et signaux",
+            "description": "Lire logs, métriques, événements et états pour réduire le temps de diagnostic opérationnel.",
+            "meta": "Observability",
+            "icon": "Radio"
+          },
+          {
+            "title": "Reverse proxy et edge control",
+            "description": "Structurer les points d'entrée, certificats, politiques d'accès et proxys dans des topologies modernes.",
+            "meta": "Edge",
+            "icon": "Globe2"
+          },
+          {
+            "title": "Déploiements gouvernés",
+            "description": "Faire converger sécurité, validation, documentation et exploitation sur un même parcours de livraison.",
+            "meta": "Operations",
+            "icon": "BadgeCheck"
+          }
+        ]
+      },
+      "securityPaths": {
+        "eyebrow": "Parcours cybersécurité",
+        "title": "Former les équipes à la sécurité comme capacité transverse.",
+        "description": "Les modules sécurité relient identité, secrets, architecture défensive et réponses opérationnelles.",
+        "cards": [
+          {
+            "title": "MFA et IAM",
+            "description": "Structurer les contrôles d'accès, les rôles, les politiques organisationnelles et les parcours d'authentification.",
+            "meta": "Access control",
+            "icon": "ShieldCheck"
+          },
+          {
+            "title": "PGP et confiance",
+            "description": "Vérifier l'authenticité, comprendre la chaîne de confiance et les pratiques de communication sécurisée.",
+            "meta": "Trust",
+            "href": "/pgp",
+            "cta": "Voir la clé publique",
+            "icon": "LockKeyhole"
+          },
+          {
+            "title": "Secrets management",
+            "description": "Réduire la dispersion des secrets, clarifier les usages et gouverner les intégrations sensibles.",
+            "meta": "Vault",
+            "icon": "BadgeCheck"
+          },
+          {
+            "title": "Zero trust",
+            "description": "Aborder segmentation, vérification continue, posture de service et accès contextualisé.",
+            "meta": "Architecture",
+            "icon": "Network"
+          },
+          {
+            "title": "Incident response",
+            "description": "Préparer les équipes à détecter, qualifier, coordonner et documenter une réponse robuste.",
+            "meta": "Operations",
+            "icon": "Radio"
+          },
+          {
+            "title": "Sécurité produit",
+            "description": "Relier exigences de sécurité, cycles d'implémentation, revue d'architecture et transparence.",
+            "meta": "Engineering",
+            "icon": "Code2"
+          }
+        ]
+      },
+      "governancePaths": {
+        "eyebrow": "Business & gouvernance",
+        "title": "Accompagner l'adoption, la souveraineté et les décisions de plateforme.",
+        "description": "Academy ne s'adresse pas uniquement aux ingénieurs: elle aide aussi les directions produit, cloud, sécurité et transformation.",
+        "cards": [
+          {
+            "title": "Cloud adoption",
+            "description": "Identifier les trajectoires d'adoption, les dépendances et les critères de passage à l'échelle.",
+            "meta": "Adoption",
+            "icon": "Cloud"
+          },
+          {
+            "title": "Souveraineté numérique",
+            "description": "Comprendre les enjeux de contrôle, d'interopérabilité, d'hébergement et de dépendance fournisseur.",
+            "meta": "Sovereignty",
+            "icon": "Globe2"
+          },
+          {
+            "title": "FinOps",
+            "description": "Introduire les logiques de pilotage de coût, d'arbitrage technique et de visibilité opérationnelle.",
+            "meta": "Finance",
+            "icon": "LockKeyhole"
+          },
+          {
+            "title": "Compliance",
+            "description": "Relier exigences réglementaires, contrôles organisationnels et surfaces produit concernées.",
+            "meta": "Compliance",
+            "icon": "BadgeCheck"
+          },
+          {
+            "title": "Governance",
+            "description": "Installer un cadre de décisions, de rôles, de responsabilité et de documentation durable.",
+            "meta": "Governance",
+            "icon": "Users"
+          },
+          {
+            "title": "Change enablement",
+            "description": "Aider les équipes à apprendre, migrer et opérer sans rupture brutale dans les pratiques.",
+            "meta": "Transformation",
+            "icon": "Sparkles"
+          }
+        ]
+      },
+      "learningPaths": {
+        "eyebrow": "Learning paths",
+        "title": "Une progression lisible pour accélérer sans perdre le sens.",
+        "description": "Chaque niveau clarifie ce qu'il faut comprendre, pratiquer et relier avant de passer à la suite.",
+        "steps": [
+          {
+            "label": "Beginner",
+            "title": "Prendre ses repères",
+            "description": "Découvrir l'écosystème SGE, le vocabulaire, les briques Aether et les premiers cas d'usage."
+          },
+          {
+            "label": "Intermediate",
+            "title": "Assembler les composants",
+            "description": "Mettre en relation APIs, intégrations, sécurité, workflows et exploitation dans des scénarios guidés."
+          },
+          {
+            "label": "Advanced",
+            "title": "Opérer avec méthode",
+            "description": "Approfondir les topologies, la résilience, la gouvernance et les modèles d'industrialisation."
+          },
+          {
+            "label": "Enterprise",
+            "title": "Piloter à l'échelle",
+            "description": "Aligner architecture, conformité, trajectoires d'adoption et standards d'organisation."
+          }
+        ]
+      },
+      "resources": {
+        "eyebrow": "Ressources pédagogiques",
+        "title": "Des formats variés pour apprendre selon le contexte.",
+        "description": "Guides courts, vidéos de cadrage, labs guidés et workshops plus structurants coexistent dans la même logique éditoriale.",
+        "items": [
+          {
+            "title": "Guides officiels",
+            "description": "Des parcours lisibles pour comprendre les concepts, les composants et les étapes d'implémentation.",
+            "format": "Guides"
+          },
+          {
+            "title": "Vidéos et walkthroughs",
+            "description": "Des démonstrations ciblées pour visualiser un flow, une intégration ou une architecture produit.",
+            "format": "Vidéo"
+          },
+          {
+            "title": "Labs pratiques",
+            "description": "Des exercices guidés pour manipuler les outils, les policies, les flux d'identité et les déploiements.",
+            "format": "Labs"
+          },
+          {
+            "title": "Workshops équipe",
+            "description": "Des formats plus longs pensés pour les squads techniques, les équipes sécurité et les projets de migration.",
+            "format": "Workshop"
+          }
+        ]
+      },
+      "labs": {
+        "eyebrow": "Labs pratiques",
+        "title": "Des environnements guidés pour transformer la théorie en gestes d'implémentation.",
+        "description": "Les labs Academy sont pensés pour faire manipuler les parcours OIDC, les politiques d'accès, les hooks, les workflows CLI et certaines briques d'infrastructure sans casser le fil pédagogique.",
+        "primaryLabel": "OIDC flows",
+        "secondaryLabel": "CLI guided setup",
+        "tertiaryLabel": "Infrastructure drills"
+      },
+      "certifications": {
+        "eyebrow": "Certifications futures",
+        "title": "Préparer des repères de validation crédibles.",
+        "description": "La page ouvre l'espace pour de futures certifications orientées capacité réelle et compréhension opérationnelle.",
+        "cards": [
+          {
+            "title": "SGE Certified Developer",
+            "description": "Pour valider la compréhension des APIs, SDKs, flows d'identité, outils et patterns d'intégration.",
+            "meta": "Future certification",
+            "icon": "Code2"
+          },
+          {
+            "title": "SGE Certified Cloud Associate",
+            "description": "Pour cadrer les bases de déploiement, d'exploitation, d'observabilité et de topologie cloud/edge.",
+            "meta": "Future certification",
+            "icon": "Cloud"
+          },
+          {
+            "title": "SGE Certified Security Specialist",
+            "description": "Pour structurer une lecture robuste des politiques d'accès, secrets, confiance et réponse aux incidents.",
+            "meta": "Future certification",
+            "icon": "ShieldCheck"
+          }
+        ]
+      },
+      "featuredCourses": {
+        "eyebrow": "Featured courses",
+        "title": "Des parcours mis en avant pour démarrer rapidement.",
+        "description": "Une sélection éditoriale initiale pour orienter les visiteurs vers les sujets les plus structurants de l'écosystème.",
+        "cards": [
+          {
+            "title": "Getting started with Aether Identity",
+            "description": "Comprendre les concepts clés, préparer un premier tenant et relier une application aux flux d'authentification.",
+            "meta": "Course · 45 min",
+            "href": "/developers/quickstarts",
+            "cta": "Commencer",
+            "icon": "ShieldCheck"
+          },
+          {
+            "title": "Operating sovereign cloud foundations",
+            "description": "Poser les bases de déploiement, de gouvernance et d'observabilité autour des briques Aether Cloud.",
+            "meta": "Course · 60 min",
+            "href": "/platform/cloud",
+            "cta": "Explorer",
+            "icon": "Cloud"
+          },
+          {
+            "title": "Secure integrations with APIs and webhooks",
+            "description": "Relier APIs, tokens, callbacks et politiques d'accès dans un parcours d'intégration moderne.",
+            "meta": "Course · 50 min",
+            "href": "/developers/api",
+            "cta": "Voir le parcours",
+            "icon": "Workflow"
+          }
+        ]
+      },
+      "connections": {
+        "eyebrow": "Écosystème connecté",
+        "title": "Academy prolonge Developers, Docs et l'open source.",
+        "description": "L'apprentissage doit conduire vers des surfaces réelles de travail, pas rester bloqué dans une page marketing.",
+        "items": [
+          {
+            "title": "Relier Academy à Developers",
+            "description": "Passer des parcours pédagogiques aux APIs, SDKs, quickstarts, outils et environnements techniques.",
+            "href": "/developers",
+            "cta": "Voir Developers"
+          },
+          {
+            "title": "Approfondir avec la documentation",
+            "description": "Utiliser la documentation officielle comme point d'appui pour les modules plus détaillés et les implémentations.",
+            "href": "/docs",
+            "cta": "Ouvrir Docs"
+          },
+          {
+            "title": "Connecter API Studios et Aether Developer",
+            "description": "Transformer les notions apprises en intégrations, prototypes, outils internes et parcours de livraison.",
+            "href": "/platform/developer",
+            "cta": "Explorer Aether Developer"
+          }
+        ]
+      },
+      "openSource": {
+        "eyebrow": "Open source",
+        "title": "Apprendre aussi en contribuant aux briques ouvertes de l'écosystème.",
+        "description": "Academy doit encourager la lecture des projets, la compréhension des contrats publics et la contribution progressive.",
+        "items": [
+          "Contribuer aux projets SGE",
+          "Comprendre les roadmaps publiques",
+          "Relier produit et transparence technique",
+          "Documenter les retours terrain",
+          "Faire émerger des standards ouverts"
+        ]
+      },
+      "cta": {
+        "eyebrow": "Commencer",
+        "title": "Démarrez un parcours, approfondissez la documentation officielle et faites monter vos équipes en compétence.",
+        "description": "Academy est pensée comme une porte d'entrée durable vers les produits, l'infrastructure et les standards de Sky Genesis Enterprise.",
+        "actions": [
+          {
+            "label": "Commencer un parcours",
+            "href": "/academy#product-paths"
+          },
+          {
+            "label": "Voir Developers",
+            "href": "/developers",
+            "variant": "outline"
+          }
+        ]
+      }
+    },
+    "podcast": {
+      "metadata": {
+        "title": "Sky Genesis Enterprise Podcast",
+        "description": "Listen to conversations about technology, infrastructure, security, open source and the future of Sky Genesis Enterprise."
+      },
+      "hero": {
+        "eyebrow": "Média officiel SGE",
+        "title": "Conversations shaping the future of technology.",
+        "description": "Le podcast Sky Genesis Enterprise rassemble discussions produit, engineering, sécurité, open source et vision de long terme autour de la construction de l'écosystème SGE.",
+        "actions": [
+          {
+            "label": "Écouter l'épisode mis en avant",
+            "href": "/podcast#featured-episode"
+          },
+          {
+            "label": "Voir Academy",
+            "href": "/academy"
+          }
+        ],
+        "stats": [
+          {
+            "value": "6",
+            "label": "Séries",
+            "description": "Un programme éditorial structuré entre vision founder, engineering, security, open source et product."
+          },
+          {
+            "value": "Audio + vidéo",
+            "label": "Format",
+            "description": "Des conversations pensées pour être déclinées en podcast, vidéo et contenus éditoriaux réutilisables."
+          },
+          {
+            "value": "SGE",
+            "label": "Voix",
+            "description": "Un média technologique crédible, proche des équipes qui construisent réellement les produits."
+          },
+          {
+            "value": "Cross-media",
+            "label": "Diffusion",
+            "description": "Des épisodes conçus pour nourrir Academy, le blog, la newsroom et les annonces de plateforme."
+          }
+        ]
+      },
+      "featuredEpisode": {
+        "eyebrow": "Épisode mis en avant",
+        "title": "Un épisode principal pour donner le ton éditorial.",
+        "description": "Le format mis en avant doit pouvoir présenter une vision claire, un sujet structurant et un invité légitime.",
+        "episode": {
+          "title": "Building sovereign infrastructure for the next internet",
+          "description": "Une conversation sur la manière de construire des produits ouverts, exploitables et crédibles quand cloud, identité, sécurité et souveraineté doivent être pensés ensemble.",
+          "duration": "48 min",
+          "guest": "Invité · Founder & platform lead",
+          "theme": "Cloud · Identity · Sovereignty",
+          "href": "/podcast",
+          "cta": "Écouter l'épisode"
+        }
+      },
+      "series": {
+        "eyebrow": "Séries du podcast",
+        "title": "Un programme éditorial décliné en plusieurs formats récurrents.",
+        "description": "Chaque série possède un angle, un rythme et une promesse claire pour installer une voix média durable.",
+        "cards": [
+          {
+            "title": "SGE Podcast",
+            "description": "Le flux principal qui relie vision, annonces, architecture et conversations transverses de l'écosystème.",
+            "meta": "Main feed",
+            "icon": "Headphones"
+          },
+          {
+            "title": "Founder Series",
+            "description": "Les décisions de construction, les arbitrages, les erreurs et les apprentissages derrière SGE.",
+            "meta": "Vision",
+            "icon": "Mic2"
+          },
+          {
+            "title": "Engineering Talks",
+            "description": "Des discussions techniques avec développeurs, architectes et ingénieurs autour de choix concrets.",
+            "meta": "Engineering",
+            "icon": "Code2"
+          },
+          {
+            "title": "Security Talks",
+            "description": "Une série dédiée à la sécurité produit, à la confiance, aux incidents et aux politiques d'accès.",
+            "meta": "Security",
+            "icon": "ShieldCheck"
+          },
+          {
+            "title": "Open Source Talks",
+            "description": "Transparence, communautés, roadmaps publiques et rôle des projets ouverts dans l'écosystème.",
+            "meta": "Open source",
+            "icon": "Blocks"
+          },
+          {
+            "title": "Product Stories",
+            "description": "L'histoire derrière les produits Aether, les besoins qu'ils adressent et les choix qu'ils imposent.",
+            "meta": "Product",
+            "icon": "Sparkles"
+          }
+        ]
+      },
+      "latestEpisodes": {
+        "eyebrow": "Derniers épisodes",
+        "title": "Une grille claire pour suivre les dernières conversations publiées.",
+        "description": "Les cartes d'épisodes doivent rendre visibles les thèmes, les invités et la logique de série sans bruit visuel.",
+        "episodes": [
+          {
+            "title": "Inside Aether Identity architecture",
+            "description": "Une lecture concrète des flows OIDC, des politiques IAM et des choix d'architecture qui structurent Aether Identity.",
+            "duration": "36 min",
+            "guest": "Invité · Identity engineering",
+            "theme": "Identity · APIs",
+            "href": "/podcast",
+            "cta": "Écouter"
+          },
+          {
+            "title": "Operating cloud and edge with discipline",
+            "description": "Discussion sur les déploiements, le contrôle edge, l'observabilité et les compromis d'exploitation à l'échelle.",
+            "duration": "42 min",
+            "guest": "Invité · Infrastructure lead",
+            "theme": "Cloud · Edge",
+            "href": "/podcast",
+            "cta": "Écouter"
+          },
+          {
+            "title": "What open source changes inside enterprise products",
+            "description": "Un échange sur la transparence, la crédibilité technique et la place des projets ouverts dans une stratégie produit.",
+            "duration": "31 min",
+            "guest": "Invité · OSS program",
+            "theme": "Open source · Product",
+            "href": "/podcast",
+            "cta": "Écouter"
+          }
+        ]
+      },
+      "topics": {
+        "eyebrow": "Sujets couverts",
+        "title": "Les thèmes centraux du média Sky Genesis Enterprise.",
+        "description": "Le podcast couvre les conversations où technologie, infrastructure, sécurité, IA et construction d'écosystème se rencontrent.",
+        "items": [
+          "Cloud",
+          "Security",
+          "AI",
+          "Open source",
+          "Product",
+          "Infrastructure",
+          "Finance",
+          "Telecom"
+        ]
+      },
+      "founderSeries": {
+        "eyebrow": "Founder Series",
+        "title": "Raconter la construction de SGE sans filtre corporate inutile.",
+        "description": "Cette série explore la vision de départ, les hypothèses, les erreurs, les arbitrages produit et les décisions d'exécution qui construisent progressivement le groupe.",
+        "primaryLabel": "Vision",
+        "secondaryLabel": "Décisions",
+        "tertiaryLabel": "Apprentissages"
+      },
+      "engineeringTalks": {
+        "eyebrow": "Engineering Talks",
+        "title": "Des conversations techniques qui parlent d'implémentation réelle.",
+        "description": "Architecture, APIs, SDKs, edge control, observabilité, workflows internes et contraintes d'exploitation sont traités avec un niveau de détail crédible pour des équipes techniques.",
+        "primaryLabel": "Architecture",
+        "secondaryLabel": "APIs",
+        "tertiaryLabel": "Operations"
+      },
+      "securityTalks": {
+        "eyebrow": "Security Talks",
+        "title": "Faire de la sécurité un sujet précis, pas un décor marketing.",
+        "description": "Les épisodes sécurité couvrent incidents, trust, PGP, identité, edge exposure, politiques d'accès, réponse opérationnelle et responsabilités d'équipe.",
+        "primaryLabel": "Trust",
+        "secondaryLabel": "Identity",
+        "tertiaryLabel": "Response"
+      },
+      "openSourceTalks": {
+        "eyebrow": "Open Source Talks",
+        "title": "Expliquer ce que l'ouverture change dans la façon de construire.",
+        "description": "Cette série relie roadmaps, projets publics, transparence technique, contributions et articulation entre plateformes ouvertes et produits SGE.",
+        "primaryLabel": "Roadmaps",
+        "secondaryLabel": "Contributions",
+        "tertiaryLabel": "Transparency"
+      },
+      "productStories": {
+        "eyebrow": "Product Stories",
+        "title": "Les histoires derrière les produits Aether et les plateformes du groupe.",
+        "description": "Chaque épisode met en lumière le problème d'origine, le contexte de marché, les contraintes techniques et les choix qui ont façonné un produit.",
+        "primaryLabel": "Aether",
+        "secondaryLabel": "Use cases",
+        "tertiaryLabel": "Tradeoffs"
+      },
+      "platforms": {
+        "eyebrow": "Plateformes d'écoute",
+        "title": "Préparer une diffusion multi-plateforme cohérente avec un média officiel.",
+        "description": "Les épisodes doivent pouvoir vivre sur les plateformes d'écoute principales sans fragmenter l'identité éditoriale.",
+        "items": [
+          {
+            "title": "Spotify",
+            "description": "Écouter le flux principal et les séries publiées.",
+            "href": "/podcast",
+            "cta": "Ouvrir"
+          },
+          {
+            "title": "Apple Podcasts",
+            "description": "Retrouver les épisodes dans l'écosystème Apple.",
+            "href": "/podcast",
+            "cta": "Ouvrir"
+          },
+          {
+            "title": "YouTube",
+            "description": "Voir les versions vidéo, extraits et capsules.",
+            "href": "/podcast",
+            "cta": "Regarder"
+          },
+          {
+            "title": "RSS",
+            "description": "S'abonner au flux officiel sans intermédiaire.",
+            "href": "/podcast",
+            "cta": "S'abonner"
+          },
+          {
+            "title": "Pocket Casts",
+            "description": "Retrouver les séries depuis un lecteur podcast dédié.",
+            "href": "/podcast",
+            "cta": "Écouter"
+          }
+        ]
+      },
+      "newsletter": {
+        "eyebrow": "Newsletter & updates",
+        "title": "Suivre les nouveaux épisodes, les séries et les formats dérivés.",
+        "description": "Le podcast peut nourrir une logique d'abonnement éditorial reliée aux annonces produit, au blog et aux ressources pédagogiques.",
+        "points": [
+          "Nouveaux épisodes",
+          "Sorties de séries",
+          "Extraits vidéo",
+          "Notes d'épisode",
+          "Ressources Academy"
+        ]
+      },
+      "connections": {
+        "eyebrow": "Écosystème éditorial",
+        "title": "Le podcast doit prolonger Academy, le blog et la newsroom.",
+        "description": "Les contenus audio et vidéo doivent pouvoir devenir des ressources pédagogiques, des articles et des annonces complémentaires.",
+        "items": [
+          {
+            "title": "Transformer les épisodes en ressources Academy",
+            "description": "Réutiliser les discussions les plus denses pour créer des supports pédagogiques, guides et séquences de formation.",
+            "href": "/academy",
+            "cta": "Voir Academy"
+          },
+          {
+            "title": "Décliner les conversations dans le blog",
+            "description": "Produire notes d'épisode, articles d'analyse, résumés et approfondissements sur les sujets structurants.",
+            "href": "/blog",
+            "cta": "Voir le blog"
+          },
+          {
+            "title": "Relier annonces et actualité produit",
+            "description": "Faire du podcast une surface de contexte pour les annonces officielles, la plateforme et les lancements SGE.",
+            "href": "/company/press",
+            "cta": "Voir la newsroom"
+          }
+        ]
+      },
+      "cta": {
+        "eyebrow": "Passer à l'écoute",
+        "title": "Écoutez, abonnez-vous et faites vivre le média officiel de Sky Genesis Enterprise.",
+        "description": "Le podcast SGE est conçu comme une voix crédible pour raconter les produits, les équipes, les décisions et les technologies qui composent l'écosystème.",
+        "actions": [
+          {
+            "label": "Écouter maintenant",
+            "href": "/podcast"
+          },
+          {
+            "label": "Contacter l'équipe média",
+            "href": "/company/contact",
+            "variant": "outline"
+          }
+        ]
+      }
     }
   }
 }
