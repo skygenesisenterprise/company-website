@@ -73,7 +73,7 @@ interface LeadershipMember {
   role: string;
   department: string;
   bio: string;
-  image: string;
+  image?: string;
   github?: string;
   linkedin?: string;
 }
@@ -83,6 +83,8 @@ interface LeadershipGroup {
   description: string;
   members: LeadershipMember[];
 }
+
+const LEADERSHIP_MEMBERS_PER_ROW = 4;
 
 const companyRoutes = {
   overview: "/company",
@@ -183,11 +185,42 @@ function LeadershipMetricsPanel({ metrics }: { metrics: LeadershipMetric[] }) {
   );
 }
 
+function normalizeLeadershipImagePath(image?: string) {
+  const trimmedImage = image?.trim();
+
+  if (!trimmedImage) {
+    return undefined;
+  }
+
+  return trimmedImage.startsWith("/public/") ? trimmedImage.replace(/^\/public/, "") : trimmedImage;
+}
+
+function chunkLeadershipMembers(members: Array<LeadershipMember & { groupTitle: string }>) {
+  return members.reduce<Array<Array<LeadershipMember & { groupTitle: string }>>>((rows, member, index) => {
+    const rowIndex = Math.floor(index / LEADERSHIP_MEMBERS_PER_ROW);
+    const row = rows[rowIndex] ?? [];
+
+    rows[rowIndex] = [...row, member];
+
+    return rows;
+  }, []);
+}
+
 function LeadershipMemberCard({ member, socialLabels }: { member: LeadershipMember; socialLabels?: { github: string; linkedin: string } }) {
+  const image = normalizeLeadershipImagePath(member.image);
+  const github = member.github?.trim();
+  const linkedin = member.linkedin?.trim();
   const links = [
-    member.github ? { label: socialLabels?.github ?? "GitHub", href: member.github, icon: GitHubIcon } : null,
-    member.linkedin ? { label: socialLabels?.linkedin ?? "LinkedIn", href: member.linkedin, icon: LinkedinIcon } : null,
+    github ? { label: socialLabels?.github ?? "GitHub", href: github, icon: GitHubIcon } : null,
+    linkedin ? { label: socialLabels?.linkedin ?? "LinkedIn", href: linkedin, icon: LinkedinIcon } : null,
   ].filter(Boolean) as Array<{ label: string; href: string; icon: React.ComponentType<{ className?: string }> }>;
+  const initials = member.name
+    .split(" ")
+    .filter(Boolean)
+    .map((part) => part.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <article
@@ -196,28 +229,39 @@ function LeadershipMemberCard({ member, socialLabels }: { member: LeadershipMemb
         "hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.2)]",
       )}
     >
-      <div className="relative aspect-4/3 overflow-hidden rounded-[1.5rem] border border-zinc-200 bg-zinc-100">
-        <img src={member.image} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/34 via-transparent to-transparent opacity-70" />
+      <div className="flex justify-center pt-3">
+        <div className="rounded-full bg-[conic-gradient(from_140deg,rgba(24,24,27,0.9),rgba(161,161,170,0.36),rgba(244,244,245,0.95),rgba(24,24,27,0.9))] p-[3px] shadow-[0_22px_60px_-34px_rgba(15,23,42,0.7)]">
+          <div className="rounded-full bg-white p-1">
+            <div className="relative h-28 w-28 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 sm:h-32 sm:w-32">
+              {image ? (
+                <img src={image} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(244,244,245,0.96),rgba(212,212,216,0.72)_48%,rgba(113,113,122,0.18))]">
+                  <span className="text-4xl font-semibold tracking-[-0.08em] text-zinc-800">{initials}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="px-1 pb-1 pt-6 text-center">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{member.department}</div>
+        <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{member.name}</h3>
+        <p className="mt-2 text-sm font-medium text-zinc-700">{member.role}</p>
         {links.length ? (
-          <div className="absolute bottom-4 right-4 flex translate-y-2 gap-2 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="mt-4 flex justify-center gap-2">
             {links.map(({ label, href, icon: Icon }) => (
               <Link
                 key={label}
                 href={href}
                 aria-label={`${member.name} ${label}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/92 text-zinc-950 shadow-[0_12px_30px_-18px_rgba(15,23,42,0.55)] transition hover:bg-white"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 text-zinc-950 transition hover:border-zinc-300 hover:bg-white"
               >
                 <Icon className="h-4 w-4" />
               </Link>
             ))}
           </div>
         ) : null}
-      </div>
-      <div className="px-1 pb-1 pt-6">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{member.department}</div>
-        <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-950">{member.name}</h3>
-        <p className="mt-2 text-sm font-medium text-zinc-700">{member.role}</p>
         <p className="mt-5 text-sm leading-7 text-zinc-600">{member.bio}</p>
       </div>
     </article>
@@ -237,20 +281,17 @@ function LeadershipStructureSection({
   groups: LeadershipGroup[];
   socialLabels?: { github: string; linkedin: string };
 }) {
+  const members = groups.flatMap((group) => group.members.map((member) => ({ ...member, groupTitle: group.title })));
+  const memberRows = chunkLeadershipMembers(members);
+
   return (
     <CompanySection eyebrow={eyebrow} title={title} description={description}>
-      <div className="space-y-16">
-        {groups.map((group) => (
-          <div key={group.title}>
-            <div className="max-w-3xl">
-              <h3 className="text-3xl font-semibold tracking-[-0.04em] text-zinc-950 sm:text-4xl">{group.title}</h3>
-              <p className="mt-4 text-base leading-7 text-zinc-600">{group.description}</p>
-            </div>
-            <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {group.members.map((member) => (
-                <LeadershipMemberCard key={`${group.title}-${member.name}`} member={member} socialLabels={socialLabels} />
-              ))}
-            </div>
+      <div className="space-y-5">
+        {memberRows.map((row, rowIndex) => (
+          <div key={`leadership-row-${rowIndex}`} className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {row.map((member) => (
+              <LeadershipMemberCard key={`${member.groupTitle}-${member.name}`} member={member} socialLabels={socialLabels} />
+            ))}
           </div>
         ))}
       </div>

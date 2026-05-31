@@ -15859,28 +15859,28 @@
       "leadership": {
         "metadata": {
           "title": "Direction | Sky Genesis Enterprise",
-          "description": "Découvrez les personnes qui dirigent Sky Genesis Enterprise à travers la technologie, les opérations, l'infrastructure, les produits et l'expansion mondiale."
+          "description": "Découvrez l'équipe fondatrice qui dirige Sky Genesis Enterprise, de la direction générale à la technologie et à la cybersécurité."
         },
         "hero": {
           "eyebrow": "Direction",
-          "title": "Les personnes qui dirigent Sky Genesis Enterprise.",
-          "description": "Découvrez les personnes qui dirigent Sky Genesis Enterprise à travers la technologie, les opérations, l'infrastructure, les produits et l'expansion mondiale.",
+          "title": "Une équipe fondatrice réduite, structurée autour des responsabilités clés.",
+          "description": "Sky Genesis Enterprise est actuellement dirigée par une équipe resserrée qui porte la vision du groupe, la coordination opérationnelle, la direction technologique et la cybersécurité.",
           "metrics": [
             {
-              "value": "16",
-              "label": "Membres de la direction"
+              "value": "4",
+              "label": "Membres actuels"
+            },
+            {
+              "value": "2",
+              "label": "Co-fondateurs"
             },
             {
               "value": "4",
-              "label": "Pays"
+              "label": "Domaines de responsabilité"
             },
             {
-              "value": "8",
-              "label": "Unités opérationnelles"
-            },
-            {
-              "value": "4",
-              "label": "Divisions produits"
+              "value": "1",
+              "label": "Groupe technologique"
             }
           ]
         },
@@ -16156,174 +16156,54 @@
         },
         "structure": {
           "eyebrow": "Structure de direction",
-          "title": "Structure de direction",
-          "description": "Découvrez les personnes qui dirigent Sky Genesis Enterprise à travers la technologie, les opérations, l'infrastructure, les produits et l'expansion mondiale.",
+          "title": "Leadership Structure",
+          "description": "La direction actuelle de SGE reste volontairement lisible : une direction exécutive fondatrice, complétée par des responsabilités technologiques et cybersécurité clairement identifiées.",
           "groups": [
             {
-              "title": "Direction exécutive",
-              "description": "Direction générale responsable de la stratégie, des opérations, de la finance, de la structure juridique et de la continuité institutionnelle à long terme.",
+              "title": "Executive Leadership",
+              "description": "Direction fondatrice responsable de la vision globale, de la direction générale et de la coordination opérationnelle du groupe.",
               "members": [
                 {
-                  "name": "Elias Moreau",
-                  "role": "Directeur Général",
-                  "department": "Direction générale",
-                  "bio": "Dirige la vision du groupe, la stratégie d'entreprise et le rythme opérationnel à travers l'écosystème SGE. Se concentre sur la cohérence à long terme entre la plateforme, les produits et l'expansion internationale.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Elias%20Moreau&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                  "name": "Liam Dispa",
+                  "role": "CEO & Fondateur",
+                  "department": "Executive Office",
+                  "bio": "Fondateur de Sky Genesis Enterprise, responsable de la vision globale du groupe, de la stratégie produit, de la direction générale, du développement international et de la construction de l’écosystème SGE.",
+                  "image": "/images/IMG_0019.jpg",
+                  "github": "https://github.com/liamvnastoria",
+                  "linkedin": "https://www.linkedin.com/in/liamdispa/"
                 },
                 {
-                  "name": "Maya Calderon",
-                  "role": "Directrice des Opérations",
-                  "department": "Opérations",
-                  "bio": "Supervise l'exécution, les systèmes de livraison et la discipline opérationnelle transversale. Travaille avec les unités opérationnelles pour transformer la stratégie en progrès opérationnel mesurable.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Maya%20Calderon&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Adrien Keller",
-                  "role": "Directeur Financier",
-                  "department": "Finance",
-                  "bio": "Dirige la planification financière, l'allocation du capital et les contrôles de gestion du groupe. Structure la fonction financière autour de la résilience, de la transparence et de la croissance durable.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Adrien%20Keller&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Nadia Benali",
-                  "role": "Directrice Juridique",
-                  "department": "Juridique & Gouvernance",
-                  "bio": "Guide l'architecture juridique, la posture de conformité et les processus de gouvernance à travers SGE. Veille à ce que la croissance reste alignée sur les exigences réglementaires, contractuelles et institutionnelles.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Nadia%20Benali&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                  "name": "Mathis Luymoyen",
+                  "role": "Directeur Général & Co-Fondateur",
+                  "department": "General Management",
+                  "bio": "Co-fondateur de Sky Genesis Enterprise, responsable de la direction générale, de la coordination opérationnelle, du développement interne et de l’accompagnement de la croissance du groupe.",
+                  "image": "",
+                  "github": "https://github.com/Zephiris1450",
+                  "linkedin": ""
                 }
               ]
             },
             {
-              "title": "Direction technologique",
-              "description": "Direction technique responsable de l'architecture, de la cybersécurité, de la fiabilité de l'infrastructure et de la qualité d'ingénierie.",
+              "title": "Technology & Security Leadership",
+              "description": "Responsabilités techniques et sécurité chargées de préserver la qualité d’ingénierie, l’architecture des plateformes et la protection des systèmes.",
               "members": [
                 {
-                  "name": "Noah Vasseur",
-                  "role": "Directeur Technique",
-                  "department": "Technologie",
-                  "bio": "Définit la direction technique des plateformes SGE et des normes d'ingénierie partagées. Aligne les décisions d'architecture avec la souveraineté, la sécurité et l'expérience développeur.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Noah%20Vasseur&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                  "name": "Alane Jaunet",
+                  "role": "CTO",
+                  "department": "Technology",
+                  "bio": "Responsable de la direction technologique de Sky Genesis Enterprise, de l’architecture technique, des choix d’ingénierie, de la qualité logicielle et de l’évolution des plateformes du groupe.",
+                  "image": "",
+                  "github": "https://github.com/Alane38",
+                  "linkedin": "https://www.linkedin.com/in/alane-jaunet/"
                 },
                 {
-                  "name": "Sofia Lindholm",
-                  "role": "Directrice de la Sécurité des Systèmes d'Information",
-                  "department": "Sécurité",
-                  "bio": "Dirige la stratégie de sécurité, la gestion des risques et les contrôles de confiance à travers les produits et l'infrastructure. Se concentre sur une protection mesurable pour les clients, les équipes et les partenaires.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Sofia%20Lindholm&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Kenji Watanabe",
-                  "role": "VP Infrastructure",
-                  "department": "Infrastructure",
-                  "bio": "Possède la stratégie d'infrastructure, les fondations cloud, les opérations edge et les pratiques de fiabilité. Construit le modèle opérationnel nécessaire pour des services à l'échelle mondiale.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Kenji%20Watanabe&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Camille Arnaud",
-                  "role": "VP Ingénierie",
-                  "department": "Ingénierie",
-                  "bio": "Dirige l'exécution d'ingénierie, les systèmes de qualité et les rituels de livraison technique. Travaille avec les équipes produit et infrastructure pour maintenir un niveau d'exigence élevé pour les logiciels livrés.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Camille%20Arnaud&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                }
-              ]
-            },
-            {
-              "title": "Direction produit",
-              "description": "Direction produit responsable des divisions Aether principales et de l'évolution des surfaces produits SGE.",
-              "members": [
-                {
-                  "name": "Lina Okafor",
-                  "role": "VP Aether Cloud",
-                  "department": "Aether Cloud",
-                  "bio": "Dirige la division cloud, incluant les environnements, les workflows de déploiement et l'observabilité. Se concentre sur la mise à disposition d'une infrastructure souveraine utilisable par les équipes.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Lina%20Okafor&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Thomas Iversen",
-                  "role": "VP Aether Identity",
-                  "department": "Aether Identity",
-                  "bio": "Possède la stratégie d'identité, les flux d'authentification et la gouvernance d'accès à travers l'écosystème. Connecte les exigences de sécurité avec la simplicité produit.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Thomas%20Iversen&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Elena Rossi",
-                  "role": "VP Aether Office",
-                  "department": "Aether Office",
-                  "bio": "Dirige la ligne de produits d'espace de travail et de collaboration. Façonne les expériences de productivité autour de la confidentialité, de l'interopérabilité et du contrôle de qualité entreprise.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Elena%20Rossi&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Hugo Nakamura",
-                  "role": "VP Aether Bank",
-                  "department": "Aether Bank",
-                  "bio": "Guide les produits d'infrastructure financière, les capacités de registre et les workflows financiers programmables. Se concentre sur la confiance, la traçabilité et la préparation opérationnelle.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Hugo%20Nakamura&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                }
-              ]
-            },
-            {
-              "title": "Direction internationale",
-              "description": "Direction régionale responsable du développement du marché, des relations institutionnelles et de l'exécution locale à travers les zones géographiques stratégiques.",
-              "members": [
-                {
-                  "name": "Claire Dubois",
-                  "role": "CEO SGE Europe",
-                  "department": "Europe",
-                  "bio": "Dirige le développement du marché européen, l'alignement institutionnel et les partenariats régionaux. Veille à ce que SGE reste ancré dans les attentes de souveraineté et de conformité européennes.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Claire%20Dubois&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Haruto Sato",
-                  "role": "CEO SGE Japon",
-                  "department": "Japon",
-                  "bio": "Dirige SGE Japon avec un accent sur les relations entreprises, la localisation des produits et la confiance opérationnelle. Fait le pont entre les attentes régionales et la stratégie de plateforme du groupe.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Haruto%20Sato&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Olivia Bennett",
-                  "role": "CEO SGE Amérique du Nord",
-                  "department": "Amérique du Nord",
-                  "bio": "Dirige l'expansion nord-américaine à travers les clients, les partenaires et les opportunités stratégiques. Se concentre sur le positionnement de SGE pour les écosystèmes complexes d'entreprise et de développeurs.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Olivia%20Bennett&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
-                },
-                {
-                  "name": "Anika Rao",
-                  "role": "CEO SGE Asie-Pacifique",
-                  "department": "Asie-Pacifique",
-                  "bio": "Dirige le développement de l'Asie-Pacifique, les partenariats écosystémiques et la croissance régionale. Coordonne les besoins du marché avec les priorités mondiales des produits et de l'infrastructure.",
-                  "image": "https://api.dicebear.com/9.x/initials/svg?seed=Anika%20Rao&backgroundColor=f4f4f5,e4e4e7,d4d4d8&fontFamily=Inter&fontWeight=600",
-                  "github": "https://github.com/skygenesisenterprise",
-                  "linkedin": "https://linkedin.com/company/skygenesisenterprise"
+                  "name": "Thomas",
+                  "role": "Directeur Cyber",
+                  "department": "Cybersecurity",
+                  "bio": "Responsable de la stratégie cybersécurité de Sky Genesis Enterprise, de la sécurité des infrastructures, de la protection des systèmes, de la gestion des risques et de la supervision des pratiques de sécurité.",
+                  "image": "",
+                  "github": "https://github.com/lp9r7c",
+                  "linkedin": ""
                 }
               ]
             }

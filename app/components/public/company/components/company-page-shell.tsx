@@ -10,7 +10,7 @@ interface CompanyPageShellProps {
 
 export function CompanyPageShell({ locale, children }: CompanyPageShellProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header locale={locale as Locale} />
       <main className="flex-1">{children}</main>
       <Footer locale={locale as Locale} />

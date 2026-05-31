@@ -8,6 +8,7 @@ interface CompanySectionProps {
   title: string;
   description?: string;
   tone?: "default" | "muted" | "dark";
+  muted?: boolean;
   centered?: boolean;
   children?: React.ReactNode;
 }
@@ -18,17 +19,19 @@ export function CompanySection({
   title,
   description,
   tone = "default",
+  muted = false,
   centered = false,
   children,
 }: CompanySectionProps) {
-  const dark = tone === "dark";
+  const resolvedTone = muted ? "muted" : tone;
+  const dark = resolvedTone === "dark";
 
   return (
     <section
       id={id}
       className={cn(
         "relative overflow-hidden py-24 sm:py-28 lg:py-32",
-        tone === "muted" && "bg-zinc-50/80",
+        resolvedTone === "muted" && "bg-zinc-50/80",
         dark && "bg-zinc-950 text-white",
       )}
     >

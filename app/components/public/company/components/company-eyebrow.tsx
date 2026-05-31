@@ -11,10 +11,10 @@ export function CompanyEyebrow({ children, inverted = false }: CompanyEyebrowPro
     <span
       className={cn(
         "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em]",
-        inverted ? "text-white/60" : "text-zinc-500",
+        inverted ? "text-background/60" : "text-muted-foreground",
       )}
     >
-      <span className={cn("h-px w-10", inverted ? "bg-white/20" : "bg-zinc-300")} />
+      <span className={cn("h-px w-10", inverted ? "bg-background/20" : "bg-border")} />
       {children}
     </span>
   );

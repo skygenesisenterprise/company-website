@@ -2,7 +2,6 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { CompanyEyebrow } from "./company-eyebrow";
 
 interface CompanyHeroAction {
@@ -72,57 +71,46 @@ function WorldMapBackdrop() {
   );
 }
 
-export function CompanyHero({ eyebrow, title, description, actions, visual, centered = false }: CompanyHeroProps) {
+export function CompanyHero({ eyebrow, title, description, actions }: CompanyHeroProps) {
   return (
-    <section className="relative overflow-hidden border-b border-zinc-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_100%)]">
+    <section className="relative overflow-hidden border-b border-border/80 bg-linear-to-b from-background to-muted">
       <div aria-hidden={true} className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
         <div className="absolute inset-x-[-10%] top-[16%] h-[56%] opacity-95 sm:top-[18%] lg:inset-x-[-4%] lg:top-[19%] lg:h-[62%]">
           <WorldMapBackdrop />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(255,255,255,0.34)_30%,rgba(255,255,255,0.82)_100%)]" />
+        <div className="absolute inset-0 bg-linear-to-b from-background/76 via-background/34 to-background/82" />
       </div>
 
       <div className="relative mx-auto flex min-h-[88vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
-        <div
-          className={cn(
-            "w-full",
-            centered ? "mx-auto max-w-5xl text-center" : "grid gap-12 xl:grid-cols-[minmax(0,1.05fr)_minmax(440px,0.95fr)] xl:items-center",
-          )}
-        >
-          <div className={cn(centered && "mx-auto")}>
-            <CompanyEyebrow>{eyebrow}</CompanyEyebrow>
-            <h1 className="mt-7 max-w-6xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-zinc-950">
-              {title}
-            </h1>
-            <p className={cn("mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:text-xl", centered && "mx-auto")}>
-              {description}
-            </p>
-            {actions?.length ? (
-              <div className={cn("mt-10 flex flex-col gap-4 sm:flex-row", centered && "justify-center")}>
-                {actions.map((action, index) => (
-                  <Button
-                    key={`${action.href}-${action.label}`}
-                    asChild
-                    size="lg"
-                    variant={action.variant ?? (index === 0 ? "default" : "outline")}
-                    className={cn(
-                      "h-14 rounded-full px-8 text-sm font-medium",
-                      index === 0
-                        ? "bg-zinc-950 text-white hover:bg-zinc-800"
-                        : "border-zinc-300 bg-white/85 text-zinc-950",
-                    )}
-                  >
-                    <Link href={action.href}>
-                      {action.label}
-                      {index === 0 ? <ArrowRight className="ml-2 h-4 w-4" aria-hidden={true} /> : null}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
-            ) : null}
-          </div>
-          {visual ? <div className={cn("relative", centered && "mx-auto mt-4 w-full max-w-4xl")}>{visual}</div> : null}
+        <div className="max-w-4xl">
+          <CompanyEyebrow>{eyebrow}</CompanyEyebrow>
+          <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-foreground">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground sm:text-xl">{description}</p>
+          {actions?.length ? (
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              {actions.map((action, index) => (
+                <Button
+                  key={`${action.href}-${action.label}`}
+                  asChild
+                  size="lg"
+                  variant={action.variant ?? (index === 0 ? "default" : "outline")}
+                  className={
+                    index === 0
+                      ? "h-14 rounded-full bg-foreground px-8 text-sm font-medium text-background hover:bg-foreground/90"
+                      : "h-14 rounded-full border-border bg-background/85 px-8 text-sm font-medium text-foreground"
+                  }
+                >
+                  <Link href={action.href}>
+                    {action.label}
+                    {index === 0 ? <ArrowRight className="h-4 w-4" aria-hidden={true} /> : null}
+                  </Link>
+                </Button>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
