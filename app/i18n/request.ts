@@ -5,7 +5,7 @@ import ja from "../messages/ja.json";
 
 const messages = {
   fr,
-  ja,
+  ja: deepMerge(fr, ja),
 };
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {

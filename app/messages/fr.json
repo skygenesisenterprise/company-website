@@ -14368,597 +14368,787 @@
       },
       "about": {
         "metadata": {
-          "title": "A propos | Sky Genesis Enterprise",
-          "description": "Identite, architecture et methode de construction de Sky Genesis Enterprise."
+          "title": "À propos | Sky Genesis Enterprise",
+          "description": "Découvrez Sky Genesis Enterprise, un groupe technologique qui construit un écosystème ouvert, sécurisé et souverain pour le cloud, l’identité, la productivité, la sécurité et l’infrastructure développeur."
         },
         "hero": {
-          "eyebrow": "About SGE",
-          "title": "Une entreprise technologique pensee comme un ecosysteme.",
-          "description": "Sky Genesis Enterprise reunit des produits, plateformes et fondations developpes autour d'une meme ambition: creer des technologies ouvertes, coherentes et controlables."
+          "eyebrow": "À propos de SGE",
+          "title": "À propos de Sky Genesis Enterprise",
+          "description": "Nous construisons un écosystème technologique ouvert, sécurisé et souverain pour la prochaine génération d’organisations.",
+          "actions": [
+            {
+              "label": "Explorer notre écosystème",
+              "href": "/platform"
+            },
+            {
+              "label": "Lire notre histoire",
+              "href": "/company/story",
+              "variant": "outline"
+            },
+            {
+              "label": "Découvrir notre direction",
+              "href": "/company/leadership",
+              "variant": "outline"
+            }
+          ]
         },
-        "statement": {
-          "title": "Nous ne construisons pas une accumulation de services. Nous construisons des couches capables de fonctionner ensemble.",
-          "description": "Cette lecture d'ensemble permet de maintenir une coherence produit, technique et institutionnelle a mesure que l'ecosysteme se precise."
+        "identity": {
+          "eyebrow": "Identité",
+          "title": "Sky Genesis Enterprise est un groupe technologique centré sur le cloud, l’identité, la productivité, la sécurité, les outils développeurs et l’infrastructure numérique.",
+          "description": "L’objectif de cette page est simple : permettre à n’importe quel visiteur de comprendre rapidement ce qu’est SGE aujourd’hui, ce qu’elle construit et dans quelle direction elle avance."
         },
-        "architecture": {
-          "eyebrow": "Architecture",
-          "title": "Quatre couches relient les differents projets de SGE.",
-          "description": "Chaque couche remplit un role distinct tout en restant connectee a une vision commune.",
+        "mission": {
+          "eyebrow": "Mission",
+          "title": "Rendre les infrastructures numériques puissantes plus ouvertes, sécurisées et accessibles.",
+          "description": "SGE veut rendre des briques critiques comme l’identité, le cloud, les outils de travail, la sécurité et les couches développeurs plus compréhensibles, plus maîtrisables et plus utiles pour les organisations qui les utilisent."
+        },
+        "vision": {
+          "eyebrow": "Vision",
+          "title": "Construire une alternative crédible pour les organisations qui veulent collaborer, opérer et se développer sans perdre le contrôle de leurs fondations numériques.",
+          "description": "Notre ambition est de poser les fondations d’un écosystème technologique de long terme, conçu pour relier produits, infrastructure, sécurité et expérience développeur dans une même logique de cohérence."
+        },
+        "build": {
+          "eyebrow": "Ce que nous construisons",
+          "title": "SGE se structure autour de produits, plateformes et ressources conçus pour fonctionner ensemble.",
+          "description": "La page About ne raconte pas l’origine de la vision. Elle montre ce que l’entreprise construit déjà comme surfaces lisibles pour le travail, l’infrastructure, la sécurité, le développement et l’apprentissage.",
           "items": [
             {
               "title": "Aether Office",
-              "description": "L'environnement de travail des equipes pour communiquer, produire et coordonner."
+              "description": "La suite de productivité souveraine pensée pour la communication, la collaboration et le travail quotidien."
             },
             {
-              "title": "Platforms",
-              "description": "Les domaines technologiques specialises relies au developpement, au cloud et aux operations."
+              "title": "Aether Cloud",
+              "description": "Les couches d’infrastructure et d’hébergement construites pour plus de maîtrise, de cohérence et de résilience."
             },
             {
-              "title": "Foundations",
-              "description": "Les briques communes d'identite, de securite, d'API et d'infrastructure."
+              "title": "Aether Identity",
+              "description": "Le socle d’identité et d’accès destiné à soutenir la confiance, la sécurité et la gouvernance des utilisateurs."
             },
             {
-              "title": "Sky Genesis Enterprise",
-              "description": "La structure qui porte la vision, les produits, la gouvernance et leur developpement."
+              "title": "Aether Edge",
+              "description": "L’infrastructure distribuée conçue pour rapprocher les services des usages, des territoires et des opérations."
+            },
+            {
+              "title": "Aether Developer",
+              "description": "Les outils, APIs, SDKs et surfaces d’intégration conçus pour rendre l’écosystème exploitable par les développeurs."
+            },
+            {
+              "title": "Aether Bank",
+              "description": "Une future couche financière pensée autour de la programmabilité, de la souveraineté et des opérations de confiance."
+            },
+            {
+              "title": "Giteria",
+              "description": "Un environnement orienté développement et livraison logicielle, relié à la logique plus large de l’écosystème."
+            },
+            {
+              "title": "Academy",
+              "description": "Les ressources éducatives, éditoriales et de montée en compétence destinées à accompagner la compréhension de SGE."
             }
           ]
         },
-        "method": {
-          "eyebrow": "How we build",
-          "title": "Une methode de construction volontairement sobre.",
-          "description": "La qualite de l'ecosysteme depend autant des arbitrages pris maintenant que des produits a venir.",
+        "pillars": {
+          "eyebrow": "Piliers fondamentaux",
+          "title": "Quelques piliers structurent la manière dont SGE pense ses produits et son infrastructure.",
+          "description": "Ces piliers ne sont pas décoratifs. Ils guident les choix d’architecture, de sécurité, d’ouverture et de positionnement institutionnel.",
           "items": [
             {
-              "title": "Produit avant promesse",
-              "description": "Nous cherchons d'abord a rendre les briques utiles, lisibles et utilisables."
+              "title": "Code ouvert",
+              "description": "La transparence et l’auditabilité sont considérées comme des fondations de confiance."
             },
             {
-              "title": "Modularite avant dependance",
-              "description": "Les composants doivent rester reliables sans enfermer les organisations dans un usage unique."
+              "title": "Sécurité",
+              "description": "La sécurité doit être pensée dès la conception, pas seulement ajoutée en fin de chaîne."
             },
             {
-              "title": "Vision long terme avant expansion artificielle",
-              "description": "Nous preferons consolider une trajectoire coherente plutot que multiplier les signaux de surface."
+              "title": "Souveraineté numérique",
+              "description": "Les organisations doivent garder une vraie maîtrise sur leurs données, leurs systèmes et leurs dépendances."
+            },
+            {
+              "title": "Interopérabilité",
+              "description": "Les briques SGE sont conçues pour se relier entre elles sans devenir des silos fermés."
+            },
+            {
+              "title": "Infrastructure de long terme",
+              "description": "L’ambition est de construire des fondations durables, pas des signaux de court terme."
             }
           ]
         },
-        "transparency": {
-          "eyebrow": "Development transparency",
-          "title": "Un ecosysteme en construction, presente avec franchise.",
-          "description": "Certains produits sont en phase de conception, d'autres en developpement ou en structuration. Nous preferons montrer une trajectoire credible plutot que pretendre a une disponibilite irreelle."
-        },
-        "pages": {
-          "eyebrow": "Related pages",
-          "title": "Poursuivre vers la mission, les principes et la trajectoire.",
-          "description": "La page About pose le cadre general; les autres pages approfondissent la raison d'etre, la culture et la progression.",
+        "approach": {
+          "eyebrow": "Notre approche",
+          "title": "SGE construit avec une méthode orientée produit, sécurité et cohérence de plateforme.",
+          "description": "Cette approche vise à garder l’entreprise lisible pour ses utilisateurs, ses partenaires, ses développeurs et ses futurs collaborateurs.",
           "items": [
             {
-              "title": "Mission et trajectoire",
-              "description": "Comprendre pourquoi SGE existe et comment l'entreprise construit dans le temps.",
+              "title": "Produit d’abord",
+              "description": "Les surfaces publiques doivent être utiles, concrètes et compréhensibles avant d’être amplifiées."
+            },
+            {
+              "title": "Sécurité d’abord",
+              "description": "L’architecture, l’identité, la vérification et les communications sûres font partie du socle."
+            },
+            {
+              "title": "Pensé pour les développeurs",
+              "description": "Les outils et plateformes doivent rester exploitables par celles et ceux qui construisent."
+            },
+            {
+              "title": "Ouvert par conception",
+              "description": "L’ouverture, la documentation et la réutilisation sont traitées comme des avantages structurels."
+            },
+            {
+              "title": "International dès le départ",
+              "description": "La structure est pensée avec une ambition internationale, même si la construction reste progressive."
+            }
+          ]
+        },
+        "audiences": {
+          "eyebrow": "Pour qui nous construisons",
+          "title": "SGE s’adresse à plusieurs types d’organisations sans perdre en lisibilité.",
+          "description": "L’écosystème n’est pas limité à un seul profil. Il est conçu pour différents niveaux de maturité, de taille et d’exigence technique.",
+          "items": [
+            {
+              "title": "Développeurs",
+              "description": "Celles et ceux qui intègrent, étendent et opèrent des produits ou infrastructures numériques."
+            },
+            {
+              "title": "Startups",
+              "description": "Des équipes en croissance qui ont besoin d’outils solides sans perdre en vitesse ni en clarté."
+            },
+            {
+              "title": "PME",
+              "description": "Des organisations qui veulent des solutions professionnelles plus lisibles et plus maîtrisables."
+            },
+            {
+              "title": "Institutions publiques",
+              "description": "Des acteurs qui accordent une importance particulière à la souveraineté, à la conformité et à la continuité."
+            },
+            {
+              "title": "Entreprises",
+              "description": "Des structures qui ont besoin de produits cohérents, d’une architecture sérieuse et d’une trajectoire de long terme."
+            },
+            {
+              "title": "Communautés open source",
+              "description": "Des communautés qui cherchent des environnements ouverts, auditables et réutilisables."
+            }
+          ]
+        },
+        "europe": {
+          "eyebrow": "Ancrage européen",
+          "title": "Ancré en Europe. Pensé pour le monde.",
+          "description": "SGE se construit avec un ancrage européen affirmé, tout en visant une pertinence internationale. L’idée n’est pas de se refermer, mais de bâtir des fondations capables de rester ouvertes, souveraines et crédibles à l’échelle globale.",
+          "pills": [
+            "Europe",
+            "Souveraineté numérique",
+            "Ouverture internationale",
+            "Conformité",
+            "Technologie indépendante"
+          ],
+          "items": [
+            {
+              "title": "Une base européenne sérieuse",
+              "description": "L’Europe est considérée comme un espace pertinent pour penser gouvernance, infrastructure, conformité et crédibilité institutionnelle."
+            },
+            {
+              "title": "Une ambition internationale progressive",
+              "description": "L’ouverture au monde fait partie de la trajectoire, mais elle doit rester cohérente avec le niveau réel de maturité."
+            },
+            {
+              "title": "Une posture responsable",
+              "description": "SGE traite la souveraineté comme un enjeu concret de maîtrise, pas comme un slogan politique agressif."
+            }
+          ]
+        },
+        "aether": {
+          "eyebrow": "L’écosystème Aether",
+          "title": "Aether constitue aujourd’hui la principale famille de produits de Sky Genesis Enterprise.",
+          "description": "L’écosystème Aether relie productivité, cloud, identité, sécurité, outils développeurs et infrastructure dans une logique commune de maîtrise, de cohérence et de confiance.",
+          "layers": [
+            {
+              "label": "Couche 01",
+              "title": "Productivité",
+              "description": "Aether Office structure la communication, la collaboration et le travail quotidien."
+            },
+            {
+              "label": "Couche 02",
+              "title": "Cloud",
+              "description": "Aether Cloud pose les bases d’infrastructure, d’hébergement et d’opérations."
+            },
+            {
+              "label": "Couche 03",
+              "title": "Identité",
+              "description": "Aether Identity relie la confiance utilisateur, l’accès et la gouvernance des comptes."
+            },
+            {
+              "label": "Couche 04",
+              "title": "Sécurité",
+              "description": "La sécurité traverse l’écosystème à travers la vérification, la protection et les bonnes pratiques opérationnelles."
+            },
+            {
+              "label": "Couche 05",
+              "title": "Outils développeurs",
+              "description": "Aether Developer et les surfaces associées rendent l’ensemble exploitable, intégrable et extensible."
+            },
+            {
+              "label": "Couche 06",
+              "title": "Infrastructure",
+              "description": "Aether Edge et les couches associées donnent une profondeur opérationnelle à l’écosystème."
+            }
+          ]
+        },
+        "trust": {
+          "eyebrow": "Confiance et sécurité",
+          "title": "La confiance et la sécurité sont traitées comme des fondations, pas comme des ajouts secondaires.",
+          "description": "Cette logique relie vérification cryptographique, communications sûres, identité, posture de sécurité et architecture orientée confiance à travers l’ensemble du site officiel.",
+          "items": [
+            {
+              "title": "Vérification cryptographique",
+              "description": "Les ressources PGP permettent de relier l’identité publique de SGE à des mécanismes de vérification concrets.",
+              "href": "/pgp",
+              "cta": "Voir les ressources PGP"
+            },
+            {
+              "title": "Architecture orientée sécurité",
+              "description": "La page Security regroupe les éléments publics liés à la confiance, à la protection et à la lisibilité de la posture sécurité.",
+              "href": "/security",
+              "cta": "Explorer Security"
+            },
+            {
+              "title": "Communications sûres",
+              "description": "La sécurité des échanges, de l’identité et des surfaces publiques fait partie de la crédibilité institutionnelle de SGE.",
+              "href": "/under-attack-online",
+              "cta": "Voir les réponses en cas d’attaque"
+            },
+            {
+              "title": "Identité et maîtrise",
+              "description": "L’identité, la vérification et les mécanismes de contrôle sont conçus comme des briques centrales de l’écosystème.",
+              "href": "/company/contact",
+              "cta": "Contacter SGE"
+            }
+          ]
+        },
+        "openSource": {
+          "eyebrow": "Open source et communauté",
+          "title": "L’ouverture technique et la communauté font partie de la manière dont SGE veut construire dans le temps.",
+          "description": "L’open source permet de rendre l’écosystème plus compréhensible, plus réutilisable et plus crédible. La communauté permet d’élargir cette logique par la documentation, l’apprentissage et la contribution.",
+          "items": [
+            {
+              "title": "Espace développeurs",
+              "description": "Retrouver les ressources, surfaces techniques et points d’entrée destinés aux intégrations et à la construction.",
+              "href": "/developers",
+              "cta": "Explorer Developers"
+            },
+            {
+              "title": "Academy",
+              "description": "Approfondir les produits, les concepts et les parcours de compréhension grâce aux ressources pédagogiques de SGE.",
+              "href": "/academy",
+              "cta": "Explorer Academy"
+            },
+            {
+              "title": "GitHub officiel",
+              "description": "Consulter les projets publics, l’activité open source et les références publiées par l’organisation.",
+              "href": "https://github.com/skygenesisenterprise",
+              "cta": "Voir GitHub"
+            }
+          ]
+        },
+        "leadership": {
+          "eyebrow": "Organisation et direction",
+          "title": "Sky Genesis Enterprise est aujourd’hui porté par une équipe fondatrice compacte qui construit progressivement une structure plus large.",
+          "description": "La direction actuelle reste volontairement resserrée, avec une logique de responsabilité claire, pendant que l’entreprise prépare sa montée en structure internationale.",
+          "items": [
+            {
+              "title": "Direction fondatrice",
+              "description": "Une équipe centrale porte la vision, la coordination, la technologie et la cybersécurité.",
+              "href": "/company/leadership",
+              "cta": "Découvrir la direction"
+            },
+            {
+              "title": "Structure en élargissement",
+              "description": "De nouveaux rôles de direction sont prévus à mesure que les produits, domaines et responsabilités se structurent."
+            },
+            {
+              "title": "Ambition internationale",
+              "description": "La structure est pensée pour évoluer au-delà du noyau initial sans perdre en lisibilité institutionnelle."
+            }
+          ]
+        },
+        "foundation": {
+          "eyebrow": "Fondation actuelle",
+          "title": "Quelques éléments factuels permettent de situer SGE sans exagération.",
+          "description": "Cette base factuelle reflète un projet technologique en construction, avec des fondations déjà visibles et une ambition de long terme encore en cours de structuration.",
+          "items": [
+            {
+              "title": "Ancrage belge",
+              "description": "La structure actuelle de SGE s’inscrit dans un cadre de construction lié à la Belgique et à une trajectoire européenne."
+            },
+            {
+              "title": "Orientation code ouvert",
+              "description": "L’ouverture technique, la documentation publique et la réutilisation font partie du positionnement de l’écosystème."
+            },
+            {
+              "title": "Écosystème multi-produit",
+              "description": "SGE relie déjà plusieurs surfaces produit, plateformes et ressources dans une architecture commune."
+            },
+            {
+              "title": "4 membres actifs de direction",
+              "description": "La structure actuelle repose sur une équipe fondatrice resserrée, déjà visible sur la page Leadership."
+            },
+            {
+              "title": "12 rôles de direction planifiés",
+              "description": "Les rôles futurs déjà préparés montrent une volonté d’élargissement progressive sans inventer de fausse maturité."
+            },
+            {
+              "title": "Ambition internationale",
+              "description": "L’entreprise se construit avec une perspective internationale, tout en restant honnête sur son niveau actuel de développement."
+            }
+          ]
+        },
+        "cta": {
+          "eyebrow": "Construire avec SGE",
+          "title": "Construire avec une entreprise pensée pour le long terme.",
+          "description": "Sky Genesis Enterprise se structure pour relier produits, infrastructure, confiance et ouverture dans une même trajectoire. La meilleure manière d’évaluer cette ambition reste d’explorer les surfaces déjà visibles.",
+          "actions": [
+            {
+              "label": "Explorer la plateforme",
+              "href": "/platform"
+            },
+            {
+              "label": "Lire notre histoire",
               "href": "/company/story",
-              "cta": "Lire la trajectoire"
+              "variant": "outline"
             },
             {
-              "title": "Principes",
-              "description": "Voir les principes qui guident l'ouverture, le controle et la qualite produit.",
-              "href": "/company/values",
-              "cta": "Voir les principes"
-            }
-          ]
-        },
-        "finalCta": {
-          "eyebrow": "About SGE",
-          "title": "Comprendre la structure avant de juger l'ambition.",
-          "description": "L'ecosysteme SGE repose sur une architecture lisible, des fondations communes et une progression volontairement maitrisee."
-        },
-        "expansion": {
-          "sections": [
-            {
-              "eyebrow": "Positionnement",
-              "title": "Situer Sky Genesis Enterprise dans l’écosystème global.",
-              "description": "Cette section précise comment Sky Genesis Enterprise se relie à mission, architecture, méthode et transparence, sans réduire SGE à une page institutionnelle isolée.",
-              "items": [
-                {
-                  "title": "Rôle",
-                  "description": "Expliquer la fonction de Sky Genesis Enterprise pour organisations, talents, partenaires et observateurs institutionnels."
-                },
-                {
-                  "title": "Frontières",
-                  "description": "Clarifier ce qui est déjà structuré, ce qui reste en construction et ce qui nécessite un échange direct."
-                },
-                {
-                  "title": "Continuité",
-                  "description": "Relier cette page aux plateformes, solutions, produits et ressources publiques de SGE."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Modèle opérationnel",
-              "title": "Transformer le discours en système exploitable.",
-              "description": "SGE présente Sky Genesis Enterprise comme une partie d’un modèle opératoire, avec responsabilités, preuves et parcours de lecture.",
-              "items": [
-                {
-                  "title": "Responsabilités",
-                  "description": "Identifier les équipes, sujets ou interlocuteurs concernés par expliquer comment l’entreprise construit un écosystème technologique européen."
-                },
-                {
-                  "title": "Rituels",
-                  "description": "Structurer les revues, décisions et mises à jour qui gardent la page utile dans le temps."
-                },
-                {
-                  "title": "Lisibilité",
-                  "description": "Maintenir une information compréhensible pour organisations, talents, partenaires et observateurs institutionnels."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Gouvernance",
-              "title": "Garder des décisions lisibles et défendables.",
-              "description": "La gouvernance donne un cadre aux choix liés à mission, architecture, méthode et transparence, en évitant les promesses floues.",
-              "items": [
-                {
-                  "title": "Critères",
-                  "description": "Documenter les critères qui orientent priorités, exclusions et arbitrages."
-                },
-                {
-                  "title": "Revue",
-                  "description": "Relire régulièrement principes, feuilles de route, limites de maturité et architecture publique pour maintenir cohérence et précision."
-                },
-                {
-                  "title": "Responsabilité",
-                  "description": "Associer les décisions aux bons niveaux de validation et de communication."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Confiance",
-              "title": "Construire une relation publique sans exagération.",
-              "description": "La crédibilité de Sky Genesis Enterprise dépend d’un langage exact, d’une maturité expliquée et d’un accès clair aux preuves.",
-              "items": [
-                {
-                  "title": "Précision",
-                  "description": "Nommer les capacités réelles sans transformer une direction en promesse de disponibilité."
-                },
-                {
-                  "title": "Preuves",
-                  "description": "Rattacher les affirmations à principes, feuilles de route, limites de maturité et architecture publique."
-                },
-                {
-                  "title": "Limites",
-                  "description": "Indiquer les zones exploratoires, futures ou dépendantes d’un cadrage spécifique."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Infrastructure narrative",
-              "title": "Relier l’entreprise à son architecture technique.",
-              "description": "Même les pages company doivent rappeler que SGE construit un écosystème d’infrastructure, pas seulement une marque.",
-              "items": [
-                {
-                  "title": "Plateforme",
-                  "description": "Connecter le propos aux domaines cloud, développeur, télécom, finance, intelligence et média."
-                },
-                {
-                  "title": "Solutions",
-                  "description": "Montrer comment les organisations peuvent comprendre SGE par leurs contextes opérationnels."
-                },
-                {
-                  "title": "Produits",
-                  "description": "Situer les surfaces visibles comme des expressions du socle plutôt que des offres isolées."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Souveraineté",
-              "title": "Ancrer la vision dans une trajectoire européenne durable.",
-              "description": "La souveraineté est traitée comme un ensemble de choix concrets : maîtrise, audit, données, dépendances et long terme.",
-              "items": [
-                {
-                  "title": "Maîtrise",
-                  "description": "Préserver la capacité à comprendre, opérer et faire évoluer les systèmes critiques."
-                },
-                {
-                  "title": "Indépendance",
-                  "description": "Limiter les dépendances opaques quand elles fragilisent la trajectoire de l’écosystème."
-                },
-                {
-                  "title": "Durabilité",
-                  "description": "Construire pour une continuité organisationnelle et technique au-delà des cycles courts."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Publics concernés",
-              "title": "Adapter la lecture à organisations, talents, partenaires et observateurs institutionnels.",
-              "description": "Chaque public doit pouvoir comprendre rapidement où poursuivre : plateforme, solutions, contact, carrière, presse ou documentation.",
-              "items": [
-                {
-                  "title": "Organisations",
-                  "description": "Identifier les besoins d’adoption, de souveraineté, de sécurité ou de transformation."
-                },
-                {
-                  "title": "Talents",
-                  "description": "Comprendre les standards de contribution, la culture et les domaines de construction."
-                },
-                {
-                  "title": "Partenaires",
-                  "description": "Évaluer les formes de collaboration compatibles avec la cohérence SGE."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Transparence",
-              "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
-              "items": [
-                {
-                  "title": "Statut",
-                  "description": "Employer un vocabulaire cohérent pour distinguer direction, prototype, disponibilité et service opérationnel."
-                },
-                {
-                  "title": "Contexte",
-                  "description": "Expliquer pourquoi certaines briques sont présentées comme trajectoires plutôt que comme offres finalisées."
-                },
-                {
-                  "title": "Évolution",
-                  "description": "Mettre à jour les contenus quand la maturité réelle change."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Écosystème",
-              "title": "Faire circuler le visiteur entre les bons points d’entrée.",
-              "description": "La page doit aider à passer de Sky Genesis Enterprise vers les domaines pertinents du site officiel.",
-              "items": [
-                {
-                  "title": "Plateforme",
-                  "description": "Comprendre les fondations techniques qui soutiennent l’ambition."
-                },
-                {
-                  "title": "Solutions",
-                  "description": "Lire les contextes opérationnels qui traduisent l’écosystème pour les organisations."
-                },
-                {
-                  "title": "Contact",
-                  "description": "Ouvrir un échange lorsque le contexte exige un cadrage direct."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Exécution",
-              "title": "Aligner ambition, méthode et suivi.",
-              "description": "La valeur de Sky Genesis Enterprise dépend de sa capacité à guider des actions concrètes, pas seulement à présenter une intention.",
-              "items": [
-                {
-                  "title": "Priorités",
-                  "description": "Relier les contenus aux priorités de construction et aux besoins réels du public."
-                },
-                {
-                  "title": "Méthode",
-                  "description": "Favoriser une approche progressive, documentée et compatible avec la sécurité."
-                },
-                {
-                  "title": "Suivi",
-                  "description": "Maintenir les pages comme des repères vivants de l’écosystème public."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Prochaine lecture",
-              "title": "Donner une suite claire après cette page.",
-              "description": "La page doit terminer sur des chemins de compréhension complémentaires, même avant le CTA final.",
-              "items": [
-                {
-                  "title": "Comprendre",
-                  "description": "Lire l’histoire, les valeurs ou la mission selon l’intention du visiteur."
-                },
-                {
-                  "title": "Explorer",
-                  "description": "Passer vers plateforme, solutions ou produits pour voir l’architecture en action."
-                },
-                {
-                  "title": "Échanger",
-                  "description": "Utiliser les routes de contact lorsque la demande nécessite un interlocuteur humain."
-                }
-              ]
+              "label": "Nous contacter",
+              "href": "/company/contact",
+              "variant": "outline"
             }
           ]
         }
       },
       "story": {
         "metadata": {
-          "title": "Trajectoire | Sky Genesis Enterprise",
-          "description": "La trajectoire de construction de Sky Genesis Enterprise, entre intuition initiale, mission et progression long terme."
+          "title": "Histoire | Sky Genesis Enterprise",
+          "description": "Découvrez l’histoire, la vision et les principes de Sky Genesis Enterprise, un écosystème construit autour d’une technologie ouverte, souveraine et accessible."
         },
         "hero": {
-          "eyebrow": "Trajectory",
-          "title": "Une trajectoire nee d'un besoin de maitrise.",
-          "description": "Sky Genesis Enterprise se construit a partir d'une conviction simple: les organisations ont besoin d'outils ouverts, gouvernables et capables de rester lisibles dans le temps."
-        },
-        "origin": {
-          "eyebrow": "Origin",
-          "title": "L'intuition initiale vient d'un constat sur la complexite moderne.",
-          "description": "Le numerique donne plus de puissance aux organisations, mais il peut aussi diluer la maitrise lorsque les couches techniques, les dependances et les integrations deviennent opaques."
-        },
-        "problem": {
-          "eyebrow": "The problem",
-          "title": "La technologie moderne est puissante. Elle ne devrait pas devenir opaque.",
-          "description": "Fragmentation des outils, dependance a des ecosystemes fermes et perte de controle sur les donnees ou les trajectoires de deploiement forment un meme probleme de gouvernance.",
-          "items": [
+          "eyebrow": "Notre histoire",
+          "title": "L’histoire derrière Sky Genesis Enterprise.",
+          "description": "Une vision pour construire une technologie ouverte, souveraine et accessible à tous. Cette page explique pourquoi SGE existe, quel problème nous voulons résoudre et comment une initiative née d’un parcours étudiant devient progressivement un écosystème technologique structuré.",
+          "actions": [
             {
-              "title": "Fragmentation",
-              "description": "Les organisations accumulent des outils qui fonctionnent cote a cote sans produire une architecture claire."
+              "label": "Explorer l’écosystème",
+              "href": "/platform"
             },
             {
-              "title": "Dependance",
-              "description": "Les choix techniques se transforment facilement en verrouillage lorsque le deploiement et l'integration deviennent imposes."
-            },
-            {
-              "title": "Opacite",
-              "description": "Sans lisibilite sur les couches critiques, gouverner durablement son environnement devient plus difficile."
+              "label": "Découvrir la direction",
+              "href": "/company/leadership",
+              "variant": "outline"
             }
           ]
         },
-        "response": {
-          "eyebrow": "SGE's response",
-          "title": "La reponse consiste a reconstruire des couches plus coherentes.",
-          "description": "Cette trajectoire relie experience de travail, plateformes specialisees et fondations communes autour d'une meme logique de maitrise.",
+        "beginning": {
+          "eyebrow": "Le commencement",
+          "title": "Un projet né du besoin de construire, d’apprendre et de rendre les systèmes numériques plus compréhensibles.",
+          "description": "Sky Genesis Enterprise n’a pas commencé comme une structure institutionnelle déjà aboutie. Le projet est né d’une logique de construction, d’une base en développement logiciel et de la conviction que les infrastructures numériques importantes doivent être pensées avec plus de clarté, plus de maîtrise et une intention de long terme.",
           "items": [
             {
-              "title": "Des outils ouverts",
-              "description": "Concevoir des briques qui peuvent etre comprises, etendues et reliees proprement."
+              "title": "Une origine ancrée dans la pratique",
+              "description": "Le premier objectif n’était pas d’imiter une grande entreprise, mais de comprendre concrètement comment se construisent les produits, les infrastructures et les systèmes d’identité."
             },
             {
-              "title": "Des environnements coherents",
-              "description": "Eviter l'empilement arbitraire en reliant produits, plateformes et services dans une meme architecture."
+              "title": "Une initiative née d’un parcours étudiant",
+              "description": "Le projet a commencé à partir d’un chemin individuel de construction technique, avant de s’élargir progressivement vers une vision produit et écosystème plus structurée."
             },
             {
-              "title": "Des deploiements controles",
-              "description": "Laisser aux organisations des choix plus larges sur la maniere d'operer leurs outils."
+              "title": "Une ambition pensée pour durer",
+              "description": "L’enjeu n’est pas seulement d’aller vite, mais de poser des fondations capables de soutenir plusieurs produits et plusieurs étapes de maturité dans le temps."
+            }
+          ]
+        },
+        "problem": {
+          "eyebrow": "Le problème que nous avons identifié",
+          "title": "Une trop grande partie du numérique moderne dépend de plateformes puissantes, opaques et difficiles à gouverner.",
+          "description": "Beaucoup d’organisations reposent sur un petit nombre d’infrastructures dominantes, des outils fragmentés et des écosystèmes de plus en plus rigides. Cela crée de la dépendance opérationnelle, réduit la maîtrise des données et rend les logiciels professionnels plus difficiles à auditer, adapter et comprendre.",
+          "items": [
+            {
+              "title": "Dépendance à quelques plateformes",
+              "description": "Des chaînes de travail critiques reposent souvent sur un nombre limité d’acteurs dont les décisions techniques et stratégiques s’imposent à tous les autres."
             },
             {
-              "title": "Des fondations evolutives",
-              "description": "Construire des couches communes capables d'accompagner des besoins croissants dans le temps."
+              "title": "Faible contrôle sur l’infrastructure",
+              "description": "Les organisations ont besoin de plus de liberté dans la manière d’opérer leurs couches d’identité, de cloud, de collaboration et de sécurité."
+            },
+            {
+              "title": "Complexité des outils professionnels",
+              "description": "La gouvernance devient difficile lorsque les produits s’accumulent sans logique architecturale cohérente."
+            },
+            {
+              "title": "Besoin d’alternatives crédibles",
+              "description": "L’Europe et d’autres régions ont besoin d’alternatives sérieuses construites autour de la transparence, de l’interopérabilité et d’une indépendance durable."
+            }
+          ]
+        },
+        "vision": {
+          "eyebrow": "Une vision différente",
+          "title": "SGE se construit autour de l’ouverture, de l’interopérabilité et de la capacité à garder le contrôle là où il compte vraiment.",
+          "description": "Notre vision n’est pas de recréer une pile fermée de plus. Elle consiste à concevoir un écosystème cohérent où identité, infrastructure cloud, bureau, outils développeurs, infrastructure distribuée et services de confiance peuvent fonctionner ensemble tout en restant compréhensibles, auditables et évolutifs.",
+          "items": [
+            {
+              "title": "Code ouvert dès la conception",
+              "description": "La transparence est un principe produit, pas une couche de communication ajoutée après coup."
+            },
+            {
+              "title": "Des systèmes interopérables",
+              "description": "Les produits doivent pouvoir se connecter proprement entre eux et rester utilisables dans des environnements techniques plus larges."
+            },
+            {
+              "title": "Maîtrise des données et de l’infrastructure",
+              "description": "Les organisations doivent pouvoir comprendre où vivent leurs données, comment tournent leurs systèmes et quelles dépendances elles acceptent."
+            },
+            {
+              "title": "Sécurité et confiance comme socle",
+              "description": "La confiance doit venir de l’architecture, de la documentation et de la discipline opérationnelle, pas seulement d’un discours de marque."
+            }
+          ]
+        },
+        "ecosystem": {
+          "eyebrow": "D’un projet à un écosystème",
+          "title": "Une idée peut devenir un écosystème lorsque l’architecture devient intentionnelle.",
+          "description": "Sky Genesis Enterprise évolue d’une intuition technique vers un écosystème structuré. L’objectif est de relier produits et couches d’infrastructure dans une progression lisible, sans prétendre que chaque étape est déjà achevée.",
+          "nextLabel": "Suite",
+          "steps": [
+            {
+              "label": "Étape 01",
+              "title": "Une idée",
+              "description": "Partir d’une question simple : comment rendre l’infrastructure numérique plus ouverte, plus souveraine et plus utile ?"
+            },
+            {
+              "label": "Étape 02",
+              "title": "Une plateforme",
+              "description": "Définir des fondations communes pour l’identité, l’infrastructure cloud, la sécurité et les produits au lieu de construire des outils isolés."
+            },
+            {
+              "label": "Étape 03",
+              "title": "Plusieurs produits",
+              "description": "Étendre ces fondations vers de vraies surfaces de travail, de développement, d’infrastructure et d’opérations de confiance."
+            },
+            {
+              "label": "Étape 04",
+              "title": "Un écosystème technologique",
+              "description": "Créer un environnement de long terme où les produits se renforcent mutuellement grâce à une architecture et une gouvernance partagées."
+            }
+          ]
+        },
+        "foundations": {
+          "eyebrow": "Construire les fondations",
+          "title": "L’écosystème prend forme autour d’un petit nombre de couches fondatrices.",
+          "description": "Chaque couche répond à un besoin opérationnel différent, mais l’ensemble forme la base d’une stratégie plus cohérente pour l’identité, la productivité, l’infrastructure, le développement et la confiance.",
+          "layers": [
+            {
+              "label": "Fondation 01",
+              "title": "Aether Identity",
+              "description": "L’identité, l’accès, la confiance utilisateur et la gouvernance des comptes pensés comme un socle pour tout l’écosystème."
+            },
+            {
+              "label": "Fondation 02",
+              "title": "Aether Cloud",
+              "description": "Des couches d’infrastructure et d’hébergement conçues pour opérer des services avec plus de maîtrise opérationnelle et de cohérence dans le temps."
+            },
+            {
+              "label": "Fondation 03",
+              "title": "Aether Office",
+              "description": "Un environnement de productivité pensé pour relier communication, travail et collaboration à des fondations souveraines."
+            },
+            {
+              "label": "Fondation 04",
+              "title": "Aether Edge",
+              "description": "Une infrastructure distribuée destinée à rapprocher les services des usages, des opérations et des contraintes régionales."
+            },
+            {
+              "label": "Fondation 05",
+              "title": "Aether Developer",
+              "description": "Des outils, interfaces de programmation et surfaces d’intégration qui rendent l’écosystème extensible et réellement exploitable par les développeurs."
+            },
+            {
+              "label": "Fondation 06",
+              "title": "Sécurité, PGP et confiance",
+              "description": "Des services de confiance, des mécanismes de vérification et des pratiques de sécurité qui soutiennent la crédibilité de l’ensemble."
+            }
+          ]
+        },
+        "europe": {
+          "eyebrow": "Pourquoi l’Europe compte",
+          "title": "L’Europe compte parce que la souveraineté numérique exige des capacités locales, pas seulement une dépendance juridique à des plateformes externes.",
+          "description": "SGE considère l’Europe comme un espace sérieux pour l’infrastructure, la conformité, la conception produit et l’innovation de long terme. Il ne s’agit pas d’isolement, mais de construire une technologie capable de rester indépendante, responsable et pertinente à l’international.",
+          "items": [
+            {
+              "title": "Souveraineté",
+              "description": "Les organisations européennes ont besoin de choix d’infrastructure qui préservent la maîtrise de capacités numériques stratégiques."
+            },
+            {
+              "title": "Conformité et confiance",
+              "description": "La protection des données, la responsabilité et la gouvernance deviennent plus solides lorsqu’elles sont intégrées dès les décisions techniques."
+            },
+            {
+              "title": "Ouverture internationale",
+              "description": "Une base européenne peut rester connectée au monde tout en défendant l’interopérabilité et l’indépendance technologique."
+            }
+          ]
+        },
+        "openSource": {
+          "eyebrow": "L’open source d’abord",
+          "title": "L’open source est central parce que la confiance grandit lorsque les systèmes peuvent être examinés, améliorés et réutilisés.",
+          "description": "Pour SGE, l’open source n’est pas seulement un mode de distribution. C’est une discipline de transparence, d’auditabilité, de contribution et d’honnêteté architecturale. C’est aussi un fil conducteur entre les produits, les outils développeurs, les ressources pédagogiques et les futurs projets publics.",
+          "items": [
+            {
+              "title": "Transparence",
+              "description": "Les choix techniques sont plus crédibles lorsqu’ils sont visibles et documentés."
+            },
+            {
+              "title": "Auditabilité",
+              "description": "La sécurité et la fiabilité progressent lorsque les systèmes peuvent être revus au lieu de rester des boîtes noires."
+            },
+            {
+              "title": "Contribution et réutilisation",
+              "description": "Les développeurs doivent pouvoir apprendre, étendre et intégrer des parties pertinentes de l’écosystème."
+            },
+            {
+              "title": "Une culture commune de construction",
+              "description": "Cette logique relie des initiatives comme Giteria, Aether Developer, Academy et de futurs projets à code ouvert au sein de SGE."
+            }
+          ]
+        },
+        "global": {
+          "eyebrow": "Une vision globale",
+          "title": "L’ambition est internationale, même si les fondations se construisent encore étape par étape.",
+          "description": "SGE est pensé avec un horizon international. L’objectif est de construire depuis l’Europe tout en intégrant, avec le temps, les réalités opérationnelles, culturelles et infrastructurelles de plusieurs régions.",
+          "signalsTitle": "Directions stratégiques",
+          "panelTitle": "Une ambition internationale pensée sur le long terme.",
+          "panelDescription": "La croissance a du sens lorsqu’elle étend l’écosystème sans diluer ses exigences de souveraineté, d’ouverture et de clarté opérationnelle.",
+          "signals": [
+            "Europe",
+            "Japon",
+            "Amérique du Nord",
+            "Asie-Pacifique",
+            "Suisse"
+          ],
+          "regions": [
+            {
+              "meta": "Base principale",
+              "title": "Europe",
+              "description": "Le premier cadre de référence pour la souveraineté, la gouvernance, la conformité et la crédibilité institutionnelle."
+            },
+            {
+              "meta": "Dialogue stratégique",
+              "title": "Japon",
+              "description": "Une région importante pour sa culture technologique, ses exigences de qualité et sa vision du temps long."
+            },
+            {
+              "meta": "Expansion future",
+              "title": "Amérique du Nord",
+              "description": "Un espace clé pour les écosystèmes développeurs, les standards d’infrastructure et les comparaisons stratégiques."
+            },
+            {
+              "meta": "Opportunité de long terme",
+              "title": "Asie-Pacifique",
+              "description": "Une région large où la croissance des infrastructures, les partenariats et les services numériques évoluent rapidement."
+            },
+            {
+              "meta": "Structure internationale",
+              "title": "Suisse et SGE International",
+              "description": "Des ancrages potentiels pour la structuration internationale, la neutralité et la coordination transfrontalière à long terme."
+            }
+          ]
+        },
+        "people": {
+          "eyebrow": "La dimension humaine",
+          "title": "Les écosystèmes technologiques sont construits par des personnes, pas seulement par des architectures et des feuilles de route.",
+          "description": "Sky Genesis Enterprise dépend d’une équipe fondatrice, de futurs collaborateurs, de contributeurs, de partenaires et d’une communauté capables de transformer une vision en exécution durable. Le projet reste humain dans son échelle, et c’est aussi ce qui le rend crédible.",
+          "items": [
+            {
+              "title": "Équipe fondatrice",
+              "description": "Une équipe resserrée porte la vision initiale, la cohérence produit et la direction technique.",
+              "href": "/company/leadership",
+              "cta": "Découvrir la direction"
+            },
+            {
+              "title": "Futurs collaborateurs",
+              "description": "L’écosystème a vocation à grandir avec des personnes capables de construire, documenter, sécuriser et opérer des systèmes utiles.",
+              "href": "/company/careers",
+              "cta": "Rejoindre la mission"
+            },
+            {
+              "title": "Contributeurs et développeurs",
+              "description": "Le travail ouvert devient plus solide lorsque des développeurs externes peuvent comprendre la direction et contribuer là où cela a du sens.",
+              "href": "/developers",
+              "cta": "Explorer les ressources développeurs"
+            },
+            {
+              "title": "Partenaires et communauté",
+              "description": "Un écosystème de long terme suppose aussi des relations de confiance avec des organisations, des opérateurs et des alliés stratégiques.",
+              "href": "/company/partners",
+              "cta": "Voir les formes de partenariat"
+            }
+          ]
+        },
+        "building": {
+          "eyebrow": "Ce que nous construisons",
+          "title": "L’ambition s’étend aux couches opérationnelles que les organisations ont de plus en plus besoin de maîtriser.",
+          "description": "SGE ne se limite pas à une seule catégorie de produit. L’écosystème se construit progressivement autour du travail, de l’infrastructure, des outils développeurs, de la confiance et de futures capacités verticales.",
+          "items": [
+            {
+              "title": "Bureautique",
+              "description": "Un environnement de productivité souverain pour la communication, la collaboration et le travail quotidien."
+            },
+            {
+              "title": "Infrastructure cloud",
+              "description": "Des couches d’infrastructure et d’hébergement pensées pour la maîtrise, la résilience et la lisibilité opérationnelle."
+            },
+            {
+              "title": "Identité",
+              "description": "Des fondations d’identité et d’accès qui soutiennent la confiance, la gestion des utilisateurs et la cohésion de l’écosystème."
+            },
+            {
+              "title": "Infrastructure distribuée",
+              "description": "Une infrastructure distribuée conçue pour rapprocher les services de leurs contextes d’usage et de leurs contraintes régionales."
+            },
+            {
+              "title": "Développement",
+              "description": "Des APIs, outils, flux de travail et couches d’intégration qui permettent aux développeurs de travailler avec l’écosystème."
+            },
+            {
+              "title": "Finance",
+              "description": "Une couche financière de long terme imaginée autour de la souveraineté, de la programmabilité et d’opérations de confiance."
+            },
+            {
+              "title": "Télécom",
+              "description": "Des ambitions réseau et connectivité susceptibles de renforcer l’indépendance au niveau infrastructurel."
+            },
+            {
+              "title": "Sécurité",
+              "description": "La sécurité, la vérification, la confiance et la défense opérationnelle comme composants natifs de l’écosystème."
+            }
+          ]
+        },
+        "method": {
+          "eyebrow": "Comment nous construisons",
+          "title": "La méthode est itérative, documentée et guidée par une discipline d’ingénierie plutôt que par des signaux artificiels d’échelle.",
+          "description": "SGE se construit par itérations progressives, documentation d’architecture, design orienté confiance et exécution pragmatique. L’IA est considérée comme un accélérateur, pas comme un substitut à la rigueur produit, infrastructure ou sécurité.",
+          "items": [
+            {
+              "title": "Itération",
+              "description": "Avancer par étapes, clarifier les priorités et laisser la structure émerger à travers une implémentation réelle."
+            },
+            {
+              "title": "Méthodes ouvertes",
+              "description": "Utiliser l’ouverture comme un moyen d’améliorer la qualité, la lisibilité et la résilience à long terme."
+            },
+            {
+              "title": "Documentation",
+              "description": "Expliquer les systèmes, les décisions et les niveaux de maturité pour que l’écosystème reste compréhensible."
+            },
+            {
+              "title": "Sécurité dès la construction",
+              "description": "Traiter la confiance, l’identité et la vérification comme des entrées de design dès le départ."
+            },
+            {
+              "title": "Cohérence de conception",
+              "description": "Construire des produits et des récits qui se répondent à l’échelle de l’écosystème public."
+            },
+            {
+              "title": "Pensée infrastructure",
+              "description": "Veiller à ce que services, produits et gouvernance reposent sur des couches techniques cohérentes."
+            },
+            {
+              "title": "Automatisation",
+              "description": "Automatiser les opérations et les tâches répétitives lorsque cela améliore la fiabilité et la concentration."
+            },
+            {
+              "title": "IA comme accélérateur",
+              "description": "Utiliser l’IA pour aller plus vite là où c’est utile, tout en gardant le jugement humain et la maîtrise du système au centre."
             }
           ]
         },
         "timeline": {
-          "eyebrow": "Timeline",
-          "title": "Une progression institutionnelle et technique.",
-          "description": "La trajectoire ne promet pas des jalons dates a l'avance; elle rend visible une direction de construction.",
+          "eyebrow": "Chronologie",
+          "title": "Une chronologie sobre, centrée sur une progression réelle plutôt que sur des jalons inventés.",
+          "description": "La chronologie ci-dessous est volontairement honnête. Elle rend visible une direction de construction et de maturation institutionnelle sans attribuer de fausses dates à des accomplissements encore à venir.",
           "items": [
             {
-              "label": "Phase 01",
-              "title": "Clarifier la vision, l'architecture et les premiers points d'entree publics.",
-              "description": "Cette etape donne une base editoriale et produit plus lisible a l'ensemble du projet."
+              "label": "Étape 01",
+              "title": "Fondation de la vision",
+              "description": "Le projet commence par la définition d’une raison d’être : pourquoi une technologie plus ouverte, plus souveraine et plus compréhensible est nécessaire."
             },
             {
-              "label": "Phase 02",
-              "title": "Relier davantage les experiences de travail, les plateformes et les fondations communes.",
-              "description": "L'objectif est de rendre l'ecosysteme plus integre sans perdre en modularite."
+              "label": "Étape 02",
+              "title": "Premiers produits et prototypes",
+              "description": "Les premières logiques produit et infrastructure prennent forme à travers une exploration technique concrète."
             },
             {
-              "label": "Phase 03",
-              "title": "Faire emerger un ecosysteme plus independant, europeen et interoperable.",
-              "description": "La valeur long terme repose sur des fondations solides, une gouvernance lisible et des collaborations durables."
+              "label": "Étape 03",
+              "title": "Site public et structuration de l’écosystème",
+              "description": "L’écosystème devient plus lisible grâce à des surfaces publiques plus claires, un récit plus cohérent et une architecture produit mieux exprimée."
+            },
+            {
+              "label": "Étape 04",
+              "title": "Expansion internationale future",
+              "description": "La stratégie régionale, la structuration internationale et les trajectoires d’adoption s’affirment plus clairement avec le temps."
+            },
+            {
+              "label": "Étape 05",
+              "title": "Maturité plateforme de long terme",
+              "description": "L’objectif de long terme est un écosystème technologique durable avec davantage de confiance, d’exécution et de profondeur opérationnelle."
             }
           ]
         },
-        "finalCta": {
-          "eyebrow": "Trajectory",
-          "title": "La trajectoire de SGE reste ambitieuse, mais elle se construit sans fiction.",
-          "description": "Notre priorite est de transformer cette direction en briques reelles, utiles et durables avant d'elargir l'ensemble."
+        "principles": {
+          "eyebrow": "Principes fondamentaux",
+          "title": "Quelques principes définissent le type d’entreprise et d’écosystème que SGE veut devenir.",
+          "description": "Ces principes sont simples, mais ils imposent un standard exigeant. Ils permettent de garder l’ambition crédible pendant que l’entreprise est encore en construction.",
+          "items": [
+            {
+              "title": "Construire ouvertement.",
+              "description": "Préférer la transparence, la documentation et les systèmes explicables à l’opacité."
+            },
+            {
+              "title": "Penser long terme.",
+              "description": "Concevoir des fondations capables de soutenir des années d’itération plutôt que des signaux éphémères."
+            },
+            {
+              "title": "Respecter les utilisateurs.",
+              "description": "Traiter la confidentialité, la clarté et l’utilité produit comme des responsabilités, pas comme des options."
+            },
+            {
+              "title": "Rester indépendant.",
+              "description": "Réduire les dépendances fragiles lorsqu’elles affaiblissent la confiance, la souveraineté ou la liberté stratégique."
+            },
+            {
+              "title": "Concevoir pour la confiance.",
+              "description": "Faire émerger la confiance par l’architecture, les processus et des comportements vérifiables."
+            },
+            {
+              "title": "Créer une infrastructure utile.",
+              "description": "Se concentrer sur des systèmes qui répondent à de vrais problèmes pour de vraies organisations et de vrais développeurs."
+            }
+          ]
         },
-        "expansion": {
-          "sections": [
+        "cta": {
+          "eyebrow": "Ce n’est que le début",
+          "title": "Ce n’est que le début.",
+          "description": "Sky Genesis Enterprise est encore en construction, mais la direction est claire : poser les fondations d’un écosystème technologique ouvert, souverain et indépendant avec une vraie discipline de long terme.",
+          "actions": [
             {
-              "eyebrow": "Positionnement",
-              "title": "Situer la trajectoire SGE dans l’écosystème global.",
-              "description": "Cette section précise comment la trajectoire SGE se relie à genèse, réponse, phases de construction et continuité, sans réduire SGE à une page institutionnelle isolée.",
-              "items": [
-                {
-                  "title": "Rôle",
-                  "description": "Expliquer la fonction de la trajectoire SGE pour lecteurs qui veulent comprendre l’origine et l’évolution du projet."
-                },
-                {
-                  "title": "Frontières",
-                  "description": "Clarifier ce qui est déjà structuré, ce qui reste en construction et ce qui nécessite un échange direct."
-                },
-                {
-                  "title": "Continuité",
-                  "description": "Relier cette page aux plateformes, solutions, produits et ressources publiques de SGE."
-                }
-              ]
+              "label": "Explorer l’écosystème",
+              "href": "/platform"
             },
             {
-              "eyebrow": "Modèle opérationnel",
-              "title": "Transformer le discours en système exploitable.",
-              "description": "SGE présente la trajectoire SGE comme une partie d’un modèle opératoire, avec responsabilités, preuves et parcours de lecture.",
-              "items": [
-                {
-                  "title": "Responsabilités",
-                  "description": "Identifier les équipes, sujets ou interlocuteurs concernés par relier l’histoire à des choix techniques, organisationnels et souverains."
-                },
-                {
-                  "title": "Rituels",
-                  "description": "Structurer les revues, décisions et mises à jour qui gardent la page utile dans le temps."
-                },
-                {
-                  "title": "Lisibilité",
-                  "description": "Maintenir une information compréhensible pour lecteurs qui veulent comprendre l’origine et l’évolution du projet."
-                }
-              ]
+              "label": "Rejoindre la mission",
+              "href": "/company/careers",
+              "variant": "outline"
             },
             {
-              "eyebrow": "Gouvernance",
-              "title": "Garder des décisions lisibles et défendables.",
-              "description": "La gouvernance donne un cadre aux choix liés à genèse, réponse, phases de construction et continuité, en évitant les promesses floues.",
-              "items": [
-                {
-                  "title": "Critères",
-                  "description": "Documenter les critères qui orientent priorités, exclusions et arbitrages."
-                },
-                {
-                  "title": "Revue",
-                  "description": "Relire régulièrement jalons, décisions, apprentissages et orientations assumées pour maintenir cohérence et précision."
-                },
-                {
-                  "title": "Responsabilité",
-                  "description": "Associer les décisions aux bons niveaux de validation et de communication."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Confiance",
-              "title": "Construire une relation publique sans exagération.",
-              "description": "La crédibilité de la trajectoire SGE dépend d’un langage exact, d’une maturité expliquée et d’un accès clair aux preuves.",
-              "items": [
-                {
-                  "title": "Précision",
-                  "description": "Nommer les capacités réelles sans transformer une direction en promesse de disponibilité."
-                },
-                {
-                  "title": "Preuves",
-                  "description": "Rattacher les affirmations à jalons, décisions, apprentissages et orientations assumées."
-                },
-                {
-                  "title": "Limites",
-                  "description": "Indiquer les zones exploratoires, futures ou dépendantes d’un cadrage spécifique."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Infrastructure narrative",
-              "title": "Relier l’entreprise à son architecture technique.",
-              "description": "Même les pages company doivent rappeler que SGE construit un écosystème d’infrastructure, pas seulement une marque.",
-              "items": [
-                {
-                  "title": "Plateforme",
-                  "description": "Connecter le propos aux domaines cloud, développeur, télécom, finance, intelligence et média."
-                },
-                {
-                  "title": "Solutions",
-                  "description": "Montrer comment les organisations peuvent comprendre SGE par leurs contextes opérationnels."
-                },
-                {
-                  "title": "Produits",
-                  "description": "Situer les surfaces visibles comme des expressions du socle plutôt que des offres isolées."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Souveraineté",
-              "title": "Ancrer la vision dans une trajectoire européenne durable.",
-              "description": "La souveraineté est traitée comme un ensemble de choix concrets : maîtrise, audit, données, dépendances et long terme.",
-              "items": [
-                {
-                  "title": "Maîtrise",
-                  "description": "Préserver la capacité à comprendre, opérer et faire évoluer les systèmes critiques."
-                },
-                {
-                  "title": "Indépendance",
-                  "description": "Limiter les dépendances opaques quand elles fragilisent la trajectoire de l’écosystème."
-                },
-                {
-                  "title": "Durabilité",
-                  "description": "Construire pour une continuité organisationnelle et technique au-delà des cycles courts."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Publics concernés",
-              "title": "Adapter la lecture à lecteurs qui veulent comprendre l’origine et l’évolution du projet.",
-              "description": "Chaque public doit pouvoir comprendre rapidement où poursuivre : plateforme, solutions, contact, carrière, presse ou documentation.",
-              "items": [
-                {
-                  "title": "Organisations",
-                  "description": "Identifier les besoins d’adoption, de souveraineté, de sécurité ou de transformation."
-                },
-                {
-                  "title": "Talents",
-                  "description": "Comprendre les standards de contribution, la culture et les domaines de construction."
-                },
-                {
-                  "title": "Partenaires",
-                  "description": "Évaluer les formes de collaboration compatibles avec la cohérence SGE."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Transparence",
-              "title": "Rendre la maturité lisible au lieu de masquer l’incertitude.",
-              "description": "Sky Genesis Enterprise doit indiquer clairement ce qui est actif, consolidé, exploratoire ou dépendant de futurs jalons.",
-              "items": [
-                {
-                  "title": "Statut",
-                  "description": "Employer un vocabulaire cohérent pour distinguer direction, prototype, disponibilité et service opérationnel."
-                },
-                {
-                  "title": "Contexte",
-                  "description": "Expliquer pourquoi certaines briques sont présentées comme trajectoires plutôt que comme offres finalisées."
-                },
-                {
-                  "title": "Évolution",
-                  "description": "Mettre à jour les contenus quand la maturité réelle change."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Écosystème",
-              "title": "Faire circuler le visiteur entre les bons points d’entrée.",
-              "description": "La page doit aider à passer de la trajectoire SGE vers les domaines pertinents du site officiel.",
-              "items": [
-                {
-                  "title": "Plateforme",
-                  "description": "Comprendre les fondations techniques qui soutiennent l’ambition."
-                },
-                {
-                  "title": "Solutions",
-                  "description": "Lire les contextes opérationnels qui traduisent l’écosystème pour les organisations."
-                },
-                {
-                  "title": "Contact",
-                  "description": "Ouvrir un échange lorsque le contexte exige un cadrage direct."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Exécution",
-              "title": "Aligner ambition, méthode et suivi.",
-              "description": "La valeur de la trajectoire SGE dépend de sa capacité à guider des actions concrètes, pas seulement à présenter une intention.",
-              "items": [
-                {
-                  "title": "Priorités",
-                  "description": "Relier les contenus aux priorités de construction et aux besoins réels du public."
-                },
-                {
-                  "title": "Méthode",
-                  "description": "Favoriser une approche progressive, documentée et compatible avec la sécurité."
-                },
-                {
-                  "title": "Suivi",
-                  "description": "Maintenir les pages comme des repères vivants de l’écosystème public."
-                }
-              ]
-            },
-            {
-              "eyebrow": "Prochaine lecture",
-              "title": "Donner une suite claire après cette page.",
-              "description": "La page doit terminer sur des chemins de compréhension complémentaires, même avant le CTA final.",
-              "items": [
-                {
-                  "title": "Comprendre",
-                  "description": "Lire l’histoire, les valeurs ou la mission selon l’intention du visiteur."
-                },
-                {
-                  "title": "Explorer",
-                  "description": "Passer vers plateforme, solutions ou produits pour voir l’architecture en action."
-                },
-                {
-                  "title": "Échanger",
-                  "description": "Utiliser les routes de contact lorsque la demande nécessite un interlocuteur humain."
-                }
-              ]
+              "label": "Découvrir la direction",
+              "href": "/company/leadership",
+              "variant": "outline"
             }
           ]
         }
@@ -15886,7 +16076,9 @@
         },
         "social": {
           "github": "GitHub",
-          "linkedin": "LinkedIn"
+          "linkedin": "LinkedIn",
+          "instagram": "Instagram",
+          "twitter": "Twitter"
         },
         "founder": {
           "eyebrow": "Porté par le fondateur",
@@ -15928,6 +16120,73 @@
             {
               "title": "Exigence durable",
               "description": "La vitesse ne doit pas detruire la cohesion technique ou editoriale du projet."
+            }
+          ]
+        },
+        "futurePositions": {
+          "title": "Future Leadership Positions",
+          "subtitle": "As Sky Genesis Enterprise grows, additional leadership positions will be established to support new products, business units and international expansion.",
+          "badge": "Open Position",
+          "roles": [
+            {
+              "title": "Chief Financial Officer (CFO)",
+              "department": "Finance",
+              "description": "Responsible for finance, treasury, budgeting, investment planning and financial strategy."
+            },
+            {
+              "title": "Chief Legal Officer (CLO)",
+              "department": "Legal & Governance",
+              "description": "Responsible for legal affairs, regulatory compliance, contracts and corporate governance."
+            },
+            {
+              "title": "Chief Infrastructure Officer (CIO)",
+              "department": "Infrastructure",
+              "description": "Responsible for cloud infrastructure, datacenters, networking, hosting platforms and operational resilience."
+            },
+            {
+              "title": "Chief Product Officer (CPO)",
+              "department": "Product",
+              "description": "Responsible for product strategy, ecosystem consistency and long-term product vision."
+            },
+            {
+              "title": "Chief Design Officer (CDO)",
+              "department": "Design",
+              "description": "Responsible for user experience, interface design, branding and design systems."
+            },
+            {
+              "title": "Director of Product Management",
+              "department": "Product Management",
+              "description": "Responsible for coordinating product roadmaps, priorities and execution across teams."
+            },
+            {
+              "title": "Director of Developer Experience",
+              "department": "Developer Platform",
+              "description": "Responsible for developer tools, APIs, SDKs, documentation and developer adoption."
+            },
+            {
+              "title": "Director of Open Source",
+              "department": "Open Source",
+              "description": "Responsible for open-source governance, community engagement and project sustainability."
+            },
+            {
+              "title": "Chief Marketing Officer (CMO)",
+              "department": "Marketing",
+              "description": "Responsible for marketing strategy, positioning, campaigns and brand awareness."
+            },
+            {
+              "title": "Director of Communications",
+              "department": "Communications",
+              "description": "Responsible for Academy, Podcast, Newsroom, media relations and editorial strategy."
+            },
+            {
+              "title": "Director of Business Development",
+              "department": "Business Development",
+              "description": "Responsible for partnerships, commercial opportunities and strategic growth initiatives."
+            },
+            {
+              "title": "Chief General Human Resource (DGRH)",
+              "department": "People & Culture",
+              "description": "Responsible for recruitment, organizational development, culture and talent growth."
             }
           ]
         },
@@ -16157,7 +16416,7 @@
         "structure": {
           "eyebrow": "Structure de direction",
           "title": "Leadership Structure",
-          "description": "La direction actuelle de SGE reste volontairement lisible : une direction exécutive fondatrice, complétée par des responsabilités technologiques et cybersécurité clairement identifiées.",
+          "description": "La direction actuelle de SGE s’appuie sur une équipe fondatrice resserrée, avec des responsabilités exécutives, technologiques et cybersécurité clairement identifiées.",
           "groups": [
             {
               "title": "Executive Leadership",
@@ -16165,12 +16424,14 @@
               "members": [
                 {
                   "name": "Liam Dispa",
-                  "role": "CEO & Fondateur",
+                  "role": "CEO & Co-Fondateur",
                   "department": "Executive Office",
                   "bio": "Fondateur de Sky Genesis Enterprise, responsable de la vision globale du groupe, de la stratégie produit, de la direction générale, du développement international et de la construction de l’écosystème SGE.",
                   "image": "/images/IMG_0019.jpg",
                   "github": "https://github.com/liamvnastoria",
-                  "linkedin": "https://www.linkedin.com/in/liamdispa/"
+                  "linkedin": "https://www.linkedin.com/in/liamdispa/",
+                  "instagram": "https://www.instagram.com/liamvonastoria",
+                  "twitter": "https://x.com/liamvonastoria"
                 },
                 {
                   "name": "Mathis Luymoyen",
@@ -16179,7 +16440,9 @@
                   "bio": "Co-fondateur de Sky Genesis Enterprise, responsable de la direction générale, de la coordination opérationnelle, du développement interne et de l’accompagnement de la croissance du groupe.",
                   "image": "",
                   "github": "https://github.com/Zephiris1450",
-                  "linkedin": ""
+                  "linkedin": "",
+                  "instagram": "",
+                  "twitter": ""
                 }
               ]
             },
@@ -16189,21 +16452,25 @@
               "members": [
                 {
                   "name": "Alane Jaunet",
-                  "role": "CTO",
+                  "role": "CTO / Directeur Technique",
                   "department": "Technology",
                   "bio": "Responsable de la direction technologique de Sky Genesis Enterprise, de l’architecture technique, des choix d’ingénierie, de la qualité logicielle et de l’évolution des plateformes du groupe.",
                   "image": "",
                   "github": "https://github.com/Alane38",
-                  "linkedin": "https://www.linkedin.com/in/alane-jaunet/"
+                  "linkedin": "https://www.linkedin.com/in/alane-jaunet/",
+                  "instagram": "",
+                  "twitter": ""
                 },
                 {
                   "name": "Thomas",
-                  "role": "Directeur Cyber",
+                  "role": "Directeur Cybersécurité",
                   "department": "Cybersecurity",
                   "bio": "Responsable de la stratégie cybersécurité de Sky Genesis Enterprise, de la sécurité des infrastructures, de la protection des systèmes, de la gestion des risques et de la supervision des pratiques de sécurité.",
-                  "image": "",
+                  "image": "/images/Elliot_Alderson.jpg",
                   "github": "https://github.com/lp9r7c",
-                  "linkedin": ""
+                  "linkedin": "",
+                  "instagram": "",
+                  "twitter": ""
                 }
               ]
             }
