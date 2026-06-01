@@ -12,8 +12,8 @@ importers:
         specifier: ^8.0.2
         version: 8.3.1
       '@loglayer/transport-pino':
-        specifier: ^2.2.16
-        version: 2.2.17(pino@10.3.1)
+        specifier: ^3.2.0
+        version: 3.2.0(pino@10.3.1)
       '@prisma/client':
         specifier: ^7.3.0
         version: 7.3.0(prisma@7.2.0)(typescript@5.9.3)
@@ -73,8 +73,8 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.74.0)
       '@loglayer/transport-pino':
-        specifier: ^3.0.2
-        version: 3.0.2(pino@10.3.1)
+        specifier: ^3.2.0
+        version: 3.2.0(pino@10.3.1)
       '@next/third-parties':
         specifier: 16.0.7
         version: 16.0.7(next@16.2.4)(react@19.2.6)
@@ -1932,23 +1932,18 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
-  /@loglayer/transport-pino@2.2.17(pino@10.3.1):
-    resolution: {integrity: sha512-c4Lc+nu+NTdG7iTvsOJ7BzMYfqmm7+F2CjJnvo0X9OKYVbJIlK4FZOB9cTI/QTi3d/+2D21mTPwhOI2ejQbuGQ==}
+  /@loglayer/shared@4.3.0:
+    resolution: {integrity: sha512-jlNeh0+uOGlKMhKk1Sx9Qdk7ni+I3hHZz2LB7Lp8BmUnqHD0TGRhsp2rV/zMiszSYUwI8XGvNrZttpxBL05U5A==}
     engines: {node: '>=18'}
-    peerDependencies:
-      pino: '*'
-    dependencies:
-      '@loglayer/transport': 2.3.13
-      pino: 10.3.1
     dev: false
 
-  /@loglayer/transport-pino@3.0.2(pino@10.3.1):
-    resolution: {integrity: sha512-JQnYQRctO0nI5L0Mk26uwngK52fMpkRs9qb7N3tCgSoAjFd3DQZyxV2FhcAsgpp45utJzczWNxmlB5788PJEXA==}
+  /@loglayer/transport-pino@3.2.0(pino@10.3.1):
+    resolution: {integrity: sha512-Hg8ogflMZy/v7ogkbRPHzUEp4LSlLkEaNk2Qh5Q8NCBUBGPj496Xb5pBnWfg3f00Vz1A4Rg53pka1REMHRfXYw==}
     engines: {node: '>=18'}
     peerDependencies:
       pino: '*'
     dependencies:
-      '@loglayer/transport': 3.0.2
+      '@loglayer/transport': 3.2.0
       pino: 10.3.1
     dev: false
 
@@ -1964,6 +1959,13 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       '@loglayer/shared': 4.1.0
+    dev: false
+
+  /@loglayer/transport@3.2.0:
+    resolution: {integrity: sha512-UMnlJggWIAYzZv8PN9dR3v7qMDG7vKVyPJjyfypBa8Y2yLk/4XzDp2fAvSd1OJKWQh03lO7GfGpo87SSYoIANg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@loglayer/shared': 4.3.0
     dev: false
 
   /@manypkg/find-root@1.1.0:
