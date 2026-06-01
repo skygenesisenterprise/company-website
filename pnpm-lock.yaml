@@ -71,7 +71,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.74.0)
+        version: 5.2.2(react-hook-form@7.77.0)
       '@loglayer/transport-pino':
         specifier: ^3.0.2
         version: 3.0.2(pino@10.3.1)
@@ -235,8 +235,8 @@ importers:
         specifier: ^19.2.6
         version: 19.2.6(react@19.2.6)
       react-hook-form:
-        specifier: ^7.72.0
-        version: 7.74.0(react@19.2.6)
+        specifier: ^7.77.0
+        version: 7.77.0(react@19.2.6)
       react-markdown:
         specifier: ^10.1.0
         version: 10.1.0(@types/react@19.2.15)(react@19.2.6)
@@ -1457,13 +1457,13 @@ packages:
     dependencies:
       hono: 4.10.6
 
-  /@hookform/resolvers@5.2.2(react-hook-form@7.74.0):
+  /@hookform/resolvers@5.2.2(react-hook-form@7.77.0):
     resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
     peerDependencies:
       react-hook-form: ^7.55.0
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.74.0(react@19.2.6)
+      react-hook-form: 7.77.0(react@19.2.6)
     dev: false
 
   /@humanfs/core@0.19.2:
@@ -6794,7 +6794,7 @@ packages:
       openapi-sampler: 1.7.3
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
-      react-hook-form: 7.74.0(react@19.2.6)
+      react-hook-form: 7.77.0(react@19.2.6)
       remark: 15.0.1
       remark-rehype: 11.1.2
       xml-js: 1.6.11
@@ -9313,8 +9313,8 @@ packages:
       react: 19.2.6
       scheduler: 0.27.0
 
-  /react-hook-form@7.74.0(react@19.2.6):
-    resolution: {integrity: sha512-yR6wHr99p9wFv686jhRWVSFhUvDvNbdUf2dKlbno8/VKOCuoNobDGC6S+M2dua9A9Yo8vpcrp8assIYbsZCQ9g==}
+  /react-hook-form@7.77.0(react@19.2.6):
+    resolution: {integrity: sha512-Sslh9YDYc0GDlWT/lxasnIduNo4v3yyvqRGvmGKUre5AFjDs/HV9/OafHGD8d+sB2yoL4UIL9L8X9i0WlZZebg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
