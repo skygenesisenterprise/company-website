@@ -15,8 +15,8 @@ importers:
         specifier: ^2.2.16
         version: 2.2.17(pino@10.3.1)
       '@prisma/client':
-        specifier: ^7.3.0
-        version: 7.3.0(prisma@7.2.0)(typescript@5.9.3)
+        specifier: ^7.8.0
+        version: 7.8.0(prisma@7.2.0)(typescript@5.9.3)
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.15)(react@19.2.6)
@@ -79,8 +79,8 @@ importers:
         specifier: 16.0.7
         version: 16.0.7(next@16.2.4)(react@19.2.6)
       '@prisma/client':
-        specifier: 7.7.0
-        version: 7.7.0(prisma@7.6.0)(typescript@6.0.3)
+        specifier: 7.8.0
+        version: 7.8.0(prisma@7.6.0)(typescript@6.0.3)
       '@radix-ui/react-accordion':
         specifier: 1.2.12
         version: 1.2.12(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
@@ -2309,16 +2309,12 @@ packages:
     resolution: {integrity: sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg==}
     dev: false
 
-  /@prisma/client-runtime-utils@7.3.0:
-    resolution: {integrity: sha512-dG/ceD9c+tnXATPk8G+USxxYM9E6UdMTnQeQ+1SZUDxTz7SgQcfxEqafqIQHcjdlcNK/pvmmLfSwAs3s2gYwUw==}
+  /@prisma/client-runtime-utils@7.8.0:
+    resolution: {integrity: sha512-5NQZztQ0oY/ADFkmd9gPuweH5A1/CCY8YQPorLLO0Mu6a87mY5gsnDkzmFmIHs9NFaLnZojzgddFVN4RpKYrdw==}
     dev: false
 
-  /@prisma/client-runtime-utils@7.7.0:
-    resolution: {integrity: sha512-BLyd0UpFYOtyJFTHm7jS9vesHW7P83abibodQMiIofqjBKzDHQ1VAsQkdfvXyYDkPlONPfOTz7/rv3x/+CQqvQ==}
-    dev: false
-
-  /@prisma/client@7.3.0(prisma@7.2.0)(typescript@5.9.3):
-    resolution: {integrity: sha512-FXBIxirqQfdC6b6HnNgxGmU7ydCPEPk7maHMOduJJfnTP+MuOGa15X4omjR/zpPUUpm8ef/mEFQjJudOGkXFcQ==}
+  /@prisma/client@7.8.0(prisma@7.2.0)(typescript@5.9.3):
+    resolution: {integrity: sha512-HFp3Dawv/3sU3JtlPha90IB+48lS7zHiH4LKZPjmcE8YH5P9DOXGPvo8dqOtO7MqLDd1p2hOWMcFlRT1DMblHw==}
     engines: {node: ^20.19 || ^22.12 || >=24.0}
     peerDependencies:
       prisma: '*'
@@ -2329,13 +2325,13 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@prisma/client-runtime-utils': 7.3.0
+      '@prisma/client-runtime-utils': 7.8.0
       prisma: 7.2.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)(typescript@5.9.3)
       typescript: 5.9.3
     dev: false
 
-  /@prisma/client@7.7.0(prisma@7.6.0)(typescript@6.0.3):
-    resolution: {integrity: sha512-5Ar4OsZpJ54s21sy5oDNNW9gQtd4NuxCaiM7+JDTOU07D6VvlpLjYzAVCMB1+JzokN+08dAVomlx+b7bhJd3ww==}
+  /@prisma/client@7.8.0(prisma@7.6.0)(typescript@6.0.3):
+    resolution: {integrity: sha512-HFp3Dawv/3sU3JtlPha90IB+48lS7zHiH4LKZPjmcE8YH5P9DOXGPvo8dqOtO7MqLDd1p2hOWMcFlRT1DMblHw==}
     engines: {node: ^20.19 || ^22.12 || >=24.0}
     peerDependencies:
       prisma: '*'
@@ -2346,7 +2342,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@prisma/client-runtime-utils': 7.7.0
+      '@prisma/client-runtime-utils': 7.8.0
       prisma: 7.6.0(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)(typescript@6.0.3)
       typescript: 6.0.3
     dev: false
