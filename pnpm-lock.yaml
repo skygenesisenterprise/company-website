@@ -19,7 +19,7 @@ importers:
         version: 7.3.0(prisma@7.2.0)(typescript@5.9.3)
       '@radix-ui/react-slot':
         specifier: ^1.2.4
-        version: 1.2.4(@types/react@19.2.15)(react@19.2.6)
+        version: 1.2.4(@types/react@19.2.16)(react@19.2.7)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -59,7 +59,7 @@ importers:
         version: 3.8.3
       prisma:
         specifier: 7.2.0
-        version: 7.2.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)(typescript@5.9.3)
+        version: 7.2.0(@types/react@19.2.16)(react-dom@19.2.7)(react@19.2.7)(typescript@5.9.3)
       tsx:
         specifier: ^4.20.6
         version: 4.22.3
@@ -188,7 +188,7 @@ importers:
         version: 12.38.0(react-dom@19.2.6)(react@19.2.6)
       fumadocs-core:
         specifier: 16.2.3
-        version: 16.2.3(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+        version: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
       fumadocs-mdx:
         specifier: 14.1.0
         version: 14.1.0(fumadocs-core@16.2.3)(next@16.2.4)(react@19.2.6)
@@ -197,7 +197,7 @@ importers:
         version: 10.1.1(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(fumadocs-ui@16.2.3)(prettier@3.8.3)(react-dom@19.2.6)(react@19.2.6)
       fumadocs-ui:
         specifier: 16.2.3
-        version: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
+        version: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
       google:
         specifier: link:next/fond/google
         version: link:next/fond/google
@@ -208,8 +208,8 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0
       lucide-react:
-        specifier: ^1.0.1
-        version: 1.11.0(react@19.2.6)
+        specifier: ^1.17.0
+        version: 1.17.0(react@19.2.6)
       next:
         specifier: ^16.2.4
         version: 16.2.4(@babel/core@7.29.0)(react-dom@19.2.6)(react@19.2.6)
@@ -245,7 +245,7 @@ importers:
         version: 4.10.0(react-dom@19.2.6)(react@19.2.6)
       recharts:
         specifier: 3.8.1
-        version: 3.8.1(@types/react@19.2.15)(react-dom@19.2.6)(react-is@19.2.6)(react@19.2.6)(redux@5.0.1)
+        version: 3.8.1(@types/react@19.2.15)(react-dom@19.2.6)(react-is@19.2.7)(react@19.2.6)(redux@5.0.1)
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
@@ -2332,7 +2332,7 @@ packages:
         optional: true
     dependencies:
       '@prisma/client-runtime-utils': 7.3.0
-      prisma: 7.2.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)(typescript@5.9.3)
+      prisma: 7.2.0(@types/react@19.2.16)(react-dom@19.2.7)(react@19.2.7)(typescript@5.9.3)
       typescript: 5.9.3
     dev: false
 
@@ -2512,16 +2512,16 @@ packages:
     transitivePeerDependencies:
       - '@types/react-dom'
 
-  /@prisma/studio-core@0.9.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6):
+  /@prisma/studio-core@0.9.0(@types/react@19.2.16)(react-dom@19.2.7)(react@19.2.7):
     resolution: {integrity: sha512-xA2zoR/ADu/NCSQuriBKTh6Ps4XjU0bErkEcgMfnSGh346K1VI7iWKnoq1l2DoxUqiddPHIEWwtxJ6xCHG6W7g==}
     peerDependencies:
       '@types/react': ^18.0.0 || ^19.0.0
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
     dependencies:
-      '@types/react': 19.2.15
-      react: 19.2.6
-      react-dom: 19.2.6(react@19.2.6)
+      '@types/react': 19.2.16
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
   /@radix-ui/number@1.1.1:
     resolution: {integrity: sha512-MkKCwxlXTgz6CFoJx3pCwn07GKp36+aZyu/u2Ln2VrA5DcdyCZkASEDBTd8x5whTQQL5CiYf4prXKLcgQdv29g==}
@@ -2735,6 +2735,19 @@ packages:
     dependencies:
       '@types/react': 19.2.15
       react: 19.2.6
+
+  /@radix-ui/react-compose-refs@1.1.2(@types/react@19.2.16)(react@19.2.7):
+    resolution: {integrity: sha512-z4eqJvfiNnFMHIIvXP3CY57y2WJs5g2v3X0zm9mEJkrkNv4rDxu+sg9Jh8EkXyeqBkB7SOcboo9dMVqhyrACIg==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 19.2.16
+      react: 19.2.7
+    dev: false
 
   /@radix-ui/react-context-menu@2.2.16(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6):
     resolution: {integrity: sha512-O8morBEW+HsVG28gYDZPTrT9UUovQUlJue5YO836tiTJhuIWBm/zQHc7j388sHWtdH/xUZurK9olD2+pcqx5ww==}
@@ -3444,6 +3457,20 @@ packages:
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.2.15)(react@19.2.6)
       '@types/react': 19.2.15
       react: 19.2.6
+    dev: false
+
+  /@radix-ui/react-slot@1.2.4(@types/react@19.2.16)(react@19.2.7):
+    resolution: {integrity: sha512-Jl+bCv8HxKnlTLVrcDE8zTMJ09R9/ukw4qBs/oZClOfoQk/cOTbDn+NceXfV7j09YPVQUryJPHurafcSg6EVKA==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.2.16)(react@19.2.7)
+      '@types/react': 19.2.16
+      react: 19.2.7
     dev: false
 
   /@radix-ui/react-switch@1.2.6(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6):
@@ -4377,6 +4404,11 @@ packages:
 
   /@types/react@19.2.15:
     resolution: {integrity: sha512-eRwcGNHve+E8qtEQSSRl6urh+rFop4v8gm6O8rGv25CodbvFdLjA1vVQ1KkiFE0w0UPOnb8tDiFKL5lp0rtY5Q==}
+    dependencies:
+      csstype: 3.2.3
+
+  /@types/react@19.2.16:
+    resolution: {integrity: sha512-esJiCAnl0kfpNdE69f3So4WJUXy95dLZydX0KwK46riIHDzHM7O9Vtf9xCHW0PXIqvgqNrswl522kA/5yx+F4w==}
     dependencies:
       csstype: 3.2.3
 
@@ -6641,7 +6673,7 @@ packages:
     dev: true
     optional: true
 
-  /fumadocs-core@16.2.3(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6):
+  /fumadocs-core@16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6):
     resolution: {integrity: sha512-HFtS0Gwf4izYbmkB8gj0sQWv8G9yyI8tM5RQ3E8fSD5IRVtBWhPq05zOIIM523XUGfDBvm/qDOquDqVF5NDO+A==}
     peerDependencies:
       '@mixedbread/sdk': ^0.19.0
@@ -6692,7 +6724,7 @@ packages:
       hast-util-to-estree: 3.1.3
       hast-util-to-jsx-runtime: 2.3.6
       image-size: 2.0.2
-      lucide-react: 1.11.0(react@19.2.6)
+      lucide-react: 1.17.0(react@19.2.6)
       negotiator: 1.0.0
       next: 16.2.4(@babel/core@7.29.0)(react-dom@19.2.6)(react@19.2.6)
       npm-to-yarn: 3.0.1
@@ -6734,7 +6766,7 @@ packages:
       chokidar: 5.0.0
       esbuild: 0.27.7
       estree-util-value-to-estree: 3.5.0
-      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
       js-yaml: 4.1.1
       mdast-util-to-markdown: 2.1.2
       next: 16.2.4(@babel/core@7.29.0)(react-dom@19.2.6)(react@19.2.6)
@@ -6778,8 +6810,8 @@ packages:
       '@types/react': 19.2.15
       ajv: 8.20.0
       class-variance-authority: 0.7.1
-      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
-      fumadocs-ui: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
+      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+      fumadocs-ui: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
       github-slugger: 2.0.0
       hast-util-to-jsx-runtime: 2.3.6
       js-yaml: 4.1.1
@@ -6798,7 +6830,7 @@ packages:
       - supports-color
     dev: false
 
-  /fumadocs-ui@16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6):
+  /fumadocs-ui@16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6):
     resolution: {integrity: sha512-VsTz6qNDvWCeMhUa688P1G79PGW0odO6SjjM1psGZQ3T/LRQyhNY32i0WHb6aota8X4zYaOnfl6bK2CMOlRQvA==}
     peerDependencies:
       '@types/react': '*'
@@ -6826,7 +6858,7 @@ packages:
       '@radix-ui/react-tabs': 1.1.13(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
       '@types/react': 19.2.15
       class-variance-authority: 0.7.1
-      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.11.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
       lodash.merge: 4.6.2
       next: 16.2.4(@babel/core@7.29.0)(react-dom@19.2.6)(react@19.2.6)
       next-themes: 0.4.6(react-dom@19.2.6)(react@19.2.6)
@@ -7971,8 +8003,8 @@ packages:
     resolution: {integrity: sha512-DqC6n3QQ77zdFpCMASA1a3Jlb64Hv2N2DciFGkO/4L9+q/IpIAuRlKOvCXabtRW6cQf8usbmM6BE/TOPysCdIA==}
     engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
 
-  /lucide-react@1.11.0(react@19.2.6):
-    resolution: {integrity: sha512-UOhjdztXCgdBReRcIhsvz2siIBogfv/lhJEIViCpLt924dO+GDms9T7DNoucI23s6kEPpe988m5N0D2ajnzb2g==}
+  /lucide-react@1.17.0(react@19.2.6):
+    resolution: {integrity: sha512-9FA9evdox/JQL5PT57fdA1x/yg8T7knJ98+zjTL3UfKza6pflQUUh3XtaQIHKvnsJw1lmsEyHVlt5jchYxOQ5w==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
     dependencies:
@@ -9160,7 +9192,7 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  /prisma@7.2.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)(typescript@5.9.3):
+  /prisma@7.2.0(@types/react@19.2.16)(react-dom@19.2.7)(react@19.2.7)(typescript@5.9.3):
     resolution: {integrity: sha512-jSdHWgWOgFF24+nRyyNRVBIgGDQEsMEF8KPHvhBBg3jWyR9fUAK0Nq9ThUmiGlNgq2FA7vSk/ZoCvefod+a8qg==}
     engines: {node: ^20.19 || ^22.12 || >=24.0}
     hasBin: true
@@ -9177,7 +9209,7 @@ packages:
       '@prisma/config': 7.2.0
       '@prisma/dev': 0.17.0(typescript@5.9.3)
       '@prisma/engines': 7.2.0
-      '@prisma/studio-core': 0.9.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
+      '@prisma/studio-core': 0.9.0(@types/react@19.2.16)(react-dom@19.2.7)(react@19.2.7)
       mysql2: 3.15.3
       postgres: 3.4.7
       typescript: 5.9.3
@@ -9309,6 +9341,14 @@ packages:
       react: 19.2.6
       scheduler: 0.27.0
 
+  /react-dom@19.2.7(react@19.2.7):
+    resolution: {integrity: sha512-t0BRVXvbiE/o20Hfw669rLbMCDWtYZLvmJigy2f0MxsXF+71pxhR3xOkspmsO8h3ZlNzyibAmtCa3l4lYKk6gQ==}
+    peerDependencies:
+      react: ^19.2.7
+    dependencies:
+      react: 19.2.7
+      scheduler: 0.27.0
+
   /react-hook-form@7.77.0(react@19.2.6):
     resolution: {integrity: sha512-Sslh9YDYc0GDlWT/lxasnIduNo4v3yyvqRGvmGKUre5AFjDs/HV9/OafHGD8d+sB2yoL4UIL9L8X9i0WlZZebg==}
     engines: {node: '>=18.0.0'}
@@ -9322,8 +9362,8 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react-is@19.2.6:
-    resolution: {integrity: sha512-XjBR15BhXuylgWGuslhDKqlSayuqvqBX91BP8pauG8kd1zY8kotkNWbXksTCNRarse4kuGbe2kIY05ARtwNIvw==}
+  /react-is@19.2.7:
+    resolution: {integrity: sha512-kZFnouyVv7eP/Phmrlo9FK+zcAdriZJvzxXHF1Sl1P377WSGe2G/JxVolhTrB/jeV47lKImhNUsijjHAAbcl/A==}
     dev: false
 
   /react-markdown@10.1.0(@types/react@19.2.15)(react@19.2.6):
@@ -9443,6 +9483,10 @@ packages:
     resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
     engines: {node: '>=0.10.0'}
 
+  /react@19.2.7:
+    resolution: {integrity: sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==}
+    engines: {node: '>=0.10.0'}
+
   /read-yaml-file@1.1.0:
     resolution: {integrity: sha512-VIMnQi/Z4HT2Fxuwg5KrY174U1VdUIASQVWXXyqtNRtxSr9IYkn1rsI6Tb6HsrHCmB7gVpNwX6JxPTHcH6IoTA==}
     engines: {node: '>=6'}
@@ -9476,7 +9520,7 @@ packages:
     engines: {node: '>= 12.13.0'}
     dev: false
 
-  /recharts@3.8.1(@types/react@19.2.15)(react-dom@19.2.6)(react-is@19.2.6)(react@19.2.6)(redux@5.0.1):
+  /recharts@3.8.1(@types/react@19.2.15)(react-dom@19.2.6)(react-is@19.2.7)(react@19.2.6)(redux@5.0.1):
     resolution: {integrity: sha512-mwzmO1s9sFL0TduUpwndxCUNoXsBw3u3E/0+A+cLcrSfQitSG62L32N69GhqUrrT5qKcAE3pCGVINC6pqkBBQg==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -9492,7 +9536,7 @@ packages:
       immer: 10.2.0
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
-      react-is: 19.2.6
+      react-is: 19.2.7
       react-redux: 9.2.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)
       reselect: 5.1.1
       tiny-invariant: 1.3.3
