@@ -94,7 +94,7 @@
 		"fumadocs-mdx": "14.1.0",
 		"fumadocs-openapi": "10.1.1",
 		"fumadocs-ui": "16.2.3",
-		"shiki": "3.19.0"
+		"shiki": "4.2.0"
   },
   "devDependencies": {
     "@capacitor/android": "^8.3.1",
