@@ -278,8 +278,8 @@ importers:
         version: 5.0.12(@types/react@19.2.15)(react@19.2.6)
     devDependencies:
       '@capacitor/android':
-        specifier: ^8.3.1
-        version: 8.3.1(@capacitor/core@8.3.1)
+        specifier: ^8.4.0
+        version: 8.4.0(@capacitor/core@8.3.1)
       '@capacitor/cli':
         specifier: ^8.3.1
         version: 8.3.1
@@ -470,10 +470,10 @@ packages:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  /@capacitor/android@8.3.1(@capacitor/core@8.3.1):
-    resolution: {integrity: sha512-hjskIG8YcBEh3X4yaTXvE9gcqpdcxunTgFruSKnuPxtMxAUzEK4Oq25x0Z1g3cz+MQPc+lRG09R7Ovc+ydKsNw==}
+  /@capacitor/android@8.4.0(@capacitor/core@8.3.1):
+    resolution: {integrity: sha512-K1ZPkQzvRzPEALz9nBdLx5p5nAPzp5fsTYWk7LRiKZeH/NXqjDvqfTv7lrLgrziQNoDeaL6ijg64oBREzXiV+g==}
     peerDependencies:
-      '@capacitor/core': ^8.3.0
+      '@capacitor/core': ^8.4.0
     dependencies:
       '@capacitor/core': 8.3.1
     dev: true
