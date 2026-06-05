@@ -194,10 +194,10 @@ importers:
         version: 14.1.0(fumadocs-core@16.2.3)(next@16.2.4)(react@19.2.6)
       fumadocs-openapi:
         specifier: 10.1.1
-        version: 10.1.1(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(fumadocs-ui@16.2.3)(prettier@3.8.3)(react-dom@19.2.6)(react@19.2.6)
+        version: 10.1.1(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(fumadocs-ui@16.9.3)(prettier@3.8.3)(react-dom@19.2.6)(react@19.2.6)
       fumadocs-ui:
-        specifier: 16.2.3
-        version: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
+        specifier: 16.9.3
+        version: 16.9.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)
       google:
         specifier: link:next/fond/google
         version: link:next/fond/google
@@ -1423,6 +1423,20 @@ packages:
     resolution: {integrity: sha512-J51dAnynnqJdVUEXidHoIWn+qYve+yNQEgmFk9Dyfr3p0okzm+5QhQ+9QmsMz08+BeWTVpc1HadIiLfZmRYbAQ==}
     dependencies:
       '@formatjs/fast-memoize': 3.1.2
+    dev: false
+
+  /@fumadocs/tailwind@0.0.5(tailwindcss@4.2.4):
+    resolution: {integrity: sha512-ENKPWUDRmriccsrUDE4bDBq3FNr/ms3BP2rWlsAEMV1yP23pcCaan+ceGfeBUsAQjw7sj9Q3R4Kl3g/TCStPzQ==}
+    peerDependencies:
+      '@tailwindcss/oxide': ^4.0.0
+      tailwindcss: ^4.0.0
+    peerDependenciesMeta:
+      '@tailwindcss/oxide':
+        optional: true
+      tailwindcss:
+        optional: true
+    dependencies:
+      tailwindcss: 4.2.4
     dev: false
 
   /@fumari/json-schema-to-typescript@2.0.0(prettier@3.8.3):
@@ -5446,12 +5460,6 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  /cssesc@3.0.0:
-    resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
-    engines: {node: '>=4'}
-    hasBin: true
-    dev: false
-
   /csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
@@ -6665,6 +6673,27 @@ packages:
       tslib: 2.8.1
     dev: false
 
+  /framer-motion@12.40.0(react-dom@19.2.6)(react@19.2.6):
+    resolution: {integrity: sha512-uaBd3qC1v3KQqBEjwTUd183K6PbS+j0yR9w9VmEOLWA/tnUcSn8Xa3uck7t4dgpDoUss8xQTcj8W2L07lrnLFg==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      motion-dom: 12.40.0
+      motion-utils: 12.39.0
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+      tslib: 2.8.1
+    dev: false
+
   /fs-extra@11.3.4:
     resolution: {integrity: sha512-CTXd6rk/M3/ULNQj8FBqBWHYBVYybQ3VPBw0xGKFe3tuH7ytT6ACnvzpIQ3UZtB8yvUKC2cXn1a+x+5EVQLovA==}
     engines: {node: '>=14.14'}
@@ -6822,7 +6851,7 @@ packages:
       - supports-color
     dev: false
 
-  /fumadocs-openapi@10.1.1(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(fumadocs-ui@16.2.3)(prettier@3.8.3)(react-dom@19.2.6)(react@19.2.6):
+  /fumadocs-openapi@10.1.1(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(fumadocs-ui@16.9.3)(prettier@3.8.3)(react-dom@19.2.6)(react@19.2.6):
     resolution: {integrity: sha512-LKUh/pnTRANQDhZKCC4W6YakZeiJ1H4NmlIBkgySIWOaTYnZPdR3R1miEFcZHL1SxR0QRHujjSJrzTs6O0fUQA==}
     peerDependencies:
       '@scalar/api-client-react': '*'
@@ -6848,7 +6877,7 @@ packages:
       ajv: 8.20.0
       class-variance-authority: 0.7.1
       fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
-      fumadocs-ui: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
+      fumadocs-ui: 16.9.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)
       github-slugger: 2.0.0
       hast-util-to-jsx-runtime: 2.3.6
       js-yaml: 4.1.1
@@ -6867,22 +6896,27 @@ packages:
       - supports-color
     dev: false
 
-  /fumadocs-ui@16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6):
-    resolution: {integrity: sha512-VsTz6qNDvWCeMhUa688P1G79PGW0odO6SjjM1psGZQ3T/LRQyhNY32i0WHb6aota8X4zYaOnfl6bK2CMOlRQvA==}
+  /fumadocs-ui@16.9.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4):
+    resolution: {integrity: sha512-eoVKj1H+ATut0su+WIoPWBLRqzPMGD0hekIBr4GopWvUg1lS997HL4kP+Leyf+3CYlZtFgyXb6ylbvRLFtEj6Q==}
     peerDependencies:
+      '@takumi-rs/image-response': '*'
+      '@types/mdx': '*'
       '@types/react': '*'
+      fumadocs-core: 16.9.3
       next: 16.x.x
       react: ^19.2.0
       react-dom: ^19.2.0
-      tailwindcss: ^4.0.0
     peerDependenciesMeta:
+      '@takumi-rs/image-response':
+        optional: true
+      '@types/mdx':
+        optional: true
       '@types/react':
         optional: true
       next:
         optional: true
-      tailwindcss:
-        optional: true
     dependencies:
+      '@fumadocs/tailwind': 0.0.5(tailwindcss@4.2.4)
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
       '@radix-ui/react-collapsible': 1.1.12(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
       '@radix-ui/react-dialog': 1.1.15(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
@@ -6896,27 +6930,23 @@ packages:
       '@types/react': 19.2.15
       class-variance-authority: 0.7.1
       fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
-      lodash.merge: 4.6.2
+      lucide-react: 1.17.0(react@19.2.6)
+      motion: 12.40.0(react-dom@19.2.6)(react@19.2.6)
       next: 16.2.4(@babel/core@7.29.7)(react-dom@19.2.6)(react@19.2.6)
       next-themes: 0.4.6(react-dom@19.2.6)(react@19.2.6)
-      postcss-selector-parser: 7.1.1
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
-      react-medium-image-zoom: 5.4.5(react-dom@19.2.6)(react@19.2.6)
+      react-remove-scroll: 2.7.2(@types/react@19.2.15)(react@19.2.6)
+      rehype-raw: 7.0.0
       scroll-into-view-if-needed: 3.1.0
-      tailwind-merge: 3.5.0
-      tailwindcss: 4.2.4
+      shiki: 4.2.0
+      tailwind-merge: 3.6.0
+      unist-util-visit: 5.1.0
     transitivePeerDependencies:
-      - '@mixedbread/sdk'
-      - '@orama/core'
-      - '@tanstack/react-router'
+      - '@emotion/is-prop-valid'
+      - '@tailwindcss/oxide'
       - '@types/react-dom'
-      - algoliasearch
-      - lucide-react
-      - react-router
-      - supports-color
-      - waku
-      - zod
+      - tailwindcss
     dev: false
 
   /function-bind@1.1.2:
@@ -7965,6 +7995,7 @@ packages:
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: true
 
   /lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
@@ -8660,8 +8691,38 @@ packages:
       motion-utils: 12.36.0
     dev: false
 
+  /motion-dom@12.40.0:
+    resolution: {integrity: sha512-HxU3ZaBwNPVQUBQf1xxgq+7JrPNZvjLVxgbpEZL7RrWJnsxOf0/OM+yrHG9ogLQ31Do/r57Oz2gQWPK+6q62mg==}
+    dependencies:
+      motion-utils: 12.39.0
+    dev: false
+
   /motion-utils@12.36.0:
     resolution: {integrity: sha512-eHWisygbiwVvf6PZ1vhaHCLamvkSbPIeAYxWUuL3a2PD/TROgE7FvfHWTIH4vMl798QLfMw15nRqIaRDXTlYRg==}
+    dev: false
+
+  /motion-utils@12.39.0:
+    resolution: {integrity: sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==}
+    dev: false
+
+  /motion@12.40.0(react-dom@19.2.6)(react@19.2.6):
+    resolution: {integrity: sha512-yjrHUrBFW6kQvjJwRsoiPSAhC5tRwRqNGJWmiJ4CrGnbKp0V88AdzkhBmDoqIsIPfarOe0Uddd37Xq43/gIocA==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      framer-motion: 12.40.0(react-dom@19.2.6)(react@19.2.6)
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+      tslib: 2.8.1
     dev: false
 
   /mri@1.2.0:
@@ -9178,14 +9239,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /postcss-selector-parser@7.1.1:
-    resolution: {integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg==}
-    engines: {node: '>=4'}
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
-    dev: false
-
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
     dev: true
@@ -9423,16 +9476,6 @@ packages:
       vfile: 6.0.3
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /react-medium-image-zoom@5.4.5(react-dom@19.2.6)(react@19.2.6):
-    resolution: {integrity: sha512-58QSIRK6X3uw2fSTejJRnH0JuKTZl7ZJYX+sAMaYx4YTEm33gsNdnP5RuQSCnBiAvisQeErqZWAT31bR89WB6g==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    dependencies:
-      react: 19.2.6
-      react-dom: 19.2.6(react@19.2.6)
     dev: false
 
   /react-redux@9.2.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1):
@@ -10372,6 +10415,10 @@ packages:
     resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
     dev: false
 
+  /tailwind-merge@3.6.0:
+    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
+    dev: false
+
   /tailwindcss-animate@1.0.7(tailwindcss@4.2.4):
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
@@ -10777,6 +10824,7 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    dev: true
 
   /valibot@1.2.0(typescript@5.9.3):
     resolution: {integrity: sha512-mm1rxUsmOxzrwnX5arGS+U4T25RdvpPjPN4yR0u9pUBov9+zGVtO84tif1eY4r6zWxVxu3KzIyknJy3rxfRZZg==}
