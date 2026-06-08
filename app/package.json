@@ -26,7 +26,7 @@
     "i18n:unused": "node --experimental-strip-types scripts/find-unused-i18n.ts"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
+    "@hookform/resolvers": "^5.4.0",
     "@loglayer/transport-pino": "^3.2.0",
     "@prisma/client": "7.7.0",
     "@radix-ui/react-accordion": "1.2.12",
