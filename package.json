@@ -112,7 +112,7 @@
     "@capacitor/core": "^8.0.2",
     "@loglayer/transport-pino": "^3.2.0",
     "@prisma/client": "^7.3.0",
-    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-slot": "^1.2.5",
     "class-variance-authority": "^0.7.1",
     "deepl-node": "^1.27.0",
     "dotenv": "^17.2.3",
