@@ -116,7 +116,7 @@
     "class-variance-authority": "^0.7.1",
     "deepl-node": "^1.27.0",
     "dotenv": "^17.2.3",
-    "loglayer": "^8.4.0",
+    "loglayer": "^9.3.0",
     "pino": "^10.3.0"
   }
 }
