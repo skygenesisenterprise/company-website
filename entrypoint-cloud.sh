@@ -167,7 +167,7 @@ run_migrations() {
 # =============================================================================
 
 start_frontend() {
-    log_info "Starting Next.js (production mode) on port ${FRONTEND_PORT}..."
+    log_info "Starting static web server on port ${FRONTEND_PORT}..."
 
     cd /app
 
@@ -176,18 +176,18 @@ start_frontend() {
     export NEXT_PUBLIC_BASE_PATH=""
     export NEXT_TELEMETRY_DISABLED=1
 
-    node server.js &
+    http-server /app/out -a 0.0.0.0 -p "$FRONTEND_PORT" -c-1 -e html &
     NEXT_PID=$!
     echo "$NEXT_PID" > /tmp/next.pid
 
-    log_info "Next.js started (PID: $NEXT_PID)"
+    log_info "Static web server started (PID: $NEXT_PID)"
 
     sleep 3
 
     if kill -0 "$NEXT_PID" 2>/dev/null; then
-        log_success "Next.js is ready"
+        log_success "Static web server is ready"
     else
-        log_error "Next.js failed to start"
+        log_error "Static web server failed to start"
         return 1
     fi
 

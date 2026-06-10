@@ -24,17 +24,17 @@ WORKDIR /app
 
 RUN npm install -g corepack --force && corepack enable && corepack prepare pnpm@9.15.4 --activate
 
-COPY app/package.json app/pnpm-lock.yaml* ./
-
-RUN pnpm install
-
-# ── Build Next.js ─────────────────────────────────────────────────────────────
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY app/ ./app/
-RUN cd /app/app && node ../node_modules/next/dist/bin/next build
+RUN mkdir -p app/next/fond/google
+RUN printf 'module.exports = {};\n' > app/next/fond/google/index.js
+RUN printf '{"name":"google","version":"0.0.0"}\n' > app/next/fond/google/package.json
+RUN pnpm install --filter @company-website/app... --no-frozen-lockfile
+RUN pnpm --dir app build:web
 
 # ── Prisma ─────────────────────────────────────────────────────────────────────
-COPY server/prisma/ /app/prisma/
-RUN cd /app/prisma && npm install --silent && npx prisma generate
+COPY server/prisma/ /tmp/prisma/
+RUN cd /tmp/prisma && npm install && DATABASE_URL="postgresql://build:build@localhost:5432/build" npx prisma generate
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Stage final — Image de production (Single Container)
@@ -64,7 +64,7 @@ RUN apk add --no-cache postgresql16 postgresql16-client && \
 RUN apk add --no-cache nodejs npm
 
 # ── pnpm (pour Next.js) ───────────────────────────────────────────────────────
-RUN npm install -g pnpm@9.15.4
+RUN npm install -g pnpm@9.15.4 http-server@14
 
 # ── Go Runtime (pour le serveur API) ───────────────────────────────────────────
 RUN ARCH=$(uname -m) && \
@@ -82,16 +82,12 @@ ENV GOPATH="/go"
 
 WORKDIR /app
 
-# ── Next.js Production Build ───────────────────────────────────────────────────
-COPY --from=node-builder /app/app/.next/standalone/app ./
-COPY --from=node-builder /app/app/.next/static ./.next/static
-COPY --from=node-builder /app/app/public ./public
-COPY --from=node-builder /app/app/i18n ./i18n
-COPY --from=node-builder /app/app/messages ./messages
+# ── Static Web Build ───────────────────────────────────────────────────────────
+COPY --from=node-builder /app/app/out ./out
 
 # ── Node Modules & Prisma ───────────────────────────────────────────────────────
 COPY --from=node-builder /app/node_modules ./node_modules
-COPY --from=node-builder /app/prisma/      ./prisma/
+COPY --from=node-builder /tmp/prisma/      ./prisma/
 
 # ── Go API Server Binary ───────────────────────────────────────────────────────
 COPY --from=go-builder /app/server/etheriatimes-api ./server/etheriatimes-api

@@ -1,4 +1,4 @@
-import { rename } from "node:fs/promises";
+import { access, cp, mkdtemp, rename, rm } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { spawn } from "node:child_process";
@@ -9,12 +9,9 @@ const routesRoot = path.join(appRoot, "app");
 const excludedEntries = [
   { root: routesRoot, name: "(docs)" },
   { root: routesRoot, name: "(health)" },
+  { root: routesRoot, name: "(platform)" },
   { root: appRoot, name: "proxy.ts" },
 ];
-
-async function moveEntry(from, to) {
-  await rename(from, to);
-}
 
 function runNextBuild() {
   return new Promise((resolve, reject) => {
@@ -46,12 +43,32 @@ function runNextBuild() {
   });
 }
 
+async function moveEntry(from, to) {
+  try {
+    await rename(from, to);
+  } catch (error) {
+    if (!(error instanceof Error) || !("code" in error) || error.code !== "EXDEV") {
+      throw error;
+    }
+
+    await cp(from, to, { recursive: true });
+    await rm(from, { recursive: true, force: true });
+  }
+}
+
 const movedEntries = [];
+const stagingRoot = await mkdtemp(path.join(appRoot, ".build-web-staging-"));
 
 try {
   for (const entry of excludedEntries) {
     const sourcePath = path.join(entry.root, entry.name);
-    const targetPath = path.join(entry.root, `__build-web__${entry.name}`);
+    const targetPath = path.join(stagingRoot, entry.name);
+
+    try {
+      await access(sourcePath);
+    } catch {
+      continue;
+    }
 
     await moveEntry(sourcePath, targetPath);
     movedEntries.push({ sourcePath, targetPath });
@@ -62,4 +79,6 @@ try {
   for (const { sourcePath, targetPath } of movedEntries.reverse()) {
     await moveEntry(targetPath, sourcePath);
   }
+
+  await rm(stagingRoot, { recursive: true, force: true });
 }

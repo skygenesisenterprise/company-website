@@ -2585,7 +2585,7 @@
     "home": {
       "page": {
         "metadata": {
-          "title": "Sky Genesis Enterprise | Home",
+          "title": "Sky Genesis Enterprise",
           "description": "Sky Genesis Enterprise construit les fondations d'un écosystème technologique européen : plateformes, produits, outils développeurs et infrastructures numériques."
         },
         "common": {
@@ -4577,7 +4577,7 @@
               }
             },
             "infrastructure": {
-              "title": "Infrastructure opérationnelle",
+              "title": "Infrastructure",
               "shortTitle": "Infrastructure",
               "eyebrow": "Socle technique",
               "statement": "Un environnement pour déployer, observer et gouverner des services critiques dans la durée.",
@@ -13741,13 +13741,13 @@
         },
         "ai": {
           "eyebrow": "IA intégrée",
-          "title": "Aether Assistant aide les équipes à écrire, résumer, organiser et automatiser.",
+          "title": "Aeon aide les équipes à écrire, résumer, organiser et automatiser.",
           "description": "L’IA dans Aether Office est embarquée au cœur du travail afin d’accélérer les équipes sans exporter le contexte sensible vers des outils fragmentés.",
           "visual": {
             "label": "Workspace assistant",
             "title": "Une IA qui opère dans des flux enterprise gouvernés",
             "prompt": "Résume la réunion, identifie les responsables, rédige le mail de suivi et planifie le prochain checkpoint.",
-            "answer": "Aether Assistant transforme le contexte en recap structuré, crée les tâches, propose un brouillon de message et garde chaque sortie dans le modèle de permissions du workspace."
+            "answer": "Aeon transforme le contexte en recap structuré, crée les tâches, propose un brouillon de message et garde chaque sortie dans le modèle de permissions du workspace."
           },
           "items": {
             "write": {
@@ -16053,7 +16053,7 @@
         },
         "hero": {
           "eyebrow": "Direction",
-          "title": "Une équipe fondatrice réduite, structurée autour des responsabilités clés.",
+          "title": "Une équipe fondatrice, structurée autour des responsabilités clés.",
           "description": "Sky Genesis Enterprise est actuellement dirigée par une équipe resserrée qui porte la vision du groupe, la coordination opérationnelle, la direction technologique et la cybersécurité.",
           "metrics": [
             {
@@ -16424,7 +16424,7 @@
               "members": [
                 {
                   "name": "Liam Dispa",
-                  "role": "CEO & Co-Fondateur",
+                  "role": "President & Co-Fondateur",
                   "department": "Executive Office",
                   "bio": "Fondateur de Sky Genesis Enterprise, responsable de la vision globale du groupe, de la stratégie produit, de la direction générale, du développement international et de la construction de l’écosystème SGE.",
                   "image": "/images/IMG_0019.jpg",

@@ -5,9 +5,15 @@ import { ImageResponse } from "next/og";
 
 export const revalidate = false;
 
+interface DocsOgRouteProps {
+	params: Promise<{
+		slug: string[];
+	}>;
+}
+
 export async function GET(
 	_req: Request,
-	{ params }: RouteContext<"/og/docs/[...slug]">,
+	{ params }: DocsOgRouteProps,
 ) {
 	const { slug } = await params;
 	const page = source.getPage(slug.slice(0, -1));

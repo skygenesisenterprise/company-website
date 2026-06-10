@@ -29,7 +29,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/health 2>/dev/null || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/fr >/dev/null 2>&1 && wget -qO- http://localhost:8080/api/v1/health >/dev/null 2>&1 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3

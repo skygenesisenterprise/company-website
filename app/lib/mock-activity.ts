@@ -1,4 +1,4 @@
-import { ActivityEvent, ActivityEventType, EventStatus } from "@/app/types/activity";
+import { ActivityEvent, ActivityEventType, EventStatus } from "@/types/activity";
 
 const USERS = [
   { id: "usr_1", email: "alice.chen@aether.io", name: "Alice Chen" },

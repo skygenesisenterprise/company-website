@@ -37,7 +37,7 @@ build-dev:
 	docker build --no-cache -f Dockerfile.dev -t $(APP_NAME):latest .
 
 build-cloud:
-	docker build --no-cache -f Dockerfile.cloud -t $(APP_NAME):latest .
+	docker build --no-cache -f Dockerfile.cloud -t $(APP_NAME):cloud .
 
 run-app:
 	docker run --name $(APP_NAME)-app -p 3000:3000 $(APP_NAME)-app:latest
@@ -85,7 +85,7 @@ dev-restart:
 	docker compose -f docker-compose.dev.yml restart
 
 cloud-up:
-	docker compose -f docker-compose.cloud.yml up -d
+	docker compose -f docker-compose.cloud.yml up -d --build --remove-orphans
 
 cloud-down:
 	docker compose -f docker-compose.cloud.yml down
@@ -95,8 +95,8 @@ cloud-logs:
 
 cloud-rebuild:
 	docker compose -f docker-compose.cloud.yml down
-	docker build --no-cache -f Dockerfile.cloud -t $(APP_NAME):latest .
-	docker compose -f docker-compose.cloud.yml up -d
+	docker build --no-cache -f Dockerfile.cloud -t $(APP_NAME):cloud .
+	docker compose -f docker-compose.cloud.yml up -d --build --remove-orphans
 
 rmi-cloud:
 	docker stop $(APP_NAME) 2>/dev/null || true

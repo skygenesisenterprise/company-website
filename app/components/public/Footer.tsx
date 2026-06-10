@@ -338,7 +338,6 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-4 sm:gap-5">
                 <HeaderInfoLanguageSelector locale={locale} languageList={languageList} />
-                <HeaderInfoThemeToggle />
                 <HeaderInfoSecurityInfo securityLabel={tHeaderInfo("officialSitesInfo")} />
               </div>
               <Link
