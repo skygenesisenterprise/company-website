@@ -89,7 +89,7 @@
     "vaul": "^1.1.2",
     "zod": "^4.3.6",
     "zustand": "^5.0.12",
-    "@next/third-parties": "16.2.7",
+    "@next/third-parties": "16.2.9",
 		"fumadocs-core": "16.2.3",
 		"fumadocs-mdx": "14.1.0",
 		"fumadocs-openapi": "10.1.1",
