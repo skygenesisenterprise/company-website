@@ -188,7 +188,7 @@ importers:
         version: 12.40.0(react-dom@19.2.6)(react@19.2.6)
       fumadocs-core:
         specifier: 16.2.3
-        version: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+        version: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.4.3)
       fumadocs-mdx:
         specifier: 14.1.0
         version: 14.1.0(fumadocs-core@16.2.3)(next@16.2.4)(react@19.2.6)
@@ -197,7 +197,7 @@ importers:
         version: 10.1.1(@types/react-dom@19.2.3)(@types/react@19.2.15)(fumadocs-core@16.2.3)(fumadocs-ui@16.2.3)(prettier@3.8.3)(react-dom@19.2.6)(react@19.2.6)
       fumadocs-ui:
         specifier: 16.2.3
-        version: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
+        version: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.4.3)
       google:
         specifier: link:next/fond/google
         version: link:next/fond/google
@@ -271,8 +271,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
       zod:
-        specifier: ^4.3.6
-        version: 4.3.6
+        specifier: ^4.4.3
+        version: 4.4.3
       zustand:
         specifier: ^5.0.12
         version: 5.0.12(@types/react@19.2.15)(react@19.2.6)
@@ -6498,8 +6498,8 @@ packages:
       '@babel/parser': 7.29.7
       eslint: 10.4.1
       hermes-parser: 0.25.1
-      zod: 4.3.6
-      zod-validation-error: 4.0.2(zod@4.3.6)
+      zod: 4.4.3
+      zod-validation-error: 4.0.2(zod@4.4.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6946,7 +6946,7 @@ packages:
     dev: true
     optional: true
 
-  /fumadocs-core@16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6):
+  /fumadocs-core@16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.4.3):
     resolution: {integrity: sha512-HFtS0Gwf4izYbmkB8gj0sQWv8G9yyI8tM5RQ3E8fSD5IRVtBWhPq05zOIIM523XUGfDBvm/qDOquDqVF5NDO+A==}
     peerDependencies:
       '@mixedbread/sdk': ^0.19.0
@@ -7010,7 +7010,7 @@ packages:
       scroll-into-view-if-needed: 3.1.0
       shiki: 3.23.0
       unist-util-visit: 5.1.0
-      zod: 4.3.6
+      zod: 4.4.3
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7039,7 +7039,7 @@ packages:
       chokidar: 5.0.0
       esbuild: 0.27.7
       estree-util-value-to-estree: 3.5.0
-      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.4.3)
       js-yaml: 4.1.1
       mdast-util-to-markdown: 2.1.2
       next: 16.2.4(@babel/core@7.29.7)(react-dom@19.2.6)(react@19.2.6)
@@ -7053,7 +7053,7 @@ packages:
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.1.0
       vfile: 6.0.3
-      zod: 4.3.6
+      zod: 4.4.3
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7083,8 +7083,8 @@ packages:
       '@types/react': 19.2.15
       ajv: 8.20.0
       class-variance-authority: 0.7.1
-      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
-      fumadocs-ui: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6)
+      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.4.3)
+      fumadocs-ui: 16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.4.3)
       github-slugger: 2.0.0
       hast-util-to-jsx-runtime: 2.3.6
       js-yaml: 4.1.1
@@ -7103,7 +7103,7 @@ packages:
       - supports-color
     dev: false
 
-  /fumadocs-ui@16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.3.6):
+  /fumadocs-ui@16.2.3(@types/react-dom@19.2.3)(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(tailwindcss@4.2.4)(zod@4.4.3):
     resolution: {integrity: sha512-VsTz6qNDvWCeMhUa688P1G79PGW0odO6SjjM1psGZQ3T/LRQyhNY32i0WHb6aota8X4zYaOnfl6bK2CMOlRQvA==}
     peerDependencies:
       '@types/react': '*'
@@ -7131,7 +7131,7 @@ packages:
       '@radix-ui/react-tabs': 1.1.14(@types/react-dom@19.2.3)(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
       '@types/react': 19.2.15
       class-variance-authority: 0.7.1
-      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.3.6)
+      fumadocs-core: 16.2.3(@types/react@19.2.15)(lucide-react@1.17.0)(next@16.2.4)(react-dom@19.2.6)(react@19.2.6)(zod@4.4.3)
       lodash.merge: 4.6.2
       next: 16.2.4(@babel/core@7.29.7)(react-dom@19.2.6)(react@19.2.6)
       next-themes: 0.4.6(react-dom@19.2.6)(react@19.2.6)
@@ -11250,21 +11250,21 @@ packages:
       grammex: 3.1.12
       graphmatch: 1.1.1
 
-  /zod-validation-error@4.0.2(zod@4.3.6):
+  /zod-validation-error@4.0.2(zod@4.4.3):
     resolution: {integrity: sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
     dependencies:
-      zod: 4.3.6
+      zod: 4.4.3
     dev: true
 
   /zod@4.1.11:
     resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
     dev: false
 
-  /zod@4.3.6:
-    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+  /zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
   /zustand@5.0.12(@types/react@19.2.15)(react@19.2.6):
     resolution: {integrity: sha512-i77ae3aZq4dhMlRhJVCYgMLKuSiZAaUPAct2AksxQ+gOtimhGMdXljRT21P5BNpeT4kXlLIckvkPM029OljD7g==}
