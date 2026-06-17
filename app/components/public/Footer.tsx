@@ -297,7 +297,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
         <div className="mx-auto max-w-7xl px-6 py-10">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,24rem)_minmax(0,32rem)] lg:justify-between">
             <div className="max-w-xs">
-              <Link href="/" className="inline-flex items-center gap-2.5 group">
+              <Link href={`/${locale}`} className="inline-flex items-center gap-2.5 group">
                 <span className="text-base font-semibold text-foreground tracking-tight group-hover:text-foreground transition-colors">
                   Sky Genesis Enterprise
                 </span>
@@ -375,6 +375,12 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                     />
                   </label>
                 </div>
+                <button
+                  type="submit"
+                  className="inline-flex h-11 items-center justify-center rounded-md bg-foreground px-5 text-sm font-medium text-background transition-colors hover:opacity-90"
+                >
+                  {t("newsletterButton")}
+                </button>
                 <p className="max-w-xl text-xs leading-relaxed text-muted-foreground">
                   {t("newsletterLegalNotice")}
                 </p>

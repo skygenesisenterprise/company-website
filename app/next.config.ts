@@ -3,7 +3,6 @@ import { createMDX } from "fumadocs-mdx/next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
-const isDocsDev = process.env.DOCS_DEV === "true";
 const isProduction = process.env.NODE_ENV === "production";
 const isStaticWebBuild = process.env.BUILD_WEB_STATIC === "true";
 
@@ -79,8 +78,5 @@ const nextConfig: NextConfig = {
 };
 
 let configWithPlugins: NextConfig = nextConfig;
-if (isDocsDev) {
-  configWithPlugins = createMDX()(nextConfig);
-}
 
 export default withNextIntl(configWithPlugins);
