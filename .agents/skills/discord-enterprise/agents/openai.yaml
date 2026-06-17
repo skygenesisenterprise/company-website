@@ -1,6 +1,0 @@
-interface:
-  display_name: "Discord Enterprise"
-  short_description: "Repo-specific patterns and workflows for discord-enterprise"
-  default_prompt: "Use the discord-enterprise repo skill to follow existing architecture, testing, and workflow conventions."
-policy:
-  allow_implicit_invocation: true

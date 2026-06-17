@@ -1,45 +1,104 @@
+version: "3.8"
+
 services:
-  company-website:
+  postgresql:
+    image: docker.io/library/postgres:16-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_DB: ${PG_DB}
+    expose:
+      - 5432
+
+  redis:
+    image: docker.io/library/redis:alpine
+    command: --save 60 1 --loglevel warning
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
+    volumes:
+      - redis:/data
+    expose:
+      - 6379
+
+  server:
     build:
       context: .
       dockerfile: Dockerfile.cloud
     image: skygenesisenterprise/company-website:latest
-    container_name: company-website
+    container_name: server
     restart: unless-stopped
     expose:
-      - "3000"
-      - "8080"
-      - "5432"
+      - 3000
+      - 8080
+    command: server
     environment:
-      NODE_ENV: production
-      ENVIRONMENT: production
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_USER: aether
-      DB_NAME: etheria_account
-      DB_PASSWORD: ${DB_PASSWORD:-password}
-      DATABASE_URL: postgresql://aether:${DB_PASSWORD:-password}@localhost:5432/etheria_account
-      JWT_SECRET: ${JWT_SECRET:-default-secret-change-in-production}
-      SERVER_PORT: 8080
-      NEXT_PUBLIC_API_URL: http://localhost:8080
-      NEXT_PUBLIC_ENVIRONMENT: production
-      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-*}
-      GIN_MODE: release
-      USE_EMBEDDED_DB: "true"
+      SERVER_SECRET_KEY: ${SECRET_KEY}
+      SERVER_LISTEN__TRUSTED_PROXY_CIDRS: 0.0.0.0/0,::/0
+      SERVER_REDIS__HOST: redis
+      SERVER_POSTGRESQL__HOST: postgresql
+      SERVER_POSTGRESQL__USER: ${PG_USER}
+      SERVER_POSTGRESQL__NAME: ${PG_DB}
+      SERVER_POSTGRESQL__PASSWORD: ${PG_PASS}
+    user: root
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/fr >/dev/null 2>&1 && wget -qO- http://localhost:8080/api/v1/health >/dev/null 2>&1 || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "20m"
-        max-file: "5"
+      - /var/run/docker.sock:/var/run/docker.sock
+      - media:/media
+      - certs:/certs
+      - custom-templates:/templates
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     entrypoint: ["/entrypoint-cloud.sh"]
 
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.cloud
+    image: skygenesisenterprise/company-website:latest
+    container_name: worker
+    restart: unless-stopped
+    expose:
+      - 8080
+    command: worker
+    environment:
+      WORKER_SECRET_KEY: ${SECRET_KEY}
+      WORKER_LISTEN__TRUSTED_PROXY_CIDRS: 0.0.0.0/0,::/0
+      WORKER_REDIS__HOST: redis
+      WORKER_POSTGRESQL__HOST: postgresql
+      WORKER_POSTGRESQL__USER: ${PG_USER}
+      WORKER_POSTGRESQL__NAME: ${PG_DB}
+      WORKER_POSTGRESQL__PASSWORD: ${PG_PASS}
+    user: root
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - media:/media
+      - certs:/certs
+      - custom-templates:/templates
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy  
+
 volumes:
-  postgres_data:
+  database:
+  redis:
+  media:
+  certs:
+  custom-templates:
