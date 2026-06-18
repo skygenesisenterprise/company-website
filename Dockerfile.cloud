@@ -30,11 +30,11 @@ RUN mkdir -p app/next/fond/google
 RUN printf 'module.exports = {};\n' > app/next/fond/google/index.js
 RUN printf '{"name":"google","version":"0.0.0"}\n' > app/next/fond/google/package.json
 RUN pnpm install --filter @company-website/app... --no-frozen-lockfile
-RUN pnpm --dir app build:web
+RUN BUILD_WEB_STATIC=true pnpm --dir app build
 
 # ── Prisma ─────────────────────────────────────────────────────────────────────
 COPY server/prisma/ /tmp/prisma/
-RUN cd /tmp/prisma && npm install && DATABASE_URL="postgresql://build:build@localhost:5432/build" npx prisma generate
+RUN cd /tmp/prisma && npm ci --no-audit --no-fund && DATABASE_URL="postgresql://build:build@localhost:5432/build" npx prisma generate
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Stage final — Image de production (Single Container)
@@ -47,38 +47,19 @@ RUN apk add --no-cache \
     tzdata \
     curl \
     bash \
-    git \
     wget \
-    build-base \
     libc6-compat \
-    docker-cli \
-    postgresql \
     postgresql-client \
+    nodejs \
+    npm \
     openssl
-# ── PostgreSQL (Embedded) ───────────────────────────────────────────────────
-RUN apk add --no-cache postgresql16 postgresql16-client && \
-    mkdir -p /var/lib/postgresql/data /var/lib/postgresql/logs && \
-    chown -R postgres:postgres /var/lib/postgresql
-
-# ── Node.js ───────────────────────────────────────────────────────────────────────
-RUN apk add --no-cache nodejs npm
 
 # ── pnpm (pour Next.js) ───────────────────────────────────────────────────────
-RUN npm install -g pnpm@9.15.4 http-server@14
+RUN npm install -g http-server@14
 
-# ── Go Runtime (pour le serveur API) ───────────────────────────────────────────
-RUN ARCH=$(uname -m) && \
-    case "$ARCH" in \
-        x86_64)  GOARCH="amd64" ;; \
-        aarch64) GOARCH="arm64" ;; \
-        *) echo "Unsupported arch: $ARCH" && exit 1 ;; \
-    esac && \
-    wget -q "https://go.dev/dl/go1.24.2.linux-${GOARCH}.tar.gz" -O /tmp/go.tar.gz \
-    && tar -C /usr/local -xzf /tmp/go.tar.gz \
-    && rm /tmp/go.tar.gz
-
-ENV PATH="/usr/local/go/bin:/go/bin:/root/go/bin:/go/bin:/usr/local/bin:/usr/bin:/bin:${PATH}"
-ENV GOPATH="/go"
+ENV PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
+ENV NODE_ENV=production
+ENV USE_EMBEDDED_DB=false
 
 WORKDIR /app
 
@@ -86,8 +67,7 @@ WORKDIR /app
 COPY --from=node-builder /app/app/out ./out
 
 # ── Node Modules & Prisma ───────────────────────────────────────────────────────
-COPY --from=node-builder /app/node_modules ./node_modules
-COPY --from=node-builder /tmp/prisma/      ./prisma/
+COPY --from=node-builder /tmp/prisma/ ./prisma/
 
 # ── Go API Server Binary ───────────────────────────────────────────────────────
 COPY --from=go-builder /app/server/etheriatimes-api ./server/etheriatimes-api
@@ -97,6 +77,6 @@ COPY entrypoint-cloud.sh /entrypoint-cloud.sh
 COPY scripts/ /app/scripts/
 RUN chmod +x /entrypoint-cloud.sh /app/scripts/wait-for-db.sh
 
-EXPOSE 3000
+EXPOSE 3000 8080
 
 ENTRYPOINT ["/entrypoint-cloud.sh"]

@@ -1,8 +1,8 @@
-version: "3.8"
-
 services:
   postgresql:
     image: docker.io/library/postgres:16-alpine
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
@@ -12,10 +12,6 @@ services:
       timeout: 5s
     volumes:
       - database:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: ${PG_PASS}
-      POSTGRES_USER: ${PG_USER}
-      POSTGRES_DB: ${PG_DB}
     expose:
       - 5432
 
@@ -38,21 +34,25 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.cloud
-    image: skygenesisenterprise/company-website:latest
+    image: skygenesisenterprise/company-website:${APP_IMAGE_TAG:-cloud}
+    env_file:
+      - .env
     restart: unless-stopped
+    ports:
+      - 3000:3000
+      - 8080:8080
     expose:
       - 3000
       - 8080
     command: server
     environment:
-      SECRET_KEY: ${SECRET_KEY}
+      NODE_ENV: production
+      USE_EMBEDDED_DB: "false"
       LISTEN__TRUSTED_PROXY_CIDRS: 0.0.0.0/0,::/0
-      HOST: ${DOMAIN_HOST}
+      HOST: ${DOMAIN_HOST:-localhost}
+      FRONTEND_PORT: 3000
+      API_PORT: 8080
       REDIS__HOST: redis
-      POSTGRESQL__HOST: postgresql
-      POSTGRESQL__USER: ${PG_USER}
-      POSTGRESQL__NAME: ${PG_DB}
-      POSTGRESQL__PASSWORD: ${PG_PASS}
     volumes:
       - media:/media
       - certs:/certs
@@ -62,25 +62,23 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    entrypoint: ["/entrypoint-cloud.sh"]
 
   worker:
     build:
       context: .
       dockerfile: Dockerfile.cloud
-    image: skygenesisenterprise/company-website:latest
+    image: skygenesisenterprise/company-website:${APP_IMAGE_TAG:-cloud}
+    env_file:
+      - .env
     restart: unless-stopped
     expose:
       - 8080
     command: worker
     environment:
-      SECRET_KEY: ${SECRET_KEY}
-      HOST: ${DOMAIN_HOST}
+      NODE_ENV: production
+      USE_EMBEDDED_DB: "false"
+      HOST: ${DOMAIN_HOST:-localhost}
       REDIS__HOST: redis
-      POSTGRESQL__HOST: postgresql
-      POSTGRESQL__USER: ${PG_USER}
-      POSTGRESQL__NAME: ${PG_DB}
-      POSTGRESQL__PASSWORD: ${PG_PASS}
     volumes:
       - media:/media
       - certs:/certs
@@ -90,7 +88,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    entrypoint: ["/entrypoint-cloud.sh"]
 
 volumes:
   database:

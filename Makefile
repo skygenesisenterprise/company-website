@@ -1,18 +1,18 @@
-.PHONY: help build build-app build-server build-dev build-cloud run-app run-server run-dev run-prod stop clean prune rmi-dev dev-up dev-down dev-logs
+.PHONY: help build-dev build-cloud run-dev run-cloud stop clean prune rmi-dev dev-up dev-down dev-logs dev-rebuild dev-restart cloud-up cloud-down cloud-logs cloud-rebuild rmi-cloud
 
-APP_NAME := aethermail
+APP_IMAGE := skygenesisenterprise/company-website
+DEV_IMAGE_TAG := latest
+CLOUD_IMAGE_TAG := cloud
+DEV_COMPOSE := docker-compose.dev.yml
+CLOUD_COMPOSE := docker-compose.cloud.yml
+CLOUD_ENV := APP_IMAGE_TAG=$(CLOUD_IMAGE_TAG)
 
 help:
 	@echo "Available targets:"
-	@echo "  build         - Build production image (full app)"
-	@echo "  build-app     - Build frontend image (app/)"
-	@echo "  build-server  - Build server image (server/)"
 	@echo "  build-dev     - Build development image"
 	@echo "  build-cloud   - Build cloud image"
-	@echo "  run-app       - Run frontend container"
-	@echo "  run-server    - Run server container"
-	@echo "  run-dev       - Run development container (docker-compose)"
-	@echo "  run-prod      - Run production container"
+	@echo "  run-dev       - Run development image directly"
+	@echo "  run-cloud     - Run cloud image directly"
 	@echo "  stop          - Stop all containers"
 	@echo "  clean         - Remove build artifacts"
 	@echo "  prune         - Clean up Docker system"
@@ -24,36 +24,23 @@ help:
 	@echo "  cloud-down    - Stop cloud environment"
 	@echo "  cloud-logs    - View cloud environment logs"
 
-build:
-	docker build -t $(APP_NAME):latest .
-
-build-app:
-	docker build -f Dockerfile -t $(APP_NAME)-app:latest --target frontend-builder app/
-
-build-server:
-	docker build -f Dockerfile -t $(APP_NAME)-server:latest --target backend-builder .
-
 build-dev:
-	docker build --no-cache -f Dockerfile.dev -t $(APP_NAME):latest .
+	docker build --no-cache -f Dockerfile.dev -t $(APP_IMAGE):$(DEV_IMAGE_TAG) .
 
 build-cloud:
-	docker build --no-cache -f Dockerfile.cloud -t $(APP_NAME):cloud .
-
-run-app:
-	docker run --name $(APP_NAME)-app -p 3000:3000 $(APP_NAME)-app:latest
-
-run-server:
-	docker run --name $(APP_NAME)-server -p 8080:8080 $(APP_NAME)-server:latest
+	docker build --no-cache -f Dockerfile.cloud -t $(APP_IMAGE):$(CLOUD_IMAGE_TAG) .
 
 run-dev:
-	docker run --name $(APP_NAME)-dev -p 3000:3000 $(APP_NAME)-dev:latest
+	docker run --name company-website-dev -p 3000:3000 $(APP_IMAGE):$(DEV_IMAGE_TAG)
 
-run-prod:
-	docker run --name $(APP_NAME)-prod -p 3000:3000 $(APP_NAME):latest
+run-cloud:
+	docker run --name company-website-cloud -p 3000:3000 -p 8080:8080 -e DATABASE_URL $(APP_IMAGE):$(CLOUD_IMAGE_TAG)
 
 stop:
-	docker stop $(APP_NAME)-app $(APP_NAME)-server $(APP_NAME)-dev $(APP_NAME)-prod 2>/dev/null || true
-	docker rm $(APP_NAME)-app $(APP_NAME)-server $(APP_NAME)-dev $(APP_NAME)-prod 2>/dev/null || true
+	docker compose -f $(DEV_COMPOSE) down
+	docker compose -f $(CLOUD_COMPOSE) down
+	docker stop company-website-dev company-website-cloud 2>/dev/null || true
+	docker rm company-website-dev company-website-cloud 2>/dev/null || true
 
 clean:
 	rm -rf app/.next
@@ -63,42 +50,40 @@ prune:
 	docker system prune -f
 
 rmi-dev:
-	docker stop $(APP_NAME) 2>/dev/null || true
-	docker rm $(APP_NAME) 2>/dev/null || true
-	docker rmi $(APP_NAME):latest 2>/dev/null || true
+	docker compose -f $(DEV_COMPOSE) down --rmi local 2>/dev/null || true
+	docker rmi $(APP_IMAGE):$(DEV_IMAGE_TAG) 2>/dev/null || true
 
 dev-up:
-	docker compose -f docker-compose.dev.yml up -d
+	docker compose -f $(DEV_COMPOSE) up -d --build --remove-orphans
 
 dev-down:
-	docker compose -f docker-compose.dev.yml down
+	docker compose -f $(DEV_COMPOSE) down
 
 dev-logs:
-	docker compose -f docker-compose.dev.yml logs -f
+	docker compose -f $(DEV_COMPOSE) logs -f
 
 dev-rebuild:
-	docker compose -f docker-compose.dev.yml down
-	docker build --no-cache -f Dockerfile.dev -t $(APP_NAME):latest .
-	docker compose -f docker-compose.dev.yml up -d
+	docker compose -f $(DEV_COMPOSE) down
+	docker compose -f $(DEV_COMPOSE) build --no-cache
+	docker compose -f $(DEV_COMPOSE) up -d --remove-orphans
 
 dev-restart:
-	docker compose -f docker-compose.dev.yml restart
+	docker compose -f $(DEV_COMPOSE) restart
 
 cloud-up:
-	docker compose -f docker-compose.cloud.yml up -d --build --remove-orphans
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) up -d --build --remove-orphans
 
 cloud-down:
-	docker compose -f docker-compose.cloud.yml down
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) down
 
 cloud-logs:
-	docker compose -f docker-compose.cloud.yml logs -f
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) logs -f
 
 cloud-rebuild:
-	docker compose -f docker-compose.cloud.yml down
-	docker build --no-cache -f Dockerfile.cloud -t $(APP_NAME):cloud .
-	docker compose -f docker-compose.cloud.yml up -d --build --remove-orphans
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) down
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) build --no-cache
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) up -d --remove-orphans
 
 rmi-cloud:
-	docker stop $(APP_NAME) 2>/dev/null || true
-	docker rm $(APP_NAME) 2>/dev/null || true
-	docker rmi $(APP_NAME):latest 2>/dev/null || true
+	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) down --rmi local 2>/dev/null || true
+	docker rmi $(APP_IMAGE):$(CLOUD_IMAGE_TAG) 2>/dev/null || true

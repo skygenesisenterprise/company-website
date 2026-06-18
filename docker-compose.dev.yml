@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   postgresql:
     image: docker.io/library/postgres:16-alpine
@@ -40,8 +38,9 @@ services:
       dockerfile: Dockerfile.dev
     image: skygenesisenterprise/company-website:latest
     restart: unless-stopped
+    ports:
+      - 3000:3000
     expose:
-      - 3000
       - 8080
     command: server
     environment:
