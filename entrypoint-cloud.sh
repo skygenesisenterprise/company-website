@@ -9,6 +9,7 @@ export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
 export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
 export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
 export MIGRATION_FAILURE_RESTART_DELAY="${MIGRATION_FAILURE_RESTART_DELAY:-30}"
+export MIGRATION_FAILURE_MODE="${MIGRATION_FAILURE_MODE:-hold}"
 
 timestamp_utc() {
     date -u '+%Y-%m-%dT%H:%M:%SZ'
@@ -136,12 +137,22 @@ configure_runtime() {
     export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
     export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
     export MIGRATION_FAILURE_RESTART_DELAY="${MIGRATION_FAILURE_RESTART_DELAY:-30}"
+    export MIGRATION_FAILURE_MODE="${MIGRATION_FAILURE_MODE:-hold}"
 
     case "${LOG_LEVEL}" in
         debug|info|warn|error)
             ;;
         *)
             log_warn "Invalid LOG_LEVEL '${LOG_LEVEL}'; expected debug, info, warn, or error"
+            ;;
+    esac
+
+    case "${MIGRATION_FAILURE_MODE}" in
+        hold|exit)
+            ;;
+        *)
+            log_warn "Invalid MIGRATION_FAILURE_MODE '${MIGRATION_FAILURE_MODE}'; expected hold or exit"
+            export MIGRATION_FAILURE_MODE="hold"
             ;;
     esac
 
@@ -211,6 +222,12 @@ log_prisma_migrate_failure_reason() {
     log_error "Review the Prisma output above for the SQL or migration error details"
 }
 
+hold_for_manual_repair() {
+    log_warn "Holding container for manual investigation and repair"
+    log_warn "Use scripts/prisma-repair.sh inspect, then prisma migrate resolve before restarting"
+    exec tail -f /dev/null
+}
+
 run_prisma() {
     if [ ! -f /app/prisma/schema.prisma ]; then
         log_warn "Prisma schema not found; skipping database schema setup"
@@ -231,6 +248,11 @@ run_prisma() {
         cat "${migration_output}" >&2
         log_prisma_migrate_failure_reason "${migration_output}"
         log_error "Prisma migrate deploy failed"
+
+        if [ "${MIGRATION_FAILURE_MODE:-hold}" = "hold" ]; then
+            rm -f "${migration_output}"
+            hold_for_manual_repair
+        fi
 
         if [ "${MIGRATION_FAILURE_RESTART_DELAY:-0}" -gt 0 ] 2>/dev/null; then
             log_warn "Exiting after ${MIGRATION_FAILURE_RESTART_DELAY}s to avoid a rapid restart loop"
