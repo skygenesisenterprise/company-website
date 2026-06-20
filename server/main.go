@@ -130,6 +130,13 @@ func main() {
 
 	router := gin.New()
 	router.Use(gin.Recovery())
+	if os.Getenv("API_ACCESS_LOGS") == "true" {
+		router.Use(middleware.Logger(middleware.LogConfig{
+			EnableBody:   false,
+			EnableHeader: false,
+			EnableQuery:  false,
+		}))
+	}
 
 	router.Use(middleware.AdaptiveCORSMiddleware())
 

@@ -4,21 +4,63 @@ set -e
 export PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
 export NODE_ENV="${NODE_ENV:-production}"
 export USE_EMBEDDED_DB="${USE_EMBEDDED_DB:-false}"
+export LOG_LEVEL="${LOG_LEVEL:-info}"
+export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
+export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
+export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
+
+timestamp_utc() {
+    date -u '+%Y-%m-%dT%H:%M:%SZ'
+}
+
+should_log() {
+    requested_level="$1"
+
+    case "${LOG_LEVEL:-info}" in
+        debug)
+            return 0
+            ;;
+        info)
+            [ "${requested_level}" != "debug" ]
+            ;;
+        warn)
+            [ "${requested_level}" = "warn" ] || [ "${requested_level}" = "error" ]
+            ;;
+        error)
+            [ "${requested_level}" = "error" ]
+            ;;
+        *)
+            return 0
+            ;;
+    esac
+}
+
+log_debug() {
+    if should_log debug; then
+        echo "[DEBUG] $(timestamp_utc) - $1"
+    fi
+}
 
 log_info() {
-    echo "[INFO] $(date '+%Y-%m-%d %H:%M:%S') - $1"
+    if should_log info; then
+        echo "[INFO] $(timestamp_utc) - $1"
+    fi
 }
 
 log_success() {
-    echo "[OK]   $(date '+%Y-%m-%d %H:%M:%S') - $1"
+    log_info "$1"
 }
 
 log_warn() {
-    echo "[WARN] $(date '+%Y-%m-%d %H:%M:%S') - $1"
+    if should_log warn; then
+        echo "[WARN] $(timestamp_utc) - $1" >&2
+    fi
 }
 
 log_error() {
-    echo "[ERR]  $(date '+%Y-%m-%d %H:%M:%S') - $1" >&2
+    if should_log error; then
+        echo "[ERROR] $(timestamp_utc) - $1" >&2
+    fi
 }
 
 configure_database_from_url() {
@@ -68,6 +110,15 @@ configure_runtime() {
     if [ -n "${SECRET_KEY:-}" ] && [ -z "${SYSTEM_KEY:-}" ]; then
         export SYSTEM_KEY="${SECRET_KEY}"
     fi
+    if [ -n "${POSTGRES_HOST:-}" ] && [ -z "${DB_HOST:-}" ]; then
+        export DB_HOST="${POSTGRES_HOST}"
+    fi
+    if [ -n "${POSTGRES_USER:-}" ] && [ -z "${DB_USER:-}" ]; then
+        export DB_USER="${POSTGRES_USER}"
+    fi
+    if [ -n "${POSTGRES_DB:-}" ] && [ -z "${DB_NAME:-}" ]; then
+        export DB_NAME="${POSTGRES_DB}"
+    fi
 
     export DB_HOST="${DB_HOST:-postgresql}"
     export DB_PORT="${DB_PORT:-5432}"
@@ -79,6 +130,18 @@ configure_runtime() {
     export SERVER_PORT="${SERVER_PORT:-${API_PORT}}"
     export GIN_MODE="${GIN_MODE:-release}"
     export ENVIRONMENT="${ENVIRONMENT:-production}"
+    export LOG_LEVEL="${LOG_LEVEL:-info}"
+    export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
+    export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
+    export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
+
+    case "${LOG_LEVEL}" in
+        debug|info|warn|error)
+            ;;
+        *)
+            log_warn "Invalid LOG_LEVEL '${LOG_LEVEL}'; expected debug, info, warn, or error"
+            ;;
+    esac
 
     if [ -z "${DATABASE_URL:-}" ]; then
         export DATABASE_URL="postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
@@ -86,29 +149,29 @@ configure_runtime() {
 }
 
 display_header() {
-    echo ""
-    echo "Company Website production container"
-    echo ""
-    log_info "Frontend: 0.0.0.0:${FRONTEND_PORT}"
-    log_info "API:      0.0.0.0:${API_PORT}"
-    log_info "Database: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
-    echo ""
+    log_info "Company Website production container starting"
+    log_info "Frontend listening on 0.0.0.0:${FRONTEND_PORT}"
+    log_info "API listening on 0.0.0.0:${API_PORT}"
+    log_info "Database target: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
 }
 
 wait_for_database() {
-    log_info "Waiting for PostgreSQL..."
+    log_info "Waiting for PostgreSQL"
 
     retries=0
-    while ! PGPASSWORD="${DB_PASSWORD}" psql -h "${DB_HOST}" -p "${DB_PORT}" -U "${DB_USER}" -d "${DB_NAME}" -c '\q' >/dev/null 2>&1; do
+    while ! last_error="$(PGPASSWORD="${DB_PASSWORD}" psql -h "${DB_HOST}" -p "${DB_PORT}" -U "${DB_USER}" -d "${DB_NAME}" -c '\q' 2>&1 >/dev/null)"; do
         retries=$((retries + 1))
         if [ "${retries}" -ge 60 ]; then
             log_error "PostgreSQL is not available after ${retries} attempts"
+            if [ -n "${last_error}" ]; then
+                log_error "Last PostgreSQL check failed for ${DB_HOST}:${DB_PORT}/${DB_NAME}: ${last_error}"
+            fi
             return 1
         fi
         sleep 2
     done
 
-    log_success "PostgreSQL is ready"
+    log_info "PostgreSQL is ready"
 }
 
 find_prisma_bin() {
@@ -141,9 +204,11 @@ run_prisma() {
         return 0
     fi
 
-    log_info "Applying database migrations..."
+    log_info "Applying database migrations"
     if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" migrate deploy; then
         log_warn "Prisma migrate deploy failed; continuing without schema migrations"
+    else
+        log_info "Database migrations applied"
     fi
 }
 
@@ -153,11 +218,18 @@ start_frontend() {
         return 1
     fi
 
-    log_info "Starting static frontend on port ${FRONTEND_PORT}..."
-    http-server /app/out -a 0.0.0.0 -p "${FRONTEND_PORT}" -c-1 -e html &
+    http_server_args="/app/out -a 0.0.0.0 -p ${FRONTEND_PORT} -c-1 -e html"
+    if [ "${HTTP_ACCESS_LOGS:-false}" != "true" ]; then
+        http_server_args="${http_server_args} --silent"
+    fi
+
+    log_info "Starting static frontend on port ${FRONTEND_PORT}"
+    log_debug "Frontend HTTP access logs enabled: ${HTTP_ACCESS_LOGS}"
+    # shellcheck disable=SC2086
+    http-server ${http_server_args} &
     FRONTEND_PID=$!
     echo "${FRONTEND_PID}" > /tmp/frontend.pid
-    log_success "Static frontend started with PID ${FRONTEND_PID}"
+    log_info "Static frontend started with PID ${FRONTEND_PID}"
 }
 
 start_api() {
@@ -166,15 +238,15 @@ start_api() {
         return 1
     fi
 
-    log_info "Starting Go API on port ${API_PORT}..."
+    log_info "Starting Go API on port ${API_PORT}"
     /app/server/etheriatimes-api &
     API_PID=$!
     echo "${API_PID}" > /tmp/api.pid
-    log_success "Go API started with PID ${API_PID}"
+    log_info "Go API started with PID ${API_PID}"
 }
 
 monitor_services() {
-    log_info "Services are running. Press Ctrl+C to stop."
+    log_info "Services are running"
 
     while true; do
         if ! kill -0 "${FRONTEND_PID}" 2>/dev/null; then
@@ -190,8 +262,7 @@ monitor_services() {
 }
 
 cleanup() {
-    echo ""
-    log_info "Stopping services..."
+    log_info "Stopping services"
 
     if [ -f /tmp/frontend.pid ]; then
         kill "$(cat /tmp/frontend.pid)" 2>/dev/null || true
@@ -217,8 +288,12 @@ run_server() {
 
 run_worker() {
     configure_runtime
-    wait_for_database
-    log_warn "No dedicated worker process is implemented; keeping the worker container alive."
+    log_warn "No dedicated worker process is implemented; keeping the worker container alive"
+    if [ "${WORKER_WAIT_FOR_DB:-false}" = "true" ]; then
+        log_info "Worker database wait is enabled"
+        log_info "Database target: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
+        wait_for_database
+    fi
     exec tail -f /dev/null
 }
 

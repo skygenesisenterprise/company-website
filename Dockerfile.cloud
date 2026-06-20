@@ -80,6 +80,10 @@ RUN npm install -g http-server@14
 ENV PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
 ENV NODE_ENV=production
 ENV USE_EMBEDDED_DB=false
+ENV LOG_LEVEL=info
+ENV HTTP_ACCESS_LOGS=false
+ENV API_ACCESS_LOGS=false
+ENV WORKER_WAIT_FOR_DB=false
 
 WORKDIR /app
 
