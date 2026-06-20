@@ -8,8 +8,6 @@ export LOG_LEVEL="${LOG_LEVEL:-info}"
 export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
 export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
 export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
-export MIGRATION_FAILURE_RESTART_DELAY="${MIGRATION_FAILURE_RESTART_DELAY:-30}"
-export MIGRATION_FAILURE_MODE="${MIGRATION_FAILURE_MODE:-hold}"
 
 timestamp_utc() {
     date -u '+%Y-%m-%dT%H:%M:%SZ'
@@ -136,8 +134,6 @@ configure_runtime() {
     export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
     export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
     export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
-    export MIGRATION_FAILURE_RESTART_DELAY="${MIGRATION_FAILURE_RESTART_DELAY:-30}"
-    export MIGRATION_FAILURE_MODE="${MIGRATION_FAILURE_MODE:-hold}"
 
     case "${LOG_LEVEL}" in
         debug|info|warn|error)
@@ -147,25 +143,9 @@ configure_runtime() {
             ;;
     esac
 
-    case "${MIGRATION_FAILURE_MODE}" in
-        hold|exit)
-            ;;
-        *)
-            log_warn "Invalid MIGRATION_FAILURE_MODE '${MIGRATION_FAILURE_MODE}'; expected hold or exit"
-            export MIGRATION_FAILURE_MODE="hold"
-            ;;
-    esac
-
     if [ -z "${DATABASE_URL:-}" ]; then
         export DATABASE_URL="postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
     fi
-}
-
-display_header() {
-    log_info "Company Website production container starting"
-    log_info "Frontend listening on 0.0.0.0:${FRONTEND_PORT}"
-    log_info "API listening on 0.0.0.0:${API_PORT}"
-    log_info "Database target: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
 }
 
 wait_for_database() {
@@ -222,24 +202,18 @@ log_prisma_migrate_failure_reason() {
     log_error "Review the Prisma output above for the SQL or migration error details"
 }
 
-hold_for_manual_repair() {
-    log_warn "Holding container for manual investigation and repair"
-    log_warn "Use scripts/prisma-repair.sh inspect, then prisma migrate resolve before restarting"
-    exec tail -f /dev/null
-}
-
 run_prisma() {
     if [ ! -f /app/prisma/schema.prisma ]; then
-        log_warn "Prisma schema not found; skipping database schema setup"
-        return 0
+        log_error "Prisma schema not found"
+        return 1
     fi
 
     cd /app/prisma
     prisma_bin="$(find_prisma_bin || true)"
 
     if [ -z "${prisma_bin}" ]; then
-        log_warn "Prisma CLI is not available; skipping database schema setup"
-        return 0
+        log_error "Prisma CLI is not available"
+        return 1
     fi
 
     log_info "Applying database migrations"
@@ -248,114 +222,73 @@ run_prisma() {
         cat "${migration_output}" >&2
         log_prisma_migrate_failure_reason "${migration_output}"
         log_error "Prisma migrate deploy failed"
-
-        if [ "${MIGRATION_FAILURE_MODE:-hold}" = "hold" ]; then
-            rm -f "${migration_output}"
-            hold_for_manual_repair
-        fi
-
-        if [ "${MIGRATION_FAILURE_RESTART_DELAY:-0}" -gt 0 ] 2>/dev/null; then
-            log_warn "Exiting after ${MIGRATION_FAILURE_RESTART_DELAY}s to avoid a rapid restart loop"
-            sleep "${MIGRATION_FAILURE_RESTART_DELAY}"
-        fi
-
         rm -f "${migration_output}"
         return 1
-    else
-        cat "${migration_output}"
-        rm -f "${migration_output}"
-        log_info "Database migrations applied"
     fi
+
+    cat "${migration_output}"
+    rm -f "${migration_output}"
+    log_info "Database migrations applied"
 }
 
-start_frontend() {
+run_server() {
+    export FRONTEND_PORT="${FRONTEND_PORT:-3000}"
+    export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
+    export LOG_LEVEL="${LOG_LEVEL:-info}"
+
+    log_info "Company Website server starting"
+    log_info "Frontend listening on 0.0.0.0:${FRONTEND_PORT}"
+
     if [ ! -d /app/out ]; then
         log_error "Static frontend build not found at /app/out"
         return 1
     fi
 
     http_server_args="/app/out -a 0.0.0.0 -p ${FRONTEND_PORT} -c-1 -e html"
-    if [ "${HTTP_ACCESS_LOGS:-false}" != "true" ]; then
+    if [ "${HTTP_ACCESS_LOGS}" != "true" ]; then
         http_server_args="${http_server_args} --silent"
     fi
 
-    log_info "Starting static frontend on port ${FRONTEND_PORT}"
-    log_debug "Frontend HTTP access logs enabled: ${HTTP_ACCESS_LOGS}"
+    log_info "Starting static frontend"
+
     # shellcheck disable=SC2086
-    http-server ${http_server_args} &
-    FRONTEND_PID=$!
-    echo "${FRONTEND_PID}" > /tmp/frontend.pid
-    log_info "Static frontend started with PID ${FRONTEND_PID}"
-}
-
-start_api() {
-    if [ ! -x /app/server/etheriatimes-api ]; then
-        log_error "Go API binary not found at /app/server/etheriatimes-api"
-        return 1
-    fi
-
-    log_info "Starting Go API on port ${API_PORT}"
-    /app/server/etheriatimes-api &
-    API_PID=$!
-    echo "${API_PID}" > /tmp/api.pid
-    log_info "Go API started with PID ${API_PID}"
-}
-
-monitor_services() {
-    log_info "Services are running"
-
-    while true; do
-        if ! kill -0 "${FRONTEND_PID}" 2>/dev/null; then
-            log_error "Static frontend process stopped"
-            exit 1
-        fi
-        if ! kill -0 "${API_PID}" 2>/dev/null; then
-            log_error "Go API process stopped"
-            exit 1
-        fi
-        sleep 5
-    done
-}
-
-cleanup() {
-    log_info "Stopping services"
-
-    if [ -f /tmp/frontend.pid ]; then
-        kill "$(cat /tmp/frontend.pid)" 2>/dev/null || true
-        rm -f /tmp/frontend.pid
-    fi
-    if [ -f /tmp/api.pid ]; then
-        kill "$(cat /tmp/api.pid)" 2>/dev/null || true
-        rm -f /tmp/api.pid
-    fi
-
-    exit 0
-}
-
-run_server() {
-    configure_runtime
-    display_header
-    wait_for_database
-    run_prisma
-    start_frontend
-    start_api
-    monitor_services
+    exec http-server ${http_server_args}
 }
 
 run_worker() {
     configure_runtime
-    log_warn "No dedicated worker process is implemented; keeping the worker container alive"
-    if [ "${WORKER_WAIT_FOR_DB:-false}" = "true" ]; then
-        log_info "Worker database wait is enabled"
-        log_info "Database target: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
-        wait_for_database
+
+    log_info "Company Website worker starting"
+    log_info "Backend API listening on 0.0.0.0:${API_PORT}"
+    log_info "Database target: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
+
+    wait_for_database
+
+    if ! run_prisma; then
+        log_error "Database migrations failed"
+        return 1
     fi
-    exec tail -f /dev/null
+
+    if [ ! -x /app/server/etheriatimes-api ]; then
+        log_error "Go backend binary not found at /app/server/etheriatimes-api"
+        return 1
+    fi
+
+    if [ "${REDIS_ENABLED:-false}" = "true" ]; then
+        log_info "Redis configuration enabled"
+    fi
+    if [ "${REDIS_REQUIRED:-false}" != "true" ]; then
+        log_warn "Redis is optional and may be unavailable"
+    fi
+
+    log_info "Starting Go backend"
+
+    exec /app/server/etheriatimes-api
 }
 
-trap cleanup INT TERM
+role="${1:-server}"
 
-case "${1:-server}" in
+case "${role}" in
     server)
         shift || true
         run_server "$@"
@@ -365,7 +298,6 @@ case "${1:-server}" in
         run_worker "$@"
         ;;
     *)
-        configure_runtime
         exec "$@"
         ;;
 esac
