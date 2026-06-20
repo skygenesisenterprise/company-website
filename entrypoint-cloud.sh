@@ -141,14 +141,9 @@ run_prisma() {
         return 0
     fi
 
-    log_info "Generating Prisma client..."
-    if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" generate; then
-        log_warn "Prisma generate failed; continuing without generated Prisma client"
-    fi
-
-    log_info "Synchronizing database schema..."
-    if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" db push --accept-data-loss; then
-        log_warn "Prisma db push failed; continuing without schema synchronization"
+    log_info "Applying database migrations..."
+    if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" migrate deploy; then
+        log_warn "Prisma migrate deploy failed; continuing without schema migrations"
     fi
 }
 

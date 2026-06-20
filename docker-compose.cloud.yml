@@ -38,9 +38,8 @@ services:
     env_file:
       - .env
     restart: unless-stopped
-    ports:
-      - 3000:3000
     expose:
+      - 3000
       - 8080
     command: server
     environment:
@@ -51,6 +50,7 @@ services:
       FRONTEND_PORT: 3000
       API_PORT: 8080
       REDIS__HOST: redis
+      DATABASE_URL: ${DATABASE_URL}
     volumes:
       - media:/media
       - certs:/certs
@@ -77,6 +77,7 @@ services:
       USE_EMBEDDED_DB: "false"
       HOST: ${DOMAIN_HOST:-localhost}
       REDIS__HOST: redis
+      DATABASE_URL: ${DATABASE_URL}
     volumes:
       - media:/media
       - certs:/certs
