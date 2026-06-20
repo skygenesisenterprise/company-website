@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { createMDX } from "fumadocs-mdx/next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
@@ -18,6 +17,7 @@ const nextConfig: NextConfig = {
   ...(isStaticWebBuild
     ? {
         output: "export",
+        trailingSlash: true,
         images: {
           unoptimized: true,
           remotePatterns: [
