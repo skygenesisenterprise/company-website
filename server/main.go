@@ -1,12 +1,18 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"net/http"
 	"os"
+	"os/signal"
 	"runtime"
+	"syscall"
+	"time"
 
 	"github.com/gin-gonic/gin"
 
+	redisclient "github.com/skygenesisenterprise/company-website/server/internal/redis"
 	"github.com/skygenesisenterprise/company-website/server/src/config"
 	"github.com/skygenesisenterprise/company-website/server/src/interfaces"
 	"github.com/skygenesisenterprise/company-website/server/src/middleware"
@@ -48,15 +54,12 @@ func main() {
 
 	cfg := config.LoadConfig()
 
-	// Initialize database if DSN is provided
 	var dbService interfaces.IDatabaseService
 	var db *gorm.DB
 
-	// Check if we should use embedded database
 	useEmbeddedDB := os.Getenv("USE_EMBEDDED_DB") == "true"
 
 	if useEmbeddedDB {
-		// For embedded DB, use Unix socket or TCP on localhost with the correct credentials
 		dbHost := os.Getenv("DB_HOST")
 		if dbHost == "" {
 			dbHost = "localhost"
@@ -93,7 +96,6 @@ func main() {
 			db = dbService.GetDB()
 			fmt.Printf("\033[1;32m[✓] Embedded database connected\033[0m\n")
 
-			// Initialiser la variable globale pour la compatibilité avec les controllers
 			services.DB = db
 			fmt.Printf("\033[1;32m[✓] Global DB reference initialized\033[0m\n")
 
@@ -114,7 +116,6 @@ func main() {
 		db = dbService.GetDB()
 		fmt.Printf("\033[1;32m[✓] Database connected\033[0m\n")
 
-		// Initialiser la variable globale pour la compatibilité avec les controllers
 		services.DB = db
 		fmt.Printf("\033[1;32m[✓] Global DB reference initialized\033[0m\n")
 
@@ -126,6 +127,32 @@ func main() {
 		}
 	} else {
 		fmt.Printf("\033[1;33m[!] Warning: DATABASE_URL not set and USE_EMBEDDED_DB not enabled, running in database-less mode\033[0m\n")
+	}
+
+	rdbCfg := redisclient.Config{
+		Enabled:        cfg.Redis.Enabled,
+		Required:       cfg.Redis.Required,
+		URL:            cfg.Redis.URL,
+		KeyPrefix:      cfg.Redis.KeyPrefix,
+		DefaultTTL:     time.Duration(cfg.Redis.DefaultTTL) * time.Second,
+		ConnectTimeout: time.Duration(cfg.Redis.ConnectTimeout) * time.Second,
+		ReadTimeout:    time.Duration(cfg.Redis.ReadTimeout) * time.Second,
+		WriteTimeout:   time.Duration(cfg.Redis.WriteTimeout) * time.Second,
+		MaxRetries:     cfg.Redis.MaxRetries,
+	}
+
+	redisClient, err := redisclient.New(rdbCfg)
+	if err != nil {
+		fmt.Printf("\033[1;31m[✗] Failed to initialize Redis: %v\033[0m\n", err)
+		os.Exit(1)
+	}
+
+	if redisClient != nil {
+		fmt.Printf("\033[1;32m[✓] Redis connection established\033[0m\n")
+	} else if cfg.Redis.Enabled {
+		fmt.Printf("\033[1;33m[!] Redis unavailable; continuing without cache\033[0m\n")
+	} else {
+		fmt.Printf("\033[1;33m[!] Redis disabled\033[0m\n")
 	}
 
 	router := gin.New()
@@ -140,15 +167,53 @@ func main() {
 
 	router.Use(middleware.AdaptiveCORSMiddleware())
 
-	routes.SetupRoutes(router, cfg.SystemKey, services.NewServiceKeyService(db), dbService)
+	routes.SetupRoutes(router, cfg.SystemKey, services.NewServiceKeyService(db), dbService, redisClient)
 
 	addr := fmt.Sprintf(":%s", cfg.Port)
 	fmt.Printf("\033[1;32m[✓] Server starting on %s\033[0m\n", addr)
 	fmt.Printf("\033[1;36m[✓] API available at http://localhost%s/api/v1\033[0m\n", addr)
 	fmt.Printf("\n")
 
-	if err := router.Run(addr); err != nil {
-		fmt.Printf("\033[1;31m[✗] Failed to start server: %v\033[0m\n", err)
-		os.Exit(1)
+	srv := &http.Server{
+		Addr:    addr,
+		Handler: router,
 	}
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+
+	go func() {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			fmt.Printf("\033[1;31m[✗] Failed to start server: %v\033[0m\n", err)
+			os.Exit(1)
+		}
+	}()
+
+	<-quit
+	fmt.Printf("\033[1;33m[!] Shutting down server...\033[0m\n")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	if err := srv.Shutdown(ctx); err != nil {
+		fmt.Printf("\033[1;31m[✗] Server forced to shutdown: %v\033[0m\n", err)
+	}
+
+	if redisClient != nil {
+		if err := redisClient.Close(); err != nil {
+			fmt.Printf("\033[1;33m[!] Warning: Redis close error: %v\033[0m\n", err)
+		} else {
+			fmt.Printf("\033[1;32m[✓] Redis connection closed\033[0m\n")
+		}
+	}
+
+	if dbService != nil {
+		if err := dbService.Close(); err != nil {
+			fmt.Printf("\033[1;33m[!] Warning: Database close error: %v\033[0m\n", err)
+		} else {
+			fmt.Printf("\033[1;32m[✓] Database connection closed\033[0m\n")
+		}
+	}
+
+	fmt.Printf("\033[1;32m[✓] Server exited cleanly\033[0m\n")
 }

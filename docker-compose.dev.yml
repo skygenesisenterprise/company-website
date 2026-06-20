@@ -18,8 +18,14 @@ services:
       - 5432
 
   redis:
-    image: docker.io/library/redis:alpine
-    command: --save 60 1 --loglevel warning
+    image: docker.io/library/redis:7-alpine
+    command:
+      - redis-server
+      - --loglevel
+      - warning
+      - --save
+      - "60"
+      - "1"
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
@@ -44,10 +50,13 @@ services:
       - 8080
     command: server
     environment:
+      REDIS_ENABLED: "true"
+      REDIS_REQUIRED: "false"
+      REDIS_URL: redis://default:@redis:6379/0
+      REDIS_KEY_PREFIX: company-website:v1
       SECRET_KEY: ${SECRET_KEY}
       LISTEN__TRUSTED_PROXY_CIDRS: 0.0.0.0/0,::/0
       HOST: ${DOMAIN_HOST}
-      REDIS__HOST: redis
       POSTGRESQL__HOST: postgresql
       POSTGRESQL__USER: ${PG_USER}
       POSTGRESQL__NAME: ${PG_DB}
@@ -60,7 +69,7 @@ services:
       postgresql:
         condition: service_healthy
       redis:
-        condition: service_healthy
+        condition: service_started
     entrypoint: ["/entrypoint.sh"]
 
   worker:
@@ -73,9 +82,12 @@ services:
       - 8080
     command: worker
     environment:
+      REDIS_ENABLED: "true"
+      REDIS_REQUIRED: "false"
+      REDIS_URL: redis://default:@redis:6379/0
+      REDIS_KEY_PREFIX: company-website:v1
       SECRET_KEY: ${SECRET_KEY}
       HOST: ${DOMAIN_HOST}
-      REDIS__HOST: redis
       POSTGRESQL__HOST: postgresql
       POSTGRESQL__USER: ${PG_USER}
       POSTGRESQL__NAME: ${PG_DB}
@@ -88,7 +100,7 @@ services:
       postgresql:
         condition: service_healthy
       redis:
-        condition: service_healthy
+        condition: service_started
     entrypoint: ["/entrypoint.sh"]
 
 volumes:

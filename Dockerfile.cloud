@@ -42,17 +42,6 @@ COPY server/prisma/schema.prisma server/prisma/prisma.config.ts /tmp/prisma/
 COPY server/prisma/migrations/ /tmp/prisma/migrations/
 
 RUN cd /tmp/prisma \
-    && if [ ! -f migrations/00001_init/migration.sql ]; then \
-         mkdir -p migrations/00001_init && \
-         DATABASE_URL="postgresql://build:build@localhost:5432/build" \
-         npx prisma migrate diff \
-           --from-empty \
-           --to-schema schema.prisma \
-           --script > migrations/00001_init/migration.sql; \
-       fi \
-    && if [ ! -f migrations/migration_lock.yaml ]; then \
-         echo 'provider: postgresql' > migrations/migration_lock.yaml; \
-       fi \
     && DATABASE_URL="postgresql://build:build@localhost:5432/build" \
        npx prisma generate
 

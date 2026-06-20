@@ -15,14 +15,14 @@ import (
 
 // SetupRoutes configure toutes les routes API.
 // C'est le point d'entrée principal pour la configuration des routes.
-func SetupRoutes(router *gin.Engine, systemKey string, serviceKeyService *services.ServiceKeyService, dbService interfaces.IDatabaseService) {
+func SetupRoutes(router *gin.Engine, systemKey string, serviceKeyService *services.ServiceKeyService, dbService interfaces.IDatabaseService, redisClient interface{ IsAvailable() bool }) {
 	_ = serviceKeyService
 	_ = dbService
 
 	router.Use(middleware.RequestIDMiddleware())
 	router.Use(middleware.ContextMiddleware())
 
-	siteHandler := NewSiteHandler(systemKey)
+	siteHandler := NewSiteHandler(systemKey, redisClient)
 	statusHandler := NewStatusHandler(siteHandler)
 
 	api := router.Group("/api/v1")
@@ -147,18 +147,24 @@ func SetupRoutes(router *gin.Engine, systemKey string, serviceKeyService *servic
 
 // ==================== SITE HANDLERS ====================
 
-type SiteHandler struct {
-	store     *services.SiteAPIService
-	systemKey string
+type RedisHealthChecker interface {
+	IsAvailable() bool
 }
 
-func NewSiteHandler(systemKey string) *SiteHandler {
+type SiteHandler struct {
+	store        *services.SiteAPIService
+	systemKey    string
+	redisChecker RedisHealthChecker
+}
+
+func NewSiteHandler(systemKey string, redisChecker RedisHealthChecker) *SiteHandler {
 	store := services.NewSiteAPIService()
 	store.SeedStatus()
 
 	return &SiteHandler{
-		store:     store,
-		systemKey: systemKey,
+		store:        store,
+		systemKey:    systemKey,
+		redisChecker: redisChecker,
 	}
 }
 
@@ -171,7 +177,24 @@ func (h *SiteHandler) RegisterResource(group *gin.RouterGroup, resource string) 
 }
 
 func (h *SiteHandler) Health(c *gin.Context) {
-	Success(c, http.StatusOK, gin.H{"status": "ok"})
+	status := "healthy"
+	redisStatus := "disabled"
+	dbStatus := "healthy"
+
+	if h.redisChecker != nil {
+		if h.redisChecker.IsAvailable() {
+			redisStatus = "healthy"
+		} else {
+			redisStatus = "unavailable"
+			status = "degraded"
+		}
+	}
+
+	Success(c, http.StatusOK, gin.H{
+		"status":   status,
+		"database": dbStatus,
+		"redis":    redisStatus,
+	})
 }
 
 func (h *SiteHandler) List(resource string) gin.HandlerFunc {

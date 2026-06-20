@@ -134,6 +134,7 @@ configure_runtime() {
     export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
     export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
     export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
+    export ALLOW_MIGRATION_FAILURE="${ALLOW_MIGRATION_FAILURE:-false}"
 
     case "${LOG_LEVEL}" in
         debug|info|warn|error)
@@ -206,7 +207,12 @@ run_prisma() {
 
     log_info "Applying database migrations"
     if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" migrate deploy; then
-        log_warn "Prisma migrate deploy failed; continuing without schema migrations"
+        log_error "Prisma migrate deploy failed"
+        if [ "${ALLOW_MIGRATION_FAILURE:-false}" = "true" ]; then
+            log_warn "ALLOW_MIGRATION_FAILURE is true; continuing despite migration failure"
+        else
+            return 1
+        fi
     else
         log_info "Database migrations applied"
     fi
