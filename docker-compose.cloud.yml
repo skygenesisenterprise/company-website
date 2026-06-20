@@ -40,9 +40,7 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000
-      - 8080:8080
     expose:
-      - 3000
       - 8080
     command: server
     environment:

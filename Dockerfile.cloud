@@ -77,6 +77,6 @@ COPY entrypoint-cloud.sh /entrypoint-cloud.sh
 COPY scripts/ /app/scripts/
 RUN chmod +x /entrypoint-cloud.sh /app/scripts/wait-for-db.sh
 
-EXPOSE 3000 8080
+EXPOSE 3000
 
 ENTRYPOINT ["/entrypoint-cloud.sh"]
