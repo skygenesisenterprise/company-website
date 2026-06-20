@@ -8,6 +8,7 @@ export LOG_LEVEL="${LOG_LEVEL:-info}"
 export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
 export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
 export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
+export MIGRATION_FAILURE_RESTART_DELAY="${MIGRATION_FAILURE_RESTART_DELAY:-30}"
 
 timestamp_utc() {
     date -u '+%Y-%m-%dT%H:%M:%SZ'
@@ -134,7 +135,7 @@ configure_runtime() {
     export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
     export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
     export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
-    export ALLOW_MIGRATION_FAILURE="${ALLOW_MIGRATION_FAILURE:-false}"
+    export MIGRATION_FAILURE_RESTART_DELAY="${MIGRATION_FAILURE_RESTART_DELAY:-30}"
 
     case "${LOG_LEVEL}" in
         debug|info|warn|error)
@@ -191,6 +192,25 @@ find_prisma_bin() {
     return 1
 }
 
+log_prisma_migrate_failure_reason() {
+    output_file="$1"
+
+    if grep -q 'P3009' "${output_file}"; then
+        log_error "Prisma migration is blocked by a failed migration recorded in _prisma_migrations (P3009)"
+        log_error "Stop the server restart loop, inspect PostgreSQL, then repair with prisma migrate resolve before restarting"
+        return 0
+    fi
+
+    if grep -Eq 'P1001|Can.t reach database server|Connection refused|connection refused|could not connect|timeout expired|Name does not resolve|Temporary failure in name resolution' "${output_file}"; then
+        log_error "Prisma migrate deploy could not connect to PostgreSQL"
+        log_error "Verify DATABASE_URL, PostgreSQL availability, DNS, and network access from this container"
+        return 0
+    fi
+
+    log_error "Prisma migrate deploy failed while applying or validating a migration"
+    log_error "Review the Prisma output above for the SQL or migration error details"
+}
+
 run_prisma() {
     if [ ! -f /app/prisma/schema.prisma ]; then
         log_warn "Prisma schema not found; skipping database schema setup"
@@ -206,14 +226,22 @@ run_prisma() {
     fi
 
     log_info "Applying database migrations"
-    if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" migrate deploy; then
+    migration_output="$(mktemp)"
+    if ! DATABASE_URL="${DATABASE_URL}" "${prisma_bin}" migrate deploy >"${migration_output}" 2>&1; then
+        cat "${migration_output}" >&2
+        log_prisma_migrate_failure_reason "${migration_output}"
         log_error "Prisma migrate deploy failed"
-        if [ "${ALLOW_MIGRATION_FAILURE:-false}" = "true" ]; then
-            log_warn "ALLOW_MIGRATION_FAILURE is true; continuing despite migration failure"
-        else
-            return 1
+
+        if [ "${MIGRATION_FAILURE_RESTART_DELAY:-0}" -gt 0 ] 2>/dev/null; then
+            log_warn "Exiting after ${MIGRATION_FAILURE_RESTART_DELAY}s to avoid a rapid restart loop"
+            sleep "${MIGRATION_FAILURE_RESTART_DELAY}"
         fi
+
+        rm -f "${migration_output}"
+        return 1
     else
+        cat "${migration_output}"
+        rm -f "${migration_output}"
         log_info "Database migrations applied"
     fi
 }
