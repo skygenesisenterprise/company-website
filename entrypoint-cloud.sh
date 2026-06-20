@@ -8,6 +8,9 @@ export LOG_LEVEL="${LOG_LEVEL:-info}"
 export HTTP_ACCESS_LOGS="${HTTP_ACCESS_LOGS:-false}"
 export API_ACCESS_LOGS="${API_ACCESS_LOGS:-false}"
 export WORKER_WAIT_FOR_DB="${WORKER_WAIT_FOR_DB:-false}"
+export DATABASE_REQUIRED="${DATABASE_REQUIRED:-false}"
+export DATABASE_WAIT_ATTEMPTS="${DATABASE_WAIT_ATTEMPTS:-5}"
+export DATABASE_WAIT_INTERVAL="${DATABASE_WAIT_INTERVAL:-2}"
 
 timestamp_utc() {
     date -u '+%Y-%m-%dT%H:%M:%SZ'
@@ -149,22 +152,26 @@ configure_runtime() {
 }
 
 wait_for_database() {
-    log_info "Waiting for PostgreSQL"
+    log_info "Checking PostgreSQL availability"
 
     retries=0
+    max_attempts="${DATABASE_WAIT_ATTEMPTS:-5}"
+    retry_interval="${DATABASE_WAIT_INTERVAL:-2}"
+
     while ! last_error="$(PGPASSWORD="${DB_PASSWORD}" psql -h "${DB_HOST}" -p "${DB_PORT}" -U "${DB_USER}" -d "${DB_NAME}" -c '\q' 2>&1 >/dev/null)"; do
         retries=$((retries + 1))
-        if [ "${retries}" -ge 60 ]; then
-            log_error "PostgreSQL is not available after ${retries} attempts"
+        if [ "${retries}" -ge "${max_attempts}" ]; then
+            log_warn "PostgreSQL is unavailable after ${retries} attempts"
             if [ -n "${last_error}" ]; then
-                log_error "Last PostgreSQL check failed for ${DB_HOST}:${DB_PORT}/${DB_NAME}: ${last_error}"
+                log_warn "PostgreSQL check failed for ${DB_HOST}:${DB_PORT}/${DB_NAME}: ${last_error}"
             fi
             return 1
         fi
-        sleep 2
+        sleep "${retry_interval}"
     done
 
     log_info "PostgreSQL is ready"
+    return 0
 }
 
 find_prisma_bin() {
@@ -258,15 +265,47 @@ run_server() {
 run_worker() {
     configure_runtime
 
+    export DATABASE_REQUIRED="${DATABASE_REQUIRED:-false}"
+    export DATABASE_WAIT_ATTEMPTS="${DATABASE_WAIT_ATTEMPTS:-5}"
+    export DATABASE_WAIT_INTERVAL="${DATABASE_WAIT_INTERVAL:-2}"
+
+    case "${DATABASE_REQUIRED}" in
+        true|false)
+            ;;
+        *)
+            log_warn "Invalid DATABASE_REQUIRED value '${DATABASE_REQUIRED}'; using false"
+            export DATABASE_REQUIRED="false"
+            ;;
+    esac
+
     log_info "Company Website worker starting"
-    log_info "Backend API listening on 0.0.0.0:${API_PORT}"
+    log_info "Backend API configured for 0.0.0.0:${API_PORT}"
     log_info "Database target: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
 
-    wait_for_database
+    database_available=false
 
-    if ! run_prisma; then
-        log_error "Database migrations failed"
-        return 1
+    if wait_for_database; then
+        database_available=true
+    else
+        if [ "${DATABASE_REQUIRED}" = "true" ]; then
+            log_error "PostgreSQL is required but unavailable"
+            return 1
+        fi
+
+        log_warn "PostgreSQL unavailable; continuing in degraded mode"
+    fi
+
+    if [ "${database_available}" = "true" ]; then
+        if ! run_prisma; then
+            if [ "${DATABASE_REQUIRED}" = "true" ]; then
+                log_error "Database migrations failed and PostgreSQL is required"
+                return 1
+            fi
+
+            log_warn "Database migrations failed; continuing in degraded mode"
+        fi
+    else
+        log_warn "Skipping Prisma migrations because PostgreSQL is unavailable"
     fi
 
     if [ ! -x /app/server/etheriatimes-api ]; then
@@ -276,12 +315,20 @@ run_worker() {
 
     if [ "${REDIS_ENABLED:-false}" = "true" ]; then
         log_info "Redis configuration enabled"
-    fi
-    if [ "${REDIS_REQUIRED:-false}" != "true" ]; then
-        log_warn "Redis is optional and may be unavailable"
+    else
+        log_info "Redis disabled"
     fi
 
-    log_info "Starting Go backend"
+    if [ "${REDIS_ENABLED:-false}" = "true" ] &&
+       [ "${REDIS_REQUIRED:-false}" != "true" ]; then
+        log_warn "Redis is optional; backend may continue without cache"
+    fi
+
+    if [ "${database_available}" = "true" ]; then
+        log_info "Starting Go backend with PostgreSQL available"
+    else
+        log_warn "Starting Go backend without PostgreSQL connectivity"
+    fi
 
     exec /app/server/etheriatimes-api
 }
