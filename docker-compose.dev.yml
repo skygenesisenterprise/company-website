@@ -52,6 +52,10 @@ services:
     environment:
       REDIS_ENABLED: "true"
       REDIS_REQUIRED: "false"
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ""
+      REDIS_DB: "0"
       REDIS_URL: redis://default:@redis:6379/0
       REDIS_KEY_PREFIX: company-website:v1
       SECRET_KEY: ${SECRET_KEY}
@@ -84,6 +88,10 @@ services:
     environment:
       REDIS_ENABLED: "true"
       REDIS_REQUIRED: "false"
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ""
+      REDIS_DB: "0"
       REDIS_URL: redis://default:@redis:6379/0
       REDIS_KEY_PREFIX: company-website:v1
       SECRET_KEY: ${SECRET_KEY}

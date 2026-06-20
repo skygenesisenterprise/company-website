@@ -46,6 +46,10 @@ type RedisConfig struct {
 	Enabled        bool
 	Required       bool
 	URL            string
+	Host           string
+	Port           string
+	Password       string
+	DB             int
 	KeyPrefix      string
 	DefaultTTL     int
 	ConnectTimeout int
@@ -204,6 +208,10 @@ func Load() *Config {
 		Enabled:        getEnvBool("REDIS_ENABLED", false),
 		Required:       getEnvBool("REDIS_REQUIRED", false),
 		URL:            getEnv("REDIS_URL", ""),
+		Host:           getEnv("REDIS_HOST", "localhost"),
+		Port:           getEnv("REDIS_PORT", "6379"),
+		Password:       getEnv("REDIS_PASSWORD", ""),
+		DB:             getEnvInt("REDIS_DB", 0),
 		KeyPrefix:      getEnv("REDIS_KEY_PREFIX", "company-website:v1"),
 		DefaultTTL:     getEnvInt("REDIS_DEFAULT_TTL", 300),
 		ConnectTimeout: getEnvInt("REDIS_CONNECT_TIMEOUT", 5),

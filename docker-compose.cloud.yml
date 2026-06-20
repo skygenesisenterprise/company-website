@@ -56,6 +56,10 @@ services:
       API_PORT: 8080
       REDIS_ENABLED: "true"
       REDIS_REQUIRED: "false"
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis-default-password}
+      REDIS_DB: "0"
       REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-default-password}@redis:6379/0
       REDIS_KEY_PREFIX: company-website:v1
       REDIS_DEFAULT_TTL: 300
@@ -87,6 +91,10 @@ services:
       HOST: ${DOMAIN_HOST:-localhost}
       REDIS_ENABLED: "true"
       REDIS_REQUIRED: "false"
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis-default-password}
+      REDIS_DB: "0"
       REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-default-password}@redis:6379/0
       REDIS_KEY_PREFIX: company-website:v1
       DATABASE_URL: ${DATABASE_URL}
