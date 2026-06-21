@@ -1,20 +1,4 @@
 services:
-  postgresql:
-    image: docker.io/library/postgres:16-alpine
-    env_file:
-      - .env
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
-      start_period: 20s
-      interval: 30s
-      retries: 5
-      timeout: 5s
-    volumes:
-      - database:/var/lib/postgresql/data
-    expose:
-      - 5432
-
   redis:
     image: docker.io/library/redis:8-alpine
     command:
@@ -34,6 +18,11 @@ services:
       - redis:/data
     expose:
       - 6379
+    environment: 
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis-default-password}
+      REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-default-password}@redis:6379/0
+      REDIS_KEY_PREFIX: company-website:v1
+      DATABASE_URL: ${DATABASE_URL}
 
   server:
     build:
@@ -69,8 +58,6 @@ services:
       - certs:/certs
       - custom-templates:/templates
     depends_on:
-      postgresql:
-        condition: service_healthy
       redis:
         condition: service_started
 
@@ -103,13 +90,10 @@ services:
       - certs:/certs
       - custom-templates:/templates
     depends_on:
-      postgresql:
-        condition: service_healthy
       redis:
         condition: service_started
 
 volumes:
-  database:
   redis:
   media:
   certs:
