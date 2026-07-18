@@ -1,4 +1,14 @@
 services:
+  nginx:
+    image: docker.io/library/nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - ${DEV_HTTP_BIND_HOST:-0.0.0.0}:${DEV_HTTP_PORT:-80}:80
+    volumes:
+      - ./infrastructure/web/nginx.dev.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      server:
+        condition: service_started
   postgresql:
     image: docker.io/library/postgres:16-alpine
     restart: unless-stopped
@@ -42,7 +52,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: skygenesisenterprise/company-website:latest
+    image: skygenesisenterprise/company-website:latest-dev
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -80,7 +90,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: skygenesisenterprise/company-website:latest
+    image: skygenesisenterprise/company-website:latest-dev
     restart: unless-stopped
     expose:
       - 8080

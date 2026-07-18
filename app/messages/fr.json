@@ -2601,38 +2601,38 @@
           "Research": "Recherche"
         },
         "hero": {
-          "eyebrow": "LE FUTUR DU NUMÉRIQUE EUROPÉEN",
-          "title": "Construire les fondations d'un écosystème technologique indépendant.",
-          "titleLine1": "Construire les fondations",
-          "titleLine2": "d'un écosystème",
-          "titleLine3": "technologique",
-          "titleImpact": "indépendant.",
-          "description": "Espaces de travail, plateformes cloud, connectivité, systèmes financiers et infrastructure développeur conçus pour les organisations qui préparent leur avenir numérique.",
-          "primaryCta": "Explorer Aether Office",
-          "secondaryCta": "Découvrir les plateformes",
+          "eyebrow": "PLATEFORME TECHNOLOGIQUE EUROPÉENE",
+          "title": "Infrastructure pour l'Europe indépendante.",
+          "titleLine1": "Infrastructure",
+          "titleLine2": "pour l'Europe",
+          "titleLine3": "",
+          "titleImpact": "indépendante.",
+          "description": "Un écosystème complet — workspace, cloud, finance, connectivité et APIs — conçu pour les organisations qui construisent leur avenir numérique.",
+          "primaryCta": "Commencer",
+          "secondaryCta": "Voir les plateformes",
           "scrollIndicator": "Aller à la section suivante",
           "values": {
             "secure": {
               "title": "Sécurisé",
-              "description": "Souverain & fiable"
+              "description": "Souverain"
             },
             "interconnected": {
               "title": "Interconnecté",
-              "description": "Europe & Monde"
+              "description": "Europe-first"
             },
             "modular": {
               "title": "Modulaire",
-              "description": "Conçu pour évoluer"
+              "description": "Scalable"
             },
             "open": {
               "title": "Ouvert",
-              "description": "Pour les développeurs"
+              "description": "Open source"
             }
           },
           "signals": {
-            "workspace": "Aether Office",
-            "platforms": "Six plateformes",
-            "foundations": "Fondations ouvertes"
+            "workspace": "Uptime 99.9%",
+            "platforms": "Europe & Monde",
+            "foundations": "Open APIs"
           }
         },
         "manifesto": {
@@ -2641,22 +2641,22 @@
           "statement": "La technologie doit rester ouverte, contrôlable et construite pour durer."
         },
         "officeFeatured": {
-          "eyebrow": "Aether Office",
-          "title": "Un espace de travail pour communiquer, collaborer et produire.",
-          "description": "Mail, réunions, conversations, documents et outils organisationnels sécurisés réunis dans une expérience modulaire.",
+          "eyebrow": "AETHER OFFICE",
+          "title": "Communiquer. Collaborer. Produire.",
+          "description": "Mail, réunions, documents et outils organisationnels — réunis dans une expérience unique et sécurisée.",
           "cta": "Découvrir Aether Office",
           "points": {
             "summary": {
-              "title": "Une suite lisible",
-              "description": "Aether Office concentre les usages quotidiens de travail dans une surface cohérente, sans transformer la home en catalogue d'applications."
+              "title": "Un workspace complet",
+              "description": "Aether Office concentre les usages quotidiens de travail dans une surface cohérente et lisible."
             },
             "modular": {
               "title": "Des modules connectés",
-              "description": "Communication, fichiers, calendrier et données structurées peuvent évoluer ensemble selon les besoins de chaque organisation."
+              "description": "Communication, fichiers et données structurées qui évoluent avec vos besoins."
             },
             "governed": {
               "title": "Une base gouvernable",
-              "description": "Identité, accès et sécurité sont pensés comme fondations de l'environnement, pas comme ajouts tardifs."
+              "description": "Identité, accès et sécurité intégrés dès le premier jour."
             }
           },
           "visual": {
@@ -2716,98 +2716,98 @@
           }
         },
         "officeCapabilities": {
-          "eyebrow": "Capacités Office",
-          "title": "Quatre familles pour l'environnement de travail.",
-          "description": "Aether Office présente les usages essentiels par capacités, sans multiplier les entrées produit isolées.",
+          "eyebrow": "CAPACITÉS",
+          "title": "Quatre familles pour le workspace.",
+          "description": "Les usages essentiels organisés par capacités — sans multiplier les entrées produit.",
           "items": {
             "communicate": {
               "title": "Communiquer",
-              "description": "Mail, réunions et conversations sécurisées pour les équipes modernes."
+              "description": "Mail, réunions et conversations sécurisées."
             },
             "create": {
               "title": "Créer",
-              "description": "Documents collaboratifs, données structurées et fichiers partagés."
+              "description": "Documents, données et fichiers partagés."
             },
             "organize": {
               "title": "Organiser",
-              "description": "Calendriers, tâches et workflows connectés dans l'organisation."
+              "description": "Calendriers, tâches et workflows connectés."
             },
             "secure": {
               "title": "Sécuriser",
-              "description": "Identité, contrôle d'accès et espaces protégés par conception."
+              "description": "Identité, accès et espaces protégés."
             }
           }
         },
         "modularDeployment": {
-          "eyebrow": "Déploiement modulaire",
-          "title": "Déployez votre espace de travail à votre manière.",
-          "description": "Aether Office est conçu pour évoluer d'un workspace ciblé vers un environnement organisationnel connecté, sans imposer une complexité inutile.",
+          "eyebrow": "DÉPLOIEMENT",
+          "title": "Déployez à votre manière.",
+          "description": "D'un workspace ciblé vers un environnement organisationnel connecté — sans complexité inutile.",
           "options": {
             "managed": {
               "eyebrow": "Option",
               "title": "Managed",
-              "description": "Une expérience rationalisée opérée via l'infrastructure Sky Genesis Enterprise."
+              "description": "Expérience rationalisée via l'infrastructure SGE."
             },
             "controlled": {
               "eyebrow": "Option",
-              "title": "Controlled deployment",
-              "description": "Un environnement pensé pour les organisations recherchant davantage d'autonomie opérationnelle."
+              "title": "Controlled",
+              "description": "Environnement pour organisations autonomes."
             }
           }
         },
         "platformsTransition": {
-          "eyebrow": "Au-delà du workspace",
-          "title": "Au-delà de l'espace de travail.",
-          "description": "SGE construit les plateformes nécessaires pour développer, opérer, connecter et faire évoluer les organisations modernes.",
-          "statement": "Office est l'endroit où les équipes travaillent. Les plateformes sont l'endroit où les systèmes grandissent.",
-          "aside": "Cette section présente les grands territoires d'expansion de l'écosystème, sans prétendre que chaque capacité est déjà disponible."
+          "eyebrow": "AU-DELÀ DU WORKSPACE",
+          "title": "Six plateformes. Une vision.",
+          "description": "Développement, cloud, télécom, finance, intelligence et médias — l'expansion structurée de SGE.",
+          "statement": "Office pour les équipes. Les plateformes pour les systèmes.",
+          "aside": "Chaque direction ouvre un territoire d'expansion pour l'écosystème."
         },
         "platforms": {
-          "eyebrow": "Platforms",
-          "title": "Des plateformes construites pour la suite.",
-          "description": "Six directions structurent l'expansion de Sky Genesis Enterprise : développement, cloud, télécom, finance, intelligence et médias.",
+          "eyebrow": "PLATEFORMES",
+          "title": "Des plateformes pour construire la suite.",
+          "description": "Chaque direction ouvre un territoire d'expansion pour l'écosystème SGE.",
           "cta": "Explorer",
           "items": {
             "developer": {
               "title": "Developer",
-              "description": "Construire, intégrer et distribuer dans l'écosystème SGE."
+              "description": "APIs, SDKs et outils pour construire dans SGE."
             },
             "cloud": {
               "title": "Cloud",
-              "description": "Déployer, stocker et opérer une infrastructure indépendante."
+              "description": "Infrastructure indépendante pour déployer et opérer."
             },
             "telecom": {
               "title": "Telecom",
-              "description": "Connecter réseaux, appareils et organisations."
+              "description": "Réseaux, appareils et connectivité organisationnelle."
             },
             "finance": {
               "title": "Finance",
-              "description": "Concevoir des systèmes et services financiers programmables."
+              "description": "Systèmes financiers programmables et auditables."
             },
             "intelligence": {
               "title": "Intelligence",
-              "description": "Rechercher, automatiser et construire avec des systèmes intelligents."
+              "description": "Recherche, automatisation et systèmes intelligents."
             },
             "media": {
               "title": "Media",
-              "description": "Publier, distribuer et engager des audiences numériques."
+              "description": "Publication, distribution et audiences numériques."
             }
           }
         },
         "ecosystemArchitecture": {
-          "eyebrow": "Architecture de l'écosystème",
-          "title": "Un écosystème. Plusieurs couches de capacité.",
-          "description": "La home présente une architecture simple : les organisations travaillent dans Office, développent sur les plateformes et s'appuient sur des fondations communes.",
+          "eyebrow": "ARCHITECTURE",
+          "title": "Un écosystème. Plusieurs couches.",
+          "description": "Organisations dans Office, développement sur les plateformes, fondations communes.",
           "layers": {
             "organizations": {
               "eyebrow": "Couche 01",
-              "title": "Organizations & Teams",
-              "description": "Les utilisateurs, équipes et institutions qui doivent travailler, décider et opérer avec clarté."
+              "title": "Organizations",
+              "description": "Utilisateurs, équipes et institutions."
             },
             "office": {
               "eyebrow": "Couche 02",
               "title": "Aether Office",
-              "description": "Travail, communication et collaboration dans un environnement modulaire."
+              "description": "Travail, communication et collaboration."
             },
             "platforms": {
               "eyebrow": "Couche 03",
@@ -2817,7 +2817,7 @@
             "foundations": {
               "eyebrow": "Couche 04",
               "title": "Foundations",
-              "description": "Identity · Security · Infrastructure · APIs · Technologie ouverte."
+              "description": "Identité · Sécurité · Infrastructure · APIs."
             }
           }
         },
@@ -2865,14 +2865,14 @@
           }
         },
         "developersShowcase": {
-          "eyebrow": "Developers",
-          "title": "Construire à travers l'écosystème Aether.",
-          "description": "APIs, SDKs, intégrations d'identité, dépôts ouverts et outils développeurs conçus pour des plateformes connectées.",
-          "cta": "Explorer les ressources développeurs",
+          "eyebrow": "DEVELOPERS",
+          "title": "Construire avec SGE.",
+          "description": "APIs, SDKs, documentation et outils ouverts pour intégrer l'écosystème.",
+          "cta": "Explorer les ressources",
           "panel": {
-            "eyebrow": "Builder access",
+            "eyebrow": "Ressources",
             "title": "Ressources développeurs",
-            "description": "Un point d'entrée pour comprendre les interfaces, les intégrations et les fondations ouvertes de l'écosystème.",
+            "description": "Documentation, APIs, SDKs et Giteria — tout pour commencer.",
             "entries": {
               "documentation": "Documentation",
               "apis": "APIs",
@@ -2883,48 +2883,48 @@
           "items": {
             "documentation": {
               "title": "Documentation",
-              "description": "Guides et références pour comprendre les surfaces techniques."
+              "description": "Guides et références techniques."
             },
             "apis": {
               "title": "APIs",
-              "description": "Interfaces d'intégration pour connecter les plateformes et les services."
+              "description": "Interfaces d'intégration pour connecter les services."
             },
             "sdks": {
               "title": "SDKs",
-              "description": "Outils destinés à simplifier l'intégration à mesure que les capacités mûrissent."
+              "description": "Outils pour simplifier l'intégration."
             },
             "openSource": {
               "title": "Open source",
-              "description": "Fondations ouvertes et dépôts partagés lorsque les projets se stabilisent."
+              "description": "Fondations ouvertes et dépôts partagés."
             },
             "giteria": {
               "title": "Giteria",
-              "description": "Une direction pour le code, la collaboration technique et la distribution."
+              "description": "Code, collaboration technique et distribution."
             }
           }
         },
         "trustSecurity": {
-          "eyebrow": "Confiance et sécurité",
-          "title": "La confiance est intégrée à l'architecture.",
-          "description": "Sécurité, confidentialité, identité et transparence opérationnelle sont conçues comme des fondations, pas comme des options.",
-          "securityCta": "Voir la sécurité",
-          "trustCta": "Voir la confiance",
+          "eyebrow": "CONFIANCE & SÉCURITÉ",
+          "title": "La sécurité n'est pas une option.",
+          "description": "Identité, confidentialité, transparence et divulgation responsable — intégrées dès la conception.",
+          "securityCta": "Sécurité",
+          "trustCta": "Confiance",
           "items": {
             "identity": {
-              "title": "Identity & access",
-              "description": "Modèles d'identité et d'accès pour gouverner les utilisateurs, équipes et services."
+              "title": "Identité & accès",
+              "description": "Gouvernance des utilisateurs, équipes et services."
             },
             "design": {
-              "title": "Security by design",
-              "description": "Contrôles de sécurité intégrés dès la conception des environnements."
+              "title": "Sécurité intégrée",
+              "description": "Contrôles de sécurité dès la conception."
             },
             "transparency": {
-              "title": "Operational transparency",
-              "description": "Communication claire sur les statuts, limites et évolutions opérationnelles."
+              "title": "Transparence opérationnelle",
+              "description": "Statuts, limites et évolutions communiqués clairement."
             },
             "disclosure": {
-              "title": "Responsible disclosure",
-              "description": "Pratiques de signalement et de traitement responsables pour les sujets sensibles."
+              "title": "Divulgation responsable",
+              "description": "Pratiques de signalement et traitement des vulnérabilités."
             }
           }
         },
@@ -2951,49 +2951,49 @@
           }
         },
         "company": {
-          "eyebrow": "Entreprise",
-          "title": "Un écosystème construit avec des personnes, des partenaires et une intention.",
-          "description": "La home relie l'ambition technique à la dimension humaine et institutionnelle de Sky Genesis Enterprise.",
+          "eyebrow": "ENTREPRISE",
+          "title": "Les personnes derrière la technologie.",
+          "description": "Vision, partenariats et carrières — l'humain au centre de l'écosystème.",
           "items": {
             "company": {
               "title": "Company",
-              "description": "Découvrir la vision derrière Sky Genesis Enterprise.",
-              "cta": "Découvrir l'entreprise"
+              "description": "La vision et la mission de SGE.",
+              "cta": "Découvrir"
             },
             "partners": {
               "title": "Partners",
-              "description": "Collaborer autour d'une technologie ouverte et indépendante.",
+              "description": "Une technologie ouverte, construite ensemble.",
               "cta": "Voir les partenaires"
             },
             "careers": {
               "title": "Careers",
-              "description": "Contribuer aux systèmes que nous construisons.",
+              "description": "Rejoindre l'équipe qui construit l'infrastructure.",
               "cta": "Voir les carrières"
             }
           }
         },
         "finalCta": {
-          "eyebrow": "Prochaine étape",
-          "title": "Construire avec Sky Genesis Enterprise.",
-          "description": "Choisissez l'environnement qui correspond à votre prochaine étape.",
+          "eyebrow": "COMMENCER",
+          "title": "Prêt à construire ?",
+          "description": "Choisissez votre point d'entrée dans l'écosystème SGE.",
           "items": {
             "organizations": {
-              "eyebrow": "Pour les organisations",
-              "title": "Discover Aether Office",
-              "description": "Explorer l'espace de travail central de l'écosystème SGE.",
-              "cta": "Découvrir Office"
+              "eyebrow": "Organisations",
+              "title": "Aether Office",
+              "description": "Le workspace central de l'écosystème.",
+              "cta": "Découvrir"
             },
             "builders": {
-              "eyebrow": "Pour les builders",
-              "title": "Explore Platforms",
-              "description": "Comprendre les six grandes plateformes structurelles.",
-              "cta": "Explorer Platforms"
+              "eyebrow": "Builders",
+              "title": "Platforms",
+              "description": "Les six plateformes structurelles.",
+              "cta": "Explorer"
             },
             "developers": {
-              "eyebrow": "Pour les développeurs",
-              "title": "Start with developer resources",
-              "description": "Accéder aux ressources pour construire et intégrer.",
-              "cta": "Ouvrir Developers"
+              "eyebrow": "Développeurs",
+              "title": "Developers",
+              "description": "APIs, SDKs et documentation.",
+              "cta": "Commencer"
             }
           }
         },
@@ -3011,44 +3011,44 @@
           }
         },
         "whatWeBuild": {
-          "eyebrow": "Ce que nous construisons",
-          "title": "Un écosystème lisible, organisé par familles.",
-          "description": "La page d'accueil oriente vers les grands ensembles sans remplacer les pages détaillées.",
+          "eyebrow": "ÉCOSYSTÈME",
+          "title": "Quatre familles. Un seul écosystème.",
+          "description": "Plateforme, produits, solutions et outils développeurs — chaque famille a son rôle.",
           "items": {
             "platform": {
               "title": "Plateforme",
-              "description": "Les briques communes : identité, secrets, edge, statut, recherche, mailer, cartes et concepts ledger."
+              "description": "Identité, edge, recherche, mailer et services communs."
             },
             "products": {
               "title": "Produits",
-              "description": "Des expériences visibles pour la sécurité, le travail, la collaboration, le code et les données."
+              "description": "Sécurité, travail, collaboration, code et données."
             },
             "solutions": {
               "title": "Solutions",
-              "description": "Des trajectoires d'usage pour organisations B2C, B2B, infrastructure et workplace."
+              "description": "B2C, B2B, infrastructure et workplace."
             },
             "developerTools": {
               "title": "Outils développeurs",
-              "description": "Documentation, APIs, SDKs et fondations open-source pour intégrer l'écosystème progressivement."
+              "description": "APIs, SDKs, documentation et open source."
             }
           }
         },
         "whyNow": {
-          "eyebrow": "Pourquoi maintenant",
-          "title": "Le contexte compte autant que les fonctionnalités.",
-          "description": "Les organisations cherchent plus de maîtrise, plus de lisibilité et des trajectoires d'adoption crédibles plutôt qu'une promesse technologique isolée.",
+          "eyebrow": "POURQUOI MAINTENANT",
+          "title": "Le contexte change. L'infrastructure aussi.",
+          "description": "Les organisations recherchent plus de contrôle, plus de clarté et des fondations durables.",
           "items": {
             "control": {
               "title": "Reprendre le contrôle",
-              "description": "Réduire la dépendance, mieux cadrer l'identité, les accès et les composants critiques de l'infrastructure."
+              "description": "Réduire la dépendance aux infrastructures externes."
             },
             "clarity": {
-              "title": "Rendre la maturité lisible",
-              "description": "Afficher ce qui est disponible, en recherche ou en développement pour faciliter les décisions techniques et métier."
+              "title": "Clarté opérationnelle",
+              "description": "Savoir ce qui est disponible, ce qui vient, et pourquoi."
             },
             "execution": {
               "title": "Construire pour durer",
-              "description": "Prioriser des fondations cohérentes qui peuvent soutenir plusieurs produits, solutions et usages long terme."
+              "description": "Des fondations cohérentes pour plusieurs produits et usages."
             }
           }
         },
@@ -11521,6 +11521,16 @@
               ]
             }
           }
+        },
+        "statsBar": {
+          "uptime": "99.9%",
+          "uptimeLabel": "Uptime garanti",
+          "countries": "6",
+          "countriesLabel": "Plateformes",
+          "organizations": "Europe",
+          "organizationsLabel": "Premier",
+          "transactions": "Open",
+          "transactionsLabel": "APIs"
         }
       },
       "resourcesPage": {

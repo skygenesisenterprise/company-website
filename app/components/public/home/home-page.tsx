@@ -42,15 +42,11 @@ interface CardLinkProps {
   href?: string;
   cta?: string;
   icon?: React.ComponentType<{ className?: string }>;
-  accent?: string;
   className?: string;
 }
 
 function localizeHref(locale: string, href: string) {
-  if (href.startsWith("http")) {
-    return href;
-  }
-
+  if (href.startsWith("http")) return href;
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
 }
 
@@ -58,11 +54,11 @@ function SectionEyebrow({ children, inverted = false }: { children: React.ReactN
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em]",
-        inverted ? "text-background/60" : "text-muted-foreground",
+        "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em]",
+        inverted ? "text-background/50" : "text-muted-foreground",
       )}
     >
-      <span className={cn("h-px w-10", inverted ? "bg-background/20" : "bg-border")} />
+      <span className={cn("h-px w-8", inverted ? "bg-background/15" : "bg-border")} />
       {children}
     </span>
   );
@@ -75,37 +71,28 @@ function Section({ id, eyebrow, title, description, tone = "default", children }
     <section
       id={id}
       className={cn(
-        "relative overflow-hidden py-24 sm:py-28 lg:py-32",
-        tone === "muted" && "bg-muted",
+        "relative overflow-hidden py-28 sm:py-36 lg:py-44",
+        tone === "muted" && "bg-muted/40",
         dark && "bg-foreground text-background",
       )}
     >
-      {dark ? (
-        <div
-          aria-hidden={true}
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
-      ) : null}
       <div className="relative mx-auto max-w-360 px-6 lg:px-12">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           {eyebrow ? <SectionEyebrow inverted={dark}>{eyebrow}</SectionEyebrow> : null}
           <div>
             <h2
-            className={cn(
-              "mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl lg:text-6xl",
-              dark ? "text-background" : "text-foreground",
-            )}
-          >
-            {title}
-          </h2>
-          {description ? (
-            <p className={cn("mt-6 text-lg leading-8", dark ? "text-background/68" : "text-muted-foreground")}>{description}</p>
-          ) : null}
+              className={cn(
+                "mt-6 text-[clamp(2.2rem,4.5vw,3.5rem)] font-medium tracking-[-0.045em] leading-[1.08]",
+                dark ? "text-background" : "text-foreground",
+              )}
+            >
+              {title}
+            </h2>
+            {description ? (
+              <p className={cn("mt-5 max-w-3xl text-base leading-7", dark ? "text-background/50" : "text-muted-foreground")}>
+                {description}
+              </p>
+            ) : null}
           </div>
         </div>
         <div className="mt-14">{children}</div>
@@ -114,140 +101,283 @@ function Section({ id, eyebrow, title, description, tone = "default", children }
   );
 }
 
-function CardLink({ title, description, href, cta, icon: Icon, accent, className }: CardLinkProps) {
+function CardLink({ title, description, href, cta, icon: Icon, className }: CardLinkProps) {
   const content = (
     <div
       className={cn(
-        "group relative h-full overflow-hidden rounded-4xl border border-border/80 bg-card p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.28)] transition duration-300",
-        "hover:-translate-y-1 hover:border-foreground/15 hover:shadow-[0_24px_80px_-36px_rgba(15,23,42,0.22)]",
+        "group relative h-full overflow-hidden rounded-2xl border border-border/40 bg-card p-6 transition-all duration-200",
+        "hover:border-border/70 hover:shadow-md",
         className,
       )}
     >
-      {accent ? <div aria-hidden={true} className={cn("absolute inset-x-0 top-0 h-1", accent)} /> : null}
       <div className="flex items-start justify-between gap-4">
         {Icon ? (
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-muted text-muted-foreground">
-            <Icon className="h-5 w-5" />
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-colors duration-200 group-hover:bg-foreground/5 group-hover:text-foreground">
+            <Icon className="h-4.5 w-4.5" />
           </span>
         ) : (
           <span />
         )}
         {href ? (
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition group-hover:border-foreground/15 group-hover:text-foreground">
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden={true} />
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100">
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden={true} />
           </span>
         ) : null}
       </div>
-      <h3 className="mt-8 text-xl font-semibold tracking-[-0.03em] text-foreground">{title}</h3>
-      <p className="mt-4 text-sm leading-7 text-muted-foreground">{description}</p>
-      {cta ? <span className="mt-7 inline-flex text-sm font-medium text-foreground">{cta}</span> : null}
+      <h3 className="mt-6 text-[1.05rem] font-medium tracking-[-0.01em] text-foreground">{title}</h3>
+      <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{description}</p>
+      {cta ? (
+        <span className="mt-5 inline-flex text-sm font-medium text-foreground/60 transition-colors duration-200 group-hover:text-foreground">
+          {cta}
+        </span>
+      ) : null}
     </div>
   );
 
-  if (!href) {
-    return content;
-  }
-
+  if (!href) return content;
   return <Link href={href}>{content}</Link>;
 }
 
-function WorldMapBackdrop() {
+/* ------------------------------------------------------------------ */
+/* 1. Hero                                                             */
+/* ------------------------------------------------------------------ */
+
+function HomeHero({ locale, t }: HomePageContentProps) {
+  const values = [
+    { key: "secure", icon: ShieldCheck },
+    { key: "interconnected", icon: Globe2 },
+    { key: "modular", icon: Blocks },
+    { key: "open", icon: Code2 },
+  ];
+
   return (
-    <svg viewBox="0 0 1600 620" className="h-full w-full" fill="none" aria-hidden={true}>
-      <defs>
-        <linearGradient id="map-fill" x1="0%" x2="100%" y1="0%" y2="0%">
-          <stop offset="0%" stopColor="rgba(24,24,27,0.2)" />
-          <stop offset="100%" stopColor="rgba(24,24,27,0.08)" />
-        </linearGradient>
-        <radialGradient id="map-glow" cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stopColor="rgba(59,130,246,0.12)" />
-          <stop offset="100%" stopColor="rgba(59,130,246,0)" />
-        </radialGradient>
-      </defs>
+    <section className="relative overflow-hidden">
+      <div aria-hidden={true} className="pointer-events-none absolute inset-0 gradient-mesh-hero" />
+      <div aria-hidden={true} className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-background to-transparent" />
 
-      <rect width="1600" height="620" fill="url(#map-glow)" opacity="0.75" />
+      <div className="relative mx-auto flex min-h-[92vh] max-w-360 items-center px-6 py-24 sm:py-32 lg:px-12">
+        <div className="max-w-4xl">
+          <SectionEyebrow>{t("hero.eyebrow")}</SectionEyebrow>
 
-      <g opacity="0.9">
-        <path
-          d="M95 203C140 173 204 154 285 155C335 156 384 165 432 187C452 196 476 193 498 184C549 164 608 155 683 157C727 158 764 170 798 190C816 201 841 202 864 196C914 183 956 187 991 212C1020 233 1048 238 1086 231C1148 220 1212 223 1281 244C1328 258 1370 280 1415 312C1448 335 1487 354 1528 366L1528 432C1483 433 1445 425 1408 409C1361 390 1313 378 1258 376C1199 373 1146 388 1093 413C1060 428 1024 432 988 425C950 418 916 421 880 435C842 450 803 456 748 455C692 454 647 442 605 417C557 388 507 378 448 384C382 391 323 382 267 353C226 331 181 314 128 304L95 302V203Z"
-          fill="url(#map-fill)"
-        />
-        <path
-          d="M215 236C248 223 280 221 316 227C356 233 384 251 417 273C441 289 469 293 497 288C522 283 548 286 574 298C607 314 640 316 674 309C708 302 740 299 773 307C811 317 847 320 885 309C935 295 979 293 1019 313C1048 328 1080 334 1118 331C1168 327 1214 338 1260 364C1217 351 1176 350 1136 360C1098 370 1063 386 1026 402C991 417 955 420 918 412C875 402 838 403 799 416C741 436 686 437 632 411C579 386 529 375 471 382C418 388 368 380 320 354C282 333 249 307 216 277L215 236Z"
-          fill="rgba(39,39,42,0.08)"
-        />
-      </g>
+          <h1 className="mt-8 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] font-medium leading-[0.86] tracking-[-0.065em] text-foreground">
+            <span className="block">{t("hero.titleLine1")}</span>
+            <span className="block">{t("hero.titleLine2")}</span>
+            <span className="block">{t("hero.titleLine3")}</span>
+            <span className="block text-gradient-primary">{t("hero.titleImpact")}</span>
+          </h1>
 
-      <g opacity="0.3" stroke="rgba(24,24,27,0.2)" strokeWidth="1.25">
-        <path d="M240 284C376 231 517 230 640 271C731 301 821 307 930 274C1061 235 1188 255 1340 337" />
-        <path d="M264 348C403 403 516 415 646 390C772 365 885 328 1008 347C1113 363 1221 394 1317 432" />
-      </g>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">
+            {t("hero.description")}
+          </p>
 
-      <g fill="rgba(24,24,27,0.45)">
-        {[
-          [252, 286],
-          [388, 244],
-          [612, 285],
-          [796, 302],
-          [1008, 272],
-          [1218, 320],
-          [1324, 374],
-        ].map(([cx, cy]) => (
-          <g key={`${cx}-${cy}`}>
-            <circle cx={cx} cy={cy} r="5.5" />
-            <circle cx={cx} cy={cy} r="18" fill="rgba(59,130,246,0.08)" />
-          </g>
-        ))}
-      </g>
-    </svg>
+          {/* Value pills */}
+          <div className="mt-10 flex flex-wrap gap-3">
+            {values.map((v) => (
+              <span
+                key={v.key}
+                className="inline-flex items-center gap-2.5 rounded-full border border-border/40 bg-card/70 px-4 py-2 text-sm text-muted-foreground backdrop-blur-sm transition-colors duration-200 hover:border-border/70 hover:text-foreground"
+              >
+                <v.icon className="h-3.5 w-3.5" />
+                <span className="font-medium">{t(`hero.values.${v.key}.title`)}</span>
+                <span className="hidden sm:inline text-[11px] text-muted-foreground/60">
+                  {t(`hero.values.${v.key}.description`)}
+                </span>
+              </span>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 rounded-full bg-foreground px-8 text-sm font-medium text-background transition-all duration-200 hover:bg-foreground/90 hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <Link href={localizeHref(locale, "/office")}>
+                {t("hero.primaryCta")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="ghost"
+              className="h-12 rounded-full px-8 text-sm font-medium text-foreground/60 transition-all duration-200 hover:bg-foreground/5 hover:text-foreground"
+            >
+              <Link href={localizeHref(locale, "/platform")}>{t("hero.secondaryCta")}</Link>
+            </Button>
+          </div>
+
+          {/* Signal bar */}
+          <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/50">
+            <span className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-foreground/15" />
+              {t("hero.signals.workspace")}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-foreground/15" />
+              {t("hero.signals.platforms")}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-foreground/15" />
+              {t("hero.signals.foundations")}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* 2. Stats Bar                                                        */
+/* ------------------------------------------------------------------ */
+
+function StatsBar({ t }: { t: (key: string) => string }) {
+  const stats = [
+    { value: t("statsBar.uptime"), label: t("statsBar.uptimeLabel") },
+    { value: t("statsBar.countries"), label: t("statsBar.countriesLabel") },
+    { value: t("statsBar.organizations"), label: t("statsBar.organizationsLabel") },
+    { value: t("statsBar.transactions"), label: t("statsBar.transactionsLabel") },
+  ];
+
+  return (
+    <section className="border-y border-border/40 bg-muted/30">
+      <div className="mx-auto max-w-360 px-6 lg:px-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <div
+              key={stat.label}
+              className={cn(
+                "py-12 sm:py-14",
+                index < stats.length - 1 && "lg:border-r lg:border-border/30",
+                index === 0 && "border-b lg:border-b-0 border-border/30",
+                index === 1 && "border-b lg:border-b-0 border-border/30 lg:border-l lg:border-transparent",
+              )}
+            >
+              <div className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-semibold tracking-[-0.06em] text-foreground">
+                {stat.value}
+              </div>
+              <div className="mt-2 text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 2b. Social Proof (logo strip)                                       */
+/* ------------------------------------------------------------------ */
+
+function SocialProof() {
+  const logos = [
+    { name: "Partner 1" },
+    { name: "Partner 2" },
+    { name: "Partner 3" },
+    { name: "Partner 4" },
+    { name: "Partner 5" },
+  ];
+
+  return (
+    <section className="border-b border-border/40 bg-muted/20 py-10 sm:py-12">
+      <div className="mx-auto max-w-360 px-6 lg:px-12">
+        <div className="flex flex-col items-center gap-8">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground/50">
+            Fait confiance par
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            {logos.map((logo) => (
+              <span
+                key={logo.name}
+                className="text-sm font-medium text-muted-foreground/30 transition-colors duration-200 hover:text-muted-foreground/60"
+              >
+                {logo.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Manifesto                                                        */
+/* ------------------------------------------------------------------ */
+
+function ManifestoSection({ t }: { t: (key: string) => string }) {
+  return (
+    <section className="relative overflow-hidden py-28 sm:py-36 lg:py-44">
+      <div className="relative mx-auto max-w-360 px-6 lg:px-12">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-[clamp(1.5rem,3.2vw,2.8rem)] font-medium leading-[1.12] tracking-[-0.03em] text-foreground">
+            {t("manifesto.statement")}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Office Showcase (bento + capabilities + deployment)              */
+/* ------------------------------------------------------------------ */
 
 function OfficePreview({ t }: { t: (key: string) => string }) {
   const labels = ["mail", "meet", "chat", "sheets", "files", "calendar"] as const;
 
   return (
-    <div className="relative overflow-hidden rounded-[2.25rem] border border-border bg-card p-5 shadow-[0_32px_100px_-52px_rgba(15,23,42,0.3)]">
-      <div
-        aria-hidden={true}
-        className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,color-mix(in oklch,var(--muted-foreground) 22%,transparent),transparent_58%),linear-gradient(180deg,color-mix(in oklch,var(--muted) 96%,transparent),transparent)]"
-      />
+    <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card p-5">
       <div className="relative grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[1.75rem] border border-border bg-muted p-5">
+        <div className="rounded-2xl border border-border/30 bg-muted/40 p-5">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{t("officeFeatured.visual.mailLabel")}</div>
-              <div className="mt-2 text-lg font-semibold text-foreground">{t("officeFeatured.visual.mailTitle")}</div>
+              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {t("officeFeatured.visual.mailLabel")}
+              </div>
+              <div className="mt-2 text-lg font-medium text-foreground">
+                {t("officeFeatured.visual.mailTitle")}
+              </div>
             </div>
-            <span className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+            <span className="rounded-full border border-border/40 bg-background px-3 py-1 text-xs text-muted-foreground">
               {t("officeFeatured.visual.mailState")}
             </span>
           </div>
-          <div className="mt-5 space-y-3">
+          <div className="mt-5 space-y-2.5">
             {[1, 2, 3].map((item) => (
-              <div key={item} className="rounded-2xl border border-border bg-card px-4 py-3">
+              <div key={item} className="rounded-xl border border-border/25 bg-background/70 px-4 py-3">
                 <div className="flex items-center justify-between gap-3">
-                  <div className="text-sm font-medium text-foreground">{t(`officeFeatured.visual.mailItems.${item}.title`)}</div>
+                  <div className="text-sm font-medium text-foreground">
+                    {t(`officeFeatured.visual.mailItems.${item}.title`)}
+                  </div>
                   <div className="h-2 w-2 rounded-full bg-border" />
                 </div>
-                <div className="mt-1 text-xs text-muted-foreground">{t(`officeFeatured.visual.mailItems.${item}.meta`)}</div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  {t(`officeFeatured.visual.mailItems.${item}.meta`)}
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[1.75rem] border border-border bg-foreground p-5 text-background sm:col-span-2">
+          <div className="rounded-2xl border border-background/10 bg-foreground p-5 text-background sm:col-span-2">
             <div className="flex items-center justify-between">
               <div className="text-sm font-medium">{t("officeFeatured.visual.meetTitle")}</div>
-              <div className="rounded-full border border-background/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-background/55">
+              <div className="rounded-full border border-background/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-background/50">
                 {t("officeFeatured.visual.meetState")}
               </div>
             </div>
             <div className="mt-10 flex items-end justify-between gap-6">
               <div>
-                <div className="text-3xl font-semibold tracking-[-0.04em]">{t("officeFeatured.visual.meetTime")}</div>
-                <div className="mt-2 text-sm text-background/55">{t("officeFeatured.visual.meetMeta")}</div>
+                <div className="text-3xl font-semibold tracking-[-0.04em]">
+                  {t("officeFeatured.visual.meetTime")}
+                </div>
+                <div className="mt-2 text-sm text-background/50">
+                  {t("officeFeatured.visual.meetMeta")}
+                </div>
               </div>
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((item) => (
@@ -258,10 +388,16 @@ function OfficePreview({ t }: { t: (key: string) => string }) {
           </div>
 
           {labels.map((label) => (
-            <div key={label} className="rounded-[1.5rem] border border-border bg-card px-4 py-4">
-              <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{t(`officeFeatured.visual.apps.${label}.label`)}</div>
-              <div className="mt-2 text-base font-semibold text-foreground">{t(`officeFeatured.visual.apps.${label}.title`)}</div>
-              <div className="mt-2 text-sm leading-6 text-muted-foreground">{t(`officeFeatured.visual.apps.${label}.description`)}</div>
+            <div key={label} className="rounded-xl border border-border/25 bg-background/60 px-4 py-4">
+              <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                {t(`officeFeatured.visual.apps.${label}.label`)}
+              </div>
+              <div className="mt-2 text-base font-medium text-foreground">
+                {t(`officeFeatured.visual.apps.${label}.title`)}
+              </div>
+              <div className="mt-2 text-sm leading-6 text-muted-foreground">
+                {t(`officeFeatured.visual.apps.${label}.description`)}
+              </div>
             </div>
           ))}
         </div>
@@ -270,54 +406,7 @@ function OfficePreview({ t }: { t: (key: string) => string }) {
   );
 }
 
-function HomeHero({ locale, t }: HomePageContentProps) {
-  return (
-    <section className="relative overflow-hidden border-b border-border/80 bg-linear-to-b from-background to-muted">
-      <div aria-hidden={true} className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_65%)]" />
-        <div className="absolute inset-x-[-10%] top-[16%] h-[56%] opacity-95 sm:top-[18%] lg:inset-x-[-4%] lg:top-[19%] lg:h-[62%]">
-          <WorldMapBackdrop />
-        </div>
-        <div className="absolute inset-0 bg-linear-to-b from-background/76 via-background/34 to-background/82" />
-      </div>
-
-      <div className="relative mx-auto flex min-h-[88vh] max-w-360 items-center px-6 py-20 sm:py-24 lg:px-12 lg:py-28">
-        <div className="max-w-4xl">
-          <SectionEyebrow>{t("hero.eyebrow")}</SectionEyebrow>
-          <h1 className="mt-7 max-w-5xl text-[clamp(3.4rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-foreground">
-            {t("hero.title")}
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground sm:text-xl">{t("hero.description")}</p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Button asChild size="lg" className="h-14 rounded-full bg-foreground px-8 text-sm font-medium text-background hover:bg-foreground/90">
-              <Link href={localizeHref(locale, "/office")}>
-                {t("hero.primaryCta")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="h-14 rounded-full px-8 text-sm font-medium">
-              <Link href={localizeHref(locale, "/platform")}>{t("hero.secondaryCta")}</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ManifestoSection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section title={t("manifesto.title")} description={t("manifesto.description")}>
-      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-border bg-card px-8 py-12 text-center shadow-[0_24px_80px_-52px_rgba(15,23,42,0.25)] sm:px-12">
-        <p className="text-[clamp(1.8rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-tighter text-foreground">
-          {t("manifesto.statement")}
-        </p>
-      </div>
-    </Section>
-  );
-}
-
-function OfficeFeaturedSection({ locale, t }: HomePageContentProps) {
+function OfficeShowcase({ locale, t }: HomePageContentProps) {
   return (
     <Section
       eyebrow={t("officeFeatured.eyebrow")}
@@ -325,18 +414,58 @@ function OfficeFeaturedSection({ locale, t }: HomePageContentProps) {
       description={t("officeFeatured.description")}
       tone="muted"
     >
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:items-center">
+      <div className="grid gap-10 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-center">
         <div className="max-w-xl">
-          <div className="space-y-6">
+          <div className="space-y-4">
             {["summary", "modular", "governed"].map((item) => (
-              <div key={item} className="rounded-[1.75rem] border border-border bg-card px-6 py-5">
-                <div className="text-sm font-semibold text-foreground">{t(`officeFeatured.points.${item}.title`)}</div>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">{t(`officeFeatured.points.${item}.description`)}</p>
+              <div key={item} className="rounded-2xl border border-border/30 bg-card px-6 py-5">
+                <div className="text-sm font-medium text-foreground">
+                  {t(`officeFeatured.points.${item}.title`)}
+                </div>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  {t(`officeFeatured.points.${item}.description`)}
+                </p>
               </div>
             ))}
           </div>
+
+          {/* Capabilities row */}
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            {[
+              { key: "communicate", icon: Globe2 },
+              { key: "create", icon: Blocks },
+              { key: "organize", icon: Network },
+              { key: "secure", icon: ShieldCheck },
+            ].map((item) => (
+              <div key={item.key} className="flex items-center gap-3 rounded-xl border border-border/30 bg-card/60 px-4 py-3">
+                <item.icon className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium text-foreground">
+                  {t(`officeCapabilities.items.${item.key}.title`)}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Deployment options */}
+          <div className="mt-6 flex flex-wrap gap-3">
+            {["managed", "controlled"].map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card/50 px-4 py-2 text-xs font-medium text-muted-foreground"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-foreground/20" />
+                {t(`modularDeployment.options.${item}.title`)}
+              </span>
+            ))}
+          </div>
+
           <div className="mt-8">
-            <Button asChild size="lg" variant="outline" className="h-14 rounded-full px-8 text-sm font-medium">
+            <Button
+              asChild
+              size="lg"
+              variant="ghost"
+              className="h-12 rounded-full px-8 text-sm font-medium text-foreground/60 transition-all duration-200 hover:bg-foreground/5 hover:text-foreground"
+            >
               <Link href={localizeHref(locale, "/office")}>{t("officeFeatured.cta")}</Link>
             </Button>
           </div>
@@ -347,27 +476,32 @@ function OfficeFeaturedSection({ locale, t }: HomePageContentProps) {
   );
 }
 
-function OfficeCapabilitiesSection({ t }: { t: (key: string) => string }) {
+/* ------------------------------------------------------------------ */
+/* 5. What We Build (NEW — unused translations)                        */
+/* ------------------------------------------------------------------ */
+
+function WhatWeBuildSection({ t }: { t: (key: string) => string }) {
+  const items = [
+    { key: "platform", icon: Blocks },
+    { key: "products", icon: Globe2 },
+    { key: "solutions", icon: LockKeyhole },
+    { key: "developerTools", icon: Code2 },
+  ];
+
   return (
     <Section
-      eyebrow={t("officeCapabilities.eyebrow")}
-      title={t("officeCapabilities.title")}
-      description={t("officeCapabilities.description")}
+      eyebrow={t("whatWeBuild.eyebrow")}
+      title={t("whatWeBuild.title")}
+      description={t("whatWeBuild.description")}
     >
-      <div className="grid gap-5 md:grid-cols-2">
-        {[
-          { key: "communicate", icon: Globe2, accent: "bg-foreground" },
-          { key: "create", icon: Blocks, accent: "bg-muted-foreground" },
-          { key: "organize", icon: Network, accent: "bg-muted-foreground" },
-          { key: "secure", icon: ShieldCheck, accent: "bg-muted-foreground" },
-        ].map((item) => (
+      <div className="grid gap-4 md:grid-cols-2">
+        {items.map((item) => (
           <CardLink
             key={item.key}
-            title={t(`officeCapabilities.items.${item.key}.title`)}
-            description={t(`officeCapabilities.items.${item.key}.description`)}
+            title={t(`whatWeBuild.items.${item.key}.title`)}
+            description={t(`whatWeBuild.items.${item.key}.description`)}
             icon={item.icon}
-            accent={item.accent}
-            className="min-h-60"
+            className="min-h-52"
           />
         ))}
       </div>
@@ -375,20 +509,36 @@ function OfficeCapabilitiesSection({ t }: { t: (key: string) => string }) {
   );
 }
 
-function ModularDeploymentSection({ t }: { t: (key: string) => string }) {
+/* ------------------------------------------------------------------ */
+/* 6. Why Now (NEW — unused translations)                              */
+/* ------------------------------------------------------------------ */
+
+function WhyNowSection({ t }: { t: (key: string) => string }) {
+  const items = [
+    { key: "control", icon: ShieldCheck },
+    { key: "clarity", icon: BookOpen },
+    { key: "execution", icon: Blocks },
+  ];
+
   return (
     <Section
-      eyebrow={t("modularDeployment.eyebrow")}
-      title={t("modularDeployment.title")}
-      description={t("modularDeployment.description")}
+      eyebrow={t("whyNow.eyebrow")}
+      title={t("whyNow.title")}
+      description={t("whyNow.description")}
       tone="muted"
     >
-      <div className="grid gap-5 lg:grid-cols-2">
-        {["managed", "controlled"].map((item) => (
-          <div key={item} className="rounded-4xl border border-border bg-card p-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.24)]">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t(`modularDeployment.options.${item}.eyebrow`)}</div>
-            <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-foreground">{t(`modularDeployment.options.${item}.title`)}</div>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">{t(`modularDeployment.options.${item}.description`)}</p>
+      <div className="grid gap-4 lg:grid-cols-3">
+        {items.map((item) => (
+          <div key={item.key} className="rounded-2xl border border-border/30 bg-card p-7">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-muted text-muted-foreground">
+              <item.icon className="h-4.5 w-4.5" />
+            </span>
+            <div className="mt-6 text-lg font-medium tracking-[-0.02em] text-foreground">
+              {t(`whyNow.items.${item.key}.title`)}
+            </div>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">
+              {t(`whyNow.items.${item.key}.description`)}
+            </p>
           </div>
         ))}
       </div>
@@ -396,153 +546,119 @@ function ModularDeploymentSection({ t }: { t: (key: string) => string }) {
   );
 }
 
-function PlatformsTransitionSection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section
-      eyebrow={t("platformsTransition.eyebrow")}
-      title={t("platformsTransition.title")}
-      description={t("platformsTransition.description")}
-      tone="dark"
-    >
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-end">
-        <p className="max-w-2xl text-2xl font-medium leading-10 tracking-[-0.04em] text-background/86">
-          {t("platformsTransition.statement")}
-        </p>
-        <div className="rounded-4xl border border-background/10 bg-background/4 p-6 text-sm leading-7 text-background/64">
-          {t("platformsTransition.aside")}
-        </div>
-      </div>
-    </Section>
-  );
-}
+/* ------------------------------------------------------------------ */
+/* 7. Platforms (consolidated: transition + platforms + architecture)   */
+/* ------------------------------------------------------------------ */
 
 function PlatformsSection({ locale, t }: HomePageContentProps) {
   const platforms = [
-    { key: "developer", icon: Code2, href: "/platform/developer", accent: "bg-foreground" },
-    { key: "cloud", icon: Building2, href: "/platform/cloud", accent: "bg-muted-foreground" },
-    { key: "telecom", icon: Network, href: "/platform/telecom", accent: "bg-muted-foreground" },
-    { key: "finance", icon: LockKeyhole, href: "/platform/finance", accent: "bg-muted-foreground" },
-    { key: "intelligence", icon: Blocks, href: "/platform/intelligence", accent: "bg-foreground" },
-    { key: "media", icon: Globe2, href: "/platform/media", accent: "bg-muted-foreground" },
+    { key: "developer", icon: Code2, href: "/platform/developer" },
+    { key: "cloud", icon: Building2, href: "/platform/cloud" },
+    { key: "telecom", icon: Network, href: "/platform/telecom" },
+    { key: "finance", icon: LockKeyhole, href: "/platform/finance" },
+    { key: "intelligence", icon: Blocks, href: "/platform/intelligence" },
+    { key: "media", icon: Globe2, href: "/platform/media" },
   ];
 
   return (
-    <Section eyebrow={t("platforms.eyebrow")} title={t("platforms.title")} description={t("platforms.description")}>
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {platforms.map((platform) => (
-          <CardLink
-            key={platform.key}
-            title={t(`platforms.items.${platform.key}.title`)}
-            description={t(`platforms.items.${platform.key}.description`)}
-            href={localizeHref(locale, platform.href)}
-            cta={t("platforms.cta")}
-            icon={platform.icon}
-            accent={platform.accent}
-            className="min-h-64.5"
-          />
-        ))}
-      </div>
-    </Section>
-  );
-}
+    <>
+      {/* Dark transition band */}
+      <section className="relative overflow-hidden bg-foreground py-28 sm:py-36 lg:py-44">
+        <div aria-hidden={true} className="pointer-events-none absolute inset-0 gradient-mesh-hero-dark" />
+        <div className="relative mx-auto max-w-360 px-6 lg:px-12">
+          <div className="mx-auto max-w-5xl">
+            <SectionEyebrow inverted>{t("platformsTransition.eyebrow")}</SectionEyebrow>
+            <h2 className="mt-6 max-w-5xl text-[clamp(2.2rem,4.5vw,3.5rem)] font-medium tracking-[-0.045em] leading-[1.08] text-background">
+              {t("platformsTransition.title")}
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-background/50">
+              {t("platformsTransition.description")}
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-end">
+            <p className="max-w-2xl text-2xl font-medium leading-10 tracking-[-0.04em] text-background/80">
+              {t("platformsTransition.statement")}
+            </p>
+            <div className="rounded-2xl border border-background/8 bg-background/5 p-6 text-sm leading-7 text-background/50">
+              {t("platformsTransition.aside")}
+            </div>
+          </div>
+        </div>
+      </section>
 
-function EcosystemArchitectureSection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section
-      eyebrow={t("ecosystemArchitecture.eyebrow")}
-      title={t("ecosystemArchitecture.title")}
-      description={t("ecosystemArchitecture.description")}
-      tone="muted"
-    >
-      <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-border bg-card p-6 shadow-[0_30px_100px_-60px_rgba(15,23,42,0.28)] sm:p-8">
-        <div className="grid gap-5">
-          {["organizations", "office", "platforms", "foundations"].map((item, index) => (
-            <React.Fragment key={item}>
-              <div className="rounded-[1.75rem] border border-border bg-muted p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {t(`ecosystemArchitecture.layers.${item}.eyebrow`)}
-                </div>
-                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-foreground">
-                  {t(`ecosystemArchitecture.layers.${item}.title`)}
-                </div>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">{t(`ecosystemArchitecture.layers.${item}.description`)}</p>
-              </div>
-              {index < 3 ? (
-                <div className="flex justify-center" aria-hidden={true}>
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
-                    <ArrowRight className="h-4 w-4 rotate-90" />
-                  </div>
-                </div>
-              ) : null}
-            </React.Fragment>
+      {/* Platform cards */}
+      <Section eyebrow={t("platforms.eyebrow")} title={t("platforms.title")} description={t("platforms.description")}>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {platforms.map((platform) => (
+            <CardLink
+              key={platform.key}
+              title={t(`platforms.items.${platform.key}.title`)}
+              description={t(`platforms.items.${platform.key}.description`)}
+              href={localizeHref(locale, platform.href)}
+              cta={t("platforms.cta")}
+              icon={platform.icon}
+              className="min-h-56"
+            />
           ))}
         </div>
-      </div>
-    </Section>
+
+        {/* Architecture layers */}
+        <div className="mt-16 mx-auto max-w-4xl">
+          <div className="rounded-3xl border border-border/30 bg-card p-6 sm:p-8">
+            <div className="grid gap-3">
+              {["organizations", "office", "platforms", "foundations"].map((item, index) => (
+                <React.Fragment key={item}>
+                  <div className="rounded-2xl border border-border/25 bg-background/70 p-5">
+                    <div className="flex items-center gap-4">
+                      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                        {t(`ecosystemArchitecture.layers.${item}.eyebrow`)}
+                      </span>
+                      <span className="text-lg font-medium tracking-[-0.03em] text-foreground">
+                        {t(`ecosystemArchitecture.layers.${item}.title`)}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {t(`ecosystemArchitecture.layers.${item}.description`)}
+                    </p>
+                  </div>
+                  {index < 3 ? (
+                    <div className="flex justify-center" aria-hidden={true}>
+                      <div className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-muted text-muted-foreground">
+                        <ArrowRight className="h-3 w-3 rotate-90" />
+                      </div>
+                    </div>
+                  ) : null}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+    </>
   );
 }
 
-function OpenTechnologySection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section eyebrow={t("openTechnology.eyebrow")} title={t("openTechnology.title")} description={t("openTechnology.description")}>
-      <div className="grid gap-5 lg:grid-cols-3">
-        {[
-          { key: "modular", icon: Blocks },
-          { key: "control", icon: ShieldCheck },
-          { key: "europe", icon: Globe2 },
-        ].map((item) => (
-          <CardLink
-            key={item.key}
-            title={t(`openTechnology.items.${item.key}.title`)}
-            description={t(`openTechnology.items.${item.key}.description`)}
-            icon={item.icon}
-            className="min-h-57.5"
-          />
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function SolutionsSection({ locale, t }: HomePageContentProps) {
-  return (
-    <Section eyebrow={t("solutionsShowcase.eyebrow")} title={t("solutionsShowcase.title")} description={t("solutionsShowcase.description")} tone="muted">
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {[
-          { key: "workplace", icon: Users },
-          { key: "infrastructure", icon: Network },
-          { key: "financialServices", icon: LockKeyhole },
-          { key: "publicSector", icon: Building2 },
-        ].map((item) => (
-          <CardLink
-            key={item.key}
-            title={t(`solutionsShowcase.items.${item.key}.title`)}
-            description={t(`solutionsShowcase.items.${item.key}.description`)}
-            icon={item.icon}
-            className="min-h-55"
-          />
-        ))}
-      </div>
-      <div className="mt-10">
-        <Button asChild variant="outline" className="rounded-full px-6">
-          <Link href={localizeHref(locale, "/solutions")}>{t("solutionsShowcase.cta")}</Link>
-        </Button>
-      </div>
-    </Section>
-  );
-}
+/* ------------------------------------------------------------------ */
+/* 8. Developers (dark)                                                */
+/* ------------------------------------------------------------------ */
 
 function DevelopersSection({ locale, t }: HomePageContentProps) {
   return (
     <Section eyebrow={t("developersShowcase.eyebrow")} title={t("developersShowcase.title")} description={t("developersShowcase.description")} tone="dark">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-        <div className="rounded-[2.25rem] border border-background/10 bg-background/4 p-7">
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-background/46">{t("developersShowcase.panel.eyebrow")}</div>
-          <div className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-background">{t("developersShowcase.panel.title")}</div>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-background/66">{t("developersShowcase.panel.description")}</p>
-          <div className="mt-8 grid gap-3 font-mono text-sm text-background/72">
+        <div className="rounded-3xl border border-background/8 bg-background/3 p-7">
+          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-background/40">
+            {t("developersShowcase.panel.eyebrow")}
+          </div>
+          <div className="mt-4 text-3xl font-medium tracking-[-0.04em] text-background">
+            {t("developersShowcase.panel.title")}
+          </div>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-background/50">
+            {t("developersShowcase.panel.description")}
+          </p>
+          <div className="mt-8 grid gap-2.5 font-mono text-sm text-background/60">
             {["documentation", "apis", "sdks", "giteria"].map((item) => (
-              <div key={item} className="rounded-2xl border border-background/10 bg-background/3 px-4 py-4">
+              <div key={item} className="rounded-xl border border-background/6 bg-background/3 px-4 py-3.5">
                 {t(`developersShowcase.panel.entries.${item}`)}
               </div>
             ))}
@@ -554,20 +670,19 @@ function DevelopersSection({ locale, t }: HomePageContentProps) {
           </div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2">
           {[
             { key: "documentation", icon: BookOpen },
             { key: "apis", icon: Network },
             { key: "sdks", icon: Code2 },
             { key: "openSource", icon: Blocks },
-            { key: "giteria", icon: Globe2 },
           ].map((item) => (
             <CardLink
               key={item.key}
               title={t(`developersShowcase.items.${item.key}.title`)}
               description={t(`developersShowcase.items.${item.key}.description`)}
               icon={item.icon}
-              className="border-background/10 bg-background/4 shadow-none [&_h3]:text-background [&_p]:text-background/64"
+              className="border-background/6 bg-background/3 shadow-none [&_h3]:text-background [&_p]:text-background/50"
             />
           ))}
         </div>
@@ -576,22 +691,30 @@ function DevelopersSection({ locale, t }: HomePageContentProps) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* 9. Trust (compact strip)                                            */
+/* ------------------------------------------------------------------ */
+
 function TrustSection({ locale, t }: HomePageContentProps) {
   return (
     <Section eyebrow={t("trustSecurity.eyebrow")} title={t("trustSecurity.title")} description={t("trustSecurity.description")}>
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {["identity", "design", "transparency", "disclosure"].map((item) => (
-          <div key={item} className="rounded-[1.85rem] border border-border bg-card p-6 shadow-[0_18px_60px_-48px_rgba(15,23,42,0.22)]">
-            <div className="text-base font-semibold text-foreground">{t(`trustSecurity.items.${item}.title`)}</div>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground">{t(`trustSecurity.items.${item}.description`)}</p>
+          <div key={item} className="rounded-2xl border border-border/30 bg-card p-6">
+            <div className="text-base font-medium text-foreground">
+              {t(`trustSecurity.items.${item}.title`)}
+            </div>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              {t(`trustSecurity.items.${item}.description`)}
+            </p>
           </div>
         ))}
       </div>
       <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-        <Button asChild variant="outline" className="rounded-full px-6">
+        <Button asChild variant="ghost" className="rounded-full px-6 text-foreground/60 transition-all duration-200 hover:bg-foreground/5 hover:text-foreground">
           <Link href={localizeHref(locale, "/security")}>{t("trustSecurity.securityCta")}</Link>
         </Button>
-        <Button asChild variant="outline" className="rounded-full px-6">
+        <Button asChild variant="ghost" className="rounded-full px-6 text-foreground/60 transition-all duration-200 hover:bg-foreground/5 hover:text-foreground">
           <Link href={localizeHref(locale, "/security/trust")}>{t("trustSecurity.trustCta")}</Link>
         </Button>
       </div>
@@ -599,33 +722,21 @@ function TrustSection({ locale, t }: HomePageContentProps) {
   );
 }
 
-function TransparencySection({ t }: { t: (key: string) => string }) {
-  return (
-    <Section eyebrow={t("transparency.eyebrow")} title={t("transparency.title")} description={t("transparency.description")} tone="muted">
-      <div className="grid gap-5 lg:grid-cols-3">
-        {["development", "exploring", "vision"].map((item) => (
-          <div key={item} className="rounded-4xl border border-border bg-card p-7">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t(`transparency.items.${item}.eyebrow`)}</div>
-            <div className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-foreground">{t(`transparency.items.${item}.title`)}</div>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground">{t(`transparency.items.${item}.description`)}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
+/* ------------------------------------------------------------------ */
+/* 10. Company                                                         */
+/* ------------------------------------------------------------------ */
 
 function CompanySection({ locale, t }: HomePageContentProps) {
   return (
-    <Section eyebrow={t("company.eyebrow")} title={t("company.title")} description={t("company.description")}>
-      <div className="grid gap-5 md:grid-cols-3">
+    <Section eyebrow={t("company.eyebrow")} title={t("company.title")} description={t("company.description")} tone="muted">
+      <div className="grid gap-4 md:grid-cols-3">
         <CardLink
           title={t("company.items.company.title")}
           description={t("company.items.company.description")}
           href={localizeHref(locale, "/company/about")}
           cta={t("company.items.company.cta")}
           icon={Building2}
-          className="min-h-62.5"
+          className="min-h-56"
         />
         <CardLink
           title={t("company.items.partners.title")}
@@ -633,7 +744,7 @@ function CompanySection({ locale, t }: HomePageContentProps) {
           href={localizeHref(locale, "/company/partners")}
           cta={t("company.items.partners.cta")}
           icon={Users}
-          className="min-h-62.5"
+          className="min-h-56"
         />
         <CardLink
           title={t("company.items.careers.title")}
@@ -641,34 +752,40 @@ function CompanySection({ locale, t }: HomePageContentProps) {
           href={localizeHref(locale, "/company/careers")}
           cta={t("company.items.careers.cta")}
           icon={Code2}
-          className="min-h-62.5"
+          className="min-h-56"
         />
       </div>
     </Section>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* 11. Final CTA                                                       */
+/* ------------------------------------------------------------------ */
+
 function FinalCtaSection({ locale, t }: HomePageContentProps) {
   return (
-    <section className="relative overflow-hidden border-t border-border py-24 sm:py-28">
-      <div aria-hidden={true} className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(9,9,11,1)_0%,rgba(24,24,27,0.98)_100%)]" />
+    <section className="relative overflow-hidden bg-foreground py-28 sm:py-36 lg:py-44">
+      <div aria-hidden={true} className="pointer-events-none absolute inset-0 gradient-mesh-hero-dark" />
       <div
         aria-hidden={true}
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.8) 1px, transparent 1px)",
+            "linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }}
       />
       <div className="relative mx-auto max-w-360 px-6 lg:px-12">
-        <div className="rounded-[2.6rem] border border-background/10 bg-background/3 px-8 py-10 shadow-[0_40px_120px_-80px_rgba(0,0,0,0.6)] sm:px-10 lg:px-14 lg:py-14">
+        <div className="rounded-3xl border border-background/8 bg-background/5 px-8 py-10 sm:px-10 lg:px-14 lg:py-14">
           <SectionEyebrow inverted>{t("finalCta.eyebrow")}</SectionEyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tighter text-background sm:text-5xl lg:text-6xl">
+          <h2 className="mt-6 max-w-4xl text-[clamp(2.2rem,4.5vw,3.8rem)] font-medium tracking-tighter leading-[1.05] text-background">
             {t("finalCta.title")}
           </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-background/68">{t("finalCta.description")}</p>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-background/50">
+            {t("finalCta.description")}
+          </p>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
             {[
               { key: "organizations", href: "/office", icon: Building2 },
               { key: "builders", href: "/platform", icon: Blocks },
@@ -677,21 +794,23 @@ function FinalCtaSection({ locale, t }: HomePageContentProps) {
               <Link
                 key={item.key}
                 href={localizeHref(locale, item.href)}
-                className="group rounded-4xl border border-background/10 bg-background/4 p-6 transition duration-300 hover:-translate-y-1 hover:border-background/20 hover:bg-background/6"
+                className="group rounded-2xl border border-background/8 bg-background/3 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-background/15 hover:bg-background/5"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-background/10 bg-background/4 text-background/88">
-                  <item.icon className="h-5 w-5" />
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-background/8 bg-background/3 text-background/70">
+                  <item.icon className="h-4.5 w-4.5" />
                 </span>
-                <div className="mt-8 text-sm font-medium uppercase tracking-[0.18em] text-background/46">
+                <div className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-background/35">
                   {t(`finalCta.items.${item.key}.eyebrow`)}
                 </div>
-                <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-background">
+                <div className="mt-3 text-2xl font-medium tracking-[-0.04em] text-background">
                   {t(`finalCta.items.${item.key}.title`)}
                 </div>
-                <p className="mt-4 text-sm leading-7 text-background/64">{t(`finalCta.items.${item.key}.description`)}</p>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-background">
+                <p className="mt-3 text-sm leading-6 text-background/50">
+                  {t(`finalCta.items.${item.key}.description`)}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-background/70 transition-colors duration-200 group-hover:text-background">
                   {t(`finalCta.items.${item.key}.cta`)}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </span>
               </Link>
             ))}
@@ -702,6 +821,10 @@ function FinalCtaSection({ locale, t }: HomePageContentProps) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Page                                                                */
+/* ------------------------------------------------------------------ */
+
 export async function HomePage({ locale }: HomePageProps) {
   const translate = await getTranslations({ locale, namespace: "Public.home.page" });
   const t = (key: string) => translate(key);
@@ -711,18 +834,15 @@ export async function HomePage({ locale }: HomePageProps) {
       <Header locale={locale as Locale} />
       <main className="flex-1 overflow-x-hidden">
         <HomeHero locale={locale} t={t} />
+        <StatsBar t={t} />
+        <SocialProof />
         <ManifestoSection t={t} />
-        <OfficeFeaturedSection locale={locale} t={t} />
-        <OfficeCapabilitiesSection t={t} />
-        <ModularDeploymentSection t={t} />
-        <PlatformsTransitionSection t={t} />
+        <OfficeShowcase locale={locale} t={t} />
+        <WhatWeBuildSection t={t} />
+        <WhyNowSection t={t} />
         <PlatformsSection locale={locale} t={t} />
-        <EcosystemArchitectureSection t={t} />
-        <OpenTechnologySection t={t} />
-        <SolutionsSection locale={locale} t={t} />
         <DevelopersSection locale={locale} t={t} />
         <TrustSection locale={locale} t={t} />
-        <TransparencySection t={t} />
         <CompanySection locale={locale} t={t} />
         <FinalCtaSection locale={locale} t={t} />
       </main>

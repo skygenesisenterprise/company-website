@@ -1,7 +1,7 @@
 .PHONY: help build-dev build-cloud run-dev run-cloud stop clean prune rmi-dev dev-up dev-down dev-logs dev-rebuild dev-restart cloud-up cloud-down cloud-logs cloud-rebuild rmi-cloud
 
 APP_IMAGE := skygenesisenterprise/company-website
-DEV_IMAGE_TAG := latest
+DEV_IMAGE_TAG := latest-dev
 CLOUD_IMAGE_TAG := cloud
 DEV_COMPOSE := docker-compose.dev.yml
 CLOUD_COMPOSE := docker-compose.cloud.yml

@@ -143,3 +143,8 @@ vite.config.ts.timestamp-*
 *.phar
 vendor/
 composer.lock
+
+# AI Directory
+.opencode/
+.codex/
+.agents/

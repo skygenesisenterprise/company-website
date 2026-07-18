@@ -99,6 +99,7 @@ COPY app/messages/            ./app/messages/
 COPY app/lib/                 ./app/lib/
 COPY app/public/              ./app/public/
 COPY app/styles/              ./app/styles/
+COPY app/proxy.ts             ./app/proxy.ts
 COPY server/prisma/           ./server/prisma/
 COPY scripts/                 ./app/scripts/
 

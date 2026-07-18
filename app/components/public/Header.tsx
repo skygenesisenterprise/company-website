@@ -144,8 +144,8 @@ function MegaMenu({
           "flex items-center rounded-full font-medium transition-all duration-300",
           compact ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
           isOpen
-            ? "bg-background/80 text-foreground shadow-[inset_0_0_0_1px_rgba(148,163,184,0.16)]"
-            : "text-foreground/70 hover:bg-background/70 hover:text-foreground",
+            ? "bg-background/80 text-foreground shadow-[inset_0_0_0_1px_rgba(148,163,184,0.14)]"
+            : "text-foreground/65 hover:bg-background/70 hover:text-foreground",
         )}
         aria-haspopup="true"
         aria-expanded={isOpen}
@@ -165,7 +165,7 @@ function MegaMenu({
           className={cn(
             panelWidth,
             panelChrome,
-            "overflow-hidden border border-border/60 bg-background/92 backdrop-blur-xl",
+            "overflow-hidden border border-border/50 bg-background/90 backdrop-blur-xl",
           )}
         >
           <div className="h-px bg-linear-to-r from-transparent via-primary/35 to-transparent" />
@@ -235,7 +235,7 @@ function MegaMenu({
                   <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/35 to-transparent" />
                   <span>
                     {data.featured.badgeKey ? (
-                      <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                         {t(data.featured.badgeKey)}
                       </span>
@@ -669,21 +669,21 @@ export function Header({ locale: initialLocale }: HeaderProps) {
     <>
       <header
         className={cn(
-          "fixed z-50 transition-all duration-500",
+          "fixed z-50 transition-all duration-300",
           isScrolled || isMobileMenuOpen ? "left-4 right-4 top-15" : "left-0 right-0 top-11",
         )}
       >
         <nav
           className={cn(
-            "mx-auto transition-all duration-500",
+            "mx-auto transition-all duration-300",
             isScrolled || isMobileMenuOpen
-              ? "max-w-330 rounded-[1.75rem] border border-border/60 bg-background/82 shadow-2xl backdrop-blur-xl"
+              ? "max-w-330 rounded-[1.75rem] border border-border/50 bg-background/80 shadow-2xl backdrop-blur-xl"
               : "max-w-350 bg-transparent",
           )}
         >
           <div
             className={cn(
-              "flex items-center justify-between gap-6 px-6 transition-all duration-500 lg:px-8",
+              "flex items-center justify-between gap-6 px-6 transition-all duration-300 lg:px-8",
               isScrolled ? "h-16" : "h-20",
             )}
           >
@@ -704,7 +704,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 <Link
                   href={getLocaleHref("/office")}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-full font-medium text-foreground/70 transition-all duration-300 hover:bg-background/70 hover:text-foreground",
+                    "flex items-center gap-1.5 rounded-full font-medium text-foreground/65 transition-all duration-300 hover:bg-background/70 hover:text-foreground",
                     isScrolled ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
                   )}
                 >
@@ -754,7 +754,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 <Link
                   href={getLocaleHref("/blog")}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-full font-medium text-foreground/70 transition-all duration-300 hover:bg-background/70 hover:text-foreground",
+                    "flex items-center gap-1.5 rounded-full font-medium text-foreground/65 transition-all duration-300 hover:bg-background/70 hover:text-foreground",
                     isScrolled ? "px-3 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
                   )}
                 >
@@ -789,7 +789,7 @@ export function Header({ locale: initialLocale }: HeaderProps) {
 
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-background transition-all duration-500 xl:hidden",
+          "fixed inset-0 z-40 bg-background transition-all duration-300 xl:hidden",
           isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
         )}
       >
@@ -801,10 +801,10 @@ export function Header({ locale: initialLocale }: HeaderProps) {
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "block rounded-[1.75rem] border border-border/60 px-6 py-5 transition-all duration-500",
+                  "block rounded-[1.75rem] border border-border/50 px-6 py-5 transition-all duration-300",
                   isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
                 )}
-                style={{ transitionDelay: isMobileMenuOpen ? `${index * 60}ms` : "0ms" }}
+                style={{ transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : "0ms" }}
               >
                 <div className="flex items-center justify-between gap-4">
                   <span className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -821,10 +821,10 @@ export function Header({ locale: initialLocale }: HeaderProps) {
 
           <div
             className={cn(
-              "mt-8 grid gap-4 border-t border-border/60 pt-8 transition-all duration-500 sm:grid-cols-2",
+              "mt-8 grid gap-4 border-t border-border/50 pt-8 transition-all duration-300 sm:grid-cols-2",
               isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
             )}
-            style={{ transitionDelay: isMobileMenuOpen ? "320ms" : "0ms" }}
+            style={{ transitionDelay: isMobileMenuOpen ? "280ms" : "0ms" }}
           >
             <Button asChild variant="outline" className="h-14 rounded-full text-base">
               <Link href="https://sso.skygenesisenterprise.com/login" onClick={() => setIsMobileMenuOpen(false)}>

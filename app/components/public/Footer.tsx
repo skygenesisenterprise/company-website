@@ -39,17 +39,17 @@ interface LinkColumnProps {
 function LinkColumn({ title, links }: LinkColumnProps) {
   return (
     <div className="flex flex-col">
-      <h3 className="text-xs font-semibold text-foreground mb-5 uppercase tracking-widest">
+      <h3 className="text-[11px] font-semibold text-foreground mb-5 uppercase tracking-[0.18em]">
         {title}
       </h3>
-      <ul className="space-y-3">
+      <ul className="space-y-2.5">
         {links.map((link) => {
           const isExternal = link.external ?? link.href.startsWith("https://");
           return (
             <li key={link.name}>
               <Link
                 href={link.href}
-                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 {...(isExternal
                   ? {
                       target: "_blank",
@@ -278,9 +278,9 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-background text-muted-foreground border-t border-border">
+    <footer className="bg-background text-muted-foreground border-t border-border/60">
       {/* Main link columns */}
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 border-b border-border">
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 border-b border-border/50">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-10 gap-y-12">
           {footerSections.map((section) => (
             <LinkColumn
@@ -310,7 +310,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                   <Link
                     key={social.name}
                     href={social.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200"
                     aria-label={social.name}
                     target="_blank"
                     rel="noreferrer"
@@ -331,7 +331,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                 Email:{" "}
                 <Link
                   href={`mailto:${t("emailAddress")}`}
-                  className="hover:text-foreground transition-colors duration-150"
+                  className="hover:text-foreground transition-colors duration-200"
                 >
                   {t("emailAddress")}
                 </Link>
@@ -358,7 +358,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
             </div>
 
             <div className="max-w-2xl lg:justify-self-end">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-foreground">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground">
                 {t("newsletterTitle")}
               </h3>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -371,13 +371,13 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
                       type="email"
                       name="email"
                       placeholder={t("newsletterEmail")}
-                      className="h-11 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground"
+                      className="h-11 rounded-full border border-border/60 bg-background px-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                     />
                   </label>
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex h-11 items-center justify-center rounded-md bg-foreground px-5 text-sm font-medium text-background transition-colors hover:opacity-90"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all duration-200 hover:bg-foreground/90"
                 >
                   {t("newsletterButton")}
                 </button>
@@ -391,7 +391,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border">
+      <div className="border-t border-border/50">
         <div className="mx-auto max-w-7xl px-6 py-5">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -399,7 +399,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
               <p className="text-xs text-muted-foreground">
                 <Link
                   href={`${prefix}/pgp`}
-                  className="hover:text-foreground transition-colors duration-150"
+                  className="hover:text-foreground transition-colors duration-200"
                 >
                   {t("verifyKey")}
                 </Link>
