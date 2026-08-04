@@ -148,3 +148,4 @@ composer.lock
 .opencode/
 .codex/
 .agents/
+.hallmark/

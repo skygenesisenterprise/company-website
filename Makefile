@@ -1,89 +1,75 @@
-.PHONY: help build-dev build-cloud run-dev run-cloud stop clean prune rmi-dev dev-up dev-down dev-logs dev-rebuild dev-restart cloud-up cloud-down cloud-logs cloud-rebuild rmi-cloud
+.PHONY: help build build-dev build-prod dev-up dev-down dev-logs dev-rebuild prod-up prod-down prod-logs prod-rebuild stop clean prune
 
-APP_IMAGE := skygenesisenterprise/company-website
-DEV_IMAGE_TAG := latest-dev
-CLOUD_IMAGE_TAG := cloud
-DEV_COMPOSE := docker-compose.dev.yml
-CLOUD_COMPOSE := docker-compose.cloud.yml
-CLOUD_ENV := APP_IMAGE_TAG=$(CLOUD_IMAGE_TAG)
+APP_NAME := skygenesisenterprise/company-website
 
 help:
 	@echo "Available targets:"
-	@echo "  build-dev     - Build development image"
-	@echo "  build-cloud   - Build cloud image"
-	@echo "  run-dev       - Run development image directly"
-	@echo "  run-cloud     - Run cloud image directly"
-	@echo "  stop          - Stop all containers"
-	@echo "  clean         - Remove build artifacts"
-	@echo "  prune         - Clean up Docker system"
-	@echo "  rmi-dev       - Remove dev image and container"
-	@echo "  dev-up        - Start dev environment (docker-compose)"
-	@echo "  dev-down      - Stop dev environment"
-	@echo "  dev-logs      - View dev environment logs"
-	@echo "  cloud-up      - Start cloud environment (docker-compose)"
-	@echo "  cloud-down    - Stop cloud environment"
-	@echo "  cloud-logs    - View cloud environment logs"
+	@echo "  build          - Build production image (default Dockerfile)"
+	@echo "  build-dev      - Build development image (NODE_ENV=development)"
+	@echo "  build-prod     - Build production image (NODE_ENV=production)"
+	@echo "  dev-up         - Start dev environment (compose --profile dev)"
+	@echo "  dev-down       - Stop dev environment"
+	@echo "  dev-logs       - View dev environment logs"
+	@echo "  dev-rebuild    - Rebuild and restart dev environment"
+	@echo "  prod-up        - Start production environment (default profile)"
+	@echo "  prod-down      - Stop production environment"
+	@echo "  prod-logs      - View production environment logs"
+	@echo "  prod-rebuild   - Rebuild and restart production environment"
+	@echo "  stop           - Stop all containers"
+	@echo "  clean          - Remove build artifacts"
+	@echo "  prune          - Clean up Docker system"
+
+build:
+	docker build -f Dockerfile -t $(APP_NAME):latest .
 
 build-dev:
-	docker build --no-cache -f Dockerfile.dev -t $(APP_IMAGE):$(DEV_IMAGE_TAG) .
+	docker build -f Dockerfile \
+		--build-arg NODE_ENV=development \
+		--build-arg BUILD_STATIC=0 \
+		-t $(APP_NAME):dev .
 
-build-cloud:
-	docker build --no-cache -f Dockerfile.cloud -t $(APP_IMAGE):$(CLOUD_IMAGE_TAG) .
+build-prod:
+	docker build -f Dockerfile \
+		--build-arg NODE_ENV=production \
+		--build-arg BUILD_STATIC=1 \
+		-t $(APP_NAME):latest .
 
-run-dev:
-	docker run --name company-website-dev -p 3000:3000 $(APP_IMAGE):$(DEV_IMAGE_TAG)
+dev-up:
+	APP_IMAGE_TAG=dev NODE_ENV=development WORKER_COMMAND=air BUILD_STATIC=0 \
+		docker compose --profile dev up -d --force-recreate
 
-run-cloud:
-	docker run --name company-website-cloud -p 3000:3000 -p 8080:8080 -e DATABASE_URL $(APP_IMAGE):$(CLOUD_IMAGE_TAG)
+dev-down:
+	docker compose --profile dev down
+
+dev-logs:
+	docker compose --profile dev logs -f
+
+dev-rebuild:
+	docker compose --profile dev down
+	APP_IMAGE_TAG=dev NODE_ENV=development WORKER_COMMAND=air BUILD_STATIC=0 \
+		docker compose --profile dev up -d --force-recreate --build
+
+prod-up:
+	APP_IMAGE_TAG=latest NODE_ENV=production WORKER_COMMAND=worker BUILD_STATIC=1 \
+		docker compose up -d --force-recreate
+
+prod-down:
+	docker compose down
+
+prod-logs:
+	docker compose logs -f
+
+prod-rebuild:
+	docker compose down
+	APP_IMAGE_TAG=latest NODE_ENV=production WORKER_COMMAND=worker BUILD_STATIC=1 \
+		docker compose up -d --force-recreate --build
 
 stop:
-	docker compose -f $(DEV_COMPOSE) down
-	docker compose -f $(CLOUD_COMPOSE) down
-	docker stop company-website-dev company-website-cloud 2>/dev/null || true
-	docker rm company-website-dev company-website-cloud 2>/dev/null || true
+	docker compose down 2>/dev/null || true
 
 clean:
-	rm -rf app/.next
+	rm -rf apps/.next
 	rm -rf server/aether-server
 
 prune:
 	docker system prune -f
-
-rmi-dev:
-	docker compose -f $(DEV_COMPOSE) down --rmi local 2>/dev/null || true
-	docker rmi $(APP_IMAGE):$(DEV_IMAGE_TAG) 2>/dev/null || true
-
-dev-up:
-	docker compose -f $(DEV_COMPOSE) up -d --build --remove-orphans
-
-dev-down:
-	docker compose -f $(DEV_COMPOSE) down
-
-dev-logs:
-	docker compose -f $(DEV_COMPOSE) logs -f
-
-dev-rebuild:
-	docker compose -f $(DEV_COMPOSE) down
-	docker compose -f $(DEV_COMPOSE) build --no-cache
-	docker compose -f $(DEV_COMPOSE) up -d --remove-orphans
-
-dev-restart:
-	docker compose -f $(DEV_COMPOSE) restart
-
-cloud-up:
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) up -d --build --remove-orphans
-
-cloud-down:
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) down
-
-cloud-logs:
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) logs -f
-
-cloud-rebuild:
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) down
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) build --no-cache
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) up -d --remove-orphans
-
-rmi-cloud:
-	$(CLOUD_ENV) docker compose -f $(CLOUD_COMPOSE) down --rmi local 2>/dev/null || true
-	docker rmi $(APP_IMAGE):$(CLOUD_IMAGE_TAG) 2>/dev/null || true

@@ -15,19 +15,37 @@ COPY prisma/package*.json ./
 COPY prisma/schema.prisma ./
 COPY prisma/prisma.config.ts ./
 
-# Install dependencies only (prisma generate will run during init)
+# Install Prisma dependencies so the deploy-script can call `npx prisma …`
+# without re-downloading on every container recreate.
 RUN pnpm install
 
-# Copy the initialization script
-COPY infrastructure/docker/init-migrations.sh /docker-entrypoint-initdb.d/99-init-migrations.sh
-RUN chmod +x /docker-entrypoint-initdb.d/99-init-migrations.sh
+# Soback up the original Postgres entrypoint so our wrapper (entrypoint.sh)
+# can delegate initdb + runtime config before running the schema pre-flight.
+RUN cp /usr/local/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.original.sh
 
-# Copy the seed script
+# Bundle the migration scripts.
+#   - entrypoint.sh  replaces the container ENTRYPOINT so it runs on every
+#                    start (first init AND subsequent recreates).
+#   - deploy-schema.sh is invoked AFTER Postgres is ready.  It compares
+#                    /prisma/schema.prisma to a hash persisted on the
+#                    database volume, prints "No migration needed" on a
+#                    match, and runs `prisma db push` otherwise.
+COPY infrastructure/docker/entrypoint.sh    /usr/local/bin/entrypoint.sh
+COPY infrastructure/docker/deploy-schema.sh /usr/local/bin/deploy-schema.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/deploy-schema.sh
+
+# Drop the legacy first-boot init script — the new entrypoint handles both
+# fresh volume and persistent volume cases uniformly.
+# (legacy file infrastructure/docker/init-migrations.sh is left untouched in
+#  the repository for reference but no longer mounted into the image.)
+
+# Copy the seed script for optional seeding at first boot (kept for
+# backwards-compatibility with the prior image).
 COPY prisma/seed.ts /prisma/seed.ts
 COPY prisma/package.json /prisma/package.json
-
-# Install seed dependencies
 RUN cd /prisma && pnpm install --prod
 
-# PostgreSQL will automatically execute scripts in /docker-entrypoint-initdb.d/
-# during the first startup (when data directory is empty)
+# Entrypoint runs on EVERY container start.  CMD defaults to `postgres` so the
+# official Postgres image's executable is preserved.
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["postgres", "-c", "listen_addresses=*"]\

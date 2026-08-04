@@ -2633,12 +2633,70 @@
             "workspace": "Uptime 99.9%",
             "platforms": "Europe & Monde",
             "foundations": "Open APIs"
+          },
+          "tabs": {
+            "code": {
+              "label": "Développer",
+              "description": "Écrivez du code meilleur et plus rapidement avec l'assistance IA."
+            },
+            "plan": {
+              "label": "Planifier",
+              "description": "Organisez le travail avec une gestion de projet intégrée."
+            },
+            "collaborate": {
+              "label": "Collaborer",
+              "description": "Travaillez ensemble sans effort au sein des équipes."
+            },
+            "secure": {
+              "label": "Sécuriser",
+              "description": "Protégez votre code avec des fonctionnalités de sécurité avancées."
+            }
+          }
+        },
+        "featureShowcase": {
+          "eyebrow": "FONCTIONNALITÉS",
+          "title": "Tout ce dont vous avez besoin pour construire.",
+          "description": "Des outils puissants pour développeurs, équipes et organisations.",
+          "features": {
+            "ai": {
+              "title": "Développement assisté par IA",
+              "description": "Écrivez du code meilleur et plus rapidement avec GitHub Copilot.",
+              "details": "GitHub Copilot utilise l'IA pour suggérer du code et des fonctions entières en temps réel, directement depuis votre éditeur.",
+              "preview": "Aperçu de l'assistant IA"
+            },
+            "actions": {
+              "title": "Automatisez n'importe quel flux de travail",
+              "description": "Rationalisez vos processus avec GitHub Actions.",
+              "details": "Construisez, testez et déployez votre code directement depuis GitHub. Faites des revues par les pairs, triez les problèmes et collaborez depuis les pull requests.",
+              "preview": "Aperçu des automatisations"
+            },
+            "security": {
+              "title": "Trouvez et corrigez les vulnérabilités",
+              "description": "Protégez votre code avec la numérisation de sécurité.",
+              "details": "Trouvez automatiquement les vulnérabilités connues dans vos dépendances avec les alertes Dependabot.",
+              "preview": "Aperçu de la sécurité"
+            }
           }
         },
         "manifesto": {
           "title": "Une technologie pensée pour durer",
           "description": "Sky Genesis Enterprise développe des environnements modulaires que les organisations peuvent adopter, connecter et exploiter avec autonomie dans le temps.",
           "statement": "La technologie doit rester ouverte, contrôlable et construite pour durer."
+        },
+        "ecosystemViz": {
+          "eyebrow": "ÉCOSYSTÈME",
+          "title": "Un écosystème, pas une collection.",
+          "description": "Chaque service est conçu pour fonctionner seul et mieux ensemble. Explorez les connexions.",
+          "core": "SGE Platform",
+          "services": {
+            "office": "Aether Office",
+            "ai": "Intelligence Artificielle",
+            "cloud": "Cloud Souverain",
+            "identity": "Identité & Accès",
+            "vault": "Vault Sécurité",
+            "bank": "SGE Bank"
+          },
+          "cta": "Explorer la plateforme"
         },
         "officeFeatured": {
           "eyebrow": "AETHER OFFICE",
@@ -2903,6 +2961,16 @@
             }
           }
         },
+        "customerStories": {
+          "eyebrow": "TÉMOIGNAGES",
+          "title": "Des organisations qui construisent l'avenir avec nous.",
+          "description": "Découvrez comment nos clients utilisent Sky Genesis Enterprise pour leurs projets numériques.",
+          "testimonial": {
+            "quote": "Sky Genesis Enterprise a transformé la façon dont nous construisons nos logiciels. Les outils alimentés par l'IA ont augmenté notre productivité de 40%.",
+            "author": "Jean Dupont",
+            "title": "DSI, Entreprise Tech"
+          }
+        },
         "trustSecurity": {
           "eyebrow": "CONFIANCE & SÉCURITÉ",
           "title": "La sécurité n'est pas une option.",
@@ -2996,6 +3064,18 @@
               "cta": "Commencer"
             }
           }
+        },
+        "products": {
+          "eyebrow": "PRODUITS",
+          "title": "La suite Aether.",
+          "description": "Des solutions complètes pour l'identité, la communication, la sécurité et le développement."
+        },
+        "openSource": {
+          "eyebrow": "OPEN SOURCE",
+          "title": "Construit ensemble. Ouvert à tous.",
+          "description": "Tous nos projets sont open source sous la licence SGE Public License 1.0. Rejoignez la communauté et contribuez à l'avenir de la technologie souveraine.",
+          "githubCta": "Voir sur GitHub",
+          "licenseCta": "Voir la licence"
         },
         "ecosystemMap": {
           "title": "Carte de l'écosystème SGE",

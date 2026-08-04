@@ -18,7 +18,6 @@ import {
   HeaderInfoLanguageSelector,
   HeaderInfoSecurityInfo,
 } from "@/components/public/headerinfo/HeaderInfo";
-import { HeaderInfoThemeToggle } from "@/components/public/headerinfo/HeaderInfoThemeToggle";
 import { type Locale } from "@/lib/locale";
 
 interface FooterProps {

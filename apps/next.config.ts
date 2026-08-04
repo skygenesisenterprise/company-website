@@ -6,7 +6,14 @@ const isProduction = process.env.NODE_ENV === "production";
 const isStaticWebBuild = process.env.BUILD_WEB_STATIC === "true";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["skygenesisenterprise.com", "192.168.1.3"],
+  // Vidstack ships as ESM with non-standard `exports` conditions (e.g.
+  // `development`, `deno`) and is verified to need transpilation under
+  // Next.js 16 / Turbopack. See https://docs.vidstack.io/player/getting-started/installation/nextjs
+  transpilePackages: ["@vidstack/react", "vidstack"],
+  turbopack: {
+    root: "../",
+  },
+    allowedDevOrigins: ["skygenesisenterprise.com", "api.skygenesisenterprise.com", "sso.skygenesisenterprise.com", "skygenesisenterprise.com.localhost", "api.skygenesisenterprise.com.localhost", "sso.skygenesisenterprise.com.localhost", "studios.skygenesisenterprise.com.localhost"],
   outputFileTracingExcludes: {
     "*": ["test/**"],
   },
@@ -22,7 +29,7 @@ const nextConfig: NextConfig = {
           unoptimized: true,
           remotePatterns: [
             { protocol: "https", hostname: "skygenesisenterprise.com", pathname: "/**" },
-            { protocol: "https", hostname: "api.dicebear.com", pathname: "/**" },
+            { protocol: "https", hostname: "api.skygenesisenterprise.com", pathname: "/**" },
             { protocol: "https", hostname: "avatars.githubusercontent.com", pathname: "/**" },
             { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
             { protocol: "http", hostname: "127.0.0.1", pathname: "/**" },
@@ -43,7 +50,7 @@ const nextConfig: NextConfig = {
     images: {
       remotePatterns: [
         { protocol: "https", hostname: "skygenesisenterprise.com", pathname: "/**" },
-        { protocol: "https", hostname: "api.dicebear.com", pathname: "/**" },
+        { protocol: "https", hostname: "api.skygenesisenterprise.com", pathname: "/**" },
         { protocol: "https", hostname: "avatars.githubusercontent.com", pathname: "/**" },
         { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
         { protocol: "http", hostname: "127.0.0.1", pathname: "/**" },
