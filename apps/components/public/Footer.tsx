@@ -277,7 +277,7 @@ export async function Footer({ locale: initialLocale }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-background text-muted-foreground border-t border-border/60">
+    <footer className="bg-background text-muted-foreground border-t border-border/60 select-none">
       {/* Main link columns */}
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 border-b border-border/50">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-10 gap-y-12">

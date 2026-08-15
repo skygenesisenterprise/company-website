@@ -9,7 +9,7 @@ services:
       args:
         NODE_ENV: ${NODE_ENV:-development}
         BUILD_STATIC: ${BUILD_STATIC:-1}
-        DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}
+        DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}?sslmode=disable
     image: skygenesisenterprise/company-website:${APP_IMAGE_TAG:-latest}
     restart: unless-stopped
     expose:
@@ -46,7 +46,7 @@ services:
       args:
         NODE_ENV: ${NODE_ENV:-development}
         BUILD_STATIC: ${BUILD_STATIC:-1}
-        DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}
+        DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}?sslmode=disable
     image: skygenesisenterprise/company-website:${APP_IMAGE_TAG:-latest}
     restart: unless-stopped
     expose:
@@ -62,7 +62,11 @@ services:
       NODE_ENV: ${NODE_ENV:-development}
       USE_EMBEDDED_DB: "false"
       LOG_LEVEL: ${LOG_LEVEL:-info}
-      PRISMA_SCHEMA_DEPLOY: "true"
+      # GORM AutoMigrate (server/main.go) is the single schema owner.
+      # prisma db push --accept-data-loss was dropping/recreating the
+      # collections status/type/visibility/metadata_status columns on every
+      # boot (GORM stores them as text, Prisma expects enums), wiping data.
+      PRISMA_SCHEMA_DEPLOY: "false"
       PRISMA_SCHEMA_DEPLOY_STRATEGY: ${PRISMA_SCHEMA_DEPLOY_STRATEGY:-push}
       ALLOW_MIGRATION_FAILURE: ${ALLOW_MIGRATION_FAILURE:-false}
       REDIS_ENABLED: "true"
@@ -74,9 +78,9 @@ services:
       REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-dev-password}@redis:6379/0
       REDIS_KEY_PREFIX: company-website:v1
       JWT_SECRET: ${JWT_SECRET:-dev-insecure-secret-change-me}
-      JWT_ISSUER: ${JWT_ISSUER:-skygenesisenterprise.localhost}
+      JWT_ISSUER: ${JWT_ISSUER:-company-website}
       AUTH_COOKIE_DOMAIN: ${AUTH_COOKIE_DOMAIN:-.skygenesisenterprise.localhost}
-      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://skygenesisenterprise.localhost,http://api.skygenesisenterprise.localhost,http://sso.skygenesisenterprise.localhost,http://manager.skygenesisenterprise.localhost,http://data.skygenesisenterprise.localhost,http://rabbitmq.skygenesisenterprise.localhost,http://search.skygenesisenterprise.localhost,http://localhost:3000,http://127.0.0.1:8081}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://skygenesisenterprise.localhost,http://api.skygenesisenterprise.localhost,http://sso.skygenesisenterprise.localhost,http://studios.skygenesisenterprise.localhost,http://media.skygenesisenterprise.localhost,http://data.skygenesisenterprise.localhost,http://rabbitmq.skygenesisenterprise.localhost,http://search.skygenesisenterprise.localhost,http://localhost:3000,http://127.0.0.1:8081}
       LISTEN__TRUSTED_PROXY_CIDRS: 0.0.0.0/0,::/0
       API_PORT: "8080"
       HOST: ${DOMAIN_HOST:-skygenesisenterprise.localhost}
@@ -85,7 +89,7 @@ services:
       POSTGRESQL__USER: ${PG_USER:-postgres}
       POSTGRESQL__NAME: ${PG_DB:-postgres}
       POSTGRESQL__PASSWORD: ${PG_PASS:-postgres}
-      DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}
+      DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}?sslmode=disable
       RABBITMQ_URL: amqp://${RABBITMQ_USER:-guest}:${RABBITMQ_PASSWORD:-guest}@rabbitmq:5672
       MEILI_HOST: http://meilisearch:7700
       MEILI_API_KEY: ${MEILI_MASTER_KEY:-dev-master-key}
@@ -98,6 +102,7 @@ services:
       - gopkg:/go/pkg
       - certs:/certs
       - custom-templates:/templates
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       postgresql:
         condition: service_healthy
@@ -141,10 +146,13 @@ services:
       POSTGRES_USER: ${PG_USER:-postgres}
       POSTGRES_DB: ${PG_DB:-postgres}
       DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@localhost:5432/${PG_DB:-postgres}
-      PRISMA_SCHEMA_DEPLOY: "true"
+      # Schema ownership is delegated to GORM AutoMigrate (see worker). Prisma
+      # auto-deploy is disabled to stop db push from resetting collection
+      # status/type/visibility columns on every container start.
+      PRISMA_SCHEMA_DEPLOY: "false"
       PRISMA_SCHEMA_DEPLOY_STRATEGY: ${PRISMA_SCHEMA_DEPLOY_STRATEGY:-push}
-      PRISMA_MIGRATE_DEPLOY: "true"
-      PRISMA_HOT_RELOAD: ${PRISMA_HOT_RELOAD:-true}
+      PRISMA_MIGRATE_DEPLOY: "false"
+      PRISMA_HOT_RELOAD: "false"
       PRISMA_POLL_INTERVAL: ${PRISMA_POLL_INTERVAL:-5}
       ALLOW_MIGRATION_FAILURE: "true"
     expose:
@@ -261,6 +269,8 @@ volumes:
   rabbitmq-data:
   meilisearch-data:
   pgadmin-data:
+  uptime-kuma-data:
+  cdn-data:
 
 networks:
   company-website:

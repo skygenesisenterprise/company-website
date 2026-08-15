@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Globe, ChevronDown, CircleHelp } from "lucide-react";
 import { HeaderInfoSearch } from "@/components/public/headerinfo/HeaderInfoSearch";
-import { HeaderInfoThemeToggle } from "@/components/public/headerinfo/HeaderInfoThemeToggle";
 
 interface HeaderInfoProps {
   locale?: string;
@@ -101,9 +100,6 @@ export async function HeaderInfo({ locale: initialLocale }: HeaderInfoProps) {
 
           {/* Security Info */}
           <HeaderInfoSecurityInfo securityLabel={securityLabel} />
-
-          {/* Theme Toggle */}
-          <HeaderInfoThemeToggle />
 
           {/* Language Selector */}
           <HeaderInfoLanguageSelector locale={locale} languageList={languageList} />
